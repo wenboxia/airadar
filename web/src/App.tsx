@@ -2,11 +2,12 @@ import { useMemo, useState } from 'react'
 import { ItemCard } from './components/ItemCard'
 import { Masthead } from './components/Masthead'
 import { Mechanism } from './components/Mechanism'
+import { Trends } from './components/Trends'
 import { RadarScope } from './components/RadarScope'
-import { useLatest, usePending, useStats, useWeek } from './data'
+import { useArchive, useLatest, usePending, useStats, useTrends, useWeek } from './data'
 import type { Item } from './types'
 
-type View = 'today' | 'week' | 'pending' | 'mechanism'
+type View = 'today' | 'week' | 'archive' | 'trends' | 'pending' | 'mechanism'
 
 function FilterChip({
   active,
@@ -42,6 +43,8 @@ function FilterChip({
 const VIEWS: { id: View; label: string; sub: string }[] = [
   { id: 'today', label: '今日', sub: 'TODAY' },
   { id: 'week', label: '本周', sub: 'WEEK' },
+  { id: 'archive', label: '知识库', sub: 'ARCHIVE' },
+  { id: 'trends', label: '趋势', sub: 'TRENDS' },
   { id: 'pending', label: '待审', sub: 'QUEUE' },
   { id: 'mechanism', label: '机制', sub: 'HOW' },
 ]
@@ -54,11 +57,16 @@ export default function App() {
 
   const latest = useLatest()
   const week = useWeek()
+  const archive = useArchive()
   const pending = usePending()
+  const trends = useTrends()
   const stats = useStats()
 
   const source =
-    view === 'week' ? week : view === 'pending' ? pending : latest
+    view === 'week' ? week
+      : view === 'archive' ? archive
+        : view === 'pending' ? pending
+          : latest
   const allItems = source.data?.items ?? []
 
   /** 一条内容可属于多个分类，筛选按"包含"匹配 */
@@ -122,7 +130,7 @@ export default function App() {
             ))}
 
             {/* 桌面端搜索跟导航同行；窄屏另起一行，避免溢出 */}
-            {view !== 'mechanism' && (
+            {view !== 'mechanism' && view !== 'trends' && (
               <div className="ml-auto hidden items-center sm:flex">
                 <input
                   value={q}
@@ -134,7 +142,7 @@ export default function App() {
             )}
           </div>
 
-          {view !== 'mechanism' && (
+          {view !== 'mechanism' && view !== 'trends' && (
             <div className="pb-2.5 sm:hidden">
               <input
                 value={q}
@@ -149,6 +157,21 @@ export default function App() {
 
       {view === 'mechanism' ? (
         <Mechanism stats={stats.data} />
+      ) : view === 'trends' ? (
+        <main className="mx-auto max-w-4xl px-6 py-8 lg:px-10">
+          <div className="mb-5">
+            <h2
+              className="text-[30px] leading-none text-ink"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              话题趋势
+            </h2>
+            <p className="mt-2 font-mono text-[11px] tracking-wide text-ink-faint">
+              中期记忆：同一话题在 7 / 30 / 90 天窗口里的热度演变 · 展开看时间线
+            </p>
+          </div>
+          <Trends data={trends.data} />
+        </main>
       ) : (
         <main className="mx-auto max-w-6xl px-6 py-8 lg:px-10">
           {source.error && (
@@ -234,12 +257,27 @@ export default function App() {
                     className="text-[30px] leading-none text-ink"
                     style={{ fontFamily: 'var(--font-display)' }}
                   >
-                    {view === 'pending' ? '待人工审批' : filtered ? '筛选结果' : '完整列表'}
+                    {view === 'pending'
+                      ? '待人工审批'
+                      : view === 'archive'
+                        ? '知识库'
+                        : filtered
+                          ? '筛选结果'
+                          : '完整列表'}
                   </h2>
                   <span className="font-mono text-[10px] tracking-wider text-ink-faint">
                     {items.length} 条
                   </span>
                 </div>
+
+                {view === 'archive' && (
+                  <p className="mb-4 border-l-2 border-moss/40 pl-3 text-[12.5px] leading-relaxed text-ink-dim">
+                    长期沉淀的全部内容，不受 7 天窗口限制，可全库搜索。
+                    <span className="text-ink">时效类内容会自动过期退出</span>
+                    （发布超过 14 天且未经人工认可的），
+                    但数据仍留在库里可审计——机器无权替你遗忘你亲手认可过的东西。
+                  </p>
+                )}
 
                 {view === 'pending' && (
                   <p className="mb-4 border-l-2 border-scope/40 pl-3 text-[12.5px] leading-relaxed text-ink-dim">

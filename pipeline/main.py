@@ -22,6 +22,7 @@ from .db import DB
 from .guards import Budget
 from .llm import build_client
 from .models import Context
+from . import memory
 from .stages import classify, dedupe, fetch, publish, summarize, triage
 
 STAGES = [fetch, dedupe, triage, summarize, classify, publish]
@@ -71,6 +72,15 @@ def main():
     ctx.db.save_run(run_id, started, finished, stats, ctx.errors)
     # 本次运行入库后重写一遍 stats.json，否则前端看到的运行记录永远少一次
     publish.write_stats(ctx)
+    # 记忆层：话题热度与生命周期（依赖全库数据，所以在所有 stage 之后单独跑）
+    try:
+        trend = memory.write(ctx.db)
+        stats["memory"] = {"topics": len(trend["topics"]),
+                           "span_days": trend["span_days"],
+                           "lifecycle_ready": trend["lifecycle_ready"]}
+        print(f"  memory: {len(trend['topics'])} 个话题，知识库跨度 {trend['span_days']} 天")
+    except Exception as ex:  # noqa: BLE001 记忆层失败不影响主流程
+        ctx.note_error("memory", str(ex))
 
     os.makedirs(os.path.join(ROOT, "data", "runs"), exist_ok=True)
     report = {"run_id": run_id, "started": started, "finished": finished,

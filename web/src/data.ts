@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { Feed, Stats } from './types'
+import type { Feed, Stats, Trends } from './types'
 
 /** 静态 JSON 读取。失败不白屏——返回 error 由 UI 显式提示（兜底原则也适用于前端）。 */
 export function useJson<T>(path: string) {
@@ -26,6 +26,8 @@ export function useJson<T>(path: string) {
 export const useLatest = () => useJson<Feed>('latest.json')
 export const useWeek = () => useJson<Feed>('week.json')
 export const usePending = () => useJson<Feed>('pending.json')
+export const useArchive = () => useJson<Feed>('archive.json')
+export const useTrends = () => useJson<Trends>('trends.json')
 export const useStats = () => useJson<Stats>('stats.json')
 
 export function relTime(iso: string): string {

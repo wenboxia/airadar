@@ -77,13 +77,44 @@ def golden_compare(rows: list) -> dict:
     tp = fp = fn = tn = 0
     cat_right = cat_total = 0
     overlap_sum = 0.0
-    missing = 0
+    missing = no_auto = 0
+    human_touched = 0
+    pub_total = pub_right = dis_total = dis_right = rev_total = rev_right = 0
+    route = {}
+    missed = []
     for g in golden:
         r = by_id.get(g.get("id")) or by_url.get(g.get("url"))
         if not r:
             missing += 1
             continue
-        pipeline_include = r["status"] != "discarded"
+        # 关键：用 auto_status（系统自主判断），而不是 status（可能已被人工审批改写）。
+        # 用 status 会让所有经过 HITL 的条目变成"人评人自己"，指标虚高（decisions.md D28）
+        auto = r.get("auto_status")
+        if not auto:
+            no_auto += 1
+            continue
+        if auto != r["status"]:
+            human_touched += 1
+
+        # 三分类路由不能用二分类指标评价。系统有三种输出：
+        #   published = "我认为该收"　discarded = "我认为该丢"　review = "我不确定，你来定"
+        # 把 review 算进任何一边都会失真——算成"该收"会把谨慎当成错误，
+        # 算成"该丢"会把求助当成拒绝。所以三条路径分开评（decisions.md D29）
+        route[auto] = route.get(auto, 0) + 1
+        if auto == "published":
+            pub_total += 1
+            pub_right += g["include"]
+        elif auto == "discarded":
+            dis_total += 1
+            dis_right += not g["include"]
+            if g["include"]:
+                missed.append(g["title"][:60])   # 真正的漏网之鱼
+        else:  # review
+            rev_total += 1
+            rev_right += g["include"]
+
+        # 兼容口径：把 review 视作"未拒绝"，便于跟历史结果对比
+        pipeline_include = auto != "discarded"
         if g["include"] and pipeline_include:
             tp += 1
         elif g["include"] and not pipeline_include:
@@ -110,13 +141,34 @@ def golden_compare(rows: list) -> dict:
             overlap_sum += inter / union if union else 0
     prec = tp / (tp + fp) if (tp + fp) else None
     rec = tp / (tp + fn) if (tp + fn) else None
-    return {"labeled": len(golden), "matched": len(golden) - missing,
+    return {"labeled": len(golden),
+            "usable": len(golden) - missing - no_auto,   # 真正参与评测的条数
             "missing_in_db": missing,
+            "no_auto_status": no_auto,                   # >0 说明有条目缺系统原判，评测被削弱
+            "human_touched": human_touched,              # 其中被人工审批改写过 status 的条数
+                                                          # （用 auto_status 后它们依然有效）
             "filter_precision": round(prec, 3) if prec is not None else None,
             "filter_recall": round(rec, 3) if rec is not None else None,
             "confusion": {"tp": tp, "fp": fp, "fn": fn, "tn": tn},
             "category_primary_hit": round(cat_right / cat_total, 3) if cat_total else None,
-            "category_jaccard": round(overlap_sum / cat_total, 3) if cat_total else None}
+            "category_jaccard": round(overlap_sum / cat_total, 3) if cat_total else None,
+            # 三条路径分别评价（这才是三分类路由的正确评法）
+            "routing": {
+                "auto_publish": {
+                    "n": pub_total,
+                    # 自动发布的里面人认可的比例——错发代价最高，这是最重要的指标
+                    "precision": round(pub_right / pub_total, 3) if pub_total else None},
+                "auto_discard": {
+                    "n": dis_total,
+                    # 自动丢弃的里面人也认为该丢的比例
+                    "precision": round(dis_right / dis_total, 3) if dis_total else None,
+                    "missed": missed},          # 被错杀的好内容，逐条列出
+                "sent_to_human": {
+                    "n": rev_total,
+                    # 送审的里面人最终认可的比例——太低说明在浪费人的注意力
+                    "hit_rate": round(rev_right / rev_total, 3) if rev_total else None},
+                "route_distribution": route,
+            }}
 
 
 def main():

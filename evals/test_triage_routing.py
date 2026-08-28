@@ -6,6 +6,8 @@
 
 跑：python3 -m unittest evals.test_triage_routing -v
 """
+import pathlib
+import re
 import unittest
 from unittest.mock import Mock
 
@@ -103,6 +105,42 @@ class TestConservativeDegradation(unittest.TestCase):
         it = self._run_degraded("S")
         self.assertIn("triage_degraded", " ".join(it.notes),
                       "所有降级必须留痕，否则无法审计")
+
+
+class TestAutoStatusIsolation(unittest.TestCase):
+    """auto_status 是评测唯一可信的对照面，必须与人工审批完全隔离（decisions.md D28）。"""
+
+    def test_triage_always_records_auto_status(self):
+        for tier, scores in [("S", {"relevance": 95, "novelty": 90, "longterm": 90}),
+                             ("B", {"relevance": 55, "novelty": 50, "longterm": 45}),
+                             ("C", {"relevance": 10, "novelty": 10, "longterm": 5})]:
+            it = _item(tier)
+            triage.run([it], _ctx(True, scores))
+            self.assertEqual(it.auto_status, it.status,
+                             f"{tier}: triage 结束时两者必须一致")
+            self.assertIn(it.auto_status, ("published", "review", "discarded"))
+
+    def test_auto_status_recorded_in_degraded_path(self):
+        """降级路径（无 LLM）同样要记录，否则那批数据无法参与评测。"""
+        it = _item("S")
+        triage.run([it], _ctx(False))
+        self.assertEqual(it.auto_status, "published")
+
+    def test_auto_status_recorded_on_error(self):
+        ctx = _ctx(True)
+        ctx.llm.json_chat.side_effect = RuntimeError("崩了")
+        it = _item("S")
+        triage.run([it], ctx)
+        self.assertEqual(it.auto_status, "review", "异常路径也必须留下系统原判")
+
+    def test_human_approval_never_touches_auto_status(self):
+        """核心不变量：人工审批只改 status。
+        破坏它 = 评测退化成"人评人自己"（这个 bug 真实发生过，见 D28）。"""
+        src = (pathlib.Path(__file__).parent.parent / "pipeline" / "hitl.py").read_text(
+            encoding="utf-8")
+        for stmt in re.findall(r"UPDATE items SET [^\"]+", src):
+            self.assertNotIn("auto_status", stmt,
+                             f"hitl.py 不允许写 auto_status：{stmt}")
 
 
 class TestErrorIsolation(unittest.TestCase):
