@@ -19,7 +19,7 @@
 - [x] 幻觉第二根因修复：元数据被当正文（D18），受控实验验证
 - [x] docs/mechanisms.md 六大机制人话讲解（面试脱稿用）
 - [x] 黄金集草稿已导出（26 条）→ `evals/golden_set/golden_draft.jsonl`
-- [ ] 🔴【主人】复核黄金集草稿，改完另存为 golden.jsonl
+- [x] 【主人】黄金集复核完成（26 条，收录率 50%）→ 首次评测：召回 100% / 精确率 52%
 - [x] evals/run_eval.py v1（规则校验通过 0 违规；黄金集对比逻辑就绪，等标注数据）
 - [x] docs/PRD.md 初版（含 2026-08-27 联网竞品扫描：TLDR AI/AlphaSignal/smol.ai/开源三项目）
 - [x] docs/decisions.md D1–D19（每条=一道面试题答案）
@@ -40,12 +40,16 @@
 - [x] `evals/golden_set/ASSIST_PROMPT.md` 黄金集 AI 辅助 prompt
 - [x] 修 workflow 回写竞态 + 前端硬编码信源（改为数据驱动）
 - [x] 第三次运行全绿验证：D 级 5 条 → 2 送审 / 3 丢弃 / 0 自动发布 ✅
-- [ ] 🔴【主人】连 Vercel 部署前端（SETUP.md 第 4 节，约 3 分钟，需浏览器授权）
+- [x] 前端上线 GitHub Pages https://wenboxia.github.io/airadar/（Claude 代劳）
+- [x] 分类改多标签 + 新增「模型训练」（D25）
+- [ ] （可选，后期）连 Vercel 拿更简洁的网址
 - [ ] 🔴【主人】处理审批 Issue #1（18 条，勾选后关闭，下次运行自动回收决策）
 - [ ] 【主人】Week 2 验收：线上 URL 可访问，pipeline 每天自动跑
 
 ## Week 3 — 记忆/趋势 + 评测深化
 
+- [ ] **知识库视图 + 全库搜索**（不受 7 天限制）—— 主人明确要的"长期留存"入口
+- [ ] **内容过期机制**：horizon=short 且未经人工认可的，7 天后退出主视图（归档不删除，见 D24 两层设计）
 - [ ] memory.py：话题热度 7/30/90 天滚动窗口 + 生命周期标注 + 话题时间线
 - [ ] 前端趋势页
 - [ ] LLM-as-Judge 幻觉评测（裁判用另一家模型）

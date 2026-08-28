@@ -46,7 +46,10 @@ cd web && npm run dev
 - **备用**（兜底）：`AIRADAR_FALLBACK_*` — GLM `glm-5.3`，主力永久性故障时自动接管
 - **裁判**（评测）：`AIRADAR_JUDGE_*` — Kimi `kimi-k3`，须与主力不同家（避免 self-preference bias）
 
-⚠️ 模型版本变化快，写死前先查 `curl $BASE_URL/models -H "Authorization: Bearer $KEY"`，别靠记忆。
+⚠️ **任何版本号都先查再写，不许凭记忆**（这个错误犯过两次，见 decisions.md D26）：
+- 模型 ID：`curl $BASE_URL/models -H "Authorization: Bearer $KEY"`
+- npm 包版本：从 `node_modules/<pkg>/package.json` 读实际值，改完在干净目录跑一遍 `npm ci` 验证
+- 训练知识对版本这类高频变动信息天然过期，失败方式常是"本地好好的，一上线就挂"
 
 ## 代码约定
 
