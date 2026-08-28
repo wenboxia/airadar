@@ -13,12 +13,12 @@ const PIPELINE = [
 ]
 
 const TIERS = [
-  { t: 'S', label: '官方一手', d: 'OpenAI / Anthropic / DeepMind 官方博客、arXiv、MCP 官方', base: 90 },
-  { t: 'A', label: '公认专家', d: 'Simon Willison、Karpathy、Lilian Weng 等个人博客；HN 高分帖', base: 78 },
-  { t: 'B', label: '垂直媒体', d: 'GitHub Trending、机器之心等', base: 62 },
-  { t: 'C', label: '跨界视角', d: '投资 / 研究机构', base: 48 },
-  { t: 'D', label: '待观察', d: '新发现信源——永远不能自动发布，强制人工过审', base: 30 },
-  { t: 'X', label: '已屏蔽', d: '验证过的低质源，直接过滤', base: 0 },
+  { t: 'S', label: '官方一手', d: 'OpenAI · Anthropic · DeepMind · GitHub · Hugging Face · MCP 官方 · arXiv', base: 90, n: 7 },
+  { t: 'A', label: '公认专家', d: 'Simon Willison · Karpathy · Lilian Weng · HN 高分帖', base: 78, n: 4 },
+  { t: 'B', label: '垂直媒体 / 社区信号', d: 'GitHub Trending · 量子位', base: 62, n: 2 },
+  { t: 'C', label: '投资 / 研究 / 跨界视角', d: 'Dwarkesh Podcast · AI Snake Oil · Import AI', base: 48, n: 3 },
+  { t: 'D', label: '待观察 · 强制人工过审', d: 'Latent Space · Interconnects · Eugene Yan', base: 30, n: 3 },
+  { t: 'X', label: '已屏蔽', d: '目前为空——机制就位，还没遇到需要屏蔽的源', base: 0, n: 0 },
 ]
 
 const FALLBACKS = [
@@ -98,7 +98,9 @@ export function Mechanism({ stats }: { stats: Stats | null }) {
                 <div className="text-[13px] text-ink">{t.label}</div>
                 <div className="mt-0.5 text-[12px] text-ink-dim">{t.d}</div>
               </div>
-              <span className="font-mono text-[11px] text-ink-faint">基础分 {t.base}</span>
+              <span className="shrink-0 font-mono text-[11px] text-ink-faint">
+                {t.n} 个 · 基础分 {t.base}
+              </span>
             </div>
           ))}
         </div>
@@ -106,6 +108,13 @@ export function Mechanism({ stats }: { stats: Stats | null }) {
           <span className="text-signal">载体无罪，看运营主体。</span>
           微信公众号不是原罪——字节跳动技术团队的公众号与其官网博客权威性等价。
           这里建的是「运营主体信誉库」，不是「平台黑名单」。
+        </p>
+        <p className="mt-3 text-[13.5px] leading-[1.8] text-ink-dim">
+          <span className="text-signal">信誉是挣来的，不是赐的。</span>
+          D 级里的 Latent Space、Eugene Yan 质量其实很高，放最低级不是因为它们差，
+          而是因为<span className="text-ink">它们在本系统里还没有信誉记录</span>。
+          所有新信源一律从 D 级进入、强制人工过审；人工通过率持续走高，系统才给出升级建议。
+          所以 tier 不是手工贴的静态标签，是<span className="text-ink">有升降通道的信誉记录</span>。
         </p>
       </Section>
 

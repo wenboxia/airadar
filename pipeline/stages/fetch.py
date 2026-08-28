@@ -39,6 +39,24 @@ def _to_iso(struct) -> str:
     return datetime(*struct[:6], tzinfo=timezone.utc).isoformat(timespec="seconds")
 
 
+def parse_iso(s: str):
+    """容错解析 ISO 时间。Python 3.10 的 fromisoformat 不认 'Z' 后缀（3.11 才支持），
+    而 GitHub API 返回的正是 Z 格式——不处理会直接崩。"""
+    if not s:
+        return None
+    try:
+        return datetime.fromisoformat(s.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def norm_iso(s: str) -> str:
+    """统一成 +00:00 形式。CLAUDE.md 约定所有时间存 UTC ISO，格式必须一致，
+    否则 SQLite 的字符串比较（week 视图的时间窗查询）会出现难查的边界错误。"""
+    d = parse_iso(s)
+    return d.astimezone(timezone.utc).isoformat(timespec="seconds") if d else ""
+
+
 def _clean_text(html: str, limit: int) -> str:
     soup = BeautifulSoup(html or "", "html.parser")
     for tag in soup(["script", "style", "nav", "footer", "header", "aside"]):
@@ -109,7 +127,8 @@ def _fetch_rss(src: dict, since: datetime, ctx: Context) -> list:
         published = _to_iso(getattr(e, "published_parsed", None)
                             or getattr(e, "updated_parsed", None))
         # 无日期的条目保留（部分 feed 不带日期），有日期的按时间窗过滤
-        if published and datetime.fromisoformat(published) < since:
+        pub_dt = parse_iso(published)
+        if pub_dt and pub_dt < since:
             continue
         raw = ""
         if getattr(e, "content", None):
@@ -144,7 +163,8 @@ def _fetch_arxiv(src: dict, since: datetime, ctx: Context) -> list:
     arxiv_since = since - timedelta(days=2)
     for e in feed.entries:
         published = _to_iso(getattr(e, "published_parsed", None))
-        if published and datetime.fromisoformat(published) < arxiv_since:
+        pub_dt = parse_iso(published)
+        if pub_dt and pub_dt < arxiv_since:
             continue
         abstract = re.sub(r"\s+", " ", getattr(e, "summary", "")).strip()
         it = _make_item(e.link, e.title, src, published, abstract)
@@ -195,7 +215,7 @@ def _fetch_github(src: dict, since: datetime, ctx: Context) -> list:
         for repo in resp.json().get("items", []):
             it = _make_item(
                 repo["html_url"], f"{repo['full_name']} — {repo.get('description') or ''}",
-                src, repo.get("created_at", ""),
+                src, norm_iso(repo.get("created_at", "")),
                 (repo.get("description") or ""))
             it.extra["stars"] = repo.get("stargazers_count", 0)
             it.extra["language"] = repo.get("language")
