@@ -17,7 +17,8 @@ export function RadarScope({
   const maxR = c - 26
 
   const categories = useMemo(
-    () => Array.from(new Set(items.map((i) => i.category))).filter(Boolean).sort(),
+    () => Array.from(new Set(items.map((i) => i.categories?.[0] ?? i.category)))
+      .filter(Boolean).sort(),
     [items],
   )
 
@@ -25,9 +26,10 @@ export function RadarScope({
     // 同一分类内的条目沿扇区内均匀铺开，避免完全重叠
     const perCat = new Map<string, number>()
     return items.map((it) => {
-      const ci = Math.max(0, categories.indexOf(it.category))
-      const n = perCat.get(it.category) ?? 0
-      perCat.set(it.category, n + 1)
+      const ci = Math.max(0, categories.indexOf(it.categories?.[0] ?? it.category))
+      const key = it.categories?.[0] ?? it.category
+      const n = perCat.get(key) ?? 0
+      perCat.set(key, n + 1)
       const sector = (2 * Math.PI) / Math.max(categories.length, 1)
       const angle = ci * sector + sector * (0.25 + ((n * 0.37) % 0.5)) - Math.PI / 2
       // 分数 60→外圈，95→内圈

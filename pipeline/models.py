@@ -17,7 +17,8 @@ class Item:
     summary_long: str = ""      # ~300 字摘要
     key_points: list = field(default_factory=list)
     topics: list = field(default_factory=list)
-    category: str = ""
+    category: str = ""            # 主分类（categories[0]），保留给旧数据与排序
+    categories: list = field(default_factory=list)  # 多分类：一条内容常属于多个类别
     horizon: str = ""           # short=时效新闻 / long=长期方法论
     score: float = 0.0
     score_detail: dict = field(default_factory=dict)

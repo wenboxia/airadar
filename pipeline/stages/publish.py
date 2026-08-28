@@ -27,7 +27,7 @@ def _item_view(d: dict) -> dict:
     return {k: d[k] for k in
             ("id", "url", "title", "source", "tier", "published_at",
              "summary_short", "summary_long", "key_points", "topics",
-             "category", "horizon", "score", "status", "extra")
+             "category", "categories", "horizon", "score", "status", "extra")
             if k in d}
 
 

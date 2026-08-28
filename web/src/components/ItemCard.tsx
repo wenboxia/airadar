@@ -77,9 +77,13 @@ export function ItemCard({ it, rank }: { it: Item; rank?: number }) {
       )}
 
       <div className="flex flex-wrap items-center gap-2">
-        <span className="font-mono text-[10px] tracking-wider text-scope/80">
-          {it.category}
-        </span>
+        {(it.categories?.length ? it.categories : [it.category])
+          .filter(Boolean)
+          .map((c) => (
+            <span key={c} className="font-mono text-[10px] tracking-wider text-scope/80">
+              {c}
+            </span>
+          ))}
         <span className="text-ink-faint">·</span>
         <span
           className={`font-mono text-[10px] tracking-wider ${

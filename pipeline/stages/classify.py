@@ -12,8 +12,13 @@ MANIFEST = {
     "eval_cases": "evals/golden_set/golden.jsonl 的 category 标注",
 }
 
-CATEGORIES = ["模型发布", "Agent 工程", "评测与基准", "上下文与记忆", "工程实践",
-              "开源项目", "论文", "行业动态", "安全与对齐", "产品与商业"]
+# 一条内容常常同时属于多个类别——比如一篇讲量化训练方法的 arXiv 论文，
+# 既是「论文」（体裁）又是「模型训练」（主题）。所以分类是多选，1-3 个。
+# 「模型训练」与「模型发布」分开：前者讲怎么练出来的（方法、蒸馏、量化、微调），
+# 后者讲发布了什么。「工程实践」收窄为系统层内容（生产部署、架构运维、可观测性），
+# 不再兜底一切工程话题。
+CATEGORIES = ["模型发布", "模型训练", "Agent 工程", "评测与基准", "上下文与记忆",
+              "工程实践", "开源项目", "论文", "行业动态", "安全与对齐", "产品与商业"]
 
 SUGGESTED_TOPICS = ["agent-loop", "tool-use", "mcp", "memory", "context-engineering",
                     "harness", "multi-agent", "eval", "rag", "post-training",
@@ -21,10 +26,14 @@ SUGGESTED_TOPICS = ["agent-loop", "tool-use", "mcp", "memory", "context-engineer
                     "safety", "product"]
 
 _SYS = f"""你是 AI 行业内容分类器。
-category 必须从这个列表里选一个：{CATEGORIES}
-topics 选 1-3 个标签（优先用建议列表，也可自造小写连字符标签）：{SUGGESTED_TOPICS}
+categories：从这个列表里选 1-3 个（一条内容可以同时属于多个类别，但别硬凑）：{CATEGORIES}
+  - 「模型训练」指怎么练出来的：预训练/微调/蒸馏/量化/后训练方法
+  - 「模型发布」指发布了什么模型、有什么能力
+  - 「论文」是体裁标签，arXiv 内容都该带上，且通常还有一个主题类别
+  - 「工程实践」只给系统层内容：生产部署、架构运维、可观测性
+topics 选 1-3 个细粒度标签（优先用建议列表，也可自造小写连字符标签）：{SUGGESTED_TOPICS}
 horizon 二选一：short（时效新闻，两周后价值大降）/ long（方法论/原理，三个月后仍值得回看）
-输出 JSON：{{"category": "...", "topics": ["..."], "horizon": "short|long"}}"""
+输出 JSON：{{"categories": ["...", "..."], "topics": ["..."], "horizon": "short|long"}}"""
 
 # 无 LLM 时的启发式兜底：信源类型 → 默认分类
 _FALLBACK = {"arXiv Agent/LLM": ("论文", "long"),
@@ -37,10 +46,11 @@ def _classify_one(it, ctx: Context) -> bool:
         _SYS,
         f"标题：{it.title}\n摘要：{it.summary_long or it.content[:800]}",
         max_tokens=400)   # 同上：150 会被思考吃光导致 JSON 截断
-    cat = out.get("category")
-    if cat not in CATEGORIES:
+    cats = [c for c in out.get("categories", []) if c in CATEGORIES][:3]
+    if not cats:
         return False
-    it.category = cat
+    it.categories = cats
+    it.category = cats[0]     # 主分类=第一个，保持向后兼容（旧数据只有单值）
     it.topics = [str(t).lower() for t in out.get("topics", [])][:3]
     it.horizon = out.get("horizon") if out.get("horizon") in ("short", "long") else "short"
     return True
@@ -48,7 +58,7 @@ def _classify_one(it, ctx: Context) -> bool:
 
 def _fallback(it):
     cat, horizon = _FALLBACK.get(it.source, ("行业动态", "short"))
-    it.category, it.horizon = cat, horizon
+    it.category, it.categories, it.horizon = cat, [cat], horizon
     it.topics = [t for t in SUGGESTED_TOPICS
                  if t.replace("-", " ") in it.title.lower() or t in it.title.lower()][:3]
     it.notes.append("classify_degraded: heuristic")
