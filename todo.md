@@ -32,9 +32,13 @@
 - [x] HITL 模块：GitHub Issue 勾选卡片 + 回读 + feedback.jsonl + 信源调整建议（本地 CLI 已实测跑通）
 - [x] GitHub Actions daily.yml（每日 UTC 23:00 = 北京时间 07:00）
 - [x] vercel.json 部署配置 + git 仓库初始化与首次提交
-- [ ] 🔴【主人】建 GitHub 仓库并 push + 配 Secrets（清单见下方）
-- [ ] 🔴【主人】连 Vercel 部署前端
-- [ ] 手动触发一次 Actions 验证全绿
+- [x] GitHub 仓库上线 github.com/wenboxia/airadar（Claude 代劳：建库/推送/配 Secrets+Variables）
+- [x] 手动触发 Actions 验证全绿（12 分钟，数据自动 commit 回仓库，审批 Issue #1 自动生成 18 条）
+- [x] 信源补齐至 19 个，五级全活（C/D 级落地，D 级强制送审，X 级诚实留白）— D21
+- [x] 信源体检机制 `pipeline/sources_health.py`（抓出 2 个"沉默死掉"的信源）— D22
+- [x] 置信度路由回归测试（发现 D 级守卫是死代码，改测安全网本身）— D23，测试 12→23 个
+- [x] `evals/golden_set/ASSIST_PROMPT.md` 黄金集 AI 辅助 prompt
+- [ ] 🔴【主人】连 Vercel 部署前端（SETUP.md 第 4 节，约 3 分钟，需浏览器授权）
 - [ ] 【主人】Week 2 验收：线上 URL 可访问，pipeline 每天自动跑
 
 ## Week 3 — 记忆/趋势 + 评测深化
