@@ -22,7 +22,11 @@ class Item:
     horizon: str = ""           # short=时效新闻 / long=长期方法论
     score: float = 0.0
     score_detail: dict = field(default_factory=dict)
-    status: str = "new"         # new / published / review / discarded
+    status: str = "new"         # 当前状态，人工审批会改写它
+    # 系统自主判断的原始结论，**人工审批永不覆盖**。
+    # 没有它，任何经过人工审批的条目都无法再用于评测——
+    # 因为 status 已经变成了人的答案，拿它去评测等于"人评人自己"（decisions.md D28）
+    auto_status: str = ""
     notes: list = field(default_factory=list)  # 过程审计：降级原因、幻觉标记等
     extra: dict = field(default_factory=dict)  # 信源特有字段（HN 分数、GitHub star 等）
 

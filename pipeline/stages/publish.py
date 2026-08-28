@@ -90,6 +90,12 @@ def run(items: list, ctx: Context) -> list:
         "items": [_item_view(d) for d in pending],
     })
 
+    # 知识库：全部长期留存的内容，不受 7 天窗口限制（主人明确要的"长期沉淀"入口）
+    _dump("archive.json", {
+        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "items": [_item_view(d) for d in ctx.db.archive_items()],
+    })
+
     counts = ctx.db.counts()
     write_stats(ctx)
 

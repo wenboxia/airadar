@@ -127,6 +127,8 @@ def cmd_collect():
                 continue
             item_id = m.group(1)
             approved = block[0].lower() == "x"
+            # 只改 status，**绝不碰 auto_status**——后者是系统的自主判断，
+            # 是评测唯一可信的对照面（decisions.md D28）
             db.conn.execute("UPDATE items SET status=? WHERE id=?",
                             ("published" if approved else "discarded", item_id))
             feedback.append({"item_id": item_id, "decision":
@@ -225,6 +227,7 @@ def cmd_review():
             print()
             continue
         approved = ans == "y"
+        # 同上：只改 status，auto_status 保持系统原判
         db.conn.execute("UPDATE items SET status=? WHERE id=?",
                         ("published" if approved else "discarded", it["id"]))
         feedback.append({"item_id": it["id"],

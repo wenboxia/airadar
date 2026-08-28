@@ -59,6 +59,29 @@ export interface Stats {
   runs: RunStat[]
 }
 
+export interface TrendTopic {
+  topic: string
+  counts: { d7: number; d30: number; d90: number }
+  phase: string
+  why: string
+  top_score: number
+  timeline: {
+    id: string; title: string; url: string; source: string
+    tier: Tier; published_at: string; score: number; summary_short: string
+  }[]
+}
+
+export interface Trends {
+  generated_at: string
+  windows: number[]
+  min_mentions: number
+  /** 知识库覆盖的时间跨度；不足 min_span_days 时不给生命周期结论（诚实优先） */
+  span_days: number
+  lifecycle_ready: boolean
+  min_span_days: number
+  topics: TrendTopic[]
+}
+
 export const TIER_META: Record<Tier, { label: string; desc: string }> = {
   S: { label: 'S', desc: '官方一手' },
   A: { label: 'A', desc: '公认专家' },

@@ -66,7 +66,7 @@ def run(items: list, ctx: Context) -> list:
             # 保守降级：只有 tier 分，S/A 放行，其余送人工审
             it.score = float(base)
             it.notes.append("triage_degraded: no_llm")
-            it.status = "published" if it.tier in ("S", "A") else "review"
+            it.status = it.auto_status = "published" if it.tier in ("S", "A") else "review"
             return "degraded"
 
         it.score = round(cfg.tier_weight * base + (1 - cfg.tier_weight) * value, 1)
@@ -81,12 +81,13 @@ def run(items: list, ctx: Context) -> list:
         if it.tier == "D" and it.status == "published":
             it.status = "review"
             it.notes.append("tier_D_forced_review")
+        it.auto_status = it.status      # 冻结系统的自主判断，之后人工审批只改 status
         return "llm_scored"
 
     def _on_error(it, e):
         # 评分环节异常 → 保守处理为送人工审，绝不静默丢弃或放行
         it.score = float(cfg.tier_base.get(it.tier, 30))
-        it.status = "review"
+        it.status = it.auto_status = "review"
         it.notes.append(f"triage_error: {type(e).__name__}")
         ctx.note_error("triage", f"{it.title[:40]}: {e}")
 
