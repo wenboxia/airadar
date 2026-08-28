@@ -52,6 +52,8 @@ export interface RunStat {
 export interface Stats {
   generated_at: string
   totals: Record<string, number>
+  /** 由 pipeline 从 sources.yaml 导出——展示层不硬编码信源，避免与实现脱节 */
+  sources?: { total: number; by_tier: Record<string, string[]> }
   runs: RunStat[]
 }
 
