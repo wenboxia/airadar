@@ -27,11 +27,14 @@
 
 ## Week 2 — 前端 + HITL + 上线
 
-- [ ] React 前端：feed 页（Top 精选 + 列表 + tier 徽章）、筛选（主题 × 时间维度）、「机制」页
-- [ ] 【主人】建 GitHub 仓库（repo 名 airadar）并首次 push
-- [ ] GitHub Actions daily.yml 每日 cron + 数据 commit 回 repo
-- [ ] HITL：中置信度条目 → GitHub Issue 勾选卡片 → 下次运行回读 → feedback.jsonl
-- [ ] 【主人】连 Vercel 部署前端
+- [x] React 前端：feed / 本周 / 待审 / 机制 四视图 + 雷达可视化 + 搜索 + 双轴筛选（D20）
+- [x] 修复 stats.json 少记当次运行的 bug
+- [x] HITL 模块：GitHub Issue 勾选卡片 + 回读 + feedback.jsonl + 信源调整建议（本地 CLI 已实测跑通）
+- [x] GitHub Actions daily.yml（每日 UTC 23:00 = 北京时间 07:00）
+- [x] vercel.json 部署配置 + git 仓库初始化与首次提交
+- [ ] 🔴【主人】建 GitHub 仓库并 push + 配 Secrets（清单见下方）
+- [ ] 🔴【主人】连 Vercel 部署前端
+- [ ] 手动触发一次 Actions 验证全绿
 - [ ] 【主人】Week 2 验收：线上 URL 可访问，pipeline 每天自动跑
 
 ## Week 3 — 记忆/趋势 + 评测深化

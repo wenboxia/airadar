@@ -37,7 +37,7 @@ evals/run_eval.py（评测引擎）      web/（React 前端，Vercel 部署）
 ```
 
 关键设计原则：
-- **LLM 不联网**。抓取由我们的代码完成（这样信源可控、摘要可对照原文查幻觉、来源可溯源）；LLM 只负责处理喂给它的文本。主力模型 deepseek-chat，评测裁判故意用另一家模型（避免 self-preference bias）。
+- **LLM 不联网**。抓取由我们的代码完成（这样信源可控、摘要可对照原文查幻觉、来源可溯源）；LLM 只负责处理喂给它的文本。三个模型角色：主力 DeepSeek v4-pro（干活）/ 备用 GLM 5.3（跨厂商兜底）/ 裁判 Kimi k3（评测，故意与主力不同家，避免 self-preference bias）。
 - **每个 stage 就是一个 skill**：统一契约 `run(items, ctx) -> items`，文件头有 MANIFEST（名称/版本/输入输出/评测用例位置）。
 - **兜底降级无处不在**（pipeline/guards.py）：单信源失败不阻塞全局；LLM 调用重试→切备用模型→最终降级为"仅标题+链接入库"；单次运行有 token 预算上限。**没有 API key 时整条 pipeline 也必须能跑通**（走降级路径）。
 - **评测驱动**：改 prompt / 换模型必须跑 `evals/run_eval.py`，结果存 `evals/results/` 供跨版本对比。
@@ -52,7 +52,9 @@ evals/run_eval.py（评测引擎）      web/（React 前端，Vercel 部署）
 6. `pipeline/main.py` → `pipeline/stages/*.py` — 代码主线（按 fetch→publish 顺序读）
 7. `pipeline/sources.yaml` — 信源注册表（核心资产）
 8. `evals/run_eval.py` — 评测引擎
-9. `web/` — 前端（React+Vite+TS+Tailwind）
+9. `pipeline/hitl.py` — 人工审批闭环（GitHub Issue / 本地 CLI）
+10. `web/` — 前端（React+Vite+TS+Tailwind，设计说明见 decisions.md D20）
+11. `docs/mechanisms.md` — 六大机制的人话讲解（主人面试脱稿用）
 
 ## 五、过往关键决策摘要（详见 docs/decisions.md）
 
@@ -67,6 +69,7 @@ evals/run_eval.py（评测引擎）      web/（React 前端，Vercel 部署）
 - [2026-08-27] 项目启动，计划批准（4 周）。
 - [2026-08-27] Week 1 主体完成：pipeline 六 stage 全链路跑通（降级模式，真实抓取 53 条入库）；13 个信源就绪（Anthropic 走社区镜像，见 decisions.md D8）；评测引擎 v1 规则校验 0 违规；PRD（含联网竞品扫描）与 decisions.md D1–D9 完成。
 - [2026-08-28] 三家模型接入：DeepSeek v4-pro 主力 / GLM 5.3 备用 / Kimi k3 裁判（D10）。实现跨厂商降级链，并修复"429 未必是限流"的真实 bug（D11，Kimi/GLM 用 429 表示余额不足）；12 个回归测试全绿。
+- [2026-08-28] **Week 2 主体完成**：React 前端上线本地（仪表盘风格 + 真实数据驱动的雷达可视化 + 「机制」自述页，见 D20）；HITL 模块跑通（GitHub Issue 审批卡片 + 本地 CLI 兜底 + feedback 回流 + 信源调整建议）；GitHub Actions 每日 cron 与 Vercel 配置就绪；git 仓库已初始化并首次提交。**待主人建 GitHub 仓库、配 Secrets、连 Vercel。**
 - [2026-08-28] **首次真实 LLM 全量运行成功**：13 信源 36 条、11 分钟、0 错误、107 次 LLM 调用（其中 6 次真实触发了备用模型）。由此暴露并修复 6 个真问题（D12–D17）：模型适配层（推理模型 token 语义 + kimi 温度约束）、内容获取降级链（OpenAI Cloudflare 403 → Jina Reader）、幻觉根因（信息不足逼模型硬编 → 简介模式）、并发化（吞吐 ×6.5）、限流调参、截断自愈。机制的人话讲解见 `docs/mechanisms.md`。
 
 ## 七、期望完成度（分阶段验收标准）
