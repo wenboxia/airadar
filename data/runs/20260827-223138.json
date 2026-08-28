@@ -1,0 +1,74 @@
+{
+ "run_id": "20260827-223138",
+ "started": "2026-08-27T22:31:38+00:00",
+ "finished": "2026-08-27T22:32:22+00:00",
+ "mode": "LLM 模式 | 降级链 primary(deepseek-v4-pro) → fallback(glm-5.3)",
+ "stats": {
+  "fetch": {
+   "total": 3,
+   "per_source": {
+    "OpenAI News": 3,
+    "Anthropic News": 0,
+    "Google DeepMind Blog": 0,
+    "GitHub Blog (AI)": 0,
+    "Hugging Face Blog": 0,
+    "MCP Official Blog": 0,
+    "arXiv Agent/LLM": 0,
+    "Simon Willison": 0,
+    "Andrej Karpathy": 0,
+    "Lilian Weng": 0,
+    "Hacker News (AI 高分帖)": 0,
+    "GitHub Trending (AI)": 0,
+    "机器之心": 0
+   }
+  },
+  "timing": {
+   "fetch": 40.6,
+   "dedupe": 0.0,
+   "triage": 3.1,
+   "summarize": 0.0,
+   "classify": 0.0,
+   "publish": 0.0
+  },
+  "dedupe": {
+   "kept": 3,
+   "dropped_already_in_db": 0,
+   "dropped_dup_url": 0,
+   "dropped_dup_title": 0
+  },
+  "provider_dead": {
+   "primary": "余额不足 http 402: {\"error\":{\"message\":\"Insufficient Balance\",\"type\":\"unknown_error\",\"param\":null,\"code\":\"invalid_request_error\"}}",
+   "fallback": "账户余额/配额问题（伪装成 429）: {\"error\":{\"code\":\"1113\",\"message\":\"余额不足或无可用资源包,请充值。\"}}"
+  },
+  "triage": {
+   "published": 3,
+   "review": 0,
+   "discarded": 0,
+   "llm_scored": 0,
+   "degraded": 3
+  },
+  "summarize": {
+   "summarized": 0,
+   "hallucination_flagged": 0,
+   "degraded_title_only": 3
+  },
+  "classify": {
+   "classified": 0,
+   "degraded_heuristic": 3
+  },
+  "publish": {
+   "published": 3,
+   "pending": 0,
+   "db_totals": {
+    "published": 3
+   }
+  },
+  "budget": {
+   "tokens_used": 0,
+   "calls_made": 0,
+   "token_limit": 400000,
+   "call_limit": 260
+  }
+ },
+ "errors": []
+}

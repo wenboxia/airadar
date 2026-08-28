@@ -1,0 +1,63 @@
+name: AIRadar 每日扫描
+
+on:
+  schedule:
+    # UTC 23:00 = 北京时间 07:00，早上起来就有当天的情报
+    - cron: '0 23 * * *'
+  workflow_dispatch: # 允许手动触发（调试与首次验证）
+
+# 需要写权限把数据 commit 回仓库 / 开审批 issue（零服务器架构，见 docs/decisions.md D3）
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: airadar-daily
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: 读取 HITL 审批结果（上一轮人工勾选）
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python3 -m pipeline.hitl collect
+
+      - name: 跑 pipeline
+        env:
+          AIRADAR_LLM_BASE_URL: ${{ vars.AIRADAR_LLM_BASE_URL }}
+          AIRADAR_LLM_API_KEY: ${{ secrets.AIRADAR_LLM_API_KEY }}
+          AIRADAR_LLM_MODEL: ${{ vars.AIRADAR_LLM_MODEL }}
+          AIRADAR_FALLBACK_BASE_URL: ${{ vars.AIRADAR_FALLBACK_BASE_URL }}
+          AIRADAR_FALLBACK_API_KEY: ${{ secrets.AIRADAR_FALLBACK_API_KEY }}
+          AIRADAR_FALLBACK_MODEL: ${{ vars.AIRADAR_FALLBACK_MODEL }}
+        run: python3 -m pipeline.main
+
+      - name: 跑评测（规则校验不过就让这次运行显红）
+        run: python3 evals/run_eval.py
+
+      - name: 开 HITL 审批 issue（中置信度条目）
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python3 -m pipeline.hitl open
+
+      - name: 数据回写仓库
+        run: |
+          git config user.name  "airadar-bot"
+          git config user.email "airadar-bot@users.noreply.github.com"
+          git add data/ evals/results/
+          git diff --staged --quiet || git commit -m "扫描 $(date -u +%Y-%m-%d)"
+          git push

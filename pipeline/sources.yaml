@@ -1,0 +1,103 @@
+# AIRadar 信源注册表 —— 项目的核心资产
+#
+# tier 含义（详见 docs/PRD.md 信源分层设计）：
+#   S = 官方一手来源，自动收录基础分最高
+#   A = 公认专家个人博客/团队，优先收录
+#   B = 大厂子品牌/垂直媒体，按主题收录
+#   C = 投资/研究/跨界视角，补充收录
+#   D = 待观察新信源，进人工审核队列
+#   X = 已验证低质，直接屏蔽
+#
+# type: rss（含 Atom）/ arxiv / hn / github
+# 单个信源抓取失败只记日志不阻塞（guards 兜底原则）
+
+sources:
+  # ---------- Tier S：官方一手 ----------
+  - name: OpenAI News
+    tier: S
+    type: rss
+    url: https://openai.com/news/rss.xml
+    topics: [模型发布, 行业动态]
+
+  - name: Anthropic News
+    tier: S
+    type: rss
+    # Anthropic 官网无 RSS。用社区维护的镜像（Olshansk/rss-feeds，GitHub Actions 自动更新，
+    # 实测比 RSSHub 公共实例稳定；选型过程见 docs/decisions.md）
+    url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_news.xml
+    topics: [模型发布, Agent 工程]
+
+  - name: Google DeepMind Blog
+    tier: S
+    type: rss
+    url: https://deepmind.google/blog/rss.xml
+    topics: [模型发布, 论文]
+
+  - name: GitHub Blog (AI)
+    tier: S
+    type: rss
+    url: https://github.blog/feed/
+    topics: [工程实践, 开源项目]
+
+  - name: Hugging Face Blog
+    tier: S
+    type: rss
+    url: https://huggingface.co/blog/feed.xml
+    topics: [开源项目, 工程实践]
+
+  - name: MCP Official Blog
+    tier: S
+    type: rss
+    url: https://blog.modelcontextprotocol.io/index.xml
+    topics: [Agent 工程]
+
+  - name: arXiv Agent/LLM
+    tier: S
+    type: arxiv
+    # arXiv API 查询：Agent/评测方向，按提交时间倒序
+    query: '(cat:cs.AI OR cat:cs.CL OR cat:cs.SE) AND (abs:"LLM agent" OR abs:"language model agent" OR abs:"agent evaluation" OR abs:"tool use")'
+    max_results: 15
+    topics: [论文]
+
+  # ---------- Tier A：公认专家 ----------
+  - name: Simon Willison
+    tier: A
+    type: rss
+    url: https://simonwillison.net/atom/everything/
+    topics: [Agent 工程, 工程实践]
+
+  - name: Andrej Karpathy
+    tier: A
+    type: rss
+    url: https://karpathy.bearblog.dev/feed/
+    topics: [工程实践, 论文]
+
+  - name: Lilian Weng
+    tier: A
+    type: rss
+    url: https://lilianweng.github.io/index.xml
+    topics: [Agent 工程, 论文]
+
+  - name: Hacker News (AI 高分帖)
+    tier: A
+    type: hn
+    min_points: 100
+    # 标题须命中这些关键词之一才收（HN 是社区信号，用高分+关键词双过滤）
+    keywords: [llm, gpt, claude, agent, openai, anthropic, gemini, deepseek,
+               ai, model, transformer, cursor, copilot]
+    topics: [行业动态]
+
+  # ---------- Tier B：垂直媒体/聚合 ----------
+  - name: GitHub Trending (AI)
+    tier: B
+    type: github
+    # 用 Search API 近似 trending：近 30 天新建、按 star 排序的 AI 主题仓库
+    topics_query: [llm, ai-agents]
+    per_topic: 5
+    topics: [开源项目]
+
+  - name: 机器之心
+    tier: B
+    type: rss
+    url: https://www.jiqizhixin.com/rss
+    topics: [行业动态]
