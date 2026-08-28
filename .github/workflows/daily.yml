@@ -54,10 +54,31 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: python3 -m pipeline.hitl open
 
+      # 回写要能容忍"运行期间远端已变化"——一次扫描要跑十几分钟，
+      # 期间任何一次人工 push 都会让直接 push 被拒（实测踩过）。
+      # 策略：本次运行产出的数据是权威版本，直接覆盖到远端最新代码之上，
+      # 不走 merge/rebase（knowledge.db 是二进制，冲突无法自动解）。
       - name: 数据回写仓库
         run: |
           git config user.name  "airadar-bot"
           git config user.email "airadar-bot@users.noreply.github.com"
           git add data/ evals/results/
-          git diff --staged --quiet || git commit -m "扫描 $(date -u +%Y-%m-%d)"
-          git push
+          if git diff --staged --quiet; then
+            echo "本次无数据变更，跳过回写"; exit 0
+          fi
+          mkdir -p /tmp/airadar-out
+          cp -r data /tmp/airadar-out/
+          cp -r evals/results /tmp/airadar-out/
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            rm -rf data evals/results
+            cp -r /tmp/airadar-out/data data
+            cp -r /tmp/airadar-out/results evals/results
+            git add data/ evals/results/
+            git diff --staged --quiet && { echo "与远端一致，无需提交"; exit 0; }
+            git commit -m "扫描 $(date -u +%Y-%m-%d)"
+            if git push; then echo "回写成功（第 $attempt 次尝试）"; exit 0; fi
+            echo "推送被拒，远端有新提交，重试中…"; sleep 5
+          done
+          echo "::error::数据回写重试 3 次仍失败"; exit 1

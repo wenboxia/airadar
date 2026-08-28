@@ -37,12 +37,29 @@ def _dump(name: str, obj):
         json.dump(obj, f, ensure_ascii=False, indent=1)
 
 
+def _source_registry() -> dict:
+    """把 sources.yaml 的真实状态导出给前端。
+
+    为什么不让前端硬编码：前端「机制」页曾写着"13 个分层信源"，而实际已经 19 个——
+    文档与实现的偏差（decisions.md D21）会以各种形式反复出现。根治办法是
+    **让展示层从唯一事实来源派生**，而不是靠人记得同步。
+    """
+    import yaml
+    with open(os.path.join(ROOT, "pipeline", "sources.yaml"), encoding="utf-8") as f:
+        sources = yaml.safe_load(f)["sources"]
+    by_tier = {}
+    for s in sources:
+        by_tier.setdefault(s["tier"], []).append(s["name"])
+    return {"total": len(sources), "by_tier": by_tier}
+
+
 def write_stats(ctx: Context):
     """单独抽出来是因为要被调用两次：publish 阶段写一次（保证有文件），
     main.py 在 save_run 之后再写一次——否则 stats.json 永远少记当次运行。"""
     _dump("stats.json", {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "totals": ctx.db.counts(),
+        "sources": _source_registry(),
         "runs": [{"run_id": r["run_id"], "started_at": r["started_at"],
                   "stats": r["stats"]} for r in ctx.db.all_runs()[:30]],
     })

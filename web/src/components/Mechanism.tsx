@@ -4,7 +4,7 @@ import type { Stats } from '../types'
  *  面试官打开这一页就能看懂整个系统怎么运转、数据从哪来、质量怎么保证。 */
 
 const PIPELINE = [
-  { n: 'fetch', zh: '抓取', d: '13 个分层信源。LLM 不联网，联网由确定性代码完成——信源可控、原文可存、幻觉可查。' },
+  { n: 'fetch', zh: '抓取', d: '分层信源注册表。LLM 不联网，联网由确定性代码完成——信源可控、原文可存、幻觉可查。' },
   { n: 'dedupe', zh: '去重', d: 'URL 规范化 + 标题相似度；同一事件多源报道时保留高等级信源。' },
   { n: 'triage', zh: '分层评分', d: '综合分 = 信源等级 55% + 模型价值评分 45% → 三分支路由。' },
   { n: 'summarize', zh: '双层摘要', d: '一句话 + 300 字，生成后对照原文做幻觉自检。原文不足时降为「简介模式」，不许扩写。' },
@@ -12,13 +12,15 @@ const PIPELINE = [
   { n: 'publish', zh: '入库发布', d: '写 SQLite 知识库 + 生成前端数据 + 开人工审批队列。' },
 ]
 
+// 只写"准入逻辑"这类稳定的语义；具体有哪些信源、各几个，一律从 stats.json 派生。
+// 教训见 decisions.md D21：这里曾硬编码"13 个信源"，实际已经 19 个。
 const TIERS = [
-  { t: 'S', label: '官方一手', d: 'OpenAI · Anthropic · DeepMind · GitHub · Hugging Face · MCP 官方 · arXiv', base: 90, n: 7 },
-  { t: 'A', label: '公认专家', d: 'Simon Willison · Karpathy · Lilian Weng · HN 高分帖', base: 78, n: 4 },
-  { t: 'B', label: '垂直媒体 / 社区信号', d: 'GitHub Trending · 量子位', base: 62, n: 2 },
-  { t: 'C', label: '投资 / 研究 / 跨界视角', d: 'Dwarkesh Podcast · AI Snake Oil · Import AI', base: 48, n: 3 },
-  { t: 'D', label: '待观察 · 强制人工过审', d: 'Latent Space · Interconnects · Eugene Yan', base: 30, n: 3 },
-  { t: 'X', label: '已屏蔽', d: '目前为空——机制就位，还没遇到需要屏蔽的源', base: 0, n: 0 },
+  { t: 'S', label: '官方一手', why: '信息来自创造者本人，不存在转述失真', base: 90 },
+  { t: 'A', label: '公认专家', why: '作者有被验证过的判断力，分析独立于官方口径', base: 78 },
+  { t: 'B', label: '垂直媒体 / 社区信号', why: '有编辑或社区筛选，但不是一手', base: 62 },
+  { t: 'C', label: '投资 / 研究 / 跨界视角', why: '不产工程内容，但给出产业逻辑与批判视角', base: 48 },
+  { t: 'D', label: '待观察 · 强制人工过审', why: '在本系统里还没有信誉记录，永不自动发布', base: 30 },
+  { t: 'X', label: '已屏蔽', why: '验证过存在抄袭 / 标题党 / 纯软文', base: 0 },
 ]
 
 const FALLBACKS = [
@@ -57,6 +59,7 @@ function Section({
 export function Mechanism({ stats }: { stats: Stats | null }) {
   const last = stats?.runs?.[0]?.stats
   const budget = last?.budget
+  const reg = stats?.sources
 
   return (
     <div className="mx-auto max-w-3xl px-6 pb-24 lg:px-0">
@@ -83,26 +86,39 @@ export function Mechanism({ stats }: { stats: Stats | null }) {
         </p>
       </Section>
 
-      <Section label="Trust" title="信源分层：谁值得被相信">
+      <Section
+        label="Trust"
+        title={`信源分层：谁值得被相信${reg ? `（${reg.total} 个）` : ''}`}
+      >
         <div className="space-y-0">
-          {TIERS.map((t) => (
-            <div key={t.t} className="flex items-baseline gap-4 border-t border-rule py-3">
-              <span
-                className={`w-7 shrink-0 font-mono text-[13px] ${
-                  t.t === 'S' ? 'text-signal' : t.t === 'A' ? 'text-scope' : 'text-ink-faint'
-                }`}
-              >
-                {t.t}
-              </span>
-              <div className="flex-1">
-                <div className="text-[13px] text-ink">{t.label}</div>
-                <div className="mt-0.5 text-[12px] text-ink-dim">{t.d}</div>
+          {TIERS.map((t) => {
+            const names = reg?.by_tier?.[t.t] ?? []
+            return (
+              <div key={t.t} className="flex items-baseline gap-4 border-t border-rule py-3">
+                <span
+                  className={`w-7 shrink-0 font-mono text-[13px] ${
+                    t.t === 'S' ? 'text-signal' : t.t === 'A' ? 'text-scope' : 'text-ink-faint'
+                  }`}
+                >
+                  {t.t}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="text-[13px] text-ink">{t.label}</div>
+                  <div className="mt-0.5 text-[12px] leading-relaxed text-ink-dim">
+                    {t.why}
+                  </div>
+                  <div className="mt-1 font-mono text-[11px] leading-relaxed text-ink-faint">
+                    {names.length
+                      ? names.join(' · ')
+                      : '目前为空——机制就位，还没遇到需要屏蔽的源'}
+                  </div>
+                </div>
+                <span className="shrink-0 font-mono text-[11px] text-ink-faint">
+                  {names.length} 个 · {t.base} 分
+                </span>
               </div>
-              <span className="shrink-0 font-mono text-[11px] text-ink-faint">
-                {t.n} 个 · 基础分 {t.base}
-              </span>
-            </div>
-          ))}
+            )
+          })}
         </div>
         <p className="mt-4 text-[13.5px] leading-[1.8] text-ink-dim">
           <span className="text-signal">载体无罪，看运营主体。</span>
