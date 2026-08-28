@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS items (
     url TEXT, title TEXT, source TEXT, tier TEXT,
     published_at TEXT, fetched_at TEXT,
     content TEXT, summary_short TEXT, summary_long TEXT,
-    key_points TEXT, topics TEXT, category TEXT, horizon TEXT,
+    key_points TEXT, topics TEXT, category TEXT, categories TEXT, horizon TEXT,
     score REAL, score_detail TEXT, status TEXT, notes TEXT, extra TEXT,
     run_id TEXT
 );
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS runs (
 );
 """
 
-_JSON_FIELDS = ("key_points", "topics", "score_detail", "notes", "extra")
+_JSON_FIELDS = ("key_points", "topics", "categories", "score_detail", "notes", "extra")
 
 
 class DB:
@@ -37,6 +37,18 @@ class DB:
         self.conn = sqlite3.connect(path)
         self.conn.row_factory = sqlite3.Row
         self.conn.executescript(SCHEMA)
+        self._migrate()
+
+    def _migrate(self):
+        """轻量迁移：老库缺 categories 列时补上，并用 category 回填。
+        数据不能因为加字段就重跑一遍——已有的运行记录是项目的资产。"""
+        cols = {r[1] for r in self.conn.execute("PRAGMA table_info(items)")}
+        if "categories" not in cols:
+            self.conn.execute("ALTER TABLE items ADD COLUMN categories TEXT")
+            self.conn.execute(
+                "UPDATE items SET categories = json_array(category) "
+                "WHERE category IS NOT NULL AND category != ''")
+            self.conn.commit()
 
     def existing_ids(self) -> set:
         return {r["id"] for r in self.conn.execute("SELECT id FROM items")}

@@ -61,15 +61,19 @@ export default function App() {
     view === 'week' ? week : view === 'pending' ? pending : latest
   const allItems = source.data?.items ?? []
 
+  /** 一条内容可属于多个分类，筛选按"包含"匹配 */
+  const catsOf = (it: Item) =>
+    it.categories?.length ? it.categories : it.category ? [it.category] : []
+
   const categories = useMemo(
-    () => Array.from(new Set(allItems.map((i) => i.category).filter(Boolean))).sort(),
+    () => Array.from(new Set(allItems.flatMap(catsOf))).sort(),
     [allItems],
   )
 
   const items = useMemo(() => {
     const needle = q.trim().toLowerCase()
     return allItems.filter((it) => {
-      if (cat && it.category !== cat) return false
+      if (cat && !catsOf(it).includes(cat)) return false
       if (horizon && it.horizon !== horizon) return false
       if (!needle) return true
       return (

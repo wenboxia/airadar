@@ -14,6 +14,8 @@ export interface Item {
   key_points: string[]
   topics: string[]
   category: string
+  /** 多分类：一条内容常同时属于多个类别（如 论文 + 模型训练） */
+  categories?: string[]
   horizon: Horizon
   score: number
   status: Status
