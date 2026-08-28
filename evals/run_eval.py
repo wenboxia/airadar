@@ -76,6 +76,7 @@ def golden_compare(rows: list) -> dict:
     by_url = {r["url"]: r for r in rows}
     tp = fp = fn = tn = 0
     cat_right = cat_total = 0
+    overlap_sum = 0.0
     missing = 0
     for g in golden:
         r = by_id.get(g.get("id")) or by_url.get(g.get("url"))
@@ -91,10 +92,22 @@ def golden_compare(rows: list) -> dict:
             fp += 1
         else:
             tn += 1
-        if g.get("category"):
+        gold_cats = g.get("categories") or ([g["category"]] if g.get("category") else [])
+        if gold_cats:
             cat_total += 1
-            if r["category"] == g["category"]:
+            try:
+                pipe_cats = json.loads(r.get("categories") or "null") or []
+            except (json.JSONDecodeError, TypeError):
+                pipe_cats = []
+            if not pipe_cats and r.get("category"):
+                pipe_cats = [r["category"]]
+            # 多标签下"准确"的定义：人工标的主分类被系统命中即算对。
+            # 系统多标一个不算错（信息更全），漏掉主分类才算错。
+            if gold_cats[0] in pipe_cats:
                 cat_right += 1
+            inter = len(set(gold_cats) & set(pipe_cats))
+            union = len(set(gold_cats) | set(pipe_cats))
+            overlap_sum += inter / union if union else 0
     prec = tp / (tp + fp) if (tp + fp) else None
     rec = tp / (tp + fn) if (tp + fn) else None
     return {"labeled": len(golden), "matched": len(golden) - missing,
@@ -102,7 +115,8 @@ def golden_compare(rows: list) -> dict:
             "filter_precision": round(prec, 3) if prec is not None else None,
             "filter_recall": round(rec, 3) if rec is not None else None,
             "confusion": {"tp": tp, "fp": fp, "fn": fn, "tn": tn},
-            "category_accuracy": round(cat_right / cat_total, 3) if cat_total else None}
+            "category_primary_hit": round(cat_right / cat_total, 3) if cat_total else None,
+            "category_jaccard": round(overlap_sum / cat_total, 3) if cat_total else None}
 
 
 def main():
