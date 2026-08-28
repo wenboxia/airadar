@@ -96,8 +96,65 @@ sources:
     per_topic: 5
     topics: [开源项目]
 
-  - name: 机器之心
+  - name: 量子位
     tier: B
     type: rss
-    url: https://www.jiqizhixin.com/rss
+    # 原本这里是机器之心，但体检发现它的 /rss 现在返回 HTML 页面而不是 feed
+    # ——HTTP 200、不报错、永远抓 0 条，典型的"沉默的失败"（见 decisions.md D22）。
+    # 换成量子位（实测每天有更新）。中文 AI 媒体，快讯为主，故列 B 级。
+    url: https://www.qbitai.com/feed
     topics: [行业动态]
+
+  # ---------- Tier C：投资 / 研究 / 跨界视角（补充收录）----------
+  # 这一层不直接生产工程内容，但提供"技术趋势背后的产业与批判视角"，
+  # 帮助理解一件事为什么发生、代价是什么。基础分低，需要内容本身够硬才进得来。
+  - name: Dwarkesh Podcast
+    tier: C
+    type: rss
+    # 深度长访谈，产业 + 研究 + 投资的交叉视角。
+    # 原本这里放的是 SemiAnalysis（算力与供应链分析），但体检发现它的公开 RSS
+    # 停更在 2025-09（内容转付费）——死信源不留（见 decisions.md D22）。
+    # 换成 Dwarkesh 后反而更好：它最新一期的嘉宾正是 SemiAnalysis 创始人 Dylan Patel。
+    url: https://www.dwarkesh.com/feed
+    topics: [行业动态, 产品与商业]
+
+  - name: AI Snake Oil
+    tier: C
+    type: rss
+    # Princeton 研究者的批判视角。刻意引入"反面声音"，避免知识库变成信息茧房
+    url: https://www.aisnakeoil.com/feed
+    topics: [行业动态, 安全与对齐]
+
+  - name: Import AI
+    tier: C
+    type: rss
+    # Jack Clark，研究 + 政策 + 产业的跨界周报
+    url: https://importai.substack.com/feed
+    topics: [行业动态, 论文]
+
+  # ---------- Tier D：待观察（强制人工过审，永不自动发布）----------
+  # 注意：下面三个信源本身质量很高，放 D 级不是因为它们差，而是因为
+  # **它们在本系统里还没有信誉记录**。所有新信源一律从 D 级进入、强制送审；
+  # 人工连续通过率高了，hitl.py 的 _source_hint 会给出升级建议。
+  # 这样 tier 就不是我手工贴的静态标签，而是有升降通道的信誉记录。
+  - name: Latent Space
+    tier: D
+    type: rss
+    url: https://www.latent.space/feed
+    topics: [Agent 工程, 工程实践]
+
+  - name: Interconnects
+    tier: D
+    type: rss
+    url: https://www.interconnects.ai/feed
+    topics: [模型发布, 论文]
+
+  - name: Eugene Yan
+    tier: D
+    type: rss
+    url: https://eugeneyan.com/rss/
+    topics: [工程实践, 评测与基准]
+
+  # ---------- Tier X：已屏蔽 ----------
+  # 目前为空——还没遇到需要永久屏蔽的信源。机制已就位（fetch 阶段直接跳过 X 级），
+  # 等真的遇到抄袭/标题党/纯软文的源再往这里加。不为了凑满六级而编造。

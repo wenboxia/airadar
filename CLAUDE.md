@@ -22,6 +22,12 @@ python3 -m pipeline.main --limit 5
 # 不调用 LLM（强制降级路径，零成本）
 python3 -m pipeline.main --no-llm
 
+# 信源体检（报告每个信源最新内容日期与存活状态；发现"沉默死掉"的信源）
+python3 -m pipeline.sources_health
+
+# 人工审批（本地 CLI；线上走 GitHub Issue）
+python3 -m pipeline.hitl review
+
 # 跑评测
 python3 evals/run_eval.py
 
