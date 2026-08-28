@@ -152,7 +152,19 @@ def write_stats_safe(db: DB):
 
 
 def _source_hint(db: DB):
-    """数据飞轮：人的决策回流成信源信誉的修正建议。"""
+    """数据飞轮：人的决策回流成信源处理策略的修正建议。
+
+    **关键的统计陷阱**（decisions.md D27）：人工反馈只存在于**中间区**（50-75 分）
+    ——高分内容自动发布了、低分内容直接丢了，都没人打过分。所以这里算出来的
+    通过率是**条件概率**：P(人工认可 | 这条落在边缘区)，而不是这个信源的整体质量。
+
+    实测例子：OpenAI News 边缘区通过率 0/4，但它同时有多条高分内容被自动发布且
+    主人在黄金集里认可。真实含义不是"OpenAI 不可信"，而是
+    **"OpenAI 的边缘内容是营销稿"**——它的好东西都在高分区，边缘区全是软文。
+
+    因此本函数只给「边缘区处理策略」的建议，**绝不建议改 tier**——
+    改 tier 会连带影响该信源的高分内容，那是用有偏样本去推翻无偏结论。
+    """
     if not os.path.exists(FEEDBACK_PATH):
         return
     stats = {}
@@ -169,16 +181,24 @@ def _source_hint(db: DB):
     hints = []
     for name, s in stats.items():
         n = s["ok"] + s["no"]
-        if n < 5:      # 样本太少不下结论
+        if n < 8:      # 样本太少不下结论（边缘区数据本就稀疏，门槛要更高）
             continue
         rate = s["ok"] / n
-        if rate < 0.3:
-            hints.append(f"  ↓ {name}（{s['tier']} 级）近 {n} 条人工通过率仅 {rate:.0%}，建议降级")
-        elif rate > 0.85 and s["tier"] not in ("S", "A"):
-            hints.append(f"  ↑ {name}（{s['tier']} 级）近 {n} 条通过率 {rate:.0%}，建议升级")
+        if rate < 0.2:
+            hints.append(
+                f"  ⤵ {name}（{s['tier']} 级）边缘区 {n} 条只通过 {rate:.0%}——"
+                f"它的边缘内容多半没价值，可考虑对该信源提高送审门槛，少占人工注意力。"
+                f"\n     （注意：这不代表该信源整体质量差，它的高分内容未参与此统计）")
+        elif rate > 0.8:
+            hints.append(
+                f"  ⤴ {name}（{s['tier']} 级）边缘区 {n} 条通过 {rate:.0%}——"
+                f"边缘内容质量意外地好，可考虑降低其送审门槛让更多内容直接发布。")
     if hints:
-        print("信源调整建议（数据飞轮）：")
+        print("\n边缘区处理策略建议（基于人工审批的条件概率，不用于调整 tier）：")
         print("\n".join(hints))
+    elif stats:
+        n_total = sum(s["ok"] + s["no"] for s in stats.values())
+        print(f"\n（已积累 {n_total} 条人工决策，各信源样本均不足 8 条，暂不给建议）")
 
 
 def cmd_review():
