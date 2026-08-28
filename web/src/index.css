@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+/* AIRadar 设计系统 —— 仪表盘 / 信号情报终端
+   概念：一台精密的信号接收仪器。深色底 = 仪表盘，琥珀色 = 有效信号，
+   青灰 = 结构与扫描线。衬线体做刊头制造"编辑部 × 仪器"的张力。 */
+
+@theme {
+  --color-void: #0a0d0e;        /* 最底层背景 */
+  --color-panel: #101416;       /* 面板 */
+  --color-panel-2: #161c1f;     /* 抬升面板 */
+  --color-rule: #232c30;        /* 分隔线 */
+  --color-rule-bright: #33403f;
+
+  --color-ink: #eceae4;         /* 正文 */
+  --color-ink-dim: #adb9bb;     /* 次要 */
+  --color-ink-faint: #7a8a8d;   /* 三级 */
+
+  --color-signal: #f0b429;      /* 琥珀：高价值信号 */
+  --color-signal-deep: #b8811a;
+  --color-scope: #5fb3c4;       /* 青：雷达/结构 */
+  --color-scope-deep: #2d6b78;
+  --color-alert: #d1665b;       /* 告警：幻觉标记等 */
+  --color-moss: #7f9c6b;        /* 长期价值 */
+
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-sans: "IBM Plex Sans SC", "PingFang SC", "Noto Sans SC", sans-serif;
+}
+
+html { -webkit-font-smoothing: antialiased; }
+
+body {
+  background: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 400;   /* 深色底上 300 字重的中文过细，实测 400 才清晰 */
+  /* 仪器面板的细网格纹理，比纯色有质感 */
+  background-image:
+    linear-gradient(rgba(95, 179, 196, 0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(95, 179, 196, 0.022) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+::selection { background: var(--color-signal); color: var(--color-void); }
+
+/* 滚动条也当仪器零件处理 */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-void); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-rule);
+  border: 2px solid var(--color-void);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-rule-bright); }
+
+@keyframes sweep { to { transform: rotate(360deg); } }
+@keyframes blip-in {
+  0% { opacity: 0; transform: scale(0.2); }
+  60% { opacity: 1; transform: scale(1.35); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes ring-pulse {
+  0% { opacity: 0.5; transform: scale(0.85); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.rise { animation: rise 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+
+/* 刊头的横向扫描光带 */
+@keyframes scanline {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
