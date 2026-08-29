@@ -1,60 +1,84 @@
-# 上线操作清单（需要主人自己做，约 10 分钟）
+# 运维手册
 
-涉及账号和密钥的操作只能你来做。照着做完，AIRadar 就每天自动跑并在线可访问了。
+> 项目**已经上线并每天自动运行**，本文件是日常操作与故障排查参考。
+> 建仓库、配密钥、部署这些一次性工作 Claude 已经代做完了。
 
-## 1. 建 GitHub 仓库并推送（3 分钟）
+## 现状
 
-在 github.com 新建一个仓库，名字填 `airadar`，**不要**勾选任何初始化选项（README/gitignore/license 都别勾）。
-建好后回到终端，把下面命令里的 `你的用户名` 换成你的 GitHub 用户名：
+| | |
+|---|---|
+| 线上地址 | https://wenboxia.github.io/airadar/ |
+| 仓库 | https://github.com/wenboxia/airadar |
+| 自动运行 | 每天北京时间 **07:00**（GitHub Actions） |
+| 部署方式 | **GitHub Pages**（`.github/workflows/pages.yml`，数据更新后自动重新部署） |
+
+---
+
+## 日常两件事
+
+### 1. 处理审批 issue（约 3 分钟）
+
+每天定时任务会把「系统不确定」的内容（综合分 50–75）开成一张勾选清单。
+
+1. 打开 https://github.com/wenboxia/airadar/issues （找带 `airadar-approval` 标签的）
+2. **想收录就打勾，不想要就留空**，不用写理由
+3. **滑到底部点 `Close issue`**
+
+> ⚠️ **关闭 issue 才算提交。** 只勾不关，系统不会回收你的决策——关闭相当于点「确认」。
+
+次日运行会自动回收决策、更新知识库、并根据通过率给出信源策略建议。
+
+### 2. 黄金集标注（有空再做，目标 100 条）
 
 ```bash
-git remote add origin https://github.com/你的用户名/airadar.git && git branch -M main && git push -u origin main
+cd ~/Desktop/airadar
+python3 evals/prelabel.py --n 25      # 按分数段分层导出新一批草稿
+python3 evals/review_golden.py        # 逐条标注
 ```
 
-## 2. 配 GitHub Secrets 和 Variables（4 分钟）
+按 `y`（收录）/ `n`（筛掉）/ `s`（跳过）/ `q`（存盘退出）；收录的会让你选分类并写一句理由。
+**每条自动存盘，随时可停**，下次跑同一条命令接着来，已标过的自动跳过。
 
-进仓库页面 → Settings → Secrets and variables → Actions。
+标准只有一句：**三个月后你还愿意在知识库里搜到它吗？**
 
-**Secrets 标签页**（点 New repository secret，加 2 个）：
+---
 
-| Name | Value |
-|---|---|
-| `AIRADAR_LLM_API_KEY` | 你的 DeepSeek key |
-| `AIRADAR_FALLBACK_API_KEY` | 你的 GLM key |
+## 本地常用操作
 
-**Variables 标签页**（点 New repository variable，加 4 个）：
+```bash
+cd ~/Desktop/airadar
 
-| Name | Value |
-|---|---|
-| `AIRADAR_LLM_BASE_URL` | `https://api.deepseek.com` |
-| `AIRADAR_LLM_MODEL` | `deepseek-v4-pro` |
-| `AIRADAR_FALLBACK_BASE_URL` | `https://open.bigmodel.cn/api/paas/v4` |
-| `AIRADAR_FALLBACK_MODEL` | `glm-5.3` |
+python3 -m pipeline.main --limit 5     # 本地试跑（每信源 5 条）
+python3 -m pipeline.sources_health     # 信源体检：找出停更/失效的源
+python3 evals/run_eval.py              # 跑评测看当前准确率
+python3 -m pipeline.hitl review        # 本地审批（不想开 GitHub 时）
+cd web && npm run dev                  # 本地看前端
+```
 
-## 3. 手动触发一次验证（2 分钟）
+---
 
-仓库页面 → Actions 标签 → 左侧点「AIRadar 每日扫描」→ 右侧 Run workflow 按钮 → 绿色 Run workflow。
+## 故障排查
 
-跑完（约 15–20 分钟）应该全绿，并且：
-- 仓库里多一个 commit「扫描 2026-XX-XX」
-- Issues 里多一张待审批清单
+**Actions 跑失败了？**
+打开仓库 Actions 标签看红色那次的日志。常见原因：
+- **模型余额不足** → 去对应平台充值（DeepSeek: platform.deepseek.com｜GLM: open.bigmodel.cn｜Kimi: platform.moonshot.cn）
+- **数据回写被拒** → 已内置 3 次重试，仍失败说明有并发推送，重跑一次即可
 
-之后每天北京时间早上 7 点会自动跑。
+**网站数据没更新？**
+Actions 跑完会 commit 数据，Pages 工作流随后自动部署。两个工作流都绿了但页面还旧，多半是浏览器缓存，强制刷新（Cmd+Shift+R）。
 
-## 4. 连 Vercel 部署前端（3 分钟）
+**想换模型或加信源？**
+- 换模型：改 `.env`（本地）+ GitHub 仓库 Settings → Secrets and variables → Actions（云端）
+- 加信源：改 `pipeline/sources.yaml`。**新信源一律先放 D 级**——强制人工过审，通过率高了系统会建议升级
 
-1. 打开 vercel.com，用 GitHub 账号登录
-2. Add New → Project → 选 `airadar` 仓库 → Import
-3. **所有配置保持默认**（仓库根目录的 `vercel.json` 已经配好了构建命令和输出目录）
-4. 点 Deploy
+---
 
-部署完会给你一个 `airadar-xxx.vercel.app` 的网址——这就是可以写进简历、发给面试官的链接。
+## 可选：额外接一个 Vercel 域名
 
-之后每次 pipeline 跑完把数据 commit 回仓库，Vercel 会自动重新部署，网站数据自动更新。
+GitHub Pages 已经够用。如果想要更简洁的网址（`airadar.vercel.app`）：
 
-## 日常使用
+1. vercel.com 用 GitHub 账号登录 → Add New → Project → 选 `airadar` → Import
+2. **配置全默认**（仓库根目录的 `vercel.json` 已配好构建命令与输出目录）
+3. Deploy
 
-- **每天早上**：打开网站看今日精选；「待审」标签有数字就去 GitHub Issues 勾选审批（约 2 分钟）
-- **本地调试**：`python3 -m pipeline.main --limit 5`（每源限 5 条）
-- **本地审批**（不想开 GitHub 时）：`python3 -m pipeline.hitl review`
-- **本地看前端**：`cd web && npm run dev`
+两者可共存，都指向同一个仓库，代码一行不用改（`vite.config.ts` 的 base 路径由 `AIRADAR_BASE` 环境变量切换）。
