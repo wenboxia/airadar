@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-29T04:06:33+00:00",
+ "generated_at": "2026-08-30T01:10:47+00:00",
  "items": [
   {
    "id": "e8e7441ac397b526",
@@ -981,6 +981,39 @@
    }
   },
   {
+   "id": "6f0715608976cb6d",
+   "url": "https://pwning.systems/posts/llm-memory-program-analysis/",
+   "title": "I accidentally turned LLM memory into program analysis",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-08-28T23:27:45+00:00",
+   "summary_short": "作者把LLM记忆难题转化为程序分析，编写Datalog引擎以自动维护有效结论",
+   "summary_long": "作者在漏洞研究中使用LLM代理，发现它们能较好地浏览大型代码库、解释子系统并探索攻击面，但调查持续数小时后，模型会逐渐忘记已确立的事实：可能提议已被排除的方法、忘记某假设已被证伪，或继续从失效观察推理。现有记忆系统通常存储旧对话或观察、嵌入并检索最相关内容，但这只能让模型记住说过的话，无法维护当前已知状态。作者举出对象控制关系及其因LLDB调试被推翻的例子，说明检索到的矛盾记忆会让模型难以判断哪些结论仍有效。这让他联想到程序分析：程序分析用事实和规则推导新事实，达到固定点，并在输入事实改变时仅更新受影响结果。作者想要的正是这种能力——观察改变时受影响结论自动失效，而不是让模型反复从记录重建整个调查。于是他开始为LLM编写一个Datalog引擎。文中随后介绍Datalog是一种声明式逻辑编程语言，用事实和规则推导新事实，但原文在举例处中断。",
+   "key_points": [
+    "作者在漏洞研究中使用LLM代理时，长时间调查后模型会丢失已确立的事实并继续基于失效假设推理。",
+    "现有记忆系统仅存储和检索旧对话或观察，不能自动撤销因观察改变而失效的结论。",
+    "受程序分析中事实、规则推导固定点及增量更新启发，作者编写了面向LLM的Datalog引擎。"
+   ],
+   "topics": [
+    "memory",
+    "context-engineering"
+   ],
+   "category": "上下文与记忆",
+   "categories": [
+    "上下文与记忆",
+    "Agent 工程"
+   ],
+   "horizon": "long",
+   "score": 83.4,
+   "status": "published",
+   "extra": {
+    "hn_points": 277,
+    "hn_comments": 73,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "259060fd278b9097",
    "url": "https://arxiv.org/abs/2608.26990v1",
    "title": "DSA: Evidence-Aware LLM-Agent Orchestration for Multi-Market Stock Research",
@@ -1120,6 +1153,38 @@
      "Xin Xia",
      "Shanping Li"
     ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "bf0f613e910ac8fd",
+   "url": "https://simonwillison.net/2026/Aug/29/hy4/",
+   "title": "Introducing Hy4 Preview",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-08-29T23:53:13+00:00",
+   "summary_short": "腾讯发布开源权重文本模型Hy4 Preview，770B参数、1M上下文，推理分high/no_think两档。",
+   "summary_long": "腾讯今日发布Hy4 Preview，这是一款开源权重的纯文本输入（无视觉）大语言模型：总参数770B，激活参数49B，上下文窗口1M token，在Hugging Face上体积1.56TB。与7月发布的Hy3相比规模大幅增加，Hy3为295B总参数、21B激活参数、256,000上下文、598GB。原文作者查看了Hugging Face上的chat_template.jinja模板，发现推理努力（reasoning_effort）仅支持两个取值：“high”（默认）和“no_think”（禁用推理）；若传入其他值会抛出异常。作者通过OpenRouter以默认high推理测试了“生成一只骑自行车的鹈鹕的SVG”提示，并引用了推理追踪片段：模型在思考是否添加头盔、太阳镜或水等细节，最终决定不添加，因为头盔可能遮挡头部、不戴太阳镜等。作者注意到推理追踪使用略微截断的英语，并推测这是因为完美语法对隐藏推理文本而言不划算或token效率更低。原文未详述最终SVG的具体内容。",
+   "key_points": [
+    "腾讯发布Hy4 Preview：770B总参数、49B激活参数、1M上下文窗口、Hugging Face上1.56TB，相比Hy3（295B/21B/256k/598GB）规模大幅增加。",
+    "推理努力仅两档：high（默认）和no_think（禁用推理），模板对非法取值直接报错。",
+    "作者用high推理测试“鹈鹕骑自行车SVG”，推理追踪显示模型考虑头盔、太阳镜等细节，使用简略英语，作者推测是为token效率。"
+   ],
+   "topics": [
+    "open-source",
+    "reasoning",
+    "context-engineering"
+   ],
+   "category": "模型发布",
+   "categories": [
+    "模型发布",
+    "开源项目"
+   ],
+   "horizon": "short",
+   "score": 81.2,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
     "summary_mode": "full"
    }
   },

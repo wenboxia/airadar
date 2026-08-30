@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-08-29T04:06:33+00:00",
+ "generated_at": "2026-08-30T01:10:47+00:00",
  "totals": {
-  "discarded": 21,
-  "published": 49,
-  "review": 14
+  "discarded": 22,
+  "published": 51,
+  "review": 25
  },
  "sources": {
   "total": 19,
@@ -40,6 +40,88 @@
   }
  },
  "runs": [
+  {
+   "run_id": "20260830-010247",
+   "started_at": "2026-08-30T01:02:47+00:00",
+   "stats": {
+    "fetch": {
+     "total": 36,
+     "per_source": {
+      "Anthropic News": 0,
+      "GitHub Blog (AI)": 0,
+      "Hugging Face Blog": 0,
+      "Google DeepMind Blog": 0,
+      "Simon Willison": 2,
+      "MCP Official Blog": 0,
+      "Andrej Karpathy": 0,
+      "Lilian Weng": 0,
+      "Dwarkesh Podcast": 1,
+      "OpenAI News": 2,
+      "Import AI": "failed: HTTPError",
+      "Latent Space": 2,
+      "Hacker News (AI 高分帖)": 9,
+      "Eugene Yan": 0,
+      "AI Snake Oil": 0,
+      "Interconnects": 0,
+      "GitHub Trending (AI)": 10,
+      "量子位": 10,
+      "arXiv Agent/LLM": "failed: ReadTimeout"
+     }
+    },
+    "timing": {
+     "fetch": 30.6,
+     "dedupe": 0.0,
+     "triage": 44.6,
+     "summarize": 329.2,
+     "classify": 75.9,
+     "publish": 0.0
+    },
+    "dedupe": {
+     "kept": 14,
+     "dropped_already_in_db": 22,
+     "dropped_dup_url": 0,
+     "dropped_dup_title": 0
+    },
+    "llm_calls": 41,
+    "llm_tokens": 99492,
+    "calls_by_provider": {
+     "primary": 39,
+     "fallback": 2
+    },
+    "triage": {
+     "published": 2,
+     "review": 11,
+     "discarded": 1,
+     "llm_scored": 14,
+     "degraded": 0
+    },
+    "summarize": {
+     "summarized": 12,
+     "brief_mode": 0,
+     "hallucination_flagged": 0,
+     "degraded_title_only": 1
+    },
+    "classify": {
+     "classified": 13,
+     "degraded_heuristic": 0
+    },
+    "publish": {
+     "published": 2,
+     "pending": 11,
+     "db_totals": {
+      "discarded": 22,
+      "published": 51,
+      "review": 25
+     }
+    },
+    "budget": {
+     "tokens_used": 99492,
+     "calls_made": 41,
+     "token_limit": 400000,
+     "call_limit": 260
+    }
+   }
+  },
   {
    "run_id": "20260829-040056",
    "started_at": "2026-08-29T04:00:56+00:00",
