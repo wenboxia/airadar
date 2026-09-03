@@ -1,6 +1,259 @@
 {
- "generated_at": "2026-09-02T01:17:10+00:00",
+ "generated_at": "2026-09-03T01:14:54+00:00",
  "items": [
+  {
+   "id": "87d57cde9876250c",
+   "url": "https://github.blog/ai-and-ml/decoding-the-new-ai-lingo-loops-harnesses-squads-hill-climbing-oh-my/",
+   "title": "Decoding the new AI lingo: Loops, harnesses, squads, hill climbing… oh my!",
+   "source": "GitHub Blog (AI)",
+   "tier": "S",
+   "published_at": "2026-09-02T21:00:00+00:00",
+   "summary_short": "解读AI开发新术语：循环工程、Ralph循环、小队、马具、爬山等模式。",
+   "summary_long": "软件开发中，AI工具带来了大量新词汇，令人应接不暇。原文提到，这些词汇中有些描述人们正在追求的有用模式，有些只是已有事物的花哨名称，有些仍在被定义。在GitHub Podcast的一期节目中，讨论者涵盖了开发者正在学习的一些AI术语。其中，循环工程（loop engineering）指围绕智能体设计可重复的系统，而非一次性提示，例如定时获取issue、总结并建议修复。Ralph循环是循环概念的一种实现：给智能体详细任务，让它持续工作直到完成，但可能昂贵低效，因为每次迭代消耗更多token、上下文和算力；循环工程旨在通过加入技能、可观测性、验证、路由和检查点等原语使其更结构化。小队（squad）和舰队（fleet）描述多个智能体参与工作流的方式：小队由不同角色的智能体组成，类似真实团队；舰队指并行处理任务的智能体。核心是并行化和专业化。马具（harness）指模型周围的一切，包括工具、权限、记忆、上下文、编排等，使模型在工作流中有用，例如GitHub Copilot。马具工程就是设计和改进围绕模型的系统。爬山（hill climbing）指通过反馈逐步改进智能体和马具，例如使用评估来测量智能体输出并调整马具直到结果改善。原文还列举了forward deployed engineers、closed models、open weights和open source models等术语作为",
+   "key_points": [
+    "循环工程：围绕智能体设计可重复系统，替代一次性提示；Ralph循环是其一种实现，但可能昂贵低效。",
+    "小队和舰队描述多智能体工作流：小队由不同角色组成，舰队并行处理，核心是并行化和专业化。",
+    "马具是模型周围的工具、权限、记忆、上下文和编排等；爬山是通过反馈（如评估）逐步改进智能体和马具。"
+   ],
+   "topics": [
+    "agent-loop",
+    "multi-agent",
+    "harness"
+   ],
+   "category": "Agent 工程",
+   "categories": [
+    "Agent 工程"
+   ],
+   "horizon": "long",
+   "score": 85.4,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "ef02e4b156ea0ea6",
+   "url": "https://github.blog/ai-and-ml/github-copilot/how-we-make-ai-coding-more-cost-efficient-without-sacrificing-task-quality/",
+   "title": "How we make AI coding more cost efficient without sacrificing task quality",
+   "source": "GitHub Blog (AI)",
+   "tier": "S",
+   "published_at": "2026-09-02T18:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "coding-agent",
+    "context-engineering",
+    "tool-use"
+   ],
+   "category": "Agent 工程",
+   "categories": [
+    "Agent 工程",
+    "工程实践",
+    "上下文与记忆"
+   ],
+   "horizon": "long",
+   "score": 87.4,
+   "status": "published",
+   "extra": {
+    "content_source": "rss"
+   }
+  },
+  {
+   "id": "43c216d63c8bd92a",
+   "url": "https://simonwillison.net/2026/Sep/2/llm-gemini/",
+   "title": "llm-gemini 0.34",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-02T16:39:38+00:00",
+   "summary_short": "llm-gemini 0.34 新增 Gemini 3.8 Flash，支持低中高思考级别，示例生成 HTML 仅 1.8 美分",
+   "summary_long": "llm-gemini 0.34 版本发布，新增 gemini-3.8-flash 模型，支持低、中、高三种思考级别。该版本还修复了异步响应未能记录已解析模型版本的问题，并感谢 Charlie Tonneslan 的贡献。同日 Google 发布 Gemini 3.8 Flash，另有一个 Gemini 3.8 Flash Cyber 版本，但仅向“可信防御者”开放。发布说明展示了高、中、低思考级别下生成的骑自行车鹈鹕图像，并与 Gemini 3.7 Flash 生成结果进行对比。原文提到 Gemini Flash 系列快速、便宜且擅长处理 HTML 和 JavaScript；一个“make me a cool thing in html”的示例耗时 13 秒、成本 1.8 美分，生成了有趣的 HTML 内容。此外，使用 Gemini 3.8 Flash 配合基本的 llm-coding-agent 插件，为 markdown-svg-renderer 工具增加了 HTML 渲染支持，使 Markdown 中的 HTML 代码块可通过沙盒 iframe 渲染，并提供了对话记录链接。",
+   "key_points": [
+    "新增 gemini-3.8-flash 模型，支持低、中、高三种思考级别",
+    "修复异步响应未记录已解析模型版本的问题，感谢 Charlie Tonneslan",
+    "Google 同日发布 Gemini 3.8 Flash，另有仅限“可信防御者”使用的 3.8 Flash Cyber"
+   ],
+   "topics": [
+    "coding-agent"
+   ],
+   "category": "模型发布",
+   "categories": [
+    "模型发布"
+   ],
+   "horizon": "short",
+   "score": 77.8,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "15c2cbe250fe5147",
+   "url": "https://deepmind.google/blog/proactive-cyber-defense-for-governments-and-enterprises/",
+   "title": "Proactive cyber defense for governments and enterprises",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-09-02T16:24:24+00:00",
+   "summary_short": "Fairwind计划启动，向政府和关键机构开放先进AI自主发现并修复漏洞能力。",
+   "summary_long": "防御者采用先进AI面临两难：大型前沿模型部署昂贵、难以跨企业代码库控制；小型开放权重模型在复杂漏洞修复上能力不足，且需自建工具和基础设施。今日启动的Fairwind计划旨在向可信的Google Cloud客户、政府机构及网络安全伙伴提供Google先进AI与网络防御能力，主动化解网络风险。第一步是让防御者使用先进的Gemini模型，自主发现并修复漏洞，保护关键基础设施、公共服务和国家安全。该计划整合最先进的网络模型Gemini 3.8 Flash Cyber与CodeMender框架，以智能体规模发现、验证并修复漏洞，运营成本仅为传统前沿模型的一小部分，手动需数周的修复可在几分钟内生成验证过的可部署补丁，并在组织安全云环境内完成。早期访问为可信防御者提供适应窗口，在恶意行为者利用新能力前加固系统。初始访问优先面向政府和国家级网络机构、关键基础设施运营商（涵盖医疗、电信、能源和金融）以及核心技术平台。参与组织须遵守严格运营标准，限制访问至内部网络安全、事件响应或渗透测试团队，并部署多因素认证等。目前全球已有超过650家合作伙伴。该计划将随需求演进，调整产品并扩大访问，与行业、政府和开放权重社区合作平衡开放与安全。任何Google Cloud客户也可使用CodeMender配合公开模型主动保护代码。",
+   "key_points": [
+    "Fairwind计划向政府和关键机构开放Gemini 3.8 Flash Cyber和CodeMender，实现自主发现、验证并修复漏洞，成本远低于传统前沿模型。",
+    "手动需数周的漏洞修复现在几分钟内生成可部署补丁，帮助关键基础设施和公共服务在恶意利用前加固系统。",
+    "全球已有超650家合作伙伴；参与组织须限制使用范围并启用多因素认证，计划将随需求演进并扩大访问。"
+   ],
+   "topics": [
+    "product",
+    "cybersecurity",
+    "vulnerability-remediation"
+   ],
+   "category": "产品与商业",
+   "categories": [
+    "产品与商业",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 83.2,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "a9b9d17f3a5b6e12",
+   "url": "https://deepmind.google/blog/introducing-gemini-3-8-flash-and-38-flash-cyber/",
+   "title": "Introducing Gemini 3.8 Flash and 3.8 Flash Cyber",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-09-02T16:18:31+00:00",
+   "summary_short": "谷歌发布Gemini 3.8 Flash与Flash Cyber，推理编码提升，Cyber专注漏洞检测与自动补丁。",
+   "summary_long": "谷歌发布Gemini 3.8系列，称其为迄今最强的推理与编码模型，速度与成本与3.7 Flash相同。该系列包含两个变体：Gemini 3.8 Flash是最智能的主力模型，在软件工程、智能体任务和专业领域多步推理上较3.7 Flash有显著提升，价格与3.7 Flash的引入价相同，为每百万输入token 0.75美元、每百万输出token 3.75美元；Gemini 3.8 Flash Cyber则是最具能力的网络安全模型，在漏洞检测和自动修补方面具备前沿水平，通过新的Fairwind Program提供给受信任的防御者。两者共享同一基础智能，并通过长期运行的智能体循环递归评估和优化模型。原文称，编码与推理能力的显著提升来自多项创新，包括在网络安全这一高要求领域进行严格训练。在基准测试方面，3.8 Flash在DeepSWE v1.1上超越多数更大的前沿模型，能以极低成本自主端到端解决复杂工程问题；在Vals Finance Agent V2和Harvey's Legal Agent Benchmark上优于3.7 Flash及其他前沿模型；在HLE-Verified上取得54.9%的成绩。性能提升源于模型在复杂任务上更勤勉，执行额外推理步骤并迭代调用工具，可能消耗更多token，开发者可选用较低effort级别控制开销，或继续使用侧重效率的3.7 Flash。原文还展示了在G",
+   "key_points": [
+    "Gemini 3.8系列包含Flash与Flash Cyber两个变体，速度与成本同3.7 Flash，Flash主打推理编码，Cyber主打漏洞检测与自动修补。",
+    "3.8 Flash在DeepSWE v1.1、Vals Finance Agent V2、Harvey's Legal Agent Benchmark和HLE-Verified等基准上表现提升。",
+    "性能提升来自模型更努力地推理与工具迭代调用，开发者可通过effort级别控制token开销，或继续使用3.7 Flash。"
+   ],
+   "topics": [
+    "reasoning",
+    "coding-agent",
+    "safety"
+   ],
+   "category": "模型发布",
+   "categories": [
+    "模型发布",
+    "评测与基准",
+    "安全与对齐"
+   ],
+   "horizon": "short",
+   "score": 88.7,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "7bf309317e3edd1e",
+   "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+   "title": "Gemini 3.8 Flash and 3.8 Flash Cyber",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-02T15:12:40+00:00",
+   "summary_short": "Gemini 3.8 Flash及网络安全版Cyber发布：同价更强推理编码，面向智能体与安全。",
+   "summary_long": "文章介绍Gemini 3.8 Flash与3.8 Flash Cyber两款新模型。距3.7 Flash发布三周、六周内第三次Flash发布，Gemini 3.8被称为目前最佳推理与编码模型，速度与低成本与3.7相同。3.8 Flash定位为最智能主力模型，在软件工程、智能体任务和专业领域多步推理上较3.7 Flash显著提升，价格维持每百万输入token 0.75美元、输出token 3.75美元。3.8 Flash Cyber是最强网络安全模型，漏洞检测和自动化补丁达前沿水平，通过Fairwind Program向可信防御者开放。两者共享同一基础智能，由长时间运行的智能体循环加速，递归评估优化底层模型；核心编码与推理收益来自多项创新，包括网络安全高要求领域严格训练。性能上，3.8 Flash在DeepSWE v1.1超越多数更大前沿模型，端到端自主解决复杂工程问题且成本仅一小部分；在Vals Finance Agent V2和Harvey Legal Agent Benchmark中优于3.7 Flash及其他前沿模型，HLE-Verified达54.9%。提升源于设计选择：模型工作更努力，执行更多推理步骤并迭代调用工具，高努力级别可能消耗更多token；开发者可选用较低努力级别控制token开销，或继续使用仍受支持的3.7 Flash。原文还展示在Google Antigra",
+   "key_points": [
+    "发布两个变体：Gemini 3.8 Flash用于长时程编码与自主智能体，Gemini 3.8 Flash Cyber用于漏洞检测与自动补丁，经Fairwind Program向可信防御者开放。",
+    "3.8 Flash与3.7 Flash同价：每百万输入token 0.75美元、输出token 3.75美元；在DeepSWE v1.1、Vals Finance Agent V2、Harvey Legal Agent Benchmark和HLE-Verified等基准上显著提升。",
+    "性能提升来自模型工作更努力：更多推理步骤、迭代调用工具；底层共享基础智能由长时间智能体循环加速，并在网络安全领域严格训练。"
+   ],
+   "topics": [
+    "reasoning",
+    "coding-agent",
+    "safety"
+   ],
+   "category": "模型发布",
+   "categories": [
+    "模型发布",
+    "安全与对齐"
+   ],
+   "horizon": "short",
+   "score": 82.3,
+   "status": "published",
+   "extra": {
+    "hn_points": 810,
+    "hn_comments": 478,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "164af9b8614259fa",
+   "url": "https://trellner.com/reports/manufactured-sources-behind-ai-recommendations/",
+   "title": "Three sites made 215,128 “best software” pages for AI. Perplexity cites them",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-02T13:59:59+00:00",
+   "summary_short": "Perplexity软件推荐大量引用低排名/新域名，三站批量生成21万+“最佳软件”页",
+   "summary_long": "一项测量在2026年9月2日对380个买家意向软件品类，通过OpenRouter调用perplexity/sonar和perplexity/sonar-pro，每个品类各一次，共760次，要求返回排名前五及产品官网域名。全部调用都返回可解析答案，最终得到7534条引用，覆盖2055个不同域名。研究者用Tranco 2026-09-01排名和Wayback Machine核查引用域名，并抓取1502个供应商主页验证是否存在。结果显示，59.8%的引用指向Tranco排名低于10万的域名，23.4%完全不在前100万名内；进入排名的引用域名中位排名为71611。前十大引用域名占17.3%，其中g2.com最高291次，reddit.com 261次，guideflow.com 194次，Gartner 158次；Wikipedia仅被引用3次。第三大来源guideflow.com是销售互动产品演示的供应商博客，并非评测网站、目录或出版商，也不在被询问品类中竞争，却在96个品类中被引用194次，每次引用URL不同。原文还提到，有两个网站主页HTML标题为“Facts & Grounding Page”，它们与第三个看似共同控制的网站合计发布215128个机器生成的“最佳<品类>”页面，三个域名均不存在于2023年12月之前。测量关注的是检索层如何处理这些内容：一家供应商关于其并不经营的市",
+   "key_points": [
+    "2026年9月2日对380个软件品类调用两个Perplexity sonar模型，共760次，得到7534条引用和2055个域名。",
+    "59.8%的引用指向Tranco排名低于10万的域名，23.4%完全不在前100万名内；未排名域名更新，中位首次Wayback抓取为2020年。",
+    "第三大引用来源guideflow.com是卖互动产品演示的供应商博客，在96个品类中被引用194次，每个品类一个不同博客URL。"
+   ],
+   "topics": [
+    "eval",
+    "rag",
+    "product"
+   ],
+   "category": "评测与基准",
+   "categories": [
+    "评测与基准",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 82.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 299,
+    "hn_comments": 136,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "cd5da1960a4afcad",
+   "url": "https://simonwillison.net/2026/Sep/2/rick-brewster/",
+   "title": "Quoting Rick Brewster",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-02T05:50:57+00:00",
+   "summary_short": "Paint.NET 为 WINE 从零重写 Direct2D，由 Claude 生成约18万行代码。",
+   "summary_long": "Direct2D 一直是 Paint.NET 在 WINE 上的最大障碍，且永远不会完善到足以供 Paint.NET 使用，也无法直接禁用。因此，Paint.NET 新增了内部从零开始、干净室逆向工程重写的 Direct2D 实现，在 WINE 上通过 /wine 参数触发，位于 PaintDotNet.Windows.Direct2D1.Managed.dll。该代码由 Claude 编写，没有它就不会有这一实现。作者称大部分代码是“vibe coded”，未经过彻底审查，风格是“trust me bro”；他无法审查约 18 万行代码，而 Paint.NET 其余部分约 70 万行，已维护超过 20 年。开发中，Claude 有时像 10 个“刚解放的 Einstein 天才级 10x 编码者”一样高效，有时则表现不佳；作者需监督其资源管理，例如它曾未正确执行 COM 的 AddRef()，还纠正过糟糕的设计或架构决策。同时，作者也对其聪明而不懈的逆向工程工作印象深刻，包括弄清实现 Direct2D 内置效果库所需的全部公式。",
+   "key_points": [
+    "Direct2D 一直是 Paint.NET 在 WINE 上的最大障碍，且永远不会完善到足以供 Paint.NET 使用，也无法直接禁用。",
+    "Paint.NET 现包含由 Claude 编写的、约 18 万行的 Direct2D 逆向重写，位于 PaintDotNet.Windows.Direct2D1.Managed.dll，通过 /wine 触发，多数代码未经彻底审查。",
+    "作者需监督 Claude 的资源管理并纠正设计决策，同时认可其在逆向 Direct2D 内置效果库公式方面的出色工作。"
+   ],
+   "topics": [
+    "coding-agent",
+    "vibe-coding",
+    "reverse-engineering"
+   ],
+   "category": "工程实践",
+   "categories": [
+    "工程实践",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 81.5,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "0e0a28d0130f277a",
    "url": "https://simonwillison.net/2026/Sep/1/claude-fable-5-1/",
@@ -90,6 +343,40 @@
    "status": "published",
    "extra": {
     "content_source": "rss",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "e6922ed91e3e8567",
+   "url": "https://www.worldlabs.ai/blog/atlas",
+   "title": "Atlas: A World Model for Spatial Intelligence",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-01T17:36:02+00:00",
+   "summary_short": "World Labs发布Atlas世界模型，统一多模态与3D空间上下文，覆盖生成、重建和模拟。",
+   "summary_long": "World Labs发布了下一代世界模型Atlas，这是一个从零预训练的omni模型，原生处理文本、图像、视频和3D。Atlas采用多模态自回归扩散Transformer架构，把所有输入合并到共享空间上下文里，用该上下文生成后续内容，在3D中与已见内容保持一致并想象视野之外的部分。其性能随训练计算增加而提升，官方预期这一趋势在继续扩展时保持。Atlas覆盖多种任务：相机控制生成可从一张或多张图像生成图像和视频，具备像素级相机控制，支持最长1分钟1440p视频；空间重建可从一到几十张输入图像重建真实世界场景，生成新视角图像帧和显式3D输出，性能优于专门的3D重建最先进模型；时空模拟从输入视频建模空间和时间，可重新构图视频并支持机器人Real-to-Sim流程；图像生成可从文本生成图像和360全景，遵循复杂提示、渲染文字并生成多种视觉风格。Atlas的独特之处在于每个图像在3D位置接地，形成空间上下文，用户可放置两个不相关参考图像并定位，让Atlas生成平滑过渡的世界，想象门廊、走廊、角落等过渡。结合相机运动和空间上下文管理，可生成可控长视频。Atlas将驱动World Labs未来版本的Marble和其他产品。",
+   "key_points": [
+    "Atlas是从零预训练的omni模型，原生处理文本、图像、视频和3D，采用多模态自回归扩散Transformer架构。",
+    "相机控制生成：可从一到六张输入图像生成最长1分钟1440p视频，并具备像素级相机控制。",
+    "空间重建：从一到几十张图像重建真实场景，生成新视角和显式3D输出，性能优于专门3D重建模型。"
+   ],
+   "topics": [
+    "spatial-intelligence",
+    "world-model",
+    "video-generation"
+   ],
+   "category": "模型发布",
+   "categories": [
+    "模型发布",
+    "模型训练"
+   ],
+   "horizon": "short",
+   "score": 83.4,
+   "status": "published",
+   "extra": {
+    "hn_points": 258,
+    "hn_comments": 59,
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },

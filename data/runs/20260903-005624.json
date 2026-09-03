@@ -1,0 +1,103 @@
+{
+ "run_id": "20260903-005624",
+ "started": "2026-09-03T00:56:24+00:00",
+ "finished": "2026-09-03T01:14:54+00:00",
+ "mode": "LLM 模式 | 降级链 primary(deepseek-v4-pro) → fallback(glm-5.3)",
+ "stats": {
+  "fetch": {
+   "total": 46,
+   "per_source": {
+    "GitHub Blog (AI)": 2,
+    "Anthropic News": 0,
+    "Hugging Face Blog": 2,
+    "MCP Official Blog": 0,
+    "Simon Willison": 9,
+    "Lilian Weng": 0,
+    "Andrej Karpathy": 0,
+    "Google DeepMind Blog": 3,
+    "OpenAI News": 5,
+    "GitHub Trending (AI)": "failed: HTTPError",
+    "Import AI": "failed: HTTPError",
+    "Dwarkesh Podcast": 1,
+    "Latent Space": 3,
+    "Interconnects": 0,
+    "Eugene Yan": 0,
+    "AI Snake Oil": 0,
+    "量子位": 10,
+    "Hacker News (AI 高分帖)": 11,
+    "arXiv Agent/LLM": "failed: ReadTimeout"
+   }
+  },
+  "timing": {
+   "fetch": 30.4,
+   "dedupe": 0.0,
+   "triage": 74.8,
+   "summarize": 844.6,
+   "classify": 160.0,
+   "publish": 0.0
+  },
+  "dedupe": {
+   "kept": 27,
+   "dropped_already_in_db": 19,
+   "dropped_dup_url": 0,
+   "dropped_dup_title": 0
+  },
+  "llm_calls": 81,
+  "llm_tokens": 174119,
+  "calls_by_provider": {
+   "primary": 75,
+   "fallback": 6
+  },
+  "triage": {
+   "published": 9,
+   "review": 17,
+   "discarded": 1,
+   "llm_scored": 27,
+   "degraded": 0
+  },
+  "summarize": {
+   "summarized": 21,
+   "brief_mode": 0,
+   "hallucination_flagged": 0,
+   "degraded_title_only": 5
+  },
+  "classify": {
+   "classified": 26,
+   "degraded_heuristic": 0
+  },
+  "publish": {
+   "published": 9,
+   "pending": 17,
+   "db_totals": {
+    "discarded": 28,
+    "published": 104,
+    "review": 74
+   }
+  },
+  "budget": {
+   "tokens_used": 174119,
+   "calls_made": 81,
+   "token_limit": 400000,
+   "call_limit": 260
+  },
+  "memory": {
+   "topics": 32,
+   "span_days": 24,
+   "lifecycle_ready": true
+  }
+ },
+ "errors": [
+  {
+   "where": "fetch",
+   "error": "GitHub Trending (AI): 403 Client Error: rate limit exceeded for url: https://api.github.com/search/repositories?q=topic:llm+created:%3E2026-08-04&sort=stars&order=desc&per_page=5"
+  },
+  {
+   "where": "fetch",
+   "error": "Import AI: 403 Client Error: Forbidden for url: https://importai.substack.com/feed"
+  },
+  {
+   "where": "fetch",
+   "error": "arXiv Agent/LLM: HTTPSConnectionPool(host='export.arxiv.org', port=443): Read timed out. (read timeout=30)"
+  }
+ ]
+}
