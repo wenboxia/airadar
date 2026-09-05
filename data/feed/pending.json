@@ -1,451 +1,381 @@
 {
- "generated_at": "2026-09-04T01:05:53+00:00",
+ "generated_at": "2026-09-05T00:47:45+00:00",
  "items": [
   {
-   "id": "351e020d2441a918",
-   "url": "https://babyloniantwins.com/blog/porting-a-1993-amiga-game-to-godot/",
-   "title": "Porting my 1993 Amiga game to Godot, with an LLM reading the 68000 assembly",
+   "id": "959aa5be4bcd38b1",
+   "url": "https://productrise.app/blog/google-ai-mode-prefers-more-expensive-products",
+   "title": "Google AI Mode shows same products 21.6% more expensive than traditional search",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-09-03T14:28:18+00:00",
-   "summary_short": "LLM读取68000汇编将1993年Amiga游戏移植到Godot，单次通过无提示",
-   "summary_long": "1993年，作者在巴格达用Amiga 500开发游戏Babylonian Twins，纯68000汇编，512KB内存、无硬盘、每天供电几小时，艺术和音乐分别由Murtadha Salman和Mahir AlSalman完成。该游戏是伊拉克首个商业游戏，但因制裁和Commodore倒闭搁置，2008年被Amiga论坛找回，2010年由原团队手工移植到iPhone，下载超两百万。此次作者用Claude Fable 5模型，在Claude Code环境中让它读取原始72758行68000汇编代码和2010年C++引擎，迁移到Godot 4。实验分三步：第一步将34000行C++引擎移入Godot作为对照；第二步将原始汇编重建为Godot版本，保持Amiga 50Hz；第三步把汇编版嵌入现代版作为可启动的第二游戏。三步全部成功。作者特别指出，一年前用早期模型解读关卡格式需多轮提示和人工纠正，而Claude Fable 5单次通过、无提示；他猜测训练集中Amiga汇编很少，因此模型更依赖推理而非记忆。但作者几周后复查时发现移植中有部分错误，自己当时未曾察觉。",
+   "published_at": "2026-09-04T11:59:15+00:00",
+   "summary_short": "研究显示同一产品在Google AI Mode价格平均比传统搜索高21.6%，且推荐更贵商品。",
+   "summary_long": "一项基于2026年8月9日至31日、覆盖超200万产品列表与10万以上SERP及AI Mode响应的追踪研究，在相同购物查询、同一天同一时刻比较了Google AI Mode与传统搜索。结果发现，当一个完全相同产品同时出现在两侧时，AI Mode显示的平均价格比传统搜索高21.6%。若比较两侧所有带价格产品，AI Mode典型产品中位价为149美元，传统搜索为100美元，约高出49%。此外，传统搜索中排名产品仅有1.28%在同一天同一查询也出现在AI Mode中，说明两侧推荐重合度很低。在匹配产品中，有38.1%出现价格不一致；不一致时，AI Mode更贵的情况占68.4%。匹配产品中有49.6%的主要卖家不同。研究被评价为揭示了Google Shopping Graph在经典搜索与AI Mode免费列表放置之间的不一致。专家评论指出，AI Mode可能没有把价格作为重要权重，消费者不应默认其推荐是最低价；如果AI搜索只提供更贵库存，原本用于减少比价摩擦的功能反而可能让用户在看不见更便宜选项的情况下支付更多，值得关注谁从此类设计中获益。",
    "key_points": [
-    "1993年作者在巴格达用Amiga 500纯68000汇编开发Babylonian Twins，资源极度受限；该游戏是伊拉克首个商业游戏，后因制裁搁置，2008年才被找回，2010年手工移植到iPhone。",
-    "作者用Claude Fable 5在Claude Code中读取72758行68000汇编和2010年C++引擎，分三步迁移到Godot 4，包括将原始汇编版嵌入现代版，三步全部成功。",
-    "与一年前模型需多轮提示相比，Claude Fable 5单次通过、无提示；但作者几周后复查发现部分移植有错，自己当时未注意到。"
+    "同一产品在AI Mode显示价格平均比传统搜索高21.6%；所有产品中位价高约49%。",
+    "传统搜索与AI Mode推荐重合度极低，仅1.28%产品同时出现；匹配产品价格不一致时AI Mode更贵占68.4%。",
+    "匹配产品中约一半主要卖家不同，显示推荐路径差异。"
    ],
    "topics": [
+    "eval",
+    "product",
+    "ai-search"
+   ],
+   "category": "评测与基准",
+   "categories": [
+    "评测与基准",
+    "产品与商业",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 72.6,
+   "status": "review",
+   "extra": {
+    "hn_points": 364,
+    "hn_comments": 72,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "ca2374f24a365d28",
+   "url": "https://www.qbitai.com/2026/09/484293.html",
+   "title": "九问ScienceDiscovery实现树搜索驱动RSI，加速科学发现，小时级写出通用积分器，低成本找出物理科学规律",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-04T08:57:14+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "agent-loop",
     "coding-agent",
-    "harness",
-    "reasoning"
+    "open-source"
    ],
    "category": "Agent 工程",
    "categories": [
-    "Agent 工程"
-   ],
-   "horizon": "long",
-   "score": 71.8,
-   "status": "review",
-   "extra": {
-    "hn_points": 185,
-    "hn_comments": 57,
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "02bd82b8c2feb1a7",
-   "url": "https://www.qbitai.com/2026/09/483786.html",
-   "title": "腾讯WorkBuddy联名硬件来了！首批100多家伙伴入场",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-03T11:25:29+00:00",
-   "summary_short": "腾讯WorkBuddy开放平台上线，首发9款联名硬件与30多个行业应用",
-   "summary_long": "9月2日，腾讯WorkBuddy开放平台正式上线，同步亮相9款联名智能硬件、30多个行业应用及首批超100家生态伙伴。腾讯称，这是国内AI Agent赛道首个同时打通硬件、应用与开发者三层生态的开放平台，也是WorkBuddy今年3月上线后首次完整亮出开放生态战略。硬件方面，Plaud、乐奇Rokid、影石、优篮子、科大讯飞、安克、猛玛、京东京造等品牌接入，覆盖眼镜、录音卡、麦克风、耳机、键鼠等品类；设备接入后可打通硬件、App、PC、Web多端，账号、任务、记忆与产物无缝流转，成为Agent的“耳朵和眼睛”。应用方面，平台推出“Buddy应用”入口，合作伙伴基于WorkBuddy Agent底座构建品牌化AI工作台，通达信、广发证券、易方达、北大法宝、微盟、北森、帆软、美图设计室、腾讯健康、腾讯SSV等已接入，首批应用覆盖金融、SaaS、法律、医疗、教育、公益、设计等20多个领域。腾讯还开放Skill、Expert和Connector三类能力。上线不到半年，该平台已迭代50多个版本，在政务、教育、传媒等行业落地。腾讯WorkBuddy开放生态负责人林佐露表示，生态是结果而非目标，平台支付、分发及开发者经营工具仍在建设中。",
-   "key_points": [
-    "9月2日腾讯WorkBuddy开放平台上线，首批包括9款联名智能硬件、30多个行业应用和超100家生态伙伴。",
-    "硬件覆盖眼镜、录音卡、麦克风、耳机、键鼠等，接入后多端任务、记忆与产物可无缝流转，成为Agent外设。",
-    "平台推出Buddy应用入口，金融、SaaS、法律、医疗、教育、公益、设计等20多个领域的伙伴基于Agent底座构建行业AI工作台。"
-   ],
-   "topics": [
-    "product"
-   ],
-   "category": "产品与商业",
-   "categories": [
-    "产品与商业",
+    "Agent 工程",
+    "开源项目",
     "行业动态"
    ],
    "horizon": "short",
-   "score": 71.8,
+   "score": 71.9,
    "status": "review",
    "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
+    "content_source": "direct"
    }
   },
   {
-   "id": "d983aac1af173471",
-   "url": "https://www.qbitai.com/2026/09/483600.html",
-   "title": "陈大年复出，入局大模型",
+   "id": "9690d8a29e157e18",
+   "url": "https://www.qbitai.com/2026/09/484437.html",
+   "title": "机器人不能停下来等模型：星尘发布 SmoothRL，让在线强化学习跟上大模型的异步推理",
    "source": "量子位",
    "tier": "B",
-   "published_at": "2026-09-03T10:13:24+00:00",
-   "summary_short": "陈大年携27B本地模型复出，信通院MCP测试第二逼近DeepSeek万亿旗舰",
-   "summary_long": "陈大年退隐十年后复出，创立本地模型公司StartLux（原点星辉），并发布首款模型StartLux-V1.0-27B-Preview。该模型只有27B参数，不依赖云端、可运行在消费级PC上，却在信通院MCP专项测试中以39.25%综合得分排名第二，仅落后1.6万亿参数的DeepSeek-V4-Pro 1.3个百分点，并超过284B的DeepSeek-V4-Flash-0731、198B的Step-3.7-Flash和同参数Qwen 3.6。在位置导航、金融分析、浏览器自动化等单项中也位列第一。实战对比中，它在微软股票投资收益计算上比Claude Sonnet 4.6更准确、可复核；在查询新加坡飞北京机票任务中，约95秒找到299美元国航机票，步骤仅12步，优于Claude的200多秒、556美元和21步。技术层面，该模型以Qwen3.6-27B为基座，通过任务数据与自动化后训练强化工具调用、多步执行和结果验证，采用AI训练AI的Auto Research方法，是国内首个据此完成后训练的本地Agent模型。陈大年认为本地模型将摧毁云端市场，三年打平Claude并占80%市场，Scaling Law只是“过路神仙”。Meta、Google、NVIDIA也在加码本地小模型，但以产品化为主的目前仅StartLux一家。",
+   "published_at": "2026-09-04T09:19:29+00:00",
+   "summary_short": "星尘发布 SmoothRL，让在线强化学习只学机器人真正执行的动作，适配异步推理。",
+   "summary_long": "星尘智能基座模型团队发布能异步执行的在线强化学习框架 SmoothRL。真实机器人不能停下等模型：VLA、World-Action Model 常一次生成未来一段动作序列 action chunk，模型变大推理变长，但高动态任务不能停顿，因此部署中常采用异步推理，机器人执行手头动作、模型后台计算下一段。这让模型“计划过”与“真正做过”的动作不再一致，传统在线 RL 若整段优化，可能为未执行或来不及改的动作记功或背锅。SmoothRL 将 action chunk 划分为已提交、执行、丢弃三区，只让梯度穿过真正执行的 Execution Region，并在训练 rollout 中直接运行异步推理，使训练与部署同节奏。实现上，用微调后的 π0.5 作基础策略，沿用 RLT 骨架，以轻量 TD3-style actor-critic 输出 residual correction。在 S1 三项真机任务中，动态投掷成功率由 39% 升至 94%，给笔戴帽由 8% 升至 83%，快递开箱由 30% 升至 90%；投掷中末端加速度均方根下降 52%、急动度下降 47%。原文也指出当前使用稀疏成功/失败奖励，操作员可介入，并要求 chunk inference 在预设延迟预算内完成。",
    "key_points": [
-    "首款27B本地模型在信通院MCP测试综合第二，仅落后DeepSeek-V4-Pro 1.3个百分点，部分单项第一。",
-    "实战优于Claude Sonnet 4.6：金融计算准确可复核，机票查询更快、更便宜、步骤更少。",
-    "以Qwen3.6-27B为基座，采用Auto Research自动化后训练，强化Agent工具调用与多步执行。"
-   ],
-   "topics": [
-    "mcp",
-    "tool-use",
-    "post-training"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "模型训练",
-    "Agent 工程"
-   ],
-   "horizon": "short",
-   "score": 70.1,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "0705366de62bf93b",
-   "url": "https://claude.com/check-content",
-   "title": "Check if a file was made with Claude",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-02T12:23:20+00:00",
-   "summary_short": "一个浏览器工具，可检查文件是否带有Claude生成的C2PA内容凭证。",
-   "summary_long": "该工具用于检查文件是否由Claude制作。用户可拖放或点击上传文件，支持JPG、PNG、GIF、WEBP、TIFF、HEIC、AVIF、SVG、DNG、JXL、MP4、MOV、AVI、WAV、MP3、M4A、FLAC等格式，单个文件不超过100 MB。工具完全在浏览器中运行，文件不会离开用户设备，使用需同意Anthropic的使用政策并知晓其隐私政策。Claude以两种方式标记其生成的内容：文本会在写作本身中嵌入水印；文件则附加内容凭证，即下载时附带的签名溯源元数据。该工具仅识别内容凭证，用于判断Claude是否参与生成文件，但无法判断Claude是否参与创作内容，也不包含用户的任何身份信息。工作原理是：当Claude生成受支持的文件类型时，会在文件元数据中附加一个加密签名的小型说明，表明该文件由Claude制作或处理。这采用开放行业标准C2PA，与相机制造商和照片编辑软件记录图片来源所用标准相同，任何支持C2PA的工具均可读取。若发现指向Claude的凭证，工具会在此告知用户。其他模型提供商如OpenAI、Google DeepMind、Gemini也提供类似工具。要检测文本中嵌入的水印，可使用Detection API，目前根据欧盟法律要求向符合条件的组织提供私密预览。上传的文件仅用于读取嵌入凭证，不会被存储或用于其他目的。",
-   "key_points": [
-    "支持多种图片、视频、音频格式，文件不超过100 MB，且全程在浏览器本地处理，文件不离开设备。",
-    "该工具只识别文件元数据中的C2PA内容凭证，判断Claude是否参与生成文件，但不能判断内容是否由Claude创建，也不含用户身份信息。",
-    "文本水印需通过Detection API检测，该API目前处于私密预览阶段；OpenAI、Google DeepMind、Gemini等也提供类似文件检测工具。"
-   ],
-   "topics": [
-    "safety",
-    "product",
-    "content-credentials"
-   ],
-   "category": "安全与对齐",
-   "categories": [
-    "安全与对齐",
-    "产品与商业"
-   ],
-   "horizon": "short",
-   "score": 70.0,
-   "status": "review",
-   "extra": {
-    "hn_points": 181,
-    "hn_comments": 132,
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "d75554c78e0fe54a",
-   "url": "https://deepmind.google/blog/introducing-weathernext-3-our-most-advanced-and-accurate-global-weather-ai-model/",
-   "title": "Introducing WeatherNext 3, our most advanced and accurate global weather AI model",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-09-03T15:02:08+00:00",
-   "summary_short": "Google推出WeatherNext 3，用实时卫星数据实现每小时高分辨率全球天气预报。",
-   "summary_long": "天气每天影响数十亿决策，从是否带伞到农业、供应链、清洁能源和国家经济。近年来AI已让天气预报比传统方法更快更准，但预测高度局部且快速变化的天气仍是难题：以往模型空间分辨率不足，也难以纳入卫星等实时数据。为此，Google DeepMind与Google Research推出WeatherNext 3，据Brightband独立实时评估，这是迄今最先进、准确的全球天气模型。该模型直接从实时观测学习，利用原始卫星数据每小时生成高分辨率预报，从而提供更及时、更本地化的预测。它能以多种空间分辨率输出逐小时预报，从全球风场到局部地形保持物理一致性。此次更新还纳入了精确降水预报和清洁能源变量，并已整合到Google Search、Gemini、Maps、Google Maps Platform和Cloud等产品中，使用户能获取更可靠的天气信息，帮助规划日常活动和应对极端天气等影响。",
-   "key_points": [
-    "WeatherNext 3由Google DeepMind与Google Research推出，据Brightband独立实时评估为迄今最先进、准确的全球天气模型。",
-    "使用原始卫星数据、每小时刷新，提供多空间分辨率预报，改善降水预测并纳入清洁能源变量。",
-    "已整合到Google Search、Gemini、Maps、Google Maps Platform和Cloud等产品中。"
-   ],
-   "topics": [
-    "weather-prediction",
-    "ai-for-science",
-    "global-weather-model"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "产品与商业"
-   ],
-   "horizon": "short",
-   "score": 69.8,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "d8f710ced3b045a0",
-   "url": "https://www.nytimes.com/2026/09/01/nyregion/ai-ban-schools-nyc.html",
-   "title": "Mamdani bans AI in NYC schools",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-02T20:57:04+00:00",
-   "summary_short": "原文未提供简介内容。",
-   "summary_long": "",
-   "key_points": [
-    "原文未详述"
-   ],
-   "topics": [
-    "regulation"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 67.7,
-   "status": "review",
-   "extra": {
-    "hn_points": 209,
-    "hn_comments": 163,
-    "summary_mode": "brief"
-   }
-  },
-  {
-   "id": "2d612f0c6e839296",
-   "url": "https://news.ycombinator.com/item?id=49551096",
-   "title": "Ask HN: Why were OpenAI, Claude, and Grok simultaneously down?",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-03T15:07:01+00:00",
-   "summary_short": "Hacker News用户讨论OpenAI、Claude、Grok同日宕机，聚焦云服务错误报告与监测方法可靠性",
-   "summary_long": "Hacker News上一篇提问帖讨论OpenAI、Claude和Grok同时宕机的原因。评论中，用户kibae指出Cloudflare、Azure、AWS和Google Cloud在约7:30都出现错误报告上升，怀疑某个承重服务（如Cloudflare）发生故障并级联影响到各大云提供商。另一位用户mattlondon则对DownDetector的数据提出质疑，认为该平台没有实际探针，而是利用用户搜索量作为宕机代理，当大量用户涌向该网站查询某服务状态时，即使服务正常也可能被标记为宕机；他还表示自己全程使用Gemini并未遇到问题。另一用户utternerd补充说明DownDetector是自报告平台，基于六个月用户报告基线自动判断是否真宕机，最终结果依赖用户点击“报告问题”。讨论中还有关于观测行为影响结果、平台方法论以及一些技术玩笑的内容。整体上，原文未给出确切断网原因，仅呈现了不同用户对云服务状态和监测工具可靠性的观察与推测。",
-   "key_points": [
-    "有评论指出Cloudflare、Azure、AWS和Google Cloud在同一时间错误报告上升，怀疑某个承重服务故障级联",
-    "有评论质疑DownDetector以搜索量或用户报告为代理，可能因用户查询行为而误报，且该评论者使用Gemini全程无中断",
-    "讨论还涉及DownDetector的六个月基准线方法论以及观测行为影响结果的类比"
-   ],
-   "topics": [
-    "outage",
-    "observability",
-    "cloud-infrastructure"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "工程实践"
-   ],
-   "horizon": "short",
-   "score": 66.0,
-   "status": "review",
-   "extra": {
-    "hn_points": 325,
-    "hn_comments": 520,
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "0750acc53b96f0f1",
-   "url": "https://status.claude.com/incidents/461yvfrzpwtt",
-   "title": "Claude outage – Resolved",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-03T13:29:12+00:00",
-   "summary_short": "Claude 多模型错误率升高事件已解决，影响 claude.ai、API、Code 和 Cowork。",
-   "summary_long": "2026年9月3日，Claude 状态页报告多模型请求错误率升高，状态依次为调查、定位原因、持续更新、部署修复、监控和解决。13:26 UTC 开始调查，初始对象为 Claude Mythos 5.1、Claude Fable 5.1 和 Claude Opus 5。13:41 UTC 确认已定位原因并着手修复。13:50 UTC 列出受影响模型的完整清单：Mythos/Fable 5.1、Mythos/Fable 5、Opus 5、Opus 4.8、Opus 4.6。14:49 UTC 更新继续修复。15:25 UTC 更新显示当时仅 Opus 4.8 和 Opus 5 仍受影响，其余模型错误率已恢复到基线水平。16:06 UTC 对 Claude Mythos 5.1、Claude Fable 5.1 和 Claude Opus 5 部署了修复，并监控恢复情况。16:23 UTC 事件被标记为已解决，影响于 9:16 PT / 16:16 UTC 结束。该事件影响范围包括 claude.ai、Claude API（api.anthropic.com）、Claude Code 和 Claude Cowork。",
-   "key_points": [
-    "事件于 2026年9月3日 16:23 UTC 标记为已解决，影响在 9:16 PT / 16:16 UTC 结束。",
-    "受影响模型包括 Mythos/Fable 5.1、Mythos/Fable 5、Opus 5、Opus 4.8、Opus 4.6；过程中其余模型错误率曾先恢复到基线。",
-    "影响范围涵盖 claude.ai、Claude API（api.anthropic.com）、Claude Code 和 Claude Cowork。"
-   ],
-   "topics": [
-    "outage"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 64.3,
-   "status": "review",
-   "extra": {
-    "hn_points": 204,
-    "hn_comments": 147,
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "5c6accf69391c514",
-   "url": "https://www.qbitai.com/2026/09/483839.html",
-   "title": "“没有Token的CS学生，应立即退学”",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-03T11:32:08+00:00",
-   "summary_short": "南大蒋炎岩新课要求CS学生自费Token、禁止古法编程，知乎热议赞成居多",
-   "summary_long": "南京大学计算机学院副教授蒋炎岩在《生成式软件工程》课程中提出“没有Token的CS学生，应立即退学”。他原想拉Token赞助，看到选课人数后改为Token自费。课前他谈及CS学生两种焦虑：全程用AI应对课程考试，毕业发现什么都没学会、可能先被AI取代；认真学四年，发现所学内容AI都会做。他还举例称，没有GitHub链接、个人主页和Preprint的“完美简历”是零分简历，同类实习、奖项和论文无法区分竞争者。课程三条Policy为禁止古法编程、Token自费、但不需要Tokenmaxxing，要求学生学会给AI拆任务、挑模型、控成本、验结果，并推荐deepseek-v4-flash，课堂演示也用该模型。言论登上知乎热榜，四百余回答中赞成居多；也有网友认为计算机系不提供Token就应撤系，类比化学试剂和物理器材由学校供应。蒋炎岩有ICPC金牌、CCF-A类论文奖等背景，长期公开课程，被学生称为“神仙老师”。",
-   "key_points": [
-    "蒋炎岩在《生成式软件工程》课程中提出“没有付费Token的CS学生应立即退学”，并将Token自费列为课程准则。",
-    "课程要求学生禁止古法编程、高效使用Token，学会给AI拆任务、挑模型、控成本、验结果，推荐deepseek-v4-flash。",
-    "该言论在知乎获四百余回答且赞成居多，蒋炎岩长期公开课程，被学生称为“神仙老师”。"
-   ],
-   "topics": [
-    "agent-loop",
-    "tool-use",
-    "ai-education"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "Agent 工程"
-   ],
-   "horizon": "short",
-   "score": 61.1,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "98efbd229c5a250b",
-   "url": "https://www.qbitai.com/2026/09/483948.html",
-   "title": "新版GPT Image 2.5已经能伪造GPT-6发布会了",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-03T21:57:08+00:00",
-   "summary_short": "新版GPT Image 2.5尚未发布，已能伪造GPT-6发布会和奥特曼推文，图像与文字逼真。",
-   "summary_long": "量子位报道，新版生图模型GPT Image 2.5尚未正式发布，但已有用户收到ChatGPT中的弹窗提示。此前外界猜测版本号为GPT Image 2.1，实际版本号直接跳到2.5，被认为升级幅度不小。根据目前传播的测试结果，该模型已能伪造GPT-6官方发布会和奥特曼全员信，生成的奥特曼发推截图除头像不对外，文字几乎没有破绽。一个示例提示词要求生成写实风格、带咖啡渍和爱因斯坦笔迹的手写文章照片。在LMArena竞技场上，代号luna-lisa-alpha的匿名模型被猜测正是新版GPT Image。测试显示其特点是：生成速度超快、照片更加逼真、多张同一角色图像脸部不易变形、图像中嵌入文字不易变形，并改进了GPT Image 2的噪点问题。与GPT Image 2直接对比效果更直观。ChatGPT网页版一度将生图功能提高到主目录第二位，仅次于“新聊天”，现在又隐藏。报道认为，生图也将是GPT-6时代的一个主打功能。",
-   "key_points": [
-    "GPT Image 2.5尚未正式发布，但已有用户收到ChatGPT弹窗提示，版本号从预测的2.1直接跳到2.5。",
-    "该模型已能伪造GPT-6官方发布会、奥特曼全员信及奥特曼发推截图，文字几乎无破绽。",
-    "LMArena上代号luna-lisa-alpha的匿名模型被猜测正是新版GPT Image，具备生成速度快、照片逼真、脸部与嵌入文字不易变形、改进噪点等特点。"
-   ],
-   "topics": [
-    "image-generation",
-    "product"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "产品与商业"
-   ],
-   "horizon": "short",
-   "score": 59.6,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "ac65608efc3a968c",
-   "url": "https://www.qbitai.com/2026/09/483189.html",
-   "title": "世界生成模型来了3D头部玩家，可进入生产管线的场景级生成时代来临！",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-03T10:18:36+00:00",
-   "summary_short": "影眸Hyper3D发布WorldGen，单图2-3分钟生成可交互可编辑3D场景",
-   "summary_long": "3D生成正从单个资产走向完整场景。影眸Hyper3D正式发布世界生成模型WorldGen，用户上传一张场景图后，约2-3分钟即可生成可交互、可编辑、可进入真实生产环境的3D场景。与传统整体式场景生成不同，WorldGen把场景拆解为可单独操作的资产，同时保留空间与物理关系；每件前景物体独立生成，背景用3D Gaussian Splatting补全，SimReady模式还可补充碰撞体、质量、摩擦系数等仿真属性。其技术基座是影眸Hyper3D自研的CAST框架，曾获SIGGRAPH 2025最佳论文，思路包括对象拆解与深度估计、遮挡感知补全、统一空间放回和物理校正。应用上，具身智能领域，WorldGen与谋先飞MotrixSim引擎、地瓜机器人算力工具链形成从场景准备到策略验证的闭环，并作为NVIDIA Inception成员将整个场景用于Isaac Sim；游戏领域，资产可进入Blender、Unity、Unreal等引擎二次创作，影眸Hyper3D已与Unity中国合作；影视领域，WorldGen提供可控3D基底，已有创作者将其与Seedance 2.5结合，并进入实际影视项目制作流程；XR与空间计算也可把照片变成沉浸式空间。WorldGen解决的是将脑洞与海量资产结合、快速场景化变现的前置难题，推动3D生成进入场景级时代。",
-   "key_points": [
-    "WorldGen将单张场景图转化为可交互、可编辑的3D场景，每项资产都可单独移动、替换并保留物理关系。",
-    "技术基座为SIGGRAPH 2025最佳论文CAST，流程拆解对象、补全遮挡、统一放回并做物理校正，解决了整体式场景生成难复用问题。",
-    "WorldGen已在具身智能、游戏、影视、XR等场景应用：联合谋先飞/地瓜机器人闭环、资产可进Unity/Unreal、与Seedance 2.5结合并进入实际影视项目。"
-   ],
-   "topics": [
-    "world-model",
-    "3d-generation",
-    "product"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "产品与商业",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 58.8,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "422ff6d6f66f2443",
-   "url": "https://www.qbitai.com/2026/09/483552.html",
-   "title": "神秘具身团队又放出一连串很炸的Demo视频…自进化模型，技术路线曝光",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-03T01:31:45+00:00",
-   "summary_short": "神秘具身团队连发Demo展示自进化模型“做个人吧”：机器人像人一样理解和行动",
-   "summary_long": "上周具身圈流传的神秘10分钟一镜到底视频引发热议后，该团队又放出多个Demo，展示内部代号为MVP的自进化模型，意为模型能力像真人一样，直译“做个人吧”。视频中，机器人端水被木棍推搡仍不洒水，还同时扶住易拉罐，显示出对动力学和物理规律的理解；另一视频中，机器人zero-shot完成收纳家务，将玩偶归位、帽子与健身环挂上衣帽架、坐垫扔到沙发，据称zero-shot成功率达80%。还有两台不同型号机器人协作抖床单，训练仅来自人类视频，展现跨本体协作和类人行为逻辑。另有机器人一次收纳多件物品，围巾搭脖、圆环绕臂、拖鞋耳机挂身，体现最优能量行为解。团队称将让机器人上街开放环境展示。网友认为这可能是具身智能的ChatGPT时刻，但也有人质疑是否遥操；团队回应“模型也像人，让它自己说”。相较主流VLA和WAM模型，视频中的表现更像理解物理与人类行为逻辑而非概率预测或动作模仿。",
-   "key_points": [
-    "团队连发多个一镜到底Demo回应质疑，内部代号MVP意为“模型能力像真人一样”，直译“做个人吧”。",
-    "模型在手眼协调、zero-shot家务、跨本体协作、多物一次收纳等任务中表现类人，理解物理规律和人类行为逻辑。",
-    "网友认为这可能是具身智能的ChatGPT时刻或重要里程碑，也有人质疑是否遥操；团队称后续让机器人上街开放环境展示。"
-   ],
-   "topics": [
-    "embodied-ai",
-    "robotics",
-    "zero-shot"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 57.7,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "39f0e38f44668ee8",
-   "url": "https://www.kedglobal.com/artificial-intelligence/newsView/ked202607210007",
-   "title": "Go grandmaster Shin defeats AI KataGo with a two-stone handicap",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-03T01:11:22+00:00",
-   "summary_short": "申真谞让两子2-1逆转KataGo，成首位官方系列赛击败顶尖AI的人类，为AI时代人类智慧带来希望。",
-   "summary_long": "2026年7月21日，世界排名第一的围棋手申真谞在首尔举行的三番棋决赛中，执黑221手以11.5目击败AI引擎KataGo，以2-1完成逆转，成为首位在让两子条件下、于官方系列赛中战胜最先进围棋AI的人类。第三局耗时3小时5分钟。此前7月17日首局申真谞惨败，第二局周日扳回。第三局中，他专注防守和实地保护，未冒险反击，保持初始18.5目优势；第80手发起有节制的进攻，构建从上方到中央的大模样并转化为实地，中盘至终局保持99%胜率。申真谞赛后表示，本系列赛意义重大，证明人类仍能与AI抗衡；他早期模仿AI招法导致激烈战斗和频繁失利，本系列赛让他学到按自己的风格构建棋盘比模仿AI更重要。他还说自己注意到KataGo有在对面小目应对的倾向，但他不想那样获胜，选择从KataGo对面一侧开局，对开局满意。申真谞获得2.5亿韩元（17万美元）出场费与奖金，以及现代汽车Genesis G90豪华轿车作为表现奖。赛前少有人预料他能赢。原文还回顾2016年AlphaGo 4-1击败李世石、2017年AlphaGo Master 3-0击败柯洁，并指出此前无人在官方系列赛中击败AI；申真谞认为自己的胜利或不及李世石的单胜。",
-   "key_points": [
-    "申真谞让两子2-1逆转KataGo，成为首位在官方系列赛战胜顶尖围棋AI的人类；第三局执黑221手11.5目胜。",
-    "第三局前半盘专注防守与实地，第80手进攻构建大模样，保持99%胜率；赛后强调按自己风格下棋比模仿AI更重要。",
-    "赛前少有人看好；此前AlphaGo曾4-1胜李世石、Master 3-0胜柯洁，无人在官方系列赛击败AI；申真谞获2.5亿韩元奖金及一辆Genesis G90。"
-   ],
-   "topics": [
-    "go-ai",
-    "human-vs-ai"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 53.0,
-   "status": "review",
-   "extra": {
-    "hn_points": 182,
-    "hn_comments": 52,
-    "content_source": "reader",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a8cb3fbf2b359bd0",
-   "url": "https://www.qbitai.com/2026/09/483351.html",
-   "title": "今年最难的机器人Demo，“机器人含量”为0",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-03T00:51:16+00:00",
-   "summary_short": "自变量发布TwinDex，后训练零真机遥操数据完成精细操作，无本体数据近乎100%替代。",
-   "summary_long": "自变量发布灵巧操作系统TwinDex，在后训练阶段真机遥操数据为0的情况下，机器人连续完成化学实验中的旋拧瓶盖、注射器推注等精细操作。此前这类操作通常依赖真机遥操数据“手把手”教学，而TwinDex仅用几百条无本体数据即完成训练。Demo为一镜到底化学实验，包含24个子动作、三种工具，涉及双手协调与工具切换，要求毫米级定位与稳定力控；并展示精细操作、三指协作、柔性操作与掌内调整等能力。TwinDex不仅是三指灵巧手，还是与执行端同构的可穿戴无本体数据采集系统，通过数采与执行同构实现“所采即所得”。实验显示其采集效率约为传统真机遥操的5.3倍；在一定数据量下，无本体数据与真机遥操作数据训练出的策略收敛到接近表现，近乎可100%替代。其设计围绕灵巧性、一致性和可扩展性：三指九自由度在复杂度与灵巧性间取得平衡；采集端与执行端在运动、接触、视觉、精度和时间同步上提前对齐，减少迁移损耗；可穿戴外骨骼支持多人多地采集并统一处理。文章认为TwinDex证明无需真机遥操即可获得可迁移的高质量数据。",
-   "key_points": [
-    "TwinDex在后训练真机遥操数据为0的情况下完成化学实验精细操作，仅用几百条无本体数据。",
-    "数采与执行同构设计使无本体数据近乎100%替代真机遥操作数据，采集效率约为传统遥操的5.3倍。",
-    "TwinDex以三指九自由度兼顾灵巧性、一致性和可扩展性，覆盖精细操作、三指协作与掌内调整等能力。"
+    "SmoothRL 将异步 action chunk 划分为已提交、执行、丢弃三区，只让价值梯度穿过真正执行的 Execution Region，避免为未执行或来不及改的动作记功或背锅。",
+    "训练 rollout 直接运行异步推理，使训练与部署遵守同一时间节奏，遵循 Reinforce in Deployment。",
+    "在 S1 三项真机任务中，动态投掷、给笔戴帽、快递开箱成功率分别从 39%、8%、30% 提升至 94%、83%、90%，投掷加速度均方根和急动度也明显下降。"
    ],
    "topics": [
     "post-training",
-    "robotics",
-    "product"
+    "async-inference",
+    "robotics"
    ],
    "category": "模型训练",
    "categories": [
     "模型训练",
-    "产品与商业"
+    "模型发布"
    ],
-   "horizon": "short",
-   "score": 51.0,
+   "horizon": "long",
+   "score": 66.9,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "summary_mode": "full"
+   }
+  },
+  {
+   "id": "c3ab0cce734de550",
+   "url": "https://www.qbitai.com/2026/09/484163.html",
+   "title": "李飞飞刚发Atlas，中国开源“同款”已抢跑半年？",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-04T06:54:12+00:00",
+   "summary_short": "李飞飞发布Atlas多模态世界模型，中国影溯开源同类模型已抢跑半年并登顶权威榜单",
+   "summary_long": "9月2日，李飞飞创办的World Labs发布全球首个多模态世界模型Atlas，能把文字、图像、视频和3D信息放入统一空间上下文，凭少量图片即可重建三维场景、生成新视角并保持空间结构一致，被李飞飞称为里程碑。早在今年3月，国内空间智能团队影溯开源InSpatio-World，输入普通视频即可构建可探索的动态4D场景，允许改变相机轨迹与观察时刻。两者路径不同：Atlas从图像出发，把相机位置变成访问空间世界的坐标；InSpatio-World从视频出发，把时间纳入动态世界建模，可把现实录像高效变成可驱动世界，批量给物理AI当陪练。影溯的InSpatio-Curious以66.11分登顶WorldArena 2.0首版公开榜77个模型第一，在轨迹、深度、时空表征和物理交互等指标领先。该评测由清华、上交、港大等高校联合发起，强调真实可用性而非画面美观。不过原文也指出评测覆盖有限，并非通用空间智能‘毕业证’。影溯还联合20余家高校和行业机构启动SIDO计划，计划两年建设百万级3D/4D场景数据底座与统一评测基准。",
+   "key_points": [
+    "Atlas把多模态信息放进统一空间上下文，能重建三维场景并保持空间结构一致",
+    "影溯InSpatio-World更早开源，从视频构建动态4D场景，并把时间纳入世界建模",
+    "InSpatio-Curious登顶WorldArena 2.0，影溯还启动SIDO计划推动数据与评测基准建设"
+   ],
+   "topics": [
+    "world-model",
+    "eval",
+    "open-source"
+   ],
+   "category": "模型发布",
+   "categories": [
+    "模型发布",
+    "评测与基准",
+    "开源项目"
+   ],
+   "horizon": "short",
+   "score": 66.2,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "bffa60bfa788c4f1",
+   "url": "https://www.wired.com/story/nobody-is-saying-why-openai-and-anthropic-had-outages-today/",
+   "title": "Nobody is saying why OpenAI and Anthropic had outages",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-04T17:29:22+00:00",
+   "summary_short": "多家AI公司同日罕见中断，原因各异且未确认共同根源",
+   "summary_long": "周四上午，Anthropic、OpenAI和xAI的前沿模型均出现罕见中断，导致各自AI聊天机器人停机。xAI母公司SpaceX表示Grok问题源于孟菲斯计算中心当天早上的停电，并公开向受影响的计算合作伙伴道歉。OpenAI发言人Kathleen Chaykowski称，太平洋时间周四7:43左右开始的路由错误使ChatGPT和Codex部分用户不可用，约8:17已成功实施解决方案并继续监控。Anthropic拒绝评论，但其服务状态页面显示6:23起出现部分中断，涉及Claude Mythos 5.1、Claude Fable 5.1和Claude Opus 5的请求错误增多，随后公司称已确定原因并部署修复，9:16标记解决；Claude Sonnet 5在9点后也短暂出现类似问题。xAI从6:30起报告Grok全平台服务中断，10:05标记完成并称流量恢复健康。三起中断时间相近，可能指向共享第三方服务提供商，但OpenAI和Anthropic均未在评论中提及外部原因，Cloudflare、Amazon Web Services、Microsoft Azure等主要互联网基础设施公司也均未报告周四中断。另有零散Gemini中断报告，但谷歌未确认。原文未详述共同根本原因。",
+   "key_points": [
+    "OpenAI称路由错误导致ChatGPT和Codex部分用户中断，时间为太平洋时间周四7:43至约8:17。",
+    "xAI归因于孟菲斯计算中心停电，Grok中断从6:30持续至10:05，并公开道歉。",
+    "三起中断时间相近，但OpenAI和Anthropic未提及外部共同原因，主要基础设施商亦无中断报告。"
+   ],
+   "topics": [
+    "service-outage",
+    "infrastructure"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 66.1,
+   "status": "review",
+   "extra": {
+    "hn_points": 191,
+    "hn_comments": 3,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "33a2ea1a067eac78",
+   "url": "https://www.qbitai.com/2026/09/484155.html",
+   "title": "千问办公上线首月用户数突破 3000万，企业用户占比过半",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-04T05:48:53+00:00",
+   "summary_short": "阿里千问办公上线首月用户破3000万，企业用户占比过半",
+   "summary_long": "9月4日消息，阿里旗下企业级通用Agent产品千问办公上线满一个月，用户数突破3000万，企业用户占比过半。8月3日，阿里整合多个Agent产品推出千问办公，上线仅一个月总用户量即超过3000万，成为AI办公赛道增长最快的产品之一。过去一个月，千问办公完成120个版本更新，平均每天迭代4次，累计更新上千个feature，并推出国际版进入全球市场。8月17日，千问办公开源上下文基础设施MyContext，可将海量异构工作数据转化为Agent可调用的上下文，开源数周在GitHub获超3000 Star；结合与钉钉等IM软件打通，可将消息、文档、审批、邮件、知识库等信息转化为组织上下文。8月26日，千问办公联合模型团队推出专属版模型，真实办公场景测试中单任务生成速度提升约100%，Token消耗平均减少75%。目前，长安汽车、汇付天下、传化集团、中艺股份、老乡鸡等头部企业已接入千问办公，覆盖能源、汽车、金融、具身智能、航空航天、科研等行业，深入研发、制造、供应链、门店运营、跨国协同等核心业务场景。此前，华尔街投行杰富瑞对八款全球主流AI Agent实测，千问办公综合得分排名第一。",
+   "key_points": [
+    "千问办公上线首月用户数突破3000万，企业用户占比过半，成为AI办公赛道增长最快的产品之一",
+    "产品保持高频迭代，一个内完成120个版本更新并推出国际版，同时开源MyContext并推出专属模型提升速度和降低成本",
+    "已获长安汽车、汇付天下等头部企业采用，并在杰富瑞对八款主流AI Agent的实测中综合得分排名第一"
+   ],
+   "topics": [
+    "product",
+    "context-engineering",
+    "open-source"
+   ],
+   "category": "产品与商业",
+   "categories": [
+    "产品与商业",
+    "开源项目",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 62.3,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "3e9af61cc03a6f12",
+   "url": "https://simonwillison.net/2026/Sep/4/august-newsletter/",
+   "title": "August newsletter is out",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-04T05:54:40+00:00",
+   "summary_short": "八月赞助者专属通讯发布，含OpenAl网络攻击新细节、游戏模型测试等，可付费提前阅读。",
+   "summary_long": "原文写道，八月刊赞助者专属月度通讯已发布。赞助者或现在开始赞助的用户可以访问该通讯。本月通讯涵盖多个主题，包括：获得更多关于OpenAl意外网络攻击的详细信息；使用Fable 5和Sol 5.6一次性完成Raccoon Heist游戏；Claude自动模式；理解ChatGPT；Work Model发布；杂项内容；发布者自己的项目；发布者目前使用的工具。同时，文中提供了一份七月刊通讯副本作为预览，供读者了解付费后可获得的内容。读者支付每月10美元，即可比免费副本提前一个月阅读。原文以列表形式呈现这些主题，未详述各主题的具体内容或背景。",
+   "key_points": [
+    "八月刊赞助者专属月度通讯已发布，赞助者或新赞助者可访问。",
+    "本期内容涵盖OpenAl意外网络攻击更多细节、Fable 5和Sol 5.6一次性完成Raccoon Heist游戏、Claude自动模式、理解ChatGPT、Work Model发布等。",
+    "文中提供七月刊副本作为预览，支付每月10美元可提前一个月阅读免费副本。"
+   ],
+   "topics": [
+    "safety",
+    "product"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "产品与商业",
+    "安全与对齐"
+   ],
+   "horizon": "short",
+   "score": 60.9,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "ade027b561e87283",
+   "url": "https://www.nytimes.com/2026/09/04/technology/open-source-ai-anthropic-openai.html",
+   "title": "Corporate America is getting hooked on open-source AI",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-04T15:33:45+00:00",
+   "summary_short": "原文未提供简介内容，无法概括。",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "open-source",
+    "product"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "产品与商业"
+   ],
+   "horizon": "short",
+   "score": 60.9,
+   "status": "review",
+   "extra": {
+    "hn_points": 259,
+    "hn_comments": 250,
+    "summary_mode": "brief"
+   }
+  },
+  {
+   "id": "9e253979657365e0",
+   "url": "https://www.qbitai.com/2026/09/484547.html",
+   "title": "趋境科技与摩尔线程达成战略合作，高品质 AI Token 国产异构方案性价比超越国际先进算力",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-04T09:23:24+00:00",
+   "summary_short": "趋境科技与摩尔线程合作，国产PD异构AI Token方案已投产，性价比超越国际先进算力。",
+   "summary_long": "大模型应用进入规模化商业落地阶段，基础设施竞争从单卡性能转向系统级Token生产效率，衡量商业价值的关键是每枚高品质AI Token的生产成本。9月3日，趋境科技与摩尔线程签署战略合作协议，将趋境科技自研的国产PD异构技术与摩尔线程MTT S5000智算卡、MUSA软件平台深度融合，推进基于ATaaS平台的国产化高品质AI Token工厂建设，并共同研发推广Token Pod联合解决方案。相关方案已投入生产，承接头部模型厂商官方业务的真实Token流量，在同等生产服务标准下，整体性价比超越国际先进算力方案。技术上，MTT S5000负责Prefill阶段的输入计算与KV Cache生成，高带宽GPU负责Decode阶段Token生成；由4至5台MTT S5000组成的Prefill资源池，输入Token处理性价比超过国际先进算力方案。生产运行数据显示，在国产头部大模型复杂业务场景下，方案实现平均超过50 TPS生成速度、超90%的KV Cache命中率、99.9%稳定性及生产级低TTFT保障，验证了“少模型、深优化”路线在国产异构生产场景中的有效性。截至2026年8月，趋境科技已完成日均万亿级高品质AI Token生产项目共建，并在多个项目中形成日均千亿级生产能力。未来双方将拓展互联网企业、前沿基础模型公司、运营商等关键基础行业应用。",
+   "key_points": [
+    "趋境科技与摩尔线程签署战略合作，融合国产PD异构技术与MTT S5000、MUSA平台，共建国产化高品质AI Token工厂。",
+    "联合方案已承接头部模型厂商真实流量，实现平均超50 TPS生成、超90% KV Cache命中率、99.9%稳定性，整体性价比超越国际先进算力方案。",
+    "方案采用Prefill与Decode分离，由4至5台MTT S5000组成Prefill资源池，减少高成本资源占用，降低每枚高品质AI Token生产成本。"
+   ],
+   "topics": [
+    "context-engineering",
+    "llm-serving",
+    "product"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "产品与商业",
+    "工程实践"
+   ],
+   "horizon": "short",
+   "score": 56.6,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "6c0794673b9a948f",
+   "url": "https://www.qbitai.com/2026/09/484203.html",
+   "title": "金融AI的年度大考交卷了：2万名选手、30+家机构、百亿级数据开源",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-04T07:09:43+00:00",
+   "summary_short": "第四届AFAC金融AI大赛举行，2万名选手参赛，开源百万金融智能数据集，赛题聚焦真实场景约束。",
+   "summary_long": "第四届AFAC金融智能创新大赛（AFAC2026）总决赛在上海举行，全球5027支队伍、近2万名选手参赛，总决赛路演晋级率为百分之一。大赛首次推出“会、展、赛”三位一体路演舞台，联合上海市科学技术委员会、中国计算机学会、北京大学、蚂蚁集团、真格基金等30多家组织机构。四道挑战组赛题包括：市场参与者交易行为识别与资金流向分析、复杂金融文档还原、稀疏反馈下自动化实验、金融长文本Agent动态记忆压缩与高效问答。评审专家指出，题目共同指向真实金融场景约束：数据规模与多模态变化、开放评价、动态市场迁移、文档鲁棒性、资源与Token成本等，核心是模型能否在真实约束中持续完成任务。本届总决赛正式开源“AFAC百万金融智能数据集”，沉淀2023至2025年14道赛题，包含13万条评测样本、2000余份专业金融文档和130多个历届优胜方案，覆盖百亿级金融科技数据条目。四届赛题变化显示，金融AI从早期验证“算法能否进入金融”，到强调业务接入、工业级约束，再到当下关注Agent上下文控制与成本，呈现从模型可用走向系统好用的技术迁徙。",
+   "key_points": [
+    "AFAC2026总决赛吸引全球5027支队伍、近2万名选手，首次以“会、展、赛”三位一体形式举办，30多家机构联合发起。",
+    "四道赛题覆盖交易行为识别、复杂金融文档还原、稀疏反馈自动化实验和长文本Agent记忆压缩，强调成本、资源与动态约束。",
+    "本届正式开源“AFAC百万金融智能数据集”，覆盖百亿级金融科技数据条目；四届赛题呈现金融AI从模型可用到系统好用的技术迁徙。"
+   ],
+   "topics": [
+    "open-source",
+    "eval",
+    "memory"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "开源项目",
+    "评测与基准"
+   ],
+   "horizon": "short",
+   "score": 55.5,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "41bd142ad3667913",
+   "url": "https://www.qbitai.com/2026/09/483598.html",
+   "title": "卡车自动驾驶里程超10亿公里，嬴彻科技定义“货运物理AI”",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-04T01:40:42+00:00",
+   "summary_short": "嬴彻科技卡车自动驾驶运营里程破10亿公里，以超90%市场份额升级货运物理AI。",
+   "summary_long": "2026年9月3日，嬴彻科技宣布其卡车自动驾驶商业运营里程突破10亿公里，形成行业最大规模的真实运营数据资产。目前其在中国卡车智驾市场份额超90%，高速网络覆盖率达97%，用户涵盖快递快运、零担专线、冷链、百货、奶罐等多元领域；2026年多家头部快递公司已将智驾作为重卡采购100%标配。嬴彻科技已完成从“自动驾驶”到“货运物理AI”的战略升级，构建覆盖干线、支线/城配及末端的全场景货运机器人网络。其“货运物理AI”具备三大核心能力：货运原生智能，端到端模型融入货车物理特性、驾驶行为和真实运营场景，货运世界模型生成高保真训练测试数据；场景智能，建立货运场景识别管理体系和超级数据工厂，真实世界运营场景库ROSL积累几十万个高价值场景；运营智能，通过“运营大脑”云端平台将单车智能延展为车队协同智能，提升风险识别预警、能耗优化与路径规划等能力。场景拓展方面，干线已获浙江、北京、海南等多地L4测试牌照，并与京东物流开展开放道路L4级干线载货示范应用；支线/城配联合顺丰速运与柳汽乘龙实现公开道路无人轻卡商业试运营；海外业务在欧洲、日本和中东实现实质性突破。",
+   "key_points": [
+    "卡车自动驾驶商业运营里程突破10亿公里，形成行业最大规模真实运营数据资产，市场份额超90%。",
+    "发布原生“货运物理AI”技术底座，包含货运原生智能、场景智能、运营智能三大核心能力。",
+    "全场景拓展：干线L4测试及京东物流示范应用，支线/城配无人轻卡试运营，欧洲、日本和中东海外突破。"
+   ],
+   "topics": [
+    "autonomous-trucking",
+    "world-model",
+    "product"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "产品与商业"
+   ],
+   "horizon": "short",
+   "score": 53.2,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "d4bd5ca244c3adb9",
+   "url": "https://www.latent.space/p/ainews-gpt-6-astra-openais-biggest",
+   "title": "[AINews] GPT-6 Astra: OpenAI’s biggest LLM launch of all time",
+   "source": "Latent Space",
+   "tier": "D",
+   "published_at": "2026-09-04T05:18:11+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "product"
+   ],
+   "category": "模型发布",
+   "categories": [
+    "模型发布",
+    "行业动态",
+    "产品与商业"
+   ],
+   "horizon": "short",
+   "score": 50.2,
+   "status": "review",
+   "extra": {
+    "content_source": "rss"
    }
   }
  ]
