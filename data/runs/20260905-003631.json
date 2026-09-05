@@ -1,0 +1,99 @@
+{
+ "run_id": "20260905-003631",
+ "started": "2026-09-05T00:36:31+00:00",
+ "finished": "2026-09-05T00:47:45+00:00",
+ "mode": "LLM 模式 | 降级链 primary(deepseek-v4-pro) → fallback(glm-5.3)",
+ "stats": {
+  "fetch": {
+   "total": 46,
+   "per_source": {
+    "Anthropic News": 0,
+    "GitHub Blog (AI)": 2,
+    "Simon Willison": 4,
+    "MCP Official Blog": 0,
+    "Hugging Face Blog": 1,
+    "Andrej Karpathy": 0,
+    "Lilian Weng": 0,
+    "OpenAI News": 3,
+    "Google DeepMind Blog": 1,
+    "Dwarkesh Podcast": 0,
+    "Import AI": "failed: HTTPError",
+    "Latent Space": 3,
+    "AI Snake Oil": 0,
+    "Interconnects": 0,
+    "Eugene Yan": 0,
+    "GitHub Trending (AI)": 10,
+    "Hacker News (AI 高分帖)": 12,
+    "量子位": 10,
+    "arXiv Agent/LLM": "failed: HTTPError"
+   }
+  },
+  "timing": {
+   "fetch": 16.0,
+   "dedupe": 0.0,
+   "triage": 55.4,
+   "summarize": 504.7,
+   "classify": 98.2,
+   "publish": 0.3
+  },
+  "dedupe": {
+   "kept": 20,
+   "dropped_already_in_db": 26,
+   "dropped_dup_url": 0,
+   "dropped_dup_title": 0
+  },
+  "llm_calls": 55,
+  "llm_tokens": 119733,
+  "calls_by_provider": {
+   "primary": 54,
+   "fallback": 1
+  },
+  "triage": {
+   "published": 6,
+   "review": 12,
+   "discarded": 2,
+   "llm_scored": 20,
+   "degraded": 0
+  },
+  "summarize": {
+   "summarized": 15,
+   "brief_mode": 1,
+   "hallucination_flagged": 0,
+   "degraded_title_only": 3
+  },
+  "classify": {
+   "classified": 18,
+   "degraded_heuristic": 0
+  },
+  "publish": {
+   "published": 6,
+   "pending": 12,
+   "db_totals": {
+    "discarded": 34,
+    "published": 124,
+    "review": 100
+   }
+  },
+  "budget": {
+   "tokens_used": 119733,
+   "calls_made": 55,
+   "token_limit": 400000,
+   "call_limit": 260
+  },
+  "memory": {
+   "topics": 32,
+   "span_days": 26,
+   "lifecycle_ready": true
+  }
+ },
+ "errors": [
+  {
+   "where": "fetch",
+   "error": "Import AI: 403 Client Error: Forbidden for url: https://importai.substack.com/feed"
+  },
+  {
+   "where": "fetch",
+   "error": "arXiv Agent/LLM: 429 Client Error: Too Many Requests for url: https://export.arxiv.org/api/query?search_query=%28cat%3Acs.AI%20OR%20cat%3Acs.CL%20OR%20cat%3Acs.SE%29%20AND%20%28abs%3A%22LLM%20agent%22%20OR%20abs%3A%22language%20model%20agent%22%20OR%20abs%3A%22agent%20evaluation%22%20OR%20abs%3A%22t"
+  }
+ ]
+}
