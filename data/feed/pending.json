@@ -1,31 +1,67 @@
 {
- "generated_at": "2026-09-06T00:46:47+00:00",
+ "generated_at": "2026-09-07T00:47:43+00:00",
  "items": [
   {
-   "id": "e82b1aacab51b099",
-   "url": "https://www.qbitai.com/2026/09/484726.html",
-   "title": "GPT-6带火循环Transformer，阿里早已布局",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-05T15:07:08+00:00",
-   "summary_short": "阿里两篇顶会论文针对循环Transformer计算冗余，用MeSH和SpiralFormer让算力更高效",
-   "summary_long": "GPT-6 Astra发布带火循环Transformer：让同一组Transformer层反复运行，在不增加同等规模参数下做更深计算。但OpenAI因中间过程不透明受到AI安全专家质疑。更现实的问题是，循环模型省参数但同等算力下常打不过普通Transformer，学界归因于“计算冗余”——循环次数增加，后续计算增量变小。阿里及合作高校团队早在11个月前发表论文对此展开研究。一篇MeSH（ICLR 2026接收）解决循环内部信息管理：检查发现后续循环状态变化缩小、相邻轮次表示相似、hidden state表示低维化等“摸鱼”症状，诊断出计算无分化与信息过载，于是引入Memory Buffer和可学习的Write/Read Router，动态存取各轮信息；在Pythia-1.4B实验中，循环结构减少约33%非嵌入参数，加入MeSH后零样本平均准确率反而从49.50%提高到50.56%。另一篇SpiralFormer（EMNLP 2026接收）则针对每轮都在完整token序列上计算的问题，受隐式思考启发，把每轮序列长度变为可调，按从粗到细的顺序压缩与恢复token；同等参数量下计算量从14.08T FLOPs降至13.13T，5-shot平均准确率从51.93%提高到54.37%。这两项工作试图让循环Transformer每一轮算力花在刀刃上，为下一代高效大模型候选路线提供支撑。",
+   "id": "bbc054e1f15aa330",
+   "url": "https://www.ben-evans.com/benedictevans/2026/9/3/ai-tools-and-transformation",
+   "title": "AI, Tools and Transformation",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-06T02:12:46+00:00",
+   "summary_short": "AI虽让造工具更容易，但真正的难点是发现并定义需要自动化的任务。",
+   "summary_long": "如今美国大公司往往拥有成百上千套软件，从SAP、Workday等横向系统到垂直SaaS、脚本、自动化与数据库，但仍充满重复任务。人们容易认为AI能扫除这些，期待软件变得动态、生成式、自由形式，以更少软件自动化更多任务。但作者认为这误解了软件来源、人们使用方式与公司变革方式。首先，多数人并非工具制造者，不会本能思考如何换种方式完成工作。优秀婚姻律师专注案件与客户，企业销售专注产品、客户与竞争对手，都看不到自动化机会。Excel模板或Claude for X之类尝试有帮助，但并非答案；待自动化任务就在眼前，执行者却看不见，因此出现“前向部署工程师”的想法。更深层问题是，过去几十年自动化的大多数东西即使对工具制造者也不显而易见，问题常嵌入、捆绑或隐藏，正确解法常需重新定义或解绑，许多成功软件公司之前都有多次失败。因此，让制造工具、写代码更容易并不能解决这些困难；真正难的是知道你需要一个工具。",
    "key_points": [
-    "循环Transformer通过权重共享用更少参数实现更深计算，但面临计算冗余：后续循环增量变小，性能常不如普通Transformer。",
-    "阿里团队MeSH用Memory Buffer和动态读写路由器改善循环内部信息管理，在Pythia-1.4B实验中减少约33%非嵌入参数同时准确率提高。",
-    "SpiralFormer让每轮循环采用不同序列长度，按从粗到细顺序计算，同等参数量下降低计算量并提高下游准确率。"
+    "大公司软件众多但仍充满重复任务，AI被认为可大幅自动化并减少软件。",
+    "多数人不是工具制造者，看不到眼前可自动化的任务，由此产生“前向部署工程师”的想法。",
+    "真正难点不是写代码或造工具，而是识别、定义问题并知道需要工具；降低工具制造门槛无法解决这一难题。"
    ],
    "topics": [
-    "recurrent-transformer",
-    "model-efficiency"
+    "product",
+    "automation",
+    "enterprise-ai"
    ],
-   "category": "模型训练",
+   "category": "行业动态",
    "categories": [
-    "模型训练",
-    "论文"
+    "行业动态",
+    "产品与商业"
    ],
    "horizon": "long",
-   "score": 73.5,
+   "score": 72.2,
+   "status": "review",
+   "extra": {
+    "hn_points": 146,
+    "hn_comments": 63,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "49811bcefa222986",
+   "url": "https://www.qbitai.com/2026/09/484897.html",
+   "title": "具身ICL来了创业玩家！上下文成Scaling新赛道",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-06T11:44:21+00:00",
+   "summary_short": "具身智能出现ICL创业玩家，机器人看一次示范学新任务，上下文成为Scaling新方向。",
+   "summary_long": "2020年GPT-3靠ICL实现少样本学习；2026年具身智能出现同类尝试。8月中旬Skild AI发布机器人基础模型S1，给机器人看一遍任务演示视频，无需微调或额外post-training即可尝试完成未训练新任务，时长可达10分钟、含几十个操作步骤。Skild对比ICL视频Prompt与传统语言Prompt VLA发现：训练数据仅1000小时时语言Prompt更好，数据规模增加后ICL反超；未见任务加入视频context后表现较只用语言指令提升约7倍。此前一周，Generalist AI发布GEN-1.5，同样以One-Shot Learning为核心能力，机器人看一个示范可在数秒内学习新任务，支持人类示范到机器人执行、组合泛化与Sim-to-Real迁移。两者都尝试让机器人利用更长的多模态Context。此前7月，RoboTTT首次系统把上下文scaling搬到机器人视觉运动策略。文章访谈国内创业公司可可矩阵（2026年4月成立），其思路是把后训练ICL前置到预训练阶段。创始人高宇翔认为，早期沿大模型路线堆数据未让机器人出现通用泛化，具身数据难Scale；行业开始转向Scale学习与适应能力。具身ICL难点包括视觉理解、多模态、长上下文与记忆。高宇翔还认为长任务示范不能只看时长，信息密度更重要。",
+   "key_points": [
+    "Skild AI的S1和Generalist AI的GEN-1.5展示机器人看示范即可不微调完成新任务，未见任务加入视频context后表现提升约7倍。",
+    "具身ICL沿LLM的ICL路径，但需处理视觉观测、语言指令与动作序列交织的复合长上下文，两家公司技术细节尚未完整公开。",
+    "可可矩阵成立于2026年4月，主张把后训练ICL前置到预训练阶段；其创始人认为关键是从数据Scale转向部署后利用Context学习。"
+   ],
+   "topics": [
+    "in-context-learning",
+    "embodied-ai",
+    "context-engineering"
+   ],
+   "category": "模型发布",
+   "categories": [
+    "模型发布",
+    "行业动态",
+    "上下文与记忆"
+   ],
+   "horizon": "short",
+   "score": 65.7,
    "status": "review",
    "extra": {
     "content_source": "direct",
@@ -33,190 +69,124 @@
    }
   },
   {
-   "id": "0bf5ede3a2101d38",
-   "url": "https://www.qbitai.com/2026/09/484649.html",
-   "title": "陶哲轩吐槽GPT-6孪生素数新突破：令人无语的一幕",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-05T04:24:25+00:00",
-   "summary_short": "陶哲轩警告AI抢答数学难题、过程黑箱，可能污染研究；GPT-6孪生素数新进展被他吐槽。",
-   "summary_long": "陶哲轩发出AI告警：AI抢答数学难题，反而可能阻碍数学领域的真正发展。他认为AI解题太快、过程又太黑盒，会掩盖研究过程中那些宝贵的“失败”。一旦提前知道最终正确拟设，容易抑制对其他路线的探索；而这些看似“死胡同”的路线为什么失败，本身极具启发性。他以纳维-斯托克斯方程全局正则性问题为例：即使AI给出答案，因计算流体力学已成熟，答案不会根本改变天气预报或气候研究；真正关键的是推动研究的过程。历史上围绕这一问题的探索产生了Leray–Hopf弱解、Beale–Kato–Majda爆破判据等基础性思想与定理。陶哲轩本人也因尝试解决这一问题，意外把流体计算、图灵普适性和辛拓扑联系起来。与此同时，GPT-6 Astra等在孪生素数猜想上把连续素数间距上界从246推到186，Anthropic和Axiom也宣布到188和212；牛津数学家Julia Stadlmann赶在问题被“污染”前将上界缩到240。陶哲轩吐槽这一幕“令人无语”。他警告，如果AI驱动的方法过早直接解决问题，尤其过程缺乏透明度，这个问题原本能孕育数学进展的过程可能遭到“污染”，严重时AI对数学发展的影响可能从正面变成净负面。",
+   "id": "fe2b1af47af179d6",
+   "url": "https://simonwillison.net/2026/Sep/6/theres-no-limit-to-how-bad-code-can-get/",
+   "title": "There's No Limit to How Bad Code Can Get",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-06T09:08:06+00:00",
+   "summary_short": "技术债压顶时推倒重写很少成功，作者详述双系统风险并建议加固旧系统。",
+   "summary_long": "本文是对 Lobste.rs 上一条评论的回复，该评论认为技术债务过大时应推倒重写。作者根据自己的经验指出，这种做法很少成功。宣布旧系统不可救药并组建团队从零重写后，旧系统仍运行业务、需要变更；旧系统开发人员知道系统即将被淘汰，没有动力做超出最小努力的改动，技术债务继续累积。新系统团队起初进展很快，但逐渐发现没人完全理解被替换系统的行为和范围——如果旧系统有良好文档和测试，本来就不需要替换。经过数月甚至数年未交付价值后，新系统被迫发布，但往往只处理旧系统的一部分功能，或只能处理旧系统难以构建的新功能。结果生产环境同时运行两套系统：没人想碰的旧系统，和只处理少数功能、80% 代码未激活的新系统。时间越长，旧系统继续工作，优先级改变的风险越大，新系统替换工作可能被放弃。作者推荐阅读 Will Larson 的《Migrations: the sole scalable fix to tech debt》，并建议未来遇到类似情况时，先用自动化测试加固旧系统，再尝试针对性重构，认为这比绿地重写更可能成功。",
    "key_points": [
-    "陶哲轩认为AI解题太快、过程黑盒，提前知道答案会抑制对其他可能富有启发性的失败路线的探索。",
-    "他以纳维-斯托克斯方程全局正则性问题为例，强调真正有价值的是探索过程中产生的重要数学思想，而非答案本身。",
-    "GPT-6 Astra等AI将孪生素数间距上界改进，陶哲轩吐槽并担心问题被“污染”，缺乏透明过程可能使AI对数学发展转为净负面影响。"
+    "推倒重写很少成功：旧系统仍持续变化，旧团队无动力维护，新团队无法完全理解旧系统行为与范围。",
+    "重写常导致两套系统并存：新系统只覆盖部分功能且含大量非活跃代码，旧系统继续运行，最终可能因优先级改变而放弃替换。",
+    "作者建议优先用自动化测试加固旧系统并做针对性重构，而非选择绿地重写；推荐 Will Larson 的《Migrations》作为参考。"
    ],
    "topics": [
-    "ai-for-math",
-    "reasoning"
+    "technical-debt",
+    "refactoring"
+   ],
+   "category": "工程实践",
+   "categories": [
+    "工程实践"
+   ],
+   "horizon": "long",
+   "score": 59.2,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "b0e2d5854a26abcc",
+   "url": "https://simonwillison.net/2026/Sep/6/zach-kehs/",
+   "title": "Quoting Zach Kehs",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-06T08:42:49+00:00",
+   "summary_short": "Zach Kehs：软件代码无物理坍塌约束，可以无限变差。",
+   "summary_long": "原文收录了 Zach Kehs 的一段引语。他对比建筑与软件：如果不断给建筑增加楼层和房间，建筑最终会坍塌；但软件没有这种约束。代码总是可以变得更糟糕，总能出现新的间接层或性能下降。该引语来自《There's No Limit to How Bad Code Can Get》，由 Simon Willison 于 2026 年 9 月 6 日发布，页面标注 technical-debt 标签。原文未详述更多背景或评论。",
+   "key_points": [
+    "建筑无限加层会坍塌，软件没有此类物理限制。",
+    "代码总能变得更糟：可增加新的间接层或降低性能。",
+    "引语由 Simon Willison 收录发布，标签为 technical-debt。"
+   ],
+   "topics": [
+    "technical-debt",
+    "code-quality"
+   ],
+   "category": "工程实践",
+   "categories": [
+    "工程实践"
+   ],
+   "horizon": "long",
+   "score": 57.0,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "5b887074ff6de198",
+   "url": "https://beza1e1.tuxen.de/ai_feelings.html",
+   "title": "How I feel about AI",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-06T15:00:19+00:00",
+   "summary_short": "作者表达对AI的惊喜、恐惧、厌恶、悲伤、愤怒与快乐，结论技术积极、社会黯淡。",
+   "summary_long": "作者表达了对AI的复杂感受。对神经网络的表现感到惊讶：LLM像凭“直觉”逐token生成，内部没有规划或推理算法，却涌现出一些规划与推理。同时感到恐惧，认为尤德考斯基关于超级智能必然毁灭人类的论证似乎无懈可击，但没有人认真尝试沙盒化AI，因为它们在可访问时太有用。作者厌恶AI公司破坏开放网络社会，爬虫和代理像蝗灾一样淹没开放维基和论坛；为艺术家因AI廉价内容竞争而受苦感到悲伤；对政治体系无力约束资本力量感到愤怒，包括AI公司贪婪消耗资源造成的环境破坏。作者也感到快乐，生活在发现的时代，可能目睹人工智能的创造；2026年软件开发实践被彻底改变，能生成原本不会存在的代码、图像和音乐。结论是：技术层面似乎是积极的，但社会层面是黯淡的。",
+   "key_points": [
+    "对LLM的运作感到惊讶：像凭直觉逐token生成，没有规划或推理算法，却涌现出部分规划与推理。",
+    "担忧超级智能毁灭人类且无人认真沙盒AI；厌恶AI公司破坏开放网络、伤害艺术家、消耗资源，愤怒于政治无力约束资本。",
+    "快乐于生活在发现时代并目睹AI创造；结论是技术层面积极，但社会层面黯淡。"
+   ],
+   "topics": [
+    "safety"
+   ],
+   "category": "安全与对齐",
+   "categories": [
+    "安全与对齐",
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 56.4,
+   "status": "review",
+   "extra": {
+    "hn_points": 151,
+    "hn_comments": 242,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "07a080969bec7d18",
+   "url": "https://simonwillison.net/2026/Sep/6/the-purpose-of-dns-is-to-spread-scams/",
+   "title": "The purpose of DNS is to spread scams",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-06T14:40:07+00:00",
+   "summary_short": "Interisle报告显示2025年新gTLD域名约两成涉诈骗，凸显DNS滥用危机",
+   "summary_long": "Terence Eden 分享了一些令人震惊的统计数据，以支持他的观点：域名系统（DNS）似乎正成为犯罪分子以惊人速度对人们实施诈骗的载体。这些数据来自一份 Interisle 报告（经由 Andrew Campling）。报告称，2025 年新增通用顶级域（gTLD）注册量为 8500 万个；其中 850 万个截至 2025 年 5 月已被加入屏蔽名单。报告估计，这些数字的滥用率下限为 10%，实际可能接近 20%。也就是说，每五个新注册的 gTLD 域名中，就有一个是诈骗。Terence Eden 称这是“一场血腥的危机”，并表示自己此前对此一无所知；而 ICANN 多年来显然一直在讨论这一问题。这些数据凸显了域名系统被滥用为诈骗渠道的严重规模。",
+   "key_points": [
+    "2025 年新增 gTLD 注册量为 8500 万个，其中 850 万个截至 2025 年 5 月被加入屏蔽名单",
+    "报告估计滥用率下限为 10%，可能接近 20%，即每五个新注册 gTLD 域名中约有一个是诈骗",
+    "Terence Eden 称这是“一场血腥的危机”，指出 ICANN 多年来一直在讨论该问题"
+   ],
+   "topics": [
+    "dns-abuse",
+    "scam"
    ],
    "category": "行业动态",
    "categories": [
     "行业动态"
    ],
    "horizon": "short",
-   "score": 70.1,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "22aacec03e469cb8",
-   "url": "https://simonwillison.net/2026/Sep/5/blender-coding-agents-macos/",
-   "title": "Using Blender with coding agents on macOS",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-05T15:51:09+00:00",
-   "summary_short": "macOS上让编码代理调用Blender渲染图像：安装应用后给提示即可。",
-   "summary_long": "原文介绍了一种在 macOS 上让编码代理配合 Blender 生成图像的方法。具体步骤是：先从 blender.org 安装完整的 Mac 版 Blender 应用，然后向 ChatGPT Codex 发出类似这样的提示：“使用已安装的 /Applications/Blender 渲染一个鹈鹕骑自行车的场景。” 原文随后用两个后续提示改进结果：第一个提示要求“添加背景和很多亮点”，第二个提示要求“让它整体更好”。最终得到一张图像，该图像通过 Blender 的 Python API 生成。原文认为这个过程很简单、有趣，标签包括 ai、generative-ai、llms、blender、pelican-riding-a-bicycle、coding-agents、gpt-6-astra。原文未详述更多技术细节或效果对比。",
-   "key_points": [
-    "前提是安装 blender.org 提供的完整 Mac 版 Blender，并让编码代理调用 /Applications/Blender。",
-    "提示示例为渲染鹈鹕骑自行车的场景，后续提示可要求添加背景、亮点和整体改进。",
-    "最终图像由 Blender 的 Python API 生成，原文称这种方式简单且有趣。"
-   ],
-   "topics": [
-    "tool-use",
-    "coding-agent"
-   ],
-   "category": "Agent 工程",
-   "categories": [
-    "Agent 工程"
-   ],
-   "horizon": "long",
-   "score": 68.8,
+   "score": 53.6,
    "status": "review",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "cc13633aba588fef",
-   "url": "https://github.com/Player-YN/PawWork_ZhuaZhua",
-   "title": "Player-YN/PawWork_ZhuaZhua — Paw Work - selection-first web agent for Chrome: select on the live page, describe the outcome, take away an editable office file. BYOK, sandboxed, no server.",
-   "source": "GitHub Trending (AI)",
-   "tier": "B",
-   "published_at": "2026-08-28T10:56:56+00:00",
-   "summary_short": "Paw Work：Chrome选择优先网页代理，选中页面、描述结果、导出Office文件，BYOK、沙箱、无服务器。",
-   "summary_long": "",
-   "key_points": [
-    "面向Chrome的选择优先网页代理",
-    "在实时页面上进行选择",
-    "描述结果"
-   ],
-   "topics": [
-    "agent-loop",
-    "open-source"
-   ],
-   "category": "Agent 工程",
-   "categories": [
-    "Agent 工程",
-    "开源项目"
-   ],
-   "horizon": "short",
-   "score": 66.0,
-   "status": "review",
-   "extra": {
-    "stars": 1260,
-    "language": "JavaScript",
-    "summary_mode": "brief"
-   }
-  },
-  {
-   "id": "b8133850cc199948",
-   "url": "https://simonwillison.net/2026/Sep/5/introducing-gpt-6-astra-for-developers/",
-   "title": "Introducing GPT-6 Astra for developers",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-05T23:27:48+00:00",
-   "summary_short": "GPT-6 Astra 面向开发者发布，细节、提示理解与3D建模能力表现突出。",
-   "summary_long": "原文介绍了面向开发者的 GPT-6 Astra。文中以“眨眼就会错过”提醒读者在1分59秒处出现一个熟悉的生物，并称 Astra 在整体上具有更高的细节关注度、对用户提示更好的理解力，能够构建更复杂的输出。尤其突出的是其构建3D模型的能力。作者表示见过 Astra 生成令人难以置信的花园、船坞、动物、城市景观甚至戴森球的渲染图。文中还以幽默口吻说，Astra 确实相信要给骑自行车的鹈鹕戴上红色围巾。该内容来自 Hacker News 评论，标签包括 ai、openai、generative-ai、llms、pelican-riding-a-bicycle、gpt-6-astra。原文未详述技术细节、评测方法或发布方。",
-   "key_points": [
-    "GPT-6 Astra 面向开发者推出，在细节关注、提示理解、输出复杂度方面全面改进。",
-    "Astra 尤其擅长构建3D模型，可生成花园、船坞、动物、城市景观甚至戴森球的渲染图。",
-    "原文提到1分59秒处出现一个熟悉的生物，并以“给骑自行车的鹈鹕戴红色围巾”为例说明其细节表现。"
-   ],
-   "topics": [
-    "product",
-    "3d-generation"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "产品与商业"
-   ],
-   "horizon": "short",
-   "score": 63.2,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "99f9f3dcc328ccb5",
-   "url": "https://www.qbitai.com/2026/09/484683.html",
-   "title": "押中SpaceX的硅谷老将，把票投给了一家中国世界模型公司",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-05T14:46:15+00:00",
-   "summary_short": "HICOOL一等奖颁给飞渡科技空间智能大模型，硅谷投资人同步看好实体AI，补物理世界决策短板。",
-   "summary_long": "过去三年AI能读懂语言，但仍缺乏对物理世界的认知、推演与决策能力。2026年7月中国南北方洪涝暴露短板：大模型无法回答水从哪里来、往哪里去、几分钟后到哪里、会淹没谁。行业形成共识，世界模型是空间智能发展终局和AI下半场，但多数世界模型仍停留在生成好看画面，从生成到决策存在缺口。在HICOOL 2026全球创业者峰会上，大赛一等奖颁给空间智能与世界模型方向，获奖企业飞渡科技，成果为自研空间智能“峥嵘大模型”。产业评委把最重一票投给补上大模型通向物理世界短板的路径。资本侧，天马科创投合伙人Bill Reichert（投资组合覆盖SpaceX、Airbnb等）也在WAIC上表示看好AI与物理世界结合的实体AI，与产业评委选择一致。飞渡科技提出全栈空间智能基础设施：3DT统一数据标准、峥嵘大模型五层技术栈、元尊S800空间智能一体机，并形成数据飞轮。其城市防洪应用把暴雨在数字空间预演，实现动态边界控制、真实世界1:1验证和智能体化调度，从经验驱动转向模型推演驱动。",
-   "key_points": [
-    "大模型缺乏物理世界认知与决策能力，世界模型被看作AI下半场，但从生成到决策仍有缺口。",
-    "HICOOL 2026一等奖颁给飞渡科技“峥嵘大模型”，产业评委选择补短板路径；硅谷投资人Bill Reichert同样看好实体AI。",
-    "飞渡科技以全栈空间智能基础设施支持城市防洪等场景，在数字空间预演、动态修正与智能调度。"
-   ],
-   "topics": [
-    "world-model",
-    "spatial-intelligence",
-    "product"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "行业动态",
-    "产品与商业"
-   ],
-   "horizon": "short",
-   "score": 61.1,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "dfb2f1ba483773ab",
-   "url": "https://www.qbitai.com/2026/09/484611.html",
-   "title": "这个世界模型训练完就“退场”，机器人反而更能干了",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-05T04:18:54+00:00",
-   "summary_short": "光象科技与清华发布ActEffect，世界模型只在训练时评估动作后果，部署时退出，机器人更高效。",
-   "summary_long": "光象科技联合清华大学李升波教授课题组发布第一代物理原生世界模型Phi-WM 1.0 ActEffect。其核心思路是让世界模型只停留在训练场：机器人策略先给出三版动作提案，受控世界模型分别预测执行后果，并与真实未来观测比较，用排序损失反馈优化策略；部署时世界模型和未来观测分支被拿掉，只保留MIP动作头。该方法在LIBERO上平均成功率98.8%，在含七类分布偏移的LIBERO-PLUS上达80.3%，在29维动作空间的RoboCasa-GR1上为67.5%；消融显示去掉后果反馈会降至97.0%。之所以要“退场”，是因为工业部署中每多一步模型推理都会增加时延、算力和成本，训练时引入后果反馈、执行时保持轻量更有部署价值。光象科技已在汽车焊接上下料、移动质检等场景验证，Phi-Bot X1在蔚来焊接上下料场景连续运行3天、21.5小时零失误零中断。下一阶段将在真实链路中继续验证新模型。",
-   "key_points": [
-    "ActEffect让世界模型只在训练阶段检查动作后果并反馈策略，部署时退出，执行阶段无需展开未来或搜索候选动作。",
-    "策略提供三版动作提案，受控世界模型预测各自后果并与真实观测比较，排序损失推动精修动作更接近正确结果；DINOv3特征空间用于学习状态变化，语言指令不进入世界模型。",
-    "在LIBERO、LIBERO-PLUS、RoboCasa-GR1上分别取得98.8%、80.3%、67.5%平均成功率；工业部署看重减少在线推理成本，光象科技已在汽车场景完成真实验证。"
-   ],
-   "topics": [
-    "post-training",
-    "world-model",
-    "robotics"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "模型训练"
-   ],
-   "horizon": "long",
-   "score": 55.7,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
     "summary_mode": "full"
    }
   }

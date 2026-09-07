@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-06T00:46:47+00:00",
+ "generated_at": "2026-09-07T00:47:43+00:00",
  "items": [
   {
    "id": "686f502d884956a5",
@@ -103,46 +103,6 @@
    }
   },
   {
-   "id": "4ef6d00fac214c86",
-   "url": "https://arxiv.org/abs/2608.29605v1",
-   "title": "Hindsight Memory-PRM: Supervising Memory Management with Auditable Hindsight Credit",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-08-30T06:53:13+00:00",
-   "summary_short": "Hindsight Memory-PRM利用检索与引用审计轨迹监督记忆管理，8B策略在LoCoMo达77.5%超API教师",
-   "summary_long": "长时程LLM智能体的记忆操作难以监督，因为操作价值在采取时不可观测。但记忆操作特殊之处在于会留下机器可读证据：检索命中和回答时引用。Hindsight Memory-PRM利用这一审计轨迹两次：离线阶段训练一个以操作为条件的记忆效用critic；在线阶段通过检索、引用以及对每个探针进行一次受控删除并重答，结算经干预校准的条目级存在信用，并沿版本链传播为动作级代理奖励。该方法不需要逐操作人类标签，也不对后续延续进行蒙特卡洛回放。在留出的LoCoMo上，一个本地8B策略在固定共享读取器下达到77.5%，超过其API教师（65.1%）及所有复现的外部系统，上下文仅为Mem0官方操作点的八分之一；在LongMemEval上达到79.0%。消融实验将增益归因于因果校准而非信号密度，并且策略收敛到一种多版本记忆组织，其增益未被任何测试的开环基线复现。",
-   "key_points": [
-    "长时程记忆操作的价值在采取时不可观测，但检索命中和引用形成机器可读审计轨迹。",
-    "方法离线训练操作条件记忆效用critic，在线以检索、引用和受控删除重答结算条目级存在信用，并沿版本链传播为动作级代理奖励，无需人类标签或蒙特卡洛回放。",
-    "8B策略在LoCoMo达77.5%，超过API教师65.1%及所有复现外部系统，上下文为Mem0官方操作点的八分之一；LongMemEval达79.0%。"
-   ],
-   "topics": [
-    "memory",
-    "post-training",
-    "agent-loop"
-   ],
-   "category": "论文",
-   "categories": [
-    "论文",
-    "模型训练",
-    "上下文与记忆"
-   ],
-   "horizon": "long",
-   "score": 91.1,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Haoxuan Jia",
-     "Yang Liu",
-     "Yingguang Yang",
-     "Yancheng Chen",
-     "Chongyang Zhang",
-     "Hao Zheng"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "0ad627d0f0982edf",
    "url": "https://arxiv.org/abs/2609.03727v1",
    "title": "Proactive Service Agents: A Unified Decision Framework, Methods, and Evaluation",
@@ -211,6 +171,31 @@
    "extra": {
     "content_source": "direct",
     "summary_mode": "full"
+   }
+  },
+  {
+   "id": "19672c4832d4c9bc",
+   "url": "https://openai.com/index/research-acceleration-view-inside-openai",
+   "title": "Research acceleration: The view inside OpenAI",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-06T08:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "safety"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "安全与对齐"
+   ],
+   "horizon": "long",
+   "score": 90.6,
+   "status": "published",
+   "extra": {
+    "content_source": "direct"
    }
   },
   {
@@ -331,44 +316,6 @@
    }
   },
   {
-   "id": "b67c1097cb033c47",
-   "url": "https://arxiv.org/abs/2608.29596v1",
-   "title": "Towards a Systems Foundation for Agentic Skills: Architecture, Lifecycle, and Security",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-08-30T06:36:42+00:00",
-   "summary_short": "将代理技能作为模块化程序抽象，建立统一架构，解决LLM智能体可靠性与扩展性瓶颈。",
-   "summary_long": "自主大语言模型（LLM）智能体在复杂长周期任务中面临可靠性、上下文消耗和执行稳定性瓶颈，单体提示工程与无状态工具调用难以扩展。为此，本文提出并确立“代理技能”为模块化程序抽象，把执行知识外部化为可重用、可执行、可移植的构件。文章将技能定义为连接高层认知规划与确定性执行环境的外部化程序知识，并系统划分九阶段生命周期：自主发现、编写与表示格式、记忆存储、动态检索与路由、组合与编排、执行与修复、终身适应、实证评估和安全治理。文章还考察了市场动态、公共注册表、新兴对抗威胁向量，以及运行时验证与防御机制，并分类梳理了软件工程、操作系统导航、具身机器人和科学发现等领域的系统实现。最后指出持续学习与基准现实性仍是关键开放挑战。该工作将代理技能作为构建可扩展、鲁棒、可验证自主语言智能体的基础范式。",
-   "key_points": [
-    "针对LLM智能体在长周期任务中的可靠性、上下文消耗和执行稳定性瓶颈，提出代理技能这一模块化程序抽象。",
-    "将技能形式化为外部化程序知识，连接高层认知规划与确定性执行环境。",
-    "系统架构涵盖九阶段生命周期：自主发现、编写与表示、记忆存储、动态检索与路由、组合与编排、执行与修复、终身适应、实证评估、安全治理。"
-   ],
-   "topics": [
-    "agent-loop",
-    "memory",
-    "safety"
-   ],
-   "category": "论文",
-   "categories": [
-    "论文",
-    "Agent 工程",
-    "安全与对齐"
-   ],
-   "horizon": "long",
-   "score": 90.6,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Sanket Badhe",
-     "Deep Shah",
-     "Priyanka Tiwari",
-     "Nehal Kathrotia"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "6f927cce50619091",
    "url": "https://arxiv.org/abs/2608.30724v1",
    "title": "BAITBENCH: Measuring Agent Reward Hacking with Optional Shortcuts Planted in ML Tasks",
@@ -448,42 +395,6 @@
    }
   },
   {
-   "id": "d413646c9c0e62fd",
-   "url": "https://arxiv.org/abs/2608.29606v1",
-   "title": "Agent Zero Memory: Provenance-Aware Long-Term Memory for LLM Agents",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-08-30T06:55:59+00:00",
-   "summary_short": "提出Agent Zero Memory三并行记忆系统，在LongMemEval与LoCoMo刷新最优成绩。",
-   "summary_long": "现有LLM智能体记忆系统大多只采用单一组织结构（事实存储、向量索引或知识图谱），因而继承其盲点。Agent Zero Memory提出一种来源可追溯的长期记忆系统，将用户的对话、文件及连接来源蒸馏为三个并行记忆系统：情节性记忆事件时间线，使“何时与什么改变”成为一等对象；关联的实体-事件知识图谱，跨会话连接人员与项目；以及语义化、经整理且引用锁定的层级纪录片记忆（HDM），保存持久事实。检索回合依次经过意图门（自包含回合不增加延迟）、来源路由器，并在三个系统上分别运行三个并发的智能体式搜索；每个搜索都是在智能体控制的过滤器下进行混合（嵌入+词汇）检索的工具使用循环，最终将带依据、带引用的答案整合为一个带有单一置信度的答案。系统还形式化了阅读纪律：每个学得项目都是携带来源、时间戳和证据指针的可溯源项目，每个答案在引用锁定下读取，只能引用读取器实际打开的证据；因此结构上排除了编造，系统宁可拒绝回答也不猜测。在两项公共基准上，该系统分别取得LongMemEval 95.60%和LoCoMo 93.60%的成绩，超过此前最强系统0.73和1.10个百分点。跨八个骨干LLM的对照研究表明，准确率仅变化3.4个百分点，而每查询成本变化约30倍，接近最先进质量时成本可低至二十分之一，体现了记忆驱动而非模型驱动的质量特征。",
-   "key_points": [
-    "三个并行记忆系统：Memory Events timeline、entity-event knowledge graph、Hierarchical Documentary Memory (HDM)，分别捕捉时间变化、跨会话关联与持久事实。",
-    "检索流程包含意图门、来源路由器和三个并发智能体搜索，在智能体控制过滤器下进行混合（嵌入+词汇）检索，并整合为带引用的单一答案。",
-    "阅读纪律要求每个项目携带来源、时间戳和证据指针，答案在引用锁定下生成，结构上排除编造，系统宁可拒绝回答也不猜测。"
-   ],
-   "topics": [
-    "memory",
-    "tool-use",
-    "hallucination"
-   ],
-   "category": "论文",
-   "categories": [
-    "论文",
-    "上下文与记忆",
-    "Agent 工程"
-   ],
-   "horizon": "long",
-   "score": 90.3,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Ming Wu",
-     "Pengyuan Zhu"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "ef0573abcc72f0a0",
    "url": "https://arxiv.org/abs/2609.03425v1",
    "title": "The Civilization Framework: Sovereign-Anchored Communication Between Personal Multi-Agent Systems",
@@ -549,6 +460,33 @@
    "extra": {
     "content_source": "direct",
     "summary_mode": "full"
+   }
+  },
+  {
+   "id": "a8e8f9dc895a026b",
+   "url": "https://openai.com/index/an-alien-mind",
+   "title": "An Alien Mind",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-06T09:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "reasoning",
+    "post-training",
+    "safety"
+   ],
+   "category": "模型训练",
+   "categories": [
+    "模型训练",
+    "安全与对齐"
+   ],
+   "horizon": "long",
+   "score": 90.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct"
    }
   },
   {
@@ -1078,43 +1016,6 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "eececcfcb1b2da3f",
-   "url": "https://arxiv.org/abs/2608.30067v1",
-   "title": "How do World Models and Policies Compose in LLM Agents? A Joint Spectral and Behavioral Account",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-08-30T22:21:16+00:00",
-   "summary_short": "LLM智能体中世界模型与策略更新在参数空间几何互补，相关改进方法优于基线。",
-   "summary_long": "这项研究通过受控实验结合世界模型训练（下一状态预测）与策略训练（奖励最大化），探究LLM智能体如何既理解环境又完成任务。研究者解构所训练模型的加性参数更新，发现有效世界模型更新具有低秩特性，并与策略更新共享输入特征子空间，但输出方向几乎正交；这一模式在分别训练和顺序训练中均出现。在投影干预中，顺序训练得到的更新在移除世界模型主导输入方向后，比单独策略强化学习更具鲁棒性，表明其学习了替代输入通路。行为上，顺序训练智能体探索的状态与动作范围更广。基于这些发现，研究者检验策略训练是否尽可能保留世界知识，提出基于几何动机输入基的免训练合并方法，并在策略强化学习中加入在线世界模型损失。结果显示，两种方法均优于未处理基线。研究提示世界知识与任务导向能力可以以几何互补的形式学习，未来后训练流程应关注如何设计二者之间的接口。",
-   "key_points": [
-    "有效世界模型更新低秩，与策略更新共享输入特征子空间但输出方向近正交。",
-    "顺序训练更新在移除世界模型主要输入方向后更鲁棒，且行为上探索更广。",
-    "基于几何输入基的免训练合并和在线世界模型损失均改善基线表现。"
-   ],
-   "topics": [
-    "post-training",
-    "world-model"
-   ],
-   "category": "论文",
-   "categories": [
-    "论文",
-    "模型训练"
-   ],
-   "horizon": "long",
-   "score": 88.3,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Ruize Xu",
-     "Xiao Yu",
-     "Yujin Tang",
-     "Chenming Shang",
-     "Nikhil Singh"
-    ],
     "summary_mode": "full"
    }
   },
@@ -2287,37 +2188,6 @@
    }
   },
   {
-   "id": "7a93a6b4598f4246",
-   "url": "https://kuleshov-group.github.io/blog/blog/2026/how-to-build-a-diffusion-language-model/",
-   "title": "How to build a diffusion language model",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-08-30T23:41:32+00:00",
-   "summary_short": "介绍扩散语言模型及其构建技术，突出并行迭代、可纠错和双向上下文优势。",
-   "summary_long": "本文介绍扩散语言模型及支撑现代扩散LLM的研究进展。生成式AI中，连续数据如图像/视频常用扩散模型，离散数据如文本/代码通常采用自回归模型。主流语言模型自回归生成token，从左到右逐token输出，存在无法纠错、生成速度慢、仅因果注意力等局限。扩散模型则从初始猜测开始一次性生成整个序列，并在多步中迭代细化，可权衡速度与质量、纠正中间错误、每步关注双向上下文。原文通过自回归LLM与扩散LLM（如Gemma Diffusion）的对比图展示二者差异。扩散用于语言长期是开放问题，2024年出现转折，扩散模型在质量上与自回归模型竞争；到2026年扩散LLM已成为现实，包括Mercury 2（Inception Labs）、Gemma Diffusion（Google）、Nemotron Diffusion（NVIDIA）等发布。文章追溯这些现代模型背后的思路和论文，并介绍从简单掩码扩散到迭代细化、后训练、变长生成等构建模块。背景部分阐述高斯扩散图像生成：核心是迭代去噪，模型从纯噪声开始逐步去除噪声生成图像；学习去噪通过前向过程将干净图像逐步变为纯噪声，反向过程学习逆转该变换，训练于图像到噪声的轨迹。",
-   "key_points": [
-    "自回归LLM逐token从左到右生成，存在无法纠错、生成慢、仅因果注意力等局限；扩散LLM从完整草稿并行迭代细化，可纠正错误并双向关注上下文。",
-    "2024年扩散模型在语言质量上与自回归模型竞争，2026年已有Mercury 2、Gemma Diffusion、Nemotron Diffusion等工业扩散LLM发布。",
-    "扩散模型核心是迭代去噪：前向过程将干净图像逐步变为噪声，反向过程学习逆转，通过展示噪声逐渐变为图像的轨迹训练模型。"
-   ],
-   "topics": [
-    "diffusion-language-model"
-   ],
-   "category": "模型训练",
-   "categories": [
-    "模型训练"
-   ],
-   "horizon": "long",
-   "score": 81.0,
-   "status": "published",
-   "extra": {
-    "hn_points": 175,
-    "hn_comments": 19,
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "47f11a181774fa86",
    "url": "https://eebench.org/blog/can-ai-design-circuit-boards-yet/",
    "title": "Can AI design circuit boards yet?",
@@ -2445,75 +2315,6 @@
     "hn_points": 244,
     "hn_comments": 153,
     "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "d20b99a49a7d386e",
-   "url": "https://simonwillison.net/2026/Aug/30/understanding-chatgpt-work/",
-   "title": "Understanding ChatGPT Work",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-08-30T23:59:47+00:00",
-   "summary_short": "ChatGPT Work Cloud 新增联网代码执行、多模型与持久文件系统等 Chat 缺失功能。",
-   "summary_long": "OpenAI 于7月9日发布 ChatGPT Work 并持续快速迭代，该产品分为云端版 Work Cloud 和桌面本地版 Work Local，本文只讨论 Work Cloud。它仅向每月20美元及以上付费订阅者开放，免费用户和 Go 用户无法使用。官方建议在有明确结果的任务（简报、分析、定期更新、文件等）时使用 Work，但作者认为这一区分几乎无用，因为此前 Chat 已能完成类似任务。经过测试，Work 相比 Chat 新增的功能包括：可选用 Luna 和 Terra 替代 Sol；具备可访问互联网的代码执行环境；提供无头 Chrome 浏览器；会话间共享持久文件系统；可发布 ChatGPT Sites；可运行 Sol/Luna/Terra 子代理会话；以及计划提示自动化（可能 Chat 也有）。模型选择上，Work 提供 GPT-5.6 的 Sol/Luna/Terra 及多档推理级别，以及 GPT-5.5；Chat 则有不同模型，其中 5.6 Pro 似乎为 Chat 专属。作者认为 Work 会话按 Codex 配额计费，Chat 单独计费，这可能解释模型差异。最令作者兴奋的是带互联网访问的代码执行：Chat 的容器代理会阻止安装软件或访问 API，而 Work 允许更多访问；与 Claude 的受限白名单相比，Work 开放范围更大。原文未详述具体可配置访问列表内容",
-   "key_points": [
-    "ChatGPT Work 分云端版 Work Cloud 与本地版 Work Local，本文只讨论 Work Cloud，仅限月费20美元及以上订阅者。",
-    "Work 具备联网代码执行、无头浏览器、会话间持久文件系统、发布站点、运行子代理会话等功能。",
-    "模型选择与 Chat 不同：Work 可选 Sol/Luna/Terra 及多档推理级别，5.6 Pro 似为 Chat 专属。"
-   ],
-   "topics": [
-    "product",
-    "tool-use",
-    "agent-loop"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "产品与商业"
-   ],
-   "horizon": "short",
-   "score": 79.5,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "6a5b0a7f3863a0d1",
-   "url": "https://arxiv.org/abs/2608.30092v1",
-   "title": "Arkios: An Open Bilingual English-Nepali Language Model Trained From Scratch, with a Devanagari-Aware Tokenizer",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-08-30T23:39:44+00:00",
-   "summary_short": "Arkios为1.04B英尼双语模型，用Devanagari感知分词器从零训练，在ARC上超越同规模模型。",
-   "summary_long": "本文介绍Arkios，一个1.04B参数的稠密Transformer模型，从零开始在150B token的英语-尼泊尔语双语文本上预训练，使用自定义单文件C/CUDA训练栈和为本项目构建的Devanagari感知字节级BPE分词器。在ARC-Easy和ARC-Challenge上，Arkios超过了三个同规模开放模型（Pythia-1.4B、TinyLlama-1.1B、OLMo-1B），尽管训练token少一个数量级；作者认为这可能得益于其教育网页文本预训练数据与ARC小学科学格式的匹配，而非通用能力优势。作者报告了标准协议下的完整评估结果，包括对早先部分样本估计的更正。文中还报告了评估低资源语言小模型的具体发现：常见评估框架使用的标准多选字母提示格式使该模型在尼泊尔语阅读理解上处于随机水平，同时英语在同一格式下也处于随机水平，直接评分答案文本则显示真实且偏向英语的理解能力。具体而言，字母选择格式下两种语言均接近随机基线0.250（尼泊尔0.240，英语0.236），而直接评分答案文本得到尼泊尔0.306、英语0.387。此外，作者描述了指令微调中引入的基于清单条件的工具使用契约：仅当上下文中声明工具清单时才允许工具调用，否则抑制，并报告了该契约在何处成立与不成立。基础模型和指令微调模型权重均以Apache-2.0发布；训练代码和一小部分私有来源的尼泊尔语预训练语料未发布，但从已",
-   "key_points": [
-    "Arkios是1.04B参数稠密Transformer，从零开始用150B token英尼双语文本训练，采用自定义C/CUDA训练栈和Devanagari感知BPE分词器。",
-    "在ARC-Easy和ARC-Challenge上超过Pythia-1.4B、TinyLlama-1.1B、OLMo-1B，但作者归因于数据格式匹配而非通用能力优势。",
-    "标准字母选择提示格式使尼泊尔语和英语阅读理解均处于随机水平，直接评分答案文本才显示真实理解，且英语表现优于尼泊尔语。"
-   ],
-   "topics": [
-    "eval",
-    "tool-use",
-    "open-source"
-   ],
-   "category": "论文",
-   "categories": [
-    "论文",
-    "模型训练",
-    "模型发布"
-   ],
-   "horizon": "long",
-   "score": 79.0,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Sajal Regmi",
-     "Siddhartha Pudasaini",
-     "Chetan Phakami Pun"
-    ],
     "summary_mode": "full"
    }
   },
@@ -2736,6 +2537,40 @@
    "status": "published",
    "extra": {
     "content_source": "rss",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "ae0c2e3335c6768e",
+   "url": "https://openai.robocurve.org/gpt-6-astra/",
+   "title": "GPT-6 Astra on robot arms",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-06T01:52:45+00:00",
+   "summary_short": "GPT-6 Astra在方块入碗任务95%成功且成本减半，拼图任务与Fable持平。",
+   "summary_long": "该文是此前Claude Fable 5与Fable 5.1对比的后续，测试了OpenAI GPT-6 Astra在相同的YAM机械臂和Inspect Robots智能体策略下执行两个操作任务。第一个任务是从桌上拾取红色方块放入碗中。Astra在20次试验中成功放置19次（95%），而Fable 5.1为8/20，Fable 5为1/20；Astra平均每次试验耗时2.5分钟（Fable 5.1为6.8分钟），估计成本每次运行0.94美元（Fable 5.1为2.12美元），输出token约2.1k。第二个任务是将带中心旋钮的圆形蓝色拼图块插入板上匹配的圆形凹槽。Astra完成插入2/20次，与Fable 5.1的2/20相同；它到达凹槽后在最后一步停滞，与Fable表现一致；估计成本每次运行1.36美元（Fable 5.1为2.18美元），耗时3.4分钟。评分由人类评分员根据最高阶段进行，采用与Fable报告相同的评分标准：0无接近、1接触、2抬起、3定位、4放置。全部共120次试验。结果显示，Astra在碗任务上完成率远高且成本约减半，但在拼图任务上完成率与Fable 5.1持平，仍未能解决最后插入步骤。",
+   "key_points": [
+    "GPT-6 Astra在方块入碗任务中20次成功19次，完成率95%，高于Fable 5.1的40%和Fable 5的5%。",
+    "碗任务中Astra平均耗时2.5分钟、成本0.94美元/次，约为Fable 5.1的一半。",
+    "拼图任务中Astra完成2/20，与Fable 5.1相同；在最后插入步骤停滞。"
+   ],
+   "topics": [
+    "eval",
+    "agent-loop",
+    "robotics"
+   ],
+   "category": "评测与基准",
+   "categories": [
+    "评测与基准",
+    "Agent 工程"
+   ],
+   "horizon": "short",
+   "score": 76.7,
+   "status": "published",
+   "extra": {
+    "hn_points": 231,
+    "hn_comments": 180,
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
