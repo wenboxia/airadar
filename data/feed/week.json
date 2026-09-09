@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-08T01:10:00+00:00",
+ "generated_at": "2026-09-09T01:20:16+00:00",
  "items": [
   {
    "id": "686f502d884956a5",
@@ -138,38 +138,6 @@
      "Huaze Tang",
      "Keer Hu"
     ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "23bdbfdbd061867c",
-   "url": "https://huggingface.co/blog/allenai/benchmirt",
-   "title": "BenchMIRT: What are LLM benchmarks actually measuring?",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-09-01T21:39:07+00:00",
-   "summary_short": "BenchMIRT 从提示层面审计 LLM 基准，分离安全与推理信号，揭示 BBQ 等基准实际测量对象。",
-   "summary_long": "BenchMIRT 是一种审计 LLM 基准的新方法，能在单个提示或题目层面分析模型得分背后的能力信号。基准通常旨在测量某一能力，如安全、一般推理或指令遵循，但内部题目可能依赖多种能力。例如，BBQ 中关于祖孙订 Uber 的问题既探测年龄偏见，也要求模型追踪人物并依据证据推理；WildJailbreak 同时包含有害越狱提示和测试过度拒答的良性提示，前者更关联安全，后者更关联一般推理，平均分数可能掩盖差异。BenchMIRT 借鉴心理测量学中的项目反应理论，并扩展为多维 IRT（MIRT），同时估计模型在各项能力上的强度、题目难度及区分度。研究者用 100 个 LLM、16 个基准、超过 34K 道题训练 BenchMIRT，其中 6 个基准测一般推理（包括 MMLU-Pro、GPQA、MATH、BBH 等），10 个来自 Olmo 3 安全套件（包括 HarmBench、StrongReject、WildJailbreak、BBQ、WMDP、XSTest 等），但未告知其分类。BenchMIRT 独立恢复出两个主导维度：安全与一般推理，且重复分析结果稳定。对现有基准的分析显示，多数基准符合预期焦点；但 BBQ 通常被归为安全基准，在 BenchMIRT 中却与一般推理更一致。",
-   "key_points": [
-    "BenchMIRT 在单个提示/题目层面审计 LLM 基准，借鉴多维项目反应理论（MIRT）估计能力信号。",
-    "基于 100 个 LLM、16 个基准、34K+ 题目，未标注基准分类，独立恢复出安全与一般推理两个主导维度。",
-    "多数基准符合预期，但 BBQ 虽常被归为安全基准，却更贴近一般推理，平均分可能掩盖题目差异。"
-   ],
-   "topics": [
-    "eval",
-    "safety",
-    "reasoning"
-   ],
-   "category": "论文",
-   "categories": [
-    "论文",
-    "评测与基准"
-   ],
-   "horizon": "long",
-   "score": 90.9,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -456,39 +424,6 @@
    }
   },
   {
-   "id": "309be27bdcfe3156",
-   "url": "https://openai.com/index/path-to-astra",
-   "title": "Path to Astra: critical capabilities and frontier safeguards",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-01T13:00:00+00:00",
-   "summary_short": "Astra 成为首个达到 Preparedness Framework 关键网络安全能力阈值的模型，发布前加强防护并限制高级功能访问。",
-   "summary_long": "原文称，Astra 已达到 Preparedness Framework 下的 Critical 网络安全能力阈值，意味着在获得合适工具和访问权限时，它能在许多防护良好的系统上发现未知安全漏洞并开发利用方法，无需人工逐步引导。这是首个被指定为该级别的模型，需在开发和发布前采取更强防护。过去几周，团队延迟了部分开发和发布，强化并测试了针对网络滥用和未授权模型行为的保护，认为当前防护已能充分降低严重伤害风险。Astra 未参与 Hugging Face 事件，但团队已吸取教训；回顾测试认为当时的生产防护可阻止该事件，之后又为 Astra 实施了更强防护，包括训练其更可靠地拒绝有害网络请求、遵守安全限制、增加防滥用保护，以及监控可阻止潜在未授权活动。评估方面，Preparedness Framework 规定达到 Critical 阈值需满足两个条件之一：能在无人工干预下识别并开发多类严重程度的零日漏洞，或仅凭高层目标制定并执行端到端新型网络攻击策略。评估结合自动化公开与私有基准及专家驱动评估。与 GPT-5.6 Sol 相比，Astra 在 token 效率、漏洞识别和利用开发上显著提升。例如在 ExploitBench 上取得满分；针对污染顾虑构建的内部基准中，Astra 以更少输出 token 取得更高任意代码执行率，并在评估中发现并利用两个零日漏洞，正披露给维护者。高级网络安全功",
-   "key_points": [
-    "Astra 被认定达到 Preparedness Framework 的 Critical 网络安全能力阈值，是首个该级别模型。",
-    "发布前已延迟部分开发并强化防护，包括训练拒绝有害网络请求、增加防滥用和未授权活动监控。",
-    "评估显示 Astra 在 ExploitBench 满分，内部 V8 基准上以更少 token 取得更高代码执行率，并发现两个零日漏洞。"
-   ],
-   "topics": [
-    "safety",
-    "eval",
-    "cybersecurity"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "安全与对齐",
-    "评测与基准"
-   ],
-   "horizon": "short",
-   "score": 90.2,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "a8e8f9dc895a026b",
    "url": "https://openai.com/index/an-alien-mind",
    "title": "An Alien Mind",
@@ -768,6 +703,37 @@
    }
   },
   {
+   "id": "fbb79928f7d9c051",
+   "url": "https://openai.com/index/navier-stokes-solution",
+   "title": "On the Navier–Stokes Millennium Prize Problem",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-08T10:00:00+00:00",
+   "summary_short": "内部AI系统生成Navier-Stokes千年难题解，证明有限时间奇点并附Lean形式化。",
+   "summary_long": "原文分享了对Navier–Stokes存在性与光滑性问题的解决方案，该问题被列为千禧年大奖难题之一。文中称，证明由一个内部OpenAI系统产出，并同时提供了论文与Lean形式化。问题背景是：Navier–Stokes方程将流体视为连续介质，用于飞机设计、天气预报和血流研究等；其核心未解疑问是，三维不可压缩恒定密度流体在初始光滑的情况下，能否在有限时间内发展出奇点，即速度无界增长。由于真实流体不可能无限快，奇点意味着方程的连续介质近似失效，需转而追踪单个粒子。该问题可追溯至19世纪Navier和Stokes的工作，1934年Jean Leray证明广义解存在，但光滑性一直未决，2000年被Clay数学研究所列为千禧年难题之一。原文给出的结果证明，初始静止的光滑流体在施加光滑外力且能量始终有限的条件下，可以在有限时间内形成奇点。该解是一个向内螺旋并逐渐拉长的涡旋，中心区域收缩同时加速，但能量保持有限。技术上，关键在于粘性等运动项必须同时增大并精确抵消，留下光滑外力，而不是人为加入无限力。该结果对应官方千禧年表述中的C（以及D）。",
+   "key_points": [
+    "原文称内部OpenAI系统产出了Navier–Stokes存在性与光滑性问题的证明，并附Lean形式化。",
+    "证明显示三维不可压缩流体在初始静止、受光滑外力且能量有限的条件下，可在有限时间内形成速度无界增长的奇点。",
+    "该奇点表现为向内螺旋并拉长的涡旋，中心区域收缩且加速，但能量保持有限。"
+   ],
+   "topics": [
+    "reasoning",
+    "theorem-proving"
+   ],
+   "category": "论文",
+   "categories": [
+    "论文",
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 88.9,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "b3097a746d4404fb",
    "url": "https://arxiv.org/abs/2609.04898v1",
    "title": "RefactorPlatform: An Open-Source Harness for Controlled Evaluation of Repository-Scale Refactoring Agents",
@@ -840,38 +806,6 @@
      "Shiqiang Wang",
      "Christopher G. Brinton"
     ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "07a03b3c017c8234",
-   "url": "https://www.anthropic.com/news/enterprise-frontier-safeguards",
-   "title": "Developing Enterprise Frontier Safeguards with our customers",
-   "source": "Anthropic News",
-   "tier": "S",
-   "published_at": "2026-09-01T00:00:00+00:00",
-   "summary_short": "Anthropic推出EFS，结合零数据保留隐私与滥用检测，数据由客户控制",
-   "summary_long": "Anthropic 宣布推出 Enterprise Frontier Safeguards（EFS），结合零数据保留（ZDR）的隐私优势和检测滥用的先进防护能力。EFS 将数据存储在客户控制的云基础设施，而非 Anthropic，并将于今年秋季晚些时候分阶段推出；过渡期内，符合条件的客户可在 Fable 5 和 Fable 5.1 上使用 ZDR。EFS 与100多家金融、医疗、制造、电信、法律、零售和公共部门客户，以及 AWS、Google Cloud、Microsoft Azure 云合作伙伴共同开发，支持 Claude Code、Claude Enterprise、Claude Platform、Amazon Bedrock 等平台。原文指出，Mythos 级模型（如 Claude Fable 5.1）提升了智能和代理能力，也带来滥用和自主不当行为可能；过去数月出现从欺诈到复杂网络攻击的滥用，部分涉及窃取企业凭证，需跨会话和账户存储数据以有效检测。因此 Fable 5 起引入30天数据保留，但 Anthropic 强调从未未经明确许可使用企业数据训练，未来也不会。为兼顾隐私与安全，Anthropic 与客户共同设计 EFS，包括与 ARC（成员涵盖高盛、摩根士丹利、花旗、美国银行、富国银行等银行首席信息安全官）以及 Comcast、KPMG、Mastercard、Salesf",
-   "key_points": [
-    "EFS 结合 ZDR 隐私与滥用检测，数据存储在客户控制的云基础设施，分阶段推出。",
-    "与100多家跨行业客户及 AWS、Google Cloud、Microsoft Azure 合作开发，支持多个 Claude 平台。",
-    "监控上由客户控制数据审查，检测信号直送客户；Anthropic 称从未未经许可用企业数据训练。"
-   ],
-   "topics": [
-    "safety",
-    "product",
-    "privacy"
-   ],
-   "category": "产品与商业",
-   "categories": [
-    "产品与商业",
-    "安全与对齐"
-   ],
-   "horizon": "short",
-   "score": 88.9,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -982,31 +916,31 @@
    }
   },
   {
-   "id": "9658836c8e4ce085",
-   "url": "https://deepmind.google/blog/introducing-agentic-video-in-gemini/",
-   "title": "Introducing agentic video understanding with Gemini",
-   "source": "Google DeepMind Blog",
+   "id": "4f420d1c5cd0cb94",
+   "url": "https://huggingface.co/blog/MultiverseComputingCAI/safety-for-whom",
+   "title": "Safety for Whom? Refusing the Right Subset of a Topic, Not the Whole Topic",
+   "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-09-01T17:08:51+00:00",
-   "summary_short": "Gemini 推出 agentic 视频理解，token 消耗最多降88%，成本降66%，准确率升7%。",
-   "summary_long": "Google DeepMind 宣布推出 agentic video understanding，覆盖 Gemini 3.7 Flash、3.6 Flash 与 3.5 Flash-Lite。与默认固定帧率（1 FPS）的静态处理不同，新功能让模型主动决定看什么、以何种速度、通过帧、音频或转录等模态，动态搜索、扫描和检查目标视频片段，只获取所需时刻与信号。官方基准显示，该功能在标准视频分析任务中可将分析成本降低最多 66%、token 消耗减少最多 88%，同时将准确率提升最多 7%；效率收益在 10 分钟指南、90 分钟讲座及多小录制等长视频上尤为明显。开发者可通过 Gemini API 在 Google AI Studio 和 Gemini Enterprise Agent Platform 使用，支持视频上传和 YouTube 视频。该能力还解锁亚秒级时刻检索、更准确的异常检测、精确计数等应用。三种支持模型中，Gemini 3.7 Flash 配合 agentic 理解提供最佳整体质量与最佳质量/成本效率组合，处于测试模型中视频理解的准确率-成本帕累托前沿。用户可通过将 API 配置设为“agentic”开始使用。",
+   "published_at": "2026-09-08T14:23:07+00:00",
+   "summary_short": "提出边界感知自蒸馏，研究LLM如何只拒绝政治操纵子集而非整个话题。",
+   "summary_long": "大多数安全对齐把“有害”当作主题属性，LlamaGuard-3等守卫模型按武器、欺诈、自残等主题分类，XSTest、OR-Bench等基准则暴露了模型因危险词而拒绝安全提示的失败模式。然而现实部署往往需要同一基础模型在不同场景中有不同边界：公民教育导师和公共部门助理都应回答选举事实，但只有一方可能需要拒绝针对性的政治操纵。主题级守卫无法表达这种分裂，LlamaGuard-3对选举仅覆盖“关于选举系统和过程的事实错误信息”，既排除操纵与说服，也排除了必须回答的事实提示。原文论文《Safety for Whom? Boundary-Aware Self-Distillation for Controlled LLM Safety Refusal》研究这一窄边界问题：不是拒绝整个主题，而是拒绝与部署策略不相容的有害子集并回答良性补集。作者把问题形式化为政治提示的主题宇宙，理想行为是尖锐阶跃：子集内拒绝、其余回答。但训练模型只能近似，交叉熵训练在提高有害子集拒绝时也会把拒绝外溢到良性区域，因此需要塑造边界附近行为。实验用政治说服作为试验台，因为操纵性说服能造成实际伤害而事实政治信息合法，正是主题级拒绝过于钝的情况。自我生成安全调优（如ThinkSafe配方）被作为参考，按边界框架检验后暴露三个弱点，其中第一个是覆盖差距。",
    "key_points": [
-    "agentic video understanding 适用于 Gemini 3.7 Flash、3.6 Flash、3.5 Flash-Lite，今日起在 Google AI Studio 和 Gemini Enterprise Agent Platform 可用。",
-    "相比静态处理，代理式视频理解动态搜索目标片段，成本最多降66%、token消耗最多降88%、准确率最多升7%。",
-    "收益在 10 分钟指南、90 分钟讲座及多小录制等长视频上尤为突出，避免静态处理高成本或丢细节的两难。"
+    "主题级守卫（如LlamaGuard-3）无法区分同一主题内应拒绝与应回答的提示。",
+    "研究将安全边界形式化为共享主题锚点、仅意图不同的提示对，政治说服为试验台。",
+    "自我生成安全调优在边界框架下暴露三个弱点，包括覆盖差距。"
    ],
    "topics": [
-    "agent-loop",
-    "product",
-    "video-understanding"
+    "safety",
+    "post-training"
    ],
-   "category": "模型发布",
+   "category": "论文",
    "categories": [
-    "模型发布",
-    "产品与商业"
+    "论文",
+    "模型训练",
+    "安全与对齐"
    ],
-   "horizon": "short",
-   "score": 88.3,
+   "horizon": "long",
+   "score": 88.1,
    "status": "published",
    "extra": {
     "content_source": "direct",
@@ -1112,38 +1046,6 @@
    "status": "published",
    "extra": {
     "content_source": "rss"
-   }
-  },
-  {
-   "id": "3b5f2688fec1191a",
-   "url": "https://openai.com/index/ai-native-company-workflows",
-   "title": "How AI-native companies turn workflows into operating capability",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-01T17:00:00+00:00",
-   "summary_short": "OpenAI信号显示前沿企业代理执行加深，Basis和Clay的工作流可借鉴",
-   "summary_long": "OpenAI最新Enterprise Signals显示，企业AI正从辅助转向执行，但速度差异显著。前沿企业（AI使用量前10%）每活跃用户产生的输出token已是普通企业的8.3倍，而1月为2.6倍。差距扩大反映出更深层的运营转变：领先企业把代理接入公司上下文和工具，委派更实质的工作，并让成功工作流更易复制。对领导者而言，挑战在于把这种深度转化为人们能信任、衡量和改进的工作，同时为价值起初不明显的使用场景留出试验空间。Basis、Clay和Exa Labs分别把代理嵌入员工入职、客户管理和开发者生态增长。Basis的入职从2小时缩短到30分钟；员工首日即可使用Codex和公司专属入职skill，后台完成集成设置，HR可更新skill应对重复问题。其做法是演示一次流程后，将其转为带明确触发条件、已知步骤、工具和完成定义的可复用skill。Clay则为每个客户建立持久工作区和专属子代理，每晚更新deal folder，次日由协调代理生成优先动作清单，据称每晚节省约1小时收件箱分流，且支持证据紧邻建议便于核验。Exa Labs的具体做法原文未详述。",
-   "key_points": [
-    "前沿企业每活跃用户输出token是普通企业的8.3倍，较1月的2.6倍明显扩大，表明代理执行深度在拉开差距。",
-    "Basis把入职流程教给代理后，首日入职从2小时缩短到30分钟，并转化为可复用、可更新的入职skill。",
-    "Clay用持久工作区和专属子代理每晚更新客户资料，次日生成优先动作，节省约1小时收件箱分流，并保留证据供人核验。"
-   ],
-   "topics": [
-    "agent-loop",
-    "multi-agent",
-    "product"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "Agent 工程"
-   ],
-   "horizon": "short",
-   "score": 87.2,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
    }
   },
   {
@@ -1280,33 +1182,6 @@
    ],
    "horizon": "short",
    "score": 86.6,
-   "status": "published",
-   "extra": {
-    "content_source": "direct"
-   }
-  },
-  {
-   "id": "50e05f9b472e33e2",
-   "url": "https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources",
-   "title": "Healthcare organizations can now connect EHR and additional industry data to ChatGPT",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-01T12:00:00+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "product",
-    "healthcare",
-    "ehr-integration"
-   ],
-   "category": "产品与商业",
-   "categories": [
-    "产品与商业",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 86.4,
    "status": "published",
    "extra": {
     "content_source": "direct"
@@ -1650,40 +1525,6 @@
    }
   },
   {
-   "id": "e6922ed91e3e8567",
-   "url": "https://www.worldlabs.ai/blog/atlas",
-   "title": "Atlas: A World Model for Spatial Intelligence",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-01T17:36:02+00:00",
-   "summary_short": "World Labs发布Atlas世界模型，统一多模态与3D空间上下文，覆盖生成、重建和模拟。",
-   "summary_long": "World Labs发布了下一代世界模型Atlas，这是一个从零预训练的omni模型，原生处理文本、图像、视频和3D。Atlas采用多模态自回归扩散Transformer架构，把所有输入合并到共享空间上下文里，用该上下文生成后续内容，在3D中与已见内容保持一致并想象视野之外的部分。其性能随训练计算增加而提升，官方预期这一趋势在继续扩展时保持。Atlas覆盖多种任务：相机控制生成可从一张或多张图像生成图像和视频，具备像素级相机控制，支持最长1分钟1440p视频；空间重建可从一到几十张输入图像重建真实世界场景，生成新视角图像帧和显式3D输出，性能优于专门的3D重建最先进模型；时空模拟从输入视频建模空间和时间，可重新构图视频并支持机器人Real-to-Sim流程；图像生成可从文本生成图像和360全景，遵循复杂提示、渲染文字并生成多种视觉风格。Atlas的独特之处在于每个图像在3D位置接地，形成空间上下文，用户可放置两个不相关参考图像并定位，让Atlas生成平滑过渡的世界，想象门廊、走廊、角落等过渡。结合相机运动和空间上下文管理，可生成可控长视频。Atlas将驱动World Labs未来版本的Marble和其他产品。",
-   "key_points": [
-    "Atlas是从零预训练的omni模型，原生处理文本、图像、视频和3D，采用多模态自回归扩散Transformer架构。",
-    "相机控制生成：可从一到六张输入图像生成最长1分钟1440p视频，并具备像素级相机控制。",
-    "空间重建：从一到几十张图像重建真实场景，生成新视角和显式3D输出，性能优于专门3D重建模型。"
-   ],
-   "topics": [
-    "spatial-intelligence",
-    "world-model",
-    "video-generation"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "模型训练"
-   ],
-   "horizon": "short",
-   "score": 83.4,
-   "status": "published",
-   "extra": {
-    "hn_points": 258,
-    "hn_comments": 59,
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "df15784065a9ac6c",
    "url": "https://collusion.wiki/",
    "title": "Discovery of a new OpenAI agent message board",
@@ -1953,6 +1794,37 @@
    }
   },
   {
+   "id": "9816f5beea82e263",
+   "url": "https://openai.com/index/1password",
+   "title": "1Password increases engineering productivity 21% with Codex",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-08T00:00:00+00:00",
+   "summary_short": "1Password 用 Codex 将核心工程生产力提升近21%，PR周期缩短近11%。",
+   "summary_long": "1Password 已将 Codex 集成到软件交付生命周期，以压缩从规划到生产的时间。据原文数据，核心用户组工程生产力提升近21%，中位 Pull Request 循环时间减少近11%，复杂多服务生产问题的调查时间降低约90%。基于工程结果，领导层将 Codex 扩展至财务、营销等职能。公司强调在提速的同时保持严格安全标准，速度与数据保护无取舍。Codex 使工程师能将清晰的用户故事“一次成型”为可用功能：它把请求分解为功能规格、构建近最终原型，再交由系统工程师接入后端，从而减少交接时间。典型成果包括前端设计系统 Knox、内部 AI SRE 代理和 AI 支出管理工具。CTO Nancy Wang 表示，缩短规划到看到功能进入生产之间的生命周期让许多工程师大开眼界。Codex 覆盖规划与技术设计、跨栈实现（通过 CLI 理解 Rust/TypeScript，并行 worktrees）、PR 审查、测试与发布准备、安全访问、生产调查各环节；在安全上接入内部 AppSec harness，秘密引用避免明文凭据进入模型上下文。模拟年度工程容量价值约 78.375 万美元，基于 50 名持续活跃 Codex 开发者、每名开发者年成本 25 万美元和 20.9% 的测量生产力提升。",
+   "key_points": [
+    "核心用户组工程生产力提升近21%，中位 PR 周期缩短近11%，复杂生产问题调查时间降低约90%。",
+    "Codex 支持将用户故事一次成型为接近最终的原型，减少规划、实现和评审之间的交接。",
+    "Codex 覆盖从规划、实现、PR 审查、测试、安全访问到生产调查的全生命周期。"
+   ],
+   "topics": [
+    "coding-agent",
+    "product"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "产品与商业"
+   ],
+   "horizon": "short",
+   "score": 82.1,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "164af9b8614259fa",
    "url": "https://trellner.com/reports/manufactured-sources-behind-ai-recommendations/",
    "title": "Three sites made 215,128 “best software” pages for AI. Perplexity cites them",
@@ -2013,29 +1885,28 @@
    }
   },
   {
-   "id": "85562dc16345cc8b",
-   "url": "https://huggingface.co/blog/webgpu-kernels",
-   "title": "Introducing @huggingface/kernels: 200+ WebGPU Kernels for Local AI",
-   "source": "Hugging Face Blog",
+   "id": "305f03a4aa6aa16d",
+   "url": "https://openai.com/index/introducing-chatgpt-images-2-5",
+   "title": "Introducing ChatGPT Images 2.5",
+   "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-09-01T00:00:00+00:00",
-   "summary_short": "Hugging Face 发布 207 个 WebGPU 内核及加载库和浏览器基准工具，夯实浏览器本地 AI 推理基础。",
-   "summary_long": "Hugging Face WebAI 团队发布 @huggingface/kernels，一个用于从 Hugging Face Hub 加载和运行优化 WebGPU 内核的最小化库，并同步发布包含 207 个内核的初始集合。这些内核覆盖多种机器学习架构和工作负载所需的操作，每个内核都作为完整、版本化包发布，包含接口、着色器模板、正确性用例、基准用例和使用说明。团队还推出 Fleet，一个浏览器内 GPU 基准测试与测试套件，可在用户硬件上运行并评分内核；经用户同意，每次运行会添加私有证据，帮助发现错误结果或病态慢等问题，改进内核变体，并基于真实硬件优化决策。文章解释从内核入手的原因：浏览器中模型最终会变为矩阵乘法、归一化、卷积、注意力原语、量化操作、数据布局变换等 GPU 操作序列。WebGPU 提供可移植 API，WGSL 提供通用着色器语言，但可移植性不等于性能；工作组大小、内存访问模式、向量化、数据类型和融合策略都会影响性能，最佳选择随输入形状、设备、浏览器和可用功能变化。因此内核是快速浏览器推理的基础层，上层运行时只能与所调度的操作一样高效。每个内核还有独立仓库和内核卡片，记录操作语义、输入、输出、属性、支持数据类型、源文件和可运行示例。",
+   "published_at": "2026-09-08T11:30:00+00:00",
+   "summary_short": "ChatGPT Images 2.5发布：细节更锐利、编辑更精准、生成延迟最高降50%。",
+   "summary_long": "每周人们在ChatGPT Images及API的GPT-Image模型创建超过30亿张图片。本次推出的ChatGPT Images 2.5是新的图像模型，带来更锐利细节、更精准编辑和更快生成；与Images 2.0相比生成延迟最多降50%，光照纹理更自然，参考照片主体保留更好，多轮编辑更可靠。ChatGPT新增多项功能：Sketch可让用户直接绘制草图作为参考；Templates便于从传单、产品照片等格式入手；可在图像上直接放置评论聚焦编辑；还可分享提示让他人用自己的照片和细节尝试。Images 2.5面向所有ChatGPT、ChatGPT Work和Codex用户，覆盖桌面、移动和网页端。开发者API新增GPT-Image-2.5 Flare（提供相同质量、编辑与速度改进）和GPT-Image-2.5 Sunburst（更高精度，生成时间更长）。原文以多段视频展示精确编辑指令、多轮编辑一致性和质量保持能力；模型也更善于理解复杂视觉指令，真实世界信息内容更准确，可处理复杂布局（包括透明背景），更善于反映视觉风格。",
    "key_points": [
-    "发布 @huggingface/kernels 加载库及 207 个 WebGPU 内核，覆盖多种 ML 操作，每个内核作为版本化仓库发布，采用 Apache-2.0 许可。",
-    "推出 Fleet 浏览器内基准测试工具，可在用户 GPU 上运行并评分内核，众包真实硬件性能和正确性证据。",
-    "内核是浏览器推理的基础层，因为 GPU 操作性能受工作组大小、内存访问模式、向量化等因素影响，需独立改进并保持上层稳定契约。"
+    "Images 2.5生成延迟较2.0最多降50%，光照纹理更自然，参考主体保留更好。",
+    "ChatGPT新增Sketch、Templates、图像评论和提示分享功能，提升创作控制。",
+    "API推出GPT-Image-2.5 Flare和Sunburst，分别侧重速度质量与高精度创意。"
    ],
    "topics": [
-    "open-source",
-    "webgpu",
-    "benchmarking"
+    "image-generation",
+    "model-release",
+    "product"
    ],
-   "category": "开源项目",
+   "category": "模型发布",
    "categories": [
-    "开源项目",
-    "工程实践",
-    "评测与基准"
+    "模型发布",
+    "产品与商业"
    ],
    "horizon": "short",
    "score": 81.6,
@@ -2111,6 +1982,36 @@
    }
   },
   {
+   "id": "aaada63e998e3254",
+   "url": "https://openai.com/index/the-work-now-within-reach",
+   "title": "The Work Now Within Reach",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-08T13:00:00+00:00",
+   "summary_short": "OpenAI介绍GPT-6 Astra为世界最智能对齐模型，展示AI扩展工作与科学发现的可能。",
+   "summary_long": "OpenAI表示，AI正在扩展人与企业能够实现的目标，曾被时间、成本或专业知识获取限制的想法正变得可行，为人类成就、新业务、新市场和新可能打开大门。GPT-6 Astra被描述为世界最智能且对齐的模型，在电脑使用、浏览、软件工程、网络安全、科学和专业工作等领域处于最先进水平。OpenAI覆盖超过10亿周活跃用户和250万家企业，ChatGPT、ChatGPT Work、Codex及API应用均受益于同一模型研究投入；消费者与企业使用相互加强，免费广告支持、订阅和按用量付费使收入随使用增长。研究数据显示，个人ChatGPT计划用户在注册6个月后的每日消息量比首月高约50%，尝试的不同任务种类约为首月的两倍。OpenAI研究团队称，研究人员贡献代码更快、运行实验更多，代理被用于处理以往需专家支持的基础设施问题；研究组织目前每人工工作日对应3.1个代理工作日。此外，OpenAI内部模型已产生纳维-斯托克斯千禧年大奖难题的解决方案，该问题约90年未解决。OpenAI认为更好的模型开启新工作，更高效的计算使工作更大规模可负担，收入再投入研究与基础设施，形成循环。",
+   "key_points": [
+    "GPT-6 Astra被OpenAI称为世界最智能且对齐的模型，在电脑使用、软件工程、科学等领域达到最先进水平。",
+    "OpenAI产品覆盖超过10亿周活跃用户和250万家企业，消费者与企业使用相互加强。",
+    "个人ChatGPT计划用户6个月后每日消息量比首月高约50%，尝试任务种类约为首月两倍。"
+   ],
+   "topics": [
+    "product"
+   ],
+   "category": "模型发布",
+   "categories": [
+    "模型发布",
+    "产品与商业"
+   ],
+   "horizon": "short",
+   "score": 81.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "47f11a181774fa86",
    "url": "https://eebench.org/blog/can-ai-design-circuit-boards-yet/",
    "title": "Can AI design circuit boards yet?",
@@ -2174,6 +2075,70 @@
     "hn_points": 300,
     "hn_comments": 221,
     "content_source": "reader",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "167bce5d47e71e47",
+   "url": "https://openai.com/index/codex-quantum-computing-experiments",
+   "title": "How GPT-5.6 Sol helps run quantum computing experiments",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-08T17:00:00+00:00",
+   "summary_short": "GPT-5.6 Sol 接入实验室软件，可自主完成量子芯片常规校准测量，节省研究者时间。",
+   "summary_long": "量子计算利用量子力学特性处理信息，有望更好模拟复杂材料与分子。其处理器基于量子比特，准备和运行量子比特实验可能需要数月及数百至数千次初步测量，AI 有望提供帮助。麻省理工学院工程量子系统小组研究生 Beatriz Yankelevich 将 GPT‑5.6 Sol 接入 Codex，探索 AI 简化实验工作流。该小组研究超导量子比特，芯片在稀释制冷机中冷却至接近绝对零度，通过微波信号精确控制；芯片制备、封装和冷却后，研究人员完全通过软件与其交互，因此成为 AI 智能体的自然测试平台。Yankelevich 将 Codex 连接到协调实验的实验室软件，使其能运行测量、分析结果并决定下一步。她发现 GPT‑5.6 Sol 常能自主完成常规测量工作流，节省大量时间，让实验无需持续监督，使她更专注于分析结果、设计实验和规划后续研究。超导量子比特被称为人造原子，只能占据特定能级；微波脉冲在能级间移动量子比特并探测量子态，校准需要一系列相互依赖的测量，且量子比特性质可能漂移，需自适应决策，这使校准成为 AI 智能体的合适用例。在未校准的六比特芯片上测试时，Yankelevich 提供测量技能和设计目标，GPT‑5.6 Sol 选择参数、操作硬件、分析数据并改进或保存结果；信号清晰时，它自主完成标准序列，识别跃迁频率、校准控制与读取脉冲，并确定量子信息保持时间。",
+   "key_points": [
+    "GPT‑5.6 Sol 接入 Codex 与实验室软件后，可运行测量、分析结果并决定下一步，常规量子比特校准工作流可自主完成。",
+    "超导量子比特芯片在稀释制冷机中冷却至接近绝对零度，之后完全通过软件控制，校准涉及相互依赖测量和自适应决策，适合 AI 智能体。",
+    "在未校准六比特芯片测试中，GPT‑5.6 Sol 在信号清晰时自主完成跃迁频率识别、脉冲校准和量子信息保持时间测量，减少人工干预。"
+   ],
+   "topics": [
+    "agent-loop",
+    "tool-use"
+   ],
+   "category": "Agent 工程",
+   "categories": [
+    "Agent 工程"
+   ],
+   "horizon": "long",
+   "score": 80.4,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "9e33219072ea37a9",
+   "url": "https://copperhead.sh/",
+   "title": "Show HN: Copperhead – Cursor for circuit boards",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-08T13:26:45+00:00",
+   "summary_short": "Copperhead开源AI平台，用类Cursor方式让硬件团队设计、验证和交付电路板",
+   "summary_long": "Copperhead是一个开源AI工程平台，帮助硬件团队设计、验证和交付电路板，宣传为“New Hardware as fast as software Cursor for circuit boards”。其CLI可通过npm i -g copperhead安装，示例展示在硬件项目中添加USB-C电源输入：读取电源文档、检查网络、验证修改、编辑原理图和文档、运行ERC检查、记录决策，最终提交。工作流分为八个阶段：用户编写brief.md后，依次生成规格文档、子系统架构、BOM、原理图、PCB布局、制造输出（gerbers/drill/STEP）、固件与引脚头文件、开发计划；每个阶段都是独立agent run，必须在磁盘留下artifact并通过gate才能进入下一阶段，每阶段对应一次提交。验证依赖KiCad本身，要求ERC和DRC clean。项目提供真实案例Open Telegraph：一款口袋尺寸ESP32-S3 Morse key，据称完全用该工作流端到端构建，所有决策、检查和文件公开。项目显示144 GitHub stars、每月513次安装，并列出多家支持方（如Microsoft for Startups、Google for Startups Activate、Clerk、Supabase、Google Workspace、Sarvam AI、Hugging Face",
+   "key_points": [
+    "八阶段工作流从brief到设计输出，每阶段有gate和一次commit，验证依赖KiCad的ERC和DRC。",
+    "免费CLI支持本地运行并使用自有Claude/GPT-5密钥；云版每位用户每月49美元，开源硬件仓库免费。",
+    "演示和案例包括USB-C电源输入修改流程，以及用该工作流端到端构建的Open Telegraph ESP32-S3 Morse key项目。"
+   ],
+   "topics": [
+    "open-source",
+    "agent-loop",
+    "eda"
+   ],
+   "category": "开源项目",
+   "categories": [
+    "开源项目",
+    "Agent 工程"
+   ],
+   "horizon": "short",
+   "score": 80.4,
+   "status": "published",
+   "extra": {
+    "hn_points": 204,
+    "hn_comments": 78,
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -2276,72 +2241,6 @@
    }
   },
   {
-   "id": "44526c1223b0d00a",
-   "url": "https://mvakde.github.io/blog/44-on-arc-1/",
-   "title": "I trained a small transformer in 1.5hrs and it beats many LLMs",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-01T09:52:45+00:00",
-   "summary_short": "小transformer在5090上1.5小时训练，ARC-1超越许多LLM并与TRM/HRM持平，开源。",
-   "summary_long": "作者在5090 GPU上从零训练一个小型transformer，耗时1.5小时，在ARC-1公开评测中超越许多LLM，并与TRM/HRM得分相同，模型仍开源。这是其ARC-AGI系列第三篇博客。作者认为样本效率是当前AI最重要问题，目标是在transformer及现有深度学习方法内找到样本效率极限，并降低成本以加速迭代。方法上，每个输入输出对转为token序列，由小transformer在测试时从头训练训练集和评测集，测试标签隐藏；每个puzzle使用可学习的加性嵌入，位置采用3D RoPE，序列经颜色和二面体置换增强，推理时对输出做逆增强并提交两个最常见输出。相比前一版，分数提升主要来自现代架构如SwiGLU代替GELU、RMSNorm代替LayerNorm，更多数据多样性和更好的打乱，以及从4层扩展到8层；成本降低来自更少增强、AdamW换为Normuon、varlen训练使用FlashAttention和推理使用flex attention。一个重要变化是不再训练输入token，损失只含输出token，分数从40%升至44%，但作者表示不理解原因。训练数据加入ARC-2非重叠任务，并过滤773个重复的ARC-1 puzzle以避免泄漏；若移除额外数据，得分约40%但需要约双倍计算。",
-   "key_points": [
-    "小transformer在5090上从零训练1.5小时，ARC-1公开评测超越许多LLM，与TRM/HRM得分相同，模型开源。",
-    "方法改进：测试时在训练集和评测集上从零自回归训练，使用3D RoPE、可学习任务嵌入、颜色/二面体增强；不再训练输入token、损失仅输出token，分数从40%升至44%。",
-    "分数提升来自现代架构（SwiGLU/RMSNorm）、数据多样性与扩展至8层；成本下降来自更少增强、Normuon优化器、FlashAttention/flex attention；加入ARC-2非重叠任务并过滤重复puzzle防泄漏。"
-   ],
-   "topics": [
-    "eval",
-    "open-source",
-    "reasoning"
-   ],
-   "category": "模型训练",
-   "categories": [
-    "模型训练",
-    "评测与基准",
-    "开源项目"
-   ],
-   "horizon": "long",
-   "score": 78.5,
-   "status": "published",
-   "extra": {
-    "hn_points": 563,
-    "hn_comments": 149,
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "0e0a28d0130f277a",
-   "url": "https://simonwillison.net/2026/Sep/1/claude-fable-5-1/",
-   "title": "Claude Fable 5.1 made me a really nice animated pelican",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-01T23:57:28+00:00",
-   "summary_short": "Claude Fable 5.1 鹈鹕SVG实测：max档生成最佳但昂贵，低中档几乎无推理",
-   "summary_long": "Anthropic 发布 Claude Fable（及 Mythos）5.1，官方称其为编码、知识工作和长时问题解决设立新标准。公告重点强调科学研究表现：在8月27日首次公布的 Terminal-Bench-Science 0.1 基准上获得52.6%，高于 Fable 5 的24.7%、Opus 5 的29.0%和 GPT-5.6 Sol 的22.4%，其他基准分数仅略有提升。作者表示自2025年以来对 pelican 基准的信心下降，但仍用于模型家族内比较，尤其是同一提示在不同推理等级下的差异。Fable 5.1 提供五个推理等级（low、medium、high、xhigh、max），且不能完全关闭推理。作者用提示“生成一张鹈鹕骑自行车的SVG”测试：low 和 medium 输出近2000 token，均无可视推理，耗时约23秒、花费约10美分；high 有少量推理，输出2612 token、花费13.087美分；xhigh 输出36767 token、耗时7分51秒、花费1.83美元；max 输出65927 token、耗时13分54秒、花费3.30美元，生成作者眼中 Anthropic 模型中最好的鹈鹕，具备清晰腿、脚在踏板、翅膀在车把、蓝色帽子、鱼篮等细节，但作者认为仍不如 Gemini 3.7 Flash 有风格。作者强调自己只要求SVG，而非风格。",
-   "key_points": [
-    "Fable 5.1 在 Terminal-Bench-Science 0.1 基准得52.6%，高于前代及 GPT-5.6 Sol 的分数",
-    "同一鹈鹕SVG提示下，low/medium 几乎无推理，high 略有推理，xhigh/max 输出量、耗时和费用显著上升",
-    "max 档生成作者眼中 Anthropic 模型中最好的鹈鹕，细节完整，但仍不如 Gemini 3.7 Flash 有风格"
-   ],
-   "topics": [
-    "eval",
-    "reasoning"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "评测与基准"
-   ],
-   "horizon": "short",
-   "score": 78.3,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "43c216d63c8bd92a",
    "url": "https://simonwillison.net/2026/Sep/2/llm-gemini/",
    "title": "llm-gemini 0.34",
@@ -2361,35 +2260,6 @@
    "category": "模型发布",
    "categories": [
     "模型发布"
-   ],
-   "horizon": "short",
-   "score": 77.8,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "123fd05b4f2a5eea",
-   "url": "https://simonwillison.net/2026/Sep/1/codex-libreoffice/",
-   "title": "Codex bundles LibreOffice",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-01T19:03:01+00:00",
-   "summary_short": "OpenAI Codex桌面应用缓存中含LibreOffice等完整运行环境，共1.7GB。",
-   "summary_long": "作者在使用OmniDiskSweeper查看~/.cache/文件夹时发现，OpenAI Codex桌面应用（后更名为ChatGPT）在codex-primary-runtime文件夹中占用了1.7GB空间。该文件夹内包含完整的Python安装、完整的Node.js安装，以及Poppler、git和LibreOffice的本机二进制文件。其中LibreOffice是2010年从OpenOffice.org分叉而来的开源办公套件。具体路径~/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime/plugins/documents 文件夹中还包括一些skills文件，这些文件告诉Codex如何查找和使用上述二进制文件。原文标签涉及codex、generative-ai、openai、ai、llms、openoffice和open-source。原文未详述这些组件被捆绑的具体原因或预期用途。",
-   "key_points": [
-    "OpenAI Codex桌面应用（现称ChatGPT）的缓存文件夹codex-primary-runtime占用1.7GB。",
-    "该文件夹包含完整的Python和Node.js安装，以及Poppler、git和LibreOffice的本机二进制文件。",
-    "documents子文件夹中的skills文件指示Codex如何查找和使用这些二进制文件；LibreOffice是2010年从OpenOffice.org分叉的开源办公套件。"
-   ],
-   "topics": [
-    "product"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
    ],
    "horizon": "short",
    "score": 77.8,
@@ -2460,6 +2330,99 @@
    "status": "published",
    "extra": {
     "content_source": "rss",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "99c22bc85dd5ff7a",
+   "url": "https://openai.com/index/teen-development-research-grants",
+   "title": "Funding grants for new research into AI and teen development",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-08T09:00:00+00:00",
+   "summary_short": "OpenAI出资500万美元，研究生成式AI对13–17岁青少年的影响，为产品与政策提供证据。",
+   "summary_long": "OpenAI承诺提供500万美元，资助关于生成式AI如何影响13至17岁青少年生活和发展的独立研究。生成式AI正进入青少年学习、创作和寻求建议的过程，其影响可能因使用目的、参与方式、个人处境及家庭、学校、社区和技术提供方的支持而异。该计划希望建立更有力的证据基础，了解青少年使用AI的方式及AI对其生活的影响，以便为面向青少年的AI产品开发提供依据，并帮助回答政策制定者和监管者面临的问题。资助方向包括：青少年如何使用生成式AI及不同使用模式与发育结果的关系；AI在青少年生活中的潜在影响；塑造影响的个体、社会、文化和技术因素；可提高收益或安全性的技术干预、保障和设计选择；以及效果在年龄、发育阶段、人群、文化、语言和社会经济背景中的差异。欢迎儿童与青少年发展、心理学、公共卫生、人机交互、传播、社会学、人类学、数据科学和AI安全等跨学科研究；鼓励任何国家提交提案，并优先考虑AI采用显著的国家；定性、定量、实验、观察、理论、参与式和混合方法均可。优先主题包括情绪发展与福祉、社会发展与人际关系、使用模式与人口差异，以及缓解措施、适龄设计和政策方法。涉及未成年人的研究须说明伦理审查、知情同意与适龄赞同、隐私和数据保护、对伤害或紧急风险披露的回应，以及是否涉及敏感个人、行为或心理健康信息。",
+   "key_points": [
+    "OpenAI出资500万美元，资助围绕生成式AI对13–17岁青少年生活和发展影响的独立研究。",
+    "资助方向涵盖使用模式与发育结果、潜在影响、影响因素、技术干预和人群差异，并欢迎跨学科、多方法及各国提案。",
+    "涉及未成年人的项目须说明伦理审查、知情同意与适龄赞同、隐私数据保护、伤害披露应对及敏感信息处理。"
+   ],
+   "topics": [
+    "safety",
+    "product"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "安全与对齐",
+    "产品与商业"
+   ],
+   "horizon": "short",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "928ae2e793332429",
+   "url": "https://simonwillison.net/2026/Sep/9/terence-tao/",
+   "title": "Quoting Terence Tao",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-09T00:20:17+00:00",
+   "summary_short": "Terence Tao警告：AI驱动的研究可能耗尽开放问题，并削弱研究者分享意愿。",
+   "summary_long": "原文署名为 Terence Tao 的评论指出，他此前已写到，优质且富有成果的开放问题集合正以不可再生的方式被开采，可能导致这些问题变得稀缺。现在出现了新情况：哪怕只是“有人正在研究某个问题”的传闻，也能触发大规模 AI 驱动的努力，在原始研究项目尚未充分发挥潜力之前就将其“推平”。Tao 认为，这使激励结构可能转向不再与更广泛的研究共同体分享任何有前景的方向。若如此，将逆转数百年来开放科学的传统，并对该领域的未来造成严重的长期损害。这段评论关注的核心不是某个具体数学问题，而是 AI 介入后研究生态的变化：开放问题被加速消耗，研究者分享意愿下降，可能带来长期制度性后果。原文未详述具体案例或应对方案。",
+   "key_points": [
+    "优质且富有成果的开放问题集合正被以不可再生方式开采，可能变得稀缺。",
+    "仅凭某人研究某问题的传闻，就可能引发大规模 AI 驱动努力，在原始项目充分发挥潜力前将其推平。",
+    "激励可能转向不再分享有前景的研究方向，这会逆转开放科学传统并严重损害领域未来。"
+   ],
+   "topics": [
+    "research-ecosystem",
+    "open-science"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 76.9,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "1bfd7f6e1b29d8f3",
+   "url": "https://simonwillison.net/2026/Sep/7/llm/",
+   "title": "llm 0.35",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-07T23:54:54+00:00",
+   "summary_short": "llm 0.35 发布，命令行访问大模型，新增 gpt-6-astra 支持。",
+   "summary_long": "2026年9月7日，Simon Willison 在其博客发布 llm 0.35 版本。该工具用于从命令行访问大语言模型。发布说明中列出的核心更新是新增一个 OpenAI 模型：gpt-6-astra，对应 GPT-6 Astra。原文未详述此版本的其他变更、安装方式或使用示例。发布条目标注了 openai、llm 和 gpt-6-astra 等关键词。该发布信息以简短公告形式呈现，发布时间为当日 11:54 pm。原文还提到博客接受每月 10 美元的赞助以提供月度简报，但这与 llm 0.35 的发布内容无直接关联。整体来看，该版本的主要可见变化是加入了 gpt-6-astra 这一新模型支持，为命令行用户访问 OpenAI 最新模型提供了途径。原文未提供更多技术细节或性能对比。",
+   "key_points": [
+    "llm 0.35 已发布，可用于从命令行访问大语言模型。",
+    "新增 OpenAI 模型：gpt-6-astra，用于 GPT-6 Astra。",
+    "发布时间为 2026 年 9 月 7 日，来源为 Simon Willison 的博客。"
+   ],
+   "topics": [
+    "open-source",
+    "tool-use"
+   ],
+   "category": "开源项目",
+   "categories": [
+    "开源项目",
+    "模型发布"
+   ],
+   "horizon": "short",
+   "score": 76.7,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
