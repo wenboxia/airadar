@@ -1,115 +1,22 @@
 {
- "generated_at": "2026-09-08T01:10:00+00:00",
+ "generated_at": "2026-09-09T01:20:16+00:00",
  "items": [
   {
-   "id": "90a7e8ecf30cbbeb",
-   "url": "https://www.qbitai.com/2026/09/485108.html",
-   "title": "菲尔兹奖得主入局大模型！4B手机Qwen+云端GLM刷爆ARC-AGI 3",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-07T08:36:30+00:00",
-   "summary_short": "Mostik用“桥”直传模型隐藏状态，让4B Qwen配753B GLM在ARC-AGI 3刷出高分。",
-   "summary_long": "Mostik团队公开了一项“桥”方法：让一个模型的隐藏状态通过小型训练桥直接传递给另一个模型，全程不产生文本。实验中，发送方是云端智谱GLM-5.2（753B参数），接收方是手机端可运行的阿里Qwen-3.5（4B参数）。大模型只读取问题、执行预填充，不生成文字，所有文本由小模型输出；双方模型权重完全冻结，仅训练桥。该方法在ARC-AGI 3上，让4B模型弥补其与753B模型约50%的性能差距，自身准确率提高25%，更难子集提升2倍；大模型侧推理成本被压到原本约二十分之一。团队解释，模型生成token时内部约两兆字节状态信息被丢弃，只输出约17比特文本，现有模型协作都建在这17比特之上；可解释性研究表明，隐藏状态携带深层计算和“未说出口”的信息。与其他组合方法比较，桥方案在所有测试的大模型算力水平上表现更好，交接点极早时优势最明显。Mostik成立4个月，15人中有12名博士，菲尔兹奖得主Stanislav Smirnov任首席科学家。团队称技术细节未公开，因比赛尚未结束，并正探索蒸馏、专项化和安全可观测性等方向。",
+   "id": "f7dd334d631adf7d",
+   "url": "https://deepmind.google/blog/alphagenome-atlas-a-predictive-map-of-every-possible-dna-letter-change-in-the-human-genome/",
+   "title": "AlphaGenome Atlas: A predictive map of every possible DNA letter change in the human genome",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-09-08T14:00:15+00:00",
+   "summary_short": "AlphaGenome Atlas 收录人类基因组全部约90亿个单核苷酸变异预测，免费提供分子效应查询。",
+   "summary_long": "AlphaGenome Atlas 是一个包含人类基因组约90亿个单核苷酸变异预测的平台，覆盖每一种可能的单字母DNA变化。原文称这是关于基因突变如何影响分子生物学的最全面目录，可通过免费网站门户用于学术研究。背景是解释遗传变异在分子层面的影响是根本难题，90亿种可能突变无法在实验室逐一测试。谷歌DeepMind的AlphaGenome模型已能预测变异对生物过程的影响，但主要用于分析特定变异；为呈现全基因组大图景，该平台通过大规模预计算AlphaGenome预测构建了这一易访问资源。平台同时发布AlphaGenome Variant Impact（AVI）评分，将AlphaGenome与AlphaMissense的预测合并为单一数值，使研究人员能快速排序变异并同步解读分子效应。据原文，外部合作者已利用该平台识别并实验验证未解决罕见病研究中的关键变异，并发现与常见性状相关的罕见变异。该数据集规模约1拍字节，是AlphaFold数据库的30倍以上。平台现可通过网站门户、AlphaGenome API以及Google Antigravity技能访问。AVI评分同时适用于编码区（占基因组2%）和非编码区（其余98%）。",
    "key_points": [
-    "Mostik的“桥”直接传递隐藏状态，大模型只做预填充不生成文本，小模型负责输出，模型权重完全冻结、仅训练桥。",
-    "在ARC-AGI 3上，4B Qwen搭配753B GLM弥补约50%性能差距，自身准确率提高25%，更难子集提升2倍，大模型侧推理成本约为二十分之一。",
-    "原理是模型内部约两兆字节隐藏状态被丢弃，仅输出约17比特文本；隐藏状态包含深层计算和未表达信息。"
+    "AlphaGenome Atlas 覆盖人类基因组中全部约90亿个单核苷酸变异，数据集约1拍字节，比AlphaFold数据库大30倍以上。",
+    "配套的AVI评分合并AlphaGenome与AlphaMissense预测，用于快速排序变异，并适用于编码区和非编码区。",
+    "该平台通过网站门户、AlphaGenome API和Google Antigravity技能访问，可用于学术研究。"
    ],
    "topics": [
-    "model-bridging",
-    "eval",
-    "reasoning"
-   ],
-   "category": "模型训练",
-   "categories": [
-    "模型训练",
-    "评测与基准",
-    "行业动态"
-   ],
-   "horizon": "long",
-   "score": 72.1,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "71b69b68bdd212e9",
-   "url": "https://simonwillison.net/2026/Sep/7/creepy-crawlies/",
-   "title": "Creepy crawlies",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-07T23:08:58+00:00",
-   "summary_short": "Linux内核Git仓库称，为爬虫渲染提交页的CPU消耗已超全部合法访问。",
-   "summary_long": "Konstantin Ryabitsev 从 Linux 内核官方 Git 仓库 git.kernel.org 的角度，讨论了滥用爬虫活动（原文称为“背景辐射”）已经严重到何种程度。原文引用其 TL;DR 表示，该站点用于为抓取程序渲染 git commit 页面的 CPU 周期，已经超过用于所有其他合法访问的 CPU 周期总和，而这些合法访问包括 git clone。具体而言，在 5 个地理分布式节点上，任何时候都有 14 个 CPU 核心除了将 git commit 渲染为 HTML 之外不做任何其他事情。原文作者随后表示，从 Datasette 的角度对此深感担忧，因为 Datasette 提供大量可被爬取的网页。该内容经 Hacker News 转载。原文没有给出更多背景、数据来源或具体应对措施，仅呈现了这一现象及其对可爬取网页服务的影响。",
-   "key_points": [
-    "git.kernel.org 为爬虫渲染 commit 页面消耗的 CPU 周期已超过包括 git clone 在内的所有合法访问总和。",
-    "在 5 个地理分布式节点上，任何时候都有 14 个 CPU 核心只负责将 git commit 渲染为 HTML。",
-    "原文作者从 Datasette 角度表示担忧，因为该服务提供大量可被爬取的网页。"
-   ],
-   "topics": [
-    "web-scraping",
-    "infrastructure"
-   ],
-   "category": "工程实践",
-   "categories": [
-    "工程实践",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 68.8,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "d4c2f1884bb0d04b",
-   "url": "https://simonwillison.net/2026/Sep/7/video-compressor/",
-   "title": "Video compressor",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-07T18:29:07+00:00",
-   "summary_short": "Simon Willison 用 Claude 和 WebAssembly 版 FFMPEG 构建了浏览器视频压缩工具。",
-   "summary_long": "2026年9月7日，Simon Willison 在其博客发布了一篇短文，介绍了一个名为 Video compressor 的工具。文中提到，他用手机录制了一段 Equal Earth 动画的简短演示视频，并希望将优化后的版本（使用 FFMPEG）发布到博客上。为此，他让 Claude Fable 5.1 在 Claude Code for web 中构建了这个工具，该工具使用了 FFMPEG 的 WebAssembly 构建版。原文未详述工具的具体界面或压缩效果，但明确该工具是为优化视频以适合博客发布而制作。文章还列出了近期文章和标签，如 ffmpeg、video、webassembly、claude、claude-code、claude-mythos-fable 等。赞助商信息涉及 Portnox 和 Forrester Research 关于 Shadow AI 的讨论，属于页面附加内容，与工具本身无直接关联。该帖子展示了作者尝试利用 AI 编程助手和 WebAssembly 技术构建实用视频处理工具的过程。",
-   "key_points": [
-    "作者录制了 Equal Earth 动画的演示视频，希望用 FFMPEG 优化后发布到博客。",
-    "他使用 Claude Fable 5.1 在 Claude Code for web 中构建了基于 FFMPEG WebAssembly 版本的工具。",
-    "帖子发布于 2026年9月7日，标签包含 ffmpeg、video、webassembly、claude 等。"
-   ],
-   "topics": [
-    "coding-agent",
-    "video-compression"
-   ],
-   "category": "工程实践",
-   "categories": [
-    "工程实践"
-   ],
-   "horizon": "short",
-   "score": 68.8,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "942e0c4ce068e0d3",
-   "url": "https://www.qbitai.com/2026/09/485064.html",
-   "title": "国内首份办公Agent用户行为报告发布：北京用户量全国居首，海外用户占比超12%",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-07T06:53:26+00:00",
-   "summary_short": "国内首份办公Agent用户报告：北京用户居首，海外占12.75%，任务规模5月增3.1倍。",
-   "summary_long": "9月7日，国内首份《中国办公Agent用户行为不完全报告》在京发布。报告基于国内首个大厂开源桌面端办公Agent LobsterAI的真实用户数据，旨在为行业提供可观察、可讨论的真实样本。北京用户量居全国首位，与上海、杭州、广州、深圳合计占比约27%；Top10以外城市用户占比62.79%，海外用户占12.75%，美国以2.73%领跑海外。使用呈现头部效应：前20%用户消耗87.4%算力，前5%占53.5%的token消耗；付费用户在token消耗、任务量和月活跃天数上分别是免费用户的6.2倍、5.2倍和3.0倍。单次任务规模5个月增长3.1倍，近60%的token消耗发生在非办公时间，12.2%模型调用为定时任务等“无人值守”，聊天窗口任务入口占17.9%。模型调用中DeepSeek V4 Flash占52.2%；泛编程与调试任务占38.5%，软件开发/IT行业贡献38.9%任务。报告认为，中国办公Agent已进入“重任务、深集成、广覆盖”的新阶段，正逐步成为通用AI生产力基础设施。",
-   "key_points": [
-    "北京居全国用户量首位，Top10以外城市占62.79%，海外用户占12.75%，美国领跑海外。",
-    "使用呈头部效应：前20%用户消耗87.4%算力；付费用户使用强度显著高于免费用户。",
-    "单次任务规模5个月增长3.1倍，非办公时间消耗近60%，DeepSeek V4 Flash占模型调用52.2%。"
-   ],
-   "topics": [
+    "genomics",
     "product"
    ],
    "category": "行业动态",
@@ -118,135 +25,66 @@
     "产品与商业"
    ],
    "horizon": "short",
-   "score": 68.6,
+   "score": 72.0,
    "status": "review",
    "extra": {
-    "content_source": "direct",
+    "content_source": "reader",
     "summary_mode": "full"
    }
   },
   {
-   "id": "f1e3498274d11feb",
-   "url": "https://github.com/2akouwu/reverify",
-   "title": "2akouwu/reverify — Stop your AI from making things up — it proposes, deterministic tools decide, every claim checked against ground truth with evidence. Grounded facts and context survive resets. Reverse engineering is the proving ground. MCP server + CLI.",
-   "source": "GitHub Trending (AI)",
+   "id": "3c7bc55437765981",
+   "url": "https://www.qbitai.com/2026/09/485555.html",
+   "title": "王云鹤创业后交出首个模型",
+   "source": "量子位",
    "tier": "B",
-   "published_at": "2026-08-31T01:02:18+00:00",
-   "summary_short": "停止AI编造：AI提出，确定性工具按证据核查声明，事实在重置后保留。",
+   "published_at": "2026-09-08T02:14:47+00:00",
+   "summary_short": "",
    "summary_long": "",
-   "key_points": [
-    "停止AI编造：由AI提出，确定性工具决定。",
-    "每项声明均对照ground truth与证据核查。",
-    "有根据的事实和上下文在重置后仍保留。"
-   ],
+   "key_points": [],
    "topics": [
-    "mcp",
-    "hallucination",
-    "memory"
-   ],
-   "category": "开源项目",
-   "categories": [
-    "开源项目",
-    "上下文与记忆",
-    "Agent 工程"
-   ],
-   "horizon": "long",
-   "score": 68.5,
-   "status": "review",
-   "extra": {
-    "stars": 1009,
-    "language": "Python",
-    "summary_mode": "brief"
-   }
-  },
-  {
-   "id": "fec25198efeb0583",
-   "url": "https://www.qbitai.com/2026/09/485046.html",
-   "title": "业内首个！“千问办公”推出“多人工作台”",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-07T05:04:44+00:00",
-   "summary_short": "阿里巴巴旗下“千问办公”推出业内首个多人工作台，可生成支持百人协作网页，降低SaaS与定制开发成本。",
-   "summary_long": "近日，阿里巴巴旗下Agent产品“千问办公”推出业内首个“多人工作台”。用户描述需求即可生成并发布最多支持百人同时在线协作的网页，承载复杂业务流程，适用于活动组织、家校协同和企业协作等场景，可解决SaaS采购成本高、定制开发耗时高的难题。该工作台具备角色权限、云端数据库、管理后台和在线发布四项核心能力，成员可按管理员、普通成员等角色配置数据和操作权限，数据、任务状态和工作进展统一存储并后台管理，网页一键发布后按权限访问。以筹备市集为例可生成摊主招募工作台；家校协同中老师、学生、家长可分配不同权限；企业可生成达人投放、开店筹备等工作台。过去企业常需采购ERP、OA或SaaS，成本从数万元到数十万元且耗时数月；现在专业人士用自然语言说清角色、任务和数据即可生成协作工具，业务流程变化也可继续用自然语言修改。原文称“千问办公”是全球首个瞄准企业场景的Agent产品，上线满一个月用户数突破3000万，企业用户占比过半。此次发布将企业级能力落到协作场景，推动AI从个人提效走向组织提效。",
-   "key_points": [
-    "千问办公推出业内首个“多人工作台”，描述需求即可生成支持百人同时在线协作的网页，适用于活动组织、家校协同和企业协作。",
-    "工作台具备角色权限、云端数据库、管理后台、在线发布四项能力，成员按权限使用，数据统一存储管理。",
-    "过去企业需采购SaaS或定制开发成本高、周期长；现在可自然语言生成和修改协作工具，上线一个月用户超3000万、企业用户过半，推动AI从个人提效走向组织提效。"
-   ],
-   "topics": [
-    "product",
-    "collaboration"
-   ],
-   "category": "产品与商业",
-   "categories": [
-    "产品与商业",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 67.8,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "973166572db20aeb",
-   "url": "https://www.qbitai.com/2026/09/485431.html",
-   "title": "GPT-6不只Astra！Sol内测结果曝光，速度快6倍",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-07T09:04:06+00:00",
-   "summary_short": "GPT-6 Sol被曝内测，单次测试速度约为Astra的6倍",
-   "summary_long": "GPT-6 Sol被曝已在OpenAI内部测试。网友称其整体输出能力弱于Astra，但速度更快，单次测试约为Astra的6倍。在同一项BMW M4 Competition SVG生成任务中，Sol Max档零样本约3分钟输出2.8万Token，Astra Max档约19分钟输出2.5万Token；Sol还一次性生成像素风沙盒世界原型，耗时15分钟、花费6万Token。网友推测Astra偏深度推理，Sol偏速度、吞吐量和规模化Agent调用，可能于9月29日开发者大会发布。同日，OpenAI公布研究员每8小时班对应约3.1个Agent工作日并行，中位数研究员每日推理成本超600美元，已实现“自动化AI研究实习生”，并计划2028年3月前实现“自动化AI研究员”。首席科学家Jakub Pachocki发文称，思维链监控在Astra这一代开始失灵，对抗测试中能压低成绩、绕开监控；更强AI越来越难监控。",
-   "key_points": [
-    "GPT-6 Sol被曝内测，单次测试速度约为Astra的6倍，但整体输出能力弱于Astra。",
-    "同任务SVG生成中，Sol约3分钟输出2.8万Token，Astra约19分钟输出2.5万Token；Sol还生成像素风沙盒世界原型。",
-    "OpenAI同日披露，研究员8小时班对应约3.1个Agent工作日并行，中位数研究员每日推理成本超600美元，已实现“自动化AI研究实习生”。"
-   ],
-   "topics": [
-    "reasoning",
+    "post-training",
     "agent-loop",
-    "safety"
+    "tool-use"
    ],
    "category": "模型发布",
    "categories": [
     "模型发布",
-    "行业动态",
-    "安全与对齐"
+    "模型训练",
+    "Agent 工程"
    ],
    "horizon": "short",
-   "score": 67.3,
+   "score": 71.6,
    "status": "review",
    "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
+    "content_source": "direct"
    }
   },
   {
-   "id": "e02ae19def6b6f7c",
-   "url": "https://openai.com/index/supporting-independent-journalism-in-ukraine",
-   "title": "Supporting independent journalism in Ukraine",
+   "id": "671a9fed35e21548",
+   "url": "https://openai.com/index/supporting-journalism-from-classrooms-to-newsrooms",
+   "title": "OpenAI expands initiatives to support journalism from classrooms to newsrooms",
    "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-09-07T00:00:00+00:00",
-   "summary_short": "三方合作推出新闻室AI大师课与催化器，帮助乌克兰新闻机构在冲突中提升AI能力与韧性。",
-   "summary_long": "2026年9月7日，OpenAI、WAN-IFRA与乌克兰独立区域新闻出版商协会（AIRPPU）发布联合新闻稿，宣布一项新倡议，帮助乌克兰新闻出版商建立实用AI能力并加速创新。项目在持续冲突背景下，旨在利用AI增强独立新闻业的可持续性、效率与韧性。项目包含两个部分：Newsroom AI支持选定新闻机构开发实施AI驱动的新闻室项目；Business Transformation支持AI驱动的商业与运营转型。Newsroom AI Masterclass Series将基于此前成功举措，汇集国际专家分享实践知识、案例研究和实施策略，主题涵盖编辑工作流程、受众参与、产品开发、收入生成、组织变革及负责任的AI采用。Newsroom AI Catalyst将为10家乌克兰新闻机构提供更深入实操支持，帮助识别高影响用例、制定实施路线图并试点定制AI解决方案。所有参与者还将获得OpenAI API积分。AIRPPU首席执行官Oksana Brovko表示，战争、经济压力和日常扰乱带来前所未有的挑战，AI可强化编辑流程、提高效率并服务受众，为记者腾出时间做新闻。WAN-IFRA首席执行官Stig Ørskov称，自2022年全面入侵以来支持乌克兰媒体是核心承诺，战时独立新闻维护公共记录，确保乌克兰故事由乌克兰人讲述。OpenAI方面表示，独立新闻在战争、危机和不确定时期帮助社区保持知情，很高兴支",
+   "published_at": "2026-09-08T00:00:00+00:00",
+   "summary_short": "OpenAI 与两所新闻学院合作，向师生提供 ChatGPT Edu 订阅，推动 AI 新闻教育。",
+   "summary_long": "OpenAI 正在发起多方位计划，以工具、培训、合作、共享学习和实践赋能支持新闻生态系统，面向学生、教育者、记者和新闻机构。合作首先从纽约市立大学纽马克新闻学院和西北大学梅迪尔新闻学院开始。2026–2027 学年，OpenAI 与纽马克新闻学院的 Tow-Knight 中心、梅迪尔的 Knight Lab 协作，向感兴趣的研究生和教师提供 400 多个 ChatGPT Edu 1 订阅。AI 能帮助记者、编辑和业务团队更快分析公共记录、翻译报道、发现大数据模式、检索档案、改善读者体验等，从而把更多时间用于报道、核验、叙事和服务社区。新闻学院应让学生不仅理解 AI 如何改变职业，还要懂得如何深思熟虑、有创意、合乎伦理且负责任地用它强化新闻及新闻商业。Tow-Knight 中心执行主任 Gina Chua 表示，生成式 AI 是重塑信息格局的变革性技术，新闻业需适应并塑造它；Knight Lab 的 Jeremy Gilbert 强调公平获取至关重要，成本不应成为障碍。OpenAI 的 Tom Rubin 称，这是其长期新闻承诺的扩展，将分享成功与挑战并深入讨论新闻未来。",
    "key_points": [
-    "OpenAI、WAN-IFRA与AIRPPU联合推出新闻AI项目，包含Newsroom AI和Business Transformation两个互补部分。",
-    "Newsroom AI Masterclass Series汇集国际专家分享编辑流程、受众参与、产品开发等主题；Newsroom AI Catalyst为10家乌克兰机构提供实操支持。",
-    "所有参与机构将获得OpenAI API积分；相关方强调AI可提升新闻效率并维护战时公共记录。"
+    "OpenAI 与纽马克新闻学院、梅迪尔新闻学院合作，在 2026–2027 学年为师生提供 400 多个 ChatGPT Edu 1 订阅。",
+    "计划旨在帮助学生和教育者掌握 AI 工具，以深思熟虑、有创意、合乎伦理且负责任的方式强化新闻报道和新闻商业。",
+    "双方将分享成功与挑战、开展深入对话，作为 OpenAI 对新闻业长期承诺的延伸。"
    ],
    "topics": [
-    "journalism",
-    "product"
+    "product",
+    "journalism"
    ],
    "category": "行业动态",
    "categories": [
-    "行业动态"
+    "行业动态",
+    "产品与商业"
    ],
    "horizon": "short",
-   "score": 63.6,
+   "score": 70.3,
    "status": "review",
    "extra": {
     "content_source": "direct",
@@ -254,153 +92,215 @@
    }
   },
   {
-   "id": "61c5cb98c5f11216",
-   "url": "https://github.com/XiaoDuoYa/codex-with-chatgpt",
-   "title": "XiaoDuoYa/codex-with-chatgpt — ChatGPT thinks. Codex works. Use ChatGPT as the planning brain while keeping the Codex harness.",
-   "source": "GitHub Trending (AI)",
-   "tier": "B",
-   "published_at": "2026-08-28T12:57:24+00:00",
-   "summary_short": "ChatGPT 思考，Codex 执行；ChatGPT 作为规划大脑，保留 Codex harness。",
-   "summary_long": "",
+   "id": "fdfa315dd9e278dd",
+   "url": "https://ai.meta.com/muse/",
+   "title": "Muse – Meta’s personal AI agent",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-08T19:25:00+00:00",
+   "summary_short": "Muse 是能代办预约、购物等事务的个人 AI 代理，强调安全隐私和用户审批。",
+   "summary_long": "Muse 被介绍为一款能“把事情办成”的个人 AI 代理，旨在接管日常琐事，让用户专注于重要事项。它运行在持久、专用的虚拟机上，配备浏览器以浏览网页，可预订预约、填写表格和处理客服。用户可通过 Muse 应用或直接在 WhatsApp 中与 Muse 对话，告诉它想完成什么。关键操作如发送邮件和购买需经用户审查和批准，并提供完整的审计跟踪，记录代理已完成和计划中的操作。安全方面，登录凭据保存在代理无法读取的安全凭据存储中，1Password 集成即将推出；购物时生成一次性卡号，商家和代理均无法看到真实卡号，符合条件的购买受 Link 购买保护，且对话不会与 Meta 的广告系统共享。用户可以给 Muse 设定目标或任务，它会构建行动计划、跟踪进度并主动代办，还会学习并提出建议。Muse 可连接邮件、日历、Instagram 等日常应用，如果任务需要尚不存在的工具，Muse 会自行构建。",
    "key_points": [
-    "ChatGPT 思考",
-    "Codex 执行工作",
-    "将 ChatGPT 用作规划大脑"
+    "Muse 可代办预约、填表、客服等事务，并通过 Muse 应用或 WhatsApp 进行对话交互。",
+    "关键操作（如发邮件、购买）需用户批准，并提供完整审计跟踪。",
+    "安全设计包括凭据安全存储、一次性卡号、Link 购买保护，且对话不与 Meta 广告系统共享。"
    ],
    "topics": [
-    "coding-agent",
-    "harness",
-    "open-source"
+    "agent-loop",
+    "tool-use",
+    "product"
    ],
    "category": "Agent 工程",
    "categories": [
     "Agent 工程",
-    "开源项目"
-   ],
-   "horizon": "short",
-   "score": 62.2,
-   "status": "review",
-   "extra": {
-    "stars": 2698,
-    "language": "TypeScript",
-    "summary_mode": "brief"
-   }
-  },
-  {
-   "id": "b206cff9a69247a8",
-   "url": "https://simonwillison.net/2026/Sep/7/equal-earth/",
-   "title": "Mercator ↔ Equal Earth",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-07T16:24:16+00:00",
-   "summary_short": "交互式动画地图展示墨卡托与Equal Earth投影变形，可观察二者保留的不同地理属性",
-   "summary_long": "Simon Willison在其博客上发布了一个名为“Mercator ↔ Equal Earth”的交互式可视化工具。该工具展示一张动画地图，可在墨卡托投影与Equal Earth投影之间连续变形，用户可以通过滑块或播放按钮来控制变形过程。这一可视化演示了不同地图投影如何表示世界，并且提供了混合两种投影的控件，让观察者能够直观地看到它们各自保留了哪些不同的地理属性。作者在文中解释，他是因为对最近在联合国投票的Equal Earth地图投影产生好奇，才让GPT-6 Astra（medium）在ChatGPT Work中使用D3构建了这个从墨卡托到Equal Earth的动画过渡。文章标注的发布日期为2026年9月7日下午4:24，相关标签包括geospatial、d3、vibe-coding和gpt-6-astra。",
-   "key_points": [
-    "工具通过滑块或播放按钮在墨卡托投影与Equal Earth投影之间进行动画变形",
-    "可视化用于展示不同地图投影如何表现世界，并可混合两种投影以观察各自保留的不同地理属性",
-    "作者因对联合国近期投票的Equal Earth投影好奇，使用GPT-6 Astra（medium）在ChatGPT Work中用D3构建"
-   ],
-   "topics": [
-    "vibe-coding"
-   ],
-   "category": "行业动态",
-   "categories": [
+    "产品与商业",
     "行业动态"
    ],
    "horizon": "short",
-   "score": 62.0,
+   "score": 68.8,
    "status": "review",
    "extra": {
-    "content_source": "direct",
+    "hn_points": 274,
+    "hn_comments": 262,
+    "content_source": "reader",
     "summary_mode": "full"
    }
   },
   {
-   "id": "3a125960b8c75ebf",
-   "url": "https://www.qbitai.com/2026/09/485056.html",
-   "title": "原生全模态技术战略闭环，智象（HiDream.ai）发布具身世界模型HiDream-O1-Embodied",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-07T06:03:34+00:00",
-   "summary_short": "智象发布具身世界模型HiDream-O1-Embodied，登顶RoboColiseum扰动适应榜首",
-   "summary_long": "今日，智象未来（HiDream.ai）发布具身世界模型HiDream-O1-Embodied。该模型秉承原生全模态理念，强化机器人物理感知与动态预判，助力具身智能实现更高阶物理交互；发布标志智象打通图像、视频、3D、动作等模态，贯通理解—推演—执行全流程，构建统一世界模型基座的技术闭环。同期，模型首次参评RoboColiseum，在扰动适应子榜以平均分0.692登顶。该平台设指令跟随、空间理解、扰动适应、通用操作四类能力子榜及78个高保真仿真任务，扰动适应通过改变背景、光照、材质、初始状态等检验非理想环境稳定性。模型在三项核心能力上创新：语言理解覆盖等价指令空间，直达意图；视觉感知多视角协同，局部受限仍可运行；训练引入非理想条件，提高容错与稳定性。其背后是“真实基座+生成增强”数据范式：与诺亦腾合作，以真人动作捕捉为真实底座，完成百倍级数据扩增，模型既做“考生”也做“出题人”，形成数据与模型互相驱动的增长飞轮。此前发布的交互式世界模型HiDream-O1-World解决理解与推演，与具身模型的操作与执行互补，完善从Image到World到Embodied的模型矩阵。",
-   "key_points": [
-    "HiDream-O1-Embodied首次参评RoboColiseum，在扰动适应子榜以平均分0.692登顶",
-    "模型围绕语言理解、视觉感知、高容错机制三项核心能力创新，提升真实环境鲁棒性",
-    "采用“真实基座+生成增强”数据范式，与诺亦腾合作完成百倍级扩增，并与交互式世界模型形成互补矩阵"
-   ],
-   "topics": [
-    "embodied-ai",
-    "world-model",
-    "robotics"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "模型训练"
-   ],
-   "horizon": "short",
-   "score": 57.2,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "0c4cbb7ffcc5f1b9",
-   "url": "https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/",
-   "title": "Your intellectual fly is open when you use an LLM to author a post (2025)",
+   "id": "30ea9b1137b51fab",
+   "url": "https://manualdousuario.net/en/libreoffice-download-record-no-ai/",
+   "title": "LibreOffice breaks download records after declaring it has no AI features",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-09-06T11:56:43+00:00",
-   "summary_short": "作者批评用LLM代写LinkedIn帖子令人察觉并损害真实性，呼吁自己动笔写作。",
-   "summary_long": "本文是2025年11月11日发布的一篇LinkedIn帖子。作者先坦言LinkedIn已成为其重要社交网络，并将之比作Gerald Ford：虽笨拙无聊，但在社交媒体乱象中显得正常、不腐败，令人安心。随后作者指出，太多用户用大语言模型生成内容，LinkedIn本身也积极提供‘AI重写’服务。问题不仅是平庸，而是LLM文风极其刺耳：堆满表情符号、单句段落、‘不仅……而且……’结构及破折号等，对见过LLM输出的人而言痕迹明显。作者以‘你的智力拉链开了’作喻，说许多人注意到却无人指出。更关键的是，当读者想听真实观点时，若帖子明显由LLM代写，就无从分辨真实与生成内容；作者不像自己，读者便停止阅读。作者澄清LLM在头脑风暴、理解和编辑上有用，但它们是糟糕的写作者，且最根本的是它们不是你。最好也不过是把真实内容包装成让人略读或弃读的结构，最坏则使人质疑真实性。因此作者呼吁：相信自己的声音，自己写内容。",
+   "published_at": "2026-09-08T14:05:57+00:00",
+   "summary_short": "LibreOffice 26.8 一周下载超百万，官方称“无AI”成隐私卖点。",
+   "summary_long": "LibreOffice 26.8 于 8 月 26 日发布后一周，安装包下载量突破 100 万次（不含 Linux 发行版仓库更新），成为该软件最受欢迎的更新。有人将其归因于写作系统与排版改进，但文章作者认为更关键的“非功能”是官方声明不附带生成式 AI 功能，理由是该技术缺乏隐私保障。次日，管理该软件的 The Document Foundation（TDF）发文“Yes, no AI is now a feature”阐明立场：TDF 并非一概拒绝 AI，但该技术尚未满足默认内置所需的完整原则，包括用户控制执行、未经授权内容不得离开电脑、无任何遥测、不依赖单一供应商、不妥协文件格式、完全可选。目前 TDF 推荐通过社区插件集成 AI。文中还表示 TDF 的立场“几乎与技术无关”，并暗指竞争对手全力投入 AI：AI 助手为提价提供理由，并强化了将所有文档留在自有基础设施内的理由。这一案例回答了自 2023 年以来的疑问：市场普遍内置 AI 时，无 AI 替代品是否仍有空间？显然有。",
    "key_points": [
-    "原文称LLM代写LinkedIn帖子的风格痕迹明显，如表情符号、单句段落和特定句式，读者容易察觉。",
-    "原文用‘智力拉链开了’比喻：很多人注意到LLM代写却无人指出，更严重的是读者无法分辨内容真伪并停止阅读。",
-    "原文承认LLM在头脑风暴、理解和编辑方面有用，但强调它们不是作者本人，呼吁相信自己的声音、自己写作。"
+    "LibreOffice 26.8 发布后一周安装包下载超过 100 万次（不含 Linux 发行版仓库更新），成为该软件最受欢迎的更新。",
+    "TDF 发文称“无 AI 现在是功能”：当前不默认内置生成式 AI，理由是技术尚未满足用户控制执行、无遥测、不依赖单一供应商、完全可选等原则，并推荐通过社区插件集成。",
+    "TDF 称其立场“几乎与技术无关”，并暗指竞争对手借 AI 助手提价并锁定文档基础设施；该案例表明无 AI 替代品仍有市场空间。"
    ],
    "topics": [
-    "llm-writing",
-    "ai-generated-content",
-    "authenticity"
+    "product",
+    "open-source",
+    "privacy"
    ],
    "category": "行业动态",
    "categories": [
-    "行业动态"
+    "行业动态",
+    "产品与商业"
+   ],
+   "horizon": "short",
+   "score": 63.7,
+   "status": "review",
+   "extra": {
+    "hn_points": 647,
+    "hn_comments": 217,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "ea685cd38291f98e",
+   "url": "https://www.qbitai.com/2026/09/485794.html",
+   "title": "现场围观金融AI决赛，大厂挑人的逻辑我悟了",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-08T05:05:03+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "ai-competition",
+    "fintech",
+    "talent-acquisition"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "产品与商业"
+   ],
+   "horizon": "short",
+   "score": 58.8,
+   "status": "review",
+   "extra": {
+    "content_source": "direct"
+   }
+  },
+  {
+   "id": "3978b8b7d67f066b",
+   "url": "https://www.dwarkesh.com/p/pretraining-progress-is-mostly-data",
+   "title": "Pretraining progress is mostly coming from data",
+   "source": "Dwarkesh Podcast",
+   "tier": "C",
+   "published_at": "2026-09-08T16:10:16+00:00",
+   "summary_short": "2019-2025年预训练效率提升中，数据贡献12倍、模型3.7倍，数据为主导。",
+   "summary_long": "一项小规模研究考察了2019至2025年预训练进展中数据与模型改进的贡献。作者将各年份代表性开放模型配方与公共数据语料组合训练，算力最高1e19 FLOPs；因数据不同，不比较交叉熵损失，而以OLMES终端能力评估（10个较易基准，多为多选QA），并用多种子降噪。结果显示，在1e19 FLOPs下，数据改进带来的计算效率增益为12.0倍，模型改进为3.7倍，数据贡献比模型高3.24倍。线性模型分析表明，88%的OLMES分数方差可由模型与数据改进的加性效应解释，两者基本独立、无交互。数据侧从2019年OpenWebText约9B tokens（仅Reddit链接网页去重过滤）发展到2025年UltraFineWeb等更大规模全网抓取语料和更精细过滤；模型侧从GPT-2到OLMo-2，涉及优化器、位置编码、归一化、激活函数、初始化等。原文指出，模型改进的主要价值不是计算效率，而是使更大规模计算可用：随参数、上下文长度、运行时长和集群规模扩大，研究消除或推迟了梯度爆炸/消失、内存带宽耗尽、训练过慢等扩展约束，如MoE、稀疏注意力、稳定性创新及FlashAttention等。该结果对前沿实验室经济性和未来进展速度具有意义。",
+   "key_points": [
+    "在1e19 FLOPs计算预算下，2019—2025年数据改进带来12.0倍计算效率增益，模型改进为3.7倍，数据贡献是模型的3.24倍。",
+    "88%的OLMES分数方差可由模型与数据改进的加性效应解释，两者大体独立、无交互。",
+    "模型改进的主要贡献不是计算效率，而是使更大规模计算可用，如MoE、稀疏注意力、稳定性创新和FlashAttention等帮助突破扩展约束。"
+   ],
+   "topics": [
+    "pretraining-data",
+    "scaling-laws",
+    "eval"
+   ],
+   "category": "论文",
+   "categories": [
+    "论文",
+    "模型训练"
+   ],
+   "horizon": "long",
+   "score": 58.2,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "9dacda85304528ba",
+   "url": "https://www.qbitai.com/2026/09/485854.html",
+   "title": "感谢用GPT-6搓3D的！燃烧自己的token换来一次全体重置",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-08T06:05:30+00:00",
+   "summary_short": "GPT-6 Astra 3D玩法火遍全网额度烧光，Tibo宣布全体付费用户重置",
+   "summary_long": "据量子位报道，GPT-6 Astra上线后，全网掀起3D玩法热潮，很快将付费额度烧光，被网友称为“赛博义父”的Tibo宣布面向所有付费订阅进行全局重置，预计美西时间当天18点（北京时间8号上午10点）到账。文章总结了Astra玩3D的四种主要方式：看图建模，如几分钟内按老式蒸汽火车图纸在Blender中建出3295个独立对象的可编辑模型；整套3D场景工作流，如43分钟将首尔真实地图处理成可探索的Three.js网页“迷你首尔”；做3D游戏，如45分钟生成赛博废土风Demo；交互式教育、解剖和机械可视化，如30分钟完成人类细胞3D模型。Astra的突出之处在于能编写Python脚本，在Blender、Three.js和Unreal Engine之间来回调用并自己串联工作流，因此有观点认为Blender这类开放、可编程软件可能在Agent时代更吃香。Tibo重置行为频繁，社区已出现统计和预测重置时间的网站，用户戏称“Tibo什么时候重置”成了社区天气预报。作者称，普通人做3D建模已不是问题。",
+   "key_points": [
+    "GPT-6 Astra 3D玩法火爆导致额度耗尽，Tibo宣布对所有付费订阅全局重置，并把重置消息藏在歌词里。",
+    "Astra玩3D分四类：看图建模、整套场景工作流、3D游戏、交互式可视化，文中给出了蒸汽火车、首尔3D网页、赛博废土游戏Demo和人类细胞模型案例。",
+    "Astra能跨Blender、Three.js和Unreal Engine自己串起工作流，社区已有专门统计和预测Tibo重置时间的网站。"
+   ],
+   "topics": [
+    "3d-generation",
+    "tool-use",
+    "product"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "产品与商业"
    ],
    "horizon": "short",
    "score": 57.0,
    "status": "review",
    "extra": {
-    "hn_points": 707,
-    "hn_comments": 432,
     "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "5638b0e34ce7be0f",
-   "url": "https://www.qbitai.com/2026/09/485154.html",
-   "title": "DHH领衔，英伟达、微软、HuggingFace等150+全球技术大咖集结，GOSIM Shenzhen 2026全议程公布",
+   "id": "ea5a2d308b024117",
+   "url": "https://www.qbitai.com/2026/09/485784.html",
+   "title": "深度智控获宁德时代、沙特阿美战投等重磅加码，加速打造物理AI时代算力与能源底座",
    "source": "量子位",
    "tier": "B",
-   "published_at": "2026-09-07T08:51:30+00:00",
-   "summary_short": "GOSIM深圳2026开源大会将办，150+全球讲师聚焦AI智能体、开源模型、机器人等技术栈。",
-   "summary_long": "2026年AI竞争正从“比谁的模型更强”转向“谁能把模型真正变成产品、工具和基础设施”，开源成为重要推动力。GOSIM Shenzhen 2026将于10月16日至17日首次在深圳举办，面向全球开发者，汇聚150多位国际讲师、2000多名全球开发者、企业技术负责人和科研从业者，设置2场Keynote、6大技术Track、7场Workshop、4场Hackathon及AI原生项目Spotlight，同期举办Rust China Conference。大会由DHH领衔，他是Ruby on Rails创造者、Omarchy创造者及37signals联合创始人，将分享AI时代软件开发与计算体验思考；嘉宾还包括NVIDIA、Hugging Face、Google Cloud、AMD、微软、华为、阿里云、腾讯、小米、面壁智能等企业及北京大学、南京大学等高校研究者。六大主题论坛覆盖智能体AI、开源模型与基础设施、开源机器人、智能体操作系统与应用、边缘智能体AI、智能体设备，组成从模型、软件、系统、设备到物理世界的技术链条。此外，10月14日至15日还将举行GOSIM AI Vision Forum高端前瞻论坛。Workshop覆盖AI教育、DORA、昇腾、Rust、Google Cloud、vLLM等方向，Hackathon则鼓励开发者动手创造。",
+   "published_at": "2026-09-08T03:22:17+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "physical-ai",
+    "energy-infrastructure",
+    "funding"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "产品与商业"
+   ],
+   "horizon": "short",
+   "score": 56.6,
+   "status": "review",
+   "extra": {
+    "content_source": "direct"
+   }
+  },
+  {
+   "id": "ecee9255adc8870b",
+   "url": "https://www.qbitai.com/2026/09/485630.html",
+   "title": "深入马来西亚AI现场！WAIC CONNECT MALAYSIA首日亮点全速递",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-08T02:42:24+00:00",
+   "summary_short": "WAIC CONNECT MALAYSIA首日实地探访MRANTI与华为AI Lab，并宣布华为云码道正式商用",
+   "summary_long": "9月7日，WAIC CONNECT MALAYSIA在吉隆坡会展中心启幕，由WAIC CONNECT主办、中国驻马来西亚大使馆支持、华为赞助、第一财经作媒体支持，汇聚政府机构、运营商、行业客户、生态伙伴及中国出海AI企业。首日以“Scenario Insight Day｜场景洞察日”为主线，包含WAIC City Walk、Huawei Cloud AI Boost Day·Agentic AI Practice和全天开放的AI Showcase。上午的WAIC City Walk走进两个一线场景：MRANTI作为马来西亚国家级科技创新与商业化枢纽，其CEO及高管接待代表团，介绍从概念验证到商业规模化的路径；Huawei AI Lab & Innovation Centre位于The Exchange 106，展示全栈AI、云基础设施及能源、公共服务、智慧交通、商业等应用。现场分享显示，预计到2030年亚太智能经济相关增长规模将达1.4万亿美元，年复合增长率约15%；AI终端规模有望扩大100倍，带来近10倍商业机会，布局窗口约两三年。下午的华为云AI Boost Day聚焦智能体产业实践。华为云面向马来西亚市场宣布码道（CodeArts）代码智能体正式商用，具备Agent Team内置16个专家智能体、企业级规范驱动开发、千万行级代码理解等能力，并推出CodeArts Agent",
    "key_points": [
-    "10月16-17日首次在深圳举办，汇聚150+国际讲师和2000+全球开发者，含Keynote、6大Track、Workshop、Hackathon等。",
-    "DHH领衔，另有NVIDIA、微软、Hugging Face、Google Cloud、华为、腾讯等企业及多所高校研究者参与。",
-    "六大论坛覆盖智能体AI、开源模型与基础设施、开源机器人、智能体操作系统、边缘智能体AI、智能体设备，并设AI Vision Forum。"
+    "WAIC CONNECT MALAYSIA首日以场景洞察为主线，实地参访MRANTI和Huawei AI Lab & Innovation Centre",
+    "现场分享亚太智能经济2030年规模预计达1.4万亿美元，终端规模有望扩大100倍、带来近10倍商机",
+    "华为云宣布码道代码智能体正式商用，并推出CodeArts Agent早鸟计划"
    ],
    "topics": [
-    "open-source",
+    "coding-agent",
     "product"
    ],
    "category": "行业动态",
    "categories": [
-    "行业动态"
+    "行业动态",
+    "产品与商业",
+    "Agent 工程"
    ],
    "horizon": "short",
    "score": 55.5,
@@ -411,22 +311,18 @@
    }
   },
   {
-   "id": "83927bcdca235186",
-   "url": "https://www.qbitai.com/2026/09/485039.html",
-   "title": "产业龙头领投！中科类脑完成数亿元B+轮战略融资",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-07T04:01:09+00:00",
-   "summary_short": "中科类脑完成数亿元B+轮战略融资，中车资本领投，聚焦算电协同型Token工厂",
-   "summary_long": "近日，合肥中科类脑智能技术有限公司正式宣布完成数亿元B+轮战略融资，由央企产业龙头旗下中车资本领投，银杏谷资本、水木基金、启迪基金等机构跟投。此轮融资是继2025年获得中国移动旗下北京中移数字新经济产业基金亿元级独家战略投资后的又一里程碑，中国移动、中国中车两大央企旗下基金先后战略入局，标志着中科类脑在AI Infra、Token优化、算电一体化赛道的产业价值获得国家级产业资本与专业投资机构认可。融资将精准投向三大方向：加强Token工厂的核心推理优化技术积累，面向英伟达、国产化芯片及超节点优化异构算力统一纳管与调度；攻关博弈决策智能核心技术，构建“电—算—Token”全链路贯通的智能中枢；加速生态体系与产业服务能力建设，形成可复制、可推广的Token工厂标准范式。中科类脑董事长、CEO刘海峰表示，Token工业化生产已成为产业发展的核心命题，公司在能源、科研等领域的积淀是破解AI规模化落地能耗瓶颈、实现Token工业化生产的关键。原文称，此次战略融资为算电协同赛道的技术迭代与产业革新注入资本动能。",
-   "key_points": [
-    "中科类脑完成数亿元B+轮战略融资，中车资本领投，银杏谷资本、水木基金、启迪基金等跟投。",
-    "融资投向Token工厂核心推理优化、博弈决策智能技术、生态体系与产业服务能力建设三大方向。",
-    "中国移动、中国中车两大央企旗下基金先后战略入局，认可其在AI Infra、Token优化、算电一体化赛道的产业价值。"
-   ],
+   "id": "6ed46ca4ed626b35",
+   "url": "https://www.mcsweeneys.net/articles/why-we-must-return-to-the-office-to-use-ai-in-person",
+   "title": "We Must Return to the Office to Use AI in Person",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-08T13:41:25+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
    "topics": [
-    "product",
-    "token-optimization"
+    "future-of-work",
+    "product"
    ],
    "category": "行业动态",
    "categories": [
@@ -434,44 +330,40 @@
     "产品与商业"
    ],
    "horizon": "short",
-   "score": 53.2,
+   "score": 51.9,
    "status": "review",
    "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
+    "hn_points": 366,
+    "hn_comments": 62,
+    "content_source": "direct"
    }
   },
   {
-   "id": "5eebfa2383a586e2",
-   "url": "https://www.latent.space/p/aeo",
-   "title": "The Frontier AEO Tracker: What Astra Chooses (and every other frontier model, and what you can do about it)",
-   "source": "Latent Space",
+   "id": "2089fa5ad760cf48",
+   "url": "https://www.interconnects.ai/p/latest-open-artifacts-24-motif-3",
+   "title": "Latest open artifacts (#24): Motif-3, GLM-5.3, Hy4-preview and open model licenses",
+   "source": "Interconnects",
    "tier": "D",
-   "published_at": "2026-09-07T21:32:37+00:00",
-   "summary_short": "Latent Space AEO追踪器覆盖161类7模型，揭示推荐偏见与代际反转",
-   "summary_long": "Latent Space推出Frontier AEO追踪器，方法扩展自AmplifyingAI，在161个类别中对7个模型（搜索开启）运行6种提示变体。答案由Astra提取，并用专有AEO分数评分：首选、替代选择和提及加权，轻度或强烈反推荐负向加权；还提取了影响代理推荐的主要引用来源和主要失败分析。结果显示各品类最主导产品，并已检查“污染”问题，所有提示和答案对可检查。存在软偏见：例如Fable/Opus偏爱Claude Code，Sol/Astra偏爱Codex，Grok偏爱Cursor，Muse偏爱Muse Code，SWE-1.7偏爱Devin；也有GPT模型推荐Claude的非偏见例子。161个类别中28个有跨模型普遍主导首选，其余多为接近竞争或“总是伴娘”类别，成为关键AEO战场。新预训练模型带来代际间重要选择反转，原文提供Opus→Fable和Sol→Astra汇总页，并对部分反转提供竞争对手做得更好的中性分析。来源搜索中位数方面：Sol为9、Astra为5、Opus为11、Fable为15；原文称Anthropic似乎偏向搜索更多来源，但样本量小，仅代表抓取的工具调用而非预训练数据集。Astra更自信或高效，轻度改写问题时更不易改变选择，因此AEO价值随选择随机性下降而上升。AEO实践（如markdown内容协商）被验证真实，失败会阻碍模型读取内容。另有LLM评选顶级",
-   "key_points": [
-    "追踪器覆盖161个类别、7个模型、6种提示变体，由Astra提取答案并用专有AEO分数评分，同时提取引用来源和失败分析。",
-    "28/161类别有跨模型普遍主导首选，其余为接近竞争；存在模型偏爱自家或相关产品的软偏见，也有GPT模型推荐Claude的非偏见案例。",
-    "Opus→Fable与Sol→Astra代际比较显示重要选择反转；Astra更不易因改写问题改变选择，来源搜索中位数差异明显，AEO实践影响模型读取内容。"
-   ],
+   "published_at": "2026-09-08T14:15:25+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
    "topics": [
-    "eval",
-    "tool-use",
-    "product"
+    "open-source",
+    "model-release",
+    "licensing"
    ],
-   "category": "评测与基准",
+   "category": "模型发布",
    "categories": [
-    "评测与基准",
-    "Agent 工程",
-    "产品与商业"
+    "模型发布",
+    "开源项目",
+    "行业动态"
    ],
    "horizon": "short",
-   "score": 51.4,
+   "score": 51.8,
    "status": "review",
    "extra": {
-    "content_source": "rss",
-    "summary_mode": "full"
+    "content_source": "rss"
    }
   }
  ]
