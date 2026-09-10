@@ -1,0 +1,95 @@
+{
+ "run_id": "20260910-005020",
+ "started": "2026-09-10T00:50:20+00:00",
+ "finished": "2026-09-10T01:04:36+00:00",
+ "mode": "LLM 模式 | 降级链 primary(deepseek-v4-pro) → fallback(glm-5.3)",
+ "stats": {
+  "fetch": {
+   "total": 63,
+   "per_source": {
+    "Anthropic News": 0,
+    "MCP Official Blog": 0,
+    "arXiv Agent/LLM": 15,
+    "GitHub Blog (AI)": 0,
+    "Hugging Face Blog": 2,
+    "Simon Willison": 4,
+    "Lilian Weng": 0,
+    "Andrej Karpathy": 0,
+    "OpenAI News": 8,
+    "Google DeepMind Blog": 1,
+    "Dwarkesh Podcast": 1,
+    "Import AI": "failed: HTTPError",
+    "AI Snake Oil": 0,
+    "Interconnects": 2,
+    "Latent Space": 1,
+    "Eugene Yan": 0,
+    "Hacker News (AI 高分帖)": 9,
+    "GitHub Trending (AI)": 10,
+    "量子位": 10
+   }
+  },
+  "timing": {
+   "fetch": 4.7,
+   "dedupe": 0.1,
+   "triage": 106.0,
+   "summarize": 614.4,
+   "classify": 131.1,
+   "publish": 0.0
+  },
+  "dedupe": {
+   "kept": 38,
+   "dropped_already_in_db": 25,
+   "dropped_dup_url": 0,
+   "dropped_dup_title": 0
+  },
+  "llm_calls": 129,
+  "llm_tokens": 239357,
+  "calls_by_provider": {
+   "primary": 127,
+   "fallback": 2
+  },
+  "triage": {
+   "published": 21,
+   "review": 15,
+   "discarded": 2,
+   "llm_scored": 38,
+   "degraded": 0
+  },
+  "summarize": {
+   "summarized": 34,
+   "brief_mode": 2,
+   "hallucination_flagged": 0,
+   "degraded_title_only": 2
+  },
+  "classify": {
+   "classified": 36,
+   "degraded_heuristic": 0
+  },
+  "publish": {
+   "published": 21,
+   "pending": 15,
+   "db_totals": {
+    "discarded": 39,
+    "published": 194,
+    "review": 155
+   }
+  },
+  "budget": {
+   "tokens_used": 239357,
+   "calls_made": 129,
+   "token_limit": 400000,
+   "call_limit": 260
+  },
+  "memory": {
+   "topics": 34,
+   "span_days": 31,
+   "lifecycle_ready": true
+  }
+ },
+ "errors": [
+  {
+   "where": "fetch",
+   "error": "Import AI: 403 Client Error: Forbidden for url: https://importai.substack.com/feed"
+  }
+ ]
+}
