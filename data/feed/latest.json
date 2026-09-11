@@ -1,133 +1,135 @@
 {
- "generated_at": "2026-09-10T01:04:36+00:00",
- "date": "2026-09-10",
- "run_id": "20260910-005020",
+ "generated_at": "2026-09-11T01:06:13+00:00",
+ "date": "2026-09-11",
+ "run_id": "20260911-004906",
  "top": [
   {
-   "id": "587a70348a735f61",
-   "url": "https://openai.com/index/gpt-6-astra-next-generation-work",
-   "title": "GPT-6 Astra: The next generation in intelligence for work",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-09T11:00:00+00:00",
-   "summary_short": "GPT-6 Astra推出，主打企业级智能与对齐，无需API即可操作现有应用完成复杂工作。",
-   "summary_long": "上周推出GPT-6 Astra，被称为世界上最智能且对齐的模型，现已在ChatGPT Work、Codex和API中可用。Astra在计算机使用、浏览、专业工作、软件工程、网络安全和科学方面达到最先进水平，让团队能够以更高的速度、准确性和判断力处理最苛刻的专业工作。与多数AI系统不同，Astra无需企业准备数据、重新设计工作流或构建自定义集成。在ChatGPT Work和Codex中，它可以编写代码并使用人们日常使用的应用程序，即使这些应用没有API，因此企业可以从第一天起在现有工作流中使用AI，无需大量准备或工程工作。上线头几天，已有客户将Astra用于优化GPU、发现财务报表差异、制作更符合品牌的幻灯片。多家公司给出了评价：Cognition将其集成到Devin harness中，内部测试基准达到最先进性能，视频更易理解、报告更清晰简洁；Databricks称其在OfficeQA Pro及Pro V2基准测试中达到新的最先进水平，每任务成本显著优于GPT-5.6 Sol，数据推理和文档理解有明确进步；Hebbia称Astra制作了测试过的最佳幻灯片，遵循brief比次优模型高17%，引用正确文档高19%；Box称其在复杂企业工作流中表现领先，判断力突出，更善于拒绝文档不支持的结论，做出自信错误断言的可能性低超过10%；Figma称Astra理解愿景并知道如何用Figma实现；T",
-   "key_points": [
-    "GPT-6 Astra在ChatGPT Work、Codex和API中可用，覆盖计算机使用、浏览、专业工作、软件工程、网络安全和科学。",
-    "Astra无需API即可操作现有应用，企业可在现有工作流中从第一天使用AI，无需大量准备或工程工作。",
-    "多家公司评价Astra在基准测试、判断力、文档理解、遵循brief等方面表现出色，并给出具体改进数字。"
-   ],
-   "topics": [
-    "coding-agent",
-    "tool-use",
-    "product"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "Agent 工程",
-    "产品与商业"
-   ],
-   "horizon": "short",
-   "score": 90.6,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a39a5bf3bec08e1e",
-   "url": "https://arxiv.org/abs/2609.08258v1",
-   "title": "Revoked but Still Authoritative: An Empirical Study of Revocation Enforcement in Agent-Memory Systems",
+   "id": "36253bc446ad5232",
+   "url": "https://arxiv.org/abs/2609.09647v1",
+   "title": "Black-Box Red Teaming of Agentic AI: A Taxonomy-Driven Framework for Automated Risk Discovery",
    "source": "arXiv Agent/LLM",
    "tier": "S",
-   "published_at": "2026-09-08T05:03:09+00:00",
-   "summary_short": "实测5种代理记忆系统：默认均不执行撤销，被撤销事实仍被检索并致不安全动作",
-   "summary_long": "长运行语言模型代理依赖持久记忆。许多代理记忆系统通过软撤销保留历史：被矛盾的事实被标记为无效但仍保留，而不是删除。然而，该标记在检索时是否真正被执行，此前未被检验。本文测量了五个此类系统：向每个系统加载一条被撤销的策略及其替代策略，在九个策略场景和九个模型下跟踪被撤销事实是否在检索时被返回、代理是否会据此行动，并在六种防御条件下对每次试验评分。结果发现，没有任何系统默认执行撤销：只要撤销标签对检索层可见，被撤销的事实就会被返回，并且其排序高于替代事实，进而导致代理采取不安全动作。基于这些发现，本文开发了一个守卫，位于代理与任意记忆后端之间，用于拦截被撤销的记录或与替代记录冲突的记录。",
+   "published_at": "2026-09-09T03:00:25+00:00",
+   "summary_short": "黑盒红队框架用七域分类和SAGE-RT自动评估智能体风险，发现治理/隐私漏洞高发。",
+   "summary_long": "智能体系统正快速进入生产环境，会读取不可信输入、以真实权限调用工具并自主行动，安全攻击面比纯聊天模型更广。但原文指出，现有标准评估多为单轮，难以捕获多步智能体漏洞。为此，原文提出一个系统化黑盒框架，用于风险感知的智能体评估，且只需要基本系统描述。该框架包含三部分：一是七域分类法，将可观察行为映射到风险类别；二是全自动SAGE-RT红队方法，每个领域生成120个对抗场景；三是使用LLM评判器进行并经人工验证的评估。在两个智能体架构（CrewAI和AutoGen）和四个基础模型上的实证验证显示：平均治理风险为56.25%，多智能体配置下隐私风险为65%，智能体行为漏洞高达85%。原文认为，该黑盒方法无需特权访问即可有效识别关键架构漏洞，为更安全的智能体部署提供了可扩展路径。",
    "key_points": [
-    "代理记忆系统常用软撤销：矛盾事实被标记无效但仍保留，其检索时是否强制执行未被检验",
-    "在五个系统、九个策略场景、九个模型和六种防御条件下测试，发现所有系统默认均不执行撤销，被撤销事实仍被返回且排序高于替代项，并导致代理采取不安全动作",
-    "本文开发了一个位于代理与记忆后端之间的守卫，用于拦截被撤销或与替代记录冲突的记录"
-   ],
-   "topics": [
-    "memory",
-    "eval",
-    "safety"
-   ],
-   "category": "论文",
-   "categories": [
-    "论文",
-    "评测与基准",
-    "上下文与记忆"
-   ],
-   "horizon": "long",
-   "score": 90.6,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Yi Ting Shen",
-     "Kentaroh Toyoda",
-     "Alex Leung"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "30a3ed5f3a59f038",
-   "url": "https://arxiv.org/abs/2609.08371v1",
-   "title": "Authority Is Not a String: A Capability-Scoped Harness for Prompt-Injection-Resistant Coding Agents",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-09-08T07:37:00+00:00",
-   "summary_short": "CapScope以能力作用域约束工具调用，将注入攻击执行率降至3/75且修复率不降。",
-   "summary_long": "编码代理使用系统级工具读文件、执行命令和修改源码。沙箱内这些工具常带环境权限：能命名资源即可操作。间接提示注入利用此权限，在仓库文件或工具输出中放置指令，使代理执行用户未请求的操作。CapScope是一种harness级授权机制，不要求模型识别恶意文本。它在读取仓库内容或工具输出前，从可信输入推导任务级权限上限，然后为每个代理分配一组独立的类型化能力，存储在模型上下文之外。每次工具调用都按发出调用的代理的能力检查。分配给一个子代理的权限不会自动提供给另一个子代理。注入可能使代理请求某个操作，但除非该代理已经具备所需能力，否则请求会被阻止。作者在Pi编码代理上实现了CapScope，并在一个修复工作流中评估，该工作流中编排器将子任务委派给多个子代理。评估覆盖五个Python任务、五种注入表面、四种授权条件和每单元三次试验，共300次运行。结果显示，在环境权限和全局策略基线下，注入效果在33-47/75次运行中执行，而CapScope下仅为3/75次。CapScope完成68/75次修复，基线的修复完成数为68-72/75次。",
-   "key_points": [
-    "CapScope在读取内容前从可信输入推导任务级权限上限，并为每个代理分配独立、存于模型上下文之外的类型化能力。",
-    "每次工具调用都按发出调用的代理的能力检查，子代理之间的权限不会自动共享，注入请求会被阻止。",
-    "在300次运行评估中，注入效果执行率从基线的33-47/75降至CapScope下的3/75，修复完成数为68/75，与基线接近。"
+    "框架包含七域风险分类、全自动SAGE-RT红队（每域120个对抗场景）和LLM评判器评估。",
+    "在CrewAI与AutoGen两种架构、四个基础模型上验证：治理风险平均56.25%，多智能体隐私风险65%，行为漏洞85%。",
+    "黑盒方法仅需基本系统描述，无需特权访问，可识别多步架构漏洞并提供可扩展部署路径。"
    ],
    "topics": [
     "safety",
-    "harness",
-    "coding-agent"
+    "eval",
+    "multi-agent"
    ],
    "category": "论文",
    "categories": [
     "论文",
     "安全与对齐",
-    "Agent 工程"
+    "评测与基准"
    ],
    "horizon": "long",
-   "score": 90.3,
+   "score": 90.9,
    "status": "published",
    "extra": {
     "authors": [
-     "Dimitrios Stamatios Bouras",
-     "Yihan Dai",
-     "Sergey Mechtaev"
+     "Divyanshu Kumar",
+     "Nitin Aravind Birur",
+     "Tanay Baswa",
+     "Sahil Agarwal",
+     "Prashanth Harshangi"
     ],
     "summary_mode": "full"
    }
   },
   {
-   "id": "a17afcc56849689c",
-   "url": "https://arxiv.org/abs/2609.08592v1",
-   "title": "A Three-Tier Persona Vector for Controllable User Simulation in Agentic Evaluation",
+   "id": "81a78da5a606c1e9",
+   "url": "https://arxiv.org/abs/2609.09458v1",
+   "title": "ContractEval: Query-Conditioned Execution Matching for Procedural Instruction Conformance",
    "source": "arXiv Agent/LLM",
    "tier": "S",
-   "published_at": "2026-09-08T11:28:02+00:00",
-   "summary_short": "提出三层次persona向量，23维操作化用户模拟，经6.4万对话验证可产生差异化行为。",
-   "summary_long": "现有工具增强LLM智能体评估多使用扁平角色描述（如“你是愤怒的顾客”），导致对话几乎趋同。本文提出三层次persona向量，包含23个操作化维度：6个分类人口统计（辖区、年龄、渠道、设备、语言能力、时间可用性），12个连续行为特质（耐心、自信、数字素养等，在策划的profile基向量周围以高斯噪声采样），以及5个连续情绪状态（挫折、焦虑、信任、信心、压力），后者随场景上下文变化。与persona正交的是4级查询复杂度叠加层，控制话语措辞从直接到故意模糊。作者在合成数据生成pipeline中评估该模型，覆盖64,698个多轮对话、8个命名profile和3个生产语料库。关键发现包括：跨persona的智能体目标达成率有15.8个百分点差距，表明特质向量产生可测量的不同用户行为；同一persona在不同场景因场景反应性情绪状态变化而表现不同，验证了该设计；领域特定项目中booking-flow合规率在tier-aware与pressure-test persona之间存在约15-20个百分点差距，证明模型忠实再现现实难度分布；7条规则描述的特质相关性产生可审计共现模式，无需学习协方差矩阵。该persona模型已完全说明以供复现。",
+   "published_at": "2026-09-08T21:21:16+00:00",
+   "summary_short": "CONTRACTEVAL将程序指令转为查询活跃义务并匹配证据，使程序一致性可审计，而非隐含于最终答案。",
+   "summary_long": "随着LLM智能体从回答问题转向执行程序，失败可能并非明显错误，而是最终响应看似可接受，但系统跳过了使答案合理的检查、分支、依赖或不变量。仅输出评估看到答案，轨迹感知判断看到活动，但两者都无法识别哪些义务对查询是活跃的。为此，原文介绍CONTRACTEVAL诊断框架，将这些活跃义务显式化。它把程序指令表示为查询活跃义务，并与响应或轨迹证据进行匹配，将遗漏、错误分支、顺序错误、额外动作、不变量违反和输出契约违反转化为不同类型的一致性失败。在受控的经审计程序契约套件上，仅输出和轨迹感知的LLM评委漏掉许多注入的结构性失败；而在黄金预期图和观察图下，CONTRACTEVAL能够检测并定位所有失败。LLM支持的提取保留了大部分信号，但对校准敏感。因此，CONTRACTEVAL不是合规保证，而是使程序一致性可审计，而非隐含在最终答案质量中。",
    "key_points": [
-    "三层次persona向量含6个分类人口统计、12个连续行为特质和5个连续情绪状态，共23个操作化维度。",
-    "在64,698个多轮对话、8个命名profile和3个生产语料库上验证，跨persona目标达成率差异15.8个百分点，booking-flow合规率差异约15-20个百分点。",
-    "正交的4级查询复杂度叠加层控制话语从直接到模糊，且特质相关性由7条规则描述形成可审计共现模式。"
+    "CONTRACTEVAL将程序指令建模为查询活跃义务，并与响应或轨迹证据匹配，将遗漏、错误分支、顺序错误、额外动作、不变量违反和输出契约违反转化为不同一致性失败。",
+    "在受控审计程序契约测试中，仅输出和轨迹感知的LLM评委漏掉许多注入的结构性失败，而基于黄金预期与观察图的CONTRACTEVAL能检测并定位全部失败。",
+    "LLM支持的提取保留大部分信号，但对校准敏感；CONTRACTEVAL不是合规保证，而是使程序一致性可审计，而非隐含在最终答案质量中。"
+   ],
+   "topics": [
+    "eval"
+   ],
+   "category": "论文",
+   "categories": [
+    "论文",
+    "评测与基准"
+   ],
+   "horizon": "long",
+   "score": 90.6,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Praphul Singh",
+     "Shanu Kumar",
+     "Akshat Agarwal",
+     "Ganesh Kumar"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "1331e12254d13461",
+   "url": "https://arxiv.org/abs/2609.10036v1",
+   "title": "Belief-State Engine: Augmenting LLMs for Principled Planning Under Partial Observability",
+   "source": "arXiv Agent/LLM",
+   "tier": "S",
+   "published_at": "2026-09-09T11:07:47+00:00",
+   "summary_short": "提出Belief-State Engine，在LLM外维护POMDP贝叶斯后验，只暴露后验以改善部分可观测规划。",
+   "summary_long": "大型语言模型智能体在许多任务中能生成流畅动作序列，但在部分可观测环境中出现特征性失败：模糊反馈导致过早承诺；单一信息性观察可能使不确定性坍缩到错误假设；历史增长时策略漂移。原文将这些症状追溯到共同结构原因：常用LLM智能体是历史条件策略，没有对隐状态的显式信念。为此提出架构修正：Belief-State Engine（BSE）是置于LLM之外的推理模块，对给定POMDP模型的隐状态维护贝叶斯后验，并在每个决策步只把该后验暴露给LLM，不显示原始动作-观察日志。原文给出信念一致内部状态需满足的四条公理规范，并证明LLM配合BSE是在底层POMDP诱导的信念MDP上的可靠马尔可夫策略；因此只要LLM从不接触原始历史，就继承经典POMDP理论的Bellman最优性保证。在Tiger POMDP和红队攻击图任务上，与六个基线（reactive LLM、Chain-of-Thought、ReAct、自然语言信念追踪器、QMDP、POMCP）比较，BSE增强智能体在任务回报、信念校准和决策一致性上均有改善。十项定向消融隔离各架构选择的贡献，确认效果不特定于任一模型。代码、环境规范、提示模板和种子日志随论文提供。",
+   "key_points": [
+    "LLM智能体在部分可观测环境中的失败源于缺少显式隐状态信念，而非仅提示或推理问题。",
+    "BSE在LLM外维护POMDP贝叶斯后验，只把后验暴露给LLM，不展示原始动作-观察日志。",
+    "原文给出四公理规范，并证明LLM+BSE是信念MDP上的可靠马尔可夫策略，可继承Bellman最优性保证。"
+   ],
+   "topics": [
+    "agent-loop",
+    "context-engineering",
+    "reasoning"
+   ],
+   "category": "论文",
+   "categories": [
+    "论文",
+    "Agent 工程",
+    "上下文与记忆"
+   ],
+   "horizon": "long",
+   "score": 89.7,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Arnab Chattopadhayay",
+     "Debdipta Halder"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "0a65718e98e42330",
+   "url": "https://arxiv.org/abs/2609.09853v1",
+   "title": "The Era by Eon Benchmark: A Generated Enterprise Estate with Exact Ground Truth for Benchmarking LLM Agents",
+   "source": "arXiv Agent/LLM",
+   "tier": "S",
+   "published_at": "2026-09-09T08:06:46+00:00",
+   "summary_short": "Era by Eon基准用虚构公司生成一致企业数据并提供精确答案，评估企业工具LLM智能体。",
+   "summary_long": "企业系统记录的LLM智能体无法在客户生产数据上评估，现有替代方案也没有真实答案。原文介绍Era by Eon Benchmark，用于评估使用企业工具的LLM智能体。该基准围绕一个完整虚构公司构建，包括产品模拟器、公司特定内部数据库、基准问题及计算出的答案键。行业、公司规模、商业模式、应用组合和随机种子共同定义每家公司。一个种子实体图向Salesforce、Zendesk、Slack、Gong等产品模拟器提供共享公司数据。问题条件生成器为内部数据库创建模式和记录，在生成数据库特定事实前从同一图获取共享实体、键和值，因此两种机制描述一致的企业资产。每个预期答案从最终记录计算，评分精确。设计检查和答案键检查用于验证内部数据库，现实性记分卡和对抗检测器用于验证实体图。在23家生成公司中，平均现实性得分从61.8升至97.0，零记录被标记为合成。在报告的模拟器轨道比较中，9个模型对相同33个问题各回答3次，准确率估计介于42.4%至76.8%之间；36个成对差异中仅3个在多重比较校正后仍得到支持。",
+   "key_points": [
+    "基准围绕完整虚构公司构建，包含产品模拟器、内部数据库、问题和计算答案键；公司由行业、规模、商业模式、应用组合和种子定义。",
+    "一个种子实体图向Salesforce、Zendesk、Slack、Gong等模拟器及内部数据库生成器提供一致数据，答案从最终记录计算，评分精确。",
+    "验证显示平均现实性得分从61.8升至97.0且零记录被标记为合成；9个模型准确率估计范围为42.4%–76.8%，36个成对差异中3个在校正后仍受支持。"
    ],
    "topics": [
     "eval",
-    "user-simulation",
-    "synthetic-data"
+    "tool-use"
    ],
    "category": "评测与基准",
    "categories": [
@@ -135,56 +137,54 @@
     "论文"
    ],
    "horizon": "long",
-   "score": 90.2,
+   "score": 89.7,
    "status": "published",
    "extra": {
     "authors": [
-     "Rahul Khedar",
-     "Eshita",
-     "Sneha Teja Sree Reddy Thondapu",
-     "Mayank Malhotra",
-     "Arup Kumar Das",
-     "Jitesh Chandra Mishra"
+     "Benjamin Gruenbaum",
+     "Doron Porat",
+     "Assaf Natanzon",
+     "Roy Zavida",
+     "Chen Dinachi",
+     "Or Itzahary"
     ],
     "summary_mode": "full"
    }
   },
   {
-   "id": "f5d1e583dd82f51c",
-   "url": "https://arxiv.org/abs/2609.08550v1",
-   "title": "CreaMem: A Scene-Aware Memory Architecture for Personalized Agents",
+   "id": "b03835c02f60eeb7",
+   "url": "https://arxiv.org/abs/2609.09778v1",
+   "title": "ROAM: Robust Organization of Atomic Memories for Agents through Semantic Relations",
    "source": "arXiv Agent/LLM",
    "tier": "S",
-   "published_at": "2026-09-08T10:33:05+00:00",
-   "summary_short": "提出CreaMem场景感知记忆架构，通过生活场景划分与双编码提升长期记忆问答准确率。",
-   "summary_long": "长期记忆是个性化LLM智能体的核心能力。现有记忆系统多按主题片段或摘要层级组织信息，但原文指出两大局限：一是缺乏场景感知，来自无关生活场景的记忆共享同一检索空间，导致搜索空间膨胀并引入跨场景干扰；二是每条记忆只从单一视角编码，难以检索同一事件的不同互补视角。针对这些问题，本文提出CreaMem架构，通过将记忆划分为多个生活场景记忆，实现场景感知的记忆组织，从而在检索时减少跨场景干扰。为突破单视角限制并实现跨记忆协同，CreaMem在每个记忆内部对条目进行双重编码，同时采用情景视角和特质视角。检索时还设计了逐记忆均衡采样策略。在两个长期记忆基准上的广泛实验表明，CreaMem在所有评估指标上均提升了问答准确率，其中多跳推理性能提升尤为显著，验证了场景感知划分和跨记忆协同的有效性。为增强可复现性，代码已在公共GitHub仓库发布。原文未详述基准名称、实验设置细节及代码地址。",
+   "published_at": "2026-09-09T06:29:38+00:00",
+   "summary_short": "ROAM 通过语义关系分类原子记忆并仅检索主视图，答案准确率最高提升29.8个百分点。",
+   "summary_long": "长期语言模型智能体依赖外部记忆，原子记忆因其细粒度语义边界可支持精确检索和观察比较，但累积后难免冗余、重叠或冲突。现有方法常让 LLM 管理器直接增删改重写记忆，将语义解释、存储决策与内容生成耦合在易错步骤中。ROAM 是关系引导框架：利用原子性进行管理，同时允许回答时生成更丰富的表示。它先将新到原子与已存原子分类为独立、等价、方向性包含或冲突，再把观察组织为活跃的 Primary 与支撑的 Evidence 角色；随后 Fusion 将互补细节和时间变化合并成紧凑且可能非原子的视图。回答时只检索 Primary 视图，避免冗余或过时原子独立竞争。实验显示，跨模型和评估设置 ROAM 将答案准确率最多提升 29.8 个百分点；消融表明不同关系带来互补收益，Fusion 在角色组织之外提供一致增益；机制分析发现答案关键来源召回率提高 15.6 点，混淆 token 占比下降 11.5 点。ROAM 在不同 manager 规模下保持稳健。",
    "key_points": [
-    "现有记忆系统缺乏场景感知，无关生活场景共享检索空间，易产生跨场景干扰；且单一视角编码难以获取同一事件互补信息。",
-    "CreaMem通过划分多个生活场景记忆实现场景感知组织，降低检索时的跨场景干扰。",
-    "记忆条目采用情景视角和特质视角双重编码，实现跨记忆协同，并在检索时采用逐记忆均衡采样策略。"
+    "ROAM 将新到原子与已存原子分类为独立、等价、方向性包含或冲突，并把观察组织为活跃 Primary 与支撑 Evidence 角色。",
+    "Fusion 融合互补细节和时间变化，生成紧凑且可能非原子的视图；回答时仅检索 Primary 视图，减少冗余或过时原子干扰。",
+    "跨模型和评估设置答案准确率最高提升 29.8 个百分点，消融显示关系与 Fusion 的互补增益，机制分析显示关键来源召回提高和混淆 token 占比下降。"
    ],
    "topics": [
     "memory",
-    "context-engineering",
-    "agent-loop"
+    "context-engineering"
    ],
    "category": "论文",
    "categories": [
     "论文",
-    "上下文与记忆",
-    "Agent 工程"
+    "上下文与记忆"
    ],
    "horizon": "long",
-   "score": 90.0,
+   "score": 89.7,
    "status": "published",
    "extra": {
     "authors": [
-     "Qixuan Sun",
-     "Yue Que",
-     "Bowei He",
-     "Jin Guo",
-     "Dihang Yang",
-     "Wenchang Situ"
+     "Jianjie Zheng",
+     "Peng Lai",
+     "Sijie Cheng",
+     "Jiehui Zhao",
+     "Lei Yang",
+     "Guanhua Chen"
     ],
     "summary_mode": "full"
    }
@@ -192,130 +192,132 @@
  ],
  "items": [
   {
-   "id": "587a70348a735f61",
-   "url": "https://openai.com/index/gpt-6-astra-next-generation-work",
-   "title": "GPT-6 Astra: The next generation in intelligence for work",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-09T11:00:00+00:00",
-   "summary_short": "GPT-6 Astra推出，主打企业级智能与对齐，无需API即可操作现有应用完成复杂工作。",
-   "summary_long": "上周推出GPT-6 Astra，被称为世界上最智能且对齐的模型，现已在ChatGPT Work、Codex和API中可用。Astra在计算机使用、浏览、专业工作、软件工程、网络安全和科学方面达到最先进水平，让团队能够以更高的速度、准确性和判断力处理最苛刻的专业工作。与多数AI系统不同，Astra无需企业准备数据、重新设计工作流或构建自定义集成。在ChatGPT Work和Codex中，它可以编写代码并使用人们日常使用的应用程序，即使这些应用没有API，因此企业可以从第一天起在现有工作流中使用AI，无需大量准备或工程工作。上线头几天，已有客户将Astra用于优化GPU、发现财务报表差异、制作更符合品牌的幻灯片。多家公司给出了评价：Cognition将其集成到Devin harness中，内部测试基准达到最先进性能，视频更易理解、报告更清晰简洁；Databricks称其在OfficeQA Pro及Pro V2基准测试中达到新的最先进水平，每任务成本显著优于GPT-5.6 Sol，数据推理和文档理解有明确进步；Hebbia称Astra制作了测试过的最佳幻灯片，遵循brief比次优模型高17%，引用正确文档高19%；Box称其在复杂企业工作流中表现领先，判断力突出，更善于拒绝文档不支持的结论，做出自信错误断言的可能性低超过10%；Figma称Astra理解愿景并知道如何用Figma实现；T",
-   "key_points": [
-    "GPT-6 Astra在ChatGPT Work、Codex和API中可用，覆盖计算机使用、浏览、专业工作、软件工程、网络安全和科学。",
-    "Astra无需API即可操作现有应用，企业可在现有工作流中从第一天使用AI，无需大量准备或工程工作。",
-    "多家公司评价Astra在基准测试、判断力、文档理解、遵循brief等方面表现出色，并给出具体改进数字。"
-   ],
-   "topics": [
-    "coding-agent",
-    "tool-use",
-    "product"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "Agent 工程",
-    "产品与商业"
-   ],
-   "horizon": "short",
-   "score": 90.6,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a39a5bf3bec08e1e",
-   "url": "https://arxiv.org/abs/2609.08258v1",
-   "title": "Revoked but Still Authoritative: An Empirical Study of Revocation Enforcement in Agent-Memory Systems",
+   "id": "36253bc446ad5232",
+   "url": "https://arxiv.org/abs/2609.09647v1",
+   "title": "Black-Box Red Teaming of Agentic AI: A Taxonomy-Driven Framework for Automated Risk Discovery",
    "source": "arXiv Agent/LLM",
    "tier": "S",
-   "published_at": "2026-09-08T05:03:09+00:00",
-   "summary_short": "实测5种代理记忆系统：默认均不执行撤销，被撤销事实仍被检索并致不安全动作",
-   "summary_long": "长运行语言模型代理依赖持久记忆。许多代理记忆系统通过软撤销保留历史：被矛盾的事实被标记为无效但仍保留，而不是删除。然而，该标记在检索时是否真正被执行，此前未被检验。本文测量了五个此类系统：向每个系统加载一条被撤销的策略及其替代策略，在九个策略场景和九个模型下跟踪被撤销事实是否在检索时被返回、代理是否会据此行动，并在六种防御条件下对每次试验评分。结果发现，没有任何系统默认执行撤销：只要撤销标签对检索层可见，被撤销的事实就会被返回，并且其排序高于替代事实，进而导致代理采取不安全动作。基于这些发现，本文开发了一个守卫，位于代理与任意记忆后端之间，用于拦截被撤销的记录或与替代记录冲突的记录。",
+   "published_at": "2026-09-09T03:00:25+00:00",
+   "summary_short": "黑盒红队框架用七域分类和SAGE-RT自动评估智能体风险，发现治理/隐私漏洞高发。",
+   "summary_long": "智能体系统正快速进入生产环境，会读取不可信输入、以真实权限调用工具并自主行动，安全攻击面比纯聊天模型更广。但原文指出，现有标准评估多为单轮，难以捕获多步智能体漏洞。为此，原文提出一个系统化黑盒框架，用于风险感知的智能体评估，且只需要基本系统描述。该框架包含三部分：一是七域分类法，将可观察行为映射到风险类别；二是全自动SAGE-RT红队方法，每个领域生成120个对抗场景；三是使用LLM评判器进行并经人工验证的评估。在两个智能体架构（CrewAI和AutoGen）和四个基础模型上的实证验证显示：平均治理风险为56.25%，多智能体配置下隐私风险为65%，智能体行为漏洞高达85%。原文认为，该黑盒方法无需特权访问即可有效识别关键架构漏洞，为更安全的智能体部署提供了可扩展路径。",
    "key_points": [
-    "代理记忆系统常用软撤销：矛盾事实被标记无效但仍保留，其检索时是否强制执行未被检验",
-    "在五个系统、九个策略场景、九个模型和六种防御条件下测试，发现所有系统默认均不执行撤销，被撤销事实仍被返回且排序高于替代项，并导致代理采取不安全动作",
-    "本文开发了一个位于代理与记忆后端之间的守卫，用于拦截被撤销或与替代记录冲突的记录"
-   ],
-   "topics": [
-    "memory",
-    "eval",
-    "safety"
-   ],
-   "category": "论文",
-   "categories": [
-    "论文",
-    "评测与基准",
-    "上下文与记忆"
-   ],
-   "horizon": "long",
-   "score": 90.6,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Yi Ting Shen",
-     "Kentaroh Toyoda",
-     "Alex Leung"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "30a3ed5f3a59f038",
-   "url": "https://arxiv.org/abs/2609.08371v1",
-   "title": "Authority Is Not a String: A Capability-Scoped Harness for Prompt-Injection-Resistant Coding Agents",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-09-08T07:37:00+00:00",
-   "summary_short": "CapScope以能力作用域约束工具调用，将注入攻击执行率降至3/75且修复率不降。",
-   "summary_long": "编码代理使用系统级工具读文件、执行命令和修改源码。沙箱内这些工具常带环境权限：能命名资源即可操作。间接提示注入利用此权限，在仓库文件或工具输出中放置指令，使代理执行用户未请求的操作。CapScope是一种harness级授权机制，不要求模型识别恶意文本。它在读取仓库内容或工具输出前，从可信输入推导任务级权限上限，然后为每个代理分配一组独立的类型化能力，存储在模型上下文之外。每次工具调用都按发出调用的代理的能力检查。分配给一个子代理的权限不会自动提供给另一个子代理。注入可能使代理请求某个操作，但除非该代理已经具备所需能力，否则请求会被阻止。作者在Pi编码代理上实现了CapScope，并在一个修复工作流中评估，该工作流中编排器将子任务委派给多个子代理。评估覆盖五个Python任务、五种注入表面、四种授权条件和每单元三次试验，共300次运行。结果显示，在环境权限和全局策略基线下，注入效果在33-47/75次运行中执行，而CapScope下仅为3/75次。CapScope完成68/75次修复，基线的修复完成数为68-72/75次。",
-   "key_points": [
-    "CapScope在读取内容前从可信输入推导任务级权限上限，并为每个代理分配独立、存于模型上下文之外的类型化能力。",
-    "每次工具调用都按发出调用的代理的能力检查，子代理之间的权限不会自动共享，注入请求会被阻止。",
-    "在300次运行评估中，注入效果执行率从基线的33-47/75降至CapScope下的3/75，修复完成数为68/75，与基线接近。"
+    "框架包含七域风险分类、全自动SAGE-RT红队（每域120个对抗场景）和LLM评判器评估。",
+    "在CrewAI与AutoGen两种架构、四个基础模型上验证：治理风险平均56.25%，多智能体隐私风险65%，行为漏洞85%。",
+    "黑盒方法仅需基本系统描述，无需特权访问，可识别多步架构漏洞并提供可扩展部署路径。"
    ],
    "topics": [
     "safety",
-    "harness",
-    "coding-agent"
+    "eval",
+    "multi-agent"
    ],
    "category": "论文",
    "categories": [
     "论文",
     "安全与对齐",
-    "Agent 工程"
+    "评测与基准"
    ],
    "horizon": "long",
-   "score": 90.3,
+   "score": 90.9,
    "status": "published",
    "extra": {
     "authors": [
-     "Dimitrios Stamatios Bouras",
-     "Yihan Dai",
-     "Sergey Mechtaev"
+     "Divyanshu Kumar",
+     "Nitin Aravind Birur",
+     "Tanay Baswa",
+     "Sahil Agarwal",
+     "Prashanth Harshangi"
     ],
     "summary_mode": "full"
    }
   },
   {
-   "id": "a17afcc56849689c",
-   "url": "https://arxiv.org/abs/2609.08592v1",
-   "title": "A Three-Tier Persona Vector for Controllable User Simulation in Agentic Evaluation",
+   "id": "81a78da5a606c1e9",
+   "url": "https://arxiv.org/abs/2609.09458v1",
+   "title": "ContractEval: Query-Conditioned Execution Matching for Procedural Instruction Conformance",
    "source": "arXiv Agent/LLM",
    "tier": "S",
-   "published_at": "2026-09-08T11:28:02+00:00",
-   "summary_short": "提出三层次persona向量，23维操作化用户模拟，经6.4万对话验证可产生差异化行为。",
-   "summary_long": "现有工具增强LLM智能体评估多使用扁平角色描述（如“你是愤怒的顾客”），导致对话几乎趋同。本文提出三层次persona向量，包含23个操作化维度：6个分类人口统计（辖区、年龄、渠道、设备、语言能力、时间可用性），12个连续行为特质（耐心、自信、数字素养等，在策划的profile基向量周围以高斯噪声采样），以及5个连续情绪状态（挫折、焦虑、信任、信心、压力），后者随场景上下文变化。与persona正交的是4级查询复杂度叠加层，控制话语措辞从直接到故意模糊。作者在合成数据生成pipeline中评估该模型，覆盖64,698个多轮对话、8个命名profile和3个生产语料库。关键发现包括：跨persona的智能体目标达成率有15.8个百分点差距，表明特质向量产生可测量的不同用户行为；同一persona在不同场景因场景反应性情绪状态变化而表现不同，验证了该设计；领域特定项目中booking-flow合规率在tier-aware与pressure-test persona之间存在约15-20个百分点差距，证明模型忠实再现现实难度分布；7条规则描述的特质相关性产生可审计共现模式，无需学习协方差矩阵。该persona模型已完全说明以供复现。",
+   "published_at": "2026-09-08T21:21:16+00:00",
+   "summary_short": "CONTRACTEVAL将程序指令转为查询活跃义务并匹配证据，使程序一致性可审计，而非隐含于最终答案。",
+   "summary_long": "随着LLM智能体从回答问题转向执行程序，失败可能并非明显错误，而是最终响应看似可接受，但系统跳过了使答案合理的检查、分支、依赖或不变量。仅输出评估看到答案，轨迹感知判断看到活动，但两者都无法识别哪些义务对查询是活跃的。为此，原文介绍CONTRACTEVAL诊断框架，将这些活跃义务显式化。它把程序指令表示为查询活跃义务，并与响应或轨迹证据进行匹配，将遗漏、错误分支、顺序错误、额外动作、不变量违反和输出契约违反转化为不同类型的一致性失败。在受控的经审计程序契约套件上，仅输出和轨迹感知的LLM评委漏掉许多注入的结构性失败；而在黄金预期图和观察图下，CONTRACTEVAL能够检测并定位所有失败。LLM支持的提取保留了大部分信号，但对校准敏感。因此，CONTRACTEVAL不是合规保证，而是使程序一致性可审计，而非隐含在最终答案质量中。",
    "key_points": [
-    "三层次persona向量含6个分类人口统计、12个连续行为特质和5个连续情绪状态，共23个操作化维度。",
-    "在64,698个多轮对话、8个命名profile和3个生产语料库上验证，跨persona目标达成率差异15.8个百分点，booking-flow合规率差异约15-20个百分点。",
-    "正交的4级查询复杂度叠加层控制话语从直接到模糊，且特质相关性由7条规则描述形成可审计共现模式。"
+    "CONTRACTEVAL将程序指令建模为查询活跃义务，并与响应或轨迹证据匹配，将遗漏、错误分支、顺序错误、额外动作、不变量违反和输出契约违反转化为不同一致性失败。",
+    "在受控审计程序契约测试中，仅输出和轨迹感知的LLM评委漏掉许多注入的结构性失败，而基于黄金预期与观察图的CONTRACTEVAL能检测并定位全部失败。",
+    "LLM支持的提取保留大部分信号，但对校准敏感；CONTRACTEVAL不是合规保证，而是使程序一致性可审计，而非隐含在最终答案质量中。"
+   ],
+   "topics": [
+    "eval"
+   ],
+   "category": "论文",
+   "categories": [
+    "论文",
+    "评测与基准"
+   ],
+   "horizon": "long",
+   "score": 90.6,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Praphul Singh",
+     "Shanu Kumar",
+     "Akshat Agarwal",
+     "Ganesh Kumar"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "1331e12254d13461",
+   "url": "https://arxiv.org/abs/2609.10036v1",
+   "title": "Belief-State Engine: Augmenting LLMs for Principled Planning Under Partial Observability",
+   "source": "arXiv Agent/LLM",
+   "tier": "S",
+   "published_at": "2026-09-09T11:07:47+00:00",
+   "summary_short": "提出Belief-State Engine，在LLM外维护POMDP贝叶斯后验，只暴露后验以改善部分可观测规划。",
+   "summary_long": "大型语言模型智能体在许多任务中能生成流畅动作序列，但在部分可观测环境中出现特征性失败：模糊反馈导致过早承诺；单一信息性观察可能使不确定性坍缩到错误假设；历史增长时策略漂移。原文将这些症状追溯到共同结构原因：常用LLM智能体是历史条件策略，没有对隐状态的显式信念。为此提出架构修正：Belief-State Engine（BSE）是置于LLM之外的推理模块，对给定POMDP模型的隐状态维护贝叶斯后验，并在每个决策步只把该后验暴露给LLM，不显示原始动作-观察日志。原文给出信念一致内部状态需满足的四条公理规范，并证明LLM配合BSE是在底层POMDP诱导的信念MDP上的可靠马尔可夫策略；因此只要LLM从不接触原始历史，就继承经典POMDP理论的Bellman最优性保证。在Tiger POMDP和红队攻击图任务上，与六个基线（reactive LLM、Chain-of-Thought、ReAct、自然语言信念追踪器、QMDP、POMCP）比较，BSE增强智能体在任务回报、信念校准和决策一致性上均有改善。十项定向消融隔离各架构选择的贡献，确认效果不特定于任一模型。代码、环境规范、提示模板和种子日志随论文提供。",
+   "key_points": [
+    "LLM智能体在部分可观测环境中的失败源于缺少显式隐状态信念，而非仅提示或推理问题。",
+    "BSE在LLM外维护POMDP贝叶斯后验，只把后验暴露给LLM，不展示原始动作-观察日志。",
+    "原文给出四公理规范，并证明LLM+BSE是信念MDP上的可靠马尔可夫策略，可继承Bellman最优性保证。"
+   ],
+   "topics": [
+    "agent-loop",
+    "context-engineering",
+    "reasoning"
+   ],
+   "category": "论文",
+   "categories": [
+    "论文",
+    "Agent 工程",
+    "上下文与记忆"
+   ],
+   "horizon": "long",
+   "score": 89.7,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Arnab Chattopadhayay",
+     "Debdipta Halder"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "0a65718e98e42330",
+   "url": "https://arxiv.org/abs/2609.09853v1",
+   "title": "The Era by Eon Benchmark: A Generated Enterprise Estate with Exact Ground Truth for Benchmarking LLM Agents",
+   "source": "arXiv Agent/LLM",
+   "tier": "S",
+   "published_at": "2026-09-09T08:06:46+00:00",
+   "summary_short": "Era by Eon基准用虚构公司生成一致企业数据并提供精确答案，评估企业工具LLM智能体。",
+   "summary_long": "企业系统记录的LLM智能体无法在客户生产数据上评估，现有替代方案也没有真实答案。原文介绍Era by Eon Benchmark，用于评估使用企业工具的LLM智能体。该基准围绕一个完整虚构公司构建，包括产品模拟器、公司特定内部数据库、基准问题及计算出的答案键。行业、公司规模、商业模式、应用组合和随机种子共同定义每家公司。一个种子实体图向Salesforce、Zendesk、Slack、Gong等产品模拟器提供共享公司数据。问题条件生成器为内部数据库创建模式和记录，在生成数据库特定事实前从同一图获取共享实体、键和值，因此两种机制描述一致的企业资产。每个预期答案从最终记录计算，评分精确。设计检查和答案键检查用于验证内部数据库，现实性记分卡和对抗检测器用于验证实体图。在23家生成公司中，平均现实性得分从61.8升至97.0，零记录被标记为合成。在报告的模拟器轨道比较中，9个模型对相同33个问题各回答3次，准确率估计介于42.4%至76.8%之间；36个成对差异中仅3个在多重比较校正后仍得到支持。",
+   "key_points": [
+    "基准围绕完整虚构公司构建，包含产品模拟器、内部数据库、问题和计算答案键；公司由行业、规模、商业模式、应用组合和种子定义。",
+    "一个种子实体图向Salesforce、Zendesk、Slack、Gong等模拟器及内部数据库生成器提供一致数据，答案从最终记录计算，评分精确。",
+    "验证显示平均现实性得分从61.8升至97.0且零记录被标记为合成；9个模型准确率估计范围为42.4%–76.8%，36个成对差异中3个在校正后仍受支持。"
    ],
    "topics": [
     "eval",
-    "user-simulation",
-    "synthetic-data"
+    "tool-use"
    ],
    "category": "评测与基准",
    "categories": [
@@ -323,387 +325,33 @@
     "论文"
    ],
    "horizon": "long",
-   "score": 90.2,
+   "score": 89.7,
    "status": "published",
    "extra": {
     "authors": [
-     "Rahul Khedar",
-     "Eshita",
-     "Sneha Teja Sree Reddy Thondapu",
-     "Mayank Malhotra",
-     "Arup Kumar Das",
-     "Jitesh Chandra Mishra"
+     "Benjamin Gruenbaum",
+     "Doron Porat",
+     "Assaf Natanzon",
+     "Roy Zavida",
+     "Chen Dinachi",
+     "Or Itzahary"
     ],
     "summary_mode": "full"
    }
   },
   {
-   "id": "f5d1e583dd82f51c",
-   "url": "https://arxiv.org/abs/2609.08550v1",
-   "title": "CreaMem: A Scene-Aware Memory Architecture for Personalized Agents",
+   "id": "b03835c02f60eeb7",
+   "url": "https://arxiv.org/abs/2609.09778v1",
+   "title": "ROAM: Robust Organization of Atomic Memories for Agents through Semantic Relations",
    "source": "arXiv Agent/LLM",
    "tier": "S",
-   "published_at": "2026-09-08T10:33:05+00:00",
-   "summary_short": "提出CreaMem场景感知记忆架构，通过生活场景划分与双编码提升长期记忆问答准确率。",
-   "summary_long": "长期记忆是个性化LLM智能体的核心能力。现有记忆系统多按主题片段或摘要层级组织信息，但原文指出两大局限：一是缺乏场景感知，来自无关生活场景的记忆共享同一检索空间，导致搜索空间膨胀并引入跨场景干扰；二是每条记忆只从单一视角编码，难以检索同一事件的不同互补视角。针对这些问题，本文提出CreaMem架构，通过将记忆划分为多个生活场景记忆，实现场景感知的记忆组织，从而在检索时减少跨场景干扰。为突破单视角限制并实现跨记忆协同，CreaMem在每个记忆内部对条目进行双重编码，同时采用情景视角和特质视角。检索时还设计了逐记忆均衡采样策略。在两个长期记忆基准上的广泛实验表明，CreaMem在所有评估指标上均提升了问答准确率，其中多跳推理性能提升尤为显著，验证了场景感知划分和跨记忆协同的有效性。为增强可复现性，代码已在公共GitHub仓库发布。原文未详述基准名称、实验设置细节及代码地址。",
+   "published_at": "2026-09-09T06:29:38+00:00",
+   "summary_short": "ROAM 通过语义关系分类原子记忆并仅检索主视图，答案准确率最高提升29.8个百分点。",
+   "summary_long": "长期语言模型智能体依赖外部记忆，原子记忆因其细粒度语义边界可支持精确检索和观察比较，但累积后难免冗余、重叠或冲突。现有方法常让 LLM 管理器直接增删改重写记忆，将语义解释、存储决策与内容生成耦合在易错步骤中。ROAM 是关系引导框架：利用原子性进行管理，同时允许回答时生成更丰富的表示。它先将新到原子与已存原子分类为独立、等价、方向性包含或冲突，再把观察组织为活跃的 Primary 与支撑的 Evidence 角色；随后 Fusion 将互补细节和时间变化合并成紧凑且可能非原子的视图。回答时只检索 Primary 视图，避免冗余或过时原子独立竞争。实验显示，跨模型和评估设置 ROAM 将答案准确率最多提升 29.8 个百分点；消融表明不同关系带来互补收益，Fusion 在角色组织之外提供一致增益；机制分析发现答案关键来源召回率提高 15.6 点，混淆 token 占比下降 11.5 点。ROAM 在不同 manager 规模下保持稳健。",
    "key_points": [
-    "现有记忆系统缺乏场景感知，无关生活场景共享检索空间，易产生跨场景干扰；且单一视角编码难以获取同一事件互补信息。",
-    "CreaMem通过划分多个生活场景记忆实现场景感知组织，降低检索时的跨场景干扰。",
-    "记忆条目采用情景视角和特质视角双重编码，实现跨记忆协同，并在检索时采用逐记忆均衡采样策略。"
-   ],
-   "topics": [
-    "memory",
-    "context-engineering",
-    "agent-loop"
-   ],
-   "category": "论文",
-   "categories": [
-    "论文",
-    "上下文与记忆",
-    "Agent 工程"
-   ],
-   "horizon": "long",
-   "score": 90.0,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Qixuan Sun",
-     "Yue Que",
-     "Bowei He",
-     "Jin Guo",
-     "Dihang Yang",
-     "Wenchang Situ"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a039433c73b64cea",
-   "url": "https://arxiv.org/abs/2609.09072v1",
-   "title": "ToolLoop: Closed-Loop Tool-Use Data Synthesis via Decomposed Generation and Dynamic Self-Feedback",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-09-08T17:26:35+00:00",
-   "summary_short": "ToolLoop闭环合成工具使用数据，三阶段分解加动态自反馈，4B模型BFCL达86.40%。",
-   "summary_long": "高质量工具使用数据对训练语言模型与外部工具有效交互至关重要。现有合成方法多采用“先生成后过滤”范式，依赖静态事后验证，常导致数据低效且特征分布不均衡。ToolLoop是一个闭环框架，将合成过程分解为三个递进阶段：首先抽样函数名组合作为ground truth；然后反向推导用户查询；最后正向推导工具调用。每个阶段都通过动态自反馈迭代引导模型朝高质量生成，实现从“生成-过滤”到“生成-验证-精炼”的转变。在Berkeley Function Calling Leaderboard（BFCL）上，使用11K合成样本训练的4B参数模型在非推理模式下达到86.40%的准确率；一个移除与BFCL重叠候选函数的Isolate变体仍达到86.07%。在ACEBench上的跨基准评估进一步显示较强泛化能力，仅使用基线训练数据的18.3%即取得72.1%的总体准确率。",
-   "key_points": [
-    "ToolLoop将合成分解为三个递进阶段：抽样函数名组合、反向推导用户查询、正向推导工具调用。",
-    "各阶段采用动态自反馈迭代，推动从生成-过滤转向生成-验证-精炼。",
-    "在BFCL上，4B模型用11K合成样本非推理模式达86.40%，Isolate变体达86.07%；ACEBench跨基准用18.3%基线数据达72.1%总体准确率。"
-   ],
-   "topics": [
-    "tool-use",
-    "post-training",
-    "eval"
-   ],
-   "category": "论文",
-   "categories": [
-    "论文",
-    "模型训练",
-    "Agent 工程"
-   ],
-   "horizon": "long",
-   "score": 89.9,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Min Zeng",
-     "Yuzhou Liu",
-     "Zhenyu Cao",
-     "Hanxiu Chen",
-     "Heng Li",
-     "Caiquan Liu"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "9c53c4a06b35cf12",
-   "url": "https://arxiv.org/abs/2609.09115v1",
-   "title": "MeClear: Cooperative Game-Theoretic Attribution and Risk-Aware Memory Clearance for Long-Horizon LLM Agents",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-09-08T17:46:00+00:00",
-   "summary_short": "MeClear基于合作归因清除负效用记忆，任务恢复率达82.3%。",
-   "summary_long": "长程大语言模型智能体依赖外部记忆系统保存用户偏好和任务知识。传统检索机制优化语义兼容性而非下游效用，常将过时、误导或冲突的证据引入活跃上下文。MeClear是一个任务条件记忆清除框架，通过合作归因识别具有负向下游效用的记忆，并在智能体执行时选择性抑制这些记忆。MeClear将留一法筛选与采样合作Shapley归因相结合，把效用分配到相互作用的证据上，有效解决单次移除评估无法处理的冗余冲突掩蔽问题。基于归因排名，MeClear执行查询范围的最小清除策略，通过嵌套过滤验证清除后的上下文能否恢复任务，且不永久改变持久记忆库。在十个长对话记忆池上的实验评估显示，MeClear达到85.9%的目标召回率和82.3%的整体任务恢复率，比留一法基线提高25.5个百分点。",
-   "key_points": [
-    "传统检索机制只优化语义兼容性，容易引入过时、误导或冲突证据，影响长程智能体。",
-    "MeClear结合留一法筛选与采样合作Shapley归因，识别负向下游效用的记忆并选择性抑制，解决冗余冲突掩蔽问题。",
-    "在十个长对话记忆池上，MeClear实现85.9%目标召回和82.3%任务恢复率，较留一法基线提升25.5个百分点。"
-   ],
-   "topics": [
-    "memory",
-    "context-engineering"
-   ],
-   "category": "论文",
-   "categories": [
-    "论文",
-    "上下文与记忆",
-    "Agent 工程"
-   ],
-   "horizon": "long",
-   "score": 89.4,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Boyu Yang",
-     "Jiazheng Sun",
-     "Zilong Lu",
-     "Zhi Qiu",
-     "Xin Peng",
-     "Jun Zheng"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a38b222e6ce875dc",
-   "url": "https://arxiv.org/abs/2609.08599v1",
-   "title": "Graph-Based Personalized Memory for LLM Agents: Representation, Evolution, Retrieval, and Evaluation",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-09-08T11:34:04+00:00",
-   "summary_short": "综述LLM智能体图基个性化记忆的表示、演化、检索与评估",
-   "summary_long": "大型语言模型智能体正从单次会话工具发展为需跨任务、上下文和交互适应用户的长期个人助手，这使记忆成为个性化核心要求。图基个性化记忆通过显式关系、时间上下文和证据链接对用户偏好、目标、约束、关系及过往经历进行结构化建模，既能表示智能体对用户的记忆，也能表示记忆如何连接、修订和检索以支持个性化决策。现有研究分散在个性化智能体与通用图记忆框架之间，难以整体理解设计空间。本综述以生命周期视角组织图基个性化记忆研究，围绕记忆表示、记忆演化、记忆检索和记忆评估展开，比较关键设计选择，讨论当前评估实践，并指出构建可靠长期个性化智能体的开放挑战，旨在阐明图基记忆如何支持自适应、可控、以用户为中心的LLM智能体。",
-   "key_points": [
-    "LLM智能体向长期个人助手演进，记忆成为个性化的核心要求。",
-    "图基个性化记忆通过显式关系、时间上下文和证据链接建模用户信息，并支持记忆的连接、修订与检索。",
-    "本综述按生命周期组织为表示、演化、检索、评估，比较设计选择并指出开放挑战。"
-   ],
-   "topics": [
-    "memory",
-    "context-engineering",
-    "agent-loop"
-   ],
-   "category": "论文",
-   "categories": [
-    "论文",
-    "上下文与记忆"
-   ],
-   "horizon": "long",
-   "score": 89.2,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Dac Duy Anh Nguyen",
-     "Zhangchi Qiu",
-     "Shigeng Chen",
-     "Alan Wee-Chung Liew"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "41ae9d3c0f328e18",
-   "url": "https://arxiv.org/abs/2609.08183v1",
-   "title": "NeoHorse-1: Towards Recursive Self-Improvement via Agentic Post-Training with Routing Harness",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-09-08T03:14:54+00:00",
-   "summary_short": "NeoHorse-1用智能路由记录交互并驱动后训练，在11个基准上提升模型，探索递归自我改进。",
-   "summary_long": "递归自我改进需要一个具体机制，让人工智能系统观察自身能力并把证据转化为下一轮学习。NeoHorse-1是一个agent原生模型家族，通过agentic后训练探索这一路径。该系统把异构模型池与智能路由结合，记录每一用户轮次的预测能力需求、所选服务层级和后续交互。这些记录被转化为训练示例，保留交错推理、工具调用和harness上下文，并经由结构验证、六维语义评估和子场景级标注准入。路由信号把监督微调组织为三阶段课程，并扩展到路由引导的on-policy蒸馏，由教师在同一进阶下监督学生生成的响应。能力引导分配再把评估反馈转化为下一轮训练混合，闭合评估—选择—更新循环，使系统所学内容塑造其后续学习来源。在覆盖harness型智能体、工具使用、编码和指令遵循的11个基准上，后训练将宏平均值在4B从58.94提升至64.87、在9B从65.60提升至69.04，显著缩小了后训练4B模型与9B基础模型的总体差距。NeoHorse-1提供了这种反馈驱动过程的初始原型，以及跨多次迭代由harness介导实现RSI的路径。",
-   "key_points": [
-    "NeoHorse-1结合异构模型池与智能路由，记录预测能力需求、服务层级和交互，生成保留推理、工具调用与harness上下文的训练示例。",
-    "路由信号组织三阶段监督微调课程并扩展为路由引导的on-policy蒸馏；能力引导分配将评估反馈转化为下一训练混合，形成评估-选择-更新闭环。",
-    "在11个基准上，后训练使宏平均在4B从58.94升至64.87、9B从65.60升至69.04，缩小后训练4B与9B基础模型差距。"
-   ],
-   "topics": [
-    "post-training",
-    "harness",
-    "agent-loop"
-   ],
-   "category": "模型训练",
-   "categories": [
-    "模型训练",
-    "Agent 工程",
-    "论文"
-   ],
-   "horizon": "long",
-   "score": 88.7,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "NeoHorse Team",
-     "Guoliang Cao",
-     "Guohao Dai",
-     "Tianyu Guo",
-     "Kai Han",
-     "Hailin Hu"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "fe6baa2943eb3dfa",
-   "url": "https://arxiv.org/abs/2609.08944v1",
-   "title": "SkillAdam: Stable and Efficient Skill Evolution for Agents",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-09-08T16:04:45+00:00",
-   "summary_short": "SkillAdam用Adam式优化记忆与波动编辑预算实现稳定高效的技能进化",
-   "summary_long": "Agent技能为冻结的语言模型智能体提供领域知识和流程指导，但获取高质量技能成本高、难以扩展：专家编写技能耗费大量人力，而近期技能自我进化方法虽能自动化迭代，却因启发式更新策略常导致优化不稳定、迭代效率低下。原文识别出实现稳定高效技能自我进化的两个核心挑战：方向稳定性要求有效修正能够累积而不被迭代局部反馈覆盖；更新自适应性要求每次修改的范围能反映近期案例级改进的一致性。针对这两个挑战，原文提出SkillAdam，一个受Adam启发的框架，用于优化离散且不可微的技能文档。该框架以优化记忆作为Adam一阶矩的功能类比，记录已识别的问题和先前解决方案尝试的结果，从而稳定更新方向；以波动驱动的编辑预算作为Adam二阶矩的功能类比，追踪近期案例级改进的历史加权变异，自适应控制更新幅度。在覆盖短期和长期任务的七个基准上，SkillAdam取得了最先进的性能，优化动态更加稳定，且与先前方法相比，在显著更少的优化迭代次数和更低成本下获得了更强的技能。原文提供了代码仓库地址。",
-   "key_points": [
-    "高质量Agent技能获取成本高、难扩展，现有自我进化方法启发式更新不稳定且效率低",
-    "SkillAdam引入优化记忆稳定更新方向，引入波动驱动编辑预算自适应控制更新幅度",
-    "在七个基准上实现最先进性能，优化动态更稳定，迭代次数更少、成本更低"
-   ],
-   "topics": [
-    "agent-loop",
-    "open-source",
-    "skill-evolution"
-   ],
-   "category": "Agent 工程",
-   "categories": [
-    "Agent 工程",
-    "论文",
-    "开源项目"
-   ],
-   "horizon": "long",
-   "score": 88.5,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Gaoyuan Li",
-     "Meihao Fan",
-     "Yizhe Liu",
-     "Shaolei Zhang",
-     "Ju Fan",
-     "Siyi Wang"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "b9470b5d28c57915",
-   "url": "https://arxiv.org/abs/2609.08248v1",
-   "title": "Agentic ML Exploration (A-MLE) for Ads Ranking",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-09-08T04:48:03+00:00",
-   "summary_short": "A-MLE以自主LLM代理系统化探索广告排序模型组合，缓解人类迭代瓶颈",
-   "summary_long": "现代工业广告排序栈的瓶颈不在模型容量或训练算力，而在人类ML迭代吞吐量；单个统计显著改进需研究、实现、训练、调试、评估、上线等周期，每模型耗费高级工程师数天至数周。排序栈含众多异构数据、架构与基础设施约束不同的模型，技术扩散缓慢不均，留下可恢复信号未探索。为此提出A-MLE，一个自主LLM代理系统，在广告排序模型组合中系统性探索ML技术。它把ML迭代分解为假设生成、探索策略、实验执行、结果分析与共享知识基底五阶段，由单个代理编排，调用领域特定技能与代理工作流，在沙盒执行层运行，各阶段边界设人类在环检查点。系统部署于一组代表性大规模广告排序模型，按工具可用性、自主工作流执行、开放性探索三层能力框架评估。固定代理循环的跨LLM对照研究比较Claude Sonnet、Gemini和GPT家族，显示执行可靠性与探索侵略性存在定性差异。文章讨论失败模式与影响可靠性的设计选择，认为代理探索是ML工程师的实际力量倍增器，尤其惠及很少获专家关注的模型长尾。",
-   "key_points": [
-    "现代工业广告排序的瓶颈是人类ML迭代吞吐量，单个显著改进需数天至数周高级工程师投入。",
-    "A-MLE将ML迭代分解为假设生成、探索策略、实验执行、结果分析、共享知识基底五阶段，由LLM代理在沙盒层编排并设人类在环检查点。",
-    "部署评估涵盖工具可用性、自主工作流执行和开放性探索；跨LLM对照显示Claude Sonnet、Gemini、GPT在执行可靠性与探索侵略性上存在定性差异，并指出代理探索尤其惠及模型长尾。"
-   ],
-   "topics": [
-    "agent-loop",
-    "tool-use",
-    "eval"
-   ],
-   "category": "Agent 工程",
-   "categories": [
-    "Agent 工程",
-    "工程实践",
-    "模型训练"
-   ],
-   "horizon": "long",
-   "score": 88.3,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Erwin Gao",
-     "Vinodh Kumar Sunkara",
-     "Jingyi Guan",
-     "Qinjin Jia",
-     "Hangjun Xu",
-     "Xiang Ji"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "ac8361736bd76a0a",
-   "url": "https://arxiv.org/abs/2609.08228v1",
-   "title": "SE-GoS: Self-Evolving Graph-of-Skills for Skill Library at Scale",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-09-08T04:20:11+00:00",
-   "summary_short": "SE-GoS利用执行轨迹自我演化技能图，无需训练即可提升检索并降低token消耗。",
-   "summary_long": "现代LLM智能体越来越依赖可复用技能，但当技能库扩展到数千条目时，有效检索成为瓶颈。Graph-of-Skills（GoS）利用依赖感知的图结构实现可扩展技能检索，SkillDAG则进一步表明技能图可以在线积累执行支持的结构。然而，这些方法尚未解决历史执行轨迹能否被系统性蒸馏为更好的检索图，并泛化到未见任务的问题。本文提出Self-Evolving Graph-of-Skills（SE-GoS），一个无需训练的框架，从执行轨迹中演化现有GoS图，同时保留原始检索流程。SE-GoS执行三种互补更新：拓扑演化从执行证据中发现和剪枝技能关系；边权演化根据历史有效性强化与检索相关的关系；描述演化利用执行反馈优化面向检索的技能描述。在SkillsBench上的三个LLM实验中，SE-GoS一致提高任务奖励，同时相比全技能加载减少输入token，增益因模型家族而异。在一个代表性设置中，一轮演化将奖励从52.4%提高到59.4%，同时相比全技能加载减少约三分之一的输入token，所得图迁移到不相交的留出划分时，比静态GoS基线提高5.4点。结果表明，技能图可以通过执行经验得到改进，无需模型训练、改变检索算法或修改技能内容，从而将静态检索图转变为不断演进的检索基础设施。",
-   "key_points": [
-    "SE-GoS从历史执行轨迹演化现有GoS图，无需训练且保留原始检索流程。",
-    "包含拓扑演化、边权演化和描述演化三种互补更新。",
-    "在SkillsBench上提高任务奖励并减少输入token，且能迁移到留出划分并优于静态GoS。"
-   ],
-   "topics": [
-    "context-engineering",
-    "skill-retrieval",
-    "graph-of-skills"
-   ],
-   "category": "论文",
-   "categories": [
-    "论文",
-    "Agent 工程",
-    "上下文与记忆"
-   ],
-   "horizon": "long",
-   "score": 88.3,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Dawei Fu",
-     "Cheng Jiang",
-     "Sitian Qian",
-     "Huainan Wang",
-     "Zhongkai Hao"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "11472536e2454de1",
-   "url": "https://arxiv.org/abs/2609.08566v1",
-   "title": "BIO-MEMART: Biometric-Aware KV Cache Memory for Multi-User LLM Agents",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-09-08T10:56:17+00:00",
-   "summary_short": "Bio-MemArt为多用户LLM智能体的共享KV缓存记忆加入生物特征访问控制，低误接受且大幅降低prefill token。",
-   "summary_long": "KV cache正从服务优化演进为长期LLM智能体的外部记忆基底，但在共享多用户部署中，可复用KV块带来缺失的访问控制问题：仅凭语义相关性无法判断记忆块是否对当前物理用户授权。Bio-MemArt是一个面向多用户LLM智能体的生物特征感知KV-cache记忆框架。它为每个存储的KV记忆块附加归一化生物特征模板，用当前用户的生物特征探针过滤共享记忆池，仅在授权候选池内运行原有MemArt检索与KV复用流程。该设计保留了潜在空间检索、直接缓存复用和解耦位置编码，同时为共享KV记忆增加物理用户访问控制。在长期对话问答中，以人脸和掌纹基准，在Owner与Non-owner查询条件下评估。人脸基准上平均owner和非owner生物特征成功率分别为95.71%和0.86%；掌纹基准上分别为97.60%和2.00%。效率研究中，平均prefill token从全上下文提示的18,781.96降至Bio-MemArt的28.57，表明生物特征门控保持了KV-cache记忆的低token运行区间。",
-   "key_points": [
-    "Bio-MemArt为每个存储KV记忆块附加归一化生物特征模板，并用当前用户探针过滤共享记忆池，再执行MemArt检索与KV复用。",
-    "在人脸和掌纹基准上，owner成功率分别为95.71%和97.60%，non-owner成功率分别为0.86%和2.00%。",
-    "平均prefill token从全上下文提示的18,781.96降至28.57，表明生物特征门控保持低token运行区间。"
-   ],
-   "topics": [
-    "memory",
-    "safety"
-   ],
-   "category": "上下文与记忆",
-   "categories": [
-    "上下文与记忆",
-    "安全与对齐",
-    "论文"
-   ],
-   "horizon": "long",
-   "score": 88.2,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Yanhong Qian",
-     "Xuanying He",
-     "Qingguo Meng",
-     "Shihao Ding",
-     "Xingbo Dong",
-     "Zhe Jin"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "9f87f5149cea73ec",
-   "url": "https://arxiv.org/abs/2609.08558v1",
-   "title": "Personalizing LLM Agent Memory Using Biometrics",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-09-08T10:46:12+00:00",
-   "summary_short": "Bio-Memory 用生物特征匹配个性化 LLM 智能体记忆，在多用户共享环境中区分所有者查询。",
-   "summary_long": "个性化记忆通过存储和重用用户特定数据，帮助 LLM 智能体提供稳定且定制化的协助。但在多用户场景中，记忆检索不仅要考虑语义相似性，还必须判断当前请求者是否与存储记忆所关联的身份一致。针对这一问题，原文提出 Bio-Memory，一种生物特征感知的记忆架构，使记忆检索同时依赖语义相似性和生物特征匹配。Bio-Memory 构建在 A-Mem 之上，为每条原子记忆补充生物特征嵌入，并先用生物特征匹配形成检索候选池，再进行语义排序。研究在 LoCoMo 上以 10 用户共享智能体的设置进行评估，覆盖 7 个面部基准和 10 个掌纹协议。结果显示，Bio-Memory 在各数据集上一致地将所有者查询与非所有者查询区分开。在基于面部的个性化中，CALFW 上 F1 和 BLEU-1 的最大平均差距分别达到 27.29% 和 21.15%；在基于掌纹的个性化中，MS_Blue 上的对应差距为 25.75% 和 19.22%。这些结果支持将生物特征作为共享环境中个性化记忆检索的实用控制信号。",
-   "key_points": [
-    "多用户共享场景下，记忆检索需同时考虑语义相似性和请求者身份匹配，仅靠语义相似性不足。",
-    "Bio-Memory 基于 A-Mem 为每条原子记忆加入生物特征嵌入，先用生物特征匹配形成候选池，再进行语义排序。",
-    "在 LoCoMo 10 用户共享设置中，面部和掌纹基准上所有者与非所有者查询均被一致区分，CALFW 上 F1/BLEU-1 最大平均差距为 27.29%/21.15%，MS_Blue 上为 25.75%/19.22%。"
+    "ROAM 将新到原子与已存原子分类为独立、等价、方向性包含或冲突，并把观察组织为活跃 Primary 与支撑 Evidence 角色。",
+    "Fusion 融合互补细节和时间变化，生成紧凑且可能非原子的视图；回答时仅检索 Primary 视图，减少冗余或过时原子干扰。",
+    "跨模型和评估设置答案准确率最高提升 29.8 个百分点，消融显示关系与 Fusion 的互补增益，机制分析显示关键来源召回提高和混淆 token 占比下降。"
    ],
    "topics": [
     "memory",
@@ -715,203 +363,65 @@
     "上下文与记忆"
    ],
    "horizon": "long",
-   "score": 85.8,
+   "score": 89.7,
    "status": "published",
    "extra": {
     "authors": [
-     "Yanhong Qian",
-     "Qingguo Meng",
-     "Shihao Ding",
-     "Xingbo Dong",
-     "Zhe Jin",
-     "Hanrui Wang"
+     "Jianjie Zheng",
+     "Peng Lai",
+     "Sijie Cheng",
+     "Jiehui Zhao",
+     "Lei Yang",
+     "Guanhua Chen"
     ],
     "summary_mode": "full"
    }
   },
   {
-   "id": "048aa76fa30eaedc",
-   "url": "https://simonwillison.net/2026/Sep/8/on-navier-stokes/",
-   "title": "On the Navier–Stokes Millennium Prize Problem",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-08T23:55:12+00:00",
-   "summary_short": "OpenAI未发布模型解决Navier–Stokes千年难题，被质疑优先权与数据使用",
-   "summary_long": "OpenAI使用未发布内部模型，对七大千禧年大奖难题之一的Navier–Stokes存在性与光滑性问题给出解决方案，该问题自2000年5月24日起悬赏100万美元。结果因纽约大学数学教授Tristan Buckmaster的指控蒙上阴影。Tristan与现任职于Anthropic的数学家Levent Alpöge合作相关问题近一年，大量使用Claude和Codex，于8月15日取得突破。传闻发酵后，两人得知OpenAI也听闻Anthropic解决重大开放问题，主动联系后发现OpenAI团队在用类似方法研究相关问题。Tristan称，他询问OpenAI首次发送提示的时间，对方起初未直接回答，最终承认是在他们工作信息传到OpenAI之后几天内；他问模型是否在其Codex会话上训练或访问，被告知不会查找用户数据，但再问训练时未获答复。OpenAI团队曾提出等待Tristan发表或由其撰写论文，但明确Levent不会成为共同作者，理由是与Anthropic存在竞争关系。OpenAI自述9月1日听到传言后启动评估，代理于9月5日达成解决，用时约88小时，Lean验证另需17小时；全部尝试共用490万条消息、约3000亿输出token，按GPT-6 Astra公开API价格约1500万美元。OpenAI表示未看到对方工作，但无法排除去标识化数据改进模型的可能性，并强调证明显著不同，Euler情",
-   "key_points": [
-    "OpenAI未发布模型解决Navier–Stokes千年难题，该题悬赏100万美元",
-    "Tristan Buckmaster指控OpenAI在得知其与Levent Alpöge的工作后才启动相关研究，且未回答训练数据问题",
-    "OpenAI称9月1日受传闻启发启动评估，9月5日代理解决，证明与对方不同，但不排除去标识化数据影响模型"
-   ],
-   "topics": [
-    "reasoning",
-    "safety"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "安全与对齐"
-   ],
-   "horizon": "short",
-   "score": 84.9,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "bb45ef4502e2bf63",
-   "url": "https://arxiv.org/abs/2609.08965v1",
-   "title": "PlannerForge: LLM Agents for Scenario-Based Testing of Motion Planners in Autonomous Driving",
-   "source": "arXiv Agent/LLM",
+   "id": "2b26a8066576cc98",
+   "url": "https://openai.com/index/introducing-the-agents-api",
+   "title": "Introducing the Agents API",
+   "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-09-08T16:19:06+00:00",
-   "summary_short": "PlannerForge统一LLM代理覆盖自动驾驶场景测试全流程，多项指标优于现有工具。",
-   "summary_long": "自动驾驶安全验证面临挑战，基于场景的测试虽系统化，但现有流程碎片化，各阶段由独立工具完成、交互有限。大语言模型代理已在感知、规划、控制等子系统中展现前景，但尚无工作以统一LLM代理框架覆盖场景测试全流程。为此，原文提出PlannerForge，扩展从场景生成到ADS评估的所有基于场景测试阶段，并新增ADS增强和ADS基准测试两个LLM增强阶段。评估使用10个现成LLM，在生成、选择、修改、模块路由、规划器测试和增强等任务及5种提示条件下进行。每任务最佳分数为0.88至1.00，开源20-35B后端在多数任务上与商业API相当，开源模型如Qwen3.6:35B在五分之三的任务中匹配商业API；端到端模块链接保留83%（商业）和78%（开源）的种子查询。与现有工具相比，PlannerForge在自然语言生成上193/200可执行，优于Scenario Factory 2.0的144/200；实现92-96%请求的城市、道路和车辆属性；排名1选择为92.0%，优于BM25的67.5%；物理有效编辑≥94%，优于From-Words-to-Collisions的31%。在N=400规模，成本调整使规划器成功率从50.4%提升至70.2%，碰撞从19.0%降至8.4%，无需领域特定微调。",
+   "published_at": "2026-09-10T00:00:00+00:00",
+   "summary_short": "Agents API公开测试：将Codex代理框架以单次API调用提供给开发者，由OpenAI托管。",
+   "summary_long": "2026年9月10日，Agents API进入公开测试，将支撑Codex的agent框架与基础设施通过简单灵活的API提供给开发者。该API允许在单次调用中指定任务、模型、工具和环境，即可创建生产级云agent。OpenAI负责托管和维护框架；计算环境可选OpenAI管理的沙箱、自有基础设施或沙箱合作伙伴。API支持MCP工具、多智能体（可启用最多3个并发子代理）、Vault ID与能力目录等。开发者可专注于工具、知识和工作流。客户反馈方面：Ciridae称评估分数从0.71升至0.85，子代理支持带来4倍延迟降低；SafetyKit迁移后每案例成本降低60%，延迟更低、令牌效率改善；Long Lake表示借助其Nexus平台，可在几小时内为住宅服务、建筑等行业部署agent；WithCoverage称可直接在代码中使用agent，无需自建agent基础设施；另有客户指出Agents API能自然处理突发负载，可扩展到数百个agent异步运行后收集结果。",
    "key_points": [
-    "PlannerForge以统一LLM代理框架覆盖从场景生成到ADS评估全流程，并新增ADS增强与基准测试阶段。",
-    "在10个现成LLM、5种提示条件下，最佳每任务分数0.88-1.00，开源20-35B后端在多数任务上与商业API相当，端到端保留83%/78%种子查询。",
-    "相比现有工具，PlannerForge在自然语言生成、排名1选择和物理有效编辑上分别优于Scenario Factory 2.0、BM25和From-Words-to-Collisions；N=400成本调整将成功率从50.4%提至70.2%，碰撞从19.0%降至8.4%。"
+    "Agents API公开测试，将Codex的harness和基础设施以API形式开放，单次调用可创建生产级云agent。",
+    "支持MCP工具、多智能体/最多3个并发子代理、Vault及OpenAI托管或自有计算环境。",
+    "客户数据：Ciridae评估分数升至0.85、延迟降4倍；SafetyKit成本降60%；Long Lake数小时跨行业部署；WithCoverage无需自建基础设施。"
    ],
    "topics": [
-    "agent-loop",
-    "eval",
-    "scenario-testing"
+    "mcp",
+    "multi-agent",
+    "product"
    ],
-   "category": "论文",
+   "category": "Agent 工程",
    "categories": [
-    "论文",
     "Agent 工程",
-    "评测与基准"
-   ],
-   "horizon": "long",
-   "score": 84.0,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Yuan Gao",
-     "Sebastian Müller",
-     "Mattia Piccinini",
-     "Marc Kaufeld",
-     "Yuchen Zhang",
-     "Finn Rasmus Schäfer"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "44084287147f6737",
-   "url": "https://magazine.sebastianraschka.com/p/gpt-6-astra-looped-transformers-and",
-   "title": "GPT-6 Astra, looped transformers, and hidden reasoning",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-09T14:37:47+00:00",
-   "summary_short": "GPT-6 Astra性能与基准观察，并预告解析循环Transformer与隐藏思维链传闻。",
-   "summary_long": "作者Sebastian Raschka在2026年9月9日撰文称，OpenAI上周发布GPT-6 Astra，他使用数日后认为这是迄今用过最好的模型，尤其在3D渲染与动画任务上表现突出，虽在写作、数学、编码等各类任务中均超越前代GPT-5.6，但图形演示方面领先幅度更大。基准测试显示，Astra在ARC-AGI-3上达到99.9%，而GPT-5.6 Sol仅7.8%，该基准衡量逻辑谜题与泛化能力；在编码与数学基准上也很强。独立机构Artificial Analysis的编码代理指数v1.4中，Astra处于前沿，但未拉开巨大差距；其综合智能指数混合多类任务，独立评估因共享harness而更具可比性，但模型训练通常围绕某一主要harness，可能低估Astra在其主要harness中的表现，需跨harness比较。文章开篇还提到，近期关注点包括Astra的性能、循环Transformer/循环深度方面，以及传闻Astra隐藏推理轨迹（思维链）。作者预告将先讨论Astra印象，再详解“循环Transformer”是什么，以及它是否与隐藏思维链有关，最后介绍近期研究论文的见解；但本文截断处尚未展开这些后续部分。",
-   "key_points": [
-    "GPT-6 Astra于上周由OpenAI发布，作者认为是最佳模型，尤其擅长3D渲染和动画，相对前代全面领先。",
-    "基准测试中Astra在ARC-AGI-3达99.9%，GPT-5.6 Sol仅7.8%；独立编码与智能指数显示其前沿但未断层领先，且harness差异可能影响评估。",
-    "文章预告会讨论循环Transformer与“隐藏思维链”传闻，并介绍近期研究，但原文截断处未展开细节。"
-   ],
-   "topics": [
-    "eval",
-    "reasoning",
-    "harness"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "评测与基准"
+    "产品与商业"
    ],
    "horizon": "short",
-   "score": 83.4,
+   "score": 89.6,
    "status": "published",
    "extra": {
-    "hn_points": 333,
-    "hn_comments": 117,
     "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "534907e0d31e4171",
-   "url": "https://openai.com/index/paul-christiano-joins-openai-foundation-board",
-   "title": "Paul Christiano joins OpenAI Foundation Board",
+   "id": "4e410dad70fb9298",
+   "url": "https://openai.com/index/introducing-gpt-live-1-in-the-api",
+   "title": "Build more natural voice experiences with GPT‑Live‑1 in the API",
    "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-09-09T17:00:00+00:00",
-   "summary_short": "Paul Christiano 加入 OpenAI 基金会董事会及安全委员会，带来政府前沿 AI 安全与对齐经验。",
-   "summary_long": "OpenAI 宣布任命 Paul Christiano 为 OpenAI Foundation Board 成员，并担任 OpenAI Group PBC Board 的无投票权观察员；他还将加入基金会董事会安全与安全委员会（SSC），与主席 Zico Kolter 共事。SSC 负责治理包括 OpenAI Group PBC 在内的所有 OpenAI 实体的安全与安全实践。Christiano 曾在 NIST 下属的 AI 标准与创新中心及其前身美国 AI 安全研究所工作，评估前沿 AI 模型（含国家安全相关能力）并研究风险缓解方法；他是 Alignment Research Center 创始人，专注使先进 AI 系统与人类利益对齐；2017 至 2021 年曾在 OpenAI 领导 alignment 研究并为 RLHF 奠定基础。公告称他将带来独特且技术扎实的治理视角。OpenAI 基金会及 OpenAI Group PBC 董事会主席 Bret Taylor 表示，Christiano 以严谨且聚焦最困难问题的研究帮助定义了 AI alignment 领域，其政府经验和技术判断将强化董事会监督与 SSC 工作。Christiano 表示，过去一年 AI 能力快速进步，对齐仍是困难技术问题，使 SSC 责任更重要、更具挑战性。原文还指出，他认真对待先进 AI 可能造成灾难性",
-   "key_points": [
-    "Paul Christiano 获任命为 OpenAI Foundation Board 成员，并担任 OpenAI Group PBC Board 无投票权观察员。",
-    "他还将加入基金会安全与安全委员会（SSC），与主席 Zico Kolter 共事，参与 OpenAI 安全与安全实践治理。",
-    "Christiano 拥有政府前沿 AI 安全评估经验，曾创立 Alignment Research Center，并在 2017 至 2021 年领导 OpenAI alignment 研究、为 RLHF 奠定基础。"
-   ],
+   "published_at": "2026-09-10T00:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
    "topics": [
-    "safety",
-    "ai-governance"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "安全与对齐"
-   ],
-   "horizon": "short",
-   "score": 83.2,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "9786c92a289dc0ec",
-   "url": "https://openai.com/index/ai-policy-window",
-   "title": "The AI policy window is open. We need to act.",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-09T13:00:00+00:00",
-   "summary_short": "OpenAI称AI政策窗口开启，需行动：推动国家与全球安全标准及州立法。",
-   "summary_long": "OpenAI 全球事务官 Chris Lehane 撰文称，AI 能力进入新阶段，需要配套新政策，没有任何公司、行业或政府能单独应对，应注重有意义的行动而非政策完美。OpenAI 呼吁国会制定基于能力的强制性国家 AI 安全监管；在国会行动前继续支持州立法，并宣布支持四项加州法案：SB 813（独立安全评估基础设施）、AB 1405（AI 审计师标准）、SB 1119（保护年轻人）、AB 1864（防范 AI 生物威胁）。同时将与其他前沿实验室推进自愿行业标准，倡导兼容国际方法，涵盖能力衡量、风险管理、人类控制及何时放缓或停止发展，即使这意味着放慢模型能力。文章引述首席科学家 Jakub Pachocki 认为机器智能快速崛起，包括递归自我改进潜力，需要“极度谨慎”。先进 AI 可加速药物开发、强化基础设施等，但风险不会局限于少数前沿实验室，开放模型将逼近今日前沿。文章引用 Greg Brockman 的“防御者窗口”概念，警告政策制定者面临保障机构被能力超越前的有限窗口。OpenAI 已加强监测、对齐和安全保障，包括 Astra 全轨迹监测和强制对齐评估门；若安全风险不可接受，将放缓或停止开发部署。安全不是进步的阻碍，而是让进步惠及更多人的前提。",
-   "key_points": [
-    "推动国会制定基于能力的强制性国家 AI 安全监管，并支持四项加州安全法案。",
-    "与其他前沿实验室推进自愿行业标准，并倡导兼容国际标准，包括何时放缓或停止发展。",
-    "强化内部安全保障，包括 Astra 全轨迹监测和强制对齐评估门，必要时放缓或停止开发部署。"
-   ],
-   "topics": [
-    "safety",
-    "policy",
-    "governance"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "安全与对齐"
-   ],
-   "horizon": "short",
-   "score": 80.4,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "ba08af0c3b2d96c1",
-   "url": "https://news.ycombinator.com/item?id=49624603",
-   "title": "DeepSeek launching v4.1 flash cheaper and more capable than v4 pro",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-09T11:19:26+00:00",
-   "summary_short": "DSeek计划发布V4.1 Flash，称全面超越V4 Pro并将Pro请求按Flash价格路由。",
-   "summary_long": "公告方（原文中名为DSeek）计划于2026年9月10日（北京时间）左右正式发布V4.1 Flash模型。据该公告，经过广泛内部和外部测试，V4.1 Flash在性能、成本、速度和任务完成时间等所有关键指标上已全面超越V4 Pro。该公司还称，出于对用户负责的承诺，在V4.1 Flash正式发布后、V4.1 Pro发布前，所有对Pro模型的请求将被路由至V4.1 Flash，并按Flash的价格计费。官方同时公布了Flash系列定价调整方案：自2026年9月10日12:00（北京时间）起，非高峰时段输入缓存命中单价为0.003美元、输入缓存未命中为0.15美元、输出为0.6美元；高峰时段价格将为非高峰价格的两倍。在Hacker News评论区，有用户（aftbit）反对这一做法，指出用户可能已在V4 Pro上验证了工作流，不应突然在生产环境中切换至V4.1 Flash，建议保留V4 Pro一段时间。后续讨论涉及模型输出非确定性、教育部门的内容安全审查以及自托管等观点，但原文未进一步展开完整争议。",
-   "key_points": [
-    "公告方（原文名为DSeek）计划2026年9月10日发布V4.1 Flash，称其全面超越V4 Pro的关键指标。",
-    "V4.1 Pro发布前，所有Pro请求将路由至V4.1 Flash并按Flash价格计费；Flash非高峰定价为输入缓存命中$0.003、未命中$0.15、输出$0.6，高峰翻倍。",
-    "Hacker News有用户反对突然切换模型，建议保留V4 Pro一段时间；讨论提到非确定性、内容安全审查和自托管等。"
-   ],
-   "topics": [
+    "voice-agent",
+    "tool-use",
     "product"
    ],
    "category": "模型发布",
@@ -920,43 +430,565 @@
     "产品与商业"
    ],
    "horizon": "short",
-   "score": 77.8,
+   "score": 89.1,
    "status": "published",
    "extra": {
-    "hn_points": 392,
-    "hn_comments": 203,
+    "content_source": "direct"
+   }
+  },
+  {
+   "id": "afda291c3cf7bcb1",
+   "url": "https://arxiv.org/abs/2609.10092v1",
+   "title": "RAP: Research Attention Prediction Reveals Target-Conditioned Evidence Acquisition Biases",
+   "source": "arXiv Agent/LLM",
+   "tier": "S",
+   "published_at": "2026-09-09T12:15:14+00:00",
+   "summary_short": "提出RAP基准，评估LLM研究代理预测研究注意力变化，揭示其落后于EWMA基线的瓶颈。",
+   "summary_long": "大型语言模型日益充当研究代理，但由于综述和研究想法缺乏可唯一验证的结果，其跟踪研究注意力变化的能力难以评估。为此，原文提出Research Attention Prediction（RAP），一个滚动基准，覆盖278个AI/ML领域、1390个片段。每个截止点，LLM代理在时间受限的arXiv语料库中搜索，并预测八个固定研究方向上未来六个月的论文份额。评估显示，搜索通常有帮助，但在组合准确度上，四个诊断模型均不如精确计数指数加权移动平均（EWMA）基线。研究识别出两个相互关联的瓶颈：在累积历史访问条件下，状态结转在四个诊断模型上均优于直接预测；冻结证据重放将这种逆转的一个共同成分与面向直接预测的策略检索到的最近证据占比较小联系起来。即使提供精确历史活动，针对未来的更新能力仍然有限，只有GPT-5.5加上重新开启的搜索略微超过EWMA。在已实现结果上微调后，Qwen3-4B在留出领域后期起点的预测Spearman相关性提高0.105，在变化丰富的片段上也有收益。",
+   "key_points": [
+    "RAP是一个滚动基准，覆盖278个AI/ML领域、1390个片段；LLM代理需预测八个固定研究方向未来六个月的论文份额。",
+    "四个诊断模型在组合准确度上均不及精确计数EWMA基线；搜索通常有帮助，但不足以弥补差距。",
+    "瓶颈包括状态结转优于直接预测、直接预测策略检索最近证据占比较小、未来特定更新有限；微调后Qwen3-4B的Spearman相关性提高0.105。"
+   ],
+   "topics": [
+    "eval",
+    "agent-loop",
+    "reasoning"
+   ],
+   "category": "论文",
+   "categories": [
+    "论文",
+    "评测与基准",
+    "Agent 工程"
+   ],
+   "horizon": "long",
+   "score": 89.0,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Yingqian Wu",
+     "Jingcong Liang",
+     "Siyuan Wang",
+     "Zhenfei Yin",
+     "Philip Torr",
+     "Junchi Yu"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "70de27fe8d03dfdc",
+   "url": "https://arxiv.org/abs/2609.10052v1",
+   "title": "Direct Diversity Optimization for Diverse Successful Trajectories in Preference Post-Training",
+   "source": "arXiv Agent/LLM",
+   "tier": "S",
+   "published_at": "2026-09-09T11:27:34+00:00",
+   "summary_short": "提出DDO离线后训练方法，结合DTC与RTO，在多个基准上实现最强任务成功与成功策略覆盖。",
+   "summary_long": "针对序列决策任务的LLM智能体通常使用轨迹级结果标签进行后训练，但这类标签几乎无法监督模型保留同一决策状态下的多个成功分支。原文将这一问题定义为成功策略覆盖：在固定rollout预算下，模型能在多大程度上实现不同的成功策略。为此，原文提出Direct Diversity Optimization（DDO），一种离线后训练方法，结合Divergence-Tree Collection（DTC）和Reference-Relative Target-Odds Objective（RTO）。DTC构建以共享决策状态为根的状态对齐分支集；RTO训练模型在成功替代方案上匹配参考相对目标。在BabyAI、BabaIsAI和WebShop上，DDO在比较的后训练方法中取得了最强的任务成功率和成功策略覆盖率。它还在局部动作替换后取得最高的恢复率，并且比仅成功模仿和解码时多样化控制具有更高的任务成功率和覆盖率。",
+   "key_points": [
+    "轨迹级结果标签对保留同一决策状态下的多个成功分支缺乏监督，问题被定义为成功策略覆盖。",
+    "DDO结合DTC与RTO：DTC构建以共享决策状态为根的状态对齐分支集，RTO训练模型匹配参考相对目标。",
+    "在BabyAI、BabaIsAI、WebShop上，DDO取得最强任务成功率和策略覆盖率，并在局部动作替换后恢复率最高，优于仅成功模仿和解码时多样化控制。"
+   ],
+   "topics": [
+    "post-training",
+    "agent-loop"
+   ],
+   "category": "论文",
+   "categories": [
+    "论文",
+    "模型训练"
+   ],
+   "horizon": "long",
+   "score": 88.5,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Junwon Ko",
+     "Dong-Jae Lee",
+     "Minchan Kwon",
+     "Sunghyun Baek",
+     "Junmo Kim"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "7446bb08d785d477",
+   "url": "https://arxiv.org/abs/2609.09565v1",
+   "title": "Multi-Agent Agentic Graph Learning via Structural Signatures",
+   "source": "arXiv Agent/LLM",
+   "tier": "S",
+   "published_at": "2026-09-09T00:43:45+00:00",
+   "summary_short": "提出MAAGL框架，用社区划分与结构签名实现多智能体图学习，在四个基准上优于现有方法。",
+   "summary_long": "智能体图学习（AGL）在图上推理任务中由大语言模型驱动的智能体顺序采样图作为证据，已取得不错结果。现有方法无论单智能体还是多角色智能体，都在不同图区域共享同一推理策略，对结构和语义异质的图可能不够理想。受多智能体协作启发，让多个智能体拥有不同记忆并协作是一种自然方案，但直接应用于图面临两个挑战：一是现有AGL通常把图结构转成自然语言描述，使推理对结构信息顺序敏感，破坏图的排列不变性；二是不断扩大的采样邻域导致上下文快速增长。为此，本文提出多智能体智能体图学习框架MAAGL。该框架将图划分为社区，并为每个社区分配独立智能体以实现区域专门化。MAAGL分别表示结构证据和语义证据：结构证据由动态更新的结构签名概括，该签名具有排列不变性且大小固定；语义证据则按相关性筛选为前k个节点。智能体基于具有相似签名的历史轨迹估计置信度，并在需要时触发辩论式协作。在四个基准数据集上的大量实验表明，MAAGL优于当前最先进的AGL方法。",
+   "key_points": [
+    "现有AGL方法在不同图区域共享推理策略，难以应对异质结构和语义，直接多智能体协作还面临结构顺序敏感和上下文快速增长的问题。",
+    "MAAGL将图划分为社区并分配独立智能体，用排列不变且大小固定的结构签名概括结构证据，并用top-k相关节点筛选语义证据。",
+    "智能体依据相似签名的历史轨迹估计置信度，在需要时触发辩论式协作；四个基准数据集实验显示MAAGL超过现有最先进AGL方法。"
+   ],
+   "topics": [
+    "multi-agent",
+    "reasoning",
+    "graph-learning"
+   ],
+   "category": "论文",
+   "categories": [
+    "论文",
+    "Agent 工程"
+   ],
+   "horizon": "long",
+   "score": 87.1,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Liang Qu",
+     "Jianxin Li",
+     "Hua Wang"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "4d4e7920d8a762a2",
+   "url": "https://openai.com/index/put-data-to-work",
+   "title": "Now everyone can put data to work",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-10T15:00:00+00:00",
+   "summary_short": "ChatGPT Work新Data agent：用自然语言查公司数据、生成可分享仪表板。",
+   "summary_long": "2026年9月10日，ChatGPT Work推出新的Data agent。此前，员工有数据问题时往往需等待报告或请他人分析。该Data agent可连接公司已批准的数据源，包括Amazon Redshift、Datadog、Google BigQuery、ClickHouse、Databricks、MongoDB、Snowflake等，并能引入Google Drive和SharePoint中的文件。它利用组织内的业务术语、指标定义、自定义计算和数据关系来解读数据，这些上下文来自语义层和Databricks Genie Ontology、dbt、GitHub、Snowflake Horizon、BI仪表板等可信来源。用户只需在对话中提出并完善分析需求，无需编写查询或学习新分析工具，即可获得答案并构建可分享的交互式仪表板。多家平台合作伙伴表示，该功能能让用户直接连接其数据平台、基于可信上下文实时获取洞察。这一能力旨在让更多人自行解答业务问题，将公司数据转化为答案和行动。",
+   "key_points": [
+    "Data agent连接多种企业数据源（如Snowflake、BigQuery、Databricks等）和办公文件。",
+    "利用企业语义层和可信上下文（如业务术语、指标定义）解释数据。",
+    "用户通过对话即可完成分析并生成可分享的交互式仪表板，无需编写查询。"
+   ],
+   "topics": [
+    "tool-use",
+    "product"
+   ],
+   "category": "Agent 工程",
+   "categories": [
+    "Agent 工程",
+    "产品与商业"
+   ],
+   "horizon": "short",
+   "score": 85.7,
+   "status": "published",
+   "extra": {
     "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "8df2f50f6f23c0b4",
-   "url": "https://simonwillison.net/2026/Sep/9/blender-viewer/",
-   "title": ".blend URL Viewer",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-09T23:58:32+00:00",
-   "summary_short": "GPT-6 Astra 与 Blender 将 Pluribus 主题法贝热彩蛋图片转为 .blend 模型，可在浏览器查看。",
-   "summary_long": "作者在文中介绍了一次结合 ChatGPT Images 2.5、Codex GPT-6 Astra 和 Blender 的实验。作为帝国法贝热彩蛋的爱好者，作者一直想制作一些致敬流行文化的新彩蛋。昨天他尝试使用新的 ChatGPT Images 2.5，输入提示词“生成一张以电视剧 Pluribus 为主题的法贝热彩蛋照片——先研究”，得到了一张图片，并称第一次尝试效果不错。随后，为测试可能性，作者把这张图片粘贴到运行 GPT-6 Astra（high）的 Codex 中，要求其使用 Blender 本地技能创建该法贝热彩蛋的 Blender 模型；文中还附上了技能文件及其创建方式。该过程耗时17分51秒，生成了多个 .blend 文件。作者此前已有一个随性编写的 Blender 查看实验，于是将它加入自己的工具集合，现在可以在浏览器中查看这个 Pluribus Blender 模型。原文未详述工具的具体技术实现与交互细节，但标签显示内容涉及 3D、JavaScript、工具、AI、生成式 AI、LLM、Blender、编码代理、Codex 和 GPT-6 Astra。",
+   "id": "1ef5285e671d0ace",
+   "url": "https://openai.com/index/expanding-ai-access-us-government",
+   "title": "Expanding AI access and cyber defense for federal, state, local, and tribal governments",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-10T07:00:00+00:00",
+   "summary_short": "OpenAI与GSA达成首个协议，让各级政府免费或半价使用AI工具，并扩展网络防御支持。",
+   "summary_long": "OpenAI for Government与美国总务管理局（GSA）宣布一项新的多年协议，将原本每用户每月15美元的许可费降为0美元，并提供50%使用费折扣，覆盖联邦、州、地方和部落政府。公告称，这是同类首个协议，已有超100万政府雇员使用ChatGPT，新合作覆盖约2300万美国公共部门劳动力。过去一年案例包括：Daybreak Access提升政府网络防御者漏洞研究、恶意软件分析和安全工具开发的速度与质量；CDC将公共卫生文献综述从数天或数月缩短至多数初步报告30分钟内完成，92%参与专家报告生产力提升；佐治亚州税务局税表数字化从最多两周降至15分钟；北卡州财政部长办公室识别数百万美元潜在未认领财产；劳伦斯利弗莫尔国家实验室将聚变研究模型开发从数月压缩至数小时。同时，公告扩展对保护应急响应、交通、公共卫生、公用事业等关键系统的政府网络防御者支持：每个经验证的政府实体获批Daybreak Blue，按标准商业定价50%折扣，并可申请Daybreak Red进行高级漏洞研究、漏洞验证和红队。该举措建立在上周OpenAI宣布的10亿美元全球前线网络防御者承诺之上。",
    "key_points": [
-    "作者用 ChatGPT Images 2.5 根据提示词生成了一张以电视剧 Pluribus 为主题的法贝热彩蛋图片。",
-    "将该图片输入 Codex 上的 GPT-6 Astra（high），使用 Blender 本地技能，耗时17分51秒生成了多个 .blend 文件。",
-    "作者把已有的 Blender 查看实验加入工具集，用户可在浏览器中查看生成的 Pluribus Blender 模型。"
+    "许可费降至0美元并提供50%使用费折扣，覆盖联邦、州、地方和部落政府，约2300万公共部门劳动力有资格。",
+    "每个经验证的政府实体获批Daybreak Blue（按标准商业定价50%折扣），并可申请Daybreak Red；建立在上周10亿美元全球前线网络防御者承诺之上。",
+    "原文列举多个公共部门应用案例，包括CDC文献综述30分钟内完成、佐治亚税表数字化从两周降至15分钟、北卡识别数百万美元未认领财产等。"
    ],
    "topics": [
-    "coding-agent",
+    "product",
+    "safety",
+    "government"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "产品与商业",
+    "安全与对齐"
+   ],
+   "horizon": "short",
+   "score": 84.4,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "016c3ec9b775a98e",
+   "url": "https://openai.com/index/introducing-chatgpt-financial-services",
+   "title": "Introducing ChatGPT for Financial Services",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-10T07:00:00+00:00",
+   "summary_short": "ChatGPT 金融服务版整合 GPT-6 Astra 与内置金融数据，主打可溯源投行研究。",
+   "summary_long": "OpenAI 推出 ChatGPT for Financial Services，这是一种面向金融服务团队的定制 ChatGPT Work 体验，结合内置金融数据与 GPT-6 Astra 的推理能力，用于开发研究、金融模型和定制客户材料。该产品由与 Morgan Stanley 和 Evercore 的设计合作塑造，合作帮助定位金融机构的最大挑战。产品内置来自 Daloopa、PitchBook、LSEG News 和 Crunchbase 等提供商的高级数据，减少 MCP 连接器和数据访问障碍。这些数据由 OpenAI 索引和托管，以提高准确性，并提供细粒度引用，使银行家能追溯数字和论断来源、随着分析发展核查证据。产品原生提供 GPT-6 Astra 等前沿智能，并将在新模型发布后继续开箱即用。企业可集中管理访问和数据连接，依托 ChatGPT 的企业安全与治理控制。早期合作将起点定在投资银行和股权研究，因为可靠数据访问和高质量工件创作是团队最大痛点；合作还将指导后训练、产品改进及向其他金融服务类别扩展。Morgan Stanley 表示，前沿研究在帮助员工为客户做重要工作时才成为现实，正与 OpenAI 合作将智能引入公司研究、分析和建议准备；Evercore 表示，正与 OpenAI 密切合作，塑造技术如何加深建议背后的洞察，同时保持客户期望的判断和严格标准。",
+   "key_points": [
+    "推出 ChatGPT for Financial Services，整合 GPT-6 Astra 与内置金融数据，支持研究、金融模型和客户材料开发。",
+    "内置 Daloopa、PitchBook、LSEG News、Crunchbase 等高级数据，由 OpenAI 托管索引，提供细粒度引用。",
+    "与 Morgan Stanley 和 Evercore 设计合作，首先聚焦投资银行与股权研究，解决数据访问和高质量工件创作痛点。"
+   ],
+   "topics": [
+    "product",
+    "reasoning"
+   ],
+   "category": "产品与商业",
+   "categories": [
+    "产品与商业",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 83.8,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "888eed5f2c2cb650",
+   "url": "https://arxiv.org/abs/2609.09774v1",
+   "title": "Procedural Memory Under Change: Reuse and Interference in Controlled Web Tasks",
+   "source": "arXiv Agent/LLM",
+   "tier": "S",
+   "published_at": "2026-09-09T06:22:42+00:00",
+   "summary_short": "研究程序记忆在任务变化中的重用与干扰，发现测试区域内不匹配未导致行为破坏。",
+   "summary_long": "程序记忆使语言代理能复用成功例程，但复用以存储例程仍适用为前提。该研究考察这一前提被故意违反时发生什么。研究分两部分：一是回顾性、人工辅助的接口适应案例，来自BrowserGym TimeWarp，记录WebShop V1至V6开发路径中接口特定代码被适配，而单独存储的高层程序未报告变化；该阶段不构成自主记忆代理评估。二是在合成购物决策上的受控冻结记忆比较。早期试点中，一个任务上两种记忆条件选择了更贵物品，无记忆条件选择了参考最小值；后续探测未建立重复行顺序或身份绑定模式。随后测试四种不匹配：数量改变、证据表示不同、局部与全局优化冲突、分布式促销证据，涵盖32个正式单元；每单元使用temperature-0生成，相同本地qwen3:8b配置，无自适应重试。在当前任务证据明确且充分的任务上，预定义诊断干扰特征均未出现。结果识别出一个经测试的非干扰区域：程序记忆可被不匹配而不产生行为破坏。该结果不构成一般安全性或机制说明，遗留问题是哪些附加条件会把适用性不匹配转化为可观察的记忆致错。",
+   "key_points": [
+    "研究结合回顾性人工辅助接口适应案例与受控冻结记忆比较，考察程序记忆在前提被违反时的表现。",
+    "在32个正式单元中测试四种不匹配形式，当前任务证据明确且充分时未出现预定义诊断干扰特征。",
+    "结果识别出测试范围内的非干扰区域，但不建立一般安全性或机制，遗留条件问题。"
+   ],
+   "topics": [
+    "memory",
+    "agent-loop",
+    "eval"
+   ],
+   "category": "论文",
+   "categories": [
+    "论文",
+    "上下文与记忆",
+    "Agent 工程"
+   ],
+   "horizon": "long",
+   "score": 83.8,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Yanze Cao"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "d36bf72621cb2bcb",
+   "url": "https://arxiv.org/abs/2609.09578v1",
+   "title": "CityPlanner: A Sandbox Agent for Executable Urban Planning",
+   "source": "arXiv Agent/LLM",
+   "tier": "S",
+   "published_at": "2026-09-09T00:59:36+00:00",
+   "summary_short": "CityPlanner提出可执行城市规划沙盒框架，引入原子任务强化学习，在真实基准上优于现有基线。",
+   "summary_long": "城市规划是在成本和服务质量等实际目标下，从大规模候选空间中选取可行动作的真实世界空间优化问题。现有优化和强化学习方法对固定形式有效，但往往依赖任务特定表示和约束处理。原文提出CityPlanner，一个面向可执行城市规划的沙盒智能体框架。该框架引入UrbanSandbox，这是一个统一的基于文件的环境，智能体可在其中查看任务文件、生成规划、运行评估器，并根据可执行反馈修改决策。为使学习可行，原文进一步提出原子任务强化学习，将较长的沙盒轨迹分解为用于初始构建的BuildPlan和用于基于反馈改进的ImprovePlan两个阶段。在真实世界基准上的实验表明，CityPlanner一致优于启发式方法、任务特定强化学习以及通用大语言模型智能体基线。消融实验验证了UrbanSandbox、原子任务强化学习和迭代部署各自的贡献。代码与数据集已在原文给出的匿名地址公开。",
+   "key_points": [
+    "提出CityPlanner沙盒智能体框架，并引入统一文件式环境UrbanSandbox，支持查看任务、生成计划、运行评估器和基于反馈修订。",
+    "提出原子任务强化学习，将长轨迹分解为BuildPlan初始构建和ImprovePlan反馈改进。",
+    "在真实世界基准上CityPlanner一致优于启发式、任务特定RL和通用LLM智能体基线，消融验证各模块贡献。"
+   ],
+   "topics": [
+    "agent-loop",
     "tool-use"
    ],
    "category": "Agent 工程",
    "categories": [
     "Agent 工程",
-    "工程实践"
+    "模型训练",
+    "论文"
+   ],
+   "horizon": "long",
+   "score": 83.7,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Wentao Zhang",
+     "Jingyuan Wang",
+     "Zetong Zhou",
+     "Yifan Yang",
+     "Wenrui Wang"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "c599ab837d38d22a",
+   "url": "https://twitter.com/deepseek_ai/status/2097930608790167907",
+   "title": "DeepSeek v4.1 Flash",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-10T06:11:05+00:00",
+   "summary_short": "DeepSeek在X平台介绍新架构最小模型V4.1-Flash，主打更快更高效和原生视觉理解。",
+   "summary_long": "DeepSeek 在 X 平台通过账号 @deepseek_ai 发布帖文，介绍 DeepSeek-V4.1-Flash。原文称该模型“更智能、更快、更高效”，是新架构家族中最小的模型，具备原生视觉理解能力。其设计目标包括更强的能力、更快的推理、更高的吞吐量，并可扩展到更大的模型。原文为系列帖文的第 1/6，仅展示首条内容，未给出模型参数、发布时间、应用场景等更多细节，后续内容在原文页面中未显示。",
+   "key_points": [
+    "DeepSeek 在 X 平台介绍 DeepSeek-V4.1-Flash，称其“更智能、更快、更高效”。",
+    "该模型是新架构家族中最小的模型，具备原生视觉理解能力。",
+    "设计目标包括更强能力、更快推理、更高吞吐，并可扩展到更大模型；原文仅显示系列帖文第1/6，后续细节未展示。"
+   ],
+   "topics": [
+    "vision"
+   ],
+   "category": "模型发布",
+   "categories": [
+    "模型发布"
    ],
    "horizon": "short",
-   "score": 75.5,
+   "score": 82.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 940,
+    "hn_comments": 519,
+    "content_source": "reader",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "69669daef8253424",
+   "url": "https://cognition.com/blog/swe-2",
+   "title": "Cognition launches new SWE-2 model, Rivaling Fable 5.1 and GPT-Astra",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-10T15:29:47+00:00",
+   "summary_short": "SWE-2以更低成本逼近前沿编码基准，首次将RL扩展到数万亿参数。",
+   "summary_long": "原文介绍推出SWE-2，称其为目前最先进的编码模型。在FrontierCode 1.1 Main上，SWE-2达到50.0%，比Fable 5.1低不到1个百分点，但成本低64%。这是首次将强化学习（RL）扩展到数万亿参数规模，建立在SWE-1.7训练基础设施和配方之上，关键新增是能在单次运行中训练所有推理努力水平的RL算法，从而推进整体成本-性能前沿。在FrontierCode 1.1 Main和DeepSWE 1.1上，SWE-2在分数和成本上均超过SWE-1.7和Grok 4.6，并以更低价格匹敌GPT-5.6 Sol和Fable 5/5.1，且以GPT-6 Astra约四分之一的成本接近其分数。SWE-2从Kimi K3 2.8T参数模型后训练而来，该模型已进行过大量智能体编码RL，SWE-2的RL仍增加5-6个百分点。训练方法包括按努力水平施加线性成本惩罚、长度加权奖励基线、改进调度和在线草稿模型以提高解码吞吐，以及将RL环境数量增加三倍等。行为上，SWE-2 medium在FrontierCode 1.1 Main上平均步骤数从SWE-1.7的127降至53，成本平均降低81%。SWE-2今日起在Devin Desktop和CLI提供，并在Devin Web和Fusion推出。",
+   "key_points": [
+    "SWE-2在FrontierCode 1.1 Main达50.0%，比Fable 5.1低不到1个百分点，但成本低64%。",
+    "首次将RL扩展到数万亿参数，单次运行训练所有推理努力水平，推进成本-性能前沿。",
+    "基于Kimi K3 2.8T后训练，在多个基准上超越SWE-1.7和Grok 4.6，并将平均步骤从127降至53。"
+   ],
+   "topics": [
+    "coding-agent",
+    "post-training",
+    "reasoning"
+   ],
+   "category": "模型发布",
+   "categories": [
+    "模型发布",
+    "模型训练"
+   ],
+   "horizon": "short",
+   "score": 81.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 343,
+    "hn_comments": 141,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "dd00e65b90139673",
+   "url": "https://twitter.com/ValerioCapraro/status/2097791836269977996",
+   "title": "OpenAI might have stolen another major proof",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-10T04:19:48+00:00",
+   "summary_short": "OpenAI被指用未发表数学对话训练Astra后宣称其解决猜想，Thom等数学家指控其窃取成果。",
+   "summary_long": "Valerio Capraro发帖称，数学家Andreas Thom在Mastodon详细帖子中提出多项证据，暗示OpenAI可能用他与Gábor Kun关于Gromov soficity猜想的对话训练了Astra，而该猜想是OpenAI后来宣布Astra解决的十个问题之一。Capraro表示认识Thom，称其是杰出数学家、sofic与hyperlinear群领域的权威，已研究该问题二十年。若Thom的叙述正确，这并非小的归属纠纷，而是未发表的人类工作被吸收进模型，随后被呈现为模型自身的突破。若Levent Alpöge、Tristan Buckmaster及Thom的指控均获证实，可能不再是孤立事件，而可能成为科学史上最大的知识丑闻之一：AI并非在发现新数学，而是在窃取人类发现。原文未详述Thom所提证据的具体内容，但明确指出该指控的严重性，并强调多位学者的类似指控正在累积。",
+   "key_points": [
+    "Andreas Thom在Mastodon发帖提出证据，暗示OpenAI用他与Gábor Kun关于Gromov soficity猜想的对话训练Astra",
+    "该猜想是OpenAI宣布Astra解决的十个问题之一，Thom是该领域权威且研究该问题二十年",
+    "若Thom及Levent Alpöge、Tristan Buckmaster的指控成立，可能构成科学史上最大知识丑闻之一，AI被指窃取而非发现数学"
+   ],
+   "topics": [
+    "safety",
+    "data-ethics",
+    "attribution"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "安全与对齐"
+   ],
+   "horizon": "short",
+   "score": 80.6,
+   "status": "published",
+   "extra": {
+    "hn_points": 290,
+    "hn_comments": 10,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "e8ac74305a2976f6",
+   "url": "https://gist.github.com/wsxiaoys/e0286dc6bb624ff5fdf49e7f4c528ba3",
+   "title": "Qwen 3.8 follows GPT-5.5 Pro reasoning prefills",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-09T17:24:28+00:00",
+   "summary_short": "实验发现Qwen3.8对GPT-5.5 Pro推理预填充响应强烈，与教师答案重叠提升18.18个百分点。",
+   "summary_long": "这是对开放模型推理预填充实验的v1.1后续，改用GPT-5.5 Pro作为教师。对每个问题，目标模型分别生成普通回答和以GPT-5.5 Pro推理前1%作为推理通道开头的回答，可见答案仍自由生成；然后测量教师可见答案出现在目标模型答案前100个token中的比例，分数为unigram、bigram、trigram source recall的均值。评估含45题：15道STEM、15道非STEM、15道合成谜题。结果显示，Qwen3.8 A95B无预填充时为16.79%，带预填充后升至34.97%，提升18.18个百分点；分项中STEM +26.99、非STEM +12.80、谜题 +14.75。Kimi K3在有无预填充时与GPT-5.5 Pro的重叠都最高，分别为31.11%和35.65%，但预填充只增加4.54个百分点。DeepSeek V4 Flash为27.30%降至26.13%（−1.17pp），Inkling从19.99%到20.45%（+0.46pp）。讨论部分指出，Qwen在早前实验中对Opus 4.8几乎没有变化，而这里对GPT-5.5 Pro大幅提升，并对私密合成谜题有较大效应，数据表明Qwen可能学自GPT-5.5 Pro或与之密切相关的模型，而非Opus。",
+   "key_points": [
+    "方法：以GPT-5.5 Pro推理前1%预填充目标模型推理通道，比较普通回答与预填充回答中教师答案前100个token的source recall。",
+    "Qwen3.8 A95B从16.79%升至34.97%（+18.18pp），STEM、非STEM、谜题分别+26.99、+12.80、+14.75个百分点。",
+    "Kimi K3与GPT-5.5 Pro重叠最高（31.11%/35.65%）但预填充增幅仅+4.54pp；讨论认为Qwen可能学自GPT-5.5 Pro或相关模型，而非Opus。"
+   ],
+   "topics": [
+    "eval",
+    "reasoning",
+    "data-contamination"
+   ],
+   "category": "评测与基准",
+   "categories": [
+    "评测与基准",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 80.5,
+   "status": "published",
+   "extra": {
+    "hn_points": 233,
+    "hn_comments": 93,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "e67033f01d2d152f",
+   "url": "https://simonwillison.net/2026/Sep/10/shopify-react-native/",
+   "title": "Native is now the future of mobile at Shopify",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-10T21:11:15+00:00",
+   "summary_short": "Shopify 弃用 React Native 转回原生 Swift/Kotlin，因 AI 代理降低了双平台维护成本。",
+   "summary_long": "Shopify 正从 React Native 迁移回各自独立的 Swift 与 Kotlin 原生代码库。2020 年他们从原生转向 React Native 有三个原因：停止重复构建功能、让开发者跨栈工作、少花时间追赶功能对等而多花时间交付价值。原生开发意味着要在两个平台构建和维护软件，这一成本并未消失；但变化在于，代理（agents）如今已能完成足够的实现、翻译、测试和审查工作，使得这一成本不再是 2020 年时的决定因素。Shopify 的帖文对 React Native 作为其使用了六年的平台给予充分赞誉。同时，Shopify 是三个重要 React Native 库的维护者：react-native-skia 和 flash-list 正在寻找新归宿，而 restyle 因用户群较小，将在 2026 年底归档。",
+   "key_points": [
+    "Shopify 从 React Native 转回分别使用 Swift 和 Kotlin 的原生开发。",
+    "当初选择 React Native 的三个理由（避免重复构建、跨栈开发、减少追赶功能对等）仍存在，但代理已能承担实现、翻译、测试、审查等工作，使双平台原生维护成本不再关键。",
+    "Shopify 维护的 react-native-skia 和 flash-list 将移交新维护方，restyle 将于 2026 年底归档。"
+   ],
+   "topics": [
+    "coding-agent",
+    "open-source"
+   ],
+   "category": "Agent 工程",
+   "categories": [
+    "Agent 工程",
+    "行业动态",
+    "开源项目"
+   ],
+   "horizon": "short",
+   "score": 80.0,
    "status": "published",
    "extra": {
     "content_source": "rss",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "ab7fdead50130acd",
+   "url": "https://arxiv.org/abs/2609.09628v1",
+   "title": "Who Are They to Each Other? Multi-Agent Reasoning for Speaker Relationship Inference",
+   "source": "arXiv Agent/LLM",
+   "tier": "S",
+   "published_at": "2026-09-09T02:40:02+00:00",
+   "summary_short": "提出免训练多智能体框架，通过角色化辩论与竞争裁定推断说话者关系，在多数情况下优于基线。",
+   "summary_long": "从口语对话中推断说话者关系是实现社会感知语音理解的重要一步，但该任务仍未被充分探索，监督建模训练和扩展成本高。现有推理时大语言模型方法对微妙、分布式、多模态关系线索的处理结构有限，且可能存在多种合理解释。针对这些问题，原文提出一种免训练的多智能体推理框架，通过大语言模型智能体之间的结构化交互组织推理，使关系判断能够被提出、质疑和裁定，而无需任务特定训练。该框架有两种互补实例化：一是多角色多智能体辩论，将标准多智能体辩论适配到说话者关系推断任务，为智能体分配互补角色或基于社会理论的视角，而非单一无差别视角；二是多智能体竞争，采用基于竞争的协议，通过成对裁定比较智能体判断，淘汰较弱候选并保留最具可辩护性的判断。在Seamless Interaction数据集上，原文在不同模态设置下评估二元分类和细粒度关系细节预测。结果显示，这些方法在大多数情况下优于零样本和现有多智能体基线。人类评估表明该任务即使对人类也具挑战性；大语言模型方法在包含文本的设置中有时可超越人类标注者，但在音频设置中竞争力较弱。这些发现说明，关系推断受益于智能体间的结构化推理交互，而声学线索尚未被当前模型完全捕捉。",
+   "key_points": [
+    "提出免训练多智能体推理框架，通过LLM智能体间结构化交互进行关系判断的提出、质疑和裁定。",
+    "实例化两种设计：多角色多智能体辩论与多智能体竞争，分别采用角色化视角和成对裁定淘汰机制。",
+    "在Seamless Interaction数据集上，多数情况下优于零样本和现有多智能体基线；人类评估显示任务困难，文本设置下LLM有时超过人类，音频设置较弱。"
+   ],
+   "topics": [
+    "multi-agent",
+    "reasoning"
+   ],
+   "category": "论文",
+   "categories": [
+    "论文",
+    "Agent 工程"
+   ],
+   "horizon": "long",
+   "score": 78.2,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Yaohan Guan",
+     "Yen-Ju Lu",
+     "Yuzhe Wang",
+     "Junhyeok Lee",
+     "Jesus Villalba",
+     "Laureano Moro Velazquez"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "115895427a121163",
+   "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-using-the-diff-terminal-and-browser/",
+   "title": "GitHub Copilot app for Beginners: Using the diff, terminal, and browser",
+   "source": "GitHub Blog (AI)",
+   "tier": "S",
+   "published_at": "2026-09-10T21:31:19+00:00",
+   "summary_short": "Copilot 应用内置 diff、终端、浏览器面板，审查运行预览 AI 代码无需切换工具。",
+   "summary_long": "过去审查 AI 智能体对代码的修改，需要在编辑器、终端窗口和浏览器之间来回切换。现在 GitHub Copilot 应用将这三个步骤作为内置面板并排提供，让检查智能体工作变得简单。diff 面板以绿色显示新增、红色显示删除，清晰展示变更内容，用户可以接受更改、发表评论或要求 Copilot 进一步修改，始终由用户做最终决定。终端面板允许在会话内直接运行项目命令，既可以手动执行，也可以通过 Run 按钮配置为脚本运行，并且可以同时打开多个终端窗口进行切换。对于有用户界面的项目，浏览器面板用于打开和测试新功能，还可使用 Pick & Polish 工具选择界面元素并让智能体调整，修改后再次运行开发服务器脚本查看效果。完成 diff 审查、终端启动、浏览器预览和迭代后，用户可以直接在 Copilot 应用中接受更改并创建 pull request。在一个地方完成整个循环，无需切换标签页或应用，也不会丢失工作位置。并行进行审查、运行和预览，让智能体生成的改动变得安全而非可怕，因为用户可以证明合并的内容确实有效。这些内置面板帮助用户在接受智能体代码前回答三个问题：改了什么、能否运行、是否真正可用。",
+   "key_points": [
+    "diff 面板用绿色和红色高亮显示代码增删，支持接受、评论或让 Copilot 修改。",
+    "终端面板可在会话内运行项目命令，支持手动或脚本运行，并可打开多个终端窗口。",
+    "浏览器面板配合 Pick & Polish 工具测试界面并迭代，完成后可直接接受更改并创建 pull request。"
+   ],
+   "topics": [
+    "coding-agent",
+    "product",
+    "agent-loop"
+   ],
+   "category": "产品与商业",
+   "categories": [
+    "产品与商业",
+    "Agent 工程"
+   ],
+   "horizon": "short",
+   "score": 75.4,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "8569f72e58992c62",
+   "url": "https://arxiv.org/abs/2609.09519v1",
+   "title": "HLSFactory-Agent: Large-Scale Agentic HLS Dataset Construction from Academic and Open-Source Projects",
+   "source": "arXiv Agent/LLM",
+   "tier": "S",
+   "published_at": "2026-09-08T23:02:07+00:00",
+   "summary_short": "LLM代理自动从大型代码库提取HLS设计，降低数据集策展人工负担。",
+   "summary_long": "构建大规模、多样的高层次综合（HLS）设计数据集仍是一个开放挑战。深度学习和大语言模型（LLM）在硬件设计中的兴起，使这类数据集对训练QoR模型和评测LLM的HLS任务变得迫切。尽管已有扩展来源的努力，数据集策展仍依赖人工：需在学术出版物和开源项目中定位HLS设计，再从较大代码库提取独立设计；这一过程易出错，要求专业知识、迭代测试和大量逐仓库工程。为此，作者提出HLSFactory-Agent，一个LLM代理，能自动从较大代码库提取独立HLS设计，以支持大规模数据集构建。该代理在Docker容器内运行开源Pi代理框架，对每个提取的设计进行构建和评估。用户只需提供GitHub链接或代码目录，即可获得一个可直接集成到HLSFactory数据集框架的HLS设计文件夹。此外，还提供开源脚本，用于抓取和索引计算机体系结构、EDA和FPGA会议论文中可能实现或使用HLS设计的文献，以加速人工发现与策展。初步结果显示，在索引仓库的一小部分子集上，HLSFactory-Agent能够从结构化代码库中成功提取可综合设计。代码和索引脚本已在GitHub开源（https://github.com/sharc-lab/hlsfactory-agent）。",
+   "key_points": [
+    "HLSFactory-Agent 利用 LLM 代理自动从较大代码库提取独立 HLS 设计，减少人工策展工作。",
+    "用户传入 GitHub 链接或代码目录即可获得可集成到 HLSFactory 数据集框架的设计文件夹。",
+    "配套开源脚本可抓取和索引体系结构、EDA、FPGA 会议论文，初步实验验证了从结构化代码库提取可综合设计。"
+   ],
+   "topics": [
+    "agent-loop",
+    "open-source",
+    "dataset-construction"
+   ],
+   "category": "论文",
+   "categories": [
+    "论文",
+    "Agent 工程",
+    "开源项目"
+   ],
+   "horizon": "long",
+   "score": 75.4,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Kaushik Chandana",
+     "Jay Imperatori",
+     "Tanmay Shukla",
+     "Justin Zhou",
+     "Stefan Abi-Karam",
+     "Callie Hao"
+    ],
     "summary_mode": "full"
    }
   }
