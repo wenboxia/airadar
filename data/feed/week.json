@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-12T01:07:04+00:00",
+ "generated_at": "2026-09-13T00:43:05+00:00",
  "items": [
   {
    "id": "36253bc446ad5232",
@@ -1279,6 +1279,39 @@
    }
   },
   {
+   "id": "2981ecf752e154a8",
+   "url": "https://simonwillison.net/2026/Sep/12/astra-running-routes/",
+   "title": "Generating running routes with GPT-6 Astra and ChatGPT Work",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-12T23:56:42+00:00",
+   "summary_short": "GPT-6 Astra生成跑步路线，却暴露代码不可见与线程压缩问题",
+   "summary_long": "原文作者记录了一次使用ChatGPT Work配合GPT-6 Astra（Max）生成跑步路线的过程。作者提供住址，要求生成从家出发的5K和10K环形路线，并使用OSM数据。系统运行27分钟，产出嵌入式可视化以及可下载的GPX和GeoJSON文件，并展示了5K路线。询问生成方法时，系统回复称：使用Nominatim定位地址，通过Overpass下载本地OpenStreetMap道路和小径，然后在本地计算环线。但作者在ChatGPT界面中看不到实际运行的代码和具体细节，认为这种缺乏透明度是一个反功能。事后想索要所用Python代码时，系统已无法提供，作者推测原因是线程已被压缩。作者提出，任何使用压缩的LLM系统都应保留压缩前的文本，并允许通过代理工具调用访问，以避免此类问题。地图显示通过visualize技能实现，系统创建了名为el-granada-5k-share.html的文件嵌入ChatGPT界面。该HTML开头包含div和style，以及一个application/json脚本元素，内含完整几何数据以渲染路线和地图，使用从允许列表CDN加载的D3库。该可视化技能的外部资源CSP仅允许cdnjs.cloudflare.com、esm.sh、cdn.jsdelivr.net、unpkg.com、fonts.googleapis.com、fonts.gstatic.com和font",
+   "key_points": [
+    "使用ChatGPT Work与GPT-6 Astra（Max），根据住址生成5K和10K环形跑步路线，耗时27分钟，输出嵌入式可视化和GPX/GeoJSON文件。",
+    "路线生成方法为：用Nominatim定位地址、Overpass下载OSM道路小径后在本地计算环线；但UI中看不到实际运行代码，且线程压缩后无法再获取Python代码，作者称缺乏透明度是反功能，并建议压缩系统保留压缩前文本并允许工具调用访问。",
+    "地图显示通过visualize技能实现，生成HTML文件嵌入UI，包含JSON几何数据和D3渲染；外部资源CSP仅允许指定CDN，其他来源被阻止并静默失败。"
+   ],
+   "topics": [
+    "tool-use",
+    "context-engineering",
+    "product"
+   ],
+   "category": "Agent 工程",
+   "categories": [
+    "Agent 工程",
+    "上下文与记忆",
+    "产品与商业"
+   ],
+   "horizon": "long",
+   "score": 83.8,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "016c3ec9b775a98e",
    "url": "https://openai.com/index/introducing-chatgpt-financial-services",
    "title": "Introducing ChatGPT for Financial Services",
@@ -1864,6 +1897,41 @@
    }
   },
   {
+   "id": "b52898a627b97aed",
+   "url": "https://terrytao.wordpress.com/2026/09/11/a-severe-misalignment-of-ai-in-mathematics/",
+   "title": "A Misalignment of AI in Mathematics",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-11T17:30:26+00:00",
+   "summary_short": "25位菲尔兹奖得主声明：AI求解数学问题与数学追求理解的目标严重错位",
+   "summary_long": "过去几个月，大语言模型的数学能力大幅提升，已能解决多个数学领域的重大未决问题。但AI公司推动以求解数学问题作为基准，对数学科学和数学界有害，其目标与数学界目标严重错位。为此，包括Terence Tao在内的25位菲尔兹奖得主联合发表声明。声明指出，研究数学旨在理解形状、数字和自然现象的基本结构，历代积累的概念、方法和工具支撑现代科技。著名问题常作为里程碑，用于衡量对数学图景的理解；其解决通常意味着新见解和有趣方法，经数学界长期讨论、简化，最终进入教科书，甚至数十年后成为广泛使用的工具。数学界像人类缩影，最宝贵的资源是学生和想法，需要长期培育和人际互动。然而，解题只是工具和代理，主要目标是概念理解与洞察。AI快速大量产出真假陈述，可能破坏数学发展的土壤；许多解常仓促宣布，来不及形成严谨书面成果。",
+   "key_points": [
+    "过去数月LLM数学能力剧增，能解决多个领域重大未决问题，但AI公司的解题基准与数学界目标严重错位",
+    "声明由包括Terence Tao在内的25位菲尔兹奖得主签署，强调数学的核心是概念理解与洞察，解题只是工具",
+    "声明警告AI快速批量产出真假陈述和仓促宣布解，可能破坏数学社区培育学生和想法的土壤"
+   ],
+   "topics": [
+    "eval",
+    "safety",
+    "math-community"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "评测与基准",
+    "安全与对齐"
+   ],
+   "horizon": "short",
+   "score": 79.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 148,
+    "hn_comments": 10,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "2b41e9e6abb7deae",
    "url": "https://www.johndcook.com/blog/2026/09/09/formal-method-revolution/",
    "title": "OpenAI’s Navier-Stokes release included a Lean 4 formal proof",
@@ -1893,40 +1961,6 @@
    "extra": {
     "hn_points": 175,
     "hn_comments": 177,
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "40d7d24c82bdadc7",
-   "url": "https://www.sylvainkalache.com/blog/ai-handles-incidents-engineers-lose-touch-with-their-systems",
-   "title": "AI handles incidents, engineers lose touch with their systems",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-05T07:52:50+00:00",
-   "summary_short": "AI SRE自动处理常规事故，却让工程师失去系统直觉，复杂故障更难应对。",
-   "summary_long": "原文作者以2012年在LinkedIn设计自愈系统为引：当时AI能力不足，如今AI SRE已成现实。这些工具能检查告警、形成假设、查询遥测、关联部署，甚至自行修复。作者担忧，工具越擅长处理常规事故，人类练习机会越少；遇到自动化无法解决的模糊高危事件，工程师会因缺少练习而陷入困境。他援引Bainbridge 1983年论文《The Ironies of Automation》：自动化减少常规实践，却仍让操作者负责异常情况，因此需要更多培训。作者预测，未来多数事故平均MTTR下降，但复杂事故解决时间可能激增，因为响应者与系统脱节。航空业中，飞行员虽依赖自动化，但仍需通过模拟器定期演练罕见故障，如发动机失效；FAA要求每六个月复训。作者认为软件行业也需要事件模拟器，Rootly与Uptime Labs合作，让工程师在模拟电商中断中担任事故指挥官，使用可观测性工具并与LLM驱动的Slack相关方协调，练习事故响应所需技能。",
-   "key_points": [
-    "AI SRE工具能自动完成告警检查、假设形成、遥测查询、部署关联甚至修复，但会减少工程师处理常规事故的练习机会。",
-    "Bainbridge 1983年论文指出自动化减少常规实践却留下异常情况，操作者需要更多培训；作者预测复杂事故解决时间可能上升。",
-    "航空业通过模拟器定期演练罕见故障；Rootly与Uptime Labs合作开展真实事件模拟，让工程师练习事故响应技能。"
-   ],
-   "topics": [
-    "incident-response",
-    "automation",
-    "sre"
-   ],
-   "category": "工程实践",
-   "categories": [
-    "工程实践",
-    "行业动态"
-   ],
-   "horizon": "long",
-   "score": 78.7,
-   "status": "published",
-   "extra": {
-    "hn_points": 364,
-    "hn_comments": 317,
     "content_source": "direct",
     "summary_mode": "full"
    }
@@ -2450,6 +2484,40 @@
    }
   },
   {
+   "id": "c63b548b05372ee5",
+   "url": "https://www.economist.com/interactive/briefing/2026/09/03/nvidia-is-the-central-bank-of-ai",
+   "title": "Nvidia is the central bank of AI",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-12T15:08:27+00:00",
+   "summary_short": "英伟达以金融手段支撑客户需求，扮演“AI央行”角色引发市场风险担忧。",
+   "summary_long": "英伟达已成全球市值最高公司，估值约5.4万亿美元，分析师预计明年销售额几乎翻倍。其增长不只靠芯片，CEO黄仁勋还大量使用金融工程刺激需求：例如为俄亥俄州大型数据中心提供至多1050亿美元兜底，联合六家华尔街公司动员超5000亿美元AI基础设施投资，并承诺客户收入不达标时补足差额。批评者将其类比为1990年代末思科、朗讯向电信客户放贷的互联网泡沫。分析师Jay Goldberg认为英伟达在“推动需求”和“创造需求”间走钢丝，尚未越线但已接近。做空次贷危机闻名的Michael Burry等人质疑，若AI芯片需求增长放缓、供应增加、价格下跌，英伟达利润将受损，并可能在其客户支持上产生亏损。过去三年，英伟达承诺逾700亿美元投资初创企业，并向客户提供3000亿美元财务支持，被称为“AI央行”。其金融工程部分是对最大客户变成对手的回应：亚马逊、谷歌、Meta、微软约占其一半收入，今年预计投资约8000亿美元，但大多开始自研芯片，成本仅为英伟达五分之一到三分之一，谷歌已向Anthropic出售专用处理器，亚马逊也预计定制芯片成可观收入来源。",
+   "key_points": [
+    "英伟达以金融工具支持客户，包括为俄亥俄数据中心提供1050亿美元兜底、与华尔街公司动员超5000亿美元投资。",
+    "批评者将其与思科、朗讯在互联网泡沫时期向客户放贷类比，担忧需求不足带来亏损。",
+    "英伟达过去三年承诺逾700亿美元投资初创企业，并向客户提供3000亿美元财务支持，被称为“AI央行”。"
+   ],
+   "topics": [
+    "product",
+    "ai-hardware",
+    "market-dynamics"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "产品与商业"
+   ],
+   "horizon": "short",
+   "score": 75.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 374,
+    "hn_comments": 259,
+    "content_source": "reader",
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "30bdba9275f0627a",
    "url": "https://simonwillison.net/2026/Sep/11/hugging-face-security/",
    "title": "Quoting huggingface.co/security.txt",
@@ -2471,39 +2539,6 @@
    "category": "安全与对齐",
    "categories": [
     "安全与对齐",
-    "Agent 工程",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 75.0,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "b42dfd3d08a1029d",
-   "url": "https://www.qbitai.com/2026/09/484551.html",
-   "title": "姚班校友主导，Claude攻克费马大定理首个完整形式化证明",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-05T01:17:56+00:00",
-   "summary_short": "Claude 11天完成费马大定理首个端到端形式化证明，约1300万行Lean代码规模超Mathlib 5倍。",
-   "summary_long": "Anthropic宣布Claude完成首个端到端、可由计算机完整检查的费马大定理证明，约1300万行Lean代码、超过3万个中间定理，最终使用约29500个，规模超Mathlib 5倍。该工作并非新证明，而是把人类可读的Wiles证明翻译成Lean可逐行检查的形式化证明。此前数学界按多年工程准备，2024年Kevin Buzzard等人启动社区项目，第一阶段蓝图就写了86页；Claude只用了11天。多Agent并行处理定义、引理、定理与拼装，早期协作混乱，换上Prove2Me平台（将证明拆成定理节点DAG）和基于Claude Code的multi-agent harness后才稳定。项目消耗约60亿输出Token，模型能力约相当于Claude Fable 5.1，人类仅提供少量高层提示。Kevin Buzzard评价为“非凡的自动形式化成果”。原文认为，此类复杂度成果可自动形式化，数学文献形式化可能首次具备大规模提速条件。",
-   "key_points": [
-    "Claude完成首个端到端、可由计算机完整检查的费马大定理形式化证明，约1300万行Lean代码、超3万个中间定理，规模超Mathlib 5倍。",
-    "多Agent协作靠Prove2Me平台和multi-agent harness协同，项目消耗约60亿输出Token，人类仅提供少量高层提示。",
-    "Kevin Buzzard评价为“非凡的自动形式化成果”，原文认为这可能使数学文献形式化首次具备大规模提速条件。"
-   ],
-   "topics": [
-    "multi-agent",
-    "harness",
-    "reasoning"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
     "Agent 工程",
     "行业动态"
    ],
