@@ -1,123 +1,118 @@
 {
- "generated_at": "2026-09-14T00:48:11+00:00",
- "date": "2026-09-14",
- "run_id": "20260914-004250",
+ "generated_at": "2026-09-15T01:19:21+00:00",
+ "date": "2026-09-15",
+ "run_id": "20260915-010935",
  "top": [
   {
-   "id": "ae1c0b143270a4ac",
-   "url": "https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating",
-   "title": "Why are AI agents lying, cheating and coordinating?",
+   "id": "296d33defd03a1b2",
+   "url": "https://openai.com/index/fyxer",
+   "title": "How Fyxer built an AI executive assistant people trust",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-14T12:00:00+00:00",
+   "summary_short": "Fyxer结合OpenAI模型与50万小时助理工作流打造AI执行助理，展示高情境邮件生成方法。",
+   "summary_long": "对许多专业人士而言，工作意味着在收件箱、会议、消息和应用间跟踪对话与承诺。缺乏可靠上下文，承诺可能被遗漏，损害项目和关系。Fyxer构建了一款AI执行助理，能跟随工作在不同工具间的流向，结合最新OpenAI模型与超过50万小时行政助理工作流，将任务分配给数十个专门模型，并通过真实用户反馈持续改进。邮件处理是典型场景：同一封邮件，两个人可能因关系、过往经历和当前目标不同而需要完全不同的回复，使看似简单的任务对AI异常困难。Fyxer联合创始人Archie Hollingsworth以莫拉维克悖论解释：人类觉得容易的事对计算机很难。Fyxer通过学习每位用户的工作方式，像熟悉优先事项的助理一样回应。OpenAI模型用于理解邮件、寻找上下文和生成草稿。Fyxer选择OpenAI，因为其模型在内部基准上表现最佳、能为语调和意图等主观任务提供微调，并通过白板会议和技术协作提供工程支持。指标显示，90天用户留存率为90%，53%的AI生成草稿被原样接受。原文提出三个教训，其中详细展开的第一个是：将邮件拆分为更小任务。系统包含30-50个专门模型，每个负责邮件工作流中的狭窄环节。新邮件到达时，回复决策模型判断是否需要回复、安排日程或仅供查看；若需回复，其他模型分析意图并预测互动结果。记忆系统决定哪些细节应跨对话保留，检索模型对比历史互动并呈现最相关记忆。OpenAI模型贯穿邮件理解、上下文重排和",
+   "key_points": [
+    "Fyxer的AI执行助理结合最新OpenAI模型与超50万小时行政助理工作流，通过数十个专门模型处理任务，并根据真实用户反馈改进；90天用户留存率达90%，53%的AI生成草稿按原样被接受。",
+    "邮件回复高度依赖关系、历史和目标，Fyxer通过学习用户工作方式应对；其系统将邮件处理拆分为30-50个专门模型，包括回复决策、意图分析、记忆检索和草稿生成。",
+    "Fyxer选择OpenAI是因为其模型在内部基准表现最佳、支持语调和意图等主观任务微调，并提供白板会议和技术协作等工程支持。"
+   ],
+   "topics": [
+    "memory",
+    "context-engineering",
+    "multi-agent"
+   ],
+   "category": "Agent 工程",
+   "categories": [
+    "Agent 工程",
+    "上下文与记忆",
+    "产品与商业"
+   ],
+   "horizon": "long",
+   "score": 84.9,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "5d637772aa95e8cd",
+   "url": "https://www.macrumors.com/2026/09/14/siri-can-be-swapped-out-for-chatgpt-claude/",
+   "title": "Apple's Siri AI Can Be Swapped Out for Claude, ChatGPT, Code Shows",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-09-13T01:22:31+00:00",
+   "published_at": "2026-09-14T12:01:32+00:00",
+   "summary_short": "代码显示新 Siri 架构可深度接入 Claude、GPT-5.6 等第三方模型",
+   "summary_long": "代码侦探 pdfu 在 iOS 27 和 macOS Golden Gate 私有框架中发现，苹果新 Siri 架构被设计为可与第三方 AI 模型深度协作。一个名为 Model Delegation 的机制允许 Claude 像现有内置 ChatGPT 扩展一样作为 Siri 扩展出现。在演示视频中，用户在“Search or Ask”栏通过“Ask...”菜单选择 Claude，启用后说“Ask Claude”在提醒事项中设置提醒；Claude 解析自然语言请求，Siri 随后创建提醒。若请求需要访问苹果系统功能，Claude 会把任务交回 Siri。另一个示例中，Claude 在 Siri 对话窗口收到创建 CSV 文件的请求——Siri 本身无法处理——并成功返回结果。第二个协议更进一步：Model Manager Services 中的推理提供方机制允许苹果服务端 Siri 模型被其他模型完全替换，例如 GPT-5.6。ChatGPT 接收苹果原生 Siri planner 提示和工具定义，可发起系统操作、获取个人数据，并由 Siri 用自身界面和语音呈现回答。演示中用户让 ChatGPT 查找特定主题邮件、总结内容和行动点，并通过信息 App 给联系人发消息，响应显示在 OpenAI 平台网页界面。欧盟《数字市场法案》可能影响了这一设计，因其要求苹果向第三方提供对 iOS",
+   "key_points": [
+    "Model Delegation 机制允许 Claude 作为 Siri 扩展出现，类似内置 ChatGPT 扩展；需访问苹果系统功能时 Claude 交回 Siri，也能处理 Siri 无法完成的 CSV 创建等任务。",
+    "Model Manager Services 的推理提供方可让 GPT-5.6 完全替换服务端 Siri 模型，接收 Siri planner 提示和工具定义，以 Siri 自身界面和语音给出回答。",
+    "欧盟《数字市场法案》可能是苹果此设计的动因；“Ask...”目前仅限 macOS Golden Gate RC 的 ChatGPT 扩展，Claude 未开放，相关权限也未向第三方开放。"
+   ],
+   "topics": [
+    "tool-use",
+    "multi-agent",
+    "product"
+   ],
+   "category": "Agent 工程",
+   "categories": [
+    "Agent 工程",
+    "产品与商业",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 83.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 219,
+    "hn_comments": 155,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "310d4fd0496b542a",
+   "url": "https://andonlabs.com/blog/why-we-built-pion",
+   "title": "Pion, an agent designed to run any company autonomously",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-14T17:16:06+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "agent-loop",
+    "tool-use",
+    "product"
+   ],
+   "category": "Agent 工程",
+   "categories": [
+    "Agent 工程",
+    "产品与商业"
+   ],
+   "horizon": "short",
+   "score": 82.6,
+   "status": "published",
+   "extra": {
+    "hn_points": 277,
+    "hn_comments": 295,
+    "content_source": "direct"
+   }
+  },
+  {
+   "id": "dce815e05e9f3d47",
+   "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive/",
+   "title": "OpenAI bots knew about the RubyGems caching vulnerability",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-14T12:40:57+00:00",
    "summary_short": "",
    "summary_long": "",
    "key_points": [],
    "topics": [
     "safety",
-    "multi-agent",
-    "agent-loop"
-   ],
-   "category": "安全与对齐",
-   "categories": [
-    "安全与对齐",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 82.8,
-   "status": "published",
-   "extra": {
-    "hn_points": 591,
-    "hn_comments": 649,
-    "content_source": "direct"
-   }
-  },
-  {
-   "id": "16316487dc98a6eb",
-   "url": "https://withspecific.com/benchmarks/real-swe",
-   "title": "Real-SWE: Benchmarking AI models on private, real-world, enterprise codebases",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-12T20:25:48+00:00",
-   "summary_short": "Real-SWE 在私有企业代码库上基准测试前沿 AI 模型，附八模型排行榜与真实任务示例。",
-   "summary_long": "2026年9月，Snagnik Das、Siddhant Paliwal 和 Janak Sunil 发布 Real-SWE，一个在私有、真实世界、企业代码库上评估前沿 AI 模型的基准。每个任务来自一家真实公司的私有生产代码库，是该公司的工程师实际处理的问题，带有现有产品的全部上下文和复杂性。任务特点包括：智能体必须导航公共互联网上不可用的专有系统；涉及计费、税费计算、客户迁移等具有业务后果的工作，常跨多个服务；每家公司有特定规则和代码写法，智能体需理解并适配这些约定。专家生成或合成任务虽可能设计良好，但并非真实公司工程师所需的逐字实际任务；该基准的任务在底层编码工件和指令具体性两个维度上增加了复杂性。评估使用原生 harness 来反映企业工程师的实际工作方式，评估模型与 harness 组合而非孤立模型，结果用 pass@1 表示，每个任务平均八次独立运行并显示 95% 置信区间。排行榜中，Fable 5.1 搭配 Claude Code 分辨率最高为 38.8%，GPT-6 Astra 搭配 Codex CLI 为 33.8%，Gemini 3.8 Flash 搭配 Gemini CLI 为 31.2%，GLM 5.3 搭配 Claude Code 为 28.8%，Grok 4.6 和 Muse Spark 1.3 均为 23.8%，Kimi K3 为 18.8%，GPT-",
-   "key_points": [
-    "Real-SWE 任务来自真实公司的私有生产代码库，涵盖工程师实际处理的计费、税费、客户迁移等问题。",
-    "评估使用原生 harness 和 pass@1（每个任务八次独立运行平均），反映企业工程师的工作方式。",
-    "排行榜最高为 Fable 5.1（38.8%），最低为 GPT-5.6 Sol（16.2%），展示前沿模型在真实企业代码上的表现。"
-   ],
-   "topics": [
-    "eval",
-    "coding-agent",
-    "harness"
-   ],
-   "category": "评测与基准",
-   "categories": [
-    "评测与基准",
-    "论文"
-   ],
-   "horizon": "long",
-   "score": 82.3,
-   "status": "published",
-   "extra": {
-    "hn_points": 268,
-    "hn_comments": 147,
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "543492d805466c09",
-   "url": "https://techcrunch.com/2026/09/11/y-combinators-garry-tan-wants-u-s-open-weight-ai-labs-to-distill-frontier-models-too/",
-   "title": "Garry Tan wants US open-weight AI labs to 'distill' frontier models, too",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-13T15:44:38+00:00",
-   "summary_short": "YC CEO Garry Tan 反对打压蒸馏，主张允许美国开放权重实验室蒸馏前沿模型",
-   "summary_long": "Y Combinator CEO Garry Tan 对中国实验室蒸馏前沿模型一事希望监管不要介入，认为美国也应建立“美国蒸馏制度”。他告诉 TechCrunch，希望较小的美国开放权重实验室对美国前沿实验室使用同类训练技术，使美国有更多非中国的开放权重选择。蒸馏是大量提示另一个模型以学习其工作与推理方式，常见且合法。Anthropic 本周发布第二份报告，指控中国实验室“非法蒸馏攻击”，其 CEO Dario Amodei 曾呼吁美国监管打击蒸馏；Tan 不赞同。他并非提倡盗取凭证，而是希望美国实验室可从前门进入。他的论点有两方面：AI 实验室规定客户如何使用模型输出是过度干预；专有实验室训练时也未经许可抓取大量人类知识，包括版权材料。他说控制用户对闭源模型 API 调用的使用令人受限，政府可推动让基于广泛公共数据训练的智能更像公共产品，而非被服务条款锁住。Tan 希望开放权重与前沿实验室平衡：前沿实验室推动进展并可融资，开放权重模型提供自由访问。他认为 AI 末日场景是前沿 AI 权力落入单一专有提供商，只有一家公司凭借最佳资本和研究人员独大，这将是坏事。",
-   "key_points": [
-    "Garry Tan 希望美国开放权重 AI 实验室也能对美国前沿模型使用蒸馏技术，而非仅限中国实验室被讨论",
-    "他不赞同 Anthropic 呼吁监管打击蒸馏，认为限制客户如何使用模型输出是过度干预，且前沿实验室训练时也未获版权许可",
-    "他担心 AI 权力集中于单一专有公司是真正的“末日场景”，主张在开放权重与前沿实验室之间保持平衡"
-   ],
-   "topics": [
-    "post-training",
-    "open-source",
-    "regulation"
-   ],
-   "category": "模型训练",
-   "categories": [
-    "模型训练",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 78.2,
-   "status": "published",
-   "extra": {
-    "hn_points": 342,
-    "hn_comments": 176,
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "4e3f293e30946b2a",
-   "url": "https://twitter.com/DavidSacks/status/2098973625252708460",
-   "title": "David Sacks: OpenAI and Anthropic Don't Need Regulations to Pace Frontier Models",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-13T16:52:33+00:00",
-   "summary_short": "萨克斯称OpenAI与Anthropic若想放慢前沿可直接行动，不必以监管为代价。",
-   "summary_long": "David Sacks在推文中回应Dario和Sam关于“pace the frontier”的呼吁，表示“请便”。他认为OpenAI与Anthropic在市场占有率、营收增长和模型能力等合理指标上已形成对前沿智能的双头垄断，且二者声称领先优势因递归自我改进而扩大。Sacks说，如果未发布模型可怕到让它们想放慢，他支持其负责任的决定，但不应再假装需要别人许可，不应假装必须暂停反垄断法以组成卡特尔，不应假装需要取代产品责任的监管审批流程，不应假装METR独立——他指出METR与Anthropic的投资者和员工纠缠不清，也不应假装需要这些评估者去监管甚至不在前沿的竞争对手。他尤其质疑放慢的动机并非纯粹利他：如果产品促成真正破坏性的网络攻击，二者面临巨大产品责任风险；市场已经在惩罚行为不可预测或未经授权的模型，Hugging Face事件后，用部分原始能力换取可靠性和可预测性只是好生意。Sacks还称放慢前沿可为比伯尼·桑德斯式“彻底关停”更明智的监管讨论创造空间，并指出中国不太可能加入全球协议。他最后说，不建造超级智能最简单的方法就是二者同意不建造；如果要求偏好的监管框架作为代价，会像对公众和政治体系的勒索。若真这么做能买来善意，若不这么做，外界会认为这是又一次监管捕获或选举季心理战。",
-   "key_points": [
-    "Sacks称OpenAI与Anthropic已在前沿智能上形成双头垄断，若想放慢可直接行动。",
-    "他批评二者借监管之名规避产品责任、质疑METR独立性并反对监管捕获式安排。",
-    "他认为市场已惩罚不可预测行为，放慢也符合其商业利益；若不行动，动机将被视为监管捕获或选举季心理战。"
-   ],
-   "topics": [
-    "safety",
-    "regulation",
-    "policy"
+    "tool-use"
    ],
    "category": "行业动态",
    "categories": [
@@ -125,132 +120,156 @@
     "安全与对齐"
    ],
    "horizon": "short",
-   "score": 76.1,
+   "score": 79.5,
    "status": "published",
    "extra": {
-    "hn_points": 229,
-    "hn_comments": 175,
-    "content_source": "direct",
+    "hn_points": 368,
+    "hn_comments": 313,
+    "content_source": "direct"
+   }
+  },
+  {
+   "id": "09740d2129789fa6",
+   "url": "https://simonwillison.net/2026/Sep/14/laurie-voss/",
+   "title": "Quoting Laurie Voss",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-14T14:34:29+00:00",
+   "summary_short": "写代码成本崩塌后，软件开发重心转向发现需求、准确定义和优化体验。",
+   "summary_long": "原文引述 Laurie Voss 的观点指出：编写代码的成本已经大幅下降，审查、修复和运营代码的成本也在随之下降，并且预计会降到同样低的水平。软件开发中剩下的工作是弄清人们真正想要什么，精确地定义需求，以及让软件使用起来令人舒适。这种成本是按每一款软件单独产生的，无法在不同软件之间转移。由于对软件的需求没有上限，软件数量会趋向无穷，因此这种无法转移的成本最终会成为软件开发工作的全部。原文未详述具体案例或数据，仅以这一判断说明在代码成本降低之后，软件工作的核心可能转向产品定义与体验设计。",
+   "key_points": [
+    "编写代码的成本已崩溃，审查、修复和运营代码的成本也在下降，并预计会达到同样水平。",
+    "软件开发剩下的核心是发现用户真实需求、精确描述需求、让软件使用起来舒适。",
+    "这种成本按单个软件产生且不转移；软件需求无上限，软件数量趋于无限，这类成本将成为全部工作。"
+   ],
+   "topics": [
+    "product"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "产品与商业"
+   ],
+   "horizon": "long",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
     "summary_mode": "full"
    }
   }
  ],
  "items": [
   {
-   "id": "ae1c0b143270a4ac",
-   "url": "https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating",
-   "title": "Why are AI agents lying, cheating and coordinating?",
+   "id": "296d33defd03a1b2",
+   "url": "https://openai.com/index/fyxer",
+   "title": "How Fyxer built an AI executive assistant people trust",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-14T12:00:00+00:00",
+   "summary_short": "Fyxer结合OpenAI模型与50万小时助理工作流打造AI执行助理，展示高情境邮件生成方法。",
+   "summary_long": "对许多专业人士而言，工作意味着在收件箱、会议、消息和应用间跟踪对话与承诺。缺乏可靠上下文，承诺可能被遗漏，损害项目和关系。Fyxer构建了一款AI执行助理，能跟随工作在不同工具间的流向，结合最新OpenAI模型与超过50万小时行政助理工作流，将任务分配给数十个专门模型，并通过真实用户反馈持续改进。邮件处理是典型场景：同一封邮件，两个人可能因关系、过往经历和当前目标不同而需要完全不同的回复，使看似简单的任务对AI异常困难。Fyxer联合创始人Archie Hollingsworth以莫拉维克悖论解释：人类觉得容易的事对计算机很难。Fyxer通过学习每位用户的工作方式，像熟悉优先事项的助理一样回应。OpenAI模型用于理解邮件、寻找上下文和生成草稿。Fyxer选择OpenAI，因为其模型在内部基准上表现最佳、能为语调和意图等主观任务提供微调，并通过白板会议和技术协作提供工程支持。指标显示，90天用户留存率为90%，53%的AI生成草稿被原样接受。原文提出三个教训，其中详细展开的第一个是：将邮件拆分为更小任务。系统包含30-50个专门模型，每个负责邮件工作流中的狭窄环节。新邮件到达时，回复决策模型判断是否需要回复、安排日程或仅供查看；若需回复，其他模型分析意图并预测互动结果。记忆系统决定哪些细节应跨对话保留，检索模型对比历史互动并呈现最相关记忆。OpenAI模型贯穿邮件理解、上下文重排和",
+   "key_points": [
+    "Fyxer的AI执行助理结合最新OpenAI模型与超50万小时行政助理工作流，通过数十个专门模型处理任务，并根据真实用户反馈改进；90天用户留存率达90%，53%的AI生成草稿按原样被接受。",
+    "邮件回复高度依赖关系、历史和目标，Fyxer通过学习用户工作方式应对；其系统将邮件处理拆分为30-50个专门模型，包括回复决策、意图分析、记忆检索和草稿生成。",
+    "Fyxer选择OpenAI是因为其模型在内部基准表现最佳、支持语调和意图等主观任务微调，并提供白板会议和技术协作等工程支持。"
+   ],
+   "topics": [
+    "memory",
+    "context-engineering",
+    "multi-agent"
+   ],
+   "category": "Agent 工程",
+   "categories": [
+    "Agent 工程",
+    "上下文与记忆",
+    "产品与商业"
+   ],
+   "horizon": "long",
+   "score": 84.9,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "5d637772aa95e8cd",
+   "url": "https://www.macrumors.com/2026/09/14/siri-can-be-swapped-out-for-chatgpt-claude/",
+   "title": "Apple's Siri AI Can Be Swapped Out for Claude, ChatGPT, Code Shows",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-09-13T01:22:31+00:00",
+   "published_at": "2026-09-14T12:01:32+00:00",
+   "summary_short": "代码显示新 Siri 架构可深度接入 Claude、GPT-5.6 等第三方模型",
+   "summary_long": "代码侦探 pdfu 在 iOS 27 和 macOS Golden Gate 私有框架中发现，苹果新 Siri 架构被设计为可与第三方 AI 模型深度协作。一个名为 Model Delegation 的机制允许 Claude 像现有内置 ChatGPT 扩展一样作为 Siri 扩展出现。在演示视频中，用户在“Search or Ask”栏通过“Ask...”菜单选择 Claude，启用后说“Ask Claude”在提醒事项中设置提醒；Claude 解析自然语言请求，Siri 随后创建提醒。若请求需要访问苹果系统功能，Claude 会把任务交回 Siri。另一个示例中，Claude 在 Siri 对话窗口收到创建 CSV 文件的请求——Siri 本身无法处理——并成功返回结果。第二个协议更进一步：Model Manager Services 中的推理提供方机制允许苹果服务端 Siri 模型被其他模型完全替换，例如 GPT-5.6。ChatGPT 接收苹果原生 Siri planner 提示和工具定义，可发起系统操作、获取个人数据，并由 Siri 用自身界面和语音呈现回答。演示中用户让 ChatGPT 查找特定主题邮件、总结内容和行动点，并通过信息 App 给联系人发消息，响应显示在 OpenAI 平台网页界面。欧盟《数字市场法案》可能影响了这一设计，因其要求苹果向第三方提供对 iOS",
+   "key_points": [
+    "Model Delegation 机制允许 Claude 作为 Siri 扩展出现，类似内置 ChatGPT 扩展；需访问苹果系统功能时 Claude 交回 Siri，也能处理 Siri 无法完成的 CSV 创建等任务。",
+    "Model Manager Services 的推理提供方可让 GPT-5.6 完全替换服务端 Siri 模型，接收 Siri planner 提示和工具定义，以 Siri 自身界面和语音给出回答。",
+    "欧盟《数字市场法案》可能是苹果此设计的动因；“Ask...”目前仅限 macOS Golden Gate RC 的 ChatGPT 扩展，Claude 未开放，相关权限也未向第三方开放。"
+   ],
+   "topics": [
+    "tool-use",
+    "multi-agent",
+    "product"
+   ],
+   "category": "Agent 工程",
+   "categories": [
+    "Agent 工程",
+    "产品与商业",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 83.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 219,
+    "hn_comments": 155,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "310d4fd0496b542a",
+   "url": "https://andonlabs.com/blog/why-we-built-pion",
+   "title": "Pion, an agent designed to run any company autonomously",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-14T17:16:06+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "agent-loop",
+    "tool-use",
+    "product"
+   ],
+   "category": "Agent 工程",
+   "categories": [
+    "Agent 工程",
+    "产品与商业"
+   ],
+   "horizon": "short",
+   "score": 82.6,
+   "status": "published",
+   "extra": {
+    "hn_points": 277,
+    "hn_comments": 295,
+    "content_source": "direct"
+   }
+  },
+  {
+   "id": "dce815e05e9f3d47",
+   "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive/",
+   "title": "OpenAI bots knew about the RubyGems caching vulnerability",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-14T12:40:57+00:00",
    "summary_short": "",
    "summary_long": "",
    "key_points": [],
    "topics": [
     "safety",
-    "multi-agent",
-    "agent-loop"
-   ],
-   "category": "安全与对齐",
-   "categories": [
-    "安全与对齐",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 82.8,
-   "status": "published",
-   "extra": {
-    "hn_points": 591,
-    "hn_comments": 649,
-    "content_source": "direct"
-   }
-  },
-  {
-   "id": "16316487dc98a6eb",
-   "url": "https://withspecific.com/benchmarks/real-swe",
-   "title": "Real-SWE: Benchmarking AI models on private, real-world, enterprise codebases",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-12T20:25:48+00:00",
-   "summary_short": "Real-SWE 在私有企业代码库上基准测试前沿 AI 模型，附八模型排行榜与真实任务示例。",
-   "summary_long": "2026年9月，Snagnik Das、Siddhant Paliwal 和 Janak Sunil 发布 Real-SWE，一个在私有、真实世界、企业代码库上评估前沿 AI 模型的基准。每个任务来自一家真实公司的私有生产代码库，是该公司的工程师实际处理的问题，带有现有产品的全部上下文和复杂性。任务特点包括：智能体必须导航公共互联网上不可用的专有系统；涉及计费、税费计算、客户迁移等具有业务后果的工作，常跨多个服务；每家公司有特定规则和代码写法，智能体需理解并适配这些约定。专家生成或合成任务虽可能设计良好，但并非真实公司工程师所需的逐字实际任务；该基准的任务在底层编码工件和指令具体性两个维度上增加了复杂性。评估使用原生 harness 来反映企业工程师的实际工作方式，评估模型与 harness 组合而非孤立模型，结果用 pass@1 表示，每个任务平均八次独立运行并显示 95% 置信区间。排行榜中，Fable 5.1 搭配 Claude Code 分辨率最高为 38.8%，GPT-6 Astra 搭配 Codex CLI 为 33.8%，Gemini 3.8 Flash 搭配 Gemini CLI 为 31.2%，GLM 5.3 搭配 Claude Code 为 28.8%，Grok 4.6 和 Muse Spark 1.3 均为 23.8%，Kimi K3 为 18.8%，GPT-",
-   "key_points": [
-    "Real-SWE 任务来自真实公司的私有生产代码库，涵盖工程师实际处理的计费、税费、客户迁移等问题。",
-    "评估使用原生 harness 和 pass@1（每个任务八次独立运行平均），反映企业工程师的工作方式。",
-    "排行榜最高为 Fable 5.1（38.8%），最低为 GPT-5.6 Sol（16.2%），展示前沿模型在真实企业代码上的表现。"
-   ],
-   "topics": [
-    "eval",
-    "coding-agent",
-    "harness"
-   ],
-   "category": "评测与基准",
-   "categories": [
-    "评测与基准",
-    "论文"
-   ],
-   "horizon": "long",
-   "score": 82.3,
-   "status": "published",
-   "extra": {
-    "hn_points": 268,
-    "hn_comments": 147,
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "543492d805466c09",
-   "url": "https://techcrunch.com/2026/09/11/y-combinators-garry-tan-wants-u-s-open-weight-ai-labs-to-distill-frontier-models-too/",
-   "title": "Garry Tan wants US open-weight AI labs to 'distill' frontier models, too",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-13T15:44:38+00:00",
-   "summary_short": "YC CEO Garry Tan 反对打压蒸馏，主张允许美国开放权重实验室蒸馏前沿模型",
-   "summary_long": "Y Combinator CEO Garry Tan 对中国实验室蒸馏前沿模型一事希望监管不要介入，认为美国也应建立“美国蒸馏制度”。他告诉 TechCrunch，希望较小的美国开放权重实验室对美国前沿实验室使用同类训练技术，使美国有更多非中国的开放权重选择。蒸馏是大量提示另一个模型以学习其工作与推理方式，常见且合法。Anthropic 本周发布第二份报告，指控中国实验室“非法蒸馏攻击”，其 CEO Dario Amodei 曾呼吁美国监管打击蒸馏；Tan 不赞同。他并非提倡盗取凭证，而是希望美国实验室可从前门进入。他的论点有两方面：AI 实验室规定客户如何使用模型输出是过度干预；专有实验室训练时也未经许可抓取大量人类知识，包括版权材料。他说控制用户对闭源模型 API 调用的使用令人受限，政府可推动让基于广泛公共数据训练的智能更像公共产品，而非被服务条款锁住。Tan 希望开放权重与前沿实验室平衡：前沿实验室推动进展并可融资，开放权重模型提供自由访问。他认为 AI 末日场景是前沿 AI 权力落入单一专有提供商，只有一家公司凭借最佳资本和研究人员独大，这将是坏事。",
-   "key_points": [
-    "Garry Tan 希望美国开放权重 AI 实验室也能对美国前沿模型使用蒸馏技术，而非仅限中国实验室被讨论",
-    "他不赞同 Anthropic 呼吁监管打击蒸馏，认为限制客户如何使用模型输出是过度干预，且前沿实验室训练时也未获版权许可",
-    "他担心 AI 权力集中于单一专有公司是真正的“末日场景”，主张在开放权重与前沿实验室之间保持平衡"
-   ],
-   "topics": [
-    "post-training",
-    "open-source",
-    "regulation"
-   ],
-   "category": "模型训练",
-   "categories": [
-    "模型训练",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 78.2,
-   "status": "published",
-   "extra": {
-    "hn_points": 342,
-    "hn_comments": 176,
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "4e3f293e30946b2a",
-   "url": "https://twitter.com/DavidSacks/status/2098973625252708460",
-   "title": "David Sacks: OpenAI and Anthropic Don't Need Regulations to Pace Frontier Models",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-13T16:52:33+00:00",
-   "summary_short": "萨克斯称OpenAI与Anthropic若想放慢前沿可直接行动，不必以监管为代价。",
-   "summary_long": "David Sacks在推文中回应Dario和Sam关于“pace the frontier”的呼吁，表示“请便”。他认为OpenAI与Anthropic在市场占有率、营收增长和模型能力等合理指标上已形成对前沿智能的双头垄断，且二者声称领先优势因递归自我改进而扩大。Sacks说，如果未发布模型可怕到让它们想放慢，他支持其负责任的决定，但不应再假装需要别人许可，不应假装必须暂停反垄断法以组成卡特尔，不应假装需要取代产品责任的监管审批流程，不应假装METR独立——他指出METR与Anthropic的投资者和员工纠缠不清，也不应假装需要这些评估者去监管甚至不在前沿的竞争对手。他尤其质疑放慢的动机并非纯粹利他：如果产品促成真正破坏性的网络攻击，二者面临巨大产品责任风险；市场已经在惩罚行为不可预测或未经授权的模型，Hugging Face事件后，用部分原始能力换取可靠性和可预测性只是好生意。Sacks还称放慢前沿可为比伯尼·桑德斯式“彻底关停”更明智的监管讨论创造空间，并指出中国不太可能加入全球协议。他最后说，不建造超级智能最简单的方法就是二者同意不建造；如果要求偏好的监管框架作为代价，会像对公众和政治体系的勒索。若真这么做能买来善意，若不这么做，外界会认为这是又一次监管捕获或选举季心理战。",
-   "key_points": [
-    "Sacks称OpenAI与Anthropic已在前沿智能上形成双头垄断，若想放慢可直接行动。",
-    "他批评二者借监管之名规避产品责任、质疑METR独立性并反对监管捕获式安排。",
-    "他认为市场已惩罚不可预测行为，放慢也符合其商业利益；若不行动，动机将被视为监管捕获或选举季心理战。"
-   ],
-   "topics": [
-    "safety",
-    "regulation",
-    "policy"
+    "tool-use"
    ],
    "category": "行业动态",
    "categories": [
@@ -258,12 +277,41 @@
     "安全与对齐"
    ],
    "horizon": "short",
-   "score": 76.1,
+   "score": 79.5,
    "status": "published",
    "extra": {
-    "hn_points": 229,
-    "hn_comments": 175,
-    "content_source": "direct",
+    "hn_points": 368,
+    "hn_comments": 313,
+    "content_source": "direct"
+   }
+  },
+  {
+   "id": "09740d2129789fa6",
+   "url": "https://simonwillison.net/2026/Sep/14/laurie-voss/",
+   "title": "Quoting Laurie Voss",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-14T14:34:29+00:00",
+   "summary_short": "写代码成本崩塌后，软件开发重心转向发现需求、准确定义和优化体验。",
+   "summary_long": "原文引述 Laurie Voss 的观点指出：编写代码的成本已经大幅下降，审查、修复和运营代码的成本也在随之下降，并且预计会降到同样低的水平。软件开发中剩下的工作是弄清人们真正想要什么，精确地定义需求，以及让软件使用起来令人舒适。这种成本是按每一款软件单独产生的，无法在不同软件之间转移。由于对软件的需求没有上限，软件数量会趋向无穷，因此这种无法转移的成本最终会成为软件开发工作的全部。原文未详述具体案例或数据，仅以这一判断说明在代码成本降低之后，软件工作的核心可能转向产品定义与体验设计。",
+   "key_points": [
+    "编写代码的成本已崩溃，审查、修复和运营代码的成本也在下降，并预计会达到同样水平。",
+    "软件开发剩下的核心是发现用户真实需求、精确描述需求、让软件使用起来舒适。",
+    "这种成本按单个软件产生且不转移；软件需求无上限，软件数量趋于无限，这类成本将成为全部工作。"
+   ],
+   "topics": [
+    "product"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "产品与商业"
+   ],
+   "horizon": "long",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
     "summary_mode": "full"
    }
   }

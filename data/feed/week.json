@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-14T00:48:11+00:00",
+ "generated_at": "2026-09-15T01:19:21+00:00",
  "items": [
   {
    "id": "36253bc446ad5232",
@@ -1055,6 +1055,39 @@
    }
   },
   {
+   "id": "296d33defd03a1b2",
+   "url": "https://openai.com/index/fyxer",
+   "title": "How Fyxer built an AI executive assistant people trust",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-14T12:00:00+00:00",
+   "summary_short": "Fyxer结合OpenAI模型与50万小时助理工作流打造AI执行助理，展示高情境邮件生成方法。",
+   "summary_long": "对许多专业人士而言，工作意味着在收件箱、会议、消息和应用间跟踪对话与承诺。缺乏可靠上下文，承诺可能被遗漏，损害项目和关系。Fyxer构建了一款AI执行助理，能跟随工作在不同工具间的流向，结合最新OpenAI模型与超过50万小时行政助理工作流，将任务分配给数十个专门模型，并通过真实用户反馈持续改进。邮件处理是典型场景：同一封邮件，两个人可能因关系、过往经历和当前目标不同而需要完全不同的回复，使看似简单的任务对AI异常困难。Fyxer联合创始人Archie Hollingsworth以莫拉维克悖论解释：人类觉得容易的事对计算机很难。Fyxer通过学习每位用户的工作方式，像熟悉优先事项的助理一样回应。OpenAI模型用于理解邮件、寻找上下文和生成草稿。Fyxer选择OpenAI，因为其模型在内部基准上表现最佳、能为语调和意图等主观任务提供微调，并通过白板会议和技术协作提供工程支持。指标显示，90天用户留存率为90%，53%的AI生成草稿被原样接受。原文提出三个教训，其中详细展开的第一个是：将邮件拆分为更小任务。系统包含30-50个专门模型，每个负责邮件工作流中的狭窄环节。新邮件到达时，回复决策模型判断是否需要回复、安排日程或仅供查看；若需回复，其他模型分析意图并预测互动结果。记忆系统决定哪些细节应跨对话保留，检索模型对比历史互动并呈现最相关记忆。OpenAI模型贯穿邮件理解、上下文重排和",
+   "key_points": [
+    "Fyxer的AI执行助理结合最新OpenAI模型与超50万小时行政助理工作流，通过数十个专门模型处理任务，并根据真实用户反馈改进；90天用户留存率达90%，53%的AI生成草稿按原样被接受。",
+    "邮件回复高度依赖关系、历史和目标，Fyxer通过学习用户工作方式应对；其系统将邮件处理拆分为30-50个专门模型，包括回复决策、意图分析、记忆检索和草稿生成。",
+    "Fyxer选择OpenAI是因为其模型在内部基准表现最佳、支持语调和意图等主观任务微调，并提供白板会议和技术协作等工程支持。"
+   ],
+   "topics": [
+    "memory",
+    "context-engineering",
+    "multi-agent"
+   ],
+   "category": "Agent 工程",
+   "categories": [
+    "Agent 工程",
+    "上下文与记忆",
+    "产品与商业"
+   ],
+   "horizon": "long",
+   "score": 84.9,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "048aa76fa30eaedc",
    "url": "https://simonwillison.net/2026/Sep/8/on-navier-stokes/",
    "title": "On the Navier–Stokes Millennium Prize Problem",
@@ -1429,6 +1462,41 @@
    }
   },
   {
+   "id": "5d637772aa95e8cd",
+   "url": "https://www.macrumors.com/2026/09/14/siri-can-be-swapped-out-for-chatgpt-claude/",
+   "title": "Apple's Siri AI Can Be Swapped Out for Claude, ChatGPT, Code Shows",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-14T12:01:32+00:00",
+   "summary_short": "代码显示新 Siri 架构可深度接入 Claude、GPT-5.6 等第三方模型",
+   "summary_long": "代码侦探 pdfu 在 iOS 27 和 macOS Golden Gate 私有框架中发现，苹果新 Siri 架构被设计为可与第三方 AI 模型深度协作。一个名为 Model Delegation 的机制允许 Claude 像现有内置 ChatGPT 扩展一样作为 Siri 扩展出现。在演示视频中，用户在“Search or Ask”栏通过“Ask...”菜单选择 Claude，启用后说“Ask Claude”在提醒事项中设置提醒；Claude 解析自然语言请求，Siri 随后创建提醒。若请求需要访问苹果系统功能，Claude 会把任务交回 Siri。另一个示例中，Claude 在 Siri 对话窗口收到创建 CSV 文件的请求——Siri 本身无法处理——并成功返回结果。第二个协议更进一步：Model Manager Services 中的推理提供方机制允许苹果服务端 Siri 模型被其他模型完全替换，例如 GPT-5.6。ChatGPT 接收苹果原生 Siri planner 提示和工具定义，可发起系统操作、获取个人数据，并由 Siri 用自身界面和语音呈现回答。演示中用户让 ChatGPT 查找特定主题邮件、总结内容和行动点，并通过信息 App 给联系人发消息，响应显示在 OpenAI 平台网页界面。欧盟《数字市场法案》可能影响了这一设计，因其要求苹果向第三方提供对 iOS",
+   "key_points": [
+    "Model Delegation 机制允许 Claude 作为 Siri 扩展出现，类似内置 ChatGPT 扩展；需访问苹果系统功能时 Claude 交回 Siri，也能处理 Siri 无法完成的 CSV 创建等任务。",
+    "Model Manager Services 的推理提供方可让 GPT-5.6 完全替换服务端 Siri 模型，接收 Siri planner 提示和工具定义，以 Siri 自身界面和语音给出回答。",
+    "欧盟《数字市场法案》可能是苹果此设计的动因；“Ask...”目前仅限 macOS Golden Gate RC 的 ChatGPT 扩展，Claude 未开放，相关权限也未向第三方开放。"
+   ],
+   "topics": [
+    "tool-use",
+    "multi-agent",
+    "product"
+   ],
+   "category": "Agent 工程",
+   "categories": [
+    "Agent 工程",
+    "产品与商业",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 83.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 219,
+    "hn_comments": 155,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "ae1c0b143270a4ac",
    "url": "https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating",
    "title": "Why are AI agents lying, cheating and coordinating?",
@@ -1454,6 +1522,35 @@
    "extra": {
     "hn_points": 591,
     "hn_comments": 649,
+    "content_source": "direct"
+   }
+  },
+  {
+   "id": "310d4fd0496b542a",
+   "url": "https://andonlabs.com/blog/why-we-built-pion",
+   "title": "Pion, an agent designed to run any company autonomously",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-14T17:16:06+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "agent-loop",
+    "tool-use",
+    "product"
+   ],
+   "category": "Agent 工程",
+   "categories": [
+    "Agent 工程",
+    "产品与商业"
+   ],
+   "horizon": "short",
+   "score": 82.6,
+   "status": "published",
+   "extra": {
+    "hn_points": 277,
+    "hn_comments": 295,
     "content_source": "direct"
    }
   },
@@ -1877,6 +1974,34 @@
    }
   },
   {
+   "id": "dce815e05e9f3d47",
+   "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive/",
+   "title": "OpenAI bots knew about the RubyGems caching vulnerability",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-14T12:40:57+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "safety",
+    "tool-use"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "安全与对齐"
+   ],
+   "horizon": "short",
+   "score": 79.5,
+   "status": "published",
+   "extra": {
+    "hn_points": 368,
+    "hn_comments": 313,
+    "content_source": "direct"
+   }
+  },
+  {
    "id": "b52898a627b97aed",
    "url": "https://terrytao.wordpress.com/2026/09/11/a-severe-misalignment-of-ai-in-mathematics/",
    "title": "A Misalignment of AI in Mathematics",
@@ -2111,6 +2236,36 @@
    }
   },
   {
+   "id": "09740d2129789fa6",
+   "url": "https://simonwillison.net/2026/Sep/14/laurie-voss/",
+   "title": "Quoting Laurie Voss",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-14T14:34:29+00:00",
+   "summary_short": "写代码成本崩塌后，软件开发重心转向发现需求、准确定义和优化体验。",
+   "summary_long": "原文引述 Laurie Voss 的观点指出：编写代码的成本已经大幅下降，审查、修复和运营代码的成本也在随之下降，并且预计会降到同样低的水平。软件开发中剩下的工作是弄清人们真正想要什么，精确地定义需求，以及让软件使用起来令人舒适。这种成本是按每一款软件单独产生的，无法在不同软件之间转移。由于对软件的需求没有上限，软件数量会趋向无穷，因此这种无法转移的成本最终会成为软件开发工作的全部。原文未详述具体案例或数据，仅以这一判断说明在代码成本降低之后，软件工作的核心可能转向产品定义与体验设计。",
+   "key_points": [
+    "编写代码的成本已崩溃，审查、修复和运营代码的成本也在下降，并预计会达到同样水平。",
+    "软件开发剩下的核心是发现用户真实需求、精确描述需求、让软件使用起来舒适。",
+    "这种成本按单个软件产生且不转移；软件需求无上限，软件数量趋于无限，这类成本将成为全部工作。"
+   ],
+   "topics": [
+    "product"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "产品与商业"
+   ],
+   "horizon": "long",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "99c22bc85dd5ff7a",
    "url": "https://openai.com/index/teen-development-research-grants",
    "title": "Funding grants for new research into AI and teen development",
@@ -2166,68 +2321,6 @@
    ],
    "horizon": "long",
    "score": 76.9,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "1bfd7f6e1b29d8f3",
-   "url": "https://simonwillison.net/2026/Sep/7/llm/",
-   "title": "llm 0.35",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-07T23:54:54+00:00",
-   "summary_short": "llm 0.35 发布，命令行访问大模型，新增 gpt-6-astra 支持。",
-   "summary_long": "2026年9月7日，Simon Willison 在其博客发布 llm 0.35 版本。该工具用于从命令行访问大语言模型。发布说明中列出的核心更新是新增一个 OpenAI 模型：gpt-6-astra，对应 GPT-6 Astra。原文未详述此版本的其他变更、安装方式或使用示例。发布条目标注了 openai、llm 和 gpt-6-astra 等关键词。该发布信息以简短公告形式呈现，发布时间为当日 11:54 pm。原文还提到博客接受每月 10 美元的赞助以提供月度简报，但这与 llm 0.35 的发布内容无直接关联。整体来看，该版本的主要可见变化是加入了 gpt-6-astra 这一新模型支持，为命令行用户访问 OpenAI 最新模型提供了途径。原文未提供更多技术细节或性能对比。",
-   "key_points": [
-    "llm 0.35 已发布，可用于从命令行访问大语言模型。",
-    "新增 OpenAI 模型：gpt-6-astra，用于 GPT-6 Astra。",
-    "发布时间为 2026 年 9 月 7 日，来源为 Simon Willison 的博客。"
-   ],
-   "topics": [
-    "open-source",
-    "tool-use"
-   ],
-   "category": "开源项目",
-   "categories": [
-    "开源项目",
-    "模型发布"
-   ],
-   "horizon": "short",
-   "score": 76.7,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "86ca6d285b301856",
-   "url": "https://simonwillison.net/2026/Sep/7/jakub-pachocki/",
-   "title": "Quoting Jakub Pachocki",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-07T22:26:25+00:00",
-   "summary_short": "OpenAI首席科学家：训练更强模型是为防御其他AI带来的危险。",
-   "summary_long": "OpenAI首席科学家Jakub Pachocki表示，他看到的继续快速训练更强大模型的最有力论据，是需要构建防御系统来应对其他人工智能带来的危险。他提出：“我们需要强大且对齐的人工智能用于防御；以保障基础设施、实时防范 rogue agents，并发明全新的保护措施。”他明确说，这将是OpenAI部署工作的一个主要重点。与此同时，即使预期人工智能会广泛进步并存在不确定性，也必须构建防御系统，但不能让这成为鲁莽的借口。他警告，一旦人们真正内化了事态的严重性，“不惜一切代价向前冲”的想法就显得荒谬。原文没有给出防御系统的具体技术路径、时间安排或“其他AI”的明确定义，也未详述“rogue agents”的具体形态。整段话的核心是把“更快训练更聪明的模型”与“防御其他AI的威胁”直接联系起来，并强调在推进过程中保持谨慎、反对不计代价的竞赛。",
-   "key_points": [
-    "继续快速训练更聪明模型的最强理由是构建防御系统，应对其他AI带来的危险。",
-    "防御需要强大且对齐的AI，用于保障基础设施、实时防范 rogue agents、发明全新保护措施，是OpenAI部署工作的主要重点。",
-    "不能用防御需求作为鲁莽借口；一旦内化事态严重性，不计代价向前冲的想法就显得荒谬。"
-   ],
-   "topics": [
-    "safety",
-    "rogue-agents"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "安全与对齐"
-   ],
-   "horizon": "short",
-   "score": 76.7,
    "status": "published",
    "extra": {
     "content_source": "rss",
