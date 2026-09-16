@@ -8,7 +8,7 @@
 
 - **线上**：https://wenboxia.github.io/airadar/
 - **仓库**：github.com/wenboxia/airadar
-- **运行**：GitHub Actions 每日北京时间 07:00 自动跑，数据 commit 回仓库，前端自动重新部署
+- **运行**：GitHub Actions 每日北京时间 07:00 自动跑，数据 commit 回仓库，同一个工作流里接着部署前端；审批每周一开一次单
 - 本地文件夹与产品名统一为 `airadar` / **AIRadar**（2026-08-28 起，此前曾叫 ainews）
 
 ## 二、项目为什么存在（最终目标，不可忘记）
@@ -16,7 +16,7 @@
 这是主人的**面试作品项目**，服务于 AI 产品经理 / AI 产品工程师 / AI Native Builder 岗位（目标公司：Moonshot、DeepSeek、字节、阿里、腾讯等）。每个技术决策有双重标准：
 
 1. **真实有用**：主人是它的第一个重度用户，产品要真的每天跑、真的解决"AI 资讯过载 + 看完留不下东西"的问题
-2. **面试可讲**：每个设计决策都要能转化为面试谈资，全部记录在 `docs/decisions.md`（已 34 条）。堆名词、过度设计是天敌——"能清醒地说出为什么不用 LangGraph"比"用了 LangGraph"更有价值
+2. **面试可讲**：每个设计决策都要能转化为面试谈资，全部记录在 `docs/decisions.md`（已 41 条，开头有故事线）。堆名词、过度设计是天敌——"能清醒地说出为什么不用 LangGraph"比"用了 LangGraph"更有价值
 
 四大核心差异化（对应目标 JD 最值钱的能力，任何改动不得削弱）：
 ①信源分层信誉体系 ②全 pipeline 评测 ③记忆分层沉淀 ④HITL 置信度路由 + 反馈飞轮
@@ -57,8 +57,8 @@ data/knowledge.db（SQLite）+ data/feed/*.json（latest/week/archive/pending/tr
 1. `start_prompt.md`（本文件）— 全局认知
 2. `CLAUDE.md` — 核心原则与开发命令（**干活前必读**）
 3. `todo.md` — 当前进度与主人待办
-4. `docs/decisions.md` — D1–D34 全部设计决策（**改架构前必读，别推翻已有结论**）
-5. `docs/mechanisms.md` — 六大机制的人话讲解（主人面试脱稿用）
+4. `docs/decisions.md` — D1–D41 全部设计决策（**改架构前必读，别推翻已有结论**）
+5. `docs/mechanisms.md` — 六大机制的人话讲解（主人面试脱稿用）；`docs/demo.md` — 3 分钟演示路径；`README.md` — 对外的一页介绍
 6. `docs/PRD.md` — 产品定义、竞品分析、指标体系
 7. `pipeline/main.py` → `pipeline/stages/*.py` — 代码主线（按 fetch→publish 顺序读）
 8. `pipeline/sources.yaml` — 信源注册表（**核心资产**）
@@ -66,7 +66,7 @@ data/knowledge.db（SQLite）+ data/feed/*.json（latest/week/archive/pending/tr
 10. `pipeline/hitl.py` — 人工审批闭环（GitHub Issue / 本地 CLI）
 11. `evals/run_eval.py` — 评测引擎（三分类路由评法）
 12. `evals/judge_hallucination.py` — LLM-as-Judge 幻觉评测
-13. `evals/prelabel.py` + `evals/review_golden.py` — 黄金集分层采样与标注工具
+13. `evals/prelabel.py` + `evals/review_golden.py` + `evals/import_golden_docx.py` — 黄金集分层采样与标注工具；`tools/` — 只在开发机用的一次性工具（分类回填、标注表生成）
 14. `web/` — 前端（React+Vite+TS+Tailwind，设计说明见 decisions.md D20）
 
 ## 五、当前进度
@@ -81,16 +81,26 @@ data/knowledge.db（SQLite）+ data/feed/*.json（latest/week/archive/pending/tr
   - 话题热度与时间线 + 数据跨度守卫（D31）
   - LLM-as-Judge 幻觉评测（D32/D33）+ summarize 不再传信源名（D34）
 
-**当前指标**：自动发布准确率 67% · 送审命中率 **20%** · 漏网之鱼 **0** · 幻觉率 25% · 分类主命中 83% · 27 个测试全绿
+- **[2026-09-16]** 收口成可被点开看的作品集（D35–D41）：
+  - 线上数据自 08-29 起没更新——每日回写的提交不会触发 pages.yml，部署并入 daily.yml
+  - 信源重构：取消 D 级、arXiv 按时间抓的入口关停、HN 关键词表扩充、新增 Raschka / Mollick、X 级三个实例；体检按各源自身节奏报警并读云端运行记录
+  - 分类拆出「安全与防护」、新增「落地案例」，493 条历史分类回填（旧值存 categories_v1）
+  - 审批改为每周一次、每次前 12 条；过期单子不再被当成人工否决
+  - 黄金集 v1 作废，v2 按成文标准随机分层采样 100 条，资料已准备，生成了 Word 标注表
+  - README、演示路径 `docs/demo.md` 完成
 
-**当前卡点**：等主人把黄金集从 26 条标到 100 条（草稿 25 条已分层就绪）。够 60 条才能做 Phase C 的三家模型配对对比。
+**当前指标**：19 天连续定时运行 19 次全部成功 · 62 个测试全绿 · 规则校验 0 违规 · 分类重跑噪声底 37%。
+黄金集 v2 未标注，筛选准确率暂不报（v1 的 67% / 20% 仅作历史参照）。
+
+**当前卡点**：主人标注黄金集 v2（`evals/golden_set/黄金集v2_标注表.docx`，填完跑 `python3 evals/import_golden_docx.py`）。
+够 60 条才能做 Phase C 的三家模型配对对比。
 
 ## 六、期望完成度
 
 - **Week 1** ✅ 本地全链路 + 评测 v1
 - **Week 2** ✅ 前端上线、每日自动运行、HITL 闭环
 - **Week 3** Phase A+B ✅ ｜ Phase C（三家模型配对对比）等黄金集扩容
-- **Week 4** 面试武装：decisions 故事线、运行数据量化、3 分钟 demo 路径
+- **Week 4** 面试武装 ✅：decisions 故事线、运行数据量化、3 分钟 demo 路径、README
 - **最终状态**：连续运行数十天、有真实数据、主人能脱稿讲清每个机制的线上产品
 
 ## 七、和主人协作的规矩

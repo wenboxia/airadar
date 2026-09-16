@@ -5,6 +5,11 @@ on:
     # UTC 23:00 = 北京时间 07:00，早上起来就有当天的情报
     - cron: '0 23 * * *'
   workflow_dispatch: # 允许手动触发（调试与首次验证）
+    inputs:
+      open_review:
+        description: '不管今天星期几，都开一张审批单'
+        type: boolean
+        default: false
 
 # 需要写权限把数据 commit 回仓库 / 开审批 issue（零服务器架构，见 docs/decisions.md D3）
 # pages / id-token 给同一工作流里的部署 job 用（见文件末尾的说明）
@@ -51,11 +56,19 @@ jobs:
       - name: 跑评测（规则校验不过就让这次运行显红）
         run: python3 evals/run_eval.py
 
-      - name: 开 HITL 审批 issue（中置信度条目）
+      # 抓取每天跑，审批每周一次（北京时间周一早上），每次只列分数最高的 12 条（D37）。
+      # 放在同一个工作流里而不是另开一个：回收、开单、数据回写要按顺序发生在同一次运行里
+      - name: 开本周审批 issue（北京时间周一）
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-        run: python3 -m pipeline.hitl open
+          FORCE: ${{ inputs.open_review }}
+        run: |
+          if [ "$(TZ=Asia/Shanghai date +%u)" = "1" ] || [ "$FORCE" = "true" ]; then
+            python3 -m pipeline.hitl open
+          else
+            echo "今天不是审批日（北京时间周一），跳过"
+          fi
 
       # 回写要能容忍"运行期间远端已变化"——一次扫描要跑十几分钟，
       # 期间任何一次人工 push 都会让直接 push 被拒（实测踩过）。

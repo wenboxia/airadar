@@ -50,7 +50,8 @@ def _source_registry() -> dict:
     by_tier = {}
     for s in sources:
         by_tier.setdefault(s["tier"], []).append(s["name"])
-    return {"total": len(sources), "by_tier": by_tier}
+    # total 只数在抓的；X 级是「评估过、决定不抓」，名单照样导出供机制页展示
+    return {"total": sum(1 for s in sources if s["tier"] != "X"), "by_tier": by_tier}
 
 
 def write_stats(ctx: Context):
@@ -81,9 +82,17 @@ def run(items: list, ctx: Context) -> list:
         "top": [_item_view(d) for d in published[:5]],
         "items": [_item_view(d) for d in published],
     })
+    # 本周是主视图（D37：审批改周更后，内容呈现也按周看——参照的周刊没有一家日更）
+    week = ctx.db.recent_items(days=7)
+    # 精选不推已停抓信源的旧条目：改为 X 级之前自动发布的 arXiv 论文分数普遍 90+，
+    # 不排除的话首页头条就是刚决定不再收的东西。历史记录照常保留在列表和知识库里
+    retired = set(_source_registry()["by_tier"].get("X", []))
+    picks = sorted((d for d in week if d["source"] not in retired),
+                   key=lambda d: -(d["score"] or 0))[:5]
     _dump("week.json", {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "items": [_item_view(d) for d in ctx.db.recent_items(days=7)],
+        "top": [_item_view(d) for d in picks],
+        "items": [_item_view(d) for d in week],
     })
     _dump("pending.json", {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),

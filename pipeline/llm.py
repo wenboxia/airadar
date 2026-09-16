@@ -139,6 +139,18 @@ def _truncated(data: dict) -> bool:
         return False
 
 
+def describe_error(e) -> str:
+    """把异常变成能看懂的一句话。requests 的连接错误常常 str() 出来就是 "None"——
+    比如服务端中途断开时是 ConnectionError(ProtocolError(None))，
+    日志里只剩「最后错误：None」，根本看不出是连接被掐断了。"""
+    if e is None:
+        return "无（没有任何供应商可尝试）"
+    text = str(e)
+    if text in ("", "None"):
+        return f"{type(e).__name__}: {e!r}"
+    return f"{type(e).__name__}: {text}" if not isinstance(e, LLMError) else text
+
+
 class LLMClient:
     """按 [主力 → 备用] 顺序调用，全部不可用时优雅退场。线程安全（stage 并发调用）。"""
 
@@ -199,7 +211,7 @@ class LLMClient:
             except (KeyError, IndexError) as e:
                 last_err = LLMError(f"{p.name} 返回结构异常: {e}")
                 continue
-        raise LLMError(f"所有供应商均不可用（最后错误：{last_err}）", permanent=True)
+        raise LLMError(f"所有供应商均不可用（最后错误：{describe_error(last_err)}）", permanent=True)
 
     def json_chat(self, system: str, user: str, **kw) -> dict:
         """要求 JSON 输出并宽容解析；解析失败返回 {}，调用方按降级处理，不许裸崩。"""

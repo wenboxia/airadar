@@ -9,12 +9,15 @@
   2. 主人跑 `python3 evals/review_golden.py` 逐条判断
   3. `python3 evals/run_eval.py` 算三条路径各自的准确率
 
-用法：python3 evals/prelabel.py [--n 25]
+用法：python3 evals/prelabel.py [--n 25] [--seed N]
 """
 import argparse
 import json
 import os
+import random
 import sqlite3
+
+import yaml
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB_PATH = os.environ.get("AIRADAR_DB_PATH") or os.path.join(ROOT, "data", "knowledge.db")
@@ -33,6 +36,13 @@ BANDS = [
 ]
 
 
+def _retired_sources() -> set:
+    """已停止抓取的信源（sources.yaml 里的 X 级）。它们的历史条目还在库里，
+    但不代表系统今后会遇到的内容——拿来标注是浪费人工，也测不出现在的筛选质量。"""
+    with open(os.path.join(ROOT, "pipeline", "sources.yaml"), encoding="utf-8") as f:
+        return {s["name"] for s in yaml.safe_load(f)["sources"] if s.get("tier") == "X"}
+
+
 def _labeled_urls() -> set:
     if not os.path.exists(DONE):
         return set()
@@ -48,24 +58,31 @@ def _labeled_urls() -> set:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=25, help="本批导出条数")
+    ap.add_argument("--seed", type=int, default=20260916, help="段内随机抽样的种子")
     args = ap.parse_args()
 
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     labeled = _labeled_urls()
     # 按 auto_status 取（系统的自主判断），不是 status——后者可能已被人工改写
+    retired = _retired_sources()
     all_rows = [dict(r) for r in conn.execute("SELECT * FROM items")
-                if r["url"] not in labeled]
+                if r["url"] not in labeled and r["source"] not in retired]
     if not all_rows:
         print("库里所有条目都已标注完。等 pipeline 再跑几天攒新内容。")
         return
 
     # 先按段分组，再按权重分配配额；某段不够就把余额让给其他段
+    # 段内随机抽，不能按分数取前 N：之前就是按分数降序取的，结果 60-70 段抽到的全是
+    # 69.x、0-50 段全是 47-49.9——「低分段」实际只测到了 50 分线边上。
+    # 固定种子，同一个库重跑得到同一批样本
+    rng = random.Random(args.seed)
     groups = {}
     for lo, hi, w in BANDS:
-        groups[(lo, hi)] = sorted(
-            [r for r in all_rows if lo <= (r["score"] or 0) < hi],
-            key=lambda r: -(r["score"] or 0))
+        band = sorted((r for r in all_rows if lo <= (r["score"] or 0) < hi),
+                      key=lambda r: r["id"])
+        rng.shuffle(band)
+        groups[(lo, hi)] = band
 
     weights = {(lo, hi): w for lo, hi, w in BANDS}
     total_w = sum(weights[k] for k in groups if groups[k])

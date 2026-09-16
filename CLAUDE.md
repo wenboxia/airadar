@@ -8,10 +8,12 @@
 
 2. **评测驱动**：改 prompt、换模型、调阈值 → 必须跑 `python3 evals/run_eval.py`，结果自动存 `evals/results/`。不许凭感觉说"效果变好了"。
 
-3. **指标不会报错，只会说谎**（D22/D29/D31/D32 四次踩坑换来的）。新增或解读任何指标前先问三件事：
+3. **指标不会报错，只会说谎**（D22/D29/D31/D32 起，到 D35/D39/D41 又踩了三次）。新增或解读任何指标前先问五件事：
    - **匹配对象的性质吗？** 查询型信源没有"最新一篇"（D22）
    - **匹配输出的结构吗？** 三分类路由不能用二分类 precision/recall——把"我不确定"算成"我认为该收"是把谨慎当错误（D29）
    - **数据的跨度与来源可靠吗？** 18 天数据算不出 90 天趋势（D31）；裁判限流不能被统计成幻觉（D32）
+   - **样本是怎么抽的？** 分层之后段内按分数取前 N，"低分段"就只测到了分数线边上（D35）
+   - **规则执行了，设计达到目的了吗？** 规则一次没执行过，和规则执行了但产出没人看，都要看数据才知道（D40）
 
    套错的指标不会抛异常，只会给出看似合理实则误导的数字——**"看起来合理"正是它危险的地方**。
 
@@ -20,8 +22,10 @@
 5. **兜底优先**：任何外部依赖（信源、LLM、网络）都可能失败。单点失败不允许阻塞整条 pipeline；没有 API key 时 pipeline 必须能走降级路径跑通。降级方向永远是**收紧**而非放宽（宁可送人工审，不可错发）。
 
 6. **依赖极简**：Python 端只允许 requests / feedparser / PyYAML / beautifulsoup4 + 标准库。加新依赖前先问：标准库能不能做？
+   `tools/` 下的一次性工具可以用开发机上的额外包（比如生成 Word 用的 python-docx），但不进 `requirements.txt`，pipeline 永远不 import 它们。
 
 7. **数据不手改**：`data/` 下所有文件由 pipeline 生成，人只通过 HITL 渠道（审批 issue / CLI）影响数据。
+   唯一的例外是 `tools/` 下经过评审的一次性回填：只改声明过的列，改之前存旧值，前后对 status / auto_status 做指纹比对（见 D39）。
 
 ## 常用命令
 
@@ -30,25 +34,33 @@
 python3 -m pipeline.main                 # 完整运行（无 key 时自动降级）
 python3 -m pipeline.main --limit 5       # 每信源限 5 条（调试）
 python3 -m pipeline.main --no-llm        # 强制降级路径，零成本
-python3 -m pipeline.sources_health       # 信源体检：找出"沉默死掉"的源
+python3 -m pipeline.sources_health       # 信源体检：按各源自身节奏报沉默 + 读云端运行记录报失败
 python3 -m pipeline.memory               # 单独重算话题热度与生命周期
 
 # ── 人工审批（HITL）────────────────────────────────────
 python3 -m pipeline.hitl review          # 本地 CLI 审批（无 GitHub 时兜底）
-python3 -m pipeline.hitl open            # 把待审条目开成 GitHub Issue
+python3 -m pipeline.hitl open            # 开本周审批 issue（前 12 条；旧单子过期先打标签再关）
 python3 -m pipeline.hitl collect         # 回收已关闭 issue 的勾选结果
 
 # ── 评测 ──────────────────────────────────────────────
 python3 evals/run_eval.py                # 规则校验 + 黄金集三路径评测
-python3 evals/prelabel.py --n 25         # 按分数段分层导出待标注草稿
-python3 evals/review_golden.py           # 逐条标注（断点续标，自动跳过已标）
+python3 evals/prelabel.py --n 100        # 分数段分层 + 段内随机抽样，导出待标注草稿（跳过 X 级信源）
+python3 tools/prep_golden_doc.py         # AI 写资料（不给收录建议）→ 生成 Word 标注表
+python3 evals/import_golden_docx.py      # 把填好的 Word 表写回 golden.jsonl
+python3 evals/review_golden.py           # 另一条路：命令行逐条标注
 python3 evals/judge_hallucination.py --n 8 --k 3   # LLM-as-Judge 幻觉评测
-python3 -m unittest discover evals -v    # 27 个回归测试
+python3 -m unittest discover evals -v    # 62 个回归测试
 
 # ── 前端 ──────────────────────────────────────────────
 cd web && npm run dev                    # 本地开发（自动同步 data/feed）
 cd web && npm run build                  # 构建（AIRADAR_BASE=/airadar/ 走 Pages 子路径）
+
+# ── 一次性工具（tools/，只在开发机用）──────────────────
+python3 tools/backfill_categories.py --report   # 分类体系改版前后的对比表
 ```
+
+部署：`daily.yml` 里 scan → build → deploy 串在一起。**不要指望 push 触发 pages.yml 来更新数据**——
+每日回写用的是 GITHUB_TOKEN，这类提交不会触发其他工作流（线上数据曾因此停在 08-29）。
 
 ## 环境变量（.env 不入库，参考 .env.example）
 

@@ -10,7 +10,7 @@
 | 线上地址 | https://wenboxia.github.io/airadar/ |
 | 仓库 | https://github.com/wenboxia/airadar |
 | 自动运行 | 每天北京时间 **07:00**（GitHub Actions） |
-| 部署方式 | **GitHub Pages**（`.github/workflows/pages.yml`，数据更新后自动重新部署） |
+| 部署方式 | **GitHub Pages**：每日工作流 `daily.yml` 跑完数据后接着部署；`pages.yml` 只在人手推送前端代码或手动触发时部署 |
 
 ---
 
@@ -18,7 +18,8 @@
 
 ### 1. 处理审批 issue（约 3 分钟）
 
-每天定时任务会把「系统不确定」的内容（综合分 50–75）开成一张勾选清单。
+每周一（北京时间早上）定时任务会把「系统不确定」的内容（综合分 50–75）里分数最高的 12 条开成一张勾选清单。
+上一张单子开了 6 天以上还没关，会先按过期关掉——**没勾的条目保持待审，不会被当成你否决的**。
 
 1. 打开 https://github.com/wenboxia/airadar/issues （找带 `airadar-approval` 标签的）
 2. **想收录就打勾，不想要就留空**，不用写理由
@@ -65,7 +66,8 @@ cd web && npm run dev                  # 本地看前端
 - **数据回写被拒** → 已内置 3 次重试，仍失败说明有并发推送，重跑一次即可
 
 **网站数据没更新？**
-Actions 跑完会 commit 数据，Pages 工作流随后自动部署。两个工作流都绿了但页面还旧，多半是浏览器缓存，强制刷新（Cmd+Shift+R）。
+Actions 的每日工作流里 scan → build → deploy 三个 job 依次跑完才算更新。三个都绿了但页面还旧，多半是浏览器缓存，强制刷新（Cmd+Shift+R）。
+注意：不能指望数据提交去触发 `pages.yml`——每日回写用的是 GITHUB_TOKEN，这类提交不会触发其他工作流（线上数据曾因此停在 08-29）。
 
 **想换模型或加信源？**
 - 换模型：改 `.env`（本地）+ GitHub 仓库 Settings → Secrets and variables → Actions（云端）
