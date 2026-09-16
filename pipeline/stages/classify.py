@@ -7,7 +7,7 @@ from ..llm import LLMError
 from ..models import Context
 
 MANIFEST = {
-    "name": "classify", "version": "0.1.0",
+    "name": "classify", "version": "0.2.0",
     "input": "list[Item]", "output": "list[Item]（含 category/topics/horizon）",
     "eval_cases": "evals/golden_set/golden.jsonl 的 category 标注",
 }
@@ -17,8 +17,16 @@ MANIFEST = {
 # 「模型训练」与「模型发布」分开：前者讲怎么练出来的（方法、蒸馏、量化、微调），
 # 后者讲发布了什么。「工程实践」收窄为系统层内容（生产部署、架构运维、可观测性），
 # 不再兜底一切工程话题。
+#
+# 2026-09-16 参照 OpenAI 新闻页的分类体系改了两处（D39）：
+# ① 拆「安全与对齐」：对齐是模型会不会做坏事，防护是系统会不会被攻破——
+#    对 PM 是两个决策领域。本项目 D34（结构防护优于指令防护）就是防护议题，
+#    旧体系里却只能归进「安全与对齐」
+# ② 加「落地案例」：谁在用、怎么用。旧体系没有这个格子，收进来的企业实践无处安放
+# 旧分类存在 items.categories_v1，改动前后可对比。
 CATEGORIES = ["模型发布", "模型训练", "Agent 工程", "评测与基准", "上下文与记忆",
-              "工程实践", "开源项目", "论文", "行业动态", "安全与对齐", "产品与商业"]
+              "工程实践", "开源项目", "论文", "行业动态", "安全与对齐", "安全与防护",
+              "落地案例", "产品与商业"]
 
 SUGGESTED_TOPICS = ["agent-loop", "tool-use", "mcp", "memory", "context-engineering",
                     "harness", "multi-agent", "eval", "rag", "post-training",
@@ -31,6 +39,10 @@ categories：从这个列表里选 1-3 个（一条内容可以同时属于多�
   - 「模型发布」指发布了什么模型、有什么能力
   - 「论文」是体裁标签，arXiv 内容都该带上，且通常还有一个主题类别
   - 「工程实践」只给系统层内容：生产部署、架构运维、可观测性
+  - 「安全与对齐」指模型本身的行为：价值观、拒答、越狱、欺骗、可解释性
+  - 「安全与防护」指系统被攻击：prompt 注入、数据泄漏、权限越界、供应链、漏洞
+  - 「落地案例」指某个组织把 AI 用进了实际工作并讲了怎么做、效果如何
+  - 「产品与商业」指产品形态、定价、市场、融资——讲的是卖什么，不是谁用出了什么效果
 topics 选 1-3 个细粒度标签（优先用建议列表，也可自造小写连字符标签）：{SUGGESTED_TOPICS}
 horizon 二选一：short（时效新闻，两周后价值大降）/ long（方法论/原理，三个月后仍值得回看）
 输出 JSON：{{"categories": ["...", "..."], "topics": ["..."], "horizon": "short|long"}}"""

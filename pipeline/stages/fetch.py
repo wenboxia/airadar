@@ -174,6 +174,16 @@ def _fetch_arxiv(src: dict, since: datetime, ctx: Context) -> list:
     return items
 
 
+def title_words(title: str) -> set:
+    """标题分词，附带去掉复数 s 的形式。
+
+    整词匹配原本会漏掉复数——实测近 30 天 HN 上《Introducing System One Models》1301 分、
+    《LLMs as a Cognitive Virus》394 分都因为 models≠model、llms≠llm 被丢掉。
+    只补不替：原词仍保留，所以 "gpus" 同时产出 gpus 和 gpu，不会漏匹配原词。"""
+    words = re.findall(r"[a-z0-9]+", title.lower())
+    return set(words) | {w[:-1] for w in words if len(w) > 3 and w.endswith("s")}
+
+
 def _fetch_hn(src: dict, since: datetime, ctx: Context) -> list:
     since_ts = int(since.timestamp())
     url = ("https://hn.algolia.com/api/v1/search?tags=story"
@@ -185,8 +195,7 @@ def _fetch_hn(src: dict, since: datetime, ctx: Context) -> list:
     items = []
     for h in resp.json().get("hits", []):
         title = h.get("title") or ""
-        words = set(re.findall(r"[a-z0-9]+", title.lower()))
-        if kws and not (words & set(kws)):
+        if kws and not (title_words(title) & set(kws)):
             continue
         link = h.get("url") or f"https://news.ycombinator.com/item?id={h['objectID']}"
         published = datetime.fromtimestamp(

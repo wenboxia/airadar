@@ -1,10 +1,13 @@
 name: 部署前端到 GitHub Pages
 
+# 日常部署已经并入 daily.yml（scan → build → deploy）。
+# 这里原本监听 push，但每日数据是 GITHUB_TOKEN 提交的，这类提交按规则不会触发其他工作流，
+# 所以它 08-29 之后再没跑过。现在这里只负责两种情况：人手推送的前端改动，和手动重新部署
 on:
   push:
     branches: [main]
-    # 数据变了或前端代码变了才重新部署
-    paths: ['web/**', 'data/feed/**', '.github/workflows/pages.yml']
+    # 只在前端代码变化时触发——这类提交来自人，能正常触发。数据变化交给 daily.yml
+    paths: ['web/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:
@@ -12,10 +15,10 @@ permissions:
   pages: write
   id-token: write
 
-# 每天数据回写会触发一次部署；同一时间只跑一个，新的排队等旧的跑完
+# 与 daily.yml 的 deploy job 共用并发组
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:

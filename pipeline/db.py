@@ -51,6 +51,14 @@ class DB:
             self.conn.commit()
         if "auto_status" not in cols:
             self._migrate_auto_status()
+        if "categories_v1" not in cols:
+            # 2026-09-16 分类体系改版（拆出「安全与防护」、新增「落地案例」）前的快照。
+            # 只加列不填值：由 tools/backfill_categories.py 在回填新分类前写入旧值。
+            # 新条目这一列恒为 NULL——它们从来没有过旧分类。
+            # 注意 upsert_items 是 INSERT OR REPLACE，会把不在 Item 里的列清空；
+            # 安全的前提是 publish 只 upsert 当次新抓的条目（dedupe 已滤掉已有 id）
+            self.conn.execute("ALTER TABLE items ADD COLUMN categories_v1 TEXT")
+            self.conn.commit()
 
     def _migrate_auto_status(self):
         """回填 auto_status（系统自主判断），区分它与被人工改写的 status。

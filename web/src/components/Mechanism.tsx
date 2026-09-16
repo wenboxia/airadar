@@ -19,8 +19,7 @@ const TIERS = [
   { t: 'A', label: '公认专家', why: '作者有被验证过的判断力，分析独立于官方口径', base: 78 },
   { t: 'B', label: '垂直媒体 / 社区信号', why: '有编辑或社区筛选，但不是一手', base: 62 },
   { t: 'C', label: '投资 / 研究 / 跨界视角', why: '不产工程内容，但给出产业逻辑与批判视角', base: 48 },
-  { t: 'D', label: '待观察 · 强制人工过审', why: '在本系统里还没有信誉记录，永不自动发布', base: 30 },
-  { t: 'X', label: '已屏蔽', why: '验证过存在抄袭 / 标题党 / 纯软文', base: 0 },
+  { t: 'X', label: '不抓取', why: '评估过、决定不收：数据不可信 / 活着但没用 / 抓取入口设计错误', base: 0 },
 ]
 
 const FALLBACKS = [
@@ -126,11 +125,12 @@ export function Mechanism({ stats }: { stats: Stats | null }) {
           这里建的是「运营主体信誉库」，不是「平台黑名单」。
         </p>
         <p className="mt-3 text-[13.5px] leading-[1.8] text-ink-dim">
-          <span className="text-signal">信誉是挣来的，不是赐的。</span>
-          D 级里的 Latent Space、Eugene Yan 质量其实很高，放最低级不是因为它们差，
-          而是因为<span className="text-ink">它们在本系统里还没有信誉记录</span>。
-          所有新信源一律从 D 级进入、强制人工过审；人工通过率持续走高，系统才给出升级建议。
-          所以 tier 不是手工贴的静态标签，是<span className="text-ink">有升降通道的信誉记录</span>。
+          <span className="text-signal">按信源是什么定级，不按它新不新。</span>
+          这里曾有一个「待观察」级：新信源一律先放进去、强制人工过审。实测发现这条规则从没生效——
+          观察级综合分最高 61.5，够不到发布线，
+          <span className="text-ink">一半内容低于 50 被直接丢弃，人从来没看到过</span>。
+          现在新信源按性质直接归入专家、媒体或跨界层，发不发交给模型打分；
+          每个信源定在哪一级、为什么，都写在注册表里，可以逐条追问。
         </p>
       </Section>
 

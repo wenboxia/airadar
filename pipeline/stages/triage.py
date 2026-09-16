@@ -3,7 +3,7 @@
 综合分 = tier_weight × tier基础分 + (1-tier_weight) × LLM 价值分
 路由：>=publish_threshold 自动发布；中间区进人工审核；低于 review_threshold 丢弃（留审计日志）。
 
-降级路径（无 LLM / 超预算）：只用 tier 基础分。S/A 发布、B/C/D 送审——
+降级路径（无 LLM / 超预算）：只用 tier 基础分。S/A 发布、B/C 送审——
 宁可多送审也不让低质内容自动发布（保守降级）。
 """
 from ..guards import parallel_map
@@ -11,7 +11,7 @@ from ..llm import LLMError
 from ..models import Context
 
 MANIFEST = {
-    "name": "triage", "version": "0.1.0",
+    "name": "triage", "version": "0.2.0",
     "input": "list[Item]", "output": "list[Item]（status: published/review/discarded）",
     "eval_cases": "evals/golden_set/golden.jsonl 的 include/tier 标注",
 }
@@ -77,10 +77,6 @@ def run(items: list, ctx: Context) -> list:
             it.status = "review"
         else:
             it.status = "discarded"
-        # 待观察信源（D）永远不允许直接发布
-        if it.tier == "D" and it.status == "published":
-            it.status = "review"
-            it.notes.append("tier_D_forced_review")
         it.auto_status = it.status      # 冻结系统的自主判断，之后人工审批只改 status
         return "llm_scored"
 

@@ -14,8 +14,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DRAFT = os.path.join(ROOT, "evals", "golden_set", "golden_draft.jsonl")
 OUT = os.path.join(ROOT, "evals", "golden_set", "golden.jsonl")
 
-CATEGORIES = ["模型发布", "Agent 工程", "评测与基准", "上下文与记忆", "工程实践",
-              "开源项目", "论文", "行业动态", "安全与对齐", "产品与商业"]
+# 直接复用 pipeline 的类目表，不再各抄一份。
+# 之前这里是手抄的，D25 给 classify 加「模型训练」时漏改了这里——
+# 标注工具里一直选不到这个类，而人工标注正是用来评测 classify 的
+sys.path.insert(0, ROOT)
+from pipeline.stages.classify import CATEGORIES  # noqa: E402
 
 HELP = """
 判断标准：三个月后你还愿意在知识库里搜到它吗？

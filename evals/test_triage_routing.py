@@ -2,7 +2,10 @@
 
 为什么值得写：这段逻辑决定"哪些内容不经人看就发出去"。改错一个不等号，
 要么把低质内容自动发布（破坏信任），要么把所有东西都推给人（回到人力瓶颈）。
-尤其 D 级强制送审这条规则——它是"新信源没有信誉记录"这个设计的唯一执行点。
+
+2026-09-16 取消了 D 级（待观察）和它的「强制送审」规则：D 级综合分上限 61.5，
+那条规则一次都没执行过，而 D 级内容有一半低于 50 被直接丢弃、从没到过人手里。
+原先锁定这条规则的两个测试一并删除；现在锁的是反面——不再有任何等级被特殊对待。
 
 跑：python3 -m unittest evals.test_triage_routing -v
 """
@@ -51,37 +54,19 @@ class TestConfidenceRouting(unittest.TestCase):
         it = self._run_one("C", {"relevance": 10, "novelty": 10, "longterm": 5})
         self.assertEqual(it.status, "discarded")
 
-    def test_tier_D_never_auto_publishes_at_any_score(self):
-        """核心不变量：待观察信源在任何分数下都不能自动发布。
-        新信源在本系统里没有信誉记录，信誉必须靠人工通过率挣。"""
-        for r in (100, 90, 75, 50, 20):
-            it = self._run_one("D", {"relevance": r, "novelty": r, "longterm": r})
-            self.assertNotEqual(it.status, "published",
-                                f"D 级在 relevance={r} 时被自动发布了")
+    def test_routing_depends_only_on_score(self):
+        """取消 D 级后，路由只看分数，不再有按等级的特判。
+        防止有人重新加回一条"某级永远送审"的规则却不去验证它会不会生效。"""
+        src = (pathlib.Path(__file__).parent.parent / "pipeline" / "stages" / "triage.py"
+               ).read_text(encoding="utf-8")
+        body = src.split("it.score = round(", 1)[1].split("return \"llm_scored\"", 1)[0]
+        self.assertNotRegex(body, r"it\.tier\s*==", "评分后的路由里出现了按等级的特判")
 
-    def test_tier_D_guard_survives_threshold_changes(self):
-        """这条测的是**安全网本身**，不是当前配置下的结果。
-
-        当前参数下 D 级的算术上限只有 61.5 分（0.55×30 + 0.45×100），
-        本来就够不到 75 的发布线——也就是说 triage 里那条显式的
-        "D 级强制送审"规则目前从未执行过。
-
-        但保护不能依赖算术巧合：只要有人调高 D 的基础分或调低发布线，
-        算术保护就静默失效。所以这里模拟一次未来的配置变更，
-        验证那条显式规则真的会兜住。"""
-        it = _item("D")
-        ctx = _ctx(True, {"relevance": 100, "novelty": 100, "longterm": 100})
-        ctx.cfg.publish_threshold = 50.0     # 模拟有人调低了发布线
-        triage.run([it], ctx)
-        self.assertEqual(it.status, "review", "显式的 D 级守卫没有生效")
-        self.assertIn("tier_D_forced_review", " ".join(it.notes),
-                      "守卫生效时必须留痕，否则无法审计")
-
-    def test_tier_S_beats_tier_D_on_same_content_score(self):
+    def test_tier_S_beats_tier_C_on_same_content_score(self):
         """同样的内容质量，信源等级决定命运——这就是分层的意义。"""
         scores = {"relevance": 70, "novelty": 70, "longterm": 70}
-        s_item, d_item = self._run_one("S", scores), self._run_one("D", scores)
-        self.assertGreater(s_item.score, d_item.score)
+        s_item, c_item = self._run_one("S", scores), self._run_one("C", scores)
+        self.assertGreater(s_item.score, c_item.score)
 
 
 class TestConservativeDegradation(unittest.TestCase):
@@ -98,7 +83,7 @@ class TestConservativeDegradation(unittest.TestCase):
 
     def test_everything_else_goes_to_human(self):
         """降级时收紧自动化权限，而不是放宽。"""
-        for tier in ("B", "C", "D"):
+        for tier in ("B", "C"):
             self.assertEqual(self._run_degraded(tier).status, "review", tier)
 
     def test_degradation_is_recorded(self):
