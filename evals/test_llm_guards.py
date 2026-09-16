@@ -6,10 +6,14 @@
 跑：python3 -m unittest evals.test_llm_guards -v
 """
 import unittest
+from unittest.mock import Mock
+
+import requests
+from urllib3.exceptions import ProtocolError
 
 from pipeline.guards import Budget
 from pipeline.llm import (LLMClient, LLMError, Provider, TransientError,
-                          classify_http_error, parse_json_loose)
+                          classify_http_error, describe_error, parse_json_loose)
 
 
 class TestErrorClassification(unittest.TestCase):
@@ -101,3 +105,28 @@ class TestJsonParsing(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestErrorDescription(unittest.TestCase):
+    """报错信息必须能看出原因。GLM 在推理超过约 65 秒时被服务端断开，
+    异常是 ConnectionError(ProtocolError(None))，原来日志里只显示「最后错误：None」。"""
+
+    def test_connection_error_with_none_message_is_readable(self):
+        msg = describe_error(requests.exceptions.ConnectionError(ProtocolError(None)))
+        self.assertIn("ConnectionError", msg)
+        self.assertIn("ProtocolError", msg)
+
+    def test_no_provider_tried(self):
+        self.assertNotEqual(describe_error(None), "None")
+
+    def test_llm_error_message_kept_as_is(self):
+        self.assertEqual(describe_error(LLMError("限流 http 429")), "限流 http 429")
+
+    def test_all_providers_failed_message_carries_cause(self):
+        """端到端：唯一的供应商连接被断开，最终报错要带上原因。"""
+        p = Provider("x", "http://x", "k", "m")
+        p.call = Mock(side_effect=requests.exceptions.ConnectionError(ProtocolError(None)))
+        client = LLMClient([p], Budget(1000, 10), {})
+        with self.assertRaises(LLMError) as cm:
+            client.chat("s", "u")
+        self.assertIn("ConnectionError", str(cm.exception))

@@ -24,7 +24,8 @@ const TIERS = [
 
 const FALLBACKS = [
   { name: '内容获取', chain: ['直接抓取', 'Jina Reader', '保留 RSS 简介'], real: 'OpenAI 官网 Cloudflare 403，靠 Reader 拿到 6000 字正文' },
-  { name: '模型调用', chain: ['DeepSeek v4-pro', 'GLM 5.3', '标记不可用'], real: '真实运行中触发过 6 次跨厂商切换' },
+  // real 为空时由运行记录派生（见下方 fallbackNote）——这里曾写死「6 次」，后来实际已经几十次
+  { name: '模型调用', chain: ['DeepSeek v4-pro', 'GLM 5.3', '标记不可用'], real: '' },
   { name: '业务降级', chain: ['正常发布', 'S/A 放行·其余送审', '仅标题入库'], real: '三家账户欠费时做过完整降级演练，pipeline 照常跑完' },
 ]
 
@@ -59,6 +60,12 @@ export function Mechanism({ stats }: { stats: Stats | null }) {
   const last = stats?.runs?.[0]?.stats
   const budget = last?.budget
   const reg = stats?.sources
+  const runs = stats?.runs ?? []
+  const fbRuns = runs.filter((r) => (r.stats.calls_by_provider?.fallback ?? 0) > 0)
+  const fbCalls = fbRuns.reduce((n, r) => n + (r.stats.calls_by_provider?.fallback ?? 0), 0)
+  const fallbackNote = runs.length
+    ? `最近 ${runs.length} 次运行里有 ${fbRuns.length} 次切到过备用模型，共 ${fbCalls} 次调用`
+    : '暂无运行记录'
 
   return (
     <div className="mx-auto max-w-3xl px-6 pb-24 lg:px-0">
@@ -148,8 +155,9 @@ export function Mechanism({ stats }: { stats: Stats | null }) {
           ))}
         </div>
         <p className="mt-4 text-[13.5px] leading-[1.8] text-ink-dim">
-          中间区开成 GitHub Issue 勾选卡片等人审批，决策写回 feedback 日志。
-          某信源若连续被否，系统给出降级它的建议——人的判断回流成信源信誉的修正，形成数据飞轮。
+          中间区每周开一次 GitHub Issue 勾选卡片，只列分数最高的 12 条，决策写回 feedback 日志。
+          某信源的中间区内容若连续被否，系统建议对它提高送审门槛——
+          <span className="text-ink">只调中间区的处理策略，不改信源等级</span>：人工反馈只来自中间分数段，是有偏样本。
           被丢弃的内容同样入库：<span className="text-ink">「筛掉了什么」和「收了什么」同样是筛选器质量的证据。</span>
         </p>
       </Section>
@@ -179,7 +187,7 @@ export function Mechanism({ stats }: { stats: Stats | null }) {
                   </span>
                 ))}
               </div>
-              <p className="mt-2 font-mono text-[11px] text-ink-faint">实测：{f.real}</p>
+              <p className="mt-2 font-mono text-[11px] text-ink-faint">实测：{f.real || fallbackNote}</p>
             </div>
           ))}
         </div>

@@ -41,8 +41,8 @@ function FilterChip({
 }
 
 const VIEWS: { id: View; label: string; sub: string }[] = [
-  { id: 'today', label: '今日', sub: 'TODAY' },
   { id: 'week', label: '本周', sub: 'WEEK' },
+  { id: 'today', label: '今日', sub: 'TODAY' },
   { id: 'archive', label: '知识库', sub: 'ARCHIVE' },
   { id: 'trends', label: '趋势', sub: 'TRENDS' },
   { id: 'pending', label: '待审', sub: 'QUEUE' },
@@ -50,7 +50,7 @@ const VIEWS: { id: View; label: string; sub: string }[] = [
 ]
 
 export default function App() {
-  const [view, setView] = useState<View>('today')
+  const [view, setView] = useState<View>('week')
   const [cat, setCat] = useState<string | null>(null)
   const [horizon, setHorizon] = useState<'short' | 'long' | null>(null)
   const [q, setQ] = useState('')
@@ -94,7 +94,10 @@ export default function App() {
     })
   }, [allItems, cat, horizon, q])
 
-  const top: Item[] = view === 'today' ? (latest.data?.top ?? []) : []
+  const top: Item[] =
+    view === 'today' ? (latest.data?.top ?? [])
+      : view === 'week' ? (week.data?.top ?? [])
+        : []
   const filtered = cat || horizon || q.trim()
   const pendingCount = pending.data?.items?.length ?? 0
 
@@ -226,15 +229,15 @@ export default function App() {
                 </div>
               )}
 
-              {/* 今日精选 */}
-              {view === 'today' && top.length > 0 && !filtered && (
+              {/* 精选：本周 / 今日 */}
+              {(view === 'week' || view === 'today') && top.length > 0 && !filtered && (
                 <section className="mb-10">
                   <div className="mb-3 flex items-baseline gap-3">
                     <h2
                       className="text-[30px] leading-none text-ink"
                       style={{ fontFamily: 'var(--font-display)' }}
                     >
-                      今日精选
+                      {view === 'week' ? '本周精选' : '今日精选'}
                     </h2>
                     <span className="font-mono text-[10px] tracking-wider text-ink-faint">
                       30 秒读完

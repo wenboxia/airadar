@@ -3,6 +3,10 @@
 为什么用 GitHub Issue（decisions.md D6）：零基建的异步审批收件箱——自带通知、
 自带审计记录、Actions 有权限读写。对标企业级 Agent 平台里"高风险操作强制人工审批"的简化同构。
 
+节奏（D37）：抓取每天跑，**审批每周一次**，每次只列分数最高的 12 条。
+日更审批从没真正发生过：08-29 开的单子一直没关，而 open 遇到未关闭的单子就不再开新的，
+之后 18 天送审的内容全部沉在库里；累计送审 239 条，人工审完 18 条。
+
 闭环：
   pipeline 产出待审条目 → `hitl open` 开一张勾选清单 issue
   → 人在 issue 里勾 ✅/❌ → 下次运行 `hitl collect` 读回勾选结果
@@ -27,6 +31,9 @@ from .stages.publish import write_stats
 
 API = "https://api.github.com"
 LABEL = "airadar-approval"
+EXPIRED = "airadar-expired"
+REVIEW_BATCH = 12      # 每周给人看的条数
+EXPIRE_DAYS = 6        # 上一张单子到下次开单时还开着，就按过期处理（留一天余量给定时任务的时间抖动）
 FEEDBACK_PATH = os.path.join(ROOT, "data", "feedback.jsonl")
 MARK = "<!-- airadar:item="
 
@@ -53,28 +60,51 @@ def _log_feedback(rows: list):
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
-def _pending(db: DB) -> list:
-    rows = db.conn.execute(
-        "SELECT * FROM items WHERE status='review' ORDER BY score DESC").fetchall()
+def _pending(db: DB, limit: int = 0) -> list:
+    """待审条目，分数高的在前。没进本周名单的保持 review，下周再排——不丢，只是不打扰人。"""
+    sql = "SELECT * FROM items WHERE status='review' ORDER BY score DESC"
+    rows = db.conn.execute(sql + (f" LIMIT {int(limit)}" if limit else "")).fetchall()
     return [dict(r) for r in rows]
+
+
+def _age_days(iso: str) -> float:
+    d = datetime.fromisoformat(iso.replace("Z", "+00:00"))
+    return (datetime.now(timezone.utc) - d).total_seconds() / 86400
+
+
+def _expire(issue: dict, n_new: int):
+    """关掉没人处理的旧单子。**先打过期标签再关**：collect 对过期单子只认勾选的，
+    没勾的保持待审——否则「没勾」会被当成「否决」，等于替人把整张单子判死。"""
+    num = issue["number"]
+    _gh("POST", f"/issues/{num}/labels", json={"labels": [EXPIRED]})
+    _gh("POST", f"/issues/{num}/comments", json={"body": (
+        f"这张单子开了 {_age_days(issue['created_at']):.0f} 天没有关闭，按过期处理。\n\n"
+        "- 已勾选的条目仍会按「通过」回收\n"
+        "- **没勾选的条目不会被当成否决**，保持待审，重新参与排序\n\n"
+        f"本周新单子只列分数最高的 {n_new} 条。")})
+    _gh("PATCH", f"/issues/{num}", json={"state": "closed", "state_reason": "not_planned"})
+    print(f"旧审批 issue #{num} 已按过期关闭")
 
 
 def cmd_open():
     """把待审条目开成一张勾选清单 issue。已有未关闭的审批 issue 则不重复开。"""
     db = DB()
-    items = _pending(db)
+    items = _pending(db, REVIEW_BATCH)
     if not items:
         print("没有待审条目，跳过")
         return
+    backlog = db.conn.execute("SELECT COUNT(*) FROM items WHERE status='review'").fetchone()[0]
 
-    existing = _gh("GET", f"/issues?state=open&labels={LABEL}")
-    if existing:
-        print(f"已有未处理的审批 issue #{existing[0]['number']}，本次不重复开")
-        return
+    for issue in _gh("GET", f"/issues?state=open&labels={LABEL}"):
+        if _age_days(issue["created_at"]) < EXPIRE_DAYS:
+            print(f"已有未处理的审批 issue #{issue['number']}，本次不重复开")
+            return
+        _expire(issue, len(items))
 
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     lines = [
         "综合分落在 **50–75** 之间的内容——系统知道自己不确定，所以交给你。",
+        f"本周只列分数最高的 **{len(items)} 条**（待审一共 {backlog} 条，其余留到下周重新排）。",
         "",
         "### 怎么做",
         "",
@@ -99,7 +129,7 @@ def cmd_open():
         lines.append("")
 
     issue = _gh("POST", "/issues", json={
-        "title": f"待审批 · {today} · {len(items)} 条",
+        "title": f"本周待审 · {today} · {len(items)} / {backlog} 条",
         "body": "\n".join(lines),
         "labels": [LABEL],
     })
@@ -117,8 +147,10 @@ def cmd_collect():
     total_ok = total_no = 0
     feedback = []
     for issue in closed:
-        if any(l["name"] == "airadar-collected" for l in issue.get("labels", [])):
+        labels = {l["name"] for l in issue.get("labels", [])}
+        if "airadar-collected" in labels:
             continue
+        expired = EXPIRED in labels
         body = issue.get("body") or ""
         # 逐条解析：勾选状态在条目行，id 在紧随其后的注释里
         for block in body.split("- [")[1:]:
@@ -127,6 +159,8 @@ def cmd_collect():
                 continue
             item_id = m.group(1)
             approved = block[0].lower() == "x"
+            if expired and not approved:
+                continue        # 过期单子里没勾的 = 人没看过，不是人否决了
             # 只改 status，**绝不碰 auto_status**——后者是系统的自主判断，
             # 是评测唯一可信的对照面（decisions.md D28）
             db.conn.execute("UPDATE items SET status=? WHERE id=?",
