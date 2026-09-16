@@ -7,9 +7,12 @@ on:
   workflow_dispatch: # 允许手动触发（调试与首次验证）
 
 # 需要写权限把数据 commit 回仓库 / 开审批 issue（零服务器架构，见 docs/decisions.md D3）
+# pages / id-token 给同一工作流里的部署 job 用（见文件末尾的说明）
 permissions:
   contents: write
   issues: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: airadar-daily
@@ -82,3 +85,46 @@ jobs:
             echo "推送被拒，远端有新提交，重试中…"; sleep 5
           done
           echo "::error::数据回写重试 3 次仍失败"; exit 1
+
+  # ---------- 部署前端 ----------
+  # 为什么放在这里而不是交给 pages.yml 的 push 触发：上面的回写用的是 GITHUB_TOKEN，
+  # 按 GitHub 的规则，GITHUB_TOKEN 产生的提交不会触发任何其他工作流（防止无限循环）。
+  # 结果是 pages.yml 从 08-29 之后再没被触发过，线上数据停在那天，仓库里却每天都有新提交。
+  build:
+    needs: scan
+    runs-on: ubuntu-latest
+    steps:
+      # 必须显式检出 main：默认检出的是触发本次运行的那个提交，
+      # 也就是 scan 回写数据之前的版本——部署出去的还是旧数据
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+        working-directory: web
+      - run: npm run build
+        working-directory: web
+        env:
+          AIRADAR_BASE: /airadar/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    # 与 pages.yml 的手动部署共用一个并发组，避免两边同时发布
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

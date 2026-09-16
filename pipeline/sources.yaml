@@ -5,23 +5,34 @@
 #   A = 公认专家个人博客/团队，优先收录
 #   B = 大厂子品牌/垂直媒体，按主题收录
 #   C = 投资/研究/跨界视角，补充收录
-#   D = 待观察新信源，进人工审核队列
-#   X = 已验证低质，直接屏蔽
+#   （原有 D = 待观察：新信源一律先放这里、强制送审、通过率高再升级。2026-09-16 取消——
+#    D 级基础分 30，综合分最高 61.5，一半内容低于 50 被直接丢弃、人从没见过；
+#    升级通道也早在 D27 就关了（边缘区样本有偏，不许据此改 tier）。
+#    现在新信源按它本身是什么直接定级，发不发交给模型打分。库里的历史条目仍带 D 标记）
+#   X = 评估后决定不抓（数据不可信 / 有用性不够 / 入口设计错误），fetch 直接跳过
 #
 # type: rss（含 Atom）/ arxiv / hn / github
 # 单个信源抓取失败只记日志不阻塞（guards 兜底原则）
+#
+# expected_cadence_days：这个源正常情况下「至少每 N 天有一篇」，给 sources_health 用。
+#   值来自 2026-09-16 对各 feed 最近 10 篇的实测。沉默超过 max(2N, 7) 天就报警。
+#   为什么不按 tier 统一阈值：A 级原先一律 180 天，Karpathy 沉默 138 天（是他自己
+#   节奏的 3 倍）照样显示「正常」；而 Anthropic 镜像 15 天没新条目——看着不久，
+#   却是它自己节奏的 5 倍，事后查出镜像漏掉了 Fable 5.1 的发布文。
 
 sources:
   # ---------- Tier S：官方一手 ----------
   - name: OpenAI News
     tier: S
     type: rss
+    expected_cadence_days: 3
     url: https://openai.com/news/rss.xml
     topics: [模型发布, 行业动态]
 
   - name: Anthropic News
     tier: S
     type: rss
+    expected_cadence_days: 7
     # Anthropic 官网无 RSS。用社区维护的镜像（Olshansk/rss-feeds，GitHub Actions 自动更新，
     # 实测比 RSSHub 公共实例稳定；选型过程见 docs/decisions.md）
     url: https://raw.githubusercontent.com/Olshansk/rss-feeds/main/feeds/feed_anthropic_news.xml
@@ -30,51 +41,50 @@ sources:
   - name: Google DeepMind Blog
     tier: S
     type: rss
+    expected_cadence_days: 7
     url: https://deepmind.google/blog/rss.xml
     topics: [模型发布, 论文]
 
   - name: GitHub Blog (AI)
     tier: S
     type: rss
+    expected_cadence_days: 3
     url: https://github.blog/feed/
     topics: [工程实践, 开源项目]
 
   - name: Hugging Face Blog
     tier: S
     type: rss
+    expected_cadence_days: 3
     url: https://huggingface.co/blog/feed.xml
     topics: [开源项目, 工程实践]
 
   - name: MCP Official Blog
     tier: S
     type: rss
+    expected_cadence_days: 30
     url: https://blog.modelcontextprotocol.io/index.xml
     topics: [Agent 工程]
-
-  - name: arXiv Agent/LLM
-    tier: S
-    type: arxiv
-    # arXiv API 查询：Agent/评测方向，按提交时间倒序
-    query: '(cat:cs.AI OR cat:cs.CL OR cat:cs.SE) AND (abs:"LLM agent" OR abs:"language model agent" OR abs:"agent evaluation" OR abs:"tool use")'
-    max_results: 15
-    topics: [论文]
 
   # ---------- Tier A：公认专家 ----------
   - name: Simon Willison
     tier: A
     type: rss
+    expected_cadence_days: 2
     url: https://simonwillison.net/atom/everything/
     topics: [Agent 工程, 工程实践]
 
   - name: Andrej Karpathy
     tier: A
     type: rss
+    expected_cadence_days: 45
     url: https://karpathy.bearblog.dev/feed/
     topics: [工程实践, 论文]
 
   - name: Lilian Weng
     tier: A
     type: rss
+    expected_cadence_days: 120
     url: https://lilianweng.github.io/index.xml
     topics: [Agent 工程, 论文]
 
@@ -82,10 +92,50 @@ sources:
     tier: A
     type: hn
     min_points: 100
-    # 标题须命中这些关键词之一才收（HN 是社区信号，用高分+关键词双过滤）
+    # 标题须命中这些关键词之一才收（HN 是社区信号，用高分+关键词双过滤）。
+    # 整词匹配，fetch.title_words 会额外补上去掉复数 s 的形式（models→model）。
+    #
+    # 2026-09-16 扩表（D38）。实测近 30 天 ≥100 分的 1000 条帖子：旧表放行 165，
+    # 新表放行 207（+42，丢失 0），多出的 42 条逐条看过全部与 AI 相关，其中包括
+    # 《Nvidia agrees to acquire Hugging Face》1988 分、《GLM-5.3-Flash》1132 分——
+    # 后者是本项目自己在用的备用模型，旧表却接不住。
+    # 曾考虑「>500 分豁免关键词」，同一批数据下会多放进 118 条，大半是非 AI 帖子，放弃。
     keywords: [llm, gpt, claude, agent, openai, anthropic, gemini, deepseek,
-               ai, model, transformer, cursor, copilot]
+               ai, model, transformer, cursor, copilot,
+               # 厂商与模型：旧表只认美国三家 + DeepSeek
+               huggingface, hugging, mistral, glm, zhipu, kimi, moonshot, qwen,
+               grok, xai, llama, deepmind, perplexity, fable,
+               # 技术词
+               mcp, inference, embedding, rag,
+               # 人名：观点型爆款的标题里常常只有人名、没有技术词（90 天实测：
+               # hassabis 3 条含 867 分 DeepMind 人事变动，altman 2，karpathy 1 条 618 分）。
+               # 其余三个 90 天内 0 命中，但姓氏几乎不会误伤，留着
+               karpathy, altman, hassabis, amodei, sutskever, lecun]
     topics: [行业动态]
+
+  - name: Interconnects
+    tier: A
+    type: rss
+    expected_cadence_days: 7
+    url: https://www.interconnects.ai/feed
+    topics: [模型发布, 论文]
+
+  - name: Eugene Yan
+    tier: A
+    type: rss
+    expected_cadence_days: 30
+    url: https://eugeneyan.com/rss/
+    topics: [工程实践, 评测与基准]
+
+  # 2026-09-16 按 D38 的三道闸新增（评估了 40 多个候选，这一批只收这一个专家源）
+  - name: Sebastian Raschka
+    tier: A
+    type: rss
+    expected_cadence_days: 21
+    # 实测近 30 天 2 篇。选 magazine 不选 rss_feed.xml：后者混了大量短笔记。
+    # 补的是 arXiv（太原始）和量子位（太快讯）之间「怎么理解、怎么实现」这一层
+    url: https://magazine.sebastianraschka.com/feed
+    topics: [模型训练, 论文]
 
   # ---------- Tier B：垂直媒体/聚合 ----------
   - name: GitHub Trending (AI)
@@ -99,11 +149,20 @@ sources:
   - name: 量子位
     tier: B
     type: rss
+    expected_cadence_days: 1
     # 原本这里是机器之心，但体检发现它的 /rss 现在返回 HTML 页面而不是 feed
     # ——HTTP 200、不报错、永远抓 0 条，典型的"沉默的失败"（见 decisions.md D22）。
     # 换成量子位（实测每天有更新）。中文 AI 媒体，快讯为主，故列 B 级。
     url: https://www.qbitai.com/feed
     topics: [行业动态]
+
+  # Latent Space 一半以上是 [AINews] 每日汇总（实测 21 条里 12 条），按聚合媒体归类
+  - name: Latent Space
+    tier: B
+    type: rss
+    expected_cadence_days: 3
+    url: https://www.latent.space/feed
+    topics: [Agent 工程, 工程实践]
 
   # ---------- Tier C：投资 / 研究 / 跨界视角（补充收录）----------
   # 这一层不直接生产工程内容，但提供"技术趋势背后的产业与批判视角"，
@@ -111,6 +170,7 @@ sources:
   - name: Dwarkesh Podcast
     tier: C
     type: rss
+    expected_cadence_days: 7
     # 深度长访谈，产业 + 研究 + 投资的交叉视角。
     # 原本这里放的是 SemiAnalysis（算力与供应链分析），但体检发现它的公开 RSS
     # 停更在 2025-09（内容转付费）——死信源不留（见 decisions.md D22）。
@@ -121,6 +181,7 @@ sources:
   - name: AI Snake Oil
     tier: C
     type: rss
+    expected_cadence_days: 30
     # Princeton 研究者的批判视角。刻意引入"反面声音"，避免知识库变成信息茧房
     url: https://www.aisnakeoil.com/feed
     topics: [行业动态, 安全与对齐]
@@ -128,33 +189,54 @@ sources:
   - name: Import AI
     tier: C
     type: rss
+    expected_cadence_days: 7
     # Jack Clark，研究 + 政策 + 产业的跨界周报
-    url: https://importai.substack.com/feed
+    # 原先用 importai.substack.com/feed：本地请求一直 200，但 Actions 上 19 次运行
+    # 全部 403——用完全相同的请求头在本地复现不了，是 Substack 封了云端出口 IP，
+    # 改 UA 修不好。换到作者自建站，条目与 substack 一一对应（2026-09-16 实测）
+    url: https://jack-clark.net/feed/
     topics: [行业动态, 论文]
 
-  # ---------- Tier D：待观察（强制人工过审，永不自动发布）----------
-  # 注意：下面三个信源本身质量很高，放 D 级不是因为它们差，而是因为
-  # **它们在本系统里还没有信誉记录**。所有新信源一律从 D 级进入、强制送审；
-  # 人工连续通过率高了，hitl.py 的 _source_hint 会给出升级建议。
-  # 这样 tier 就不是我手工贴的静态标签，而是有升降通道的信誉记录。
-  - name: Latent Space
-    tier: D
+  # 2026-09-16 新增。沃顿商学院教授，研究 AI 怎么改变工作——实测近 30 天 1 篇
+  - name: Ethan Mollick
+    tier: C
     type: rss
-    url: https://www.latent.space/feed
-    topics: [Agent 工程, 工程实践]
+    expected_cadence_days: 21
+    # 企业里 AI 怎么真用起来——现有信源里完全没有这个视角
+    url: https://www.oneusefulthing.org/feed
+    topics: [落地案例, 产品与商业]
 
-  - name: Interconnects
-    tier: D
+  # ---------- Tier X：已屏蔽（fetch 阶段直接跳过，从不请求）----------
+  # 写在这里而不是删掉，是为了留下「评估过、为什么不收」的记录，
+  # 免得以后有人重新发现它们、再试一遍。三个实例对应三种不同的屏蔽理由：
+  - name: LangChain Blog
+    tier: X
     type: rss
-    url: https://www.interconnects.ai/feed
-    topics: [模型发布, 论文]
+    # 理由：数据不可信。2026-09-16 实测 100 条里只有 30 个不同的发布时间，
+    # 单个时间戳（2026-08-26 15:02:51）出现 21 次——批量改写过时间，
+    # 2024 年的旧文冒充新文。「只收新内容」的时间窗在这种源上完全失效
+    url: https://blog.langchain.com/rss.xml
+    topics: [Agent 工程]
 
-  - name: Eugene Yan
-    tier: D
+  - name: arXiv Agent/LLM
+    tier: X
+    type: arxiv
+    # 理由：入口错了，不是信源差（D36）。按提交时间倒序从每天几百篇新论文里取 15 篇，
+    # 等于随机抽样；模型总能从里面挑出「看着不错」的——这个源一度占自动发布的 44%，
+    # 参照周刊里论文只占 10%，而且抓到的论文和业界在讨论的论文交集为零。
+    # 没有「降到 C 级」：它的模型价值分普遍 85 上下，降级后综合分约 64.7，
+    # 每天 15 篇会全部落进审批队列，一周上百条，比现在更糟。
+    # 论文改由第二批的「按 ID 获取」进来：别的信源提到哪篇，才抓哪篇
+    query: '(cat:cs.AI OR cat:cs.CL OR cat:cs.SE) AND (abs:"LLM agent" OR abs:"language model agent" OR abs:"agent evaluation" OR abs:"tool use")'
+    max_results: 15
+    topics: [论文]
+
+  - name: Product Hunt
+    tier: X
     type: rss
-    url: https://eugeneyan.com/rss/
-    topics: [工程实践, 评测与基准]
-
-  # ---------- Tier X：已屏蔽 ----------
-  # 目前为空——还没遇到需要永久屏蔽的信源。机制已就位（fetch 阶段直接跳过 X 级），
-  # 等真的遇到抄袭/标题党/纯软文的源再往这里加。不为了凑满六级而编造。
+    # 理由：活得很好但没用。HTTP 200、50 条、当天更新，硬门槛全过——
+    # 可它答的是「今天又上线了哪些 AI 套壳」，而且永远是模型榜单的下游
+    # （一个产品能上榜，说明它早就接入了某个模型）。
+    # 它证明了一件事：「过了抓取门槛」和「值得收」是两回事
+    url: https://www.producthunt.com/feed
+    topics: [产品与商业]

@@ -283,7 +283,6 @@ export default function App() {
                   <p className="mb-4 border-l-2 border-scope/40 pl-3 text-[12.5px] leading-relaxed text-ink-dim">
                     综合分落在 50–75 之间的内容——
                     <span className="text-ink">系统知道自己不确定，所以交给人</span>。
-                    待观察等级（D）的信源即使高分也强制进这里。
                   </p>
                 )}
 
@@ -322,7 +321,7 @@ export default function App() {
                   ['S', '官方一手', 'text-signal'],
                   ['A', '公认专家', 'text-scope'],
                   ['B', '垂直媒体', 'text-ink-dim'],
-                  ['D', '待观察 · 强制送审', 'text-ink-faint'],
+                  ['C', '跨界视角', 'text-ink-faint'],
                 ].map(([t, d, c]) => (
                   <div key={t} className="flex gap-3 py-0.5 font-mono text-[11px]">
                     <span className={`w-3 ${c}`}>{t}</span>

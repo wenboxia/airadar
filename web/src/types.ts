@@ -87,6 +87,7 @@ export const TIER_META: Record<Tier, { label: string; desc: string }> = {
   A: { label: 'A', desc: '公认专家' },
   B: { label: 'B', desc: '垂直媒体' },
   C: { label: 'C', desc: '跨界视角' },
-  D: { label: 'D', desc: '待观察' },
-  X: { label: 'X', desc: '已屏蔽' },
+  // D 级已于 2026-09-16 停用，只剩历史条目带这个标记
+  D: { label: 'D', desc: '待观察（已停用）' },
+  X: { label: 'X', desc: '不抓取' },
 }

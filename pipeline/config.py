@@ -38,7 +38,8 @@ class Config:
     # 置信度路由阈值（0-100）
     publish_threshold: float = 75.0
     review_threshold: float = 50.0
-    # 信源 tier 基础分
+    # 信源 tier 基础分。D（待观察）已于 2026-09-16 停用，没有信源再用它；
+    # 保留这一项只因库里历史条目仍带 D 标记，且未声明 tier 的信源会落到这个最保守的分数
     tier_base: dict = field(default_factory=lambda: {
         "S": 90, "A": 78, "B": 62, "C": 48, "D": 30, "X": 0})
     tier_weight: float = 0.55   # 综合分 = tier_weight*tier基础分 + (1-w)*LLM价值分
