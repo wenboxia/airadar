@@ -68,7 +68,10 @@ def golden_compare(rows: list) -> dict:
         for line in f:
             line = line.strip()
             if line and not line.startswith("//"):
-                golden.append(json.loads(line))
+                g = json.loads(line)
+                # 标注改过的旧记录只作废不删除（只增不删），评测只看最新那条
+                if not g.get("deprecated"):
+                    golden.append(g)
     if not golden:
         return {"skipped": "黄金集为空（待标注）"}
 
