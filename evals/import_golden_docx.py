@@ -2,7 +2,8 @@
 
 用法：python3 evals/import_golden_docx.py [表格路径]
   默认读 evals/golden_set/黄金集v2_标注表.docx，按「序号」对回 golden_draft.jsonl，
-  把填了【收录】的行追加进 golden.jsonl（已在里面的 URL 跳过，可以分几次填、几次导）。
+  把填了【收录】的行写进 golden.jsonl。可以填一部分就导、之后再导：
+  没变的行跳过；已经导入过、后来又改了的行，旧记录标记作废（不删），追加新记录。
 
 只认最右边三列：【收录】y/n、【分类】（顿号或逗号分隔）、【理由】。
 """
@@ -69,12 +70,26 @@ def to_record(draft, include_raw, cats_raw, note):
     }, None
 
 
+def _same(a, b) -> bool:
+    return (a.get("include"), a.get("categories"), a.get("note")) == \
+           (b.get("include"), b.get("categories"), b.get("note"))
+
+
 def main():
     doc = sys.argv[1] if len(sys.argv) > 1 else DOC
     drafts = _read_jsonl(DRAFT)
-    done = {r["url"] for r in _read_jsonl(OUT)}
-    added, problems, blank, skipped = [], [], 0, 0
+    with open(OUT, encoding="utf-8") if os.path.exists(OUT) else open(os.devnull) as f:
+        lines = f.read().splitlines()
+    # 每个 URL 当前有效（未作废）的那一行
+    live = {}
+    for i, line in enumerate(lines):
+        if line.strip() and not line.startswith("//"):
+            r = json.loads(line)
+            if not r.get("deprecated"):
+                live[r["url"]] = i
 
+    added = changed = same = blank = 0
+    problems = []
     for n, title, inc, cats, note in parse_rows(doc):
         if not 1 <= n <= len(drafts):
             problems.append(f"第 {n} 行：序号超出草稿范围")
@@ -87,26 +102,36 @@ def main():
         rec, err = to_record(d, inc, cats, note)
         if err:
             problems.append(f"第 {n} 行：{err}")
-        elif rec is None:
+            continue
+        if rec is None:
             blank += 1
-        elif rec["url"] in done:
-            skipped += 1
+            continue
+        if not rec["note"]:
+            problems.append(f"第 {n} 行：没写理由（已导入，建议补上）")
+        if rec["url"] in live:
+            old = json.loads(lines[live[rec["url"]]])
+            if _same(old, rec):
+                same += 1
+                continue
+            # 改主意了：旧的作废留痕，新的追加（黄金集只增不删）
+            old["deprecated"] = True
+            old["deprecated_reason"] = "主人在标注表里改了判断，被后面的新记录替换"
+            lines[live[rec["url"]]] = json.dumps(old, ensure_ascii=False)
+            changed += 1
         else:
-            if not rec["note"]:
-                problems.append(f"第 {n} 行：没写理由（已导入，建议补上）")
-            added.append(rec)
-            done.add(rec["url"])
+            added += 1
+        lines.append(json.dumps(rec, ensure_ascii=False))
+        live[rec["url"]] = len(lines) - 1
 
-    if added:
-        with open(OUT, "a", encoding="utf-8") as f:
-            for r in added:
-                f.write(json.dumps(r, ensure_ascii=False) + "\n")
-    total = len(_read_jsonl(OUT))
-    print(f"本次导入 {len(added)} 条 · 未填 {blank} · 已存在跳过 {skipped}"
-          f" · 黄金集现有 {total} 条")
+    if added or changed:
+        with open(OUT, "w", encoding="utf-8") as f:
+            f.write("\n".join(lines) + "\n")
+    total = len(live)
+    print(f"新增 {added} 条 · 改过的 {changed} 条 · 没变 {same} 条 · 未填 {blank} 行"
+          f" · 黄金集现有有效标注 {total} 条")
     for p in problems:
         print("  ⚠️ " + p)
-    if added:
+    if added or changed:
         print("\n接下来跑：python3 evals/run_eval.py")
 
 

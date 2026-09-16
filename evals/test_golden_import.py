@@ -5,9 +5,15 @@
 
 跑：python3 -m unittest evals.test_golden_import -v
 """
+import contextlib
 import importlib.util
+import io
+import json
+import os
 import pathlib
+import tempfile
 import unittest
+from unittest import mock
 
 ROOT = pathlib.Path(__file__).parent.parent
 _spec = importlib.util.spec_from_file_location("imp", ROOT / "evals" / "import_golden_docx.py")
@@ -57,6 +63,64 @@ class TestToRecord(unittest.TestCase):
     def test_at_most_three_categories(self):
         rec, _ = imp.to_record(DRAFT, "y", "论文，模型训练，评测与基准，开源项目", "")
         self.assertEqual(len(rec["categories"]), 3)
+
+
+
+class TestReimport(unittest.TestCase):
+    """分几次填、分几次导：改过的行要生效，没变的不重复写，旧记录作废留痕。"""
+
+    def setUp(self):
+        d = tempfile.mkdtemp()
+        self.out = os.path.join(d, "golden.jsonl")
+        draft = os.path.join(d, "draft.jsonl")
+        with open(draft, "w", encoding="utf-8") as f:
+            for i in (1, 2):
+                f.write(json.dumps({"url": f"https://u{i}", "title": f"标题{i}",
+                                    "source": "s", "tier": "A"}, ensure_ascii=False) + "\n")
+        self.patches = [mock.patch.object(imp, "OUT", self.out),
+                        mock.patch.object(imp, "DRAFT", draft),
+                        mock.patch.object(imp.sys, "argv", ["x", "unused.docx"])]
+        for p in self.patches:
+            p.start()
+
+    def tearDown(self):
+        for p in self.patches:
+            p.stop()
+
+    def _import(self, rows):
+        with mock.patch.object(imp, "parse_rows", return_value=rows), \
+                contextlib.redirect_stdout(io.StringIO()):
+            imp.main()
+        return imp._read_jsonl(self.out)
+
+    def test_changed_row_replaces_old_one(self):
+        self._import([(1, "标题1", "y", "论文", "先收"), (2, "标题2", "", "", "")])
+        recs = self._import([(1, "标题1", "n", "", "改主意了"), (2, "标题2", "y", "模型发布", "新填")])
+        live = [r for r in recs if not r.get("deprecated")]
+        self.assertEqual(len(live), 2)
+        self.assertFalse(next(r for r in live if r["url"] == "https://u1")["include"])
+        old = [r for r in recs if r.get("deprecated")]
+        self.assertEqual(len(old), 1, "旧判断要留痕，不能删")
+        self.assertTrue(old[0]["include"])
+
+    def test_unchanged_row_not_duplicated(self):
+        rows = [(1, "标题1", "y", "论文", "理由")]
+        self._import(rows)
+        self.assertEqual(len(self._import(rows)), 1)
+
+    def test_eval_ignores_deprecated(self):
+        """评测只能看最新那条，否则改过的条目会被算两次。"""
+        _spec2 = importlib.util.spec_from_file_location("ev", ROOT / "evals" / "run_eval.py")
+        ev = importlib.util.module_from_spec(_spec2)
+        _spec2.loader.exec_module(ev)
+        with open(self.out, "w", encoding="utf-8") as f:
+            f.write(json.dumps({"url": "https://u1", "include": True, "deprecated": True}) + "\n")
+            f.write(json.dumps({"url": "https://u1", "include": False}) + "\n")
+        rows = [{"id": "x", "url": "https://u1", "status": "published", "auto_status": "published",
+                 "categories": "[]", "category": ""}]
+        with mock.patch.object(ev, "GOLDEN_PATH", self.out):
+            g = ev.golden_compare(rows)
+        self.assertEqual(g["labeled"], 1)
 
 
 if __name__ == "__main__":

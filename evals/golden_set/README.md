@@ -15,7 +15,7 @@ pipeline 本身就是 LLM 在打分。**如果黄金集也由 LLM 标注，评�
 ```bash
 python3 evals/prelabel.py --n 100     # 分数段分层 + 段内随机抽样（自动跳过已标注的和已停抓的信源）
 python3 tools/prep_golden_doc.py      # AI 写资料 → 生成 Word 标注表（黄金集v2_标注表.docx）
-python3 evals/import_golden_docx.py   # 填完 Word 后写回 golden.jsonl，可分几次导
+python3 evals/import_golden_docx.py   # Word 表写回 golden.jsonl；中途导也行，改过的行会替换旧记录（旧的标作废）
 ```
 
 Word 表只填最右边三列：收录（y/n）、分类（1–3 个，顿号分隔）、一句理由。
