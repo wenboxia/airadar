@@ -59,8 +59,49 @@ class TestConfidenceRouting(unittest.TestCase):
         防止有人重新加回一条"某级永远送审"的规则却不去验证它会不会生效。"""
         src = (pathlib.Path(__file__).parent.parent / "pipeline" / "stages" / "triage.py"
                ).read_text(encoding="utf-8")
-        body = src.split("it.score = round(", 1)[1].split("return \"llm_scored\"", 1)[0]
-        self.assertNotRegex(body, r"it\.tier\s*==", "评分后的路由里出现了按等级的特判")
+        body = src.split("def route(", 1)[1].split("\ndef ", 1)[0]
+        # 降级路径里按等级放行是 D7 的保守降级，不算特判；只看正常打分之后那几行
+        scored = body.split('if outcome == "degraded"', 1)[1].split("\n", 3)[3]
+        self.assertNotRegex(scored, r"\.tier\s*==", "评分后的路由里出现了按等级的特判")
+
+    def test_kind_cap_is_structural(self):
+        """营销通稿要封顶，不是扣分——tier 基础分是地板，扣分会被它抵消掉。"""
+        it = self._run_one("S", {"kind": "营销通稿", "relevance": 100,
+                                 "novelty": 100, "longterm": 100})
+        self.assertEqual(it.score_detail["llm_value"], 45.0)
+        self.assertEqual(it.score_detail["value_capped_by"], "营销通稿")
+        cfg = Config()
+        self.assertEqual(it.score,
+                         round(cfg.tier_weight * 90 + (1 - cfg.tier_weight) * 45.0, 1))
+
+    def test_unknown_kind_does_not_cap(self):
+        """模型偶尔乱答一个类型，不能因此把一条好内容压下去，只留痕。"""
+        it = self._run_one("S", {"kind": "瞎编的类型", "relevance": 90,
+                                 "novelty": 90, "longterm": 90})
+        self.assertNotIn("value_capped_by", it.score_detail)
+        self.assertIn("triage_kind_unknown", it.notes)
+        self.assertEqual(it.status, "published")
+
+    def test_kind_recorded_in_score_detail(self):
+        it = self._run_one("A", {"kind": "一手发布", "relevance": 80,
+                                 "novelty": 70, "longterm": 70})
+        self.assertEqual(it.score_detail["kind"], "一手发布")
+
+    def test_evaluate_never_writes_status(self):
+        """离线评测和重打分只调 evaluate——它结构上就不该碰状态字段（D28）。"""
+        it = _item("S")
+        ctx = _ctx(True, {"kind": "一手发布", "relevance": 90, "novelty": 90, "longterm": 90})
+        triage.evaluate(it, ctx.cfg, ctx.llm)
+        self.assertGreater(it.score, 0)
+        self.assertEqual(it.status, "new")
+        self.assertEqual(it.auto_status, "")
+
+    def test_focus_is_examples_not_whitelist(self):
+        """关注方向是举例不是白名单——黄金集里 3 条具身智能就是被白名单口吻压低分的。"""
+        self.assertIn("不是白名单", triage._SYSTEM)
+        self.assertIn("方向窄不是低分的理由", triage._SYSTEM)
+        for kw in ("具身智能", "世界模型", "多模态生成"):
+            self.assertIn(kw, Config().focus)
 
     def test_tier_S_beats_tier_C_on_same_content_score(self):
         """同样的内容质量，信源等级决定命运——这就是分层的意义。"""

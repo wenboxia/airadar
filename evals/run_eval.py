@@ -66,6 +66,42 @@ def rule_checks(rows: list) -> dict:
             "problems": problems[:50]}
 
 
+def route_metrics(pairs: list) -> dict:
+    """三条路径分别算认同率。pairs = [(auto_status, include, title), ...]
+
+    抽成公共函数是因为离线实验（evals/triage_prompt_eval.py）要用同一套口径——
+    两处各写一份迟早漂移，而漂移的指标不会报错，只会给出看着能比的两个数（D21/D29）。
+    """
+    n = {"published": 0, "discarded": 0, "review": 0}
+    right = {"published": 0, "discarded": 0, "review": 0}
+    missed = []
+    for auto, include, title in pairs:
+        if auto not in n:
+            continue
+        n[auto] += 1
+        if auto == "published":
+            right[auto] += bool(include)
+        elif auto == "discarded":
+            right[auto] += not include
+            if include:
+                missed.append((title or "")[:60])   # 真正的漏网之鱼
+        else:
+            right[auto] += bool(include)
+    rate = lambda k: round(right[k] / n[k], 3) if n[k] else None   # noqa: E731
+    return {
+        "auto_publish": {
+            # 自动发布的里面人认可的比例——错发代价最高，这是最重要的指标
+            "n": n["published"], "precision": rate("published")},
+        "auto_discard": {
+            # 自动丢弃的里面人也认为该丢的比例
+            "n": n["discarded"], "precision": rate("discarded"), "missed": missed},
+        "sent_to_human": {
+            # 送审的里面人最终认可的比例——太低说明在浪费人的注意力
+            "n": n["review"], "hit_rate": rate("review")},
+        "route_distribution": {k: v for k, v in n.items() if v},
+    }
+
+
 def golden_compare(rows: list) -> dict:
     """黄金集对比：人工标注 vs pipeline 决策 → 筛选 precision/recall + 分类准确率。"""
     if not os.path.exists(GOLDEN_PATH):
@@ -89,9 +125,7 @@ def golden_compare(rows: list) -> dict:
     overlap_sum = 0.0
     missing = no_auto = 0
     human_touched = 0
-    pub_total = pub_right = dis_total = dis_right = rev_total = rev_right = 0
-    route = {}
-    missed = []
+    pairs = []
     for g in golden:
         r = by_id.get(g.get("id")) or by_url.get(g.get("url"))
         if not r:
@@ -110,18 +144,7 @@ def golden_compare(rows: list) -> dict:
         #   published = "我认为该收"　discarded = "我认为该丢"　review = "我不确定，你来定"
         # 把 review 算进任何一边都会失真——算成"该收"会把谨慎当成错误，
         # 算成"该丢"会把求助当成拒绝。所以三条路径分开评（decisions.md D29）
-        route[auto] = route.get(auto, 0) + 1
-        if auto == "published":
-            pub_total += 1
-            pub_right += g["include"]
-        elif auto == "discarded":
-            dis_total += 1
-            dis_right += not g["include"]
-            if g["include"]:
-                missed.append(g["title"][:60])   # 真正的漏网之鱼
-        else:  # review
-            rev_total += 1
-            rev_right += g["include"]
+        pairs.append((auto, g["include"], g.get("title", "")))
 
         # 兼容口径：把 review 视作"未拒绝"，便于跟历史结果对比
         pipeline_include = auto != "discarded"
@@ -163,22 +186,7 @@ def golden_compare(rows: list) -> dict:
             "category_primary_hit": round(cat_right / cat_total, 3) if cat_total else None,
             "category_jaccard": round(overlap_sum / cat_total, 3) if cat_total else None,
             # 三条路径分别评价（这才是三分类路由的正确评法）
-            "routing": {
-                "auto_publish": {
-                    "n": pub_total,
-                    # 自动发布的里面人认可的比例——错发代价最高，这是最重要的指标
-                    "precision": round(pub_right / pub_total, 3) if pub_total else None},
-                "auto_discard": {
-                    "n": dis_total,
-                    # 自动丢弃的里面人也认为该丢的比例
-                    "precision": round(dis_right / dis_total, 3) if dis_total else None,
-                    "missed": missed},          # 被错杀的好内容，逐条列出
-                "sent_to_human": {
-                    "n": rev_total,
-                    # 送审的里面人最终认可的比例——太低说明在浪费人的注意力
-                    "hit_rate": round(rev_right / rev_total, 3) if rev_total else None},
-                "route_distribution": route,
-            }}
+            "routing": route_metrics(pairs)}
 
 
 def main():

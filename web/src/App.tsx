@@ -281,6 +281,20 @@ export default function App() {
                     <span className="text-ink">时效类内容会自动过期退出</span>
                     （发布超过 14 天且未经人工认可的），
                     但数据仍留在库里可审计——机器无权替你遗忘你亲手认可过的东西。
+                    {stats.data?.archive && (
+                      <>
+                        {' '}其中{' '}
+                        <span className="text-ink">
+                          {stats.data.archive.human_approved + stats.data.archive.human_kept} 条经人工认可
+                        </span>
+                        （审批时勾收 {stats.data.archive.human_approved} 条 · 抽查时看过保留{' '}
+                        {stats.data.archive.human_kept} 条），其余 {stats.data.archive.auto_only}{' '}
+                        条由系统按分数自动发布、未经人过目；
+                        {stats.data.archive.human_retracted > 0
+                          ? `已有 ${stats.data.archive.human_retracted} 条在抽查中被撤下。`
+                          : '抽查机制刚上线，尚无撤下样本。'}
+                      </>
+                    )}
                   </p>
                 )}
 
