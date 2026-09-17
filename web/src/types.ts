@@ -58,6 +58,14 @@ export interface Stats {
   sources?: { total: number; by_tier: Record<string, string[]> }
   /** classify.CATEGORIES 的顺序，筛选按钮照此排列 */
   categories?: string[]
+  /** 知识库里有多少条真被人看过。三种背书分开报，合并会夸大人工参与度 */
+  archive?: {
+    total: number
+    human_approved: number
+    human_kept: number
+    human_retracted: number
+    auto_only: number
+  }
   runs: RunStat[]
 }
 

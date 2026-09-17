@@ -35,6 +35,12 @@ class Config:
     judge_api_key: str = ""
     judge_model: str = ""
 
+    # 内容时效：时效类（horizon=short）内容超过这个天数就退出知识库视图（D30），
+    # 同一个数也用来决定"旧的待审条目还值不值得占人的注意力"——两处必须是同一个数
+    short_ttl_days: int = 14
+    # 审批队列：只排最近这些天的内容；长期价值类不受时效限制
+    review_source_quota: int = 3      # 一张单子里同一信源最多几条（量子位限量的落点）
+
     # 置信度路由阈值（0-100）
     publish_threshold: float = 75.0
     review_threshold: float = 50.0
@@ -42,7 +48,13 @@ class Config:
     # 保留这一项只因库里历史条目仍带 D 标记，且未声明 tier 的信源会落到这个最保守的分数
     tier_base: dict = field(default_factory=lambda: {
         "S": 90, "A": 78, "B": 62, "C": 48, "D": 30, "X": 0})
-    tier_weight: float = 0.55   # 综合分 = tier_weight*tier基础分 + (1-w)*LLM价值分
+    # 综合分 = tier_weight*tier基础分 + (1-w)*LLM价值分。
+    # 0.55 是最初拍脑袋定的。拿黄金集 111 条做 5 折交叉验证（每折在训练部分选权重、
+    # 留出部分验证）发现：信源等级分单独的判别力只有 0.63，是四个维度里最低的，
+    # 却拿着最高的权重；长期价值 0.86 最高，却只占 0.113。改成下面这组后平均 AUC 0.82→0.84
+    tier_weight: float = 0.4
+    # LLM 价值分的三维权重：relevance / novelty / longterm
+    value_weights: tuple = (0.25, 0.25, 0.5)
 
     # 预算与兜底（防止一次运行烧穿钱包/跑不完）
     max_items_per_run: int = 80      # 全局安全阀
@@ -54,11 +66,19 @@ class Config:
     since_days: int = 2          # 只看最近 N 天发布的内容（首跑可调大）
     hallucination_check: bool = True  # 发布级条目做摘要自检
 
-    # 关注领域（triage 的 LLM 评分以此为准绳）
+    # 关注方向（triage 打分里的**举例**，不是白名单——prompt 里已写明这一点）。
+    # 以前这是一张白名单，黄金集里 3 条主人会收的具身智能内容因此被压到 51–59 分。
     focus: str = ("Agent 工程（agent loop/tool use/memory/context/harness/MCP/multi-agent/评测）、"
                   "大模型进展（新模型发布/后训练/推理能力）、"
+                  "世界模型与具身智能（机器人、空间智能、3D 生成与重建）、"
+                  "多模态生成（视频/图像/语音）、"
                   "头部公司动态（OpenAI/Anthropic/Google/DeepSeek/Moonshot/字节/阿里/腾讯）、"
                   "AI 产品与工程实践（coding agent/评测体系/RAG/安全对齐）")
+
+    # 按内容类型给 LLM 价值分封顶。为什么是封顶不是扣分：tier 基础分是地板
+    # （S 级哪怕价值分为 0 也有 49.5 分），加权里的扣分会被地板抵消，封顶才压得住。
+    # 先给 45——这个值不产生任何新的自动丢弃，等离线评测扫出安全区间再调
+    kind_value_cap: dict = field(default_factory=lambda: {"营销通稿": 45.0, "仿造品": 45.0})
 
 
 def load_config() -> Config:

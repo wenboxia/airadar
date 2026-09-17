@@ -55,6 +55,24 @@ def _source_registry() -> dict:
     return {"total": sum(1 for s in sources if s["tier"] != "X"), "by_tier": by_tier}
 
 
+def _archive_provenance(db) -> dict:
+    """知识库里有多少条真的被人看过。三种背书必须分开数——合并成一个"人工认可 N 条"
+    会夸大人的参与度：主动勾收和"抽查时看过没撤"完全不是一回事。"""
+    approved = db.conn.execute(
+        "SELECT COUNT(*) FROM items WHERE status='published' AND auto_status='review'"
+    ).fetchone()[0]
+    kept = db.conn.execute(
+        "SELECT COUNT(*) FROM items WHERE status='published' "
+        "AND json_extract(extra, '$.hitl.kept_at') IS NOT NULL").fetchone()[0]
+    retracted = db.conn.execute(
+        "SELECT COUNT(*) FROM items WHERE status='discarded' AND auto_status='published'"
+    ).fetchone()[0]
+    total = len(db.archive_items())
+    return {"total": total, "human_approved": approved, "human_kept": kept,
+            # 撤下的不在知识库里，但要露出来——它是这套机制在起作用的证据，藏起来就只剩报喜
+            "human_retracted": retracted, "auto_only": total - approved - kept}
+
+
 def write_stats(ctx: Context):
     """单独抽出来是因为要被调用两次：publish 阶段写一次（保证有文件），
     main.py 在 save_run 之后再写一次——否则 stats.json 永远少记当次运行。"""
@@ -62,6 +80,7 @@ def write_stats(ctx: Context):
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "totals": ctx.db.counts(),
         "sources": _source_registry(),
+        "archive": _archive_provenance(ctx.db),
         # 筛选按钮的顺序跟类目表走，不按字母排——前端不再各抄一份类目表
         "categories": CATEGORIES,
         "runs": [{"run_id": r["run_id"], "started_at": r["started_at"],

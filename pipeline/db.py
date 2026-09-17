@@ -123,7 +123,7 @@ class DB:
         rows = self.conn.execute(q, (*statuses, f"-{days} days")).fetchall()
         return [_row_to_dict(r) for r in rows]
 
-    def archive_items(self, short_ttl_days: int = 14) -> list:
+    def archive_items(self, short_ttl_days: int = None) -> list:
         """知识库：长期留存的内容。
 
         过期规则（主人提出，见 decisions.md D30）：**时效类内容会过期，长期价值内容不会**。
@@ -132,6 +132,9 @@ class DB:
           （沿用 D9「discarded 也入库」的原则）
         - 为什么人工认可的不过期：那是主人明确说"这个我要留着"的东西，机器无权代为遗忘
         """
+        if short_ttl_days is None:      # 默认读配置，别让同一个数在两处各写一份（D21）
+            from .config import Config
+            short_ttl_days = Config().short_ttl_days
         approved = {r["id"] for r in self.conn.execute(
             "SELECT id FROM items WHERE status='published' AND auto_status='review'")}
         rows = self.conn.execute(

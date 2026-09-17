@@ -6,6 +6,8 @@
 
 跑：python3 -m unittest evals.test_hitl_weekly -v
 """
+import contextlib
+import io
 import json
 import os
 import tempfile
@@ -14,19 +16,22 @@ from datetime import datetime, timedelta, timezone
 from unittest import mock
 
 from pipeline import hitl
+from pipeline.config import Config
 from pipeline.db import DB
+from pipeline.stages import triage
 
 
 def _iso(days_ago: float) -> str:
     return (datetime.now(timezone.utc) - timedelta(days=days_ago)).isoformat().replace("+00:00", "Z")
 
 
-def _body(checked: dict) -> str:
-    """模拟 open 生成的清单：{item_id: 是否勾选}。id 必须是十六进制，和真实 id 一致"""
+def _body(checked: dict, lane: str = None) -> str:
+    """模拟 open 生成的清单：{item_id: 是否勾选}。lane=None 模拟老单子（没有 lane 段）"""
     lines = []
     for item_id, on in checked.items():
         lines.append(f"- [{'x' if on else ' '}] **[A]** [t](u) · `60` · s")
-        lines.append(f"      {hitl.MARK}{item_id} -->")
+        tail = f";lane={lane}" if lane else ""
+        lines.append(f"      {hitl.MARK}{item_id}{tail} -->")
     return "\n".join(lines)
 
 
@@ -34,11 +39,13 @@ class _Base(unittest.TestCase):
     def setUp(self):
         d = tempfile.mkdtemp()
         self.db = DB(os.path.join(d, "k.db"))
+        # 每条一个信源：默认每信源配额是 3，同源会被截断，那是另一组测试的事
         for i, score in enumerate([55, 70, 62, 58], 1):
             self.db.conn.execute(
                 "INSERT INTO items (id, title, url, source, tier, score, status, auto_status, "
-                "score_detail) VALUES (?,?,?,?,?,?,?,?,?)",
-                (f"a{i}", f"t{i}", f"u{i}", "s", "A", score, "review", "review", "{}"))
+                "horizon, published_at, score_detail) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                (f"a{i}", f"t{i}", f"u{i}", f"s{i}", "A", score, "review", "review",
+                 "long", _iso(1), "{}"))
         self.db.conn.commit()
         self.fb = os.path.join(d, "feedback.jsonl")
         self.patches = [
@@ -109,6 +116,148 @@ class TestCollect(_Base):
         self.assertEqual(self.status("a2")["auto_status"], "review")
 
 
+class TestLanes(_Base):
+    """三块清单：勾选的含义不一样，回收时绝不能混。"""
+
+    def setUp(self):
+        super().setUp()
+        # 两条自动发布的，用来测抽查
+        for i in (1, 2):
+            self.db.conn.execute(
+                "INSERT INTO items (id, title, url, source, tier, score, status, auto_status,"
+                " horizon, published_at, score_detail) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                (f"b{i}", f"pub{i}", f"pu{i}", "s", "S", 85, "published", "published",
+                 "long", _iso(2), "{}"))
+        self.db.conn.commit()
+
+    def _collect(self, issue):
+        with mock.patch.object(hitl, "_gh", side_effect=lambda m, p, **kw: [issue] if m == "GET" else {}):
+            hitl.cmd_collect()
+
+    def test_legacy_marker_defaults_to_queue(self):
+        """老单子没有 lane 段（Issue #3 还活着），必须按待审处理。"""
+        self._collect({"number": 5, "labels": [], "body": _body({"a1": True})})
+        self.assertEqual(self.status("a1")["status"], "published")
+        self.assertEqual(self.feedback()[0]["lane"], "queue")
+
+    def test_audit_checked_retracts_without_touching_auto_status(self):
+        self._collect({"number": 5, "labels": [], "body": _body({"b1": True}, "audit")})
+        row = self.status("b1")
+        self.assertEqual(row["status"], "discarded")
+        self.assertEqual(row["auto_status"], "published", "撤下是人的判断，不能改系统原判")
+        self.assertEqual(self.feedback()[0]["decision"], "retract")
+
+    def test_audit_unchecked_records_kept(self):
+        self._collect({"number": 5, "labels": [], "body": _body({"b1": False}, "audit")})
+        self.assertEqual(self.status("b1")["status"], "published")
+        self.assertIn("kept_at", hitl._hitl(dict(self.db.conn.execute(
+            "SELECT extra FROM items WHERE id='b1'").fetchone())))
+        self.assertEqual(self.feedback()[0]["decision"], "keep")
+
+    def test_expired_issue_never_records_audit_keep(self):
+        """过期单里的"留空"分不清是看过没问题还是没看——记成认可就是替人背书。"""
+        self._collect({"number": 2, "labels": [{"name": hitl.EXPIRED}],
+                       "body": _body({"b1": False}, "audit")})
+        self.assertEqual(hitl._hitl(dict(self.db.conn.execute(
+            "SELECT extra FROM items WHERE id='b1'").fetchone())), {})
+        self.assertEqual(self.feedback(), [])
+
+    def test_mass_check_guard(self):
+        """抽查区整列勾选多半是手滑（另两块的肌肉记忆是"勾好的"）。
+        只有 1-2 条时全勾可能是真的都该撤，所以守卫从 3 条起才生效。"""
+        for i in (3, 4):
+            self.db.conn.execute(
+                "INSERT INTO items (id, title, url, source, tier, score, status, auto_status,"
+                " horizon, published_at, score_detail) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                (f"b{i}", f"pub{i}", f"pu{i}", "s", "S", 85, "published", "published",
+                 "long", _iso(2), "{}"))
+        self.db.conn.commit()
+        self._collect({"number": 5, "labels": [],
+                       "body": _body({"b1": True, "b2": True, "b3": True, "b4": False}, "audit")})
+        for i in (1, 2, 3, 4):
+            self.assertEqual(self.status(f"b{i}")["status"], "published")
+        self.assertEqual(self.feedback(), [])
+
+    def test_recall_unchecked_declines_without_rejecting(self):
+        self._collect({"number": 5, "labels": [], "body": _body({"a1": False}, "recall")})
+        self.assertEqual(self.status("a1")["status"], "review", "捞回没勾 ≠ 人工否决")
+        self.assertIn("recall_declined_at", hitl._hitl(dict(self.db.conn.execute(
+            "SELECT extra FROM items WHERE id='a1'").fetchone())))
+        self.assertNotIn("a1", [r["id"] for r in hitl._recall_pick(self.db, 5)])
+
+    def test_feedback_rows_carry_lane(self):
+        self._collect({"number": 5, "labels": [],
+                       "body": _body({"a1": True}, "queue") + "\n" + _body({"b1": False}, "audit")})
+        self.assertEqual({f["lane"] for f in self.feedback()}, {"queue", "audit"})
+
+    def test_source_hint_ignores_non_queue_lanes(self):
+        """抽查是高分段均匀抽样，和边缘区反馈不是一个分布——混进去会推翻 D27 的前提。"""
+        with open(self.fb, "w", encoding="utf-8") as f:
+            f.write(json.dumps({"item_id": "a1", "decision": "approve", "lane": "queue"}) + "\n")
+            for _ in range(5):
+                f.write(json.dumps({"item_id": "b1", "decision": "retract", "lane": "audit"}) + "\n")
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            self.patches[-1].stop()          # 这组测试平时把 _source_hint 挡掉了
+            try:
+                hitl._source_hint(self.db)
+            finally:
+                self.patches[-1].start()
+        self.assertNotIn("0 / 5", buf.getvalue(), "audit 的 5 条撤下不该进边缘区统计")
+
+    def test_audit_sample_is_reproducible(self):
+        a = [r["id"] for r in hitl._audit_sample(self.db, 2, 202638)]
+        self.assertEqual(a, [r["id"] for r in hitl._audit_sample(self.db, 2, 202638)])
+        self.assertTrue(a)
+
+
+class TestQueueRules(_Base):
+    """队列有时效：容量以外的条目不假装还会被审，但也不算被否决。"""
+
+    def _row(self, item_id, **kw):
+        cols = {"id": item_id, "title": item_id, "url": item_id, "source": "q",
+                "tier": "A", "score": 60, "status": "review", "auto_status": "review",
+                "horizon": "short", "published_at": _iso(1), "score_detail": "{}", "extra": "{}"}
+        cols.update(kw)
+        self.db.conn.execute(
+            f"INSERT INTO items ({','.join(cols)}) VALUES ({','.join('?' * len(cols))})",
+            list(cols.values()))
+        self.db.conn.commit()
+
+    def test_stale_short_leaves_queue_but_long_stays(self):
+        self._row("c1", horizon="short", published_at=_iso(30))
+        self._row("c2", horizon="long", published_at=_iso(30))
+        ids = [r["id"] for r in hitl._pending(self.db)]
+        self.assertNotIn("c1", ids)
+        self.assertIn("c2", ids)
+        self.assertEqual(self.status("c1")["status"], "review", "出队不是丢弃")
+
+    def test_below_bar_stays_review_and_goes_to_recall_pool(self):
+        rescore = json.dumps({"rescore": {"prompt": triage.MANIFEST["version"],
+                                          "verdict": "discarded", "score": 30}})
+        self._row("c3", extra=rescore, score=70)
+        self.assertNotIn("c3", [r["id"] for r in hitl._pending(self.db)])
+        self.assertEqual(self.status("c3")["status"], "review")
+        self.assertIn("c3", [r["id"] for r, _ in hitl._excluded(self.db)])
+
+    def test_stale_rescore_verdict_is_ignored(self):
+        """换了打分标准之后，旧结论不能继续压着队列。"""
+        self._row("c4", extra=json.dumps(
+            {"rescore": {"prompt": "triage-0.0.1", "verdict": "discarded"}}))
+        self.assertIn("c4", [r["id"] for r in hitl._pending(self.db)])
+
+    def test_source_quota_limits_one_source_per_issue(self):
+        for i in range(5):
+            self._row(f"d{i}", source="量子位", score=70 + i)
+        got = [r for r in hitl._pending(self.db) if r["source"] == "量子位"]
+        self.assertEqual(len(got), Config().review_source_quota)
+
+    def test_sorts_by_rescore_score_when_present(self):
+        self._row("e1", score=51, extra=json.dumps(
+            {"rescore": {"prompt": triage.MANIFEST["version"], "verdict": "review", "score": 99}}))
+        self.assertEqual(hitl._pending(self.db)[0]["id"], "e1")
+
+
 class TestOpen(_Base):
     def _run(self, open_issues):
         calls = []
@@ -121,7 +270,7 @@ class TestOpen(_Base):
                 return {"number": 99}
             return {}
         with mock.patch.object(hitl, "_gh", side_effect=gh), \
-                mock.patch.object(hitl, "REVIEW_BATCH", 2):
+                mock.patch.object(hitl, "LANE_QUOTA", {"queue": 2, "audit": 0, "recall": 0}):
             hitl.cmd_open()
         return calls
 
