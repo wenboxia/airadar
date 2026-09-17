@@ -21,6 +21,11 @@ MANIFEST = {
     "eval_cases": "evals/golden_set/golden.jsonl 的 include 标注 · evals/triage_prompt_eval.py",
 }
 
+# 打分标准的版本号。写进 extra.rescore 的结论只在同一版本下有效——
+# 换了标准，旧结论必须自动失效，否则会拿过时的标准继续压着队列。
+# 两处各写一份格式就会对不上（第一次就踩了：一处写 "0.3.0"、一处写 "triage-0.3.0"）
+PROMPT_VERSION = f"triage-{MANIFEST['version']}"
+
 # 打分标准就是黄金集的收录标准（D35）。以前这里只写四个领域名词，导致两件事：
 # 主人会收的具身智能内容因为"领域不在清单里"被压到 51–59 分，而营销通稿照样进送审区。
 _SYSTEM = """你是 AI 行业情报分析师，为一个只收录高价值内容的知识雷达做价值评估。

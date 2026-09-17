@@ -36,7 +36,7 @@ from pipeline.models import Item                   # noqa: E402
 from pipeline.stages import triage                 # noqa: E402
 
 SCOPE = "status='review'"      # 这次要处理的就是"现在还堵在队列里的"，所以看 status
-PROMPT = f"triage-{triage.MANIFEST['version']}"
+PROMPT = triage.PROMPT_VERSION
 
 
 def _checksum(db) -> str:
