@@ -49,7 +49,7 @@ python3 tools/prep_golden_doc.py         # AI 写资料（不给收录建议）�
 python3 evals/import_golden_docx.py      # 把填好的 Word 表写回 golden.jsonl
 python3 evals/review_golden.py           # 另一条路：命令行逐条标注
 python3 evals/judge_hallucination.py --n 8 --k 3   # LLM-as-Judge 幻觉评测
-python3 -m unittest discover evals -v    # 62 个回归测试
+python3 -m unittest discover evals -v    # 76 个回归测试
 
 # ── 前端 ──────────────────────────────────────────────
 cd web && npm run dev                    # 本地开发（自动同步 data/feed）
@@ -57,6 +57,7 @@ cd web && npm run build                  # 构建（AIRADAR_BASE=/airadar/ 走 P
 
 # ── 一次性工具（tools/，只在开发机用）──────────────────
 python3 tools/backfill_categories.py --report   # 分类体系改版前后的对比表
+python3 tools/build_golden_v2.py build           # 黄金集 v2 首次写入（已完成，golden.jsonl 非空时会拒绝执行）
 ```
 
 部署：`daily.yml` 里 scan → build → deploy 串在一起。**不要指望 push 触发 pages.yml 来更新数据**——
