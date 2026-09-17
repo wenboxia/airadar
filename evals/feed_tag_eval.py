@@ -145,6 +145,9 @@ def main():
         return {"n": n, "hit": k, "rate": round(k / n, 3) if n else None, "ci95": wilson(k, n),
                 "loose_rate": round(sum(r["loose_hit"] for r in rs) / n, 3) if n else None}
 
+    content = set(classify.CONTENT_CATEGORIES)
+    sec_rate = round(sum(1 for r in rows
+                         if len(content & set(r["categories"])) > 1) / len(rows), 3) if rows else None
     single = [r for r in rows if len(r["accept"]) == 1]
     per_tag = {}
     for r in rows:
@@ -158,6 +161,7 @@ def main():
         # 主力限流时会切到备用模型，混进另一家的输出会让数字失真，所以记下来
         "calls_by_provider": llm_stats.get("calls_by_provider", {}),
         "sampled": len(samples), "classified": len(rows),
+        "secondary_rate": sec_rate,
         "all": _summ(rows),
         "single_answer_tags": _summ(single),
         "by_tag": {k: {**_summ(v), "accept": v[0]["accept"],
@@ -167,6 +171,9 @@ def main():
                    for k, v in sorted(per_tag.items())},
         "misses": [{k: r[k] for k in ("feed", "tag", "title", "url", "accept", "categories")}
                    for r in rows if not r["hit"]],
+        # 逐条留痕：换 seed 复测时要能算出两次抽样重叠了多少，否则说不清"新样本"有多新
+        "rows": [{"tag": f'{r["feed"]}/{r["tag"]}', "url": r["url"], "title": r["title"],
+                  "primary": r["primary"], "cats": r["categories"], "hit": r["hit"]} for r in rows],
     }
     os.makedirs(os.path.join(ROOT, "evals", "results"), exist_ok=True)
     path = os.path.join(ROOT, "evals", "results",
@@ -174,7 +181,8 @@ def main():
     with open(path, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=1)
 
-    print(f"抽样 {len(samples)} 条，分类成功 {len(rows)} 条（classify {result['classify_version']}）")
+    print(f"抽样 {len(samples)} 条，分类成功 {len(rows)} 条（classify {result['classify_version']}）"
+          f"，带副类 {sec_rate:.1%}")
     for name, key in (("全部标签", "all"), ("单答案标签", "single_answer_tags")):
         s = result[key]
         print(f"{name}：主类命中 {s['hit']}/{s['n']} = {s['rate']:.0%}"
