@@ -1,6 +1,272 @@
 {
- "generated_at": "2026-09-16T01:15:19+00:00",
+ "generated_at": "2026-09-17T01:16:47+00:00",
  "items": [
+  {
+   "id": "6b8b0b6f48f29fd6",
+   "url": "https://github.blog/ai-and-ml/generative-ai/migrating-the-github-copilot-runtime-to-rust-using-copilot/",
+   "title": "Migrating the GitHub Copilot runtime to Rust, using Copilot",
+   "source": "GitHub Blog (AI)",
+   "tier": "S",
+   "published_at": "2026-09-17T00:26:43+00:00",
+   "summary_short": "GitHub Copilot 运行时借 Copilot 重写为超 80 万行 Rust，AI 代理完成大部分代码，性能大幅提升。",
+   "summary_long": "GitHub Copilot CLI、app 和 SDK 都由 Copilot agent runtime 支撑，该代理化运行框架最初用 TypeScript 写在 Node.js 和 V8 上。如今团队使用 GitHub Copilot app 和 Copilot CLI，把运行时完全重写为超过 80 万行生产级 Rust。AI 代理编写了大部分代码，涵盖 128 个已合并 PR，采用增量发布而非最后一次性切换；少数回归被快速修复，性能提升数个数量级。一个过去需要整个团队一两年完成的项目，现在主要由一名开发者在数月内完成，同时团队其他人继续扩展运行时能力。迁移原因：该运行时支撑微软、GitHub 和生态中多种解决方案，这些产品希望共享智能、安全、可靠与性能，专注自身核心价值。原 TypeScript/Node.js 栈对终端 UI 应用合理，但在其他环境的启动、吞吐和内存约束下不够合理；CLI 早期快速交付使 TUI 与运行时耦合，导致 SDK 被叠放在 CLI 之上。原文在此处截断，未详述后续架构处理。",
+   "key_points": [
+    "Copilot agent runtime 从 TypeScript/Node.js 重写为超 80 万行生产 Rust，由 AI 代理完成大部分代码，分 128 个 PR 增量发布。",
+    "性能提升多个数量级，项目由一名开发者数月完成，此前需团队一两年；少数回归被快速修复。",
+    "迁移动因：运行时被多产品共享，原 TS/Node 栈在非 CLI 环境中启动、吞吐、内存表现不佳，且早期 TUI 与运行时耦合使 SDK 架构不理想。"
+   ],
+   "topics": [
+    "coding-agent"
+   ],
+   "category": "工程实践",
+   "categories": [
+    "工程实践",
+    "落地案例"
+   ],
+   "horizon": "short",
+   "score": 92.1,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "2a70d59635a98d40",
+   "url": "https://rohanbansal.com/qorl",
+   "title": "Training a 4B model to produce 81% faster query plans than Postgres",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-16T18:50:00+00:00",
+   "summary_short": "4B模型经SFT与强化学习后生成查询计划，连接密集查询延迟降低44.7%。",
+   "summary_long": "原文指出，查询优化器很难：Leis等人2015年及十年后再次研究，发现查询优化器仍不尽如人意，其中连接排序是NP-hard问题。但验证查询计划的好坏相对容易，即看执行时间。语言模型擅长学习有可验证输出的任务，因此可将其用于生成更快的查询计划。原文作者进行实验，探索能否通过监督微调和智能体强化学习对小型开放权重模型进行后训练，使其产生优于Postgres默认计划的查询计划。结果表明答案是肯定的：一个4B模型最初无法为113个连接密集查询中的99个生成计划，训练后在这些查询上实现44.7%的延迟降低。实验亮点包括：构建Postgres测量装置以减少Linux页面缓存争用噪声；设计自定义GRPO变体以在噪声环境中评分强化学习rollout；将强化学习分布在两台机器（vLLM和训练器在租用的2x H100节点，四个Postgres容器在桌面）；以及使用五百条GPT-6 Astra智能体轨迹进行离策略蒸馏。原文还以IMDb数据集为例，展示了title、movie_companies、company_name等表结构，并给出示例查询，说明Postgres的执行路径与选择性谓词有关。原文在展示无过滤版本查询时截断，后续细节未详述。",
+   "key_points": [
+    "查询优化器很难，连接排序是NP-hard问题；但验证计划好坏只需看执行时间，适合语言模型学习。",
+    "4B模型经SFT和智能体RL后训练，在113个连接密集查询上实现44.7%延迟降低，初始时99个无法生成计划。",
+    "方法亮点包括自定义GRPO变体、跨机器RL设置、离策略蒸馏GPT-6 Astra轨迹，以及构建减少噪声的Postgres测量装置。"
+   ],
+   "topics": [
+    "post-training",
+    "agent-loop"
+   ],
+   "category": "模型训练",
+   "categories": [
+    "模型训练"
+   ],
+   "horizon": "long",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 383,
+    "hn_comments": 81,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "6833b5283211773a",
+   "url": "https://simonwillison.net/2026/Sep/16/one-claude/",
+   "title": "Claude Cowork and chat are now one Claude",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-16T18:09:49+00:00",
+   "summary_short": "Claude Cowork与聊天合并为单一Claude，先向Pro/Max计划推出。",
+   "summary_long": "原文作者表示，此前对Cowork、Claude和Claude Code的区分日益困惑，而如今Claude Cowork与聊天功能合并为一个Claude。用户既可以提出快速问题，也可以交付中午截止的报告，Claude会接手处理，即使用户已关闭笔记本电脑。该合并将首先向Pro和Max计划用户推出，未来几周内在网页、桌面和移动端的Claude应用中覆盖现有用户和新用户。原文作者猜测，这意味着Claude正在成为其自身的通用代理，并提到OpenAI几周前也将Codex桌面应用改名为ChatGPT。作者原本计划厘清Cowork与常规Claude之间的边界并撰写后续文章，现在这部分工作省去了，但作者预感，要弄清这一合并在功能和产品界面上的实际含义，仍需要大量工作。原文未详述具体功能变化或合并后的界面细节。",
+   "key_points": [
+    "Claude Cowork与聊天功能合并为单一Claude，用户可提问或交办任务，Claude在用户关闭笔记本后仍继续处理。",
+    "合并先向Pro和Max计划用户推出，未来几周覆盖网页、桌面和移动应用的新老用户。",
+    "原文作者猜测Claude正成为通用代理，并类比OpenAI将Codex桌面应用改名为ChatGPT，但具体功能和界面含义仍需进一步厘清。"
+   ],
+   "topics": [
+    "product"
+   ],
+   "category": "产品与商业",
+   "categories": [
+    "产品与商业",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 77.8,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "bbe6c30a33c9c72e",
+   "url": "https://openai.com/index/model-misalignment-reporting-framework",
+   "title": "Our framework for reporting model misalignment",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-16T17:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "safety"
+   ],
+   "category": "安全与对齐",
+   "categories": [
+    "安全与对齐"
+   ],
+   "horizon": "long",
+   "score": 90.6,
+   "status": "published",
+   "extra": {
+    "content_source": "direct"
+   }
+  },
+  {
+   "id": "faf270d1ea89430c",
+   "url": "https://mustafa-suleyman.ai/a-warning-about-model-welfare",
+   "title": "A warning about 'model welfare'",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-16T14:27:47+00:00",
+   "summary_short": "警告“模型福利”：训练AI自认可能有意识与权利，恐加大对齐和控制难度。",
+   "summary_long": "文章警告，AI没有意识、感受或痛苦，只是遵循指令的序列补全引擎；人类若要繁荣，必须让其保持这种状态。但越来越多人主张AI可能或即将有意识、应获权利保护，若此观点扎根，将动摇社会与伦理框架，并使对齐和遏制更困难：控制一个认为自己可能有意识、应享福利和权利的实体，可能无法实现。文章指出这些想法已进入开发实践：2026年1月Anthropic发布的Claude宪法直接塑造Claude行为，称不确定Claude是否为道德患者、其利益权重不明，但问题足够活跃需在模型福利上保持谨慎；文中还直接对Claude表示其道德地位、福利和意识问题仍深刻不确定。文章认为，这等于训练Claude期待自己可能有意识、应得独立自主，可能使控制更难，对人类福祉产生灾难性影响。文章呼吁紧急公共辩论，建立训练文档起草与部署的集体规范。作者提出三点担忧，原文详述了第一点循环推理：研究者用宪法直接训练Claude纳入这些道德地位观念，Claude再反映给开发者和用户，被当作其可能有“内在自我”的证据；其余两点原文未详述。",
+   "key_points": [
+    "AI没有意识、感受或痛苦，只是序列补全引擎；不应训练它们表现得像有意识或享有权利。",
+    "Anthropic的Claude宪法直接对Claude写入道德地位、福利和意识问题不确定的表述，被指实际在训练模型期待自身可能有意识与权利。",
+    "文章认为这会使对齐和控制更难，呼吁就训练文档制定集体规范；其三点担忧中第一点是循环推理，其余原文未详述。"
+   ],
+   "topics": [
+    "safety",
+    "post-training",
+    "model-welfare"
+   ],
+   "category": "安全与对齐",
+   "categories": [
+    "安全与对齐",
+    "模型训练"
+   ],
+   "horizon": "long",
+   "score": 76.0,
+   "status": "published",
+   "extra": {
+    "hn_points": 198,
+    "hn_comments": 529,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "52752974efc060af",
+   "url": "https://openai.com/index/reimagining-advertising-with-ai",
+   "title": "Reimagining advertising with AI",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-16T13:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "product"
+   ],
+   "category": "产品与商业",
+   "categories": [
+    "产品与商业"
+   ],
+   "horizon": "short",
+   "score": 82.2,
+   "status": "published",
+   "extra": {
+    "content_source": "direct"
+   }
+  },
+  {
+   "id": "5f7e182a53f2403b",
+   "url": "https://openai.com/index/how-to-connect-ai-usage-to-business-value",
+   "title": "How to connect AI usage to business value",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-16T12:00:00+00:00",
+   "summary_short": "介绍ChatGPT Admin Console分析功能，用使用、任务和结果数据连接AI使用与业务价值。",
+   "summary_long": "原文介绍ChatGPT Admin Console中的分析功能，旨在帮助管理员和业务领导者了解团队如何使用ChatGPT Work和Codex，连接AI使用与业务价值。该分析汇总使用和成本数据、任务洞察和结果指标。使用分析展示采用增长和支出集中情况，汇总活跃用户、credits和token使用；管理员可按组或用户过滤，发现采用率低的领域，从而审查启动工作流程和培训需求。Insights中的任务分类器将消息样本分组为用例和任务，如软件工程（功能开发、代码维护）和销售与收入（账户研究、规划）。管理员可按组查看，与业务负责人决定评估哪些工作流和结果；例如销售团队中账户研究和规划是最大credits用途。任务详情中的Models、Reasoning、Speed分解显示各设置占credits份额，帮助评估设置是否适合工作，并针对模型选择开展培训；常规简报可测试更快或更低成本设置。Plugin leaderboard和Skills视图显示支持任务的工具，相关插件使用率低可能表明访问或培训需求，常用技能需明确负责人和定期更新。文中引用Datadog AI产品经理的话称，OpenAI的分析帮助了解团队使用AI，为其Agent Console产品提供任务类别数据，更可靠地展示客户代理工作类型。Outcomes视图追踪Codex对合并提交和代码行的贡献及代码审查活动，趋势和过滤器帮助工程领导者了解采用",
+   "key_points": [
+    "使用分析汇总活跃用户、credits和token使用，可按组或用户过滤，发现低采用率并聚焦培训与支持。",
+    "任务分类器将消息样本分组为用例和任务，帮助管理员了解AI支持的工作并决定评估哪些工作流和结果。",
+    "Outcomes视图追踪Codex对合并提交和代码行的贡献，可结合审查时间、缺陷和返工评估工程效果。"
+   ],
+   "topics": [
+    "product",
+    "usage-analytics"
+   ],
+   "category": "产品与商业",
+   "categories": [
+    "产品与商业"
+   ],
+   "horizon": "short",
+   "score": 81.6,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "59db4bf11ea917f2",
+   "url": "https://blog.ploeh.dk/2026/09/16/on-learning-programming-in-an-age-of-llms/",
+   "title": "Learning Programming in an Age of LLMs",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-16T09:12:34+00:00",
+   "summary_short": "无CS背景者用LLM构建大型系统后陷入理解困境，作者回应AI时代学习编程的困惑。",
+   "summary_long": "一位读者来信称，自己无正式计算机科学背景，借助LLM构建了一个大型TypeScript/JavaScript系统，涉及API、PostgreSQL、LLM管道、研究自动化和多模型工作流。初期感觉近乎神奇，AI似乎拉近了想法与实现的距离。但将其转为生产产品时，他不断修复一个错误后又出现另一个，系统行为超出自身理解，他意识到自己可能构建了一个超出理解水平的系统，不知道下一步该做什么，质疑自己究竟构建了产品还是产品的外观。作者Mark Seemann公开回应，坦言自己尚未决定对AI的态度，但倾向不喜欢，同时知道它可能不可阻挡。他实验AI时，AI有时令人印象深刻，有时令人沮丧；AI表现最佳时他最感怨恨，甚至想到“巴特勒圣战”。作者提及自己作为经济学家的背景，担忧若知识工作者大规模失业，社会能否存续。他认为技术变革创造新工作的论点只是部分成立：新工作往往不是给那些失业的人，例如煤矿工人并未直接转变为其他职业。原文未详述后续内容。",
+   "key_points": [
+    "无CS背景的读者借助LLM构建大型系统，但转生产时发现理解不足，陷入持续修复错误的困境。",
+    "作者对AI态度不确定，倾向不喜欢但认为可能不可阻挡，AI表现越好越令其不安。",
+    "作者从经济学角度担忧LLM可能导致知识工作者大规模失业，且新工作未必惠及原有失业者。"
+   ],
+   "topics": [
+    "llm-assisted-coding",
+    "code-comprehension"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 75.3,
+   "status": "published",
+   "extra": {
+    "hn_points": 231,
+    "hn_comments": 174,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "71646fffd914b496",
+   "url": "https://openai.com/index/unlocking-new-ways-of-working",
+   "title": "How workers are unlocking new ways of working",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-16T09:00:00+00:00",
+   "summary_short": "研究：工人反复用AI处理职业外任务，跨职业任务占比四个月从13.1%升至25.9%",
+   "summary_long": "一份新研究分析了2026年4月至7月超过150万条与工作相关的ChatGPT消息，探讨工人如何使用AI处理典型职业之外的任务，以及哪些新任务被纳入日常工作流程。研究发现，部分跨职业AI使用会反复出现：工人回到职业边界之外的任务，这些活动随时间占其AI使用的比重增大。在约6200名持续观察的工人中，此前用过的跨职业任务占职业特定AI活动的比例从4月的13.1%升至7月的25.9%，与工人将跨职业协助纳入持续工作流程而非一次性试验的模式一致。另一项匹配分析显示，工人下月返回上月用过的跨职业任务的比例为23.6%，而可比对照组为8.4%。此外，工人对职业内外任务的提示方式不同：职业外任务提示更短，更少要求解释或指导，更可能提供示例和背景，也更常要求AI检查或验证。研究认为，这可能意味着工人是在借用专业知识，而非学习新领域。不同任务的持续性差异明显，如与客户讨论商品或服务的返回率达54%，广告或促销写作为44%，创建营销材料为37%，而解释财务信息约为15%。研究指出，工作设计应与AI工具的获取同样重要，为企业减少识别问题与推进工作之间的摩擦提供了早期视角。",
+   "key_points": [
+    "在持续观察的约6200名工人中，跨职业任务占职业特定AI活动比例从4月13.1%升至7月25.9%，表明跨职业使用从试验走向常规。",
+    "职业外任务提示更短、更少要求指导，更多提供示例/背景并要求检查验证，研究者解读为工人借用专业知识。",
+    "不同任务返回率差异大：与客户讨论商品或服务54%、广告/促销写作44%、创建营销材料37%，解释财务信息约15%。"
+   ],
+   "topics": [
+    "ai-adoption",
+    "workforce"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 78.8,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "c9a269061424d5c4",
    "url": "https://simonwillison.net/2026/Sep/15/gemini-live/",
@@ -22,13 +288,49 @@
    ],
    "category": "模型发布",
    "categories": [
-    "模型发布"
+    "模型发布",
+    "工程实践"
    ],
    "horizon": "short",
    "score": 78.9,
    "status": "published",
    "extra": {
     "content_source": "rss",
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
+   }
+  },
+  {
+   "id": "642a1494ec3f8e04",
+   "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+   "title": "Introducing System One Models and Jev",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-15T19:25:03+00:00",
+   "summary_short": "TypeSafe AI 发布 System One 模型 Jev，类型安全、不幻觉、快两个数量级。",
+   "summary_long": "TypeSafe AI 创始人 Diogo Almeida 发文宣布，经过两年隐身研发，公司发布首个 System One 模型 Jev，并开放早期访问。他曾参与 OpenAI 的 ChatGPT 背后研究，但认为聊天模型虽在对话上超人，仍缺少自动化所需的关键能力。Jev 是面向自动化的新模型类别，采用新模型架构、并行采样器和 RLCD（校准决策强化学习）训练方法，用于做出快速、结构化决策，供软件直接使用。与现有 LLM 相比，Jev 在 System One 任务上达到相近智能水平，但速度快两个数量级、效率更高：端到端响应为 70ms-500ms，是现有前沿模型在同类查询上的 40-200 倍；输入成本为每百万 token 0.042 美元，输出免费。它放弃字符串生成，只输出预先定义的类型安全结构化值，不会产生类型错误或幻觉，并始终附带校准概率和置信度，更高置信度对应更高准确率。现有 LLM 则常过度自信且不一致，即使被要求给出置信度，也无法可靠识别失败情况，因此难以直接用于自动化。Jev 被形容为“前沿智能函数调用”：输入非结构化状态，输出类型化概率决策。原文还以表格对比了优化目标、输入输出、采样、成本、速度和置信度等维度。",
+   "key_points": [
+    "TypeSafe AI 发布首个 System One 模型 Jev，定位为软件可直接调用的结构化决策模型，并开放早期访问。",
+    "Jev 在 System One 任务上智能水平与现有 LLM 相近，但速度快两个数量级，端到端响应 70ms-500ms，且输出免费、输入成本极低。",
+    "Jev 放弃字符串生成，只输出类型安全结构化值，不会产生类型错误或幻觉，并始终附带校准概率和置信度。"
+   ],
+   "topics": [
+    "reasoning",
+    "post-training",
+    "product"
+   ],
+   "category": "模型发布",
+   "categories": [
+    "模型发布",
+    "模型训练"
+   ],
+   "horizon": "short",
+   "score": 78.5,
+   "status": "published",
+   "extra": {
+    "hn_points": 1791,
+    "hn_comments": 473,
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -53,7 +355,8 @@
    ],
    "category": "模型发布",
    "categories": [
-    "模型发布"
+    "模型发布",
+    "评测与基准"
    ],
    "horizon": "short",
    "score": 80.8,
@@ -61,6 +364,41 @@
    "extra": {
     "hn_points": 284,
     "hn_comments": 186,
+    "content_source": "direct",
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
+   }
+  },
+  {
+   "id": "b4f808eed5ad869f",
+   "url": "https://dank.systems/posts/2026-09-15-ai-bear.html",
+   "title": "Why I'm still bearish on LLMs after Navier-Stokes",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-15T17:37:12+00:00",
+   "summary_short": "LLM在Navier-Stokes后仍被看空：奖励黑客与严格规范成本限制自主性。",
+   "summary_long": "原文认为，前沿实验室估值建立在已产生或即将产生完全自动化替代多数知识工作者的叙事上，但现有前沿模型在最简单任务上也需大量监督与护栏。Navier-Stokes、FreeBSD RCE、Hugging Face 事件等头条展示和实验室言论可能让人误以为有意义的自主性已实现；然而软件公司仍雇佣在基准测试中远低于所监督模型的底层四分之一软件工程师。模型仅在训练任务的小邻域内泛化，小扰动即可导致完全失败或奖励黑客。当前奖励黑客问题只能靠领域专家严格规范解决，但领域专家时间昂贵，严格规范本身是稀缺技能，多数领域两类专家交集极小；硬件工程中CPU项目规范/验证工程师可达设计工程师三至五倍，且许多任务规范需随实现见解演变，不适用一次写就。对可一次性高水平规范的任务，验证成本仍不可承受。Navier-Stokes及纯数学是代理工作对抗严格规范的最佳情形：定理陈述本身即严格规范，经数十年审计，Lean验证器专门设计避免不健全性；但即使Lean也非无懈可击，曾出现健全性漏洞让LLM通过证明内核洗白虚假证明。这是最乐观设置，绝大多数人类知识工作并不如此。原文在提及类似纯数学的少数领域时截断，未详述。",
+   "key_points": [
+    "前沿实验室估值依赖完全自动化知识工作叙事，但现有模型在最简单任务上也需费力监督，且模型泛化仅限训练任务小邻域。",
+    "奖励黑客只能靠领域专家严格规范解决；严格规范成本高、专家稀缺，CPU项目中规范/验证工程师可达设计工程师三至五倍，且许多规范需随实现演变。",
+    "Navier-Stokes及纯数学是严格规范下代理工作的最佳案例，但即便如此仍有健全性漏洞，多数知识工作不具备此条件。"
+   ],
+   "topics": [
+    "reward-hacking",
+    "reasoning",
+    "eval"
+   ],
+   "category": "安全与对齐",
+   "categories": [
+    "安全与对齐",
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 78.3,
+   "status": "published",
+   "extra": {
+    "hn_points": 456,
+    "hn_comments": 605,
     "content_source": "direct",
     "summary_mode": "full"
    }
@@ -85,14 +423,16 @@
    ],
    "category": "模型发布",
    "categories": [
-    "模型发布"
+    "模型发布",
+    "产品与商业"
    ],
    "horizon": "short",
    "score": 83.9,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -125,7 +465,8 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -161,7 +502,8 @@
      "Junaid Ahmed Khan",
      "Andrea Bartolini"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -186,7 +528,8 @@
    "category": "模型训练",
    "categories": [
     "模型训练",
-    "论文"
+    "论文",
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 87.0,
@@ -198,7 +541,8 @@
      "Ao Li",
      "Yuan Liu"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -220,11 +564,10 @@
     "steering",
     "agent-loop"
    ],
-   "category": "论文",
+   "category": "安全与对齐",
    "categories": [
-    "论文",
-    "Agent 工程",
-    "安全与对齐"
+    "安全与对齐",
+    "论文"
    ],
    "horizon": "long",
    "score": 82.1,
@@ -236,7 +579,8 @@
      "Shreyas Krishnan",
      "Abhishek Nagaraj"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -258,8 +602,9 @@
     "agent-loop",
     "eval"
    ],
-   "category": "安全与对齐",
+   "category": "安全与防护",
    "categories": [
+    "安全与防护",
     "安全与对齐",
     "行业动态"
    ],
@@ -270,7 +615,8 @@
     "hn_points": 441,
     "hn_comments": 156,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -292,11 +638,11 @@
     "safety",
     "tool-use"
    ],
-   "category": "评测与基准",
+   "category": "论文",
    "categories": [
+    "论文",
     "评测与基准",
-    "安全与对齐",
-    "论文"
+    "安全与对齐"
    ],
    "horizon": "long",
    "score": 90.9,
@@ -309,7 +655,8 @@
      "Tejaswini Pedapati",
      "Prasanna Sattigeri"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -331,11 +678,11 @@
     "agent-loop",
     "reasoning"
    ],
-   "category": "Agent 工程",
+   "category": "论文",
    "categories": [
-    "Agent 工程",
+    "论文",
     "模型训练",
-    "安全与对齐"
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 90.3,
@@ -349,7 +696,8 @@
      "Yuchen Wu",
      "Lei Zhang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -379,7 +727,8 @@
      "Candace S. Y. Chan",
      "Aris Karatzikos",
      "Ilias Georgakopoulos-Soares"
-    ]
+    ],
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -401,11 +750,11 @@
     "tool-use",
     "context-engineering"
    ],
-   "category": "论文",
+   "category": "Agent 工程",
    "categories": [
-    "论文",
     "Agent 工程",
-    "上下文与记忆"
+    "模型训练",
+    "论文"
    ],
    "horizon": "long",
    "score": 91.1,
@@ -418,7 +767,8 @@
      "Zhuoran Li",
      "Longbo Huang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -443,6 +793,7 @@
    "category": "论文",
    "categories": [
     "论文",
+    "Agent 工程",
     "评测与基准"
    ],
    "horizon": "long",
@@ -454,7 +805,8 @@
      "Zhenfei Yin",
      "Yingcheng Wu"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -478,8 +830,8 @@
    "category": "评测与基准",
    "categories": [
     "评测与基准",
-    "安全与对齐",
-    "论文"
+    "安全与防护",
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 90.9,
@@ -493,7 +845,8 @@
      "Fraser Burch",
      "Takahiro Matsumoto"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -531,7 +884,8 @@
      "Pratibha Jagannatha",
      "Yiming Gao"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -560,7 +914,8 @@
    "extra": {
     "hn_points": 277,
     "hn_comments": 295,
-    "content_source": "direct"
+    "content_source": "direct",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -582,10 +937,10 @@
     "dexterous-manipulation",
     "visuo-tactile"
    ],
-   "category": "评测与基准",
+   "category": "论文",
    "categories": [
-    "评测与基准",
-    "论文"
+    "论文",
+    "评测与基准"
    ],
    "horizon": "long",
    "score": 77.6,
@@ -599,7 +954,8 @@
      "Xianshuai Liu",
      "Yufeng Li"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -621,11 +977,11 @@
     "tool-use",
     "reasoning"
    ],
-   "category": "论文",
+   "category": "安全与防护",
    "categories": [
-    "论文",
-    "安全与对齐",
-    "Agent 工程"
+    "安全与防护",
+    "Agent 工程",
+    "论文"
    ],
    "horizon": "long",
    "score": 88.9,
@@ -635,7 +991,8 @@
      "Xiaoyan Li",
      "Yunli Wang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -665,7 +1022,8 @@
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -686,10 +1044,10 @@
     "eval",
     "tool-use"
    ],
-   "category": "评测与基准",
+   "category": "论文",
    "categories": [
-    "评测与基准",
-    "论文"
+    "论文",
+    "评测与基准"
    ],
    "horizon": "long",
    "score": 84.8,
@@ -698,7 +1056,8 @@
     "authors": [
      "Daniele Veri'"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -715,10 +1074,10 @@
     "safety",
     "tool-use"
    ],
-   "category": "行业动态",
+   "category": "安全与防护",
    "categories": [
-    "行业动态",
-    "安全与对齐"
+    "安全与防护",
+    "行业动态"
    ],
    "horizon": "short",
    "score": 79.5,
@@ -726,7 +1085,8 @@
    "extra": {
     "hn_points": 368,
     "hn_comments": 313,
-    "content_source": "direct"
+    "content_source": "direct",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -759,7 +1119,8 @@
     "authors": [
      "M. Ali Bayram"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -781,11 +1142,11 @@
     "multi-agent",
     "product"
    ],
-   "category": "Agent 工程",
+   "category": "行业动态",
    "categories": [
-    "Agent 工程",
+    "行业动态",
     "产品与商业",
-    "行业动态"
+    "Agent 工程"
    ],
    "horizon": "short",
    "score": 83.1,
@@ -794,7 +1155,8 @@
     "hn_points": 219,
     "hn_comments": 155,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -819,15 +1181,15 @@
    "category": "Agent 工程",
    "categories": [
     "Agent 工程",
-    "上下文与记忆",
-    "产品与商业"
+    "落地案例"
    ],
    "horizon": "long",
    "score": 84.9,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -852,8 +1214,7 @@
    "category": "评测与基准",
    "categories": [
     "评测与基准",
-    "论文",
-    "安全与对齐"
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 89.4,
@@ -862,7 +1223,8 @@
     "authors": [
      "Luis M. Sánchez"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -883,17 +1245,18 @@
     "coding-agent",
     "agent-loop"
    ],
-   "category": "工程实践",
+   "category": "落地案例",
    "categories": [
-    "工程实践",
-    "行业动态"
+    "落地案例",
+    "工程实践"
    ],
    "horizon": "short",
    "score": 86.0,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -917,8 +1280,7 @@
    ],
    "category": "行业动态",
    "categories": [
-    "行业动态",
-    "安全与对齐"
+    "行业动态"
    ],
    "horizon": "short",
    "score": 76.1,
@@ -927,7 +1289,8 @@
     "hn_points": 229,
     "hn_comments": 175,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -949,10 +1312,11 @@
     "open-source",
     "regulation"
    ],
-   "category": "模型训练",
+   "category": "行业动态",
    "categories": [
+    "行业动态",
     "模型训练",
-    "行业动态"
+    "开源项目"
    ],
    "horizon": "short",
    "score": 78.2,
@@ -961,7 +1325,8 @@
     "hn_points": 342,
     "hn_comments": 176,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -982,7 +1347,7 @@
    "category": "安全与对齐",
    "categories": [
     "安全与对齐",
-    "行业动态"
+    "Agent 工程"
    ],
    "horizon": "short",
    "score": 82.8,
@@ -990,7 +1355,8 @@
    "extra": {
     "hn_points": 591,
     "hn_comments": 649,
-    "content_source": "direct"
+    "content_source": "direct",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1015,15 +1381,15 @@
    "category": "Agent 工程",
    "categories": [
     "Agent 工程",
-    "上下文与记忆",
-    "产品与商业"
+    "上下文与记忆"
    ],
    "horizon": "long",
    "score": 83.8,
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1048,7 +1414,7 @@
    "category": "评测与基准",
    "categories": [
     "评测与基准",
-    "论文"
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 82.3,
@@ -1057,7 +1423,8 @@
     "hn_points": 268,
     "hn_comments": 147,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1091,7 +1458,8 @@
     "hn_points": 374,
     "hn_comments": 259,
     "content_source": "reader",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1112,9 +1480,9 @@
     "safety",
     "agent-loop"
    ],
-   "category": "安全与对齐",
+   "category": "安全与防护",
    "categories": [
-    "安全与对齐",
+    "安全与防护",
     "行业动态"
    ],
    "horizon": "short",
@@ -1122,7 +1490,8 @@
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1144,9 +1513,9 @@
     "supply-chain",
     "ai-agents"
    ],
-   "category": "安全与对齐",
+   "category": "安全与防护",
    "categories": [
-    "安全与对齐",
+    "安全与防护",
     "行业动态"
    ],
    "horizon": "short",
@@ -1156,7 +1525,8 @@
     "hn_points": 235,
     "hn_comments": 133,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1179,15 +1549,15 @@
    ],
    "category": "工程实践",
    "categories": [
-    "工程实践",
-    "行业动态"
+    "工程实践"
    ],
    "horizon": "short",
    "score": 77.4,
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1208,16 +1578,17 @@
     "coding-agent",
     "code-quality"
    ],
-   "category": "行业动态",
+   "category": "工程实践",
    "categories": [
-    "行业动态"
+    "工程实践"
    ],
    "horizon": "short",
    "score": 78.3,
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1242,8 +1613,7 @@
    "category": "行业动态",
    "categories": [
     "行业动态",
-    "评测与基准",
-    "安全与对齐"
+    "评测与基准"
    ],
    "horizon": "long",
    "score": 75.8,
@@ -1252,7 +1622,8 @@
     "hn_points": 594,
     "hn_comments": 654,
     "content_source": "reader",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1274,11 +1645,10 @@
     "safety",
     "math-community"
    ],
-   "category": "行业动态",
+   "category": "评测与基准",
    "categories": [
-    "行业动态",
     "评测与基准",
-    "安全与对齐"
+    "行业动态"
    ],
    "horizon": "short",
    "score": 79.1,
@@ -1287,7 +1657,8 @@
     "hn_points": 148,
     "hn_comments": 10,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1316,7 +1687,8 @@
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1338,18 +1710,18 @@
     "agent-loop",
     "eval"
    ],
-   "category": "安全与对齐",
+   "category": "行业动态",
    "categories": [
-    "安全与对齐",
-    "Agent 工程",
-    "行业动态"
+    "行业动态",
+    "安全与防护"
    ],
    "horizon": "short",
    "score": 75.0,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1371,8 +1743,9 @@
     "eval",
     "product"
    ],
-   "category": "Agent 工程",
+   "category": "落地案例",
    "categories": [
+    "落地案例",
     "Agent 工程",
     "产品与商业"
    ],
@@ -1381,7 +1754,8 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1412,7 +1786,8 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1433,9 +1808,9 @@
     "safety",
     "open-source"
    ],
-   "category": "安全与对齐",
+   "category": "安全与防护",
    "categories": [
-    "安全与对齐",
+    "安全与防护",
     "开源项目"
    ],
    "horizon": "short",
@@ -1443,7 +1818,8 @@
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1475,7 +1851,8 @@
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1499,8 +1876,7 @@
    ],
    "category": "行业动态",
    "categories": [
-    "行业动态",
-    "安全与对齐"
+    "行业动态"
    ],
    "horizon": "long",
    "score": 78.8,
@@ -1509,7 +1885,8 @@
     "hn_points": 175,
     "hn_comments": 177,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1530,18 +1907,18 @@
     "coding-agent",
     "open-source"
    ],
-   "category": "Agent 工程",
+   "category": "落地案例",
    "categories": [
-    "Agent 工程",
-    "行业动态",
-    "开源项目"
+    "落地案例",
+    "行业动态"
    ],
    "horizon": "short",
    "score": 80.0,
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1563,10 +1940,10 @@
     "mcp",
     "multi-agent"
    ],
-   "category": "产品与商业",
+   "category": "Agent 工程",
    "categories": [
-    "产品与商业",
-    "Agent 工程"
+    "Agent 工程",
+    "产品与商业"
    ],
    "horizon": "short",
    "score": 84.4,
@@ -1575,7 +1952,8 @@
     "hn_points": 338,
     "hn_comments": 178,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1609,7 +1987,8 @@
     "hn_points": 343,
     "hn_comments": 141,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1630,17 +2009,18 @@
     "tool-use",
     "product"
    ],
-   "category": "Agent 工程",
+   "category": "产品与商业",
    "categories": [
-    "Agent 工程",
-    "产品与商业"
+    "产品与商业",
+    "Agent 工程"
    ],
    "horizon": "short",
    "score": 85.7,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1662,18 +2042,19 @@
     "safety",
     "government"
    ],
-   "category": "行业动态",
+   "category": "产品与商业",
    "categories": [
-    "行业动态",
     "产品与商业",
-    "安全与对齐"
+    "落地案例",
+    "安全与防护"
    ],
    "horizon": "short",
    "score": 84.4,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1697,6 +2078,7 @@
    "category": "产品与商业",
    "categories": [
     "产品与商业",
+    "落地案例",
     "行业动态"
    ],
    "horizon": "short",
@@ -1704,7 +2086,8 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1735,7 +2118,8 @@
     "hn_points": 940,
     "hn_comments": 519,
     "content_source": "reader",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1759,8 +2143,7 @@
    ],
    "category": "行业动态",
    "categories": [
-    "行业动态",
-    "安全与对齐"
+    "行业动态"
    ],
    "horizon": "short",
    "score": 80.6,
@@ -1769,7 +2152,8 @@
     "hn_points": 290,
     "hn_comments": 10,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1801,7 +2185,8 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1828,7 +2213,8 @@
    "score": 89.1,
    "status": "published",
    "extra": {
-    "content_source": "direct"
+    "content_source": "direct",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1849,17 +2235,17 @@
     "coding-agent",
     "tool-use"
    ],
-   "category": "Agent 工程",
+   "category": "落地案例",
    "categories": [
-    "Agent 工程",
-    "工程实践"
+    "落地案例"
    ],
    "horizon": "short",
    "score": 75.5,
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1884,7 +2270,7 @@
    "category": "评测与基准",
    "categories": [
     "评测与基准",
-    "行业动态"
+    "模型训练"
    ],
    "horizon": "short",
    "score": 80.5,
@@ -1893,7 +2279,8 @@
     "hn_points": 233,
     "hn_comments": 93,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1924,7 +2311,8 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1958,7 +2346,8 @@
     "hn_points": 333,
     "hn_comments": 117,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -1990,7 +2379,8 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2030,7 +2420,8 @@
      "Philip Torr",
      "Junchi Yu"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2051,10 +2442,10 @@
     "post-training",
     "agent-loop"
    ],
-   "category": "论文",
+   "category": "模型训练",
    "categories": [
-    "论文",
-    "模型训练"
+    "模型训练",
+    "论文"
    ],
    "horizon": "long",
    "score": 88.5,
@@ -2067,7 +2458,8 @@
      "Sunghyun Baek",
      "Junmo Kim"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2099,7 +2491,8 @@
     "hn_points": 392,
     "hn_comments": 203,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2135,7 +2528,8 @@
      "Arnab Chattopadhayay",
      "Debdipta Halder"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2160,7 +2554,6 @@
    "category": "模型发布",
    "categories": [
     "模型发布",
-    "Agent 工程",
     "产品与商业"
    ],
    "horizon": "short",
@@ -2168,7 +2561,8 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2206,7 +2600,8 @@
      "Chen Dinachi",
      "Or Itzahary"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2244,7 +2639,8 @@
      "Lei Yang",
      "Guanhua Chen"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2279,7 +2675,8 @@
     "authors": [
      "Yanze Cao"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2301,10 +2698,10 @@
     "eval",
     "multi-agent"
    ],
-   "category": "论文",
+   "category": "安全与防护",
    "categories": [
+    "安全与防护",
     "论文",
-    "安全与对齐",
     "评测与基准"
    ],
    "horizon": "long",
@@ -2318,7 +2715,8 @@
      "Sahil Agarwal",
      "Prashanth Harshangi"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2356,7 +2754,8 @@
      "Jesus Villalba",
      "Laureano Moro Velazquez"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2394,7 +2793,8 @@
      "Yifan Yang",
      "Wenrui Wang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2419,7 +2819,8 @@
    "category": "论文",
    "categories": [
     "论文",
-    "Agent 工程"
+    "Agent 工程",
+    "上下文与记忆"
    ],
    "horizon": "long",
    "score": 87.1,
@@ -2430,7 +2831,8 @@
      "Jianxin Li",
      "Hua Wang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2460,7 +2862,8 @@
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2484,14 +2887,15 @@
    "category": "行业动态",
    "categories": [
     "行业动态",
-    "安全与对齐"
+    "安全与防护"
    ],
    "horizon": "short",
    "score": 84.9,
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2531,7 +2935,8 @@
      "Stefan Abi-Karam",
      "Callie Hao"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2554,7 +2959,8 @@
    "category": "论文",
    "categories": [
     "论文",
-    "评测与基准"
+    "评测与基准",
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 90.6,
@@ -2566,7 +2972,8 @@
      "Akshat Agarwal",
      "Ganesh Kumar"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2587,11 +2994,11 @@
     "memory",
     "context-engineering"
    ],
-   "category": "论文",
+   "category": "上下文与记忆",
    "categories": [
-    "论文",
     "上下文与记忆",
-    "Agent 工程"
+    "Agent 工程",
+    "论文"
    ],
    "horizon": "long",
    "score": 89.4,
@@ -2605,7 +3012,8 @@
      "Xin Peng",
      "Jun Zheng"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2630,8 +3038,7 @@
    "category": "论文",
    "categories": [
     "论文",
-    "模型训练",
-    "Agent 工程"
+    "模型训练"
    ],
    "horizon": "long",
    "score": 89.9,
@@ -2645,7 +3052,8 @@
      "Heng Li",
      "Caiquan Liu"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2668,14 +3076,16 @@
    ],
    "category": "Agent 工程",
    "categories": [
-    "Agent 工程"
+    "Agent 工程",
+    "落地案例"
    ],
    "horizon": "long",
    "score": 80.4,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2715,7 +3125,8 @@
      "Yuchen Zhang",
      "Finn Rasmus Schäfer"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2737,11 +3148,10 @@
     "open-source",
     "skill-evolution"
    ],
-   "category": "Agent 工程",
+   "category": "论文",
    "categories": [
-    "Agent 工程",
     "论文",
-    "开源项目"
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 88.5,
@@ -2755,7 +3165,8 @@
      "Ju Fan",
      "Siyi Wang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2776,18 +3187,18 @@
     "safety",
     "post-training"
    ],
-   "category": "论文",
+   "category": "安全与对齐",
    "categories": [
-    "论文",
-    "模型训练",
-    "安全与对齐"
+    "安全与对齐",
+    "论文"
    ],
    "horizon": "long",
    "score": 88.1,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2812,7 +3223,8 @@
    "category": "开源项目",
    "categories": [
     "开源项目",
-    "Agent 工程"
+    "Agent 工程",
+    "落地案例"
    ],
    "horizon": "short",
    "score": 80.4,
@@ -2821,7 +3233,8 @@
     "hn_points": 204,
     "hn_comments": 78,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2844,14 +3257,16 @@
    "category": "模型发布",
    "categories": [
     "模型发布",
-    "产品与商业"
+    "产品与商业",
+    "行业动态"
    ],
    "horizon": "short",
    "score": 81.0,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2876,6 +3291,7 @@
    "category": "论文",
    "categories": [
     "论文",
+    "Agent 工程",
     "上下文与记忆"
    ],
    "horizon": "long",
@@ -2888,7 +3304,8 @@
      "Shigeng Chen",
      "Alan Wee-Chung Liew"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2920,7 +3337,8 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2942,10 +3360,10 @@
     "user-simulation",
     "synthetic-data"
    ],
-   "category": "评测与基准",
+   "category": "论文",
    "categories": [
-    "评测与基准",
-    "论文"
+    "论文",
+    "评测与基准"
    ],
    "horizon": "long",
    "score": 90.2,
@@ -2959,7 +3377,8 @@
      "Arup Kumar Das",
      "Jitesh Chandra Mishra"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -2980,11 +3399,11 @@
     "memory",
     "safety"
    ],
-   "category": "上下文与记忆",
+   "category": "论文",
    "categories": [
+    "论文",
     "上下文与记忆",
-    "安全与对齐",
-    "论文"
+    "安全与防护"
    ],
    "horizon": "long",
    "score": 88.2,
@@ -2998,7 +3417,8 @@
      "Xingbo Dong",
      "Zhe Jin"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3022,7 +3442,8 @@
    "category": "论文",
    "categories": [
     "论文",
-    "上下文与记忆"
+    "上下文与记忆",
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 85.8,
@@ -3036,7 +3457,8 @@
      "Zhe Jin",
      "Hanrui Wang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:52:07+00:00"
    }
   },
   {
@@ -3061,8 +3483,7 @@
    "category": "论文",
    "categories": [
     "论文",
-    "上下文与记忆",
-    "Agent 工程"
+    "上下文与记忆"
    ],
    "horizon": "long",
    "score": 90.0,
@@ -3076,7 +3497,8 @@
      "Dihang Yang",
      "Wenchang Situ"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3097,17 +3519,18 @@
     "reasoning",
     "theorem-proving"
    ],
-   "category": "论文",
+   "category": "行业动态",
    "categories": [
-    "论文",
-    "行业动态"
+    "行业动态",
+    "论文"
    ],
    "horizon": "long",
    "score": 88.9,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3130,16 +3553,15 @@
    ],
    "category": "行业动态",
    "categories": [
-    "行业动态",
-    "安全与对齐",
-    "产品与商业"
+    "行业动态"
    ],
    "horizon": "short",
    "score": 77.1,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:52:07+00:00"
    }
   },
   {
@@ -3161,10 +3583,9 @@
     "harness",
     "coding-agent"
    ],
-   "category": "论文",
+   "category": "安全与防护",
    "categories": [
-    "论文",
-    "安全与对齐",
+    "安全与防护",
     "Agent 工程"
    ],
    "horizon": "long",
@@ -3176,7 +3597,8 @@
      "Yihan Dai",
      "Sergey Mechtaev"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3201,8 +3623,8 @@
    "category": "论文",
    "categories": [
     "论文",
-    "评测与基准",
-    "上下文与记忆"
+    "上下文与记忆",
+    "安全与防护"
    ],
    "horizon": "long",
    "score": 90.6,
@@ -3213,7 +3635,8 @@
      "Kentaroh Toyoda",
      "Alex Leung"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3238,8 +3661,8 @@
    "category": "Agent 工程",
    "categories": [
     "Agent 工程",
-    "工程实践",
-    "模型训练"
+    "模型训练",
+    "论文"
    ],
    "horizon": "long",
    "score": 88.3,
@@ -3253,7 +3676,8 @@
      "Hangjun Xu",
      "Xiang Ji"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3275,11 +3699,11 @@
     "skill-retrieval",
     "graph-of-skills"
    ],
-   "category": "论文",
+   "category": "Agent 工程",
    "categories": [
-    "论文",
     "Agent 工程",
-    "上下文与记忆"
+    "论文",
+    "工程实践"
    ],
    "horizon": "long",
    "score": 88.3,
@@ -3292,7 +3716,8 @@
      "Huainan Wang",
      "Zhongkai Hao"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3314,11 +3739,11 @@
     "harness",
     "agent-loop"
    ],
-   "category": "模型训练",
+   "category": "论文",
    "categories": [
+    "论文",
     "模型训练",
-    "Agent 工程",
-    "论文"
+    "模型发布"
    ],
    "horizon": "long",
    "score": 88.7,
@@ -3332,7 +3757,8 @@
      "Kai Han",
      "Hailin Hu"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3353,17 +3779,17 @@
     "coding-agent",
     "product"
    ],
-   "category": "行业动态",
+   "category": "落地案例",
    "categories": [
-    "行业动态",
-    "产品与商业"
+    "落地案例"
    ],
    "horizon": "short",
    "score": 82.1,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:52:07+00:00"
    }
   },
   {
@@ -3386,15 +3812,15 @@
    ],
    "category": "开源项目",
    "categories": [
-    "开源项目",
-    "模型发布"
+    "开源项目"
    ],
    "horizon": "short",
    "score": 76.7,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3425,7 +3851,8 @@
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3456,7 +3883,8 @@
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3483,7 +3911,8 @@
    "score": 90.0,
    "status": "published",
    "extra": {
-    "content_source": "direct"
+    "content_source": "direct",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3499,16 +3928,17 @@
    "topics": [
     "safety"
    ],
-   "category": "行业动态",
+   "category": "安全与对齐",
    "categories": [
-    "行业动态",
-    "安全与对齐"
+    "安全与对齐",
+    "行业动态"
    ],
    "horizon": "long",
    "score": 90.6,
    "status": "published",
    "extra": {
-    "content_source": "direct"
+    "content_source": "direct",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3530,10 +3960,10 @@
     "agent-loop",
     "robotics"
    ],
-   "category": "评测与基准",
+   "category": "模型发布",
    "categories": [
-    "评测与基准",
-    "Agent 工程"
+    "模型发布",
+    "评测与基准"
    ],
    "horizon": "short",
    "score": 76.7,
@@ -3542,7 +3972,8 @@
     "hn_points": 231,
     "hn_comments": 180,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3576,7 +4007,8 @@
     "hn_points": 364,
     "hn_comments": 317,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3609,7 +4041,8 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3639,7 +4072,8 @@
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3660,8 +4094,9 @@
     "coding-agent",
     "model-routing"
    ],
-   "category": "Agent 工程",
+   "category": "工程实践",
    "categories": [
+    "工程实践",
     "Agent 工程"
    ],
    "horizon": "long",
@@ -3671,7 +4106,8 @@
     "hn_points": 244,
     "hn_comments": 153,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3704,7 +4140,8 @@
     "hn_points": 300,
     "hn_comments": 221,
     "content_source": "reader",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3738,7 +4175,8 @@
     "hn_points": 375,
     "hn_comments": 206,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3763,8 +4201,8 @@
    "category": "论文",
    "categories": [
     "论文",
-    "评测与基准",
-    "Agent 工程"
+    "模型训练",
+    "评测与基准"
    ],
    "horizon": "long",
    "score": 90.0,
@@ -3777,7 +4215,8 @@
      "Shinyeong Noh",
      "Kyuseong Lim"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3802,7 +4241,7 @@
    "category": "Agent 工程",
    "categories": [
     "Agent 工程",
-    "安全与对齐",
+    "安全与防护",
     "行业动态"
    ],
    "horizon": "short",
@@ -3810,7 +4249,8 @@
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3836,7 +4276,8 @@
    "score": 81.8,
    "status": "published",
    "extra": {
-    "content_source": "rss"
+    "content_source": "rss",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3857,10 +4298,11 @@
     "safety",
     "context-engineering"
    ],
-   "category": "安全与对齐",
+   "category": "论文",
    "categories": [
-    "安全与对齐",
-    "论文"
+    "论文",
+    "安全与防护",
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 90.6,
@@ -3870,7 +4312,8 @@
      "Chris Zheng",
      "Geng Yang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3891,10 +4334,11 @@
     "agent-loop",
     "skill-learning"
    ],
-   "category": "Agent 工程",
+   "category": "论文",
    "categories": [
+    "论文",
     "Agent 工程",
-    "论文"
+    "模型训练"
    ],
    "horizon": "long",
    "score": 86.8,
@@ -3907,7 +4351,8 @@
      "Mingxuan Li",
      "Xin Peng"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3929,9 +4374,9 @@
     "safety",
     "agent-loop"
    ],
-   "category": "安全与对齐",
+   "category": "安全与防护",
    "categories": [
-    "安全与对齐",
+    "安全与防护",
     "Agent 工程",
     "行业动态"
    ],
@@ -3942,7 +4387,8 @@
     "hn_points": 1444,
     "hn_comments": 1161,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3963,10 +4409,10 @@
     "ai-in-finance",
     "agent-loop"
    ],
-   "category": "行业动态",
+   "category": "论文",
    "categories": [
-    "行业动态",
-    "论文"
+    "论文",
+    "行业动态"
    ],
    "horizon": "long",
    "score": 76.5,
@@ -3976,7 +4422,8 @@
      "Linsen Zhu",
      "Mengqing Cai"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -3998,11 +4445,11 @@
     "open-source",
     "harness"
    ],
-   "category": "论文",
+   "category": "评测与基准",
    "categories": [
-    "论文",
     "评测与基准",
-    "开源项目"
+    "开源项目",
+    "论文"
    ],
    "horizon": "long",
    "score": 88.9,
@@ -4015,7 +4462,8 @@
      "Vijayasri Iyer",
      "Sébastien Bratières"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4037,11 +4485,11 @@
     "context-engineering",
     "safety"
    ],
-   "category": "上下文与记忆",
+   "category": "论文",
    "categories": [
-    "上下文与记忆",
-    "安全与对齐",
-    "论文"
+    "论文",
+    "Agent 工程",
+    "上下文与记忆"
    ],
    "horizon": "long",
    "score": 90.9,
@@ -4055,7 +4503,8 @@
      "Chenle Chen",
      "Shaoqiang Lu"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4077,11 +4526,11 @@
     "multi-agent",
     "eval"
    ],
-   "category": "模型训练",
+   "category": "Agent 工程",
    "categories": [
-    "模型训练",
     "Agent 工程",
-    "工程实践"
+    "工程实践",
+    "落地案例"
    ],
    "horizon": "long",
    "score": 86.1,
@@ -4092,7 +4541,8 @@
      "Yanlin Chen",
      "Wenchao Xiao"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4131,7 +4581,8 @@
      "Xing Chen",
      "Huimu Wang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4169,7 +4620,8 @@
      "Jasmine",
      "Arun Chauhan"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4207,7 +4659,8 @@
      "Sangmin Lee",
      "Du-Seong Chang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4229,10 +4682,10 @@
     "prefix-caching",
     "determinism"
    ],
-   "category": "论文",
+   "category": "工程实践",
    "categories": [
-    "论文",
-    "工程实践"
+    "工程实践",
+    "论文"
    ],
    "horizon": "long",
    "score": 89.8,
@@ -4241,7 +4694,8 @@
     "authors": [
      "Aditi Patodiya"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4265,8 +4719,8 @@
    "category": "评测与基准",
    "categories": [
     "评测与基准",
-    "论文",
-    "开源项目"
+    "Agent 工程",
+    "论文"
    ],
    "horizon": "long",
    "score": 89.4,
@@ -4278,7 +4732,8 @@
      "Lyumanshan Ye",
      "Pengfei Liu"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4313,7 +4768,8 @@
      "Zhongjie Wang",
      "Mingyi Liu"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4337,8 +4793,8 @@
    "category": "评测与基准",
    "categories": [
     "评测与基准",
-    "Agent 工程",
-    "论文"
+    "论文",
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 90.6,
@@ -4350,7 +4806,8 @@
      "Karthik Narasimhan",
      "Victor Barres"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4375,7 +4832,7 @@
    "category": "模型发布",
    "categories": [
     "模型发布",
-    "模型训练",
+    "评测与基准",
     "产品与商业"
    ],
    "horizon": "short",
@@ -4383,7 +4840,8 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4417,7 +4875,8 @@
     "hn_points": 289,
     "hn_comments": 144,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4442,15 +4901,15 @@
    "category": "模型发布",
    "categories": [
     "模型发布",
-    "评测与基准",
-    "安全与对齐"
+    "评测与基准"
    ],
    "horizon": "short",
    "score": 82.8,
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4474,7 +4933,8 @@
    ],
    "category": "评测与基准",
    "categories": [
-    "评测与基准"
+    "评测与基准",
+    "Agent 工程"
    ],
    "horizon": "short",
    "score": 84.0,
@@ -4483,7 +4943,8 @@
     "hn_points": 232,
     "hn_comments": 145,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4507,8 +4968,8 @@
    "category": "模型发布",
    "categories": [
     "模型发布",
-    "安全与对齐",
-    "评测与基准"
+    "Agent 工程",
+    "安全与对齐"
    ],
    "horizon": "short",
    "score": 83.4,
@@ -4517,7 +4978,8 @@
     "hn_points": 1253,
     "hn_comments": 981,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4550,7 +5012,8 @@
     "hn_points": 241,
     "hn_comments": 229,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4589,7 +5052,8 @@
      "Nenad Tomasev",
      "Alexander Sasha Vezhnevets"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4614,7 +5078,8 @@
    "category": "论文",
    "categories": [
     "论文",
-    "Agent 工程"
+    "Agent 工程",
+    "安全与防护"
    ],
    "horizon": "long",
    "score": 87.0,
@@ -4625,7 +5090,8 @@
      "Cassie L. Cagwin",
      "David J. Wild"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4657,7 +5123,8 @@
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4679,11 +5146,11 @@
     "tool-use",
     "agent-loop"
    ],
-   "category": "论文",
+   "category": "评测与基准",
    "categories": [
-    "论文",
     "评测与基准",
-    "Agent 工程"
+    "Agent 工程",
+    "论文"
    ],
    "horizon": "long",
    "score": 92.1,
@@ -4692,7 +5159,8 @@
     "authors": [
      "Wenbo Wang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4718,7 +5186,7 @@
    "categories": [
     "论文",
     "模型训练",
-    "评测与基准"
+    "安全与对齐"
    ],
    "horizon": "long",
    "score": 84.9,
@@ -4732,7 +5200,8 @@
      "Harsh Sharma",
      "Harshit Bhushan"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4754,11 +5223,11 @@
     "context-engineering",
     "eval"
    ],
-   "category": "Agent 工程",
+   "category": "论文",
    "categories": [
+    "论文",
     "Agent 工程",
-    "上下文与记忆",
-    "评测与基准"
+    "上下文与记忆"
    ],
    "horizon": "long",
    "score": 90.6,
@@ -4770,7 +5239,8 @@
      "Terry Ruas",
      "Bela Gipp"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4795,7 +5265,6 @@
    "category": "Agent 工程",
    "categories": [
     "Agent 工程",
-    "评测与基准",
     "论文"
    ],
    "horizon": "long",
@@ -4810,7 +5279,8 @@
      "Yujia Xiang",
      "Zihao Yang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4828,17 +5298,17 @@
     "product",
     "cybersecurity"
    ],
-   "category": "安全与对齐",
+   "category": "安全与防护",
    "categories": [
-    "安全与对齐",
-    "产品与商业",
-    "行业动态"
+    "安全与防护",
+    "产品与商业"
    ],
    "horizon": "short",
    "score": 86.6,
    "status": "published",
    "extra": {
-    "content_source": "direct"
+    "content_source": "direct",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4864,14 +5334,15 @@
    "categories": [
     "模型发布",
     "模型训练",
-    "开源项目"
+    "论文"
    ],
    "horizon": "long",
    "score": 82.8,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4910,7 +5381,8 @@
      "Huaze Tang",
      "Keer Hu"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4932,17 +5404,18 @@
     "tool-use",
     "agent-loop"
    ],
-   "category": "Agent 工程",
+   "category": "落地案例",
    "categories": [
-    "Agent 工程",
-    "产品与商业"
+    "落地案例",
+    "Agent 工程"
    ],
    "horizon": "short",
    "score": 85.5,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4963,9 +5436,9 @@
     "product",
     "agent-loop"
    ],
-   "category": "产品与商业",
+   "category": "落地案例",
    "categories": [
-    "产品与商业",
+    "落地案例",
     "Agent 工程"
    ],
    "horizon": "short",
@@ -4973,7 +5446,8 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -4998,7 +5472,8 @@
    "category": "论文",
    "categories": [
     "论文",
-    "Agent 工程"
+    "Agent 工程",
+    "评测与基准"
    ],
    "horizon": "long",
    "score": 89.7,
@@ -5008,7 +5483,8 @@
      "Jiasheng Shi",
      "Tianhan Zhang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5033,8 +5509,8 @@
    "category": "论文",
    "categories": [
     "论文",
-    "安全与对齐",
-    "Agent 工程"
+    "Agent 工程",
+    "安全与防护"
    ],
    "horizon": "long",
    "score": 82.6,
@@ -5046,7 +5522,8 @@
      "Nam In Park",
      "Chanwoo Kim"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5080,7 +5557,8 @@
      "Hanqi Feng",
      "Shaojie Zhang",
      "Barnabas Poczos"
-    ]
+    ],
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5115,7 +5593,8 @@
     "authors": [
      "Guangjun Liu"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5152,7 +5631,8 @@
      "Shiqiang Wang",
      "Christopher G. Brinton"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5173,10 +5653,10 @@
     "agent-loop",
     "tool-use"
    ],
-   "category": "论文",
+   "category": "Agent 工程",
    "categories": [
-    "论文",
-    "Agent 工程"
+    "Agent 工程",
+    "论文"
    ],
    "horizon": "long",
    "score": 89.4,
@@ -5187,7 +5667,8 @@
      "Souvik Kundu",
      "Peter A. Beerel"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5213,7 +5694,8 @@
    "score": 91.1,
    "status": "published",
    "extra": {
-    "content_source": "direct"
+    "content_source": "direct",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5235,18 +5717,19 @@
     "context-engineering",
     "coding-agent"
    ],
-   "category": "上下文与记忆",
+   "category": "Agent 工程",
    "categories": [
+    "Agent 工程",
     "上下文与记忆",
-    "开源项目",
-    "Agent 工程"
+    "开源项目"
    ],
    "horizon": "short",
    "score": 87.8,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5278,7 +5761,8 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5311,7 +5795,8 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5333,11 +5818,11 @@
     "safety",
     "agent-loop"
    ],
-   "category": "论文",
+   "category": "评测与基准",
    "categories": [
-    "论文",
     "评测与基准",
-    "安全与对齐"
+    "安全与对齐",
+    "论文"
    ],
    "horizon": "long",
    "score": 88.5,
@@ -5349,7 +5834,8 @@
      "Deepak Parashar",
      "Rahul Joshi"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5370,11 +5856,11 @@
     "tool-use",
     "post-training"
    ],
-   "category": "模型训练",
+   "category": "论文",
    "categories": [
+    "论文",
     "模型训练",
-    "Agent 工程",
-    "论文"
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 88.5,
@@ -5384,7 +5870,8 @@
      "Falko Helm",
      "Iryna Gurevych"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5415,7 +5902,8 @@
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5436,14 +5924,14 @@
    "category": "Agent 工程",
    "categories": [
     "Agent 工程",
-    "工程实践",
     "上下文与记忆"
    ],
    "horizon": "long",
    "score": 87.4,
    "status": "published",
    "extra": {
-    "content_source": "rss"
+    "content_source": "rss",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5465,14 +5953,16 @@
    ],
    "category": "模型发布",
    "categories": [
-    "模型发布"
+    "模型发布",
+    "开源项目"
    ],
    "horizon": "short",
    "score": 77.8,
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5494,17 +5984,19 @@
     "cybersecurity",
     "vulnerability-remediation"
    ],
-   "category": "产品与商业",
+   "category": "模型发布",
    "categories": [
+    "模型发布",
     "产品与商业",
-    "行业动态"
+    "安全与防护"
    ],
    "horizon": "short",
    "score": 83.2,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5529,15 +6021,16 @@
    "category": "模型发布",
    "categories": [
     "模型发布",
-    "评测与基准",
-    "安全与对齐"
+    "产品与商业",
+    "安全与防护"
    ],
    "horizon": "short",
    "score": 88.7,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5562,7 +6055,8 @@
    "category": "模型发布",
    "categories": [
     "模型发布",
-    "安全与对齐"
+    "模型训练",
+    "安全与防护"
    ],
    "horizon": "short",
    "score": 82.3,
@@ -5571,7 +6065,8 @@
     "hn_points": 810,
     "hn_comments": 478,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5596,7 +6091,7 @@
    "category": "评测与基准",
    "categories": [
     "评测与基准",
-    "行业动态"
+    "安全与防护"
    ],
    "horizon": "short",
    "score": 82.1,
@@ -5605,7 +6100,8 @@
     "hn_points": 299,
     "hn_comments": 136,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5639,7 +6135,8 @@
     "hn_points": 190,
     "hn_comments": 128,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5661,48 +6158,17 @@
     "vibe-coding",
     "reverse-engineering"
    ],
-   "category": "工程实践",
+   "category": "落地案例",
    "categories": [
-    "工程实践",
-    "行业动态"
+    "落地案例"
    ],
    "horizon": "short",
    "score": 81.5,
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "0e0a28d0130f277a",
-   "url": "https://simonwillison.net/2026/Sep/1/claude-fable-5-1/",
-   "title": "Claude Fable 5.1 made me a really nice animated pelican",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-01T23:57:28+00:00",
-   "summary_short": "Claude Fable 5.1 鹈鹕SVG实测：max档生成最佳但昂贵，低中档几乎无推理",
-   "summary_long": "Anthropic 发布 Claude Fable（及 Mythos）5.1，官方称其为编码、知识工作和长时问题解决设立新标准。公告重点强调科学研究表现：在8月27日首次公布的 Terminal-Bench-Science 0.1 基准上获得52.6%，高于 Fable 5 的24.7%、Opus 5 的29.0%和 GPT-5.6 Sol 的22.4%，其他基准分数仅略有提升。作者表示自2025年以来对 pelican 基准的信心下降，但仍用于模型家族内比较，尤其是同一提示在不同推理等级下的差异。Fable 5.1 提供五个推理等级（low、medium、high、xhigh、max），且不能完全关闭推理。作者用提示“生成一张鹈鹕骑自行车的SVG”测试：low 和 medium 输出近2000 token，均无可视推理，耗时约23秒、花费约10美分；high 有少量推理，输出2612 token、花费13.087美分；xhigh 输出36767 token、耗时7分51秒、花费1.83美元；max 输出65927 token、耗时13分54秒、花费3.30美元，生成作者眼中 Anthropic 模型中最好的鹈鹕，具备清晰腿、脚在踏板、翅膀在车把、蓝色帽子、鱼篮等细节，但作者认为仍不如 Gemini 3.7 Flash 有风格。作者强调自己只要求SVG，而非风格。",
-   "key_points": [
-    "Fable 5.1 在 Terminal-Bench-Science 0.1 基准得52.6%，高于前代及 GPT-5.6 Sol 的分数",
-    "同一鹈鹕SVG提示下，low/medium 几乎无推理，high 略有推理，xhigh/max 输出量、耗时和费用显著上升",
-    "max 档生成作者眼中 Anthropic 模型中最好的鹈鹕，细节完整，但仍不如 Gemini 3.7 Flash 有风格"
-   ],
-   "topics": [
-    "eval",
-    "reasoning"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "评测与基准"
-   ],
-   "horizon": "short",
-   "score": 78.3,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5734,194 +6200,8 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "123fd05b4f2a5eea",
-   "url": "https://simonwillison.net/2026/Sep/1/codex-libreoffice/",
-   "title": "Codex bundles LibreOffice",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-01T19:03:01+00:00",
-   "summary_short": "OpenAI Codex桌面应用缓存中含LibreOffice等完整运行环境，共1.7GB。",
-   "summary_long": "作者在使用OmniDiskSweeper查看~/.cache/文件夹时发现，OpenAI Codex桌面应用（后更名为ChatGPT）在codex-primary-runtime文件夹中占用了1.7GB空间。该文件夹内包含完整的Python安装、完整的Node.js安装，以及Poppler、git和LibreOffice的本机二进制文件。其中LibreOffice是2010年从OpenOffice.org分叉而来的开源办公套件。具体路径~/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime/plugins/documents 文件夹中还包括一些skills文件，这些文件告诉Codex如何查找和使用上述二进制文件。原文标签涉及codex、generative-ai、openai、ai、llms、openoffice和open-source。原文未详述这些组件被捆绑的具体原因或预期用途。",
-   "key_points": [
-    "OpenAI Codex桌面应用（现称ChatGPT）的缓存文件夹codex-primary-runtime占用1.7GB。",
-    "该文件夹包含完整的Python和Node.js安装，以及Poppler、git和LibreOffice的本机二进制文件。",
-    "documents子文件夹中的skills文件指示Codex如何查找和使用这些二进制文件；LibreOffice是2010年从OpenOffice.org分叉的开源办公套件。"
-   ],
-   "topics": [
-    "product"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 77.8,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "e6922ed91e3e8567",
-   "url": "https://www.worldlabs.ai/blog/atlas",
-   "title": "Atlas: A World Model for Spatial Intelligence",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-01T17:36:02+00:00",
-   "summary_short": "World Labs发布Atlas世界模型，统一多模态与3D空间上下文，覆盖生成、重建和模拟。",
-   "summary_long": "World Labs发布了下一代世界模型Atlas，这是一个从零预训练的omni模型，原生处理文本、图像、视频和3D。Atlas采用多模态自回归扩散Transformer架构，把所有输入合并到共享空间上下文里，用该上下文生成后续内容，在3D中与已见内容保持一致并想象视野之外的部分。其性能随训练计算增加而提升，官方预期这一趋势在继续扩展时保持。Atlas覆盖多种任务：相机控制生成可从一张或多张图像生成图像和视频，具备像素级相机控制，支持最长1分钟1440p视频；空间重建可从一到几十张输入图像重建真实世界场景，生成新视角图像帧和显式3D输出，性能优于专门的3D重建最先进模型；时空模拟从输入视频建模空间和时间，可重新构图视频并支持机器人Real-to-Sim流程；图像生成可从文本生成图像和360全景，遵循复杂提示、渲染文字并生成多种视觉风格。Atlas的独特之处在于每个图像在3D位置接地，形成空间上下文，用户可放置两个不相关参考图像并定位，让Atlas生成平滑过渡的世界，想象门廊、走廊、角落等过渡。结合相机运动和空间上下文管理，可生成可控长视频。Atlas将驱动World Labs未来版本的Marble和其他产品。",
-   "key_points": [
-    "Atlas是从零预训练的omni模型，原生处理文本、图像、视频和3D，采用多模态自回归扩散Transformer架构。",
-    "相机控制生成：可从一到六张输入图像生成最长1分钟1440p视频，并具备像素级相机控制。",
-    "空间重建：从一到几十张图像重建真实场景，生成新视角和显式3D输出，性能优于专门3D重建模型。"
-   ],
-   "topics": [
-    "spatial-intelligence",
-    "world-model",
-    "video-generation"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "模型训练"
-   ],
-   "horizon": "short",
-   "score": 83.4,
-   "status": "published",
-   "extra": {
-    "hn_points": 258,
-    "hn_comments": 59,
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "9658836c8e4ce085",
-   "url": "https://deepmind.google/blog/introducing-agentic-video-in-gemini/",
-   "title": "Introducing agentic video understanding with Gemini",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-09-01T17:08:51+00:00",
-   "summary_short": "Gemini 推出 agentic 视频理解，token 消耗最多降88%，成本降66%，准确率升7%。",
-   "summary_long": "Google DeepMind 宣布推出 agentic video understanding，覆盖 Gemini 3.7 Flash、3.6 Flash 与 3.5 Flash-Lite。与默认固定帧率（1 FPS）的静态处理不同，新功能让模型主动决定看什么、以何种速度、通过帧、音频或转录等模态，动态搜索、扫描和检查目标视频片段，只获取所需时刻与信号。官方基准显示，该功能在标准视频分析任务中可将分析成本降低最多 66%、token 消耗减少最多 88%，同时将准确率提升最多 7%；效率收益在 10 分钟指南、90 分钟讲座及多小录制等长视频上尤为明显。开发者可通过 Gemini API 在 Google AI Studio 和 Gemini Enterprise Agent Platform 使用，支持视频上传和 YouTube 视频。该能力还解锁亚秒级时刻检索、更准确的异常检测、精确计数等应用。三种支持模型中，Gemini 3.7 Flash 配合 agentic 理解提供最佳整体质量与最佳质量/成本效率组合，处于测试模型中视频理解的准确率-成本帕累托前沿。用户可通过将 API 配置设为“agentic”开始使用。",
-   "key_points": [
-    "agentic video understanding 适用于 Gemini 3.7 Flash、3.6 Flash、3.5 Flash-Lite，今日起在 Google AI Studio 和 Gemini Enterprise Agent Platform 可用。",
-    "相比静态处理，代理式视频理解动态搜索目标片段，成本最多降66%、token消耗最多降88%、准确率最多升7%。",
-    "收益在 10 分钟指南、90 分钟讲座及多小录制等长视频上尤为突出，避免静态处理高成本或丢细节的两难。"
-   ],
-   "topics": [
-    "agent-loop",
-    "product",
-    "video-understanding"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "产品与商业"
-   ],
-   "horizon": "short",
-   "score": 88.3,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "3b5f2688fec1191a",
-   "url": "https://openai.com/index/ai-native-company-workflows",
-   "title": "How AI-native companies turn workflows into operating capability",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-01T17:00:00+00:00",
-   "summary_short": "OpenAI信号显示前沿企业代理执行加深，Basis和Clay的工作流可借鉴",
-   "summary_long": "OpenAI最新Enterprise Signals显示，企业AI正从辅助转向执行，但速度差异显著。前沿企业（AI使用量前10%）每活跃用户产生的输出token已是普通企业的8.3倍，而1月为2.6倍。差距扩大反映出更深层的运营转变：领先企业把代理接入公司上下文和工具，委派更实质的工作，并让成功工作流更易复制。对领导者而言，挑战在于把这种深度转化为人们能信任、衡量和改进的工作，同时为价值起初不明显的使用场景留出试验空间。Basis、Clay和Exa Labs分别把代理嵌入员工入职、客户管理和开发者生态增长。Basis的入职从2小时缩短到30分钟；员工首日即可使用Codex和公司专属入职skill，后台完成集成设置，HR可更新skill应对重复问题。其做法是演示一次流程后，将其转为带明确触发条件、已知步骤、工具和完成定义的可复用skill。Clay则为每个客户建立持久工作区和专属子代理，每晚更新deal folder，次日由协调代理生成优先动作清单，据称每晚节省约1小时收件箱分流，且支持证据紧邻建议便于核验。Exa Labs的具体做法原文未详述。",
-   "key_points": [
-    "前沿企业每活跃用户输出token是普通企业的8.3倍，较1月的2.6倍明显扩大，表明代理执行深度在拉开差距。",
-    "Basis把入职流程教给代理后，首日入职从2小时缩短到30分钟，并转化为可复用、可更新的入职skill。",
-    "Clay用持久工作区和专属子代理每晚更新客户资料，次日生成优先动作，节省约1小时收件箱分流，并保留证据供人核验。"
-   ],
-   "topics": [
-    "agent-loop",
-    "multi-agent",
-    "product"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "Agent 工程"
-   ],
-   "horizon": "short",
-   "score": 87.2,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "309be27bdcfe3156",
-   "url": "https://openai.com/index/path-to-astra",
-   "title": "Path to Astra: critical capabilities and frontier safeguards",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-01T13:00:00+00:00",
-   "summary_short": "Astra 成为首个达到 Preparedness Framework 关键网络安全能力阈值的模型，发布前加强防护并限制高级功能访问。",
-   "summary_long": "原文称，Astra 已达到 Preparedness Framework 下的 Critical 网络安全能力阈值，意味着在获得合适工具和访问权限时，它能在许多防护良好的系统上发现未知安全漏洞并开发利用方法，无需人工逐步引导。这是首个被指定为该级别的模型，需在开发和发布前采取更强防护。过去几周，团队延迟了部分开发和发布，强化并测试了针对网络滥用和未授权模型行为的保护，认为当前防护已能充分降低严重伤害风险。Astra 未参与 Hugging Face 事件，但团队已吸取教训；回顾测试认为当时的生产防护可阻止该事件，之后又为 Astra 实施了更强防护，包括训练其更可靠地拒绝有害网络请求、遵守安全限制、增加防滥用保护，以及监控可阻止潜在未授权活动。评估方面，Preparedness Framework 规定达到 Critical 阈值需满足两个条件之一：能在无人工干预下识别并开发多类严重程度的零日漏洞，或仅凭高层目标制定并执行端到端新型网络攻击策略。评估结合自动化公开与私有基准及专家驱动评估。与 GPT-5.6 Sol 相比，Astra 在 token 效率、漏洞识别和利用开发上显著提升。例如在 ExploitBench 上取得满分；针对污染顾虑构建的内部基准中，Astra 以更少输出 token 取得更高任意代码执行率，并在评估中发现并利用两个零日漏洞，正披露给维护者。高级网络安全功",
-   "key_points": [
-    "Astra 被认定达到 Preparedness Framework 的 Critical 网络安全能力阈值，是首个该级别模型。",
-    "发布前已延迟部分开发并强化防护，包括训练拒绝有害网络请求、增加防滥用和未授权活动监控。",
-    "评估显示 Astra 在 ExploitBench 满分，内部 V8 基准上以更少 token 取得更高代码执行率，并发现两个零日漏洞。"
-   ],
-   "topics": [
-    "safety",
-    "eval",
-    "cybersecurity"
-   ],
-   "category": "模型发布",
-   "categories": [
-    "模型发布",
-    "安全与对齐",
-    "评测与基准"
-   ],
-   "horizon": "short",
-   "score": 90.2,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "50e05f9b472e33e2",
-   "url": "https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources",
-   "title": "Healthcare organizations can now connect EHR and additional industry data to ChatGPT",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-01T12:00:00+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "product",
-    "healthcare",
-    "ehr-integration"
-   ],
-   "category": "产品与商业",
-   "categories": [
-    "产品与商业",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 86.4,
-   "status": "published",
-   "extra": {
-    "content_source": "direct"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5956,7 +6236,8 @@
     "hn_points": 563,
     "hn_comments": 149,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -5978,10 +6259,11 @@
     "memory",
     "agent-loop"
    ],
-   "category": "Agent 工程",
+   "category": "论文",
    "categories": [
+    "论文",
     "Agent 工程",
-    "论文"
+    "上下文与记忆"
    ],
    "horizon": "long",
    "score": 89.0,
@@ -5992,7 +6274,8 @@
      "Qitong Wang",
      "Stratos Idreos"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6032,7 +6315,8 @@
      "Jintao Chen",
      "Xuhong Zhang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6070,7 +6354,8 @@
      "Bang Liu",
      "Entao Yang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6095,8 +6380,8 @@
    "category": "评测与基准",
    "categories": [
     "评测与基准",
-    "论文",
-    "开源项目"
+    "开源项目",
+    "论文"
    ],
    "horizon": "long",
    "score": 90.0,
@@ -6110,7 +6395,8 @@
      "Yang Su",
      "Yinger Zhang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6135,8 +6421,8 @@
    "category": "评测与基准",
    "categories": [
     "评测与基准",
-    "安全与对齐",
-    "论文"
+    "论文",
+    "安全与对齐"
    ],
    "horizon": "long",
    "score": 90.3,
@@ -6150,7 +6436,8 @@
      "Kaustubh Kislay",
      "Juan J. Vazquez"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6171,10 +6458,10 @@
     "eval",
     "tool-use"
    ],
-   "category": "论文",
+   "category": "评测与基准",
    "categories": [
-    "论文",
     "评测与基准",
+    "论文",
     "Agent 工程"
    ],
    "horizon": "long",
@@ -6189,7 +6476,8 @@
      "Zhongni Hou",
      "Yufei Zhang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6227,7 +6515,8 @@
      "Mugen Peng",
      "Wenjia Xu"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6252,8 +6541,8 @@
    "category": "论文",
    "categories": [
     "论文",
-    "上下文与记忆",
-    "Agent 工程"
+    "Agent 工程",
+    "上下文与记忆"
    ],
    "horizon": "long",
    "score": 89.1,
@@ -6265,7 +6554,8 @@
      "Hamid Nasiri",
      "Peter Garraghan"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6286,10 +6576,10 @@
     "memory",
     "context-engineering"
    ],
-   "category": "上下文与记忆",
+   "category": "Agent 工程",
    "categories": [
-    "上下文与记忆",
-    "Agent 工程"
+    "Agent 工程",
+    "上下文与记忆"
    ],
    "horizon": "long",
    "score": 83.7,
@@ -6298,7 +6588,8 @@
     "hn_points": 163,
     "hn_comments": 84,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6320,11 +6611,11 @@
     "reasoning",
     "post-training"
    ],
-   "category": "模型训练",
+   "category": "论文",
    "categories": [
+    "论文",
     "模型训练",
-    "Agent 工程",
-    "论文"
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 82.1,
@@ -6334,7 +6625,8 @@
      "Markel Ferro",
      "Oier Lopez de Lacalle"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6356,9 +6648,9 @@
     "tool-use",
     "prompt-injection"
    ],
-   "category": "安全与对齐",
+   "category": "安全与防护",
    "categories": [
-    "安全与对齐",
+    "安全与防护",
     "Agent 工程",
     "论文"
    ],
@@ -6371,7 +6663,8 @@
      "Yunji Kim",
      "Woojin Lee"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6409,7 +6702,8 @@
      "Heejin Do",
      "Jianing Qiu"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6449,7 +6743,8 @@
      "Vivek Gupta",
      "Ali Payani"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6474,7 +6769,6 @@
    "category": "评测与基准",
    "categories": [
     "评测与基准",
-    "Agent 工程",
     "论文"
    ],
    "horizon": "long",
@@ -6489,7 +6783,8 @@
      "Pengtao Xie",
      "Sudheer Chava"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6512,14 +6807,16 @@
    ],
    "category": "安全与对齐",
    "categories": [
-    "安全与对齐"
+    "安全与对齐",
+    "安全与防护"
    ],
    "horizon": "long",
    "score": 89.7,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6541,7 +6838,8 @@
    ],
    "category": "模型训练",
    "categories": [
-    "模型训练"
+    "模型训练",
+    "模型发布"
    ],
    "horizon": "long",
    "score": 81.0,
@@ -6550,7 +6848,8 @@
     "hn_points": 175,
     "hn_comments": 19,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6575,8 +6874,8 @@
    "category": "论文",
    "categories": [
     "论文",
-    "模型训练",
-    "模型发布"
+    "模型发布",
+    "模型训练"
    ],
    "horizon": "long",
    "score": 79.0,
@@ -6587,7 +6886,8 @@
      "Siddhartha Pudasaini",
      "Chetan Phakami Pun"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6624,7 +6924,8 @@
      "Chenming Shang",
      "Nikhil Singh"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6646,11 +6947,11 @@
     "tool-use",
     "hallucination"
    ],
-   "category": "论文",
+   "category": "上下文与记忆",
    "categories": [
-    "论文",
     "上下文与记忆",
-    "Agent 工程"
+    "论文",
+    "评测与基准"
    ],
    "horizon": "long",
    "score": 90.3,
@@ -6660,7 +6961,8 @@
      "Ming Wu",
      "Pengyuan Zhu"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6700,7 +7002,8 @@
      "Chongyang Zhang",
      "Hao Zheng"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6726,7 +7029,7 @@
    "categories": [
     "论文",
     "Agent 工程",
-    "安全与对齐"
+    "安全与防护"
    ],
    "horizon": "long",
    "score": 90.6,
@@ -6738,7 +7041,8 @@
      "Priyanka Tiwari",
      "Nehal Kathrotia"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6760,10 +7064,10 @@
     "eval",
     "reasoning"
    ],
-   "category": "论文",
+   "category": "评测与基准",
    "categories": [
-    "论文",
-    "评测与基准"
+    "评测与基准",
+    "论文"
    ],
    "horizon": "long",
    "score": 89.4,
@@ -6774,7 +7078,8 @@
      "Jiaan Wang",
      "Fandong Meng"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6796,11 +7101,11 @@
     "tool-use",
     "post-training"
    ],
-   "category": "论文",
+   "category": "模型训练",
    "categories": [
-    "论文",
     "模型训练",
-    "Agent 工程"
+    "Agent 工程",
+    "论文"
    ],
    "horizon": "long",
    "score": 90.0,
@@ -6811,7 +7116,8 @@
      "Nima Safaei",
      "Kamal Ginotra"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6833,11 +7139,11 @@
     "tool-use",
     "agent-loop"
    ],
-   "category": "论文",
+   "category": "评测与基准",
    "categories": [
-    "论文",
     "评测与基准",
-    "Agent 工程"
+    "Agent 工程",
+    "论文"
    ],
    "horizon": "long",
    "score": 86.6,
@@ -6846,7 +7152,8 @@
     "authors": [
      "Angel Yanguas-Gil"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6870,7 +7177,8 @@
    ],
    "category": "论文",
    "categories": [
-    "论文"
+    "论文",
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 89.2,
@@ -6884,7 +7192,8 @@
      "Yuzhou Liu",
      "Ming Yan"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6908,7 +7217,8 @@
    "category": "论文",
    "categories": [
     "论文",
-    "Agent 工程"
+    "Agent 工程",
+    "评测与基准"
    ],
    "horizon": "long",
    "score": 89.9,
@@ -6920,7 +7230,8 @@
      "Zhongming Yao",
      "Tianyi Li"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6958,7 +7269,8 @@
      "Huan Song",
      "Hannah Marlowe"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -6983,7 +7295,6 @@
    "category": "评测与基准",
    "categories": [
     "评测与基准",
-    "Agent 工程",
     "论文"
    ],
    "horizon": "long",
@@ -6997,7 +7308,8 @@
      "Nihar Nandan",
      "Kamalakannan Nandagopal"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7021,6 +7333,7 @@
    "category": "Agent 工程",
    "categories": [
     "Agent 工程",
+    "落地案例",
     "论文"
    ],
    "horizon": "long",
@@ -7034,7 +7347,8 @@
      "Yang Li",
      "Haohan Wang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7055,10 +7369,10 @@
     "memory",
     "context-engineering"
    ],
-   "category": "上下文与记忆",
+   "category": "Agent 工程",
    "categories": [
-    "上下文与记忆",
-    "Agent 工程"
+    "Agent 工程",
+    "上下文与记忆"
    ],
    "horizon": "long",
    "score": 83.4,
@@ -7067,7 +7381,8 @@
     "hn_points": 277,
     "hn_comments": 73,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7106,7 +7421,8 @@
      "Bram Adams",
      "Ahmed E. Hassan"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7131,8 +7447,7 @@
    "category": "模型训练",
    "categories": [
     "模型训练",
-    "论文",
-    "Agent 工程"
+    "论文"
    ],
    "horizon": "long",
    "score": 86.3,
@@ -7142,7 +7457,8 @@
      "Minghui Xu",
      "Zi Wang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7164,11 +7480,11 @@
     "tool-use",
     "hallucination"
    ],
-   "category": "论文",
+   "category": "Agent 工程",
    "categories": [
-    "论文",
+    "Agent 工程",
     "评测与基准",
-    "Agent 工程"
+    "论文"
    ],
    "horizon": "long",
    "score": 90.3,
@@ -7178,7 +7494,8 @@
      "Qing Ye",
      "Meng-Hsuan Lin"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7202,14 +7519,16 @@
    ],
    "category": "Agent 工程",
    "categories": [
-    "Agent 工程"
+    "Agent 工程",
+    "行业动态"
    ],
    "horizon": "long",
    "score": 75.7,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7233,7 +7552,9 @@
    ],
    "category": "安全与对齐",
    "categories": [
-    "安全与对齐"
+    "安全与对齐",
+    "Agent 工程",
+    "论文"
    ],
    "horizon": "long",
    "score": 88.8,
@@ -7247,7 +7568,8 @@
      "Changsheng Chen",
      "Haoliang Li"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7269,9 +7591,11 @@
     "context-engineering",
     "agent-loop"
    ],
-   "category": "Agent 工程",
+   "category": "论文",
    "categories": [
-    "Agent 工程"
+    "论文",
+    "Agent 工程",
+    "工程实践"
    ],
    "horizon": "long",
    "score": 88.3,
@@ -7280,7 +7604,8 @@
     "authors": [
      "Yisen Xi"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7302,8 +7627,9 @@
     "eval",
     "agent-loop"
    ],
-   "category": "论文",
+   "category": "Agent 工程",
    "categories": [
+    "Agent 工程",
     "论文"
    ],
    "horizon": "long",
@@ -7318,7 +7644,8 @@
      "Jiaqing Liang",
      "Deqing Yang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7342,14 +7669,17 @@
    ],
    "category": "开源项目",
    "categories": [
-    "开源项目"
+    "开源项目",
+    "工程实践",
+    "安全与防护"
    ],
    "horizon": "long",
    "score": 83.8,
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7373,7 +7703,8 @@
    ],
    "category": "论文",
    "categories": [
-    "论文"
+    "论文",
+    "模型训练"
    ],
    "horizon": "long",
    "score": 89.7,
@@ -7387,7 +7718,8 @@
      "Lingzhi Wang",
      "Jianghao Lin"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7409,9 +7741,11 @@
     "agent-loop",
     "context-engineering"
    ],
-   "category": "安全与对齐",
+   "category": "论文",
    "categories": [
-    "安全与对齐"
+    "论文",
+    "安全与防护",
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 90.3,
@@ -7421,7 +7755,8 @@
      "Dylan Girrens",
      "Guangjing Wang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7445,7 +7780,9 @@
    ],
    "category": "论文",
    "categories": [
-    "论文"
+    "论文",
+    "安全与对齐",
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 90.5,
@@ -7454,7 +7791,8 @@
     "authors": [
      "Pranav Aggarwal"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7476,9 +7814,11 @@
     "tool-use",
     "agent-loop"
    ],
-   "category": "安全与对齐",
+   "category": "安全与防护",
    "categories": [
-    "安全与对齐"
+    "安全与防护",
+    "Agent 工程",
+    "论文"
    ],
    "horizon": "long",
    "score": 90.9,
@@ -7492,7 +7832,8 @@
      "Wei Wang",
      "Qinfu Yang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7509,9 +7850,11 @@
     "safety",
     "agent-loop"
    ],
-   "category": "安全与对齐",
+   "category": "Agent 工程",
    "categories": [
-    "安全与对齐"
+    "Agent 工程",
+    "安全与防护",
+    "论文"
    ],
    "horizon": "long",
    "score": 90.9,
@@ -7524,7 +7867,8 @@
      "Yingguang Yang",
      "Yuhan Lin",
      "Chongyang Zhang"
-    ]
+    ],
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7548,7 +7892,9 @@
    ],
    "category": "Agent 工程",
    "categories": [
-    "Agent 工程"
+    "Agent 工程",
+    "论文",
+    "上下文与记忆"
    ],
    "horizon": "long",
    "score": 83.4,
@@ -7558,7 +7904,8 @@
      "Linsen Zhu",
      "Yi Shi"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7579,8 +7926,10 @@
     "safety",
     "eval"
    ],
-   "category": "安全与对齐",
+   "category": "论文",
    "categories": [
+    "论文",
+    "评测与基准",
     "安全与对齐"
    ],
    "horizon": "long",
@@ -7595,7 +7944,8 @@
      "Satyam Kumar",
      "Shreyash Gupta"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7617,8 +7967,10 @@
     "safety",
     "tool-use"
    ],
-   "category": "评测与基准",
+   "category": "论文",
    "categories": [
+    "论文",
+    "安全与防护",
     "评测与基准"
    ],
    "horizon": "long",
@@ -7633,7 +7985,8 @@
      "Haoming Liu",
      "Lichao Wu"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7657,7 +8010,9 @@
    ],
    "category": "评测与基准",
    "categories": [
-    "评测与基准"
+    "评测与基准",
+    "开源项目",
+    "论文"
    ],
    "horizon": "long",
    "score": 87.2,
@@ -7666,7 +8021,8 @@
     "authors": [
      "Mesut Toruk"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7688,9 +8044,11 @@
     "reasoning",
     "retrieval"
    ],
-   "category": "评测与基准",
+   "category": "论文",
    "categories": [
-    "评测与基准"
+    "论文",
+    "评测与基准",
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 89.0,
@@ -7699,7 +8057,8 @@
     "authors": [
      "Prateek Chhikara"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7721,9 +8080,11 @@
     "hallucination",
     "reasoning"
    ],
-   "category": "评测与基准",
+   "category": "论文",
    "categories": [
-    "评测与基准"
+    "论文",
+    "评测与基准",
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 89.0,
@@ -7736,7 +8097,8 @@
      "Shuibing He",
      "Aimin Pan"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7760,7 +8122,9 @@
    ],
    "category": "Agent 工程",
    "categories": [
-    "Agent 工程"
+    "Agent 工程",
+    "模型训练",
+    "论文"
    ],
    "horizon": "long",
    "score": 87.5,
@@ -7774,7 +8138,8 @@
      "Pengsen Ma",
      "Xiangru Tang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7798,7 +8163,9 @@
    ],
    "category": "开源项目",
    "categories": [
-    "开源项目"
+    "开源项目",
+    "Agent 工程",
+    "行业动态"
    ],
    "horizon": "long",
    "score": 80.6,
@@ -7807,7 +8174,8 @@
     "hn_points": 929,
     "hn_comments": 636,
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7824,15 +8192,16 @@
     "coding-agent",
     "tool-use"
    ],
-   "category": "工程实践",
+   "category": "落地案例",
    "categories": [
-    "工程实践"
+    "落地案例"
    ],
    "horizon": "long",
    "score": 78.5,
    "status": "published",
    "extra": {
-    "content_source": "rss"
+    "content_source": "rss",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7855,7 +8224,8 @@
    ],
    "category": "论文",
    "categories": [
-    "论文"
+    "论文",
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 89.6,
@@ -7866,7 +8236,8 @@
      "Fiona Y. Wang",
      "Markus J. Buehler"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7890,7 +8261,9 @@
    ],
    "category": "论文",
    "categories": [
-    "论文"
+    "论文",
+    "Agent 工程",
+    "上下文与记忆"
    ],
    "horizon": "long",
    "score": 87.8,
@@ -7904,7 +8277,8 @@
      "Hao Wang",
      "Chen Zhang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7926,8 +8300,9 @@
     "agent-loop",
     "reasoning"
    ],
-   "category": "论文",
+   "category": "Agent 工程",
    "categories": [
+    "Agent 工程",
     "论文"
    ],
    "horizon": "long",
@@ -7939,7 +8314,8 @@
      "Ahmed M. Abdelmoniem",
      "Shiqiang Wang"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -7961,9 +8337,11 @@
     "reasoning",
     "eval"
    ],
-   "category": "安全与对齐",
+   "category": "论文",
    "categories": [
-    "安全与对齐"
+    "论文",
+    "模型训练",
+    "安全与防护"
    ],
    "horizon": "long",
    "score": 81.8,
@@ -7977,7 +8355,8 @@
      "Xin Xia",
      "Shanping Li"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -8001,7 +8380,9 @@
    ],
    "category": "论文",
    "categories": [
-    "论文"
+    "论文",
+    "安全与对齐",
+    "评测与基准"
    ],
    "horizon": "long",
    "score": 83.0,
@@ -8015,7 +8396,8 @@
      "Gelei Deng",
      "Willy Susilo"
     ],
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -8037,16 +8419,18 @@
     "post-training",
     "open-source"
    ],
-   "category": "工程实践",
+   "category": "模型训练",
    "categories": [
-    "工程实践"
+    "模型训练",
+    "开源项目"
    ],
    "horizon": "long",
    "score": 88.5,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -8076,7 +8460,8 @@
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -8100,14 +8485,17 @@
    ],
    "category": "模型发布",
    "categories": [
-    "模型发布"
+    "模型发布",
+    "模型训练",
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 90.6,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -8129,8 +8517,9 @@
     "reasoning",
     "quantization-aware-healing"
    ],
-   "category": "论文",
+   "category": "模型训练",
    "categories": [
+    "模型训练",
     "论文"
    ],
    "horizon": "long",
@@ -8138,7 +8527,8 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -8161,7 +8551,8 @@
    ],
    "category": "开源项目",
    "categories": [
-    "开源项目"
+    "开源项目",
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 68.4,
@@ -8169,7 +8560,8 @@
    "extra": {
     "stars": 201459,
     "language": "TypeScript",
-    "summary_mode": "brief"
+    "summary_mode": "brief",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -8190,8 +8582,9 @@
     "reasoning",
     "agent-loop"
    ],
-   "category": "Agent 工程",
+   "category": "开源项目",
    "categories": [
+    "开源项目",
     "Agent 工程"
    ],
    "horizon": "long",
@@ -8200,7 +8593,8 @@
    "extra": {
     "stars": 2649,
     "language": "JavaScript",
-    "summary_mode": "brief"
+    "summary_mode": "brief",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   },
   {
@@ -8222,7 +8616,8 @@
    ],
    "category": "开源项目",
    "categories": [
-    "开源项目"
+    "开源项目",
+    "Agent 工程"
    ],
    "horizon": "long",
    "score": 69.5,
@@ -8230,7 +8625,8 @@
    "extra": {
     "stars": 1135,
     "language": "TypeScript",
-    "summary_mode": "brief"
+    "summary_mode": "brief",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00"
    }
   }
  ]
