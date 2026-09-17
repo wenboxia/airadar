@@ -27,6 +27,10 @@
 7. **数据不手改**：`data/` 下所有文件由 pipeline 生成，人只通过 HITL 渠道（审批 issue / CLI）影响数据。
    唯一的例外是 `tools/` 下经过评审的一次性回填：只改声明过的列，改之前存旧值，前后对 status / auto_status 做指纹比对（见 D39）。
 
+8. **人只做机器做不了的那一下**（D44）。逐条点批准会退化成橡皮图章（Anthropic 遥测：权限弹窗通过率 93%）。
+   人的动作应该是"撤下错的、捞回漏的"，不是"逐条盖章"；而且任何要人看的清单都必须有明确容量，
+   容量以外的条目要么出队、要么另有通道，**不许假装它们还会被审**。
+
 ## 常用命令
 
 ```bash
@@ -50,8 +54,10 @@ python3 evals/import_golden_docx.py      # 把填好的 Word 表写回 golden.js
 python3 evals/review_golden.py           # 另一条路：命令行逐条标注
 python3 evals/judge_hallucination.py --n 8 --k 3   # LLM-as-Judge 幻觉评测
 python3 evals/feed_tag_eval.py --per-tag 15        # 分类准确率：拿 OpenAI / Anthropic 官网自带标签当参照
+python3 evals/triage_prompt_eval.py               # 改 triage 打分标准后：拿黄金集离线重打分，只读库
+python3 evals/triage_prompt_eval.py --replay <jsonl> --weights 0.4,0.25,0.25,0.5   # 零成本扫权重
 python3 tools/classify_stability.py --n 100         # 分类噪声底：同一 prompt 连分两次的主类一致率
-python3 -m unittest discover evals -v    # 84 个回归测试
+python3 -m unittest discover evals -v    # 116 个回归测试
 
 # ── 前端 ──────────────────────────────────────────────
 cd web && npm run dev                    # 本地开发（自动同步 data/feed）
@@ -59,6 +65,7 @@ cd web && npm run build                  # 构建（AIRADAR_BASE=/airadar/ 走 P
 
 # ── 一次性工具（tools/，只在开发机用）──────────────────
 python3 tools/backfill_categories.py --report   # 分类体系改版前后的对比表（默认看 D43 那次）
+python3 tools/rescore_review_backlog.py --report # 待审队列按新打分标准重算后的去向（D45）
 python3 tools/build_golden_v2.py build           # 黄金集 v2 首次写入（已完成，golden.jsonl 非空时会拒绝执行）
 ```
 
