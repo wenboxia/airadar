@@ -14,7 +14,7 @@ export interface Item {
   key_points: string[]
   topics: string[]
   category: string
-  /** 多分类：一条内容常同时属于多个类别（如 论文 + 模型训练） */
+  /** 第一个是主类；其后是副类，以及按链接判定的「开源项目」「研究论文」 */
   categories?: string[]
   horizon: Horizon
   score: number
@@ -56,6 +56,8 @@ export interface Stats {
   totals: Record<string, number>
   /** 由 pipeline 从 sources.yaml 导出——展示层不硬编码信源，避免与实现脱节 */
   sources?: { total: number; by_tier: Record<string, string[]> }
+  /** classify.CATEGORIES 的顺序，筛选按钮照此排列 */
+  categories?: string[]
   runs: RunStat[]
 }
 

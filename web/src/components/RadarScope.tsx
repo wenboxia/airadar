@@ -1,14 +1,17 @@
 import { useMemo, useState } from 'react'
 import type { Item } from '../types'
+import { orderCategories } from '../categories'
 
 /** 雷达示波器：不是装饰，是真实的数据可视化。
  *  半径 = 综合分（越高越靠中心）· 角度 = 分类扇区 · 光点大小 = 分数 · 颜色 = 时间维度
  *  这是产品隐喻的具象化：中心是最可信的信号，外围是杂波。 */
 export function RadarScope({
   items,
+  order,
   onPick,
 }: {
   items: Item[]
+  order?: string[]
   onPick?: (it: Item | null) => void
 }) {
   const [hover, setHover] = useState<Item | null>(null)
@@ -17,9 +20,8 @@ export function RadarScope({
   const maxR = c - 26
 
   const categories = useMemo(
-    () => Array.from(new Set(items.map((i) => i.categories?.[0] ?? i.category)))
-      .filter(Boolean).sort(),
-    [items],
+    () => orderCategories(new Set(items.map((i) => i.categories?.[0] ?? i.category)), order),
+    [items, order],
   )
 
   const blips = useMemo(() => {

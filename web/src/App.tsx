@@ -5,6 +5,7 @@ import { Mechanism } from './components/Mechanism'
 import { Trends } from './components/Trends'
 import { RadarScope } from './components/RadarScope'
 import { useArchive, useLatest, usePending, useStats, useTrends, useWeek } from './data'
+import { orderCategories } from './categories'
 import type { Item } from './types'
 
 type View = 'today' | 'week' | 'archive' | 'trends' | 'pending' | 'mechanism'
@@ -73,9 +74,10 @@ export default function App() {
   const catsOf = (it: Item) =>
     it.categories?.length ? it.categories : it.category ? [it.category] : []
 
+  const categoryOrder = stats.data?.categories
   const categories = useMemo(
-    () => Array.from(new Set(allItems.flatMap(catsOf))).sort(),
-    [allItems],
+    () => orderCategories(new Set(allItems.flatMap(catsOf)), categoryOrder),
+    [allItems, categoryOrder],
   )
 
   const items = useMemo(() => {
@@ -314,7 +316,7 @@ export default function App() {
               <div className="mb-3 font-mono text-[9px] tracking-[0.25em] text-ink-faint uppercase">
                 Signal Scope · {items.length} 个目标
               </div>
-              <RadarScope items={items} />
+              <RadarScope items={items} order={categoryOrder} />
 
               <div className="mt-6 border-t border-rule pt-4">
                 <div className="mb-2 font-mono text-[9px] tracking-[0.25em] text-ink-faint uppercase">

@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 
 from ..config import ROOT
 from ..models import Context
+from .classify import CATEGORIES
 
 MANIFEST = {
     "name": "publish", "version": "0.1.0",
@@ -61,6 +62,8 @@ def write_stats(ctx: Context):
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "totals": ctx.db.counts(),
         "sources": _source_registry(),
+        # 筛选按钮的顺序跟类目表走，不按字母排——前端不再各抄一份类目表
+        "categories": CATEGORIES,
         "runs": [{"run_id": r["run_id"], "started_at": r["started_at"],
                   "stats": r["stats"]} for r in ctx.db.all_runs()[:30]],
     })

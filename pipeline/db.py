@@ -59,6 +59,10 @@ class DB:
             # 安全的前提是 publish 只 upsert 当次新抓的条目（dedupe 已滤掉已有 id）
             self.conn.execute("ALTER TABLE items ADD COLUMN categories_v1 TEXT")
             self.conn.commit()
+        if "categories_v2" not in cols:
+            # 2026-09-17 改为平铺 8 类（D43）之前的 13 类快照，用法同 categories_v1
+            self.conn.execute("ALTER TABLE items ADD COLUMN categories_v2 TEXT")
+            self.conn.commit()
 
     def _migrate_auto_status(self):
         """回填 auto_status（系统自主判断），区分它与被人工改写的 status。

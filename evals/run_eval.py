@@ -17,6 +17,9 @@ FEED_DIR = os.path.join(ROOT, "data", "feed")
 GOLDEN_PATH = os.path.join(ROOT, "evals", "golden_set", "golden.jsonl")
 RESULTS_DIR = os.path.join(ROOT, "evals", "results")
 
+sys.path.insert(0, ROOT)
+from pipeline.stages.classify import CATEGORIES  # noqa: E402
+
 VALID_TIERS = {"S", "A", "B", "C", "D", "X"}
 VALID_STATUS = {"published", "review", "discarded", "new"}
 
@@ -39,6 +42,10 @@ def rule_checks(rows: list) -> dict:
             problems.append(f"{rid} tier 非法: {r['tier']}")
         if r["status"] not in VALID_STATUS:
             problems.append(f"{rid} status 非法: {r['status']}")
+        # 类目表改过两次（D39、D43），每次都要回填；漏回填的旧类名会在前端筛选里凭空多出一个按钮
+        bad = [c for c in json.loads(r["categories"] or "[]") if c not in CATEGORIES]
+        if bad:
+            problems.append(f"{rid} 分类不在现行类目表: {bad}")
         if r["summary_short"] and len(r["summary_short"]) > 80:
             problems.append(f"{rid} 一句话摘要超长 ({len(r['summary_short'])})")
         if r["status"] == "published" and not r["summary_short"]:
