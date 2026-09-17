@@ -10,6 +10,7 @@ import contextlib
 import io
 import json
 import os
+import pathlib
 import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
@@ -233,12 +234,23 @@ class TestQueueRules(_Base):
         self.assertEqual(self.status("c1")["status"], "review", "出队不是丢弃")
 
     def test_below_bar_stays_review_and_goes_to_recall_pool(self):
-        rescore = json.dumps({"rescore": {"prompt": triage.MANIFEST["version"],
+        rescore = json.dumps({"rescore": {"prompt": triage.PROMPT_VERSION,
                                           "verdict": "discarded", "score": 30}})
         self._row("c3", extra=rescore, score=70)
         self.assertNotIn("c3", [r["id"] for r in hitl._pending(self.db)])
         self.assertEqual(self.status("c3")["status"], "review")
         self.assertIn("c3", [r["id"] for r, _ in hitl._excluded(self.db)])
+
+    def test_rescore_version_string_matches_the_writer(self):
+        """队列读的版本号必须和重打分工具写的是同一个常量。
+        第一次就写差了：一处 "0.3.0"、一处 "triage-0.3.0"，于是 115 条不达标的照常排队，
+        而且没有任何报错——典型的"指标不会报错，只会说谎"。"""
+        src = (pathlib.Path(__file__).parent.parent / "tools"
+               / "rescore_review_backlog.py").read_text(encoding="utf-8")
+        self.assertIn("PROMPT = triage.PROMPT_VERSION", src)
+        self.assertIn("triage.PROMPT_VERSION", (
+            pathlib.Path(__file__).parent.parent / "pipeline" / "hitl.py"
+        ).read_text(encoding="utf-8"))
 
     def test_stale_rescore_verdict_is_ignored(self):
         """换了打分标准之后，旧结论不能继续压着队列。"""
@@ -254,7 +266,7 @@ class TestQueueRules(_Base):
 
     def test_sorts_by_rescore_score_when_present(self):
         self._row("e1", score=51, extra=json.dumps(
-            {"rescore": {"prompt": triage.MANIFEST["version"], "verdict": "review", "score": 99}}))
+            {"rescore": {"prompt": triage.PROMPT_VERSION, "verdict": "review", "score": 99}}))
         self.assertEqual(hitl._pending(self.db)[0]["id"], "e1")
 
 

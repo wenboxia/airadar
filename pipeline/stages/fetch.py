@@ -57,13 +57,38 @@ def norm_iso(s: str) -> str:
     return d.astimezone(timezone.utc).isoformat(timespec="seconds") if d else ""
 
 
-def _clean_text(html: str, limit: int) -> str:
+def _soup_main(html: str):
     soup = BeautifulSoup(html or "", "html.parser")
     for tag in soup(["script", "style", "nav", "footer", "header", "aside"]):
         tag.decompose()
-    main = soup.find("article") or soup.find("main") or soup
-    text = re.sub(r"\s+", " ", main.get_text(" ")).strip()
+    return soup.find("article") or soup.find("main") or soup
+
+
+def _clean_text(html: str, limit: int) -> str:
+    text = re.sub(r"\s+", " ", _soup_main(html).get_text(" ")).strip()
     return text[:limit]
+
+
+# 正文里的外链是"谁在讨论哪篇论文"的唯一证据。get_text() 把 href 全剥了，
+# 所以 D36 说的"被别处提到才抓论文"一直没有输入信号，交叉引用率也测不准（D36 认领的错误 1）
+_ARXIV_RE = re.compile(r"arxiv\.org/(?:abs|pdf)/(\d{4}\.\d{4,5})", re.I)
+
+
+def outbound_links(html: str, text: str = "", limit: int = 40) -> dict:
+    """抽外链。返回 {"arxiv": [论文 id], "links": [外链]}。
+
+    纯文本里写的 URL 也算——量子位这类中文源常直接把链接打在正文里。
+    """
+    ids, links = [], []
+    for a in _soup_main(html).find_all("a", href=True):
+        href = a["href"].strip()
+        if href.startswith("http"):
+            links.append(href)
+    for blob in (html or "", text or ""):
+        ids += _ARXIV_RE.findall(blob)
+    seen = set()
+    links = [u for u in links if not (u in seen or seen.add(u))][:limit]
+    return {"arxiv": sorted(set(ids)), "links": links}
 
 
 def _clean_markdown(md: str, limit: int) -> str:
@@ -75,10 +100,15 @@ def _clean_markdown(md: str, limit: int) -> str:
     return re.sub(r"\s+", " ", body).strip()[:limit]
 
 
-def _fetch_direct(url: str, limit: int) -> str:
+def _fetch_direct(url: str, limit: int, item: Item = None) -> str:
     resp = requests.get(url, headers=UA, timeout=20)
     resp.raise_for_status()
-    return _clean_text(resp.text[:1_000_000], limit)
+    html = resp.text[:1_000_000]
+    if item is not None:
+        out = outbound_links(html)
+        if out["arxiv"] or out["links"]:
+            item.extra["outbound"] = out     # 全文比 RSS 摘要多得多，覆盖掉摘要里的
+    return _clean_text(html, limit)
 
 
 def _fetch_via_reader(url: str, limit: int) -> str:
@@ -99,7 +129,7 @@ def fetch_content(url: str, limit: int, item: Item) -> str:
     """
     for level, fn in (("direct", _fetch_direct), ("reader", _fetch_via_reader)):
         try:
-            text = fn(url, limit)
+            text = fn(url, limit, item) if fn is _fetch_direct else fn(url, limit)
             if len(text) >= 400:
                 item.extra["content_source"] = level
                 return text
@@ -137,6 +167,14 @@ def _fetch_rss(src: dict, since: datetime, ctx: Context) -> list:
         content = _clean_text(raw, ctx.cfg.content_max_chars)
         it = _make_item(e.link, e.title, src, published, content)
         it.extra["content_source"] = "rss"
+        # 一半信源的 feed 自带官方分类标签（OpenAI 86%、Anthropic 100%），以前一条没读（D39）。
+        # 不拿它替代模型分类——各家体系不同，量子位的标签其实是网站栏目名——只留作评测的参照
+        tags = [t.get("term") for t in getattr(e, "tags", []) if t.get("term")]
+        if tags:
+            it.extra["source_tags"] = tags[:5]
+        out = outbound_links(raw, content)
+        if out["arxiv"] or out["links"]:
+            it.extra["outbound"] = out
         items.append(it)
 
     # feed 里只有短摘要的条目去抓全文；并发执行（网络等待占绝大部分时间）
@@ -233,6 +271,76 @@ def _fetch_github(src: dict, since: datetime, ctx: Context) -> list:
     return items
 
 
+def fetch_arxiv_by_id(ids: list, src: dict) -> list:
+    """按 ID 取论文。论文的入口从"按提交时间发现"改成"别处提到才抓"（D36）：
+    错的不是 arXiv，是排序键——从每天几百篇里按时间取 15 篇等于随机抽样。
+
+    注意只有 https 有效，http 返回空——之前测出 0 条就是栽在这里。
+    """
+    if not ids:
+        return []
+    url = ("https://export.arxiv.org/api/query?id_list="
+           f"{','.join(ids[:30])}&max_results={min(len(ids), 30)}")
+    resp = requests.get(url, headers=UA, timeout=30)
+    resp.raise_for_status()
+    out = []
+    for e in feedparser.parse(resp.content).entries:
+        link = getattr(e, "link", "")
+        published = _to_iso(getattr(e, "published_parsed", None))
+        abstract = re.sub(r"\s+", " ", getattr(e, "summary", "")).strip()
+        it = _make_item(link, getattr(e, "title", ""), src, published, abstract)
+        it.extra["authors"] = [a.get("name", "") for a in getattr(e, "authors", [])][:8]
+        it.extra["arxiv_via"] = "mention"
+        out.append(it)
+    return out
+
+
+def _is_lab_report(item: Item) -> bool:
+    """发布探测器（D36 入口 2）：披着论文外衣的产品发布。
+    DeepSeek-V3、Qwen 这类先发 arXiv 晚发博客，System Card 的评测表也只在 arXiv 那份里。"""
+    authors = item.extra.get("authors") or []
+    title = (item.title or "").lower()
+    if any(k in title for k in ("technical report", "system card", "model card")):
+        return True
+    if len(authors) >= 25:      # 几十人署名的本质是产品发布，不是一篇普通预印本
+        return True
+    orgs = ("deepseek", "openai", "qwen", "anthropic", "moonshot", "kimi",
+            "google deepmind", "meta ai", "mistral", "zhipu", "baichuan")
+    return any(o in " ".join(authors).lower() for o in orgs)
+
+
+def collect_mentions(items: list, db, src: dict, ctx: Context) -> list:
+    """从本次抓到的正文外链里，取出被提及的 arXiv 论文（D36 入口 1）。
+
+    收紧方向而不是放宽：只认"非 arXiv 信源提到的"，且一次最多 N 篇——
+    参考文献列表里每篇论文都会被提到，不加闸门等于把 arXiv 又接了回来。
+    """
+    mentioned = {}
+    for it in items:
+        out = it.extra.get("outbound") or {}
+        for pid in out.get("arxiv", []):
+            mentioned.setdefault(pid, []).append(it.source)
+    if not mentioned:
+        return []
+    existing = db.existing_ids() if db else set()
+    papers = fetch_arxiv_by_id(sorted(mentioned), src)
+    picked = []
+    for p in papers:
+        from . import dedupe
+        if dedupe.item_id(p.url) in existing:
+            continue
+        who = sorted(set(mentioned.get(_ARXIV_RE.search(p.url).group(1), [])
+                         if _ARXIV_RE.search(p.url) else []))
+        p.extra["mentioned_by"] = who
+        # 被两个以上独立信源提到，或本身就是实验室的技术报告 —— 这两种才够格
+        if len(who) >= 2 or _is_lab_report(p):
+            picked.append(p)
+    picked = picked[: src.get("max_results", 5)]
+    ctx.stats.setdefault("fetch", {})["arxiv_mentions"] = {
+        "seen": len(mentioned), "fetched": len(papers), "kept": len(picked)}
+    return picked
+
+
 _FETCHERS = {"rss": _fetch_rss, "arxiv": _fetch_arxiv,
              "hn": _fetch_hn, "github": _fetch_github}
 
@@ -266,6 +374,18 @@ def run(items: list, ctx: Context) -> list:
     results = parallel_map(_one, todo, workers=6,
                            on_error=lambda s, e: ctx.note_error("fetch", f"{s['name']}: {e}"))
     out = [it for got in results if got for it in got]
+
+    # 论文入口：先抓完别的信源，再看它们提到了哪些论文（D36）
+    paper_src = next((s for s in sources if s.get("type") == "arxiv_mentions"), None)
+    if paper_src:
+        try:
+            papers = collect_mentions(out, ctx.db, paper_src, ctx)
+            if papers:
+                print(f"  fetch [论文] 被提及才抓：{len(papers)} 篇")
+            out += papers
+        except Exception as ex:  # noqa: BLE001 论文入口失败不阻塞主流程
+            ctx.note_error("fetch", f"arxiv_mentions: {ex}")
+
     # 全局安全阀：防止某天信源集体放量把预算打穿
     if ctx.cfg.max_items_per_run and len(out) > ctx.cfg.max_items_per_run:
         out.sort(key=lambda it: ("SABCD".index(it.tier) if it.tier in "SABCD" else 9))

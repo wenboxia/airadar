@@ -99,7 +99,7 @@ def _shelved_reason(row, cfg) -> str:
         return "stale"
     # ② 新标准下不达标。只认当前 prompt 版本的结论，换版本重打分前旧结论自动失效
     rs = _extra(row).get("rescore") or {}
-    if rs.get("prompt") == triage.MANIFEST["version"] and rs.get("verdict") == "discarded":
+    if rs.get("prompt") == triage.PROMPT_VERSION and rs.get("verdict") == "discarded":
         return "below_bar"
     return ""
 
