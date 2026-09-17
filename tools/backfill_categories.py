@@ -10,6 +10,11 @@
   python3 tools/backfill_categories.py --report              # 只出对比表，不调模型
   python3 tools/backfill_categories.py --snapshot-col categories_v1 --report   # 看 D39 那次的对比
 
+只改 prompt（类目表没变）时也用它重跑，换一个完成标记即可，快照列保持不动：
+  python3 tools/backfill_categories.py --mark categories_prompt031_at
+  python3 tools/backfill_categories.py --mark x --only-category "Agent 与开发" --dry-run --limit 20
+重跑前的分类值不再进新列——上一版的值随 data/knowledge.db 一起在 git 历史里（提交 d7d53ba）。
+
 为什么不直接重跑 pipeline（CLAUDE.md：不许靠重跑 pipeline 补数据）：
 重跑会新增 run 记录、污染运行统计，还会重新走 triage——而 triage 写 auto_status，
 那是 D28 的禁区。这里只借用 classify 的模型调用，其余什么都不碰。
@@ -75,11 +80,13 @@ def _snapshot(db, col) -> int:
     return cur.rowcount
 
 
-def _todo(db, limit, mark):
+def _todo(db, limit, mark, only_category=None):
     rows = db.conn.execute(
-        f"SELECT id, url, title, summary_long, content, extra FROM items WHERE {SCOPE} "
+        f"SELECT id, url, title, category, summary_long, content, extra FROM items WHERE {SCOPE} "
         f"ORDER BY published_at").fetchall()
     rows = [r for r in rows if mark not in json.loads(r["extra"] or "{}")]
+    if only_category:
+        rows = [r for r in rows if r["category"] in only_category]
     return rows[:limit] if limit else rows
 
 
@@ -163,8 +170,11 @@ def main():
     ap.add_argument("--report", action="store_true", help="只出对比表")
     ap.add_argument("--snapshot-col", default="categories_v2", choices=SNAPSHOT_COLS,
                     help="改版前分类存到哪一列")
+    ap.add_argument("--mark", help="换一个完成标记，用于同一套类目表下重跑（比如只改了 prompt）")
+    ap.add_argument("--only-category", help="只重跑当前主类在这几个类里的条目，逗号分隔")
     args = ap.parse_args()
-    col, mark = args.snapshot_col, MARKS[args.snapshot_col]
+    col, mark = args.snapshot_col, args.mark or MARKS[args.snapshot_col]
+    only = [c.strip() for c in args.only_category.split(",")] if args.only_category else None
 
     db = DB()
     if args.report:
@@ -184,7 +194,7 @@ def main():
     if not args.dry_run:
         print(f"快照旧分类：新写入 {_snapshot(db, col)} 条 {col}", flush=True)
 
-    todo = _todo(db, args.limit, mark)
+    todo = _todo(db, args.limit, mark, only)
     print(f"待回填 {len(todo)} 条（并发 {cfg.llm_workers}）", flush=True)
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
 

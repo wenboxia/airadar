@@ -82,7 +82,7 @@
 - [x] 同一 prompt 连分两次的主类一致率：旧 73% → 新 91%（验收 85%）
 - [x] 分类准确率：OpenAI / Anthropic 官网标签 194 条，主类命中 84%（`evals/feed_tag_eval.py`）
 - [x] 536 条历史分类回填（旧值存 `categories_v2`），前端筛选按类目表顺序排
-- [ ] 待改：开发者工具公司的客户案例（Cursor、Warp）容易被判成 Agent 与开发，下次动 prompt 时加一句判定
+- [x] 修边界：客户案例（Cursor、Warp、Tolan、Fyxer）被 Agent 与开发 吃掉 → 换一批样本配对对照，86%→88%，一致率 91%→94%，536 条重跑回填
 
 ## 第二批
 
