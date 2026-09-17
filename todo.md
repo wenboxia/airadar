@@ -58,7 +58,7 @@
 ### Phase C：三家模型对比（黄金集 v2 已就绪，111 条）
 - [ ] 配对实验设计（同一批内容跑三家，只看分歧对，McNemar 检验）
 - [ ] 成本与延迟对比（`deepseek-v4-flash` 实测比 pro 快一倍多）
-- [ ] 产出 `docs/eval_report.md`：哪个 stage 用哪个模型的选型建议
+- [x] 产出 `docs/eval_report.md`：三家模型在同一批 111 条上的配对对比。结论是**只有 DeepSeek 能跑完**（完成率 99% / GLM 94% / Kimi 34%，Kimi 那 73 条全是 429 限流），判断质量的差异全在噪声里
 
 ## Week 4 — 打磨 + 面试武装
 

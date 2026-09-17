@@ -16,7 +16,7 @@
 这是主人的**面试作品项目**，服务于 AI 产品经理 / AI 产品工程师 / AI Native Builder 岗位（目标公司：Moonshot、DeepSeek、字节、阿里、腾讯等）。每个技术决策有双重标准：
 
 1. **真实有用**：主人是它的第一个重度用户，产品要真的每天跑、真的解决"AI 资讯过载 + 看完留不下东西"的问题
-2. **面试可讲**：每个设计决策都要能转化为面试谈资，全部记录在 `docs/decisions.md`（已 46 条，开头有故事线）。堆名词、过度设计是天敌——"能清醒地说出为什么不用 LangGraph"比"用了 LangGraph"更有价值
+2. **面试可讲**：每个设计决策都要能转化为面试谈资，全部记录在 `docs/decisions.md`（已 47 条，开头有故事线）。堆名词、过度设计是天敌——"能清醒地说出为什么不用 LangGraph"比"用了 LangGraph"更有价值
 
 四大核心差异化（对应目标 JD 最值钱的能力，任何改动不得削弱）：
 ①信源分层信誉体系 ②全 pipeline 评测 ③记忆分层沉淀 ④HITL 置信度路由 + 反馈飞轮
@@ -57,7 +57,7 @@ data/knowledge.db（SQLite）+ data/feed/*.json（latest/week/archive/pending/tr
 1. `start_prompt.md`（本文件）— 全局认知
 2. `CLAUDE.md` — 核心原则与开发命令（**干活前必读**）
 3. `todo.md` — 当前进度与主人待办
-4. `docs/decisions.md` — D1–D46 全部设计决策（**改架构前必读，别推翻已有结论**）
+4. `docs/decisions.md` — D1–D47 全部设计决策（**改架构前必读，别推翻已有结论**）
 5. `docs/mechanisms.md` — 六大机制的人话讲解（主人面试脱稿用）；`docs/demo.md` — 3 分钟演示路径；`README.md` — 对外的一页介绍
 6. `docs/PRD.md` — 产品定义、竞品分析、指标体系
 7. `pipeline/main.py` → `pipeline/stages/*.py` — 代码主线（按 fetch→publish 顺序读）
