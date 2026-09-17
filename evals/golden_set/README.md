@@ -60,15 +60,15 @@ v2 的标注表里**同时显示了系统的分数与判断**。这是明知有�
 ```json
 {"url": "https://...", "title": "...", "source": "...", "tier": "S",
  "include": true,
- "categories": ["模型训练", "论文"],
- "category": "模型训练",
+ "categories": [],
+ "category": "",
  "note": "你自己的一句话理由"}
 ```
 
 - `include`：**唯一必填的判断**——该不该进知识库
-- `categories`：**多值**（1–3 个），取值以 `pipeline/stages/classify.py` 的 `CATEGORIES` 为准。一条内容常同时属于多个类别，比如讲量化训练的 arXiv 论文
-  既是「论文」（体裁）又是「模型训练」（主题），两者正交，单选会丢信息（D25）
-- `category`：主分类 = `categories[0]`，用于排序与雷达图扇区
+- `categories`：**v2 起不标，一律为空**（D43）。分类体系 09-17 改为平铺 8 类，分类准确率改用 OpenAI / Anthropic 官网自带的标签测
+  （`evals/feed_tag_eval.py`）。v1 复用的 11 条把当时的旧分类另存在 `v1_categories`，只作记录
+- `category`：同上，留空
 - `note`：**别偷懒**——面试官挑一条问"这条你为什么筛掉"，你念的就是这句话
 
 ## 采样必须分层（D29 的教训）

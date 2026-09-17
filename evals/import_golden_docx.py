@@ -60,8 +60,8 @@ def to_record(draft, include_raw, cats_raw, note):
     bad = [x for x in cats if x not in CATEGORIES]
     if bad:
         return None, f"分类不在列表里：{'、'.join(bad)}"
-    if include and not cats:
-        return None, "收录了但没填分类"
+    # 分类可以不填：2026-09-17 起黄金集不标分类，分类准确率改用官网自带标签测（D43）。
+    # 填了就必须是现行类目——旧叫法混进来，评测会拿不存在的类在比
     return {
         "url": draft["url"], "title": draft["title"], "source": draft["source"],
         "tier": draft["tier"], "include": include,

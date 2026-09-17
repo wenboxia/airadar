@@ -29,11 +29,11 @@ class TestToRecord(unittest.TestCase):
         self.assertEqual(imp.to_record(DRAFT, "", "", ""), (None, None))
 
     def test_include_with_categories(self):
-        rec, err = imp.to_record(DRAFT, "Y", "落地案例、产品与商业", "理由")
+        rec, err = imp.to_record(DRAFT, "Y", "产品与应用、行业动态", "理由")
         self.assertIsNone(err)
         self.assertTrue(rec["include"])
-        self.assertEqual(rec["categories"], ["落地案例", "产品与商业"])
-        self.assertEqual(rec["category"], "落地案例")
+        self.assertEqual(rec["categories"], ["产品与应用", "行业动态"])
+        self.assertEqual(rec["category"], "产品与应用")
 
     def test_exclude_needs_no_category(self):
         rec, err = imp.to_record(DRAFT, "n", "", "营销稿")
@@ -41,27 +41,29 @@ class TestToRecord(unittest.TestCase):
         self.assertFalse(rec["include"])
 
     def test_chinese_answers_accepted(self):
-        self.assertTrue(imp.to_record(DRAFT, "是", "论文", "")[0]["include"])
+        self.assertTrue(imp.to_record(DRAFT, "是", "研究论文", "")[0]["include"])
         self.assertFalse(imp.to_record(DRAFT, "否", "", "")[0]["include"])
 
     def test_unknown_flag_is_reported_not_guessed(self):
-        rec, err = imp.to_record(DRAFT, "maybe", "论文", "")
+        rec, err = imp.to_record(DRAFT, "maybe", "研究论文", "")
         self.assertIsNone(rec)
         self.assertIn("只认 y / n", err)
 
     def test_unknown_category_rejected(self):
-        """旧类目（比如拆分前的叫法）或错别字都不能进黄金集。"""
-        rec, err = imp.to_record(DRAFT, "y", "安全, 论文", "")
+        """旧类目（比如合并前的叫法）或错别字都不能进黄金集。"""
+        rec, err = imp.to_record(DRAFT, "y", "安全与防护, 研究论文", "")
         self.assertIsNone(rec)
-        self.assertIn("安全", err)
+        self.assertIn("安全与防护", err)
+        self.assertNotIn("研究论文", err)
 
-    def test_include_without_category_rejected(self):
+    def test_include_without_category_accepted(self):
+        """黄金集不标分类（D43），收录但分类留空是正常的。"""
         rec, err = imp.to_record(DRAFT, "y", "", "")
-        self.assertIsNone(rec)
-        self.assertIn("没填分类", err)
+        self.assertIsNone(err)
+        self.assertEqual(rec["categories"], [])
 
     def test_at_most_three_categories(self):
-        rec, _ = imp.to_record(DRAFT, "y", "论文，模型训练，评测与基准，开源项目", "")
+        rec, _ = imp.to_record(DRAFT, "y", "研究论文，模型，评测，开源项目", "")
         self.assertEqual(len(rec["categories"]), 3)
 
 
@@ -94,8 +96,8 @@ class TestReimport(unittest.TestCase):
         return imp._read_jsonl(self.out)
 
     def test_changed_row_replaces_old_one(self):
-        self._import([(1, "标题1", "y", "论文", "先收"), (2, "标题2", "", "", "")])
-        recs = self._import([(1, "标题1", "n", "", "改主意了"), (2, "标题2", "y", "模型发布", "新填")])
+        self._import([(1, "标题1", "y", "研究论文", "先收"), (2, "标题2", "", "", "")])
+        recs = self._import([(1, "标题1", "n", "", "改主意了"), (2, "标题2", "y", "模型", "新填")])
         live = [r for r in recs if not r.get("deprecated")]
         self.assertEqual(len(live), 2)
         self.assertFalse(next(r for r in live if r["url"] == "https://u1")["include"])
@@ -104,7 +106,7 @@ class TestReimport(unittest.TestCase):
         self.assertTrue(old[0]["include"])
 
     def test_unchanged_row_not_duplicated(self):
-        rows = [(1, "标题1", "y", "论文", "理由")]
+        rows = [(1, "标题1", "y", "研究论文", "理由")]
         self._import(rows)
         self.assertEqual(len(self._import(rows)), 1)
 

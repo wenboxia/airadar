@@ -4,7 +4,9 @@
 标注工具 review_golden.py 里的手抄列表没跟着改——人工标注选不到这个类，
 而人工标注恰恰是用来评测 classify 的。这种漂移不会报错，只会让评测悄悄失真。
 
-另一半是 categories_v1（改版前的分类快照）的保护：它只在 DB 里、不在 Item 里，
+2026-09-17 改为平铺 8 类（D43）：6 个内容类由模型判断，「开源项目」「研究论文」按链接判定。
+
+另一半是改版前分类快照（categories_v1 / categories_v2）的保护：它们只在 DB 里、不在 Item 里，
 而 upsert_items 是 INSERT OR REPLACE——哪天历史条目被重新写入，快照就无声消失。
 
 跑：python3 -m unittest evals.test_classify_taxonomy -v
@@ -25,23 +27,51 @@ from pipeline.stages import classify, dedupe
 ROOT = pathlib.Path(__file__).parent.parent
 
 
+def _run(llm_out, url="https://example.com/a", llm_ok=True):
+    cfg = Config()
+    cfg.llm_workers = 1
+    llm = Mock()
+    llm.available.return_value = llm_ok
+    llm.json_chat.return_value = llm_out
+    it = Item(title="t", source="s", content="c", status="published", url=url)
+    classify.run([it], Context(cfg=cfg, llm=llm, db=Mock(), run_id="test"))
+    return it
+
+
 class TestTaxonomy(unittest.TestCase):
-    def test_split_and_new_categories_present(self):
-        """2026-09-16 改版：安全拆成对齐/防护两类，新增落地案例。"""
-        for c in ("安全与对齐", "安全与防护", "落地案例"):
-            self.assertIn(c, classify.CATEGORIES)
+    def test_flat_eight_categories(self):
+        """主人定的平铺 8 类：模型与安全各合成一个，开源 / 论文保留。"""
+        self.assertEqual(classify.CATEGORIES, [
+            "模型", "Agent 与开发", "评测", "安全", "产品与应用", "行业动态", "开源项目", "研究论文"])
+        self.assertEqual(len(set(classify.CATEGORIES)), 8)
+        for gone in ("安全与对齐", "安全与防护", "模型发布", "模型训练", "论文"):
+            self.assertNotIn(gone, classify.CATEGORIES)
 
-    def test_fallback_uses_only_valid_categories(self):
-        """改类目表时最容易漏改兜底表——无 LLM 时会写出取值域外的分类。"""
-        for source, (cat, horizon) in classify._FALLBACK.items():
-            self.assertIn(cat, classify.CATEGORIES, f"{source} 的兜底类目已不存在")
-            self.assertIn(horizon, ("short", "long"))
-        self.assertIn("行业动态", classify.CATEGORIES, "_fallback 的默认值")
+    def test_priority_covers_exactly_content_categories(self):
+        self.assertEqual(sorted(classify.PRIORITY), sorted(classify.CONTENT_CATEGORIES))
+        self.assertEqual(classify.PRIORITY[-1], "行业动态", "行业动态只能兜底")
 
-    def test_prompt_explains_every_new_category(self):
-        """新类目光在列表里不够——模型分不清「落地案例」和「产品与商业」。"""
-        for c in ("安全与对齐", "安全与防护", "落地案例", "产品与商业"):
-            self.assertIn(f"「{c}」指", classify._SYS, f"prompt 没解释 {c} 的边界")
+    def test_prompt_explains_every_content_category(self):
+        """每个内容类都要有边界说明，三组易混的判定句都要在。"""
+        for c in classify.CONTENT_CATEGORIES:
+            self.assertIn(f"- {c}：", classify._SYS, f"prompt 没解释 {c}")
+        for phrase in ("测模型做安全任务的能力算评测", "怎么搭、怎么用", "发布的东西本身是模型就归模型"):
+            self.assertIn(phrase, classify._SYS)
+        self.assertIn(" > ".join(classify.PRIORITY), classify._SYS)
+
+    def test_rule_check_flags_stale_category(self):
+        """漏回填的旧类名要在规则校验里报出来，而不是悄悄变成前端的一个筛选按钮。"""
+        spec = importlib.util.spec_from_file_location("ev", ROOT / "evals" / "run_eval.py")
+        ev = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(ev)
+        base = {"url": "https://x", "title": "t", "source": "s", "tier": "A", "status": "review",
+                "summary_short": "", "notes": ""}
+        rows = [{**base, "id": "old", "categories": '["安全与对齐"]'},
+                {**base, "id": "new", "categories": '["安全", "研究论文"]'},
+                {**base, "id": "none", "categories": None}]
+        problems = [p for p in ev.rule_checks(rows)["problems"] if "类目表" in p]
+        self.assertEqual(len(problems), 1)
+        self.assertIn("old", problems[0])
 
     def test_labeling_tool_shares_the_same_list(self):
         """标注工具必须和 pipeline 用同一份类目表，不许各抄一份。"""
@@ -51,20 +81,58 @@ class TestTaxonomy(unittest.TestCase):
         spec.loader.exec_module(mod)
         self.assertIs(mod.CATEGORIES, classify.CATEGORIES)
 
-    def test_llm_output_outside_taxonomy_is_dropped(self):
-        """模型编出不存在的类目时要过滤掉，全被过滤则走兜底。"""
-        cfg = Config()
-        cfg.llm_workers = 1
-        llm = Mock()
-        llm.available.return_value = True
-        llm.json_chat.return_value = {"categories": ["瞎编的类", "落地案例"],
-                                      "topics": ["x"], "horizon": "long"}
-        it = Item(title="t", source="s", content="c", status="published")
-        classify.run([it], Context(cfg=cfg, llm=llm, db=Mock(), run_id="test"))
-        self.assertEqual(it.categories, ["落地案例"])
+
+class TestGenreByUrl(unittest.TestCase):
+    """「开源项目」「研究论文」由链接判定，不让模型猜——旧体系里「论文」重分一次有 16% 会变。"""
+
+    def test_github_repo_is_open_source(self):
+        self.assertEqual(classify.genre_tags("https://github.com/SaladDay/pi-from-scratch"), ["开源项目"])
+
+    def test_github_non_repo_pages_are_not(self):
+        for u in ("https://github.blog/news/x", "https://github.com/features/copilot",
+                  "https://github.com/trending", "https://github.com/SaladDay"):
+            self.assertEqual(classify.genre_tags(u), [], u)
+
+    def test_paper_hosts(self):
+        for u in ("https://arxiv.org/abs/2609.03966v1", "https://openreview.net/forum?id=x",
+                  "https://huggingface.co/papers/2609.1"):
+            self.assertEqual(classify.genre_tags(u), ["研究论文"], u)
+        self.assertEqual(classify.genre_tags("https://huggingface.co/blog/x"), [])
+
+    def test_model_cannot_claim_genre(self):
+        """模型输出「开源项目」当主类不算数。"""
+        it = _run({"primary": "开源项目", "topics": [], "horizon": "short"})
+        self.assertNotIn("开源项目", it.categories)
+        self.assertIn("classify_degraded", " ".join(it.notes))
 
 
-class TestCategoriesV1Snapshot(unittest.TestCase):
+class TestClassifyOutput(unittest.TestCase):
+    def test_primary_secondary_then_genre(self):
+        it = _run({"primary": "Agent 与开发", "secondary": "评测", "topics": ["eval"], "horizon": "long"},
+                  url="https://github.com/a/b")
+        self.assertEqual(it.categories, ["Agent 与开发", "评测", "开源项目"])
+        self.assertEqual(it.category, "Agent 与开发")
+
+    def test_duplicate_or_invalid_secondary_dropped(self):
+        self.assertEqual(_run({"primary": "安全", "secondary": "安全"}).categories, ["安全"])
+        self.assertEqual(_run({"primary": "安全", "secondary": "安全与防护"}).categories, ["安全"])
+
+    def test_legacy_list_format_still_parsed(self):
+        it = _run({"categories": ["瞎编的类", "模型", "评测"]})
+        self.assertEqual(it.categories, ["模型", "评测"])
+
+    def test_degraded_leaves_content_empty(self):
+        """没有模型时不猜内容类，只按链接打开源 / 论文，并留痕。"""
+        it = _run({}, url="https://arxiv.org/abs/1", llm_ok=False)
+        self.assertEqual(it.categories, ["研究论文"])
+        self.assertEqual(it.horizon, "long")
+        self.assertIn("classify_degraded", " ".join(it.notes))
+        it = _run({}, llm_ok=False)
+        self.assertEqual(it.categories, [])
+        self.assertEqual(it.category, "")
+
+
+class TestCategorySnapshots(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.mkdtemp()
         self.path = os.path.join(self.tmp, "k.db")
@@ -86,11 +154,13 @@ class TestCategoriesV1Snapshot(unittest.TestCase):
         db = self._db()
         cols = {r[1] for r in db.conn.execute("PRAGMA table_info(items)")}
         self.assertIn("categories_v1", cols)
+        self.assertIn("categories_v2", cols)
         row = db.conn.execute("SELECT * FROM items WHERE id='a'").fetchone()
         self.assertEqual(row["categories"], '["论文"]')
         self.assertEqual(row["status"], "review")
         self.assertEqual(row["auto_status"], "review")
         self.assertIsNone(row["categories_v1"], "迁移不该自己填值，由回填脚本负责")
+        self.assertIsNone(row["categories_v2"])
 
     def test_backfill_never_writes_judgments(self):
         """回填只改分类。碰 status 是改人的判断，碰 auto_status 是改系统原判（D28）。"""

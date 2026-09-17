@@ -1,9 +1,14 @@
-"""一次性回填：把历史条目的分类统一到 2026-09-16 的新类目表（D39）。
+"""一次性回填：分类体系改版后，把历史条目的分类统一到当前 classify.py 的类目表。
 
-用法：
+用过两次，每次把改版前的分类快照到不同的列：
+  - 2026-09-16（D39，13 类）：快照 categories_v1，完成标记 extra.categories_backfilled_at
+  - 2026-09-17（D43，平铺 8 类）：快照 categories_v2，完成标记 extra.categories_v3_backfilled_at
+
+用法（默认参数就是最近一次改版）：
   python3 tools/backfill_categories.py --dry-run --limit 5   # 先试 5 条，不写库
   python3 tools/backfill_categories.py                       # 正式回填（可中断，重跑自动续）
   python3 tools/backfill_categories.py --report              # 只出对比表，不调模型
+  python3 tools/backfill_categories.py --snapshot-col categories_v1 --report   # 看 D39 那次的对比
 
 为什么不直接重跑 pipeline（CLAUDE.md：不许靠重跑 pipeline 补数据）：
 重跑会新增 run 记录、污染运行统计，还会重新走 triage——而 triage 写 auto_status，
@@ -14,7 +19,8 @@
 - topics 进话题趋势（memory.py），重跑只会给趋势历史加噪声
 这次改版动的是类目表，只有 categories 需要跟着变。
 
-范围和 classify.run 一致：只回填 published / review。discarded 从来不进分类环节。
+范围按 auto_status：系统当初判为发布或送审的条目都走过分类环节。按 status 选会漏掉
+被人工否决的条目（status 已改成 discarded），它们会一直挂着旧类目。
 """
 import argparse
 import hashlib
@@ -35,16 +41,17 @@ from pipeline.llm import LLMError, build_client    # noqa: E402
 from pipeline.models import Context                # noqa: E402
 from pipeline.stages import classify               # noqa: E402
 
-MARK = "categories_backfilled_at"
-# 旧类目表里不存在、改版才有的类目——只有它们的出现能归因到改版本身
-NEW_ONLY = {"安全与防护", "落地案例"}
-SCOPE = "status IN ('published','review')"
+SCOPE = "auto_status IN ('published','review')"
+SNAPSHOT_COLS = ("categories_v1", "categories_v2")
+MARKS = {"categories_v1": "categories_backfilled_at",
+         "categories_v2": "categories_v3_backfilled_at"}
 
 
 class _Shim:
-    """_classify_one 只读 title / summary_long / content，只写四个分类字段。"""
+    """_classify_one 读 title / url / summary_long / content，只写四个分类字段。"""
     def __init__(self, row):
         self.title = row["title"] or ""
+        self.url = row["url"] or ""
         self.summary_long = row["summary_long"] or ""
         self.content = row["content"] or ""
         self.categories, self.category, self.topics, self.horizon = [], "", [], ""
@@ -58,27 +65,57 @@ def _checksum(db) -> str:
     return h.hexdigest()
 
 
-def _snapshot(db) -> int:
-    """把旧分类存进 categories_v1。只写一次——重跑时绝不能把新分类当成旧的存进去。"""
+def _snapshot(db, col) -> int:
+    """把旧分类存进快照列。只写一次——重跑时绝不能把新分类当成旧的存进去。"""
+    assert col in SNAPSHOT_COLS
     cur = db.conn.execute(
-        f"UPDATE items SET categories_v1 = categories "
-        f"WHERE {SCOPE} AND categories_v1 IS NULL")
+        f"UPDATE items SET {col} = categories "
+        f"WHERE {SCOPE} AND {col} IS NULL")
     db.conn.commit()
     return cur.rowcount
 
 
-def _todo(db, limit):
+def _todo(db, limit, mark):
     rows = db.conn.execute(
-        f"SELECT id, title, summary_long, content, extra FROM items WHERE {SCOPE} "
+        f"SELECT id, url, title, summary_long, content, extra FROM items WHERE {SCOPE} "
         f"ORDER BY published_at").fetchall()
-    rows = [r for r in rows if MARK not in json.loads(r["extra"] or "{}")]
+    rows = [r for r in rows if mark not in json.loads(r["extra"] or "{}")]
     return rows[:limit] if limit else rows
 
 
-def _report(db):
+def _report(db, col):
+    if col == "categories_v1":
+        return _report_v1(db)
     rows = db.conn.execute(
-        f"SELECT categories_v1, categories FROM items "
-        f"WHERE {SCOPE} AND categories_v1 IS NOT NULL").fetchall()
+        f"SELECT {col}, categories FROM items WHERE {SCOPE} AND {col} IS NOT NULL").fetchall()
+    flow = {}                     # 旧类目 → 这些条目的新主类分布
+    old_dist, new_dist, primary_dist = Counter(), Counter(), Counter()
+    for r in rows:
+        old = json.loads(r[col] or "[]")
+        new = json.loads(r["categories"] or "[]")
+        old_dist.update(old)
+        new_dist.update(new)
+        if new:
+            primary_dist[new[0]] += 1
+        for o in old:
+            flow.setdefault(o, Counter())[new[0] if new else "（空）"] += 1
+    n = len(rows)
+    print(f"\n对比样本：{n} 条（有 {col} 快照的条目）")
+    print(f"\n{'新类目':<10}{'作主类':>6}{'出现':>6}")
+    for c in classify.CATEGORIES:
+        print(f"{c:<10}{primary_dist[c]:>6}{new_dist[c]:>6}")
+    print("\n旧类目的条目，新主类去了哪（前 3）：")
+    for o, _ in old_dist.most_common():
+        top = " · ".join(f"{k} {v}" for k, v in flow[o].most_common(3))
+        print(f"  {o:<10}（{old_dist[o]:>3}）→ {top}")
+
+
+def _report_v1(db):
+    """D39 那次的对比：拆出 / 新增类目的归因分析。"""
+    NEW_ONLY = {"安全与防护", "落地案例"}
+    rows = db.conn.execute(
+        f"SELECT categories_v1, categories_v2 AS categories FROM items "
+        f"WHERE {SCOPE} AND categories_v1 IS NOT NULL AND categories_v2 IS NOT NULL").fetchall()
     old_dist, new_dist = Counter(), Counter()
     source_of = Counter()         # 获得新类目的条目，原先挂在哪个旧类目下
     attributable = drift = 0
@@ -113,7 +150,7 @@ def _report(db):
         print(f"  {o:<12} → {g:<8} {k:>3}")
 
     print(f"\n{'类目':<10}{'旧':>6}{'新':>6}{'变化':>7}")
-    for c in classify.CATEGORIES:
+    for c in sorted(set(old_dist) | set(new_dist)):
         d = new_dist[c] - old_dist[c]
         flag = "  ← 新增" if c in NEW_ONLY else ""
         print(f"{c:<10}{old_dist[c]:>6}{new_dist[c]:>6}{d:>+7}{flag}")
@@ -124,17 +161,20 @@ def main():
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--dry-run", action="store_true", help="调模型但不写库")
     ap.add_argument("--report", action="store_true", help="只出对比表")
+    ap.add_argument("--snapshot-col", default="categories_v2", choices=SNAPSHOT_COLS,
+                    help="改版前分类存到哪一列")
     args = ap.parse_args()
+    col, mark = args.snapshot_col, MARKS[args.snapshot_col]
 
     db = DB()
     if args.report:
-        _report(db)
+        _report(db, col)
         return
 
     cfg = load_config()
     stats = {}
     # pipeline 单次预算是 260 次调用，不够回填用；单独给一个略高于预估的硬上限
-    budget = Budget(token_limit=1_200_000, call_limit=560)
+    budget = Budget(token_limit=2_500_000, call_limit=700)
     llm = build_client(cfg, budget, stats)
     if not llm.available():
         sys.exit("没有可用的 LLM（检查 .env）。回填必须用模型，不走启发式兜底。")
@@ -142,9 +182,9 @@ def main():
 
     before = _checksum(db)
     if not args.dry_run:
-        print(f"快照旧分类：新写入 {_snapshot(db)} 条 categories_v1", flush=True)
+        print(f"快照旧分类：新写入 {_snapshot(db, col)} 条 {col}", flush=True)
 
-    todo = _todo(db, args.limit)
+    todo = _todo(db, args.limit, mark)
     print(f"待回填 {len(todo)} 条（并发 {cfg.llm_workers}）", flush=True)
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
 
@@ -178,7 +218,7 @@ def main():
                 continue
             extra = json.loads(db.conn.execute(
                 "SELECT extra FROM items WHERE id=?", (item_id,)).fetchone()["extra"] or "{}")
-            extra[MARK] = now
+            extra[mark] = now
             db.conn.execute(
                 "UPDATE items SET categories=?, category=?, extra=? WHERE id=?",
                 (json.dumps(cats, ensure_ascii=False), cats[0],
@@ -196,7 +236,7 @@ def main():
         sys.exit("!!! status / auto_status 指纹变了——回填不应碰这两列，立即排查")
     print("status / auto_status 指纹一致 ✓")
     if not args.dry_run:
-        _report(db)
+        _report(db, col)
 
 
 if __name__ == "__main__":

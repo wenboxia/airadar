@@ -16,7 +16,7 @@
 这是主人的**面试作品项目**，服务于 AI 产品经理 / AI 产品工程师 / AI Native Builder 岗位（目标公司：Moonshot、DeepSeek、字节、阿里、腾讯等）。每个技术决策有双重标准：
 
 1. **真实有用**：主人是它的第一个重度用户，产品要真的每天跑、真的解决"AI 资讯过载 + 看完留不下东西"的问题
-2. **面试可讲**：每个设计决策都要能转化为面试谈资，全部记录在 `docs/decisions.md`（已 42 条，开头有故事线）。堆名词、过度设计是天敌——"能清醒地说出为什么不用 LangGraph"比"用了 LangGraph"更有价值
+2. **面试可讲**：每个设计决策都要能转化为面试谈资，全部记录在 `docs/decisions.md`（已 43 条，开头有故事线）。堆名词、过度设计是天敌——"能清醒地说出为什么不用 LangGraph"比"用了 LangGraph"更有价值
 
 四大核心差异化（对应目标 JD 最值钱的能力，任何改动不得削弱）：
 ①信源分层信誉体系 ②全 pipeline 评测 ③记忆分层沉淀 ④HITL 置信度路由 + 反馈飞轮
@@ -29,7 +29,7 @@
         ▼
 pipeline/main.py（AgentLoop：按序跑 stages，统一错误隔离与预算控制）
   fetch → dedupe → triage → summarize → classify → publish
-  （抓取）（去重）（分层评分  （双层摘要  （多标签分类 （写库+出JSON
+  （抓取）（去重）（分层评分  （双层摘要  （8 类分类   （写库+出JSON
               置信度路由） +幻觉自检）  +时间维度）  +开审批issue）
         │
         ├──► pipeline/memory.py（记忆层：话题热度 7/30/90 天窗口 + 生命周期 + 时间线）
@@ -57,7 +57,7 @@ data/knowledge.db（SQLite）+ data/feed/*.json（latest/week/archive/pending/tr
 1. `start_prompt.md`（本文件）— 全局认知
 2. `CLAUDE.md` — 核心原则与开发命令（**干活前必读**）
 3. `todo.md` — 当前进度与主人待办
-4. `docs/decisions.md` — D1–D42 全部设计决策（**改架构前必读，别推翻已有结论**）
+4. `docs/decisions.md` — D1–D43 全部设计决策（**改架构前必读，别推翻已有结论**）
 5. `docs/mechanisms.md` — 六大机制的人话讲解（主人面试脱稿用）；`docs/demo.md` — 3 分钟演示路径；`README.md` — 对外的一页介绍
 6. `docs/PRD.md` — 产品定义、竞品分析、指标体系
 7. `pipeline/main.py` → `pipeline/stages/*.py` — 代码主线（按 fetch→publish 顺序读）
@@ -66,7 +66,7 @@ data/knowledge.db（SQLite）+ data/feed/*.json（latest/week/archive/pending/tr
 10. `pipeline/hitl.py` — 人工审批闭环（GitHub Issue / 本地 CLI）
 11. `evals/run_eval.py` — 评测引擎（三分类路由评法）
 12. `evals/judge_hallucination.py` — LLM-as-Judge 幻觉评测
-13. `evals/prelabel.py` + `evals/review_golden.py` + `evals/import_golden_docx.py` — 黄金集分层采样与标注工具；`tools/` — 只在开发机用的一次性工具（分类回填、标注表生成）
+13. `evals/prelabel.py` + `evals/review_golden.py` + `evals/import_golden_docx.py` — 黄金集分层采样与标注工具；`evals/feed_tag_eval.py` — 用官网自带标签测分类准确率；`tools/` — 只在开发机用的一次性工具（分类回填、分类一致率、标注表生成）
 14. `web/` — 前端（React+Vite+TS+Tailwind，设计说明见 decisions.md D20）
 
 ## 五、当前进度
@@ -90,13 +90,13 @@ data/knowledge.db（SQLite）+ data/feed/*.json（latest/week/archive/pending/tr
   - README、演示路径 `docs/demo.md` 完成
 
 - **[2026-09-17]** 黄金集 v2 标完（D42）：100 条语音标注 + 11 条 v1 复用，共 111 条。理由从语音聊天记录重新提取（代填的理由 94 条加了主人没说过的话），每条记来源；聊天记录全文只留本地。黄金集不标分类
+- **[2026-09-17]** 分类改为平铺 8 类（D43，撤回 D39 的安全拆分）：模型 / Agent 与开发 / 评测 / 安全 / 产品与应用 / 行业动态 / 开源项目 / 研究论文，后两个按链接判定。
+  同一 prompt 主类一致率 73% → 91%；官网标签测准确率 84%；536 条历史分类回填（旧值存 categories_v2）
 
-**当前指标**：20 天连续定时运行 20 次全部成功 · 76 个测试全绿 · 规则校验 0 违规 · 分类重跑噪声底 37%。
+**当前指标**：20 天连续定时运行 20 次全部成功 · 84 个测试全绿 · 规则校验 0 违规 · 分类主类一致率 91%、官网标签命中 84%。
 黄金集 111 条：自动发布认同 62% · 自动丢弃认同 95%（漏 1 条）· 送审里该收的 28%（区间都很宽，只看方向）。
 
-**当前进行中**：分类体系重新理清——主人要一个平铺列表，已定：模型合并为一类、安全合并为一类、「开源项目」「研究论文」保留并按链接判定。
-草案 8 类：模型 / Agent 与开发 / 评测 / 安全 / 产品与应用 / 行业动态 / 开源项目 / 研究论文；实施前要把每类边界给主人确认。
-分类准确率改用 OpenAI / Anthropic feed 自带标签测。之后是 Phase C 三家模型配对对比、triage 加营销与仿造品扣分项。
+**下一步**：Phase C 三家模型配对对比、triage 加营销与仿造品扣分项、第二批 fetch 层改造（见 todo.md）。
 
 ## 六、期望完成度
 
