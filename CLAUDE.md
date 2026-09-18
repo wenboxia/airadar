@@ -64,7 +64,7 @@ python3 evals/triage_prompt_eval.py --model <模型名> --provider AIRADAR_FALLB
 python3 evals/summary_model_eval.py --generate --n 10          # 换模型前：各候选模型写同一批摘要（只读库）
 python3 evals/summary_model_eval.py --judge <summary-gen-*.jsonl>   # Kimi 判摘要忠实度，3 票多数
 python3 evals/model_cost_latency.py --n 12                     # 串行测单次调用延迟与 token，估成本
-python3 -m unittest discover evals -v    # 122 个回归测试
+python3 -m unittest discover evals -v    # 128 个回归测试
 
 # ── 前端 ──────────────────────────────────────────────
 cd web && npm run dev                    # 本地开发（自动同步 data/feed）
