@@ -289,7 +289,10 @@ def fetch_arxiv_by_id(ids: list, src: dict) -> list:
         published = _to_iso(getattr(e, "published_parsed", None))
         abstract = re.sub(r"\s+", " ", getattr(e, "summary", "")).strip()
         it = _make_item(link, getattr(e, "title", ""), src, published, abstract)
-        it.extra["authors"] = [a.get("name", "") for a in getattr(e, "authors", [])][:8]
+        names = [a.get("name", "") for a in getattr(e, "authors", [])]
+        it.extra["authors"] = names[:8]
+        # 名单只存前 8 个，但人数要记全：「署名 25 人以上」这条判据曾因截断在线上永远不触发
+        it.extra["author_count"] = len(names)
         it.extra["arxiv_via"] = "mention"
         out.append(it)
     return out
@@ -302,11 +305,17 @@ def _is_lab_report(item: Item) -> bool:
     title = (item.title or "").lower()
     if any(k in title for k in ("technical report", "system card", "model card")):
         return True
-    if len(authors) >= 25:      # 几十人署名的本质是产品发布，不是一篇普通预印本
+    # 几十人署名的本质是产品发布，不是一篇普通预印本
+    if item.extra.get("author_count", len(authors)) >= 25:
         return True
-    orgs = ("deepseek", "openai", "qwen", "anthropic", "moonshot", "kimi",
-            "google deepmind", "meta ai", "mistral", "zhipu", "baichuan")
-    return any(o in " ".join(authors).lower() for o in orgs)
+    # 机构名必须是**整个署名条目**（"DeepSeek-AI"、"Kimi Team"），不能在人名里做子串匹配：
+    # 那样 Kimia Nadjahi、Kimin Lee、Baichuan Huang 都会被当成实验室，单个信源提到就放行
+    return any(_LAB_AUTHOR_RE.match(a.strip()) for a in authors)
+
+
+_LAB_AUTHOR_RE = re.compile(
+    r"^(?:deepseek|openai|qwen|anthropic|moonshot|kimi|google deepmind|meta|mistral|zhipu|baichuan)"
+    r"(?:[\s-]*(?:ai|team|inc\.?))?$", re.I)
 
 
 def collect_mentions(items: list, db, src: dict, ctx: Context) -> list:
@@ -322,11 +331,16 @@ def collect_mentions(items: list, db, src: dict, ctx: Context) -> list:
             mentioned.setdefault(pid, []).append(it.source)
     if not mentioned:
         # 0 篇也要留记录：否则分不清"今天没人提论文"和"这个入口根本没跑"（D40）
-        ctx.stats.setdefault("fetch", {})["arxiv_mentions"] = {"seen": 0, "fetched": 0, "kept": 0}
+        ctx.stats.setdefault("fetch", {})["arxiv_mentions"] = {
+            "seen": 0, "fetched": 0, "kept": 0, "stale_reports": 0, "not_requested": 0}
         return []
     existing = db.existing_ids() if db else set()
-    papers = fetch_arxiv_by_id(sorted(mentioned), src)
-    picked = []
+    # 接口一次只取前 30 个。按字符串升序截断时，名额先给了参考文献里的老论文
+    # （arXiv 编号就是年月），一篇长文引 30 多篇旧作，当天被两个信源讨论的新论文就进不来。
+    # 所以先按被几个信源提到、再按新旧排
+    ids = sorted(mentioned, key=lambda p: (len(set(mentioned[p])), p), reverse=True)
+    papers = fetch_arxiv_by_id(ids, src)
+    picked, stale = [], 0
     for p in papers:
         from . import dedupe
         if dedupe.item_id(p.url) in existing:
@@ -334,13 +348,32 @@ def collect_mentions(items: list, db, src: dict, ctx: Context) -> list:
         who = sorted(set(mentioned.get(_ARXIV_RE.search(p.url).group(1), [])
                          if _ARXIV_RE.search(p.url) else []))
         p.extra["mentioned_by"] = who
-        # 被两个以上独立信源提到，或本身就是实验室的技术报告 —— 这两种才够格
-        if len(who) >= 2 or _is_lab_report(p):
+        # 被两个以上独立信源提到，或是**新发布的**实验室技术报告，这两种才够格。
+        # 技术报告那条只认 14 天内的（和时效内容过期同一个数）：它放行只要一个信源提到，
+        # 本意是抓新发布；不限时间时，HN 一帖顺手引用的 20 个月前的 DeepSeek-R1 被当成新闻发了。
+        # 老报告要进来，得和普通论文一样被两个以上信源提到——"今天还在被讨论"才是收录理由（D36）
+        if len(who) >= 2:
             picked.append(p)
+        elif _is_lab_report(p):
+            if _age_days(p.published_at) <= ctx.cfg.short_ttl_days:
+                picked.append(p)
+            else:
+                stale += 1
+    # 多信源讨论的排在单信源放行的技术报告前面，名额不够时先保前者
+    picked.sort(key=lambda p: len(p.extra["mentioned_by"]), reverse=True)
     picked = picked[: src.get("max_results", 5)]
     ctx.stats.setdefault("fetch", {})["arxiv_mentions"] = {
-        "seen": len(mentioned), "fetched": len(papers), "kept": len(picked)}
+        "seen": len(mentioned), "fetched": len(papers), "kept": len(picked),
+        "stale_reports": stale, "not_requested": max(0, len(mentioned) - 30)}
     return picked
+
+
+def _age_days(iso: str) -> float:
+    """发布日期缺失或解析不了时当作很老——收紧方向，宁可不放行"""
+    dt = parse_iso(iso or "")
+    if not dt:
+        return float("inf")
+    return (datetime.now(timezone.utc) - dt).total_seconds() / 86400
 
 
 _FETCHERS = {"rss": _fetch_rss, "arxiv": _fetch_arxiv,
@@ -393,5 +426,7 @@ def run(items: list, ctx: Context) -> list:
     if ctx.cfg.max_items_per_run and len(out) > ctx.cfg.max_items_per_run:
         out.sort(key=lambda it: ("SABCD".index(it.tier) if it.tier in "SABCD" else 9))
         out = out[: ctx.cfg.max_items_per_run]
-    ctx.stats["fetch"] = {"total": len(out), "per_source": per_source}
+    # 合并而不是整个赋值：collect_mentions 先写了 arxiv_mentions，整个赋值会把它冲掉——
+    # 闸门上线后第一次云端运行（20260918-010050）实际放进 1 篇，运行记录里却查不到，就是这样丢的
+    ctx.stats.setdefault("fetch", {}).update({"total": len(out), "per_source": per_source})
     return out
