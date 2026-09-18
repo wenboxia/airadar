@@ -9,7 +9,7 @@
 |---|---|
 | 线上地址 | https://wenboxia.github.io/airadar/ |
 | 仓库 | https://github.com/wenboxia/airadar |
-| 自动运行 | 每天北京时间 **07:00**（GitHub Actions） |
+| 自动运行 | 每天北京时间 **05:00**（GitHub Actions；避开 DeepSeek 峰时） |
 | 部署方式 | **GitHub Pages**：每日工作流 `daily.yml` 跑完数据后接着部署；`pages.yml` 只在人手推送前端代码或手动触发时部署 |
 
 ---

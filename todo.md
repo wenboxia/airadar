@@ -1,7 +1,7 @@
 # AIRadar TODO
 
 > 线上：https://wenboxia.github.io/airadar/ ｜ 仓库：github.com/wenboxia/airadar
-> 每日北京时间 07:00 由 GitHub Actions 自动运行；审批单每周一开一次。
+> 每日北京时间 05:00 由 GitHub Actions 自动运行（避开 DeepSeek 峰时，见 eval_report.md）；审批单每周一开一次。
 
 ## 🔴 主人现在要做的（一件）
 

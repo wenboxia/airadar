@@ -8,7 +8,7 @@
 
 - **线上**：https://wenboxia.github.io/airadar/
 - **仓库**：github.com/wenboxia/airadar
-- **运行**：GitHub Actions 每日北京时间 07:00 自动跑，数据 commit 回仓库，同一个工作流里接着部署前端；审批每周一开一次单
+- **运行**：GitHub Actions 每日北京时间 05:00 自动跑（避开 DeepSeek 峰时），数据 commit 回仓库，同一个工作流里接着部署前端；审批每周一开一次单
 - 本地文件夹与产品名统一为 `airadar` / **AIRadar**（2026-08-28 起，此前曾叫 ainews）
 
 ## 二、项目为什么存在（最终目标，不可忘记）
@@ -24,7 +24,7 @@
 ## 三、架构地图
 
 ```
-每日 GitHub Actions cron（07:00 北京时间）
+每日 GitHub Actions cron（05:00 北京时间）
         │
         ▼
 pipeline/main.py（AgentLoop：按序跑 stages，统一错误隔离与预算控制）
