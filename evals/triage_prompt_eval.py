@@ -108,7 +108,16 @@ def recompute(raws, cfg, weights=None, cap=None) -> list:
     return out
 
 
+MIN_VALID_SHARE = 0.9
+
+
 def report(scored, label: str) -> dict:
+    # 降级条目按 tier 放行，不是模型的判断。降级一多，三路指标测的就是"降级规则"而不是模型——
+    # 第一次拿 kimi-k2.6 跑时 111 条全部降级（temperature 不被接受），照样打印出了"自动发布认同 44%"（D32 同类坑）
+    valid = [s for s in scored if s.get("outcome") == "llm_scored"]
+    if len(valid) < MIN_VALID_SHARE * len(scored):
+        print(f"\n⚠️ {label}：有效打分只有 {len(valid)}/{len(scored)} 条，低于 {MIN_VALID_SHARE:.0%}。"
+              "下面的指标主要反映降级规则，不代表这个模型的判断，不要拿来比较。")
     new = run_eval.route_metrics([(s["verdict"], s["include"], s["title"]) for s in scored])
     old = run_eval.route_metrics([(s["old_auto"], s["include"], s["title"]) for s in scored])
     capped_in_review = sum(1 for s in scored if s.get("capped") and s["verdict"] == "review")
@@ -129,7 +138,7 @@ def report(scored, label: str) -> dict:
     kinds = Counter(s["detail"].get("kind") for s in scored if s["detail"].get("kind"))
     print("kind 分布：" + " · ".join(f"{k} {v}" for k, v in kinds.most_common()))
     return {"label": label, "new": new, "old": old,
-            "kinds": dict(kinds), "n": len(scored)}
+            "kinds": dict(kinds), "n": len(scored), "valid": len(valid)}
 
 
 def main():
@@ -138,8 +147,21 @@ def main():
     ap.add_argument("--weights", help="tier,relevance,novelty,longterm，如 0.4,0.2,0.2,0.6")
     ap.add_argument("--cap", type=float, help="营销通稿 / 仿造品的价值分封顶")
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--model", help="换模型测，比如 deepseek-flash；接口地址和 key 仍取 --provider 那一组")
+    ap.add_argument("--provider", default="AIRADAR_LLM",
+                    help=".env 里的变量前缀：AIRADAR_LLM / AIRADAR_FALLBACK / AIRADAR_JUDGE")
+    ap.add_argument("--workers", type=int, help="并发数。Kimi 在 4 路并发下被限流打回七成（D47），测质量时要调低")
     args = ap.parse_args()
     cfg = load_config()
+    if args.model:
+        import os as _os
+        cfg.llm_base_url = _os.environ.get(f"{args.provider}_BASE_URL", "")
+        cfg.llm_api_key = _os.environ.get(f"{args.provider}_API_KEY", "")
+        cfg.llm_model = args.model
+        # 只测这一家：主力失败时悄悄切到备用，测出来的就不是这个模型了
+        cfg.fallback_base_url = cfg.fallback_api_key = cfg.fallback_model = ""
+    if args.workers:
+        cfg.llm_workers = args.workers
 
     if args.replay:
         raws = [json.loads(l) for l in open(args.replay, encoding="utf-8") if l.strip()]
@@ -148,16 +170,19 @@ def main():
         cases = load_cases()
         if args.limit:
             cases = cases[:args.limit]
-        llm = build_client(cfg, Budget(1_000_000, len(cases) * 2), {})
+        llm_stats = {}
+        llm = build_client(cfg, Budget(1_000_000, len(cases) * 2), llm_stats)
         if not llm.available():
             sys.exit("没有可用的 LLM")
         raws = score_all(cases, cfg, llm)
         os.makedirs(RESULTS, exist_ok=True)
-        path = os.path.join(RESULTS, f"triage-prompt-{datetime.now():%Y%m%d-%H%M%S}.jsonl")
+        path = os.path.join(RESULTS, f"triage-prompt-{datetime.now():%Y%m%d-%H%M%S}"
+                            f"-{cfg.llm_model}.jsonl")
         with open(path, "w", encoding="utf-8") as f:
             for r in raws:
                 f.write(json.dumps(r, ensure_ascii=False) + "\n")
-        label = f"triage {triage.MANIFEST['version']}"
+        label = f"triage {triage.MANIFEST['version']} · {cfg.llm_model}"
+        print(f"模型 {cfg.llm_model}，调用分布 {llm_stats.get('calls_by_provider', {})}")
         print(f"原始打分已存 {os.path.relpath(path, ROOT)}（之后可 --replay 扫参数，零额外调用）")
 
     weights = tuple(float(x) for x in args.weights.split(",")) if args.weights else None

@@ -6,7 +6,7 @@ Kimi 那次 73 条 429（D47）就是例子——那是账号配额问题，不�
 为什么只测 triage 这一步：它是每条内容都要过的一步，调用量最大；
 摘要和分类的 prompt 更长，按同样的输入/输出 token 比例外推会偏低，报告里写明。
 
-价格不写在代码里：从三家官网实时查到后填进 --prices，报告里注明查询日期（CLAUDE.md：版本号、价格这类
+价格不写在代码里：从各家官网实时查，写进报告并注明查询日期（CLAUDE.md：版本号、价格这类
 高频变动信息一律先查再写）。
 
 用法：
@@ -40,11 +40,11 @@ MODELS = {   # 角色 → .env 里的变量前缀
 }
 
 
-def measure(name: str, prefix: str, cases: list) -> dict:
+def measure(name: str, prefix: str, cases: list, model: str = None) -> dict:
     cfg = load_config()
     cfg.llm_base_url = os.environ.get(f"{prefix}_BASE_URL", "")
     cfg.llm_api_key = os.environ.get(f"{prefix}_API_KEY", "")
-    cfg.llm_model = os.environ.get(f"{prefix}_MODEL", "")
+    cfg.llm_model = model or os.environ.get(f"{prefix}_MODEL", "")
     cfg.fallback_base_url = cfg.fallback_api_key = cfg.fallback_model = ""   # 只测这一家，不许悄悄切走
     stats = {}
     llm = build_client(cfg, Budget(500_000, len(cases) * 3), stats)
@@ -81,14 +81,23 @@ def measure(name: str, prefix: str, cases: list) -> dict:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=12)
+    ap.add_argument("--models", help="逗号分隔的 标签=前缀:模型，如 "
+                    "DSFlash=AIRADAR_LLM:deepseek-flash,GLMFlash=AIRADAR_FALLBACK:glm-5.3-flash")
     args = ap.parse_args()
+    models = {name: (prefix, None) for name, prefix in MODELS.items()}
+    if args.models:
+        models = {}
+        for spec in args.models.split(","):
+            label, rest = spec.split("=", 1)
+            prefix, model = rest.split(":", 1)
+            models[label] = (prefix, model)
     # 固定取黄金集前 n 条：三家测的是同一批内容，输入长度一致，延迟才能比
     cases = [c for c in tpe.load_cases() if c["row"]["content"]][:args.n]
     out = {"ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
            "n": len(cases), "prompt": triage.PROMPT_VERSION, "models": {}}
-    for name, prefix in MODELS.items():
+    for name, (prefix, model) in models.items():
         print(f"\n{name}", flush=True)
-        out["models"][name] = measure(name, prefix, cases)
+        out["models"][name] = measure(name, prefix, cases, model)
     path = os.path.join(ROOT, "evals", "results",
                         f"cost-latency-{datetime.now():%Y%m%d-%H%M%S}.json")
     with open(path, "w", encoding="utf-8") as f:
