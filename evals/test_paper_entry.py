@@ -9,6 +9,7 @@
 
 跑：python3 -m unittest evals.test_paper_entry -v
 """
+import pathlib
 import unittest
 import unittest.mock
 from unittest.mock import Mock
@@ -53,6 +54,17 @@ class TestLabReport(unittest.TestCase):
     def test_ordinary_preprint_is_not(self):
         self.assertFalse(fetch._is_lab_report(
             self._item("A Study of Prompting", ["Alice", "Bob"])))
+
+
+class TestSourceDispatch(unittest.TestCase):
+    def test_mentions_source_is_not_dispatched_as_a_fetcher(self):
+        """它不是"去哪里抓"，是跑完别的信源后才执行的闸门。
+        第一次就漏了：run() 把它当普通信源派发，报"未知信源类型"，论文入口一次没跑过。"""
+        src = (pathlib.Path(__file__).parent.parent / "pipeline" / "stages"
+               / "fetch.py").read_text(encoding="utf-8")
+        todo_line = next(l for l in src.splitlines() if "todo = [s for s in sources" in l)
+        self.assertIn("arxiv_mentions", todo_line)
+        self.assertNotIn("arxiv_mentions", fetch._FETCHERS)
 
 
 class TestMentionGate(unittest.TestCase):

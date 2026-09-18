@@ -349,7 +349,8 @@ def run(items: list, ctx: Context) -> list:
     with open(SOURCES_PATH, encoding="utf-8") as f:
         sources = yaml.safe_load(f)["sources"]
     since = datetime.now(timezone.utc) - timedelta(days=ctx.cfg.since_days)
-    todo = [s for s in sources if s.get("tier") != "X"]
+    # arxiv_mentions 不是"去哪里抓"，是跑完其他信源后才执行的闸门，所以不进这一轮
+    todo = [s for s in sources if s.get("tier") != "X" and s.get("type") != "arxiv_mentions"]
     per_source = {}
 
     def _one(src):
