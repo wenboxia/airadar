@@ -16,7 +16,7 @@ from ..models import Context
 MANIFEST = {
     "name": "summarize", "version": "0.2.0",
     "input": "list[Item]（published/review）", "output": "list[Item]（含双层摘要）",
-    "eval_cases": "LLM-as-Judge 摘要忠实度（evals/run_eval.py）",
+    "eval_cases": "evals/judge_hallucination.py（LLM-as-Judge 摘要忠实度，Kimi 3 票多数）· evals/summary_model_eval.py（换模型前的摘要对比）",
 }
 
 # 原文短于此长度就认定"信息不足"，走简介模式（实测 RSS-only 条目普遍 150-200 字）

@@ -23,8 +23,10 @@ from pipeline.stages.classify import CATEGORIES  # noqa: E402
 HELP = """
 判断标准：三个月后你还愿意在知识库里搜到它吗？
 
-  y = 收录     值得长期留存：一手发布 / 有方法论 / 有具体结论的研究
-  n = 筛掉     纯商业动态 / 重复报道 / 泛泛而谈 / 与 AI Agent 领域无关
+  y = 收录     一手发布 / 顶尖从业者的具体判断 / 影响技术格局的公司动态（收购、重大人事、算力、定价大改）
+               / 有新做法的开源项目 / 正在被讨论的论文
+  n = 筛掉     二手转述 / 营销通稿 / 仿造品 / 泛泛而谈 / 与 AI 技术和产业都无关
+               （方向窄不是筛掉的理由；完整标准见 evals/golden_set/README.md v2）
   s = 跳过     拿不准，这条不进黄金集
   q = 存盘退出 下次接着标
 """
@@ -60,7 +62,7 @@ def main():
 
     for i, row in enumerate(todo, 1):
         pl = row.get("_pipeline", {})
-        print(f"\n[{i}/{len(todo)}] {row['source']}（{row['tier']} 级）· 系统判断：{pl.get('status')} {pl.get('score')} 分")
+        print(f"\n[{i}/{len(todo)}] {row['source']}（{row['tier']} 级）· 系统判断：{pl.get('auto_status')} {pl.get('score')} 分")
         print(f"  标题：{row['title']}")
         if pl.get("summary_short"):
             print(f"  摘要：{pl['summary_short']}")

@@ -1,10 +1,12 @@
-"""Stage 6: publish —— 写知识库 + 导出前端数据 + HITL 待审清单。
+"""Stage 6: publish —— 写知识库 + 导出前端数据。
 
 前端是纯静态站，消费 data/feed/*.json：
-- latest.json  本次运行的发布条目（今日视图）
-- week.json    近 7 天已发布（本周视图）
-- pending.json HITL 待审队列（Week 2 起同步开 GitHub Issue 审批卡片）
-- stats.json   运行统计（机制页展示：处理量/筛除率/降级次数……）
+- latest.json   本次运行的发布条目（今日视图）
+- week.json     近 7 天已发布（本周视图）
+- archive.json  知识库：长期留存内容（时效类未经审批勾收的 14 天后退出，D30）
+- stats.json    运行统计 + 信源注册表 + 类目表（机制页、刊头）
+- pending.json  本次运行新送审的条目：前端不读，只留作运行记录（run_eval 检查它存在）
+另外两个不在这里写：trends.json 由 memory.py 写；review.json（本周审批单，网站「待审」页读它）由 hitl open 写。
 """
 import json
 import os
@@ -61,13 +63,13 @@ def _archive_provenance(db) -> dict:
     approved = db.conn.execute(
         "SELECT COUNT(*) FROM items WHERE status='published' AND auto_status='review'"
     ).fetchone()[0]
-    kept = db.conn.execute(
-        "SELECT COUNT(*) FROM items WHERE status='published' "
-        "AND json_extract(extra, '$.hitl.kept_at') IS NOT NULL").fetchone()[0]
+    archive = db.archive_items()
+    # 抽查保留的时效类条目照样会过期，只在还留在知识库里的条目里数，否则 auto_only 会少算
+    kept = sum(1 for d in archive if ((d.get("extra") or {}).get("hitl") or {}).get("kept_at"))
     retracted = db.conn.execute(
         "SELECT COUNT(*) FROM items WHERE status='discarded' AND auto_status='published'"
     ).fetchone()[0]
-    total = len(db.archive_items())
+    total = len(archive)
     return {"total": total, "human_approved": approved, "human_kept": kept,
             # 撤下的不在知识库里，但要露出来——它是这套机制在起作用的证据，藏起来就只剩报喜
             "human_retracted": retracted, "auto_only": total - approved - kept}
@@ -135,6 +137,5 @@ def run(items: list, ctx: Context) -> list:
     print(f"  publish: 发布 {len(published)}，待审 {len(pending)}，"
           f"库内累计 {sum(counts.values())} 条")
     if pending:
-        print(f"  [HITL] {len(pending)} 条待人工审核 → data/feed/pending.json"
-              "（Week 2 起自动开 GitHub Issue 审批卡片）")
+        print(f"  [HITL] {len(pending)} 条进入待审队列（每周一由 hitl open 开审批单，网站读 review.json）")
     return items

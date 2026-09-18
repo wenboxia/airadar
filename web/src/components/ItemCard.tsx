@@ -52,7 +52,7 @@ export function ItemCard({ it, rank }: { it: Item; rank?: number }) {
           <ContentBadge it={it} />
           <span
             className="font-mono text-[11px] text-ink-faint"
-            title="综合分 = 信源等级 55% + 模型价值评分 45%"
+            title="综合分 = 信源等级 40% + 模型价值评分 60%"
           >
             {it.score.toFixed(1)}
           </span>

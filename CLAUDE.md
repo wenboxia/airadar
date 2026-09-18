@@ -6,7 +6,10 @@
 
 1. **一切服务于面试叙事**：本项目是主人的面试作品。每个重要设计决策必须记入 `docs/decisions.md`（格式：背景/选项/取舍/为什么）。过度设计和堆名词是天敌。
 
-2. **评测驱动**：改 prompt、换模型、调阈值 → 必须跑 `python3 evals/run_eval.py`，结果自动存 `evals/results/`。不许凭感觉说"效果变好了"。
+2. **评测驱动**：改 prompt、换模型、调阈值 → 上线前必须在黄金集上离线对比，结果自动存 `evals/results/`：
+   打分用 `evals/triage_prompt_eval.py`（换模型加 `--model`，调权重用 `--replay`），分类用 `evals/feed_tag_eval.py` + `tools/classify_stability.py`，
+   摘要用 `evals/summary_model_eval.py`。`evals/run_eval.py` 只评库里**已落地**的判断（规则校验 + 黄金集三路径），每天随定时任务跑——
+   改动当天跑它，数字不会变。不许凭感觉说"效果变好了"。
 
 3. **指标不会报错，只会说谎**（D22/D29/D31/D32 起，到 D35/D39/D41 又踩了三次）。新增或解读任何指标前先问五件事：
    - **匹配对象的性质吗？** 查询型信源没有"最新一篇"（D22）
@@ -43,11 +46,11 @@ python3 -m pipeline.memory               # 单独重算话题热度与生命周�
 
 # ── 人工审批（HITL）────────────────────────────────────
 python3 -m pipeline.hitl review          # 本地 CLI 审批（无 GitHub 时兜底）
-python3 -m pipeline.hitl open            # 开本周审批 issue（前 12 条；旧单子过期先打标签再关）
+python3 -m pipeline.hitl open            # 开本周审批单：待审 7 / 抽查 4（勾=撤下）/ 捞回 1（D44），同时写 data/feed/review.json 给网站「待审」页；旧单子过期先打标签再关
 python3 -m pipeline.hitl collect         # 回收已关闭 issue 的勾选结果
 
 # ── 评测 ──────────────────────────────────────────────
-python3 evals/run_eval.py                # 规则校验 + 黄金集三路径评测
+python3 evals/run_eval.py                # 规则校验 + 黄金集三路径评测（只评已落库的判断）
 python3 evals/prelabel.py --n 100        # 分数段分层 + 段内随机抽样，导出待标注草稿（跳过 X 级信源）
 python3 tools/prep_golden_doc.py         # AI 写资料（不给收录建议）→ 生成 Word 标注表
 python3 evals/import_golden_docx.py      # 把填好的 Word 表写回 golden.jsonl
@@ -57,6 +60,10 @@ python3 evals/feed_tag_eval.py --per-tag 15        # 分类准确率：拿 OpenA
 python3 evals/triage_prompt_eval.py               # 改 triage 打分标准后：拿黄金集离线重打分，只读库
 python3 evals/triage_prompt_eval.py --replay <jsonl> --weights 0.4,0.25,0.25,0.5   # 零成本扫权重
 python3 tools/classify_stability.py --n 100         # 分类噪声底：同一 prompt 连分两次的主类一致率
+python3 evals/triage_prompt_eval.py --model <模型名> --provider AIRADAR_FALLBACK --workers 1   # 换模型前：候选模型在黄金集上重打分（Kimi 必须串行）
+python3 evals/summary_model_eval.py --generate --n 10          # 换模型前：各候选模型写同一批摘要（只读库）
+python3 evals/summary_model_eval.py --judge <summary-gen-*.jsonl>   # Kimi 判摘要忠实度，3 票多数
+python3 evals/model_cost_latency.py --n 12                     # 串行测单次调用延迟与 token，估成本
 python3 -m unittest discover evals -v    # 122 个回归测试
 
 # ── 前端 ──────────────────────────────────────────────
