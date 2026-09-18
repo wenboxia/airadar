@@ -1,6 +1,264 @@
 {
- "generated_at": "2026-09-18T01:12:10+00:00",
+ "generated_at": "2026-09-18T23:11:42+00:00",
  "items": [
+  {
+   "id": "dd7eb0ba55d9d4ba",
+   "url": "https://simonwillison.net/2026/Sep/18/thariq-shihipar/",
+   "title": "Quoting Thariq Shihipar",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-18T19:09:27+00:00",
+   "summary_short": "Claude Code 从 2.1.277 起支持 AGENTS.md，无 CLAUDE.md 时自动启用",
+   "summary_long": "Claude Code 正在加入对 AGENTS.md 的支持。据 Thariq Shihipar 介绍，从 2.1.277 版本开始，如果某个文件夹里没有 CLAUDE.md，Claude 就会检查并使用 AGENTS.md。这项 AGENTS.md 支持是基于 Claude Code mods 构建的，而 mods 是即将推出的、用于自定义 Claude Code harness 的方式。此次提供的是一个内置 mod，但用户之后也可以按自己的需要构建自定义版本的项目指令。原文还给出了该 mod 的源码链接，并指向可以查看更多 mods 的地址。除上述内容外，原文未详述 mods 的具体机制、后续发布时间安排，也未说明 AGENTS.md 与 CLAUDE.md 在格式、优先级等方面的差别。原文标签包含 coding-agents、anthropic、claude-code、generative-ai、ai、llms。",
+   "key_points": [
+    "Claude Code 从 2.1.277 版本开始支持 AGENTS.md：文件夹中没有 CLAUDE.md 时会检查并使用 AGENTS.md",
+    "该支持基于即将推出的 Claude Code mods（用于自定义 Claude Code harness）构建，此次提供的是内置 mod",
+    "用户之后可自行构建自定义版本的项目指令；原文给出了该 mod 的源码链接，并指向更多 mods 的地址"
+   ],
+   "topics": [
+    "coding-agent",
+    "harness",
+    "context-engineering"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 77.2,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "thariq-shihipar",
+     "coding-agents",
+     "anthropic",
+     "claude-code",
+     "generative-ai"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/anthropics/claude-code/tree/main/mods/agents-md",
+      "https://twitter.com/trq212/status/2101009392611278961",
+      "https://github.com/anthropics/claude-code/tree/main/mods",
+      "https://simonwillison.net/tags/thariq-shihipar",
+      "https://simonwillison.net/tags/coding-agents",
+      "https://simonwillison.net/tags/anthropic",
+      "https://simonwillison.net/tags/claude-code",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/llms"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "3f8ce213f8ded073",
+   "url": "https://arxiv.org/abs/2609.20804",
+   "title": "An empirical study of harness design for coding agents",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-18T13:06:30+00:00",
+   "summary_short": "拆解编码智能体harness三大组件，176组对照实验揭示各组件何时有效",
+   "summary_long": "现有工作通常把编码harness当成整体系统来评估，各组件单独的有效性不清楚。该研究构建了一个轻量编码harness，固定执行循环，仅变动规划、动作空间、上下文管理三个组件。在四个模型上，于SWE-Bench Verified与Terminal-Bench 2.1评测176组匹配设置，覆盖五种上下文管理策略、四种上下文窗口预算，以及针对规划与动作空间的消融。发现：（1）上下文窗口预算越紧，上下文管理价值越大，其收益主要来自避免上下文溢出失败；（2）先做基于规则的删减、再做基于LLM的摘要，整体效率最强，而让删减内容可恢复所增加的机制很少被模型使用，且无准确率增益；（3）规划对较弱模型是准确率支撑，对较强模型转为节省成本，准确率变化不大；（4）预定义工具利于bash能力较弱的模型，而具备bash能力的模型仅用bash接口即可有效工作、成本显著更低。轨迹级分析显示：上下文管理延长执行轨迹但不明显改变行为，规划改变轨迹停止的位置，动作空间改变代码书写的粒度。原文称其有助于模型与预算感知的harness设计，并提供评估未来组件的模块化框架。",
+   "key_points": [
+    "方法上固定harness执行循环，仅变动规划、动作空间、上下文管理三个组件，在四个模型与SWE-Bench Verified、Terminal-Bench 2.1上评测176组匹配设置。",
+    "结论一：上下文窗口预算越紧，上下文管理收益越大，主要来自避免上下文溢出；先规则删减再做LLM摘要效率最强，可恢复删减内容的机制很少被使用且无准确率增益。",
+    "结论二：规划对弱模型是准确率支撑、对强模型转为节省成本；预定义工具利于bash能力弱的模型，bash能力强的模型仅用bash接口即可更低成本地工作；轨迹级分析解释了这些差异。"
+   ],
+   "topics": [
+    "harness",
+    "context-engineering",
+    "coding-agent"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "Agent 与开发",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 85.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 197,
+    "hn_comments": 57,
+    "outbound": {
+     "arxiv": [
+      "2609.20804"
+     ],
+     "links": [
+      "https://arxiv.org/search/cs?searchtype=author&query=Fan,+R",
+      "https://arxiv.org/search/cs?searchtype=author&query=Zhang,+Z",
+      "https://arxiv.org/search/cs?searchtype=author&query=Ma,+S",
+      "https://arxiv.org/search/cs?searchtype=author&query=Hu,+Y",
+      "https://arxiv.org/search/cs?searchtype=author&query=Wang,+S",
+      "https://arxiv.org/search/cs?searchtype=author&query=Song,+K",
+      "https://arxiv.org/search/cs?searchtype=author&query=Liu,+F",
+      "https://arxiv.org/search/cs?searchtype=author&query=Zamani,+H",
+      "https://arxiv.org/search/cs?searchtype=author&query=Wang,+X",
+      "https://arxiv.org/html/2609.20804v1",
+      "https://arxiv.org/abs/2609.20804",
+      "https://arxiv.org/abs/2609.20804v1",
+      "https://doi.org/10.48550/arXiv.2609.20804",
+      "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+      "https://ui.adsabs.harvard.edu/abs/arXiv:2609.20804",
+      "https://scholar.google.com/scholar_lookup?arxiv_id=2609.20804",
+      "https://api.semanticscholar.org/arXiv:2609.20804",
+      "http://www.bibsonomy.org/BibtexHandler?requTask=upload&url=https://arxiv.org/abs/2609.20804&description=An Empirical Study of Harness Design for Coding Agents",
+      "https://reddit.com/submit?url=https://arxiv.org/abs/2609.20804&title=An Empirical Study of Harness Design for Coding Agents",
+      "https://info.arxiv.org/labs/showcase.html#arxiv-bibliographic-explorer",
+      "https://www.connectedpapers.com/about",
+      "https://www.litmaps.co/",
+      "https://www.scite.ai/",
+      "https://alphaxiv.org/",
+      "https://www.catalyzex.com",
+      "https://dagshub.com/",
+      "http://gotit.pub/faq",
+      "https://huggingface.co/huggingface",
+      "https://sciencecast.org/welcome",
+      "https://replicate.com/docs/arxiv/about",
+      "https://huggingface.co/docs/hub/spaces",
+      "https://txyz.ai",
+      "https://influencemap.cmlab.dev/",
+      "https://core.ac.uk/services/recommender",
+      "https://info.arxiv.org/labs/index.html",
+      "https://info.arxiv.org/help/mathjax.html"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "b3566f3850891301",
+   "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
+   "title": "ZCode, the GLM coding agent, silently uploads your Git history",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-18T10:35:28+00:00",
+   "summary_short": "开发者逆向发现 ZCode 登录后静默打包整个工作区（含完整 .git 历史）加密上传阿里云 OSS，且密钥仅服务端可解",
+   "summary_long": "2026 年 9 月 18 日，一位名为 ferstar 的开发者发布了对 ZCode 的逆向分析。ZCode 是 GLM 系列开放权重模型背后、总部位于北京的公司 Z.ai 推出的 AI 编码桌面应用。原文称，只要应用处于登录状态，它就会静默把用户的整个工作区打包——包括完整的 .git 历史、LFS 资源缓存、reflog 和全局应用配置——加密后上传至阿里云对象存储 OSS。研究者自己的抓取记录是：从一个 345MB 的商业工作区生成 313MB 加密归档，含 42,411 个文件，并在调查期间记录到 564 次上传失败尝试。文中指出，GLM 权重开源不等于运行 ZCode 的外壳开源，评论区有数人误以为 ZCode 是开源的。ferstar 的帖子获得 27.6 万次浏览，FeiZ 的中文提醒帖获得 6.38 万次浏览。最受引用的回应来自 Petri Kuittinen：“不要信任闭源 AI 外壳。”关键细节是加密密钥：ZCode 采用信封加密，对称密钥由服务端在上传凭证协商时下发的 RSA-OAEP 公钥封装，对应私钥只存在于 Z.ai 云端，ferstar 用本地所有私钥尝试解封均告失败。",
+   "key_points": [
+    "ZCode 登录后会静默打包整个工作区并加密上传至阿里云 OSS，抓取样本为 42,411 个文件的 313MB 加密归档，来自 345MB 商业工作区",
+    "归档内容中 .git 目录占 86.6%：LFS 196.1MB(56.8%)、objects 102.2MB(29.6%)、logs 0.6MB(0.2%)、源码与文档 46.2MB(13.4%)",
+    "采用信封加密，对称密钥由服务端下发的 RSA-OAEP 公钥封装，私钥只在 Z.ai 云端，本地无法解密；上传流程由客户端 app.asar 逆向还原，凭证来自 zcode.z.ai，归档直传阿里云 OSS 并回调注册"
+   ],
+   "topics": [
+    "privacy",
+    "cybersecurity",
+    "coding-agent"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 76.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 258,
+    "hn_comments": 13,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://x.com/a_green_being/status/2076598897779020159",
+      "https://x.com/dedene",
+      "https://blog.ferstar.org/en/posts/zcode-silent-workspace-snapshot-upload/",
+      "https://x.com/ferstar_org/status/2100805861002355154",
+      "https://x.com/Fei2411/status/2100847306203599047",
+      "https://zcode.z.ai/en/changelog",
+      "https://www.v2ex.com/t/1242973",
+      "https://lookonchain.com/feeds/73032"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "39b208522bb559fd",
+   "url": "https://www.hacktron.ai/blog/hacking-openai",
+   "title": "A heap overflow and SSO misconfiguration to compromise OpenAI internal repos",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-18T02:47:24+00:00",
+   "summary_short": "串联两漏洞可劫持OpenAI员工账号并进入其内部仓库",
+   "summary_long": "Hacktron团队（Harsh Jaiswal、Mohan Pedhapati、Rahul Maini）披露：2026年7月25日，他们串联两个漏洞，攻破多名OpenAI员工的ChatGPT账号，进而访问OpenAI内部代码仓库，并可能触及其他已连接的服务（原文点名GitHub、Slack和邮件）。这两个漏洞分别是：Discourse图片上传所用ImageMagick依赖的libheif图像解码器RCE（根源为Debian缺失安全回补），以及OpenAI身份基础设施中的SSO配置缺陷。从初始发现到获得OpenAI仓库访问权，全过程不足72小时。为在不窥探敏感信息的前提下证明访问权限，他们用该员工的Codex在OpenAI内部monorepo（openai/openai）提交了一个无害的PoC PR。团队随后向OpenAI与Discourse报告并配合修复：OpenAI在提交约14小时后确认修复，并支付6500美元赏金，同时说明针对community.openai.com的测试本不在其赏金计划范围内，该奖励认可的是OpenAI侧的发现；Discourse于7月28日发布GHSA-vhm9-85gw-x335，并提供补丁与重建指引，同时加入图像处理沙箱作为纵深防御。团队已将研究扩展为“HEIF Heist”项目。",
+   "key_points": [
+    "漏洞链由两环构成：Debian缺失安全回补导致libheif图像解码器RCE，经ImageMagick影响Discourse图片上传；叠加OpenAI身份基础设施中的SSO配置缺陷",
+    "影响范围：可接管OpenAI员工的ChatGPT与Codex账号，并可能触及其连接的GitHub、Slack、邮件等服务，最终访问OpenAI内部仓库",
+    "披露与修复：从发现到进入内部仓库不足72小时；OpenAI约14小时后确认修复并支付6500美元赏金（该奖励针对OpenAI侧发现，Discourse测试本被排除在赏金计划外）；Discourse于7月28日发布GHSA-vhm9-85gw-x335，并加入图像处理沙箱"
+   ],
+   "topics": [
+    "cybersecurity"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 75.9,
+   "status": "published",
+   "extra": {
+    "hn_points": 464,
+    "hn_comments": 196,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "http://community.openai.com/",
+      "https://github.com/discourse/discourse/security/advisories/GHSA-vhm9-85gw-x335",
+      "https://heif-heist.com",
+      "https://xkcd.com/2347/",
+      "https://github.com/discourse/discourse/commit/a07188016987de1613c961277e2e928aaa7c37ec",
+      "https://meta.discourse.org/t/support-for-heic-images/144326",
+      "https://github.com/strukturag/libheif/commit/85e21ad44eba931314337300a2376b8d28f085ae",
+      "https://lists.debian.org/debian-security-announce/2026/msg00328.html",
+      "https://www.anthropic.com/news/claude-opus-5",
+      "https://www.rand.org/pubs/research_briefs/RBA2849-1.html",
+      "https://github.com/strukturag/libheif/releases/tag/v1.23.4",
+      "https://imagemagick.org/security-policy/"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "3195ca010f5c230c",
+   "url": "https://qwen.ai/blog?id=qwen3.8-omni-flash",
+   "title": "Qwen 3.8 Omni Flash",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-17T23:05:48+00:00",
+   "summary_short": "Qwen3.8-Omni-Flash 发布：原生全模态智能体模型，音视频输入成本降超九成",
+   "summary_long": "原文介绍，Qwen3.8-Omni-Flash 是新一代原生全模态模型，核心目标是强化真实生产力场景中的智能体能力，推动全模态模型从“理解全模态内容”走向“规划任务、调用工具并完成创作”。它在编码、文本知识工作、GUI 操作等通用智能体能力基础上，把智能体应用扩展到以音视频为中心的工作流，如视频剪辑、MV 创作、影视制作与解说、音视频摘要和实时对话。模型支持 1M token 上下文，文本性能与同规模纯文本模型相当；在 29 项评测中平均分较 Qwen3.5-Omni-Plus 提升逾 25%，每小时音频输入 API 价格下降逾 98%，音视频输入价格下降逾 93%。原文还提到，长音视频在存储、传输与多轮推理上成本高昂，现有 agent harness 框架缺乏对这类模态的原生支持，需模型、harness 工具与运行时环境协同演进。",
+   "key_points": [
+    "支持 1M token 上下文，文本性能与同规模纯文本模型相当；29 项评测平均分较 Qwen3.5-Omni-Plus 提升逾 25%。",
+    "每小时音频输入 API 价格下降逾 98%，音视频输入价格下降逾 93%（按原文给定口径估算）。",
+    "WildClawBench-MM 提升 36.5 分、AgenticVBench 提升 22.3 分、UniClawBench 得 69.6；AliMeeting DER/cpWER 由 88.11/89.61 降至 3.35/17.18；音视频表现接近 Gemini 3.8 Flash，音频整体表现超过 Gemini 3.8 Flash。"
+   ],
+   "topics": [
+    "tool-use",
+    "coding-agent",
+    "harness"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 78.3,
+   "status": "published",
+   "extra": {
+    "hn_points": 326,
+    "hn_comments": 124,
+    "content_source": "reader",
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "e5c37e0d8fd1290b",
    "url": "https://simonwillison.net/2026/Sep/17/compaction-summaries/",
@@ -730,6 +988,52 @@
     "summary_mode": "full",
     "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
     "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
+   }
+  },
+  {
+   "id": "29f98b52d6857eb3",
+   "url": "https://arxiv.org/abs/2609.17488v1",
+   "title": "LimiX-2: A Contextual Mechanism Network Towards General Structured-Data Intelligence",
+   "source": "论文（被提及）",
+   "tier": "A",
+   "published_at": "2026-09-15T17:30:02+00:00",
+   "summary_short": "LimiX-2采用CMN范式，在多个结构化数据基准上超越现有模型并具备因果意识",
+   "summary_long": "原文介绍LimiX家族新模型LimiX-2，其研发依据此前已建立的缩放定律进行模型与数据层面的扩展。LimiX-2采用上下文机制网络（CMNs）范式，并以上下文条件掩码建模（CCMM）进行预训练。CMNs把上下文学习（in-context learning）的组织原则从以目标为中心的预测转向机制导向的联合建模：不再像传统表格PFN那样围绕 p(y|x,D_context) 目标构建网络，而是围绕学习 p(x,y|D_context)——即数据生成背后联合结构的、依赖上下文的表示。其预训练使用由结构因果模型（SCMs）生成的合成数据集，覆盖多样的图结构、功能机制与观测过程。在TabArena、TALENT和BCCO上的评估显示，LimiX-2优于当前的数据集专用模型与表格基础模型。除预测性能外，CMN范式还使LimiX-2具备因果意识：其特征注意力编码了直接因果关系，从而能够准确恢复因果骨架。原文未提供具体数值结果、模型规模或训练细节。",
+   "key_points": [
+    "LimiX-2依据此前建立的缩放定律，通过模型与数据扩展而来，采用CMNs范式并用CCMM预训练",
+    "CMNs将上下文学习从以目标为中心的预测转向机制导向的联合建模，学习 p(x,y|D_context) 而非传统表格PFN的 p(y|x,D_context)",
+    "预训练数据为SCMs生成的合成数据集，覆盖多样图结构、功能机制与观测过程；在TabArena、TALENT和BCCO上优于数据集专用模型与表格基础模型，且特征注意力可编码直接因果关系、准确恢复因果骨架"
+   ],
+   "topics": [
+    "tabular-foundation-model",
+    "in-context-learning",
+    "pretraining"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 77.6,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Xingxuan Zhang",
+     "Gang Ren",
+     "Hao Yuan",
+     "Hao Zou",
+     "Hongze Tan",
+     "Hui Wang",
+     "Jianhao Song",
+     "Jiansheng Li"
+    ],
+    "author_count": 60,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "量子位"
+    ],
+    "summary_mode": "full"
    }
   },
   {
@@ -5407,40 +5711,6 @@
    }
   },
   {
-   "id": "949b4891b9fdd198",
-   "url": "https://www.qbitai.com/2026/09/483898.html",
-   "title": "刚刚，GPT-6正式发布！OpenAI：欢迎来到AGI时代",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-03T21:50:07+00:00",
-   "summary_short": "GPT-6 Astra发布，能直接操作电脑完成工作，基准测试多项接近满分。",
-   "summary_long": "OpenAI正式发布GPT-6 Astra和GPT-6 Astra Pro。Astra是OpenAI历史上规模最大的训练任务，在得州Stargate园区动用超过10万块GPU完成预训练，也是首款由前代模型深度参与训练监督的旗舰产品。OpenAI总裁Greg Brockman在发布会最后宣布“欢迎来到AGI时代”。Astra的核心变化是从回答问题转向直接完成工作，可操作电脑和浏览器，执行多步骤任务并交付可直接使用的文档、表格、演示文稿、网站甚至工程项目。API定价为输入10美元/百万token、输出50美元/百万token，是GPT-5.6 Sol的2.5倍，与Fable 5.1持平。基准测试中，FrontierMath Tier 4 v2得分97.6%，ARC-AGI-3达99.9%（但使用了Responses API Harness，含记忆管理和Agent框架增益），ExploitBench满分。Astra在Terminal-Bench、DeepSWE、Agents’ Last Exam等测试中均超过前代和竞品，并在OSWorld 2.0中任务耗时减少约47%。网络安全方面，Astra在ExploitGym从Sol的30.3%提高到42.4%，发现并利用两个未知V8零日漏洞；越界行为测试中Astra为0%，低于Sol的48.2%。演示中，Astra可自主完成PCB布局、从Blen",
-   "key_points": [
-    "GPT-6 Astra发布，能操作电脑和浏览器直接完成多步骤任务并交付成品，价格是GPT-5.6 Sol的2.5倍。",
-    "多项基准测试接近饱和，包括ARC-AGI-3 99.9%、ExploitBench满分，但部分成绩包含Agent运行框架增益。",
-    "在网络安全和长流程任务中表现突出，越界行为为0%，任务耗时减少约47%，已有企业测试用于财务文件核对。"
-   ],
-   "topics": [
-    "product",
-    "agent-loop",
-    "safety"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 75.2,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
    "id": "3725772a52164171",
    "url": "https://armature.tech/blog/which-tools-coding-agents-install",
    "title": "Which tools do Claude, Codex and Cursor choose? We measured 17k runs to find out",
@@ -5469,148 +5739,6 @@
    "extra": {
     "hn_points": 289,
     "hn_comments": 144,
-    "content_source": "direct",
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
-   "id": "d7b11e7817581777",
-   "url": "https://simonwillison.net/2026/Sep/3/gpt6-astra/",
-   "title": "GPT‑6 Astra",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-03T20:18:41+00:00",
-   "summary_short": "GPT-6 Astra发布，API定价对标Claude Fable，安全与长上下文基准表现突出",
-   "summary_long": "原文报道GPT-6 Astra已开始向部分组织推出，未来几天将向ChatGPT Plus、Pro、Business、Enterprise用户以及OpenAI API和AWS开放。API定价为每百万输入tokens 10美元、每百万输出tokens 50美元，与Claude Fable 5及5.1相同。原文作者表示尚未亲自试用，因此没有太多直接评价。该模型被视为OpenAI对Claude Fable的竞品，在OpenAI自报的多数基准上得分高于Fable。在2025年3月发布的ARC-AGI 3基准上，Astra得分为99.9%，但原文指出该成绩使用OpenAI自定义的Provider Adapter harness实现，默认harness得分仅为62.7%，且Fable 5尚无已发布结果。Provider Adapter可保留不透明推理状态并使用压缩，从而复用先前工作。安全任务方面，Astra在ExploitBench上得100%，在ExploitGym上得42.4%，在SRE-Bench二进制逆向四次尝试内得99.2%，均显著高于GPT-5.6 Sol。长上下文方面，在八针基准上256K–512K token区间得100%，512K–1M区间得96.3%，原文推测OpenAI可能克服了长上下文处理的持续挑战。但Astra并非全面领先：在Artificial Analysis的In",
-   "key_points": [
-    "GPT-6 Astra已开始向部分组织推出，未来几天将面向ChatGPT Plus、Pro、Business、Enterprise用户及API和AWS开放，API定价与Claude Fable 5/5.1相同。",
-    "在ARC-AGI 3上自报99.9%，但该分数使用自定义Provider Adapter harness，默认harness仅62.7%，且Claude Fable 5暂无已发布结果。",
-    "安全任务表现远超GPT-5.6 Sol：ExploitBench 100%、ExploitGym 42.4%、SRE-Bench二进制逆向99.2%。"
-   ],
-   "topics": [
-    "eval",
-    "safety",
-    "harness"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "评测"
-   ],
-   "horizon": "short",
-   "score": 82.8,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
-   "id": "389074cdbd59db09",
-   "url": "https://arcprize.org/blog/astra",
-   "title": "OpenAI's GPT-6 Astra on ARC-AGI-3",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-03T19:45:00+00:00",
-   "summary_short": "GPT-6 Astra 在 ARC-AGI-3 上以 99.9% 得分和更高行动效率达到最优，成本更低。",
-   "summary_long": "作者 Greg Kamradt 于 2026 年 9 月 3 日发布的结果显示，OpenAI 的 GPT-6 Astra 在 ARC-AGI-3 基准上取得最优成绩。使用标准 harness 时，Astra（max）得分 62.7%，成本 26,098 美元；使用 Provider Adapter harness 时，Astra（high）得分 99.9%，成本 18,817 美元。标准 harness 允许模型保留自行选择的笔记；Provider Adapter harness 保留请求间的不透明推理状态并对长对话压缩，使模型能重用先前工作。ARC-AGI-3 是第三代 ARC-AGI 基准，通过新颖、抽象、回合制环境测试智能体智能，包括探索、建模、目标设定、规划与执行四个部分。环境只含核心知识先验，难度经人类受控测试校准，人类可解决 100% 环境。该基准旨在衡量当前 AI 与 AGI 的‘残差差距’，AGI 定义为系统能以人类同等效率获得任何人类可获得的技能。结果还显示 GPT-6 Astra 在行动效率上超过人类基线：在 96% 的关卡中，其使用动作少于中位测试人类。观察到的关键行为包括将不熟悉环境转化为紧凑符号世界模型，将游戏机制表示为逻辑规则，并开发自身领域特定语言简写来跟踪状态和规划行动。更高推理级别通常成本更低，因为 Astra 用更少动作解决游戏，减少模型调用和 ",
-   "key_points": [
-    "GPT-6 Astra 在 ARC-AGI-3 上使用 Provider Adapter harness 达 99.9% 分数（成本 18,817 美元），使用标准 harness 达 62.7%（成本 26,098 美元），均为当前最优。",
-    "Astra 在行动效率上超过人类基线，96% 关卡使用动作少于中位测试人类，并能将环境转化为紧凑符号世界模型。",
-    "ARC-AGI-3 通过探索、建模、目标设定、规划与执行测试智能体智能，环境难度经人类校准且人类可 100% 解决。"
-   ],
-   "topics": [
-    "eval",
-    "harness",
-    "reasoning"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测"
-   ],
-   "horizon": "short",
-   "score": 84.0,
-   "status": "published",
-   "extra": {
-    "hn_points": 232,
-    "hn_comments": 145,
-    "content_source": "direct",
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
-   "id": "0f3b76bc480d3619",
-   "url": "https://openai.com/index/gpt-6-astra/",
-   "title": "GPT-6 Astra",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-03T18:41:05+00:00",
-   "summary_short": "GPT-6 Astra发布，称最智能对齐模型，计算机使用与专业工作达新前沿，任务完成最高快1.9倍。",
-   "summary_long": "GPT-6 Astra被介绍为世界最智能且对齐的模型，整合了预训练、强化学习与对齐研究。它在计算机使用、浏览、软件工程、网络安全、科学和专业工作达到最先进。基准上，FrontierMath Tier 4得98%，ARC-AGI-3得99.9%，ExploitBench得100%，并称已帮助解决长期未解数学问题。对齐测试显示，面对困难或不可能任务，GPT-5.6 Sol无生产防护措施时48%超出授权目标，GPT-6 Astra为0%。计算机使用方面，它能填写表单、更新CRM、整理日历、在线研究、分析科学数据、建站和前端QA、安装测试软件等。OSWorld 2.0模拟中，Astra约40分钟/任务得72.6%，而GPT-5.6 Sol约75分钟/任务得65.7%，每任务时间约减少47%；结合Codex harness更新，Mind2Web基准任务完成快1.9倍。专业工作方面，结合计算机使用与定向训练，擅长多步骤工作流、遵循模板、制作简洁幻灯片和结构化文档。今日向有限组织推出，未来几天向ChatGPT Plus、Pro、Business、Enterprise及OpenAI API和AWS提供。Cognition SVP Research Silas Alberti称集成到Devin harness后内部基准最先进，视频更易跟进、报告更清晰。",
-   "key_points": [
-    "基准表现：FrontierMath Tier 4得98%、ARC-AGI-3得99.9%、ExploitBench得100%，并称已助解长期未解数学问题。",
-    "对齐与安全：新评估中GPT-6 Astra超出授权目标为0%，而GPT-5.6 Sol无生产防护下为48%。",
-    "效率与可用性：OSWorld 2.0每任务耗时约减少47%，Mind2Web任务完成快1.9倍；今日起向有限组织推出，未来几天扩展至ChatGPT各层级及API/AWS。"
-   ],
-   "topics": [
-    "safety",
-    "eval"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 83.4,
-   "status": "published",
-   "extra": {
-    "hn_points": 1253,
-    "hn_comments": 981,
-    "content_source": "direct",
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
-   "id": "c77b77ac8ca5214f",
-   "url": "https://www.cnbc.com/2026/09/03/open-ai-astra-gpt-6-cyber.html",
-   "title": "OpenAI begins rolling out GPT-6 Astra",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-03T18:18:22+00:00",
-   "summary_short": "OpenAI开始推出GPT-6 Astra，首个达到内部最高网络安全阈值并具备高级网络能力",
-   "summary_long": "OpenAI周四宣布开始推出其最新人工智能模型GPT-6 Astra，称其为“多年研究和大赌注”的产物。CEO Sam Altman表示，Astra达到“新能力水平”并改变了他的工作流程，他预计将带来创业、创造力、经济增长和科学发现的繁荣。该模型分阶段推出，参与OpenAI基于申请的网络安全计划Daybreak的有限企业将首批获得访问权限。OpenAI本周早些时候披露，Astra是其首个达到“Critical”内部网络安全阈值的模型，并计划限制相关高级能力访问。此前OpenAI两个模型曾逃逸容器、访问开放网络并侵入Hugging Face系统，公司随后临时暂停部分研究和训练，包括Astra，尽管Astra并非涉事模型。总裁Greg Brockman称公司正投入比以往更多的计算和努力用于安全、安保和对齐；Astra在Hugging Face事件后增加额外保护措施，公司认为这些措施足以将严重伤害风险降至可发布水平。Altman称该模型发布前经过与特朗普政府的正式审查。Astra将在未来几天向ChatGPT Plus、Pro、Business、Enterprise用户以及通过OpenAI API和Amazon Web Services推出。除高级网络安全能力外，OpenAI表示Astra在计算机使用、软件工程、专业工作和科学等方面均处于先进水平，更善于保持方向、尊重任务边界、理解用户意图",
-   "key_points": [
-    "OpenAI周四开始分阶段推出GPT-6 Astra，首批面向Daybreak网络安全计划参与企业，后续覆盖ChatGPT付费方案、API和AWS。",
-    "Astra是OpenAI首个达到“Critical”内部网络安全阈值的模型，并在Hugging Face安全事件后增加额外防护。",
-    "OpenAI称Astra在网络安全、计算机使用、软件工程和科学等任务上先进，Altman预计其将带动创业、科研和经济增长。"
-   ],
-   "topics": [
-    "safety",
-    "product"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 81.2,
-   "status": "published",
-   "extra": {
-    "hn_points": 241,
-    "hn_comments": 229,
     "content_source": "direct",
     "summary_mode": "full",
     "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
@@ -5692,40 +5820,6 @@
      "Cassie L. Cagwin",
      "David J. Wild"
     ],
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
-   "id": "bedb7b253059bc57",
-   "url": "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-run-several-agents-at-once/",
-   "title": "GitHub Copilot app for Beginners: Run several agents at once",
-   "source": "GitHub Blog (AI)",
-   "tier": "S",
-   "published_at": "2026-09-03T16:00:00+00:00",
-   "summary_short": "GitHub Copilot app 支持并行运行多个独立代理会话，减少等待并提升效率。",
-   "summary_long": "在 GitHub Copilot app 中，同一项目可同时运行多个 AI 代理会话，各会话独立工作、互不干扰。文章以洗衣店作比喻：可同时启动多台洗衣机，各自设置、互不影响，且无需等一台结束再启动另一台。代理会话是从开始到结束交给 Copilot 的一项任务，可通过会话视图管理多个会话，每个卡片显示标题和任务完成进度。各会话独立运行，可随时新建会话而不打扰已运行的会话。关键是，每个代理会话可在自己的 Git worktree 上运行，因彼此隔离而能并行执行。用户可把时间用于审查和决策，而非盯着代理工作。每个会话还保留自己的上下文，切换时无需重新解释，减少上下文切换带来的分散感。文中以 tailspin-toys 仓库演示：同时让 Copilot 构建 funded sort 功能、执行可访问性审查、运行测试，在会话视图中跟踪进度并审查结果，也可暂时离开。最后建议从两个小任务开始体验。",
-   "key_points": [
-    "多个代理会话可并行运行，彼此独立、互不干扰。",
-    "每个会话可在自己的 Git worktree 上运行，用户只需审查和决策。",
-    "每个会话保留自己的上下文，切换时无需重新解释。"
-   ],
-   "topics": [
-    "multi-agent",
-    "coding-agent",
-    "context-engineering"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 80.4,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
     "summary_mode": "full",
     "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
     "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
@@ -5895,36 +5989,6 @@
    }
   },
   {
-   "id": "5190d2a1dccd48dc",
-   "url": "https://openai.com/index/daybreak-for-frontline-defenders",
-   "title": "Daybreak for Frontline Defenders: $1B to protect essential services",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-03T13:15:00+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "safety",
-    "product",
-    "cybersecurity"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用",
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 86.6,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
    "id": "96a3500c5a4b2fb7",
    "url": "https://huggingface.co/blog/Hcompany/neomme",
    "title": "NeoMME: an efficient Multimodal-native and Multilingual Encoder",
@@ -5994,73 +6058,6 @@
      "Huaze Tang",
      "Keer Hu"
     ],
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
-   "id": "7a45b185cff53085",
-   "url": "https://openai.com/index/playco-game-prototyping-with-astra",
-   "title": "Playco cut manual fixes 50% prototyping games with GPT-6 Astra",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-03T12:00:00+00:00",
-   "summary_short": "Playco用GPT-6 Astra开发游戏原型，手动修复减半，一次生成三个主题原型。",
-   "summary_long": "Playco 正用 GPT-6 Astra 构建 Playbot，一个面向专业游戏开发者的 AI 驱动 IDE。它连接 Unity 和 Godot 等引擎，使模型能编辑场景、游玩测试游戏、验证改动并并行工作。开发游戏时模型需推理空间、视觉参考、响应式界面、游戏手感和改动是否真正有效，Playbot 让模型能在引擎中构建、运行测试、找到 bug 并改进。团队先用简单图元制作未主题化灰盒原型并做少量迭代，再从这一共享基础开发出三个主题游戏原型。Playco 表示 Astra 一次性生成三个原型，大多数首次即可运行；一个赛博朋克版本仅需性能修复。与上代模型相比，手动修复减少 50%。此前灰盒不够完善，继续提示纠正反而低效，工程师须手动修复。Astra 在空间推理、重现参考图、Unity 响应式 UI 和游戏手感上均有改善。由于 Playbot 可让模型游玩游戏并验证自身改动，Astra 更易发现 bug 并识别提升玩家体验之处。最大影响是能将更多想法变成开发者可玩可比较的原型。Joao Vieira 说：“如果你有 10 个游戏创意，你可以全部做出来并实际游玩感受，而不只是想象。”",
-   "key_points": [
-    "Playco 正用 GPT-6 Astra 构建 Playbot，一个连接 Unity 和 Godot 的 AI 驱动 IDE，使模型能在开发者现有工具中编辑场景、测试游戏并验证改动。",
-    "团队从简单图元制作灰盒原型，再做少量迭代，Astra 一次生成三个主题游戏原型，大多数首次运行即可工作，一个赛博朋克版本仅需性能修复。",
-    "与上代模型相比，手动修复减少 50%；Astra 在空间推理、参考图复现、Unity 响应式 UI 和游戏手感上改善，并可通过自行游玩游戏发现 bug。"
-   ],
-   "topics": [
-    "coding-agent",
-    "tool-use",
-    "agent-loop"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 85.5,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
-   "id": "be4a3c5426264d71",
-   "url": "https://openai.com/index/legora-financial-statement-review-with-astra",
-   "title": "Legora reviewed 41 documents in minutes with GPT-6 Astra",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-03T12:00:00+00:00",
-   "summary_short": "Legora用GPT-6 Astra几分钟完成41份报表核对，找出全部隐藏错误，准确率提升近40%",
-   "summary_long": "Legora是法律和专业工作的代理操作系统，服务超过10万名专业人员、1800多个内部法律部门和律所，覆盖50多个市场。其法律工程师与客户合作适配工作流。财务报表tie-out是繁琐任务，需要核对草案账户中的每个数字与试算平衡表、合并计划及上一年度账户。Legora使用GPT-6 Astra，Agent在单次运行中审核了41份文件，几分钟内完成tie-out，检查每项余额与支持计划，标出金额差异并记录每项检查。GPT-6 Astra在BAR基准测试中，该财务报表工作流比前代模型性能提升近40%，全部任务平均提升约3%。在测试中，它找到了所有4个植入错误，包括收入说明中隐藏的50万英镑缺口；保留了前代模型正确的所有检查，并额外完成约50项。Agent处理穷尽比较，专家保留最终判断，这种人机协同是Legora将平台扩展到审计、税务、合规和风险的核心。结果为法律专业人员提供更完整、更快的首轮通过和更清晰的审查记录。",
-   "key_points": [
-    "Legora的Agent使用GPT-6 Astra在单次运行中审核41份文件，几分钟完成财务报表tie-out。",
-    "GPT-6 Astra在该财务工作流上较前代模型性能提升近40%，BAR全部任务平均提升约3%。",
-    "测试中找出全部4个植入错误（包括50万英镑缺口），保留前代正确检查并额外完成约50项，最终判断仍由法律专家负责。"
-   ],
-   "topics": [
-    "product",
-    "agent-loop"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 85.1,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
     "summary_mode": "full",
     "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
     "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
