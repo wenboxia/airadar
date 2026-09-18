@@ -282,7 +282,7 @@ export default function App() {
                   <p className="mb-4 border-l-2 border-moss/40 pl-3 text-[12.5px] leading-relaxed text-ink-dim">
                     长期沉淀的全部内容，不受 7 天窗口限制，可全库搜索。
                     <span className="text-ink">时效类内容会自动过期退出</span>
-                    （发布超过 14 天且未经人工认可的），
+                    （发布超过 14 天、且不是你在审批单里勾收的），
                     但数据仍留在库里可审计——机器无权替你遗忘你亲手认可过的东西。
                     {stats.data?.archive && (
                       <>

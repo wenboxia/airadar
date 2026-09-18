@@ -83,8 +83,8 @@ def _llm_value(item, cfg, llm):
     kind = out.get("kind")
     item.score_detail.update({"relevance": r, "novelty": n, "longterm": lt,
                               "kind": kind, "llm_reason": out.get("reason", "")})
-    # 营销通稿和仿造品要封顶，不是扣分：tier 基础分是地板（S 级哪怕价值分为 0 也有 49.5），
-    # 加权平均里的扣分会被它抵消掉，封顶才压得住高等级信源发的软文
+    # 营销通稿和仿造品要封顶，不是扣分：封顶 45 后 S 级最高 63 分、A 级 58.2 分，结构上到不了发布线；
+    # 扣分会被 tier 地板和其他维度抵消，压不住高等级信源发的软文
     cap = cfg.kind_value_cap.get(kind)
     if cap is None and kind not in KINDS:
         item.notes.append("triage_kind_unknown")   # 模型偶尔乱答，不因此改变判断

@@ -3,14 +3,16 @@
 为什么用 GitHub Issue（decisions.md D6）：零基建的异步审批收件箱——自带通知、
 自带审计记录、Actions 有权限读写。对标企业级 Agent 平台里"高风险操作强制人工审批"的简化同构。
 
-节奏（D37）：抓取每天跑，**审批每周一次**，每次只列分数最高的 12 条。
+节奏（D37）：抓取每天跑，**审批每周一次**，每张单子 12 条分三块（D44）：
+待审候选 7（按当前打分标准从高到低）、自动发布抽查 4（均匀随机，勾=撤下）、旧池捞回 1。
 日更审批从没真正发生过：08-29 开的单子一直没关，而 open 遇到未关闭的单子就不再开新的，
 之后 18 天送审的内容全部沉在库里；累计送审 239 条，人工审完 18 条。
 
 闭环：
-  pipeline 产出待审条目 → `hitl open` 开一张勾选清单 issue
+  pipeline 产出待审条目 → `hitl open` 开一张三块勾选清单 issue，同一份数据写成 data/feed/review.json
   → 人在 issue 里勾 ✅/❌ → 下次运行 `hitl collect` 读回勾选结果
-  → 写 data/feedback.jsonl → 更新条目状态 → 周期性汇总成信源 tier 调整建议（数据飞轮）
+  → 写 data/feedback.jsonl → 更新条目状态 → 按信源汇总边缘区通过率，给「送审门槛」建议
+    （只调边缘区处理策略，绝不改 tier，见 D27 与 _source_hint）
 
 用法：
   python3 -m pipeline.hitl open      # 开审批 issue
@@ -164,7 +166,9 @@ def _recall_pick(db: DB, n: int, cfg=None) -> list:
 
 def _audit_sample(db: DB, n: int, week_key: int, cfg=None) -> list:
     """自动发布里的抽样复审。必须是**均匀随机**，不能按分数分层——
-    只有均匀抽样出来的撤下率，才能和黄金集那个"自动发布认同 62%"直接对照（D35 的教训）。
+    只有均匀抽样出来的撤下率，才能和黄金集离线重放里「当前这套标准」的自动发布认同率直接对照
+    （D35 的教训）：triage-0.3.0 + deepseek-flash 为 73%（n=26，docs/eval_report.md）。
+    62% 是旧标准的原判，不是同一个对象；换标准或换模型后基线要跟着换。
 
     这同时是全项目唯一一个**无偏**的人工反馈来源：审批队列只覆盖中间分数段（D27），
     高分段从来没人看过。撤下率补上的正是那一段。
@@ -200,7 +204,7 @@ def _expire(issue: dict, n_new: int):
         f"这张单子开了 {_age_days(issue['created_at']):.0f} 天没有关闭，按过期处理。\n\n"
         "- 已勾选的条目仍会按「通过」回收\n"
         "- **没勾选的条目不会被当成否决**，保持待审，重新参与排序\n\n"
-        f"本周新单子只列分数最高的 {n_new} 条。")})
+        f"本周新单子共 {n_new} 条（待审候选 + 自动发布抽查 + 旧池捞回）。")})
     _gh("PATCH", f"/issues/{num}", json={"state": "closed", "state_reason": "not_planned"})
     print(f"旧审批 issue #{num} 已按过期关闭")
 
@@ -275,8 +279,8 @@ def cmd_open():
     lines += [
         "---",
         "",
-        f"待审队列共 {backlog} 条，其中 {shelved} 条已按时效或新标准出队——"
-        "它们不再排队，但会轮流出现在「旧池捞回」里。**容量以外的条目不会假装还会被审。**",
+        f"待审队列共 {backlog} 条，其中 {shelved} 条已出队（时效已过、新标准不达标，或信源已停抓）——"
+        "前两类会轮流出现在「旧池捞回」里，停抓信源的不再打扰你。**容量以外的条目不会假装还会被审。**",
     ]
 
     issue = _gh("POST", "/issues", json={

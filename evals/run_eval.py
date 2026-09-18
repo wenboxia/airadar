@@ -1,8 +1,10 @@
 """AIRadar 评测引擎 v1 —— 规则校验 + 黄金集对比。
 
 用法：python3 evals/run_eval.py
-每次改 prompt / 换模型 / 调阈值后必须跑；结果存 evals/results/{ts}.json，
-跨版本可对比（回归测试思想）。Week 3 加 LLM-as-Judge 幻觉评测与多模型对比。
+每天随定时任务跑；结果存 evals/results/{ts}.json，跨版本可对比（回归测试思想）。
+它只评**库里已经落地**的判断（auto_status）——改 prompt / 换模型当天跑它，数字不会变。
+改动上线前的对照放在独立脚本里：打分 triage_prompt_eval.py，分类 feed_tag_eval.py +
+tools/classify_stability.py，摘要 judge_hallucination.py / summary_model_eval.py，成本 model_cost_latency.py。
 """
 import json
 import os
@@ -103,7 +105,8 @@ def route_metrics(pairs: list) -> dict:
 
 
 def golden_compare(rows: list) -> dict:
-    """黄金集对比：人工标注 vs pipeline 决策 → 筛选 precision/recall + 分类准确率。"""
+    """黄金集对比：人工标注 vs pipeline 原判（auto_status）→ 三条路径各自的认同率（主口径，D29）
+    + 兼容口径 precision/recall。黄金集 v2 不标分类，分类指标为 None。"""
     if not os.path.exists(GOLDEN_PATH):
         return {"skipped": "黄金集不存在"}
     golden = []

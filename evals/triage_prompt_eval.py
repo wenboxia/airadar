@@ -150,7 +150,7 @@ def main():
     ap.add_argument("--model", help="换模型测，比如 deepseek-flash；接口地址和 key 仍取 --provider 那一组")
     ap.add_argument("--provider", default="AIRADAR_LLM",
                     help=".env 里的变量前缀：AIRADAR_LLM / AIRADAR_FALLBACK / AIRADAR_JUDGE")
-    ap.add_argument("--workers", type=int, help="并发数。Kimi 在 4 路并发下被限流打回七成（D47），测质量时要调低")
+    ap.add_argument("--workers", type=int, help="并发数。Kimi 账号组织并发上限为 1，测 Kimi 必须 --workers 1（D47 被打回七成就是因为开了 4 路，见 D48）")
     args = ap.parse_args()
     cfg = load_config()
     if args.model:

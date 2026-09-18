@@ -121,8 +121,8 @@ export function ReviewPanel({ data, error }: { data: ReviewFeed | null; error: s
           )}
 
           <p className="border-l-2 border-rule pl-3 text-[12.5px] leading-relaxed text-ink-dim">
-            待审队列共 {data.queue_total} 条，其中 {data.shelved} 条已按时效或新标准出队——
-            它们不再排队，但会轮流出现在「旧池捞回」里。容量以外的条目不会假装还会被审。
+            待审队列共 {data.queue_total} 条，其中 {data.shelved} 条已出队（时效已过、新标准不达标，或信源已停抓）——
+            前两类会轮流出现在「旧池捞回」里，停抓信源的不再打扰你。容量以外的条目不会假装还会被审。
           </p>
         </>
       ) : (

@@ -9,7 +9,7 @@ const PIPELINE = [
   { n: 'triage', zh: '分层评分', d: '综合分 = 信源等级 40% + 模型价值评分 60% → 三分支路由。' },
   { n: 'summarize', zh: '双层摘要', d: '一句话 + 300 字，生成后对照原文做幻觉自检。原文不足时降为「简介模式」，不许扩写。' },
   { n: 'classify', zh: '分类归档', d: '主题分类 + 时间维度（时效 / 长期价值）。' },
-  { n: 'publish', zh: '入库发布', d: '写 SQLite 知识库 + 生成前端数据 + 开人工审批队列。' },
+  { n: 'publish', zh: '入库发布', d: '写 SQLite 知识库 + 生成前端数据。中间分数段的条目留在待审队列，每周一另开审批单。' },
 ]
 
 // 只写"准入逻辑"这类稳定的语义；具体有哪些信源、各几个，一律从 stats.json 派生。
@@ -155,9 +155,10 @@ export function Mechanism({ stats }: { stats: Stats | null }) {
           ))}
         </div>
         <p className="mt-4 text-[13.5px] leading-[1.8] text-ink-dim">
-          中间区每周开一次 GitHub Issue 勾选卡片，只列分数最高的 12 条，决策写回 feedback 日志。
+          每周一开一张 GitHub Issue 审批单，共 12 条，分三块：当前打分标准下分数最高的 7 条待审（勾 = 收录）；
+          从最近两周自动发布的内容里均匀随机抽 4 条（勾 = 撤下）；从出队旧条目里挑 1 条捞回。决策写回 feedback 日志。
           某信源的中间区内容若连续被否，系统建议对它提高送审门槛——
-          <span className="text-ink">只调中间区的处理策略，不改信源等级</span>：人工反馈只来自中间分数段，是有偏样本。
+          <span className="text-ink">只调中间区的处理策略，不改信源等级</span>：这条建议只用中间区的反馈，那是有偏样本；抽查的反馈单独记，不混进去。
           被丢弃的内容同样入库：<span className="text-ink">「筛掉了什么」和「收了什么」同样是筛选器质量的证据。</span>
         </p>
       </Section>
@@ -200,10 +201,11 @@ export function Mechanism({ stats }: { stats: Stats | null }) {
       <Section label="Evaluation" title="怎么证明「效果变好了」不是错觉">
         <ul className="space-y-3">
           {[
-            ['黄金测试集', '人工标注的标准答案，算筛选 precision / recall 与分类准确率。标注标准：三个月后你还愿意在库里搜到它吗？'],
+            ['黄金测试集', '人工标注的收录答案（111 条）。自动发布、自动丢弃、送审三条路径分别算认同率——三分类路由不套二分类 precision / recall。标注标准：三个月后你还愿意在库里搜到它吗？'],
+            ['分类准确率', '黄金集不标分类：拿 OpenAI / Anthropic 官网自带的标签当参照，另测同一 prompt 连分两次的一致率作为噪声底。'],
             ['规则校验', '字段完整性、链接合法性、状态合法性——零成本，每次必跑。'],
             ['LLM-as-Judge', '摘要忠实度核查。裁判故意用与主力不同家的模型（Kimi 评 DeepSeek），避免模型给自己打高分的偏袒。'],
-            ['回归对比', '每次结果存档，跨版本可比。改 prompt、换模型、调阈值 → 必须重跑。'],
+            ['回归对比', '每次结果存档，跨版本可比。改 prompt、换模型、调阈值 → 先在黄金集上离线重打分对照，再上线。'],
           ].map(([k, v]) => (
             <li key={k} className="border-t border-rule pt-3">
               <div className="text-[13px] text-signal">{k}</div>
