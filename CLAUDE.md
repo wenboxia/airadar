@@ -76,7 +76,7 @@ python3 tools/build_golden_v2.py build           # 黄金集 v2 首次写入（�
 
 三个角色（分工理由见 docs/decisions.md D10）：
 
-- **主力**（干活）：`AIRADAR_LLM_*` — DeepSeek `deepseek-v4-pro`
+- **主力**（干活）：`AIRADAR_LLM_*` — DeepSeek `deepseek-flash`（V4.1 Flash；09-18 从 `deepseek-v4-pro` 换过来，见 D48）
 - **备用**（兜底）：`AIRADAR_FALLBACK_*` — GLM `glm-5.3`，主力永久性故障时自动接管
 - **裁判**（评测）：`AIRADAR_JUDGE_*` — Kimi `kimi-k3`，须与主力不同家（避免 self-preference bias）
 

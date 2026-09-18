@@ -6,7 +6,7 @@ import type { Stats } from '../types'
 const PIPELINE = [
   { n: 'fetch', zh: '抓取', d: '分层信源注册表。LLM 不联网，联网由确定性代码完成——信源可控、原文可存、幻觉可查。' },
   { n: 'dedupe', zh: '去重', d: 'URL 规范化 + 标题相似度；同一事件多源报道时保留高等级信源。' },
-  { n: 'triage', zh: '分层评分', d: '综合分 = 信源等级 55% + 模型价值评分 45% → 三分支路由。' },
+  { n: 'triage', zh: '分层评分', d: '综合分 = 信源等级 40% + 模型价值评分 60% → 三分支路由。' },
   { n: 'summarize', zh: '双层摘要', d: '一句话 + 300 字，生成后对照原文做幻觉自检。原文不足时降为「简介模式」，不许扩写。' },
   { n: 'classify', zh: '分类归档', d: '主题分类 + 时间维度（时效 / 长期价值）。' },
   { n: 'publish', zh: '入库发布', d: '写 SQLite 知识库 + 生成前端数据 + 开人工审批队列。' },
@@ -25,7 +25,7 @@ const TIERS = [
 const FALLBACKS = [
   { name: '内容获取', chain: ['直接抓取', 'Jina Reader', '保留 RSS 简介'], real: 'OpenAI 官网 Cloudflare 403，靠 Reader 拿到 6000 字正文' },
   // real 为空时由运行记录派生（见下方 fallbackNote）——这里曾写死「6 次」，后来实际已经几十次
-  { name: '模型调用', chain: ['DeepSeek v4-pro', 'GLM 5.3', '标记不可用'], real: '' },
+  { name: '模型调用', chain: ['DeepSeek V4.1 Flash', 'GLM 5.3', '标记不可用'], real: '' },
   { name: '业务降级', chain: ['正常发布', 'S/A 放行·其余送审', '仅标题入库'], real: '三家账户欠费时做过完整降级演练，pipeline 照常跑完' },
 ]
 
