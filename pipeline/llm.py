@@ -203,6 +203,10 @@ class LLMClient:
                 self.stats["llm_calls"] = self.stats.get("llm_calls", 0) + 1
                 self.stats["llm_tokens"] = self.stats.get("llm_tokens", 0) + \
                     usage.get("total_tokens", 0)
+                # 输入、输出分开记：三家都是分开计价的，只有总数算不出一天花了多少钱
+                for key in ("prompt_tokens", "completion_tokens"):
+                    self.stats[f"llm_{key}"] = self.stats.get(f"llm_{key}", 0) + \
+                        (usage.get(key) or 0)
                 self.stats.setdefault("calls_by_provider", {})
                 self.stats["calls_by_provider"][p.name] = \
                     self.stats["calls_by_provider"].get(p.name, 0) + 1
