@@ -4,7 +4,8 @@ import { Masthead } from './components/Masthead'
 import { Mechanism } from './components/Mechanism'
 import { Trends } from './components/Trends'
 import { RadarScope } from './components/RadarScope'
-import { useArchive, useLatest, usePending, useStats, useTrends, useWeek } from './data'
+import { ReviewPanel } from './components/ReviewPanel'
+import { useArchive, useLatest, useReview, useStats, useTrends, useWeek } from './data'
 import { orderCategories } from './categories'
 import type { Item } from './types'
 
@@ -59,15 +60,14 @@ export default function App() {
   const latest = useLatest()
   const week = useWeek()
   const archive = useArchive()
-  const pending = usePending()
+  const review = useReview()
   const trends = useTrends()
   const stats = useStats()
 
   const source =
     view === 'week' ? week
       : view === 'archive' ? archive
-        : view === 'pending' ? pending
-          : latest
+        : latest
   const allItems = source.data?.items ?? []
 
   /** 一条内容可属于多个分类，筛选按"包含"匹配 */
@@ -101,7 +101,10 @@ export default function App() {
       : view === 'week' ? (week.data?.top ?? [])
         : []
   const filtered = cat || horizon || q.trim()
-  const pendingCount = pending.data?.items?.length ?? 0
+  // 角标只在有开着的审批单时出现，数的是单子上的条数
+  const pendingCount = review.data?.status === 'open'
+    ? Object.values(review.data.lanes).reduce((n, l) => n + l.length, 0)
+    : 0
 
   return (
     <div className="min-h-screen">
@@ -135,7 +138,7 @@ export default function App() {
             ))}
 
             {/* 桌面端搜索跟导航同行；窄屏另起一行，避免溢出 */}
-            {view !== 'mechanism' && view !== 'trends' && (
+            {view !== 'mechanism' && view !== 'trends' && view !== 'pending' && (
               <div className="ml-auto hidden items-center sm:flex">
                 <input
                   value={q}
@@ -147,7 +150,7 @@ export default function App() {
             )}
           </div>
 
-          {view !== 'mechanism' && view !== 'trends' && (
+          {view !== 'mechanism' && view !== 'trends' && view !== 'pending' && (
             <div className="pb-2.5 sm:hidden">
               <input
                 value={q}
@@ -162,6 +165,8 @@ export default function App() {
 
       {view === 'mechanism' ? (
         <Mechanism stats={stats.data} />
+      ) : view === 'pending' ? (
+        <ReviewPanel data={review.data} error={review.error} />
       ) : view === 'trends' ? (
         <main className="mx-auto max-w-4xl px-6 py-8 lg:px-10">
           <div className="mb-5">
@@ -262,9 +267,7 @@ export default function App() {
                     className="text-[30px] leading-none text-ink"
                     style={{ fontFamily: 'var(--font-display)' }}
                   >
-                    {view === 'pending'
-                      ? '待人工审批'
-                      : view === 'archive'
+                    {view === 'archive'
                         ? '知识库'
                         : filtered
                           ? '筛选结果'
@@ -295,13 +298,6 @@ export default function App() {
                           : '抽查机制刚上线，尚无撤下样本。'}
                       </>
                     )}
-                  </p>
-                )}
-
-                {view === 'pending' && (
-                  <p className="mb-4 border-l-2 border-scope/40 pl-3 text-[12.5px] leading-relaxed text-ink-dim">
-                    综合分落在 50–75 之间的内容——
-                    <span className="text-ink">系统知道自己不确定，所以交给人</span>。
                   </p>
                 )}
 

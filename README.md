@@ -52,7 +52,7 @@ AIRadar 的做法是：信源分层决定起点，模型评分决定去向，拿
 | 非致命错误 | 30 个，全部是单个信源抓取失败，没有一次阻塞整条流水线 |
 | 单次运行耗时 | 中位 12.1 分钟 |
 | 知识库 | 已发布 273 条，其中 37 条时效内容已按规则退出 |
-| 回归测试 | 117 个 |
+| 回归测试 | 122 个 |
 
 ## 评测：方法和真实结果
 
@@ -119,7 +119,7 @@ AIRadar 的做法是：信源分层决定起点，模型评分决定去向，拿
 ```bash
 pip install -r requirements.txt
 python3 -m pipeline.main --no-llm --limit 3   # 不需要 API key，走降级路径跑通全流程（会写入 data/）
-python3 -m unittest discover evals            # 117 个回归测试
+python3 -m unittest discover evals            # 122 个回归测试
 ```
 
 前端：`cd web && npm install && npm run dev`。完整命令见 [CLAUDE.md](CLAUDE.md)，配置见 [SETUP.md](SETUP.md)。

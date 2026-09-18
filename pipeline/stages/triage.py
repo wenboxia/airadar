@@ -120,6 +120,8 @@ def evaluate(item, cfg, llm) -> str:
         return "degraded"
     item.score = round(cfg.tier_weight * base + (1 - cfg.tier_weight) * value, 1)
     item.score_detail["llm_value"] = round(value, 1)
+    # 记下是哪一版标准打的分：抽查要只抽"现在这套标准"自动发布的，否则撤下率说不清在测谁
+    item.score_detail["prompt"] = PROMPT_VERSION
     return "llm_scored"
 
 
