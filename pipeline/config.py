@@ -25,7 +25,9 @@ class Config:
     # 主力 LLM（默认 DeepSeek，OpenAI 兼容协议，换供应商=换这三个值）
     llm_base_url: str = "https://api.deepseek.com"
     llm_api_key: str = ""
-    llm_model: str = "deepseek-v4-pro"
+    # 2026-09-18 从 deepseek-v4-pro 换成 V4.1 Flash（D48）：V4 Pro 原定 09-14 下线、后改为暂留，
+    # 随时可能再下；六家对比里 Flash 分类与 Pro 打平、快 3 倍、成本约 1/4（docs/eval_report.md）
+    llm_model: str = "deepseek-flash"
     # 备用 LLM（主力永久性故障时跨厂商切换，见 decisions.md D10）
     fallback_base_url: str = ""
     fallback_api_key: str = ""
