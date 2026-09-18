@@ -101,3 +101,28 @@ export const TIER_META: Record<Tier, { label: string; desc: string }> = {
   D: { label: 'D', desc: '待观察（已停用）' },
   X: { label: 'X', desc: '不抓取' },
 }
+
+/** 本周审批单：由 `hitl open` 写出，和 GitHub issue 是同一份数据 */
+export interface ReviewItem {
+  id: string
+  url: string
+  title: string
+  source: string
+  tier: Tier
+  score: number
+  current_score: number
+  summary_short: string
+  lane: 'queue' | 'audit' | 'recall'
+  reason: string
+}
+
+export interface ReviewFeed {
+  status: 'open' | 'collected'
+  issue: number
+  url: string
+  opened_at: string
+  collected_at?: string
+  lanes: { queue: ReviewItem[]; audit: ReviewItem[]; recall: ReviewItem[] }
+  queue_total: number
+  shelved: number
+}

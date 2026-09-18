@@ -29,7 +29,7 @@ import requests
 from .config import ROOT, load_config
 from .db import DB
 from .stages import triage
-from .stages.publish import write_stats
+from .stages.publish import FEED_DIR, write_stats
 
 API = "https://api.github.com"
 LABEL = "airadar-approval"
@@ -85,13 +85,24 @@ def _current_score(row) -> float:
     return float(rs.get("score", row.get("score") or 0))
 
 
-def _shelved_reason(row, cfg) -> str:
+def _retired_sources() -> set:
+    """已停抓（X 级）的信源。和本周精选同一条规则：刚决定不再收的东西不该继续占人的注意力（D36）。"""
+    import yaml
+    from .stages.fetch import SOURCES_PATH
+    with open(SOURCES_PATH, encoding="utf-8") as f:
+        return {s["name"] for s in yaml.safe_load(f)["sources"] if s.get("tier") == "X"}
+
+
+def _shelved_reason(row, cfg, retired: set = None) -> str:
     """这条为什么不进本周队列。返回空串表示它照常排队。
 
     为什么要有这个：每周新增约 95 条待审，而人每周只看 12 条——队列必然无限涨。
     按 Meta 的经验（放弃按时间顺序审、按优先级排、容量以外不假装会审），
     与其让旧条目永远排在队尾假装还会被审，不如明确让它们出队、靠"捞回"给第二次机会。
     """
+    # ⓪ 来自已停抓的信源：比如按提交时间抓的 arXiv，D36 已经认定那个入口本身就是错的
+    if retired and row.get("source") in retired:
+        return "retired"
     # ① 时效类过了保质期：沿用 D30 的同一条规则和同一个天数——
     #    两周前的时效新闻就算现在审了也没人看了；长期价值类不受此限
     if row.get("horizon") == "short" and row.get("published_at") and \
@@ -120,8 +131,9 @@ def _apply_source_quota(rows: list, quota: int) -> list:
 def _pending(db: DB, limit: int = 0, cfg=None) -> list:
     """本周真正给人看的队列。被规则挡下的不丢、也不改状态，进捞回池（见 _excluded）。"""
     cfg = cfg or load_config()
+    retired = _retired_sources()
     rows = [dict(r) for r in db.conn.execute("SELECT * FROM items WHERE status='review'")]
-    live = [r for r in rows if not _shelved_reason(r, cfg)]
+    live = [r for r in rows if not _shelved_reason(r, cfg, retired)]
     live.sort(key=lambda r: -_current_score(r))
     live = _apply_source_quota(live, cfg.review_source_quota)
     return live[:limit] if limit else live
@@ -130,10 +142,11 @@ def _pending(db: DB, limit: int = 0, cfg=None) -> list:
 def _excluded(db: DB, cfg=None) -> list:
     """被规则挡在队列外的池子。它们仍是 status='review'，只是不打扰人。"""
     cfg = cfg or load_config()
+    retired = _retired_sources()
     out = []
     for r in db.conn.execute("SELECT * FROM items WHERE status='review'"):
         r = dict(r)
-        reason = _shelved_reason(r, cfg)
+        reason = _shelved_reason(r, cfg, retired)
         if reason:
             out.append((r, reason))
     return out
@@ -142,7 +155,9 @@ def _excluded(db: DB, cfg=None) -> list:
 def _recall_pick(db: DB, n: int, cfg=None) -> list:
     """二次机会（照搬 HN 的 second-chance pool）：被挡下的里面分最高的先给一次曝光。
     人留空就是"确认不要"，永久出队，下周轮到下一条。"""
-    pool = [r for r, _ in _excluded(db, cfg) if "recall_declined_at" not in _hitl(r)]
+    # 停抓信源的不给第二次机会——不是没轮到，是入口本身被否定了
+    pool = [r for r, why in _excluded(db, cfg)
+            if why != "retired" and "recall_declined_at" not in _hitl(r)]
     pool.sort(key=lambda r: -_current_score(r))
     return pool[:n]
 
@@ -160,6 +175,9 @@ def _audit_sample(db: DB, n: int, week_key: int, cfg=None) -> list:
         "AND published_at >= datetime('now', ?) ORDER BY id",
         (f"-{AUDIT_WINDOW_DAYS} days",))]
     rows = [r for r in rows if not ({"kept_at", "retracted_at"} & set(_hitl(r)))]
+    # 只抽当前这版打分标准自动发布的：撤下率测的是"现在这套标准"，混进旧标准的样本就说不清在测谁
+    rows = [r for r in rows
+            if json.loads(r.get("score_detail") or "{}").get("prompt") == triage.PROMPT_VERSION]
     random.Random(week_key).shuffle(rows)   # 同一周重开单子抽到同一批，跨周自动换批
     return rows[:n]
 
@@ -226,41 +244,33 @@ def cmd_open():
         _expire(issue, len(queue) + len(audit) + len(recall))
 
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    # 空的那一块不出现：抽查只抽当前标准自动发布的，刚换标准的头几天可能一条都没有
+    blocks = [
+        ("queue", queue, f"### 一 · 待审候选 —— 勾上 = 收录进知识库（{len(queue)} 条）",
+         ["系统当初拿不准、交给你定的内容，按最新一版打分标准从高到低排。"]),
+        ("audit", audit, f"### 二 · 自动发布抽查 —— 勾上 = **撤下**（{len(audit)} 条）",
+         ["> 这几条是系统自己发的，没经过你。**勾上 = 这条不该发，会从知识库撤下**；",
+          "> 留空 = 你认可它留着。抽样是均匀随机的（本周种子 "
+          f"{_week_key()}），撤下可逆，记录在 feedback.jsonl。"]),
+        ("recall", recall, f"### 三 · 旧池捞回 —— 勾上 = 收录（{len(recall)} 条）",
+         ["> 这条按时效或新标准已经退出队列，给它第二次机会。",
+          "> **留空 = 确认不要，永久出队**，以后不再打扰你。"]),
+    ]
+    blocks = [b for b in blocks if b[1]]
     lines = [
-        "本周 3 件事，**每块的勾选含义不一样，勾之前先看小标题**。",
+        f"本周 {len(blocks)} 件事，**每块的勾选含义不一样，勾之前先看小标题**。",
         "",
         "> ⚠️ **关闭 issue 才算提交。** 只勾选不关闭，系统不会回收你的决策。",
         "",
         "---",
         "",
-        f"### 一 · 待审候选 —— 勾上 = 收录进知识库（{len(queue)} 条）",
-        "",
-        "综合分落在 **50–75** 的内容：系统知道自己不确定，所以交给你。",
-        "",
     ]
-    for it in queue:
-        lines += _entry(it, "queue")
-
-    lines += [
-        f"### 二 · 自动发布抽查 —— 勾上 = **撤下**（{len(audit)} 条）",
-        "",
-        "> 这几条是系统自己发的，没经过你。**勾上 = 这条不该发，会从知识库撤下**；",
-        "> 留空 = 你认可它留着。抽样是均匀随机的（本周种子 "
-        f"{_week_key()}），撤下可逆，记录在 feedback.jsonl。",
-        "",
-    ]
-    for it in audit:
-        lines += _entry(it, "audit")
-
-    lines += [
-        f"### 三 · 旧池捞回 —— 勾上 = 收录（{len(recall)} 条）",
-        "",
-        "> 这条按时效或新标准已经退出队列，给它第二次机会。",
-        "> **留空 = 确认不要，永久出队**，以后不再打扰你。",
-        "",
-    ]
-    for it in recall:
-        lines += _entry(it, "recall", f" · {_shelved_reason(it, cfg)}")
+    retired = _retired_sources()
+    for lane, rows, title, intro in blocks:
+        lines += [title, ""] + intro + [""]
+        for it in rows:
+            tail = f" · {_shelved_reason(it, cfg, retired)}" if lane == "recall" else ""
+            lines += _entry(it, lane, tail)
 
     lines += [
         "---",
@@ -274,8 +284,51 @@ def cmd_open():
         "body": "\n".join(lines),
         "labels": [LABEL],
     })
+    _write_review_feed(issue, {"queue": queue, "audit": audit, "recall": recall},
+                       backlog, shelved, cfg)
     print(f"已开审批 issue #{issue['number']}"
           f"（待审 {len(queue)} / 抽查 {len(audit)} / 捞回 {len(recall)}）")
+
+
+REVIEW_FEED = "review.json"
+REVIEW_DIR = FEED_DIR        # 测试里 patch 成临时目录，免得把假单子写进真实的 data/feed
+
+
+def _write_json(name: str, obj):
+    os.makedirs(REVIEW_DIR, exist_ok=True)
+    with open(os.path.join(REVIEW_DIR, name), "w", encoding="utf-8") as f:
+        json.dump(obj, f, ensure_ascii=False, indent=1)
+
+
+def _review_view(it: dict, lane: str, cfg) -> dict:
+    return {"id": it["id"], "url": it["url"], "title": it["title"], "source": it["source"],
+            "tier": it["tier"], "score": it["score"], "current_score": _current_score(it),
+            "summary_short": it.get("summary_short") or "", "lane": lane,
+            "reason": _shelved_reason(it, cfg, _retired_sources()) if lane == "recall" else ""}
+
+
+def _write_review_feed(issue: dict, lanes: dict, backlog: int, shelved: int, cfg):
+    """把这张单子原样写给网站。网站和 GitHub 读的是同一份数据，所以两边永远一致——
+    以前网站的「待审」读的是"今天新送审的"，跟人周一真正要审的不是一回事，还显示成同一个名字。"""
+    _write_json(REVIEW_FEED, {
+        "status": "open", "issue": issue.get("number"), "url": issue.get("html_url", ""),
+        "opened_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "lanes": {lane: [_review_view(it, lane, cfg) for it in rows]
+                  for lane, rows in lanes.items()},
+        "queue_total": backlog, "shelved": shelved,
+    })
+
+
+def _mark_review_feed_collected(numbers: set):
+    path = os.path.join(REVIEW_DIR, REVIEW_FEED)
+    if not os.path.exists(path):
+        return
+    with open(path, encoding="utf-8") as f:
+        feed = json.load(f)
+    if feed.get("issue") in numbers and feed.get("status") == "open":
+        feed["status"] = "collected"
+        feed["collected_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+        _write_json(REVIEW_FEED, feed)
 
 
 def _mark_hitl(db: DB, item_id: str, key: str, now: str):
@@ -320,6 +373,7 @@ def cmd_collect(dry_run: bool = False):
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     counts = {}
     feedback = []
+    collected = set()
     for issue in closed:
         labels = {l["name"] for l in issue.get("labels", [])}
         if "airadar-collected" in labels:
@@ -364,10 +418,13 @@ def cmd_collect(dry_run: bool = False):
         db.conn.commit()
         _gh("POST", f"/issues/{issue['number']}/labels",
             json={"labels": ["airadar-collected"]})
+        collected.add(issue["number"])
 
     if dry_run:
         print("dry-run：没有写库，也没有改 issue 标签")
         return
+    if collected:
+        _mark_review_feed_collected(collected)
     if feedback:
         _log_feedback(feedback)
         write_stats_safe(db)

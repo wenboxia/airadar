@@ -52,6 +52,7 @@ class _Base(unittest.TestCase):
         self.patches = [
             mock.patch.object(hitl, "DB", return_value=self.db),
             mock.patch.object(hitl, "FEEDBACK_PATH", self.fb),
+            mock.patch.object(hitl, "REVIEW_DIR", d),
             mock.patch.object(hitl, "write_stats_safe"),
             mock.patch.object(hitl, "_source_hint"),
         ]
@@ -122,13 +123,13 @@ class TestLanes(_Base):
 
     def setUp(self):
         super().setUp()
-        # 两条自动发布的，用来测抽查
+        # 两条按当前打分标准自动发布的，用来测抽查
         for i in (1, 2):
             self.db.conn.execute(
                 "INSERT INTO items (id, title, url, source, tier, score, status, auto_status,"
                 " horizon, published_at, score_detail) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
                 (f"b{i}", f"pub{i}", f"pu{i}", "s", "S", 85, "published", "published",
-                 "long", _iso(2), "{}"))
+                 "long", _iso(2), json.dumps({"prompt": triage.PROMPT_VERSION})))
         self.db.conn.commit()
 
     def _collect(self, issue):
@@ -206,6 +207,17 @@ class TestLanes(_Base):
                 self.patches[-1].start()
         self.assertNotIn("0 / 5", buf.getvalue(), "audit 的 5 条撤下不该进边缘区统计")
 
+    def test_audit_only_samples_current_scoring_version(self):
+        """撤下率测的是"现在这套标准"。旧标准时期自动发布的混进来，就说不清在测谁。"""
+        self.db.conn.execute(
+            "INSERT INTO items (id, title, url, source, tier, score, status, auto_status,"
+            " horizon, published_at, score_detail) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+            ("c9", "old", "ou", "s", "S", 90, "published", "published", "long", _iso(2), "{}"))
+        self.db.conn.commit()
+        ids = [r["id"] for r in hitl._audit_sample(self.db, 10, 202638)]
+        self.assertNotIn("c9", ids)
+        self.assertEqual(sorted(ids), ["b1", "b2"])
+
     def test_audit_sample_is_reproducible(self):
         a = [r["id"] for r in hitl._audit_sample(self.db, 2, 202638)]
         self.assertEqual(a, [r["id"] for r in hitl._audit_sample(self.db, 2, 202638)])
@@ -264,10 +276,50 @@ class TestQueueRules(_Base):
         got = [r for r in hitl._pending(self.db) if r["source"] == "量子位"]
         self.assertEqual(len(got), Config().review_source_quota)
 
+    def test_retired_source_leaves_queue_and_never_recalled(self):
+        """停抓信源（X 级）的条目：不占名额，也不给第二次机会——入口本身被否定了（D36）。"""
+        self._row("f1", source="arXiv Agent/LLM", horizon="long", score=74)
+        with mock.patch.object(hitl, "_retired_sources", return_value={"arXiv Agent/LLM"}):
+            self.assertNotIn("f1", [r["id"] for r in hitl._pending(self.db)])
+            self.assertIn(("f1", "retired"),
+                          [(r["id"], why) for r, why in hitl._excluded(self.db)])
+            self.assertNotIn("f1", [r["id"] for r in hitl._recall_pick(self.db, 10)])
+        self.assertEqual(self.status("f1")["status"], "review", "出队不是丢弃")
+
     def test_sorts_by_rescore_score_when_present(self):
         self._row("e1", score=51, extra=json.dumps(
             {"rescore": {"prompt": triage.PROMPT_VERSION, "verdict": "review", "score": 99}}))
         self.assertEqual(hitl._pending(self.db)[0]["id"], "e1")
+
+
+class TestReviewFeed(_Base):
+    """网站的「待审」窗口读的就是这份文件——它必须和 GitHub 上那张单子是同一份数据。"""
+
+    def _open(self):
+        with mock.patch.object(hitl, "_gh", side_effect=lambda m, p, **kw:
+                               [] if m == "GET" else {"number": 42, "html_url": "https://gh/42"}), \
+                mock.patch.object(hitl, "LANE_QUOTA", {"queue": 2, "audit": 0, "recall": 0}):
+            hitl.cmd_open()
+        with open(os.path.join(os.path.dirname(self.fb), hitl.REVIEW_FEED), encoding="utf-8") as f:
+            return json.load(f)
+
+    def test_open_writes_exactly_the_issue_items(self):
+        feed = self._open()
+        self.assertEqual(feed["status"], "open")
+        self.assertEqual(feed["issue"], 42)
+        self.assertEqual([it["id"] for it in feed["lanes"]["queue"]], ["a2", "a3"])
+
+    def test_collect_marks_it_done(self):
+        self._open()
+        with mock.patch.object(hitl, "_gh", side_effect=lambda m, p, **kw:
+                               [{"number": 42, "labels": [], "body": _body({"a2": True})}]
+                               if m == "GET" else {}):
+            hitl.cmd_collect()
+        with open(os.path.join(os.path.dirname(self.fb), hitl.REVIEW_FEED), encoding="utf-8") as f:
+            self.assertEqual(json.load(f)["status"], "collected")
+
+    def test_tests_never_touch_real_feed_dir(self):
+        self.assertNotEqual(hitl.REVIEW_DIR, hitl.FEED_DIR, "测试必须把输出目录指到临时文件夹")
 
 
 class TestOpen(_Base):

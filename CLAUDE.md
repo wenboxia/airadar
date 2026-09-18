@@ -57,7 +57,7 @@ python3 evals/feed_tag_eval.py --per-tag 15        # 分类准确率：拿 OpenA
 python3 evals/triage_prompt_eval.py               # 改 triage 打分标准后：拿黄金集离线重打分，只读库
 python3 evals/triage_prompt_eval.py --replay <jsonl> --weights 0.4,0.25,0.25,0.5   # 零成本扫权重
 python3 tools/classify_stability.py --n 100         # 分类噪声底：同一 prompt 连分两次的主类一致率
-python3 -m unittest discover evals -v    # 117 个回归测试
+python3 -m unittest discover evals -v    # 122 个回归测试
 
 # ── 前端 ──────────────────────────────────────────────
 cd web && npm run dev                    # 本地开发（自动同步 data/feed）
