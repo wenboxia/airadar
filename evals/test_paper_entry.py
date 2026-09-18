@@ -129,11 +129,15 @@ class TestMentionGate(unittest.TestCase):
                 self._items({"量子位": ["2601.00003"]}), db, self.SRC, self._ctx())
         self.assertEqual(got, [])
 
-    def test_no_mentions_costs_nothing(self):
+    def test_no_mentions_costs_nothing_but_leaves_a_trace(self):
+        """没人提论文时不调接口，但必须留下"跑过、0 篇"的记录——
+        否则运行记录里分不清"今天没人提"和"入口根本没跑"（09-18 的运行就是这样）。"""
         db = Mock()
+        ctx = Context(cfg=Mock(), llm=Mock(), db=db, run_id="t", stats={})
         with unittest.mock.patch.object(fetch, "fetch_arxiv_by_id",
                                         Mock(side_effect=AssertionError("不该调用"))):
-            self.assertEqual(fetch.collect_mentions([], db, self.SRC, self._ctx()), [])
+            self.assertEqual(fetch.collect_mentions([], db, self.SRC, ctx), [])
+        self.assertEqual(ctx.stats["fetch"]["arxiv_mentions"]["seen"], 0)
 
 
 if __name__ == "__main__":
