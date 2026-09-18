@@ -321,6 +321,8 @@ def collect_mentions(items: list, db, src: dict, ctx: Context) -> list:
         for pid in out.get("arxiv", []):
             mentioned.setdefault(pid, []).append(it.source)
     if not mentioned:
+        # 0 篇也要留记录：否则分不清"今天没人提论文"和"这个入口根本没跑"（D40）
+        ctx.stats.setdefault("fetch", {})["arxiv_mentions"] = {"seen": 0, "fetched": 0, "kept": 0}
         return []
     existing = db.existing_ids() if db else set()
     papers = fetch_arxiv_by_id(sorted(mentioned), src)
