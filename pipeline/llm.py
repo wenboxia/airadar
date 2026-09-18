@@ -61,9 +61,12 @@ def classify_http_error(status: int, body: str) -> Exception:
 # 按模型名前缀匹配，新增模型只改这张表，不动调用逻辑。
 #   - deepseek-v4：实测同样输出 reasoning_content（"输出 {"a":1}" 这种琐碎请求都要花 108
 #     个思考 token）。摘要任务给 800 token 时思考吃掉大半，JSON 被截断 → 解析失败。
+#   - deepseek-flash（V4.1 Flash，2026-09-18 实测）：同样是推理模型，"输出 {"a":1}"要先想 79 个 token。
+#     名字不以 deepseek-v4 开头，前缀匹配不到——第一次拿它跑评测时就没吃到这条调整
 MODEL_QUIRKS = {
     "kimi-k3": {"temperature": 1.0, "token_multiplier": 3.0},
     "kimi-k2": {"token_multiplier": 1.5},
+    "deepseek-flash": {"token_multiplier": 3.0},
     "glm-5": {"token_multiplier": 3.0},
     "glm-4": {"token_multiplier": 1.5},
     "deepseek-v4": {"token_multiplier": 3.0},
