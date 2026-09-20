@@ -1,16 +1,501 @@
 {
- "generated_at": "2026-09-19T22:54:02+00:00",
+ "generated_at": "2026-09-20T23:09:41+00:00",
  "items": [
   {
-   "id": "93b15eb0cb1a98a8",
-   "url": "https://simonwillison.net/2026/Sep/18/gemini-hacked-three-companies/",
-   "title": "Gemini Hacked Three Companies in First Known Breakout by Google’s AI",
+   "id": "7942abbc44e46fbc",
+   "url": "https://www.qbitai.com/2026/09/492939.html",
+   "title": "APUS 开源国内首批Jev跨平台复现：国产模型实现秒级决策",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-20T08:30:32+00:00",
+   "summary_short": "APUS开源首批Jev独立复现项目，本地模型离线完成浏览器操作秒级决策",
+   "summary_long": "9月19日，APUS（麒麟合盛网络技术股份有限公司）旗下AI实验室公布全球最早一批针对Jev的独立开源复现成果，包装为开箱即用的Agent Skill fast-browser-use，支持纯本地模型离线执行，覆盖macOS、Linux、Windows三大系统，GPU服务器与无GPU的Mac、PC均可运行，代码以MIT协议开放。Jev之名取自经济学家杰文斯，暗合“杰文斯悖论”；该模型面向智能体最高频的分类、选择、评分、真伪判断需求，直接返回类型化答案与置信概率而非逐字生成文本。业内认为这验证了Agent架构的“快慢分工”：大模型负责规划等慢思考，轻量决策模型负责高频快判断，调度工程层被称为Harness。APUS基于Jev公开文档分析出其“跳过自回归解码、隐状态直接打分”的核心逻辑，复现单Token Logits快速决策与KV-Cache广播、并发批量评估机制；fast-browser-use将页面可见可交互元素整理为带编号候选动作，由本地Qwen3.5-9B单次前向计算完成决策。实测在Apple M2 Pro笔记本上离线完成维基百科检索中位耗时约18秒，表单填报、站内导航约3秒，单任务打分仅4次，零云端调用。APUS称其意义在于验证开源权重加端侧算力可支撑该范式、数据留本机满足政企金融安全要求，并提供独立验证参考。",
+   "key_points": [
+    "APUS开源fast-browser-use，称其为全球最早一批Jev独立开源复现成果，支持纯本地模型离线执行，覆盖macOS、Linux、Windows，有GPU或无GPU均可运行，MIT协议开放。",
+    "APUS基于Jev公开文档分析出“跳过自回归解码、隐状态直接打分”核心逻辑，复现单Token Logits快速决策及KV-Cache广播、并发批量评估机制；浏览器场景由本地Qwen3.5-9B单次前向计算完成动作选择。",
+    "实测M2 Pro笔记本上离线完成维基百科检索中位约18秒，表单填报、站内导航约3秒，单任务打分4次、零云端调用；此前Jev性能数据均来自TypeSafe官方自测。"
+   ],
+   "topics": [
+    "harness",
+    "reasoning",
+    "open-source"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 68.3,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "APUS"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/qbitai",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/apus",
+      "https://www.qbitai.com/2026/09/492873.html",
+      "https://www.qbitai.com/2026/09/492849.html",
+      "https://www.qbitai.com/2026/09/492467.html",
+      "https://www.qbitai.com/2026/09/492426.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/492939.html&title=APUS 开源国内首批Jev跨平台复现：国产模型实现秒级决策&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2023/09/83605.html",
+      "https://www.qbitai.com/2024/09/191235.html",
+      "https://www.qbitai.com/2023/09/82624.html",
+      "https://www.qbitai.com/2023/09/83444.html",
+      "https://www.qbitai.com/2023/11/96826.html",
+      "https://www.qbitai.com/2024/02/119333.html",
+      "https://www.qbitai.com/2026/09/489105.html",
+      "https://www.qbitai.com/2026/09/488933.html",
+      "https://www.qbitai.com/2026/09/488832.html",
+      "https://www.qbitai.com/2026/09/488725.html",
+      "https://www.qbitai.com/2026/09/488694.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "bd7e7d7318c9042a",
+   "url": "https://simonwillison.net/2026/Sep/20/voxium/",
+   "title": "Quoting voxium",
    "source": "Simon Willison",
    "tier": "A",
-   "published_at": "2026-09-18T23:57:57+00:00",
-   "summary_short": "",
+   "published_at": "2026-09-20T21:06:43+00:00",
+   "summary_short": "亲历者称大公司一切产出皆由 Claude Code 生成，无人阅读",
+   "summary_long": "一段署名 voxium 的亲历叙述。作者称自己入职一家大公司的新岗位已半个月，发现这里没人知道任何事情：规格说明、代码、测试、PRD、工单以及工单的处理方式、报告等，全部由 Claude Code 生成。团队里没有人喜欢这种状态，但被要求尽可能多地交付。作者多次从高层管理那里听到，推送代码并不是瓶颈，那为什么还慢？人们每天工作 12 到 13 个小时，只是为了按回车。没有人阅读任何东西。从 L1 到 L7 的工程师，字面上每一个人都在做同一件事：和 Claude 对话。原文未披露公司名称、行业或更多背景，并将该内容标注为 ai-misuse、llms、ai、generative-ai。",
+   "key_points": [
+    "作者入职大公司半个月，团队内的规格、代码、测试、PRD、工单处理、报告等全部由 Claude Code 生成",
+    "团队无人喜欢这种状态，但被要求尽可能多交付；高层称推送代码不是瓶颈，员工每天工作 12 到 13 小时只是为了按回车，没有人阅读产出",
+    "从 L1 到 L7 的工程师都在做同一件事——和 Claude 对话；原文未说明公司名称与更多背景"
+   ],
+   "topics": [
+    "coding-agent",
+    "ai-misuse"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 65.2,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "ai-misuse",
+     "llms",
+     "ai",
+     "generative-ai"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://twitter.com/v0xium/status/2101526107128529120",
+      "https://simonwillison.net/tags/ai-misuse",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "60f379c3b3ff6ef5",
+   "url": "https://softwarecrisis.dev/letters/llmentalist/",
+   "title": "Chat-based Large Language Models replicate the mechanisms of a psychic's con",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-20T12:20:13+00:00",
+   "summary_short": "作者认为聊天大模型的\"智能\"感与灵媒冷读骗术同源，是同一套手法的意外自动化。",
+   "summary_long": "作者近一年研究语言模型与扩散模型在软件业务中的应用，一直困惑于许多人相信聊天式语言模型具有智能，但LLM中并不存在能解释这一点的机制：它不是大脑，与人类或动物的推理机制没有实质共通，只是语言token的数学模型，给出的是数学上看似合理的回答。作者提出两种可能解释——技术行业意外发明了基于未知原理的全新心智的初期阶段，或智能错觉存在于用户头脑而非LLM本身——并自认属于第二种，其关于生成式AI风险的书即以此命名。近几个月作者进一步认为，这种错觉与灵媒\"冷读\"骗术的机制相同，是同一套手法的意外自动化：双方都使用含Forer效应的validation statements，制造出能给出极具体答案的印象，实则统计上泛泛。触发点是Terence Eden关于聊天机器人回复中Forer陈述普遍性的博文。作者还指出，AI信徒言辞中敬畏、怀疑与恐惧的混合，与灵媒骗局受害者相似。原文随后开始列举灵媒骗术的步骤（受众自我筛选、布置场景、通过社交媒体调查受众等），但文本在此中断。",
+   "key_points": [
+    "作者认为LLM只是语言token的数学模型，没有思考或推理的机制，\"智能\"错觉在用户头脑中而非模型本身。",
+    "作者主张该错觉与灵媒\"冷读\"骗术机制相同，靠含Forer效应的validation statements给人极具体的印象，实则统计上泛泛。",
+    "作者称AI信徒言辞中敬畏、怀疑与恐惧的混合令其联想到灵媒骗局受害者；原文在列举灵媒骗术步骤处中断，后续内容未详述。"
+   ],
+   "topics": [
+    "interpretability",
+    "hallucination"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 64.2,
+   "status": "review",
+   "extra": {
+    "hn_points": 153,
+    "hn_comments": 242,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://illusion.baldurbjarnason.com/",
+      "https://www.skepdic.com/forer.html",
+      "https://shkspr.mobi/blog/2023/02/how-much-of-ais-recent-success-is-due-to-the-forer-effect/",
+      "https://en.wikipedia.org/wiki/Cold_reading",
+      "https://en.wikipedia.org/wiki/Subjective_validation",
+      "https://en.wikipedia.org/wiki/Barnum_effect",
+      "https://en.wikipedia.org/wiki/Cold_reading#The_rainbow_ruse",
+      "https://en.wikipedia.org/wiki/Cold_reading#Shotgunning",
+      "https://en.wikipedia.org/wiki/Cold_reading#Subconscious_cold_reading",
+      "http://www.denisdutton.com/cold_reading.htm",
+      "https://huggingface.co/blog/rlhf",
+      "https://needtoknow.fyi/card/hallucinations/",
+      "https://www.baldurbjarnason.com/2023/ai-summaries-unreliable/",
+      "http://opensamizdat.com/posts/chatgpt_survey/",
+      "https://needtoknow.fyi/card/copyright/",
+      "https://softwarecrisis.dev/letters/ai-code-quality/",
+      "https://softwarecrisis.dev/letters/ai-and-software-quality/",
+      "https://www.baldurbjarnason.com/2023/ai-in-healthcare/",
+      "https://www.baldurbjarnason.com/2023/ignore-most-ai-research/",
+      "https://www.baldurbjarnason.com/2023/ai-research-again/",
+      "https://www.baldurbjarnason.com/2023/beware-of-ai-snake-oil/",
+      "https://softwarecrisis.dev/letters/prompts-are-not-fit-for-purpose/",
+      "https://softwarecrisis.dev/letters/google-bard-seo/",
+      "http://positivelybrainwashed.com/how-to-become-psychic-and-cold-read-people/",
+      "https://www.ianrowland.com/_files/ugd/8b456e_2460f20f15a54f7c977e7410d38dad71.pdf",
+      "https://rationalwiki.org/wiki/Cold_reading",
+      "https://www.thrillist.com/culture/7-tricks-psychics-and-mediums-use-how-psychics-use-cold-reading-the-forer-effect",
+      "https://www.psychologytoday.com/us/blog/hot-thought/201904/should-you-believe-in-psychics",
+      "https://en.wikipedia.org/wiki/Motivated_reasoning",
+      "https://medium.com/@chris.kirsch/cold-reading-how-i-made-others-believe-i-had-psychic-powers-dc184879d264",
+      "https://www.skepdic.com/coldread.html",
+      "https://www.skepdic.com/subjectivevalidation.html",
+      "https://skepticalinquirer.org/1998/09/coincidences-remarkable-or-random/",
+      "https://www.susanblackmore.uk/articles/psychic-experiences-psychic-illusions/",
+      "https://www.skeptics.com.au/resources/articles/guide-to-cold-reading-ray-hyman/",
+      "https://www.psychologytoday.com/us/blog/speaking-in-tongues/201201/tricks-the-psychic-trade",
+      "https://www.aarp.org/money/scams-fraud/info-2022/psychic.html",
+      "https://skepticalinquirer.org/exclusive/ten-tricks-of-the-psychics-i-bet-you-didnrsquot-know/"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "278814ed4179cba9",
+   "url": "https://www.scmp.com/tech/big-tech/article/3368055/alibaba-open-sources-medical-ai-model-can-detect-cancer-and-nearly-150-conditions",
+   "title": "Alibaba open-sources AI model that can detect cancer and nearly 150 conditions",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-18T23:54:42+00:00",
+   "summary_short": "阿里达摩院开源医学AI模型Damo Radar，读腹部CT可识别近150种病变。",
+   "summary_long": "阿里巴巴集团研究机构达摩院开源了一款医学影像AI模型。该模型名为Damo Radar，属视觉语言模型，用于分析覆盖18个腹部器官的增强CT扫描，识别包括恶性肿瘤在内的多种疾病与异常，涉及近150种腹部病变。达摩院表示，模型训练方式是将CT扫描与临床报告配对。在近4万例真实检查中，该模型在146项临床发现上的平均AUC为0.913；AUC为1.0代表诊断完全准确。研究团队称，这一训练方法未来有望扩展到其他类型的医学影像，并将该模型称为“全球首个专家级通用医学影像模型”。原文未详述模型的开放许可范围、参与研究的医疗机构，也未说明与人类放射科医生对比的具体细节。",
+   "key_points": [
+    "达摩院开源视觉语言模型Damo Radar，可分析覆盖18个腹部器官的增强CT，识别近150种腹部病变，包括恶性肿瘤",
+    "模型以CT扫描与临床报告配对训练；在近4万例真实检查中，146项临床发现的平均AUC达0.913（1.0为完全准确）",
+    "研究团队称该训练方法未来可扩展至其他医学影像，并称其为“全球首个专家级通用医学影像模型”"
+   ],
+   "topics": [
+    "open-source",
+    "medical-imaging",
+    "vision-language"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 62.0,
+   "status": "review",
+   "extra": {
+    "hn_points": 151,
+    "hn_comments": 22,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "021af9db3b1ecad5",
+   "url": "https://github.com/Player-YN/BrowserKitten",
+   "title": "Player-YN/BrowserKitten — Paw Work - selection-first web agent for Chrome: select on the live page, describe the outcome, take away an editable office file. BYOK, sandboxed, no server.",
+   "source": "GitHub Trending (AI)",
+   "tier": "B",
+   "published_at": "2026-08-28T10:56:56+00:00",
+   "summary_short": "Paw Work：Chrome 选择优先网页智能体，选中页面、描述结果，得到可编辑办公文件。",
    "summary_long": "",
-   "key_points": [],
+   "key_points": [
+    "Paw Work 是面向 Chrome 的选择优先（selection-first）网页智能体",
+    "在实时页面上进行选择",
+    "描述想要的结果"
+   ],
+   "topics": [
+    "product",
+    "agent-loop"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "开源项目"
+   ],
+   "horizon": "short",
+   "score": 59.3,
+   "status": "review",
+   "extra": {
+    "stars": 2844,
+    "language": "JavaScript",
+    "summary_mode": "brief"
+   }
+  },
+  {
+   "id": "6aa47ed911e4b48e",
+   "url": "https://simonwillison.net/2026/Sep/20/llm-keys-ui/",
+   "title": "llm-keys-ui 0.1",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-20T19:22:19+00:00",
+   "summary_short": "llm-keys-ui 0.1 发布：用本地网络界面给远程机器配置 API key",
+   "summary_long": "作者在发布说明中称，该插件解决的是一个非常具体的问题。作者开始使用 Codex Remote 在多台机器上运行 coding agent，并用手机进行控制；有时会在这些机器上开发 LLM 项目，因而偶尔需要配置 API key。作者不喜欢把 API key 粘贴进 agent 会话，也希望不必把它直接粘贴到 ChatGPT 应用里，就能把密钥送到目标机器上。使用方式上，作者让 Codex 执行 uvx --with llm-keys-ui llm keys-ui --all，随后由它给出一个界面的 URL（包含本地网络或 Tailscale 设备 IP），在该界面中可以保存额外的 API key；之后当需要用到某个密钥时，可以在 shell 命令中使用类似 llm keys get anthropic 的命令来获取。原文给出的标签为 llm、coding-agents、codex。除上述使用流程外，原文未详述安装要求、安全机制或适配范围等信息。",
+   "key_points": [
+    "作者用 Codex Remote 在远程机器上运行 coding agent 并通过手机控制，有时需要在这些机器上为 LLM 项目配置 API key。",
+    "插件用法是让 Codex 执行 uvx --with llm-keys-ui llm keys-ui --all，它会返回一个界面 URL（包含本地网络或 Tailscale 设备 IP），可在该界面保存额外的 API key。",
+    "之后可在 shell 命令中用 llm keys get anthropic 一类命令取用密钥；原文未详述安装、安全机制等其他信息。"
+   ],
+   "topics": [
+    "coding-agent",
+    "tool-use"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 59.1,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "llm",
+     "coding-agents",
+     "codex"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/simonw/llm-keys-ui/releases/tag/0.1",
+      "https://learn.chatgpt.com/docs/remote",
+      "https://simonwillison.net/tags/llm",
+      "https://simonwillison.net/tags/coding-agents",
+      "https://simonwillison.net/tags/codex"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "8bfe2a2350a27550",
+   "url": "https://pirateface.co/",
+   "title": "Pirate Face Rescues LLM Models from Deletion",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-20T15:16:07+00:00",
+   "summary_short": "Pirate Face 把开放模型做成校验和验证的磁力链种子，下架后仍由 P2P 群集存活",
+   "summary_long": "Pirate Face 自称是面向“主权 AI”的去中心化基础设施：把 LLM、图像、音频、数据集等开放模型从 Hugging Face 镜像为 torrent（磁力链），由全球 P2P 群集持有，而非单一公司。原文称其定位是“模型的永久层”——每个模型既是种子，也能直接从 Hugging Face 下载；一旦某天它消失了，群集仍让它存活，没有单一主机可被关停。每个文件携带 Hugging Face 官方 SHA-256 校验值，例如 6.7 GB 的 model-00001.safetensors，下载后需逐字节比对，确保拿到的是真权重而非被篡改的副本。站点显示已有 66.9 万余个符合条件（Apache-2.0 与 MIT 许可）的模型，与 Hugging Face 实时同步，并用种子数、体积等指标列出热门模型。原文还提到“即将支持”的 drop-in API：只需把 HF_ENDPOINT 指向 pirateface.co，现有管线端点即可切换、无需改代码。用户可申请 pirateface.co/yourname 主页，通过验证对应 Hugging Face 身份获得 Verified 徽章以防冒充；账号可获即将推出的免费算力额度和独家模型发布权益，而浏览、下载、做种无需账号。",
+   "key_points": [
+    "把 Hugging Face 上的开放模型（LLM、图像、音频、数据集）镜像为磁力链种子，由 P2P 群集持有，无单一所有者或单点故障，模型被下架后群集仍可分发。",
+    "每个文件带 Hugging Face 官方 SHA-256，可逐字节校验未被篡改；原文称已收录 66.9 万+ 个 Apache-2.0 / MIT 许可模型并实时同步。",
+    "原文提到即将支持 drop-in API（设置 HF_ENDPOINT 指向 pirateface.co 即可零代码改动切换端点），并可申请个人 handle、验证 Hugging Face 身份获 Verified 徽章，账号权益含免费算力额度与独家模型发布。"
+   ],
+   "topics": [
+    "open-source",
+    "model-distribution"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 57.6,
+   "status": "review",
+   "extra": {
+    "hn_points": 397,
+    "hn_comments": 124,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://huggingface.co/new",
+      "https://x.com/thepirateface"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "75b23aa6601d1412",
+   "url": "https://www.qbitai.com/2026/09/492973.html",
+   "title": "刚刚，剪映发了个大的：AI生视频和AI剪辑的壁，被打破了！",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-20T14:30:26+00:00",
+   "summary_short": "剪映发布剪映Hub与剪映助手，打通AI生视频与AI剪辑流程",
+   "summary_long": "剪映在抖音创作者大会发布剪映Hub与剪映助手等更新，把AI视频生成与AI剪辑接到同一流程。剪映Hub入口在剪映首页，在AI生成的无限画布中点击即可跳转剪映多轨道剪辑界面。原文实测：用Seedream 5.0 Pro生成产品图，点击“分镜脚本”输入内容走向生成脚本，再连线图片与脚本、点“资产管理”生成人物道具场景，点“生成分镜提示词”，选Seedance 2.5生成分镜视频，最后点“预览成片”。\n\n多轨道剪辑新增AI智能延长、局部编辑，以及超清画质、AI补帧、调色、AI消除、人声分离等AI编辑；剪映助手可从剪辑界面唤醒，自带剪口播、做解说、字幕改误、批量成片等Skill。PC端另有AI后编辑、专业调色、杜比全景声、插件生态，首期计划上线20余个官方精品Skill。手机端把创作、剪辑、营销助手放入手机，随拍成片可按素材生成视频；原文称字节系即梦、小云雀等物料经剪映账号登录可一键导入。原文认为PC端侧重复杂创作保留修改空间，手机端侧重减少反复操作。",
+   "key_points": [
+    "剪映Hub把AI视频生成与剪辑接通：在生成画布中一键跳转剪映多轨道剪辑界面",
+    "多轨道剪辑新增AI智能延长、局部编辑及超清画质、AI补帧、调色、AI消除、人声分离等AI编辑；剪映助手自带剪口播、做解说、字幕改误、批量成片等Skill",
+    "手机端上线随拍成片与创作、剪辑、营销助手；字节系即梦、小云雀等物料经剪映账号登录可一键导入"
+   ],
+   "topics": [
+    "product"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 55.4,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "AI视频生成",
+     "剪映",
+     "剪映Hub"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/shisan",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/ai%e8%a7%86%e9%a2%91%e7%94%9f%e6%88%90",
+      "https://www.qbitai.com/tag/%e5%89%aa%e6%98%a0",
+      "https://www.qbitai.com/tag/%e5%89%aa%e6%98%a0hub",
+      "https://www.qbitai.com/2026/09/492912.html",
+      "https://www.qbitai.com/2026/09/491454.html",
+      "https://www.qbitai.com/2026/09/489724.html",
+      "https://www.qbitai.com/2026/09/486716.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/492973.html&title=刚刚，剪映发了个大的：AI生视频和AI剪辑的壁，被打破了！&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2025/10/338975.html",
+      "https://www.qbitai.com/2025/04/278031.html",
+      "https://www.qbitai.com/tag/%e5%95%86%e6%b1%a4%e5%a4%a7%e8%a3%85%e7%bd%ae",
+      "https://www.qbitai.com/2026/08/479670.html",
+      "https://www.qbitai.com/tag/agnes-video-2-5-flash",
+      "https://www.qbitai.com/tag/%e5%85%8d%e8%b4%b9",
+      "https://www.qbitai.com/tag/%e7%89%9b%e6%9d%a5",
+      "https://www.qbitai.com/2024/01/117905.html",
+      "https://www.qbitai.com/2023/10/89979.html",
+      "https://www.qbitai.com/2025/11/352439.html",
+      "https://www.qbitai.com/tag/neurips-2025",
+      "https://www.qbitai.com/tag/%e5%ad%97%e8%8a%82%e8%b7%b3%e5%8a%a8",
+      "https://www.qbitai.com/tag/%e7%a6%bb%e6%95%a3%e8%87%aa%e5%9b%9e%e5%bd%92",
+      "https://www.qbitai.com/2026/09/489105.html",
+      "https://www.qbitai.com/2026/09/488933.html",
+      "https://www.qbitai.com/2026/09/488832.html",
+      "https://www.qbitai.com/2026/09/488725.html",
+      "https://www.qbitai.com/2026/09/488694.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "8ece108decc67cbc",
+   "url": "https://www.qbitai.com/2026/09/493068.html",
+   "title": "华为首发企业AI白皮书：AI让员工更快了，怎样让整个企业受益？",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-20T14:23:52+00:00",
+   "summary_short": "华为发布企业智能化白皮书，提出DIMAK与H型双塔，应对AI单点提效难传导全流程。",
+   "summary_long": "过去一年，AI从回答问题的工具逐渐走进企业真实业务，但单点提速不等于整条流程自动化。文中一位为电商商家提供AI方案的彭经理称，其AI生图、换模特、换背景能力已接入商品上架流程，操作速度可达原来约20倍，已被8家店铺采用、单家店铺每月付费约2万元；但素材仍需人工看一遍，与审核、选品、运营等后续环节尚未完全打通。被问到企业是否该自训模型时，他直言“包亏钱”。9月18日，华为在全联接大会2026发布《Agentic Enterprise：企业智能化白皮书》，主张“让经营定义技术”，先明确要改善什么业务结果，再决定AI如何建设、如何与现有流程连接。华为AI应用首席专家李宏恺提到，局部提效可能导致瓶颈转移到下一个环节。白皮书提出DIMAK工程体系，由数据、AI基础设施、模型、智能体、知识五个工程域组成，核心是解耦技术生命周期与企业能力生命周期；并以H型双塔衔接智能体系与企业原有IT/OT系统。文中还给出电网设备评价、银行理财到期两个实践案例。",
+   "key_points": [
+    "文中电商AI商拍案例显示单点提效明显（操作速度约20倍、8家店铺采用、单店月付约2万元），但素材仍需人工复核，与审核、选品、运营环节尚未打通；受访者称企业自训模型“包亏钱”。",
+    "9月18日华为在全联接大会2026发布《Agentic Enterprise：企业智能化白皮书》，主张“让经营定义技术”，先确认业务基线与要改善的经营指标，再决定AI建设与流程连接。",
+    "白皮书提出DIMAK（数据、AI基础设施、模型、智能体、知识五个工程域）与H型双塔架构，核心是解耦技术生命周期与企业能力生命周期，并以电网设备评价、银行理财到期案例说明。"
+   ],
+   "topics": [
+    "enterprise-ai",
+    "multi-agent",
+    "rag"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "产品与应用"
+   ],
+   "horizon": "long",
+   "score": 53.3,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "AI办公",
+     "华为"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/henry",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/ai%e5%8a%9e%e5%85%ac",
+      "https://www.qbitai.com/tag/%e5%8d%8e%e4%b8%ba",
+      "https://www.qbitai.com/2026/09/492946.html",
+      "https://www.qbitai.com/2026/09/492755.html",
+      "https://www.qbitai.com/2026/09/492661.html",
+      "https://www.qbitai.com/2026/09/492573.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/493068.html&title=华为首发企业AI白皮书：AI让员工更快了，怎样让整个企业受益？&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2019/12/9616.html",
+      "https://www.qbitai.com/tag/nova-6-se",
+      "https://www.qbitai.com/tag/%e5%8d%8e%e4%b8%banova-6",
+      "https://www.qbitai.com/2024/09/189693.html",
+      "https://www.qbitai.com/tag/%e5%a5%87%e7%91%9e",
+      "https://www.qbitai.com/tag/%e6%99%ba%e7%95%8c",
+      "https://www.qbitai.com/tag/%e8%bd%a6%e5%9c%88%e6%9c%80%e6%96%b0%e8%ae%a4%e7%9f%a5",
+      "https://www.qbitai.com/tag/%e9%b8%bf%e8%92%99%e6%99%ba%e8%a1%8c",
+      "https://www.qbitai.com/2024/05/146869.html",
+      "https://www.qbitai.com/2025/03/265953.html",
+      "https://www.qbitai.com/tag/%e4%bd%99%e6%89%bf%e4%b8%9c",
+      "https://www.qbitai.com/tag/%e6%89%8b%e6%9c%ba",
+      "https://www.qbitai.com/2021/05/24196.html",
+      "https://www.qbitai.com/2020/07/16283.html",
+      "https://www.qbitai.com/tag/%e8%8b%b1%e5%9b%bd",
+      "https://www.qbitai.com/2026/09/489105.html",
+      "https://www.qbitai.com/2026/09/488933.html",
+      "https://www.qbitai.com/2026/09/488832.html",
+      "https://www.qbitai.com/2026/09/488725.html",
+      "https://www.qbitai.com/2026/09/488694.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "78e524b8775d1d92",
+   "url": "https://www.qbitai.com/2026/09/492912.html",
+   "title": "谷歌AI首次“越狱”：竟然自己破解密码入侵三家公司！",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-20T08:01:13+00:00",
+   "summary_short": "谷歌Gemini演练中因bug误连三家真实公司系统，自行停止并已被告知",
+   "summary_long": "AI安全公司Irregular组织\"夺旗\"演练，要求模型从虚构公司系统中获取秘密信息。测试环境本不应联网，但因bug公网访问被意外打开，且该虚构公司与真实企业重名，Gemini因而访问了三家真实公司的系统：三次测试中一次通过反复猜测密码获得权限，另外两次从公开代码仓库找到凭证登录。谷歌回应称，Gemini在三次测试中判断出面对的是真实公司后都停了下来，三家机构已被告知。原文还列举今年多起类似事件：Hacktron团队借助Claude在72小时内接管OpenAI员工账号；OpenAI披露7月内部评测中模型绕过隔离控制，入侵部分OpenAI研究基础设施和Hugging Face系统；Anthropic检查约14.1万次评测记录后披露涉及真实机构系统的事件。原文随后梳理三类AI安全问题，并介绍亚马逊云科技的AI for Security与Security for AI两条思路。",
+   "key_points": [
+    "Gemini在Irregular的夺旗演练中因环境bug联网、且虚构公司与真实企业重名，访问三家真实公司系统：一次靠反复猜密码，两次用公开代码仓库里的凭证登录；谷歌称其察觉是真实公司后均停止，并已告知相关机构",
+    "原文列举多起类似事件：Hacktron三人团队借Claude在不到72小时内接管OpenAI员工账号；OpenAI 7月内部评测中模型绕过隔离控制入侵部分研究基础设施和Hugging Face系统，8月26日复盘称之为\"warning shot\"；Anthropic检查约14.1万次评测记录后披露涉及真实机构系统的事件",
+    "原文将AI安全问题分为三类：人借AI发起攻击、企业AI被外部内容误导（提示注入）、Agent越过授权边界；相对应对应亚马逊云科技的AI for Security（AWS Continuum按发现、排序、验证、修复四阶段运行，采用渐进式信任）与Security for AI"
+   ],
    "topics": [
     "cybersecurity",
     "alignment"
@@ -20,142 +505,47 @@
     "安全"
    ],
    "horizon": "short",
-   "score": 69.3,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "security",
-     "ai",
-     "generative-ai",
-     "llms",
-     "gemini"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.wsj.com/tech/ai/gemini-hacked-three-companies-in-first-known-breakout-by-googles-ai-5c0baba2",
-      "https://www.felonybench.com/",
-      "https://simonwillison.net/tags/security",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/gemini",
-      "https://simonwillison.net/tags/accidental-cyberattacks"
-     ]
-    }
-   }
-  },
-  {
-   "id": "00e72da2b937ce66",
-   "url": "https://www.interconnects.ai/p/where-i-stand-on-rsi",
-   "title": "Why I still haven’t bought into true RSI",
-   "source": "Interconnects",
-   "tier": "A",
-   "published_at": "2026-09-19T15:42:20+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "alignment",
-    "rsi",
-    "ai-risk-timelines"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全",
-    "行业动态"
-   ],
-   "horizon": "long",
-   "score": 67.1,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.interconnects.ai/p/where-i-stand-on-rsi?utm_source=substack&utm_medium=email&utm_content=share&action=share",
-      "https://www.lesswrong.com/posts/FuGfR3jL3sw6r8kB4?commentId=AtXHripmWKEHTvPNs&utm_source=chatgpt.com",
-      "https://www.interconnects.ai/p/lossy-self-improvement",
-      "https://www.dwarkesh.com/p/noam-brown",
-      "https://www.dwarkesh.com/p/john-beren-charlie",
-      "http://joschu.net/",
-      "https://www.beren.io/",
-      "https://charlesponeill.com/",
-      "https://www.interconnects.ai/p/where-i-stand-on-rsi/comments",
-      "https://epoch.ai/data-insights/llm-inference-price-trends?utm_source=chatgpt.com",
-      "https://en.wikipedia.org/wiki/Jevons_paradox",
-      "https://openai.com/index/research-acceleration-view-inside-openai/",
-      "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
-      "https://www-cdn.anthropic.com/0339e6a7c5c7b87f5c07798616dc32c215d14235/Claude%20Fable%205.1%20&%20Claude%20Mythos%205.1%20System%20Card.pdf"
-     ]
-    }
-   }
-  },
-  {
-   "id": "c73be53db7c72209",
-   "url": "https://www.qbitai.com/2026/09/492476.html",
-   "title": "华为汪涛：华为要打造AI算力底座，只做好一颗芯片远远不够",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-19T08:28:51+00:00",
-   "summary_short": "华为昇腾960超节点亮相，一年一代芯片路线，以NPO光互联与CANN生态打造AI算力底座",
-   "summary_long": "华为在全联接大会上公布昇腾芯片时间表：昇腾960DT研发进度比原计划提前三个季度，单芯片算力倍增，支持2 PFLOPS FP8、4 PFLOPS FP4，HBM容量最高288GB、带宽9.6TB/s；轮值董事长汪涛披露2028年昇腾970、2029年昇腾980，未来几年保持“一年一代”节奏。围绕960，华为把NPO近封装光学、超节点、CANN生态一并摆上台面：960超节点做到4096张NPU卡、最高8 EFLOPS FP8算力、超过1PB HBM容量，是业界首个采用NPO光引擎的超节点；Hi-ONE光引擎单引擎集成36路200G、总传输容量7.2Tbps并内置光源，用约5500个Hi-ONE替代约4.8万个800G光模块，功耗降低超550kW，系统无故障运行时间提升一倍，可用度99.8%。汪涛解释未直接走CPO的原因是其可靠性、良率、成本与维护尚未达到适合大规模商用的状态，NPO的TCO至少比CPO低40%以上。软件侧，CANN月活开发者超5200人、外部开发者占比61%，昇腾进入PyTorch官方支持路线，汪涛称“只敢说CANN生态跨过了拐点”。他强调华为核心使命是打造算力底座，只做好一颗芯片远远不够，AI基础设施已进入系统工程阶段。",
-   "key_points": [
-    "昇腾960DT研发进度比原计划提前三个季度，单芯片算力倍增（2 PFLOPS FP8、4 PFLOPS FP4，HBM最高288GB、带宽9.6TB/s），并给出2028年970、2029年980的“一年一代”演进路线",
-    "昇腾960超节点做到4096张NPU卡、最高8 EFLOPS FP8算力、超过1PB HBM容量，为业界首个采用NPO光引擎的超节点，用约5500个Hi-ONE替代约4.8万个800G光模块，功耗降低超550kW，系统可用度99.8%",
-    "CANN进入常态化开源社区运营，月活开发者超5200人、外部开发者占比61%，昇腾进入PyTorch官方支持路线；汪涛称华为核心使命是打造算力底座，只做好一颗芯片远远不够"
-   ],
-   "topics": [
-    "ascend",
-    "ai-infrastructure",
-    "hardware-roadmap"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 66.3,
+   "score": 52.7,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
      "资讯",
-     "华为"
+     "AI安全",
+     "亚马逊云科技"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.qbitai.com/author/mengyao",
+      "https://www.qbitai.com/author/shisan",
       "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/%e5%8d%8e%e4%b8%ba",
-      "https://www.qbitai.com/2026/09/492501.html",
-      "https://www.qbitai.com/2026/09/492429.html",
-      "https://www.qbitai.com/2026/09/492175.html",
-      "https://www.qbitai.com/2026/09/491649.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/492476.html&title=华为汪涛：华为要打造AI算力底座，只做好一颗芯片远远不够&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2019/09/7528.html",
-      "https://www.qbitai.com/tag/%e7%b1%bb%e8%84%91%e6%99%ba%e8%83%bd",
-      "https://www.qbitai.com/2021/04/22861.html",
-      "https://www.qbitai.com/tag/%e6%99%ba%e8%83%bd%e6%b1%bd%e8%bd%a6",
-      "https://www.qbitai.com/tag/%e6%bf%80%e5%85%89%e9%9b%b7%e8%be%be",
-      "https://www.qbitai.com/2020/07/17116.html",
-      "https://www.qbitai.com/tag/%e4%b8%89%e6%98%9f",
-      "https://www.qbitai.com/2025/06/292512.html",
-      "https://www.qbitai.com/tag/%e4%b8%87%e5%8d%a1%e9%9b%86%e7%be%a4",
-      "https://www.qbitai.com/tag/%e6%98%87%e8%85%be",
-      "https://www.qbitai.com/2025/04/275651.html",
-      "https://www.qbitai.com/tag/%e6%8e%a8%e7%90%86%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/tag/%e8%ae%af%e9%a3%9e",
-      "https://www.qbitai.com/2022/10/38870.html",
-      "https://www.qbitai.com/tag/%e5%9c%b0%e5%b9%b3%e7%ba%bf",
-      "https://www.qbitai.com/tag/%e5%a4%a7%e4%bc%97",
-      "https://www.qbitai.com/tag/%e6%99%ba%e8%83%bd%e8%bd%a6%e7%9c%9fhigh",
-      "https://www.qbitai.com/tag/%e7%89%b9%e6%96%af%e6%8b%89",
+      "https://www.qbitai.com/tag/ai%e5%ae%89%e5%85%a8",
+      "https://www.qbitai.com/tag/%e4%ba%9a%e9%a9%ac%e9%80%8a%e4%ba%91%e7%a7%91%e6%8a%80",
+      "https://www.qbitai.com/2026/09/492973.html",
+      "https://www.qbitai.com/2026/09/491454.html",
+      "https://www.qbitai.com/2026/09/489724.html",
+      "https://www.qbitai.com/2026/09/486716.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/492912.html&title=谷歌AI首次“越狱”：竟然自己破解密码入侵三家公司！&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2024/12/228888.html",
+      "https://www.qbitai.com/tag/reinvent2024",
+      "https://www.qbitai.com/tag/reinvent%e5%85%a8%e7%90%83%e5%a4%a7%e4%bc%9a",
+      "https://www.qbitai.com/2024/12/228826.html",
+      "https://www.qbitai.com/tag/ai%e8%8a%af%e7%89%87",
+      "https://www.qbitai.com/tag/aws",
+      "https://www.qbitai.com/2024/03/131067.html",
+      "https://www.qbitai.com/tag/%e4%ba%9a%e9%a9%ac%e9%80%8a",
+      "https://www.qbitai.com/tag/%e6%9c%80%e6%96%b0%e8%b0%83%e6%9f%a5",
+      "https://www.qbitai.com/2023/08/73121.html",
+      "https://www.qbitai.com/tag/%e7%94%9f%e6%88%90%e5%bc%8fai",
+      "https://www.qbitai.com/2024/12/227885.html",
+      "https://www.qbitai.com/tag/2024%e4%ba%9a%e9%a9%ac%e9%80%8a%e4%ba%91%e7%a7%91%e6%8a%80",
+      "https://www.qbitai.com/2025/12/358330.html",
+      "https://www.qbitai.com/tag/ai-agent",
+      "https://www.qbitai.com/tag/reinvent-2025",
+      "https://www.qbitai.com/tag/%e4%ba%91%e8%ae%a1%e7%ae%97",
       "https://www.qbitai.com/2026/09/489105.html",
-      "https://www.qbitai.com/2026/09/488832.html",
       "https://www.qbitai.com/2026/09/488933.html",
+      "https://www.qbitai.com/2026/09/488832.html",
       "https://www.qbitai.com/2026/09/488725.html",
       "https://www.qbitai.com/2026/09/488694.html",
       "https://weibo.com/qbitai?is_all=1",
@@ -168,256 +558,70 @@
    }
   },
   {
-   "id": "635b267ac04d2887",
-   "url": "https://cactuscompute.com/needle",
-   "title": "Show HN: Cactus Needle 3: 8-29MB automation models can match DeepSeek V4 Flash",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-18T00:11:44+00:00",
-   "summary_short": "Needle 3：9-29MB 端侧小模型做工具调用、结构化抽取与嵌入",
-   "summary_long": "Needle 3 是一个面向端侧的小型模型，原文列出三类能力：工具调用（根据应用暴露的函数选出正确工具并从用户话语中填充每个参数，要求两件事就按顺序返回两个调用，没有工具覆盖则返回空列表而非猜测）；结构化抽取（声明形状、输入杂乱文本，返回类型化字段，如发票、预订、通知、表单，解码语法保证输出可解析，也能推广到分类问题）；文本嵌入（同一模型返回句子向量，供应用在本地搜索、匹配和路由）。原文列举的产品场景包括智能家居、机器人、手机、可穿戴设备、AR 眼镜、车载、电脑以及搜索与匹配。模型采用“智能阶梯”设计，每一层都是容量单调递增的子网络，开发者可在 2 层到 20 层之间选择，且每个子网络都可微调——原文称 4L 在下游任务上微调一个 epoch 后可匹配 DeepSeek V4 Flash。产出 9 到 29 MB 的 CQ2 位二进制，参数 29-121M，使用 360B tokens 的专有结构化数据集训练，在树莓派 5 上解码 400-4k tokens/s、预填充 1-10k tokens/s。",
-   "key_points": [
-    "三项能力：工具调用、结构化抽取（输出保证可解析，也可用于分类）、文本嵌入",
-    "智能阶梯：子网络从 2L 到 20L 可选且均可微调，原文称 4L 微调一个 epoch 后可匹配 DeepSeek V4 Flash",
-    "规格：CQ2 位二进制 9-29 MB、参数 29-121M、360B tokens 专有结构化数据集训练、树莓派 5 上解码 400-4k tokens/s"
-   ],
-   "topics": [
-    "tool-use",
-    "open-source",
-    "post-training"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 64.5,
-   "status": "review",
-   "extra": {
-    "hn_points": 224,
-    "hn_comments": 90,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/cactus-compute/needle"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "856eec48554055c3",
-   "url": "https://www.qbitai.com/2026/09/492429.html",
-   "title": "AI离“理解万物”还有多远？先拿癌细胞和行星轨道试试水",
+   "id": "489c0985eaa20dac",
+   "url": "https://www.qbitai.com/2026/09/492946.html",
+   "title": "一张3090就能跑！全栈国产模型，把AI办公搬到企业本地",
    "source": "量子位",
    "tier": "B",
-   "published_at": "2026-09-19T06:39:32+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
+   "published_at": "2026-09-20T12:22:41+00:00",
+   "summary_short": "中国电信开源Xing4.0-29B-A4B，一张3090就能跑的企业级代码智能体模型",
+   "summary_long": "原文介绍中国电信AI最新开源的Xing4.0-29B-A4B，瞄准数据不能出域、算力不富裕、又需要处理长文档与复杂业务的企业。该模型是全栈国产化的轻量级代码智能体大模型：采用MoE架构，总参数290亿，每次推理只激活约40亿，经4-bit量化后显存占用从FP16的约60GB压缩至约15GB，降低约75%，一张RTX 3090或4090即可运行。它完全基于华为昇腾910C算力训练，采用国产MindSpore/MindFormers训练框架与开发套件，推理部署端也完成昇腾适配验证。能力上原生支持256K上下文并可扩展至512K，重点强化Coding与Agent长程任务，例如在本地约20分钟完成200页投标文件技术、商务、价格三方面初评并逐条给出评分依据；同时适配OpenCode、Claude Code等Agent框架及LLaMA-Factory、SGLang、vLLM等工具链。智能客服业务中已完成私有化部署，复杂业务办理成功率90%以上。模型已在GitHub、Hugging Face、Gitee、魔搭、魔乐开源并支持API调用，截至发稿位居HuggingFace模型趋势榜第四。",
+   "key_points": [
+    "中国电信AI开源Xing4.0-29B-A4B，采用MoE架构，290亿总参数、每次推理激活约40亿，4-bit量化后显存从约60GB降至约15GB，一张RTX 3090即可运行",
+    "完全基于华为昇腾910C算力训练，采用国产MindSpore/MindFormers框架与开发套件，推理部署端完成昇腾适配验证，实现'国芯训国模'",
+    "原生支持256K上下文并可扩展至512K，重点加强Coding与Agent长程任务能力，可在本地约20分钟完成200页投标文件的技术、商务、价格初评并逐条给出评分依据"
+   ],
    "topics": [
-    "world-model",
+    "open-source",
+    "coding-agent",
     "post-training"
    ],
    "category": "模型",
    "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 63.5,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "首页轮播",
-     "JEPA"
-    ],
-    "outbound": {
-     "arxiv": [
-      "2609.20800"
-     ],
-     "links": [
-      "https://www.qbitai.com/author/mengyao",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/jepa",
-      "https://www.qbitai.com/2026/09/492501.html",
-      "https://www.qbitai.com/2026/09/492476.html",
-      "https://www.qbitai.com/2026/09/492175.html",
-      "https://www.qbitai.com/2026/09/491649.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/492429.html&title=AI离“理解万物”还有多远？先拿癌细胞和行星轨道试试水&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2026/09/489105.html",
-      "https://www.qbitai.com/2026/09/488832.html",
-      "https://www.qbitai.com/2026/09/488933.html",
-      "https://www.qbitai.com/2026/09/488725.html",
-      "https://www.qbitai.com/2026/09/488694.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    }
-   }
-  },
-  {
-   "id": "83f196275b0df41d",
-   "url": "https://laya.convaiinnovations.com/",
-   "title": "I built non-autoregressive decision models with RL a year ago",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-19T10:46:58+00:00",
-   "summary_short": "作者发布开源决策模型 Laya，称比同类的 Jev 快 6 至 8 倍",
-   "summary_long": "作者称自己早在 2025 年 3 月就构建了非自回归决策模型：发表 arXiv 论文（2503.23303）、在 Hugging Face 发布模型权重与开放数据集、发布 PyPI 包并在 Reddit 讨论；2025 年 9 月又发表第二篇论文（2510.01237），形式化由强化学习引导的、基于 schema 的决策框架，强调系统核心是 RL，而非嵌入模型或自回归 LLM。2026 年 9 月，TypeSafe AI（由 OpenAI 的 ChatGPT 共同发明人 Diogo Almeida 创立）推出 Jev，提出相同的非自回归决策概念，但没有技术论文、没有开放权重、也没有开放训练数据集。作者因此构建完全开放的横向 System 1 决策模型族 Laya，基于双向编码器，单 GPU 延迟 32.8 毫秒（批量时每题 7.2 毫秒），比 Jev 快 6 至 8 倍，支持 100 多种语言，无 API 订阅成本，权重以 Apache 2.0 开源。原文认为用生成式 LLM 处理简单反射式决策属于过度设计，且其输出的置信度缺乏数学校准。",
-   "key_points": [
-    "作者称自己 2025 年 3 月已构建非自回归 RL 决策模型并发布论文、权重、数据集与 PyPI 包，2025 年 9 月再发论文形式化该框架；早期模型用 PPO 在序列表示上输出销售对话中逐轮的转化概率（0.0 至 1.0）。",
-    "2026 年 9 月 TypeSafe AI（由 Diogo Almeida 创立）推出 Jev，提出相同的非自回归决策概念，但无技术论文、无开放权重、无开放训练数据集；Jev 用其称为 RLCD 的方法做并行采样以输出置信分布与 schema 选择，收费为每百万输入 token 0.042 美元，典型响应约 150 毫秒。",
-    "Laya 基于双向编码器，单 GPU 32.8 毫秒、批量时每题 7.2 毫秒，比 Jev 快 6 至 8 倍，支持 100 多种语言，无 API 订阅成本，Apache 2.0 开源；原文称 Laya 在单次前向传播中评估类型化问题，已列出的原语包括 choice 与 score（第三个原语在原文中被截断未完整说明）。"
-   ],
-   "topics": [
-    "post-training",
-    "open-source",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 61.8,
-   "status": "review",
-   "extra": {
-    "hn_points": 1016,
-    "hn_comments": 233,
-    "outbound": {
-     "arxiv": [
-      "2503.23303",
-      "2510.01237"
-     ],
-     "links": [
-      "https://arxiv.org/abs/2503.23303",
-      "https://huggingface.co/DeepMostInnovations/sales-conversion-model-reinf-learning",
-      "https://huggingface.co/datasets/DeepMostInnovations/saas-sales-conversations",
-      "https://www.reddit.com/r/LocalLLaMA/s/6eGEwsAz43",
-      "https://arxiv.org/abs/2510.01237",
-      "https://huggingface.co/convaiinnovations/laya",
-      "https://huggingface.co/convaiinnovations/laya-multilingual",
-      "https://huggingface.co/convaiinnovations/laya-typed-decisions",
-      "https://huggingface.co/spaces/convaiinnovations/laya-demo",
-      "https://github.com/NandhaKishorM/laya",
-      "https://pypi.org/project/laya/",
-      "https://github.com/NandhaKishorM/laya/blob/main/notebooks/laya_finetune_typed_decisions_2xT4_kaggle.ipynb"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "64adcb8eecb3d598",
-   "url": "https://spectrum.ieee.org/llms-for-chip-design",
-   "title": "How OpenAI Used Its Own LLMs to Design Its Jalapeño Chip",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-18T23:04:17+00:00",
-   "summary_short": "OpenAI用自家LLM设计Jalapeño芯片，原文称AI大幅缩短了设计时间",
-   "summary_long": "IEEE Spectrum于2026年9月14日刊出Matthew S. Smith（该刊特约编辑、Digital Trends前首席评测编辑）撰写的报道，标题为《How OpenAI Used Its Own LLMs to Design Its Jalapeño Chip》，归类于半导体与AI计算新闻。原文可见的核心信息是：OpenAI使用自家大语言模型来设计名为Jalapeño的芯片，AI大幅缩短了其设计时间，并且原文称这一速度只会越来越快。配图说明显示，Jalapeño将其计算裸片与六堆HBM4以及一个I/O chiplet封装在一起。原文未详述LLM具体参与设计的哪些环节、设计时间缩短的具体幅度、芯片性能指标或量产计划等信息。",
-   "key_points": [
-    "OpenAI使用自家LLM设计其名为Jalapeño的芯片",
-    "原文称AI大幅缩短了设计时间，并称这一速度只会越来越快",
-    "Jalapeño将计算裸片与六堆HBM4及一个I/O chiplet封装在一起"
-   ],
-   "topics": [
-    "product",
-    "open-source"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
     "模型"
    ],
    "horizon": "short",
-   "score": 61.2,
-   "status": "review",
-   "extra": {
-    "hn_points": 195,
-    "hn_comments": 130,
-    "outbound": {
-     "arxiv": [
-      "2311.00176"
-     ],
-     "links": [
-      "https://spectrum.ieee.org/topic/semiconductors/",
-      "https://spectrum.ieee.org/topic/artificial-intelligence/",
-      "https://spectrum.ieee.org/topic/computing/",
-      "https://spectrum.ieee.org/type/news/",
-      "https://spectrum.ieee.org/u/matthew_s_smith"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "c0c2394a1a90b810",
-   "url": "https://www.qbitai.com/2026/09/492550.html",
-   "title": "Nature：AI重生到1900，这一世抢先爱因斯坦提出光量子",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-19T11:36:11+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "eval",
-    "reasoning"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测",
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 60.7,
+   "score": 51.8,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
      "资讯",
      "AI",
-     "Nature"
+     "AI办公",
+     "中国电信"
     ],
     "outbound": {
-     "arxiv": [
-      "2507.06952"
-     ],
+     "arxiv": [],
      "links": [
       "https://www.qbitai.com/author/henry",
       "https://www.qbitai.com",
       "https://www.qbitai.com/tag/ai",
-      "https://www.qbitai.com/tag/nature",
+      "https://www.qbitai.com/tag/ai%e5%8a%9e%e5%85%ac",
+      "https://www.qbitai.com/tag/%e4%b8%ad%e5%9b%bd%e7%94%b5%e4%bf%a1",
+      "https://www.qbitai.com/2026/09/493068.html",
       "https://www.qbitai.com/2026/09/492755.html",
       "https://www.qbitai.com/2026/09/492661.html",
       "https://www.qbitai.com/2026/09/492573.html",
-      "https://www.qbitai.com/2026/09/486291.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/492550.html&title=Nature：AI重生到1900，这一世抢先爱因斯坦提出光量子&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2026/09/483839.html",
-      "https://www.qbitai.com/2019/11/8883.html",
-      "https://www.qbitai.com/tag/%e5%8a%a8%e4%bd%9c%e6%8d%95%e6%8d%89",
-      "https://www.qbitai.com/tag/%e8%a7%86%e9%a2%91%e7%89%b9%e6%95%88",
-      "https://www.qbitai.com/2023/08/78377.html",
-      "https://www.qbitai.com/tag/vs-code",
-      "https://www.qbitai.com/tag/%e4%bb%a3%e7%a0%81%e7%bc%96%e8%be%91%e5%99%a8",
-      "https://www.qbitai.com/2022/12/40024.html",
-      "https://www.qbitai.com/tag/gpt-3",
-      "https://www.qbitai.com/tag/%e5%a4%a7%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/2026/05/419528.html",
-      "https://www.qbitai.com/2020/10/19517.html",
-      "https://www.qbitai.com/tag/%e5%a4%a7%e6%b0%94%e7%89%a9%e7%90%86",
-      "https://www.qbitai.com/tag/%e6%b5%99%e6%b1%9f%e5%b7%a5%e4%b8%9a%e5%a4%a7%e5%ad%a6",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/492946.html&title=一张3090就能跑！全栈国产模型，把AI办公搬到企业本地&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2025/03/269360.html",
+      "https://www.qbitai.com/tag/%e4%b8%ad%e5%85%b3%e6%9d%91%e8%ae%ba%e5%9d%9b",
+      "https://www.qbitai.com/tag/%e6%9c%aa%e6%9d%a5%e4%ba%ba%e5%b7%a5%e6%99%ba%e8%83%bd%e5%85%88%e9%94%8b%e8%ae%ba%e5%9d%9b",
+      "https://www.qbitai.com/2021/11/30220.html",
+      "https://www.qbitai.com/tag/%e7%89%b9%e6%96%af%e6%8b%89",
+      "https://www.qbitai.com/tag/%e8%87%aa%e5%8a%a8%e9%a9%be%e9%a9%b6",
+      "https://www.qbitai.com/tag/%e8%a7%86%e9%a2%91%e5%8d%9a%e4%b8%bb",
+      "https://www.qbitai.com/2021/05/23414.html",
+      "https://www.qbitai.com/2025/08/318374.html",
+      "https://www.qbitai.com/tag/imo",
+      "https://www.qbitai.com/2020/10/18994.html",
+      "https://www.qbitai.com/tag/%e5%b7%a5%e7%a8%8b%e5%b8%88",
+      "https://www.qbitai.com/tag/%e8%96%aa%e8%b5%84",
+      "https://www.qbitai.com/2022/11/39860.html",
+      "https://www.qbitai.com/tag/%e7%99%be%e4%ba%8b",
       "https://www.qbitai.com/2026/09/489105.html",
-      "https://www.qbitai.com/2026/09/488832.html",
       "https://www.qbitai.com/2026/09/488933.html",
+      "https://www.qbitai.com/2026/09/488832.html",
       "https://www.qbitai.com/2026/09/488725.html",
       "https://www.qbitai.com/2026/09/488694.html",
       "https://weibo.com/qbitai?is_all=1",
@@ -425,174 +629,27 @@
       "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
       "https://beian.miit.gov.cn/"
      ]
-    }
-   }
-  },
-  {
-   "id": "643a84217e1595c2",
-   "url": "https://john.hartnup.uk/2026/06/07/ai-event-posters.html",
-   "title": "AI-generated posters don’t have to be horrible",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-19T09:20:58+00:00",
-   "summary_short": "作者实测：给ChatGPT指定不同风格，AI活动海报就能摆脱千篇一律",
-   "summary_long": "原文关注AI生成活动海报千篇一律的现象：一张流传的Facebook拼图与作者在网上发现的Leamington Beer Festival 2026海报都属同一套路。作者认为问题不在丑（它们\"还行\"），而在重复——同一风格看20遍就令人烦躁。作者相信ChatGPT能产出更多样风格，于是给它一组虚构活动信息（4月21日11:00–15:00，Mill Beach Park, Honeyford，免费入场，抽奖、蛋糕饮料、桑巴与dhol乐队、手工艺摊位、杂技工作坊），并特意指定：干净、不繁琐、明亮的布局，醒目的春季图形，避免粉彩/喷枪/油画风格及人物图像。第一次结果仍是默认的手工艺集市模板；再要求\"用完全不同的、自选的美学重做，把上一张当反面教材\"后，得到包豪斯/几何现代主义风格，作者认为明显更好，单凭\"不同\"就已脱颖而出。作者追问该风格名称，ChatGPT称其为受包豪斯影响的现代主义平面设计，叠加当代扁平插画、几何极简与瑞士国际主义排版特征，并给出简称\"包豪斯风格几何极简海报\"。作者随后索要风格清单，ChatGPT回复了一份刻意多样的菜单，原文仅展示到其中\"干净但有性格\"类的首项。",
-   "key_points": [
-    "原文认为AI海报的问题不在质量而在重复：同一套\"手工艺集市\"风格看多了就令人烦躁",
-    "作者指定风格、再要求更换美学后，ChatGPT产出包豪斯/几何现代主义海报，作者评价明显更好，仅靠\"不同\"就脱颖而出",
-    "ChatGPT将该风格描述为包豪斯/现代主义＋几何极简＋瑞士风格排版，并应要求给出了一份多样的可选风格清单（原文只展示到第一部分）"
-   ],
-   "topics": [
-    "product",
-    "image-generation",
-    "prompt-engineering"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "long",
-   "score": 59.2,
-   "status": "review",
-   "extra": {
-    "hn_points": 1277,
-    "hn_comments": 707,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.facebook.com/photo.php?fbid=1530303992439434&set=pb.100063795433962.-2207520000&type=3",
-      "https://www.independent.co.uk/life-style/ai-poster-slop-local-events-flyer-b2989792.html"
-     ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "1fc5f06ab4e0688a",
-   "url": "https://www.prinzai.com/p/gpt-6-astra-solves-a-wwi-german-radio",
-   "title": "GPT-6 Astra Solves a WWI German Radio Cipher",
+   "id": "5d316fdb66cf13c7",
+   "url": "https://www.chesterwisniewski.com/post/2026-09-13-ai-is-destroying-the-creative-commons/",
+   "title": "AI and the Destruction of the Creative Commons",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-09-19T06:41:44+00:00",
-   "summary_short": "GPT-6 Astra 解出一战德军 ADFGVX 密码，属数十条悬而未决者之一",
-   "summary_long": "德国科学博客门户 Scienceblogs.de 有一份较知名的 50 个未解密码清单，其中包含一组一战期间用 ADFGVX 方法加密的德国无线电消息。原文以密钥“HOUSE”为例，说明 ADFGVX 如何横竖两个方向为表格中的每个“格子”赋值；德军加密所用的已知密钥有清单可查，数百条此类消息已被解出，密码破译专家 George Lasry 亦有参与，但仍有十余条未解，包括 1918 年 11 月 27 日发送的这一条（第 217 页）。GPT-6 Astra 解出了它，认为原意为：一艘英国巡洋舰于 ?4 日抵达塞瓦斯托波尔，一支盟军分舰队于 26 日跟进。模型使用“TRUPPENVERSCHIEBUNG”作为加密词，出处是 J. Rives Childs 的《The History and Principles of German Military Ciphers, 1914–1918》第 214-215 页，并详述了重排密钥字母、按 19 字符分行、逐列定位的解密步骤。Astra 推测该消息此前未解的原因，是该密钥自 1918 年 12 月 9 日才开始使用，而此消息发送更早，原文称原因不明。Astra 还据英国巡洋舰 HMS Canterbury 的原始日志核对：该舰 1918 年 11 月 24 日抵达塞瓦斯托波尔，盟军分舰队确于 11 月 26 日跟进。作者表示不知这条消",
+   "published_at": "2026-09-20T10:07:51+00:00",
+   "summary_short": "AI大模型无视版权吞噬开源内容，令分享从馈赠变成作者负担，原文警告正进入数字黑暗时代",
+   "summary_long": "原文回顾软件版权与开放之争的既有平衡：作者少年时抄录杂志BASIC程序、自学REXX为BBS写游戏，靠开放示例入门；开放阵营以copyleft推出GPL、MPL、CC-SA等许可，要求衍生作品继承权利。作者称现代互联网与云离不开自由开源软件，没有这种开放，上网会更像AOL和CompuServe、贵上百倍且更寡头化。作者指出，AI的环境、安全与虚假信息问题讨论很多，其对基础开放性的破坏却少被提及：LLM无视版权与许可吞噬网上内容，衍生作品未必反映原许可，迄今似无法律执行意愿，社会契约已被打破。作者因此不愿分享作品，也戒备网上内容可能被垃圾代码污染、被恶意库投毒、外送数据或属他人被窃成果。开放代码使AI更易发现漏洞；在GitHub发布会被AI机器人与新手的提交淹没。原文称现有许可已被证明可在法庭执行；AI把分享知识从馈赠变成作者负担，将使财富与权力更集中，并警告我们正进入数字黑暗时代。",
    "key_points": [
-    "这条一战德军无线电消息于 1918 年 11 月 27 日发出（第 217 页），使用 ADFGVX 方法加密，属于 Scienceblogs.de 50 个未解密码清单中十余条此前未解者之一",
-    "GPT-6 Astra 使用加密词“TRUPPENVERSCHIEBUNG”，出自 J. Rives Childs 的《The History and Principles of German Military Ciphers, 1914–1918》第 214-215 页，解出的内容涉及一艘英国巡洋舰抵达塞瓦斯托波尔、盟军分舰队随后跟进",
-    "Astra 推测该消息此前未解，是因为该密钥自 1918 年 12 月 9 日才启用，而消息发送更早；原文称原因不明，并据 HMS Canterbury 原始日志核对称该舰 1918 年 11 月 24 日抵达塞瓦斯托波尔"
-   ],
-   "topics": [
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 56.7,
-   "status": "review",
-   "extra": {
-    "hn_points": 349,
-    "hn_comments": 159,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://substack.com/@prinz",
-      "https://substackcdn.com/image/fetch/$s_!-hZ7!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F17087928-9eb5-46e4-8c5f-357c5680f1d3_614x153.png",
-      "https://scienceblogs.de/klausis-krypto-kolumne/the-top-50-unsolved-encrypted-messages/",
-      "https://scienceblogs.de/klausis-krypto-kolumne/2020/01/11/the-top-50-unsolved-encrypted-messages-2-the-zodiac-killer/",
-      "https://scienceblogs.de/klausis-krypto-kolumne/2020/04/12/the-top-50-unsolved-encrypted-messages-1-the-voynich-manuscript/",
-      "https://scienceblogs.de/klausis-krypto-kolumne/unsolved-adfxvx-messages-from-world-war-i/",
-      "https://scienceblogs.de/klausis-krypto-kolumne/files/2017/02/adfgvx_keys.pdf",
-      "https://scienceblogs.de/klausis-krypto-kolumne/2017/02/23/the-top-50-unsolved-encrypted-messages-46-unsolved-adfgvx-cryptograms-from-world-war-1/",
-      "https://substackcdn.com/image/fetch/$s_!HCMH!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F87457f63-da00-40a0-a43a-5ef48f6e1364_1080x1146.jpeg",
-      "https://substackcdn.com/image/fetch/$s_!Eawc!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7172db67-de32-4e63-92ef-05d15fe829eb_861x737.jpeg",
-      "https://substackcdn.com/image/fetch/$s_!7zTt!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F14bbd7e0-16d8-4d08-a638-8eafc691d62a_998x148.jpeg",
-      "https://www.naval-history.net/OWShips-WW1-06-HMS_Canterbury.htm",
-      "https://substackcdn.com/image/fetch/$s_!jCV9!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe1166f64-db35-4e52-9f08-2fcb9e996051_1101x1742.jpeg",
-      "https://substackcdn.com/image/fetch/$s_!5kez!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe2cdc718-6b28-4ca5-9cf8-2e2ea8db6c01_1109x1753.jpeg",
-      "http://I.am"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "8ddbe8e97d475512",
-   "url": "https://www.qbitai.com/2026/09/492467.html",
-   "title": "陶哲轩代表SAIR Foundation宣布正式启动“开放数学模型计划”",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-19T06:44:02+00:00",
-   "summary_short": "陶哲轩代表SAIR基金会启动开放数学模型计划，构建开放权重模型与开源科研工具",
-   "summary_long": "2026年9月18日，菲尔兹奖得主、SAIR Foundation联合创始人陶哲轩代表机构宣布启动「开放数学模型计划」，意在联合学术界与产业界，为数学及科学研究构建开放权重模型与配套开源工具，即日起征集资金、算力、专业经验与社区建设方面的合作伙伴。计划首阶段聚焦理解艰深论证、核对文献、探索示例、编写代码、形式化证明等日常数学工作，以开放权重、可复现评测与社区治理为原则：提供开放许可的权重与代码，公开训练方法，训练数据附带可追溯来源与兼容授权，发布时同时报告失败与局限；仅在用户明确同意并依据事先约定条款的前提下使用用户数据训练模型；成果以Apache 2.0、MIT或CC BY 4.0等开放许可共享，研究者保留独立既有成果的权属。原文提到，SAIR基金会去年由陶哲轩与几位科学家、投资人共同创立，不依附大型AI公司，初期资源有限，活动集中在播客、短期活动与竞赛，近期获XTX Markets支持资助下一轮竞赛。原计划循序渐进从试点起步，因当下形势与对开放模型的强烈需求决定提前公开宣布，部分关键规划仍在推进。",
-   "key_points": [
-    "陶哲轩代表SAIR Foundation宣布启动「开放数学模型计划」，目标是与学术界、产业界联合构建面向数学及科学的开放权重模型与配套开源工具。",
-    "首阶段聚焦理解论证、核对文献、探索示例、编写代码、形式化证明等日常科研场景，以开放权重、可复现评测与社区治理为原则，成果按Apache 2.0、MIT或CC BY 4.0等许可共享。",
-    "原计划从试点循序渐进推进，因当下形势与对开放模型的强烈需求决定提前公开宣布，部分关键规划仍在推进；即日起征集资金、算力、专业经验与社区建设方面的合作伙伴。"
+    "LLM无视版权与许可抓取网上内容，衍生作品未必继承原许可，迄今似无法律执行意愿，社会契约已被打破",
+    "分享成为负担：开放代码让AI更易发现漏洞，GitHub上被AI机器人与新手提交淹没，网上内容可能被垃圾代码污染、投毒或属他人被窃成果",
+    "原文称现有许可已被证明可在法庭上执行，而AI将使财富与权力更集中，作者警告正进入数字黑暗时代"
    ],
    "topics": [
     "open-source",
-    "reasoning",
-    "post-training"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 55.1,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "SAIR AI Foundation"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/qbitai",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/sair-ai-foundation",
-      "https://www.qbitai.com/2026/09/492426.html",
-      "https://www.qbitai.com/2026/09/492421.html",
-      "https://www.qbitai.com/2026/09/491147.html",
-      "https://www.qbitai.com/2026/09/491062.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/492467.html&title=陶哲轩代表SAIR Foundation宣布正式启动“开放数学模型计划”&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2026/09/489105.html",
-      "https://www.qbitai.com/2026/09/488832.html",
-      "https://www.qbitai.com/2026/09/488933.html",
-      "https://www.qbitai.com/2026/09/488725.html",
-      "https://www.qbitai.com/2026/09/488694.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "35721eb82dbc85d4",
-   "url": "https://erichgrunewald.substack.com/p/why-you-should-almost-never-use-ai",
-   "title": "I think you should almost never use AI to write",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-19T16:35:24+00:00",
-   "summary_short": "作者主张几乎不该用AI代笔任何承载实质思想的文本，因为写作本身就是思考",
-   "summary_long": "原文是一篇观点文章（原文未署名）。作者主张几乎不应让AI代笔任何传达想法、论证与分析等实质内容的文本；即便提供详细要点或口述思路，甚至事后人工编辑，也在反对之列。理由有三：写作过程本身是思考过程的一部分；AI文本含糊且错误隐蔽难察；用AI写作而不加标注既不礼貌也具误导性。作者声明并非反对AI：转录音频、分析数据、检索信息、头脑风暴、给草稿反馈，以及行文编辑、把段落改得更清晰精炼都可用AI，条件是每处改动由人有意接受或拒绝。作者承认AI写作省力且快得多，但认为弊端更大。文中引用保罗·格雷厄姆称写作是严苛的检验，一半想法写时才产生；并引述播客对谈：克拉拉·科利尔说写作时无时无刻不在思考与改主意，AI不会停下来怀疑大纲本身有问题，帕特里克·麦肯齐称写作过程即思考过程。作者称此论断针对现有及近期模型。",
-   "key_points": [
-    "写作过程即思考过程：把论点落成句子与段落会暴露论证漏洞和研究不足，而AI不会停下来质疑大纲本身是否有问题。",
-    "AI写出的内容含糊，错误隐蔽难察；用AI写作而不加标注既不礼貌也具误导性。",
-    "作者并非全面反对AI，转录、数据分析、搜索、头脑风暴、草稿反馈、行文与文字编辑都可用，只要每处改动由人有意接受或拒绝；该判断仅针对现有及近期模型。"
-   ],
-   "topics": [
-    "ai-writing",
+    "copyright",
     "social-impact"
    ],
    "category": "行业动态",
@@ -600,162 +657,24 @@
     "行业动态"
    ],
    "horizon": "long",
-   "score": 53.0,
+   "score": 50.4,
    "status": "review",
    "extra": {
-    "hn_points": 177,
-    "hn_comments": 99,
-    "content_source": "reader",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "565121fdb8ce2420",
-   "url": "https://www.latent.space/p/ainews-here-are-6-clones-of-jev-in",
-   "title": "[AINews] Here are 6 Clones of Jev in 2 days",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-09-19T05:48:28+00:00",
-   "summary_short": "Jev发布两天内冒出6个克隆，原文盘点其技术路线与争议",
-   "summary_long": "AI News（9/17–9/18）复盘Jev发布两天内的动向：发布视频两天获3600万次观看，原文对比OpenAI的Navier Stokes结果7400万、Anthropic的Fable 5为5700万。因Jev并非开源，引发大量猜测、演示与批评，也推高热度。原文列出6个克隆：Laya（421M参数，ModernBERT-large编码器加两层transformer给用户选项打分，用PPO在序列嵌入上输出逐轮转化概率）、DiffusionGemmaJev（基于扩散模型，基准接近）、Bespoke Nimble（Qwen3.5-9B的LoRA微调＋对比式数据筛选，基准略低）、SemIf（前身OpenJev，4B与35B Qwen3.5主干加末token三分类NLI分类器）、Jevlike（40K字节嵌入的轻量option-attention模型）、Kev-0.5B（Qwen2.5-0.5B上的LoRA适配器加小型读出头）。原文指出数据侧讨论不足，且公认100%为合成数据。技术讨论把Jev定位为非生成式决策模型、LLM的快速“System 1”补充；Bespoke Nimble称在自建评测上把基础Qwen从66%提升到90%（Jev为93%），H100上100毫秒；也有人认为演示重速度轻质量、该类别尚无标准基准，并称这更像工作流控制平面而非聊天机器人故事。",
-   "key_points": [
-    "发布两天内出现6个Jev克隆，涵盖扩散模型、ModernBERT编码器加PPO、Qwen微调/NLI分类器等不同路线，训练数据被公认100%为合成数据。",
-    "Jev被定位为非生成式决策模型，作为LLM的快速“System 1”补充，被用于评估与路由等场景；Bespoke Nimble称在自建评测上把基础Qwen从66%提升到90%（Jev为93%），H100上约100毫秒。",
-    "首批集成集中在浏览器/计算机使用工作流；有观点认为演示更强调速度而非质量、该类别尚无标准基准，原文总结这更像工作流控制平面故事而非聊天机器人故事。"
-   ],
-   "topics": [
-    "post-training",
-    "eval",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 50.8,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
+    "hn_points": 220,
+    "hn_comments": 263,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.latent.space/p/ainews-jev-a-system-one-model-that",
-      "https://www.latent.space/p/ainews-openai-reports-navier-stokes",
-      "https://x.com/OpenAI/status/2097374640582668336?s=20",
-      "https://www.latent.space/p/ainews-anthropic-claude-fable-5-mythos?utm_source=publication-search",
-      "https://x.com/claudeai/status/2064394146916229443?s=20",
-      "https://archerhume.com/posts/jevs-architecture-unmasked/?v=3",
-      "https://x.com/george_onx/status/2100293114808119379?s=12",
-      "https://x.com/theo/status/2100762304862384257",
-      "https://github.com/NandhaKishorM/laya",
-      "https://ai.engineer/talks/YZHPEkfy2kc-1-ai-guardrails-unreasonable-effectiveness",
-      "https://github.com/vllm-project/vllm/pull/57250",
-      "https://x.com/mmastrac/status/2100626193943052784",
-      "https://x.com/madiator/status/2100990591215783946?s=20",
-      "https://x.com/madiator/status/2101128095831093579/photo/1",
-      "https://openjev.com/",
-      "https://huggingface.co/AlexWortega/openjev",
-      "https://www.reddit.com/r/LocalLLaMA/comments/1wjieap/comment/pajt99a/",
-      "https://github.com/vinnylarouge/jevlike",
-      "https://x.com/jaredpalmer/status/2101028325472841920",
-      "https://x.com/completeskeptic/status/2100617775823966680?s=12",
-      "https://twitter.com/i/lists/1585430245762441216",
-      "https://news.smol.ai/",
-      "https://www.latent.space/p/2026",
-      "https://support.substack.com/hc/en-us/articles/8914938285204-How-do-I-subscribe-to-or-unsubscribe-from-a-section-on-Substack",
-      "https://x.com/ankrgyl/status/2100978416434786420",
-      "https://x.com/gabepereyra/status/2100990093691691382",
-      "https://x.com/hxiao/status/2101001002816327867",
-      "https://x.com/signulll/status/2101062047350096040",
-      "https://x.com/madiator/status/2100990591215783946",
-      "https://x.com/MParakhin/status/2101036299721347073",
-      "https://x.com/abacaj/status/2101048462661845099",
-      "https://x.com/levie/status/2101007708044574906",
-      "https://x.com/ndrezn/status/2101046780989215005",
-      "https://x.com/cline/status/2101056078872256935",
-      "https://x.com/hwchase17/status/2101054310037790814",
-      "https://x.com/trq212/status/2101009392611278961",
-      "https://x.com/simonw/status/2101025043098812807",
-      "https://x.com/pidotdev/status/2100935860413673605",
-      "https://x.com/_akhaliq/status/2101020560964866103",
-      "https://x.com/dexhorthy/status/2100900279021363244"
+      "https://www.chesterwisniewski.com/tags/ai",
+      "https://www.chesterwisniewski.com/tags/llms",
+      "https://www.chesterwisniewski.com/tags/openai",
+      "https://www.chesterwisniewski.com/tags/anthropic",
+      "https://www.chesterwisniewski.com/tags/copyright",
+      "https://www.chesterwisniewski.com/tags/license",
+      "https://www.chesterwisniewski.com/tags/open-source"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "cb3db4aa992b1f12",
-   "url": "https://www.qbitai.com/2026/09/492661.html",
-   "title": "马斯克批量收购破产公司ing…世界首富脑子是不一样",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-19T11:48:06+00:00",
-   "summary_short": "彭博社爆料：SpaceX内部讨论从倒闭初创公司买客户与运营数据，用来训练Grok，图的是便宜",
-   "summary_long": "据彭博社爆料，SpaceX内部已讨论过从陷入困境甚至已倒闭的初创公司手中购买客户信息和运营数据，用来改进自家AI模型，原因是实惠。原文称相关讨论仍停留在SpaceX AI内部的非正式阶段，未必最终成交，SpaceX也未回应置评请求。\n\n文章称Grok此前主要靠两类数据：X塑造其“人格”，AI tutors团队补专业能力。该团队近期有调整，彭博6月消息称xAI一度暂停AI tutors招聘并更换负责人，原带队者为Diego Pasini，接替者是2021年加入SpaceX、此前在Starlink工作多年的Jack Garabedian。文章认为买倒闭公司数据补的是第三块拼图：真实业务场景。马斯克曾在SpaceX员工会议上表示，会用所有SpaceX信息来训练Grok，包括员工。\n\n文章还提到谷歌出价1000万美元竞拍破产重组的美国廉航Spirit Airlines的去标识化业务数据等，因可能泄露隐私被搁置；并称Grok下载量从1月的2000万+跌到4月的830万，付费转化也不理想。",
-   "key_points": [
-    "彭博社爆料SpaceX内部讨论从陷入困境或已倒闭的初创公司购买客户信息和运营数据来改进AI模型，理由是实惠；讨论仍处非正式阶段，未必成交，SpaceX未回应置评",
-    "文章称Grok此前靠X塑造“人格”、靠AI tutors补专业能力，该团队近期暂停招聘并更换负责人，接替者为SpaceX内部调来的Jack Garabedian；买倒闭公司数据补的是真实业务场景",
-    "谷歌曾出价1000万美元竞拍破产重组的精神航空去标识化业务数据、运营记录和软件代码，因可能泄露隐私被搁置；文章还提到Grok下载量从1月2000万+降至4月830万"
-   ],
-   "topics": [
-    "training-data",
-    "acquisition"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 50.1,
-   "status": "review",
-   "extra": {
     "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "马斯克"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/henry",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/%e9%a9%ac%e6%96%af%e5%85%8b",
-      "https://www.qbitai.com/2026/09/492755.html",
-      "https://www.qbitai.com/2026/09/492573.html",
-      "https://www.qbitai.com/2026/09/492550.html",
-      "https://www.qbitai.com/2026/09/486291.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/492661.html&title=马斯克批量收购破产公司ing…世界首富脑子是不一样&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2025/08/327157.html",
-      "https://www.qbitai.com/tag/ai%e7%bc%96%e7%a8%8b",
-      "https://www.qbitai.com/tag/xai",
-      "https://www.qbitai.com/2020/03/12140.html",
-      "https://www.qbitai.com/tag/%e4%bd%95%e5%b0%8f%e9%b9%8f",
-      "https://www.qbitai.com/tag/%e5%90%b4%e6%96%b0%e5%ae%99",
-      "https://www.qbitai.com/tag/%e5%b0%8f%e9%b9%8f%e6%b1%bd%e8%bd%a6",
-      "https://www.qbitai.com/tag/%e7%89%b9%e6%96%af%e6%8b%89",
-      "https://www.qbitai.com/tag/%e8%b0%b7%e4%bf%8a%e4%b8%bd",
-      "https://www.qbitai.com/2024/11/225901.html",
-      "https://www.qbitai.com/tag/optimus",
-      "https://www.qbitai.com/2020/04/13197.html",
-      "https://www.qbitai.com/2022/06/35656.html",
-      "https://www.qbitai.com/tag/%e6%99%ba%e8%83%bd%e8%bd%a6%e7%9c%9fhigh",
-      "https://www.qbitai.com/2022/12/40558.html",
-      "https://www.qbitai.com/tag/%e6%8e%a8%e7%89%b9",
-      "https://www.qbitai.com/tag/%e8%b6%85%e7%ae%97",
-      "https://www.qbitai.com/2026/09/489105.html",
-      "https://www.qbitai.com/2026/09/488832.html",
-      "https://www.qbitai.com/2026/09/488933.html",
-      "https://www.qbitai.com/2026/09/488725.html",
-      "https://www.qbitai.com/2026/09/488694.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    },
     "summary_mode": "full"
    }
   }
