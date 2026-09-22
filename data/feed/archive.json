@@ -1,6 +1,360 @@
 {
- "generated_at": "2026-09-20T23:09:41+00:00",
+ "generated_at": "2026-09-22T00:07:48+00:00",
  "items": [
+  {
+   "id": "82b7c1ad7628107c",
+   "url": "https://simonwillison.net/2026/Sep/21/jev/",
+   "title": "Jev introduces a new shape of LLM - System One, aka Decision Models",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-21T23:09:20+00:00",
+   "summary_short": "TypeSafe AI发布Jev，文本输入返回带置信度决策，快且便宜。",
+   "summary_long": "TypeSafe AI 发布 Jev，称其为“System One 模型”的首个实例；原文作者更赞同 Maggie Appleton 的看法，认为“decision models（决策模型）”更贴切。Jev 接受文本输入，但不输出文本，而是返回类别、是/否、评分及对应置信度的浮点数，被描述为“非结构化状态输入、类型化概率决策输出”的函数调用。它很快且便宜：只对输入计费，输出免费，首个模型输入价为每百万 token 0.042 美元，低于 OpenAI GPT-5 Nano 的 0.05 美元。使用时构造字符串、字符串数组或名值对组成的“state”，连同问题发给 API。问题分三类：Noul（Bernoulli）是/否题返回 0 到 1 的置信度；选择题返回置信度与各选项概率分布；评分题按数值等级返回浮点分。问题可并行评估，适合分类、垃圾邮件检测、建议标签、优先级和排序；作者还实验用 BM25 取 100 个候选后让 Jev 做搜索重排相关性打分。作者担忧它进一步走向黑盒：只返回浮点数，无法说明依据，偏见风险突出，希望无人用它给求职者排序；其实验让 Jev 给湾区城市打“好城市”分，Cupertino 最高、East Palo Alto 最低。因此评估和结构化实验更重要，而低价让数千次实验只需几美分。",
+   "key_points": [
+    "Jev 是 TypeSafe AI 发布的新类别“System One/decision models”模型，文本输入后返回类别、是/否、评分及置信度浮点数；速度快且便宜，只对输入计费，输出免费，输入价每百万 token 0.042 美元。",
+    "使用方式为构造字符串、字符串数组或名值对组成的“state”，连同问题发给 API；问题分 Noul（Bernoulli）是/否、选择题、评分题三类，并可并行评估。",
+    "原文作者担忧其黑盒性质：只返回浮点数、无法说明决策依据，偏见风险突出，希望无人用它给求职者排序；其实验给湾区城市打“好城市”分，Cupertino 最高、East Palo Alto 最低，因此评估和结构化实验更重要。"
+   ],
+   "topics": [
+    "decision-model",
+    "pricing",
+    "eval"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 75.9,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "ai",
+     "generative-ai",
+     "llms"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://typesafe.ai/",
+      "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+      "https://twitter.com/Mappletons/status/2101560333441610133",
+      "https://www.llm-prices.com",
+      "https://developers.openai.com/api/docs/models/gpt-5-nano",
+      "https://news.ycombinator.com/item?id=49717558#49718407",
+      "https://en.wikipedia.org/wiki/Bernoulli_distribution",
+      "https://en.wikipedia.org/wiki/Cupertino,_California",
+      "https://en.wikipedia.org/wiki/East_Palo_Alto,_California",
+      "https://github.com/kyle-pena-nlp/jevchat/",
+      "https://news.ycombinator.com/item?id=49778162#49778423",
+      "https://github.com/f/jev-leftpad",
+      "https://www.npmjs.com/package/left-pad",
+      "https://github.com/f/jev-leftpad/blob/4f405354de756cc372826d19aa8dfbee2b675778/src/index.js#L9-L30",
+      "https://gist.github.com/cablehead/bdf9ad946ceb26d9008976e49c9bfbbb",
+      "https://simple-jev.featherless.ai/cool-demo/2048/",
+      "https://github.com/jaredpalmer/kev",
+      "https://news.ycombinator.com/item?id=49783999",
+      "https://benchmarkheaven.com/jev-models",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/llms"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "09131d9cd421ad96",
+   "url": "https://twitter.com/Lon/status/2101793422487204027",
+   "title": "Fable 5 – Median thinking declined in August",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-21T16:13:57+00:00",
+   "summary_short": "六周数据显示模型思考能力八月持续下滑，作者归因于推理配置而非模型本身",
+   "summary_long": "原文作者记录了六周的数据捕捉与分析过程，发现模型推理能力的下滑并非一次性事件：在整个考察期内推理表现持续走低，并以多日为单位反复波动，其中部分波动与特定的产品公告和发布时点重合。作者形容，模型可以今天感觉很好，第二天却感觉很糟。作者称，自己一直使用 xhigh 或 max 的推理努力等级，但深入查看后发现，大多数对模型的调用几乎没有获得任何思考 token；即便出现较长的思考过程，也几乎从未达到官方公布的基准水平。由此作者得出结论：下次觉得模型变笨时，不要问模型是否被“削弱”了，而应关注自己实际获得的推理服务配置。",
+   "key_points": [
+    "六周数据捕捉显示，模型推理能力在整个考察期内持续下降，并非一次性下跌，而是以多日为单位波动，部分波动与特定产品公告和发布时点吻合",
+    "作者一直使用 xhigh 或 max 努力等级，但深入查看后发现大多数模型调用几乎没有获得思考 token，较长的思考过程也几乎从未达到公布的基准水平",
+    "作者建议：下次觉得模型变笨时，不要问模型是否被“削弱”，而应关注自己所获得的推理服务配置"
+   ],
+   "topics": [
+    "eval",
+    "reasoning"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测"
+   ],
+   "horizon": "long",
+   "score": 78.5,
+   "status": "published",
+   "extra": {
+    "hn_points": 338,
+    "hn_comments": 233,
+    "content_source": "reader",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "c701b57089c5bf6a",
+   "url": "https://huggingface.co/blog/MultiverseComputingCAI/pruning-llms-like-a-physicist-block-removal-as-an",
+   "title": "Pruning LLMs Like a Physicist: Block Removal as an Ising Optimization Problem",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-09-21T13:44:34+00:00",
+   "summary_short": "把删块选择建为Ising优化，50%压缩Llama-3.3-70B时MMLU提升近23点。",
+   "summary_long": "原文讨论LLM深度剪枝：直接删除整个Transformer块，模型变短带来可预测推理加速，且可与量化、低秩压缩叠加。难点在选块：删错会导致模型崩溃，且删某块的效果取决于同时删了哪些块，选择相互耦合，因此是组合问题而非排序问题。作者把块选择重写为带约束的二进制优化，映射到Ising玻璃——全连接、固定“向上”自旋数的无序自旋系统。该系统的能量可作为剪枝模型基准表现的廉价代理，无需逐一评测就能排序大量候选配置，并把困难实例交给经典与量子启发求解器。方法上，每个块对应一个二进制变量（0保留、1删除），对损失做二阶泰勒展开得近似Hessian：对角项是单块重要性，非对角项是块间两两耦合，即均值场方法忽略的多体相互作用。原文报告，Llama-3.3-70B-Instruct在50%压缩下，MMLU比最佳竞争块删除方法提升近23个百分点。原文末尾目标函数截断，未完整给出。",
+   "key_points": [
+    "块删除/深度剪枝因模型变短可带来可预测推理加速和内存节省，并能与量化、低秩压缩等技术叠加，但删错块会导致模型崩溃。",
+    "块选择之间相互耦合，属于组合问题而非排序问题；作者将其写成带约束二进制优化并映射为Ising玻璃，用系统能量作为基准表现的廉价代理。",
+    "方法上对损失做二阶泰勒展开得到近似Hessian，对角项表示单块重要性，非对角项表示块间两两耦合；在Llama-3.3-70B-Instruct 50%压缩下，MMLU比最佳竞争块删除方法提升近23个百分点。"
+   ],
+   "topics": [
+    "pruning",
+    "model-compression",
+    "inference-acceleration"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 78.6,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://huggingface.co/papers/2602.00161",
+      "https://cdn-uploads.huggingface.co/production/uploads/668e37fd9c9aa124a3c867e8/zD5BW0R8lXV9fmVyap9Jb.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/668e37fd9c9aa124a3c867e8/n1GCTwe9Ulg53TAdgqjAf.png",
+      "https://github.com/CompactifAI/Block_removal_through_constrained_binary_optimization"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "a7ca59844a94ccd6",
+   "url": "https://openai.com/index/advisory-group-on-mathematics-and-ai",
+   "title": "Advisory Group on Mathematics and Artificial Intelligence",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-21T12:00:00+00:00",
+   "summary_short": "OpenAI新内部模型解出百余数学开放问题，并组建独立数学顾问组",
+   "summary_long": "OpenAI于9月21日发布公告称，8月28日开始训练一个新的内部模型，该模型除解决纳维-斯托克斯千年奖问题外，已解决数学大部分领域中100多个长期悬而未决的开放问题，其进展速度令OpenAI内部的数学家感到意外，公司因此展开内部讨论，研究如何最好地向学界通报这一快速进展，以便该领域做好准备与调整。公告称，数学是基础科学，新发现可能带来广泛应用，这使相关能力前景可观，其负责任开发与部署的重要性超出数学本身。原文提到近期一封公开信《A Severe Misalignment of AI in Mathematics》，数学家在信中担忧以解决开放问题作为新AI系统基准所带来的负面外部性，凸显AI公司与数学界进行深思熟虑互动的必要。为此，OpenAI正与已成立独立数学顾问组的数学家合作。该顾问组将作为数学界与更广泛公众之间的桥梁，就新出现成果的评审与传播提供建议：帮助评估其重要性、协调发布方式、并就数学研究的学术与职业标准提出建议，同时就工具如何支持数学研究与学习提供建议。顾问组独立于OpenAI运作，可提出未被请求的建议、评论OpenAI对数学的影响并公开其建议，成员不由OpenAI支付报酬，可自行更改成员构成；它不负责就OpenAI内部数学研究进度的节奏提供建议。",
+   "key_points": [
+    "OpenAI于8月28日开始训练新的内部模型，该模型除解决纳维-斯托克斯千年奖问题外，已解决大部分数学领域100多个长期开放问题，进展速度令其内部数学家意外",
+    "一封题为《A Severe Misalignment of AI in Mathematics》的公开信中，数学家担忧以解决开放问题作为新AI系统基准的负面外部性",
+    "新成立的数学与人工智能顾问组独立于OpenAI，可公开其建议、提出未被请求的建议，成员无报酬，但不参与OpenAI内部数学研究节奏的决策；初始成员挂靠于高等研究院（IAS）"
+   ],
+   "topics": [
+    "reasoning",
+    "ai-governance"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 75.9,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Company"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://openai.com/index/navier-stokes-solution/",
+      "https://openai.com/index/navier-stokes-solution/#astra-internal-model-open-math-problems",
+      "https://mathandai.org/",
+      "http://agmai.org",
+      "https://www.ias.edu/nccr/projects#agmai"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "513f706570e26166",
+   "url": "https://github.com/jaredpalmer/kev/tree/main",
+   "title": "Kev: Tiny Jev-like family of decision models built on top of Qwen3.5",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-21T07:11:55+00:00",
+   "summary_short": "基于 Qwen3.5 的小型决策模型家族 Kev，可自行训练、本地部署",
+   "summary_long": "Kev 是一组构建在 Qwen3.5 之上的小型决策模型家族，架构基于《Jev's Architecture Unmasked》所描述的设计。用户既可使用预训练权重，也可自行训练，原文提供了训练代码与评测数据，模型规模包括 0.8B、4B 和 9B。其 API 与 TypeSafe 的 System One 对齐，可把该 Python SDK 指向本地服务器。在同一个请求中可同时提出三类问题：yes/no（noul）、多选（choice）与评分（score）；各问题共享同一段输入文本，但彼此不可互读。模型支持 CUDA、ROCm 与 Apple Silicon，4B 和 9B 使用 bf16 可装入 32 GB Mac。原文示例把客服工单同时判定部门、是否需人工介入与客户愤怒程度，返回各选项的概率而非单一标签，原文称这正是拿回概率的意义。部署需 Python 3.12+ 与 uv，示例命令会启动本地 Kev-4B 服务并下载适配器与基座模型。另附网页 playground，可试用自定输入并检视选项顺序对答案的影响，也可在 Hugging Face Spaces 上免安装试用 Kev-4B 与 Kev-0.8B。",
+   "key_points": [
+    "提供 0.8B、4B、9B 三种规模，附训练代码与评测数据，可用预训练权重或自行训练",
+    "同一请求可混合 noul、choice、score 三类问题，问题共享输入文本但彼此不可互读，返回概率而非单一标签",
+    "支持 CUDA、ROCm 与 Apple Silicon，4B/9B 以 bf16 可跑在 32 GB Mac；API 兼容 TypeSafe System One，并有网页 playground 与 Hugging Face Spaces 在线试用"
+   ],
+   "topics": [
+    "open-source",
+    "post-training"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "Agent 与开发",
+    "开源项目"
+   ],
+   "horizon": "short",
+   "score": 75.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 396,
+    "hn_comments": 175,
+    "outbound": {
+     "arxiv": [
+      "2402.05099",
+      "2404.00242",
+      "2406.15657"
+     ],
+     "links": [
+      "https://github.com/jaredpalmer/kev/actions/workflows/ci.yml",
+      "https://huggingface.co/collections/jaredpalmer/kev-6aad9d0ea49f2589665e07cd",
+      "https://huggingface.co/spaces/jaredpalmer/kev",
+      "https://huggingface.co/datasets/jaredpalmer/kev-suites",
+      "https://archerhume.com/posts/jevs-architecture-unmasked",
+      "https://docs.typesafe.ai/api",
+      "https://docs.astral.sh/uv/",
+      "http://localhost:3001",
+      "http://localhost:3001/chess",
+      "https://huggingface.co/jaredpalmer/kev-0.8b",
+      "https://huggingface.co/jaredpalmer/kev-4b",
+      "https://huggingface.co/jaredpalmer/kev-9b",
+      "https://github.com/jaredpalmer/kev/releases/tag/kev-family",
+      "https://huggingface.co/jaredpalmer/kev-0.5b",
+      "https://github.com/TheoLeeCJ/SemIf",
+      "https://github.com/scienthoon/jev-ood-calibration",
+      "https://github.com/jaredpalmer/kev/issues/8",
+      "https://github.com/jaredpalmer",
+      "https://devin.ai",
+      "https://huggingface.co/Qwen/Qwen3.5-9B-Base",
+      "https://github.com/Radexito",
+      "https://arxiv.org/abs/2402.05099",
+      "https://arxiv.org/abs/2404.00242",
+      "https://arxiv.org/abs/2406.15657"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "eb792e0fc3420085",
+   "url": "https://huggingface.co/blog/tokenizers-v1",
+   "title": "tokenizers v1: encode, decode and scaling, measured",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-09-21T00:00:00+00:00",
+   "summary_short": "tokenizers v1：输出与 v0.23 一致，性能常快数十倍",
+   "summary_long": "tokenizer 历史上并非机器学习工作流的瓶颈，其计算量相比流水线中的建模部分很轻。但随着模型变快、负载扩展——在超大数据集上训练、同时服务大量并发请求、反复处理长输入——都可能给 tokenizer 造成足够压力，使模型缺数据可喂，GPU 空等 CPU 完成分词。因此即将发布的 tokenizers v1 把性能作为重点。原文称 v1 比 v0.23 常常快数十倍。v1 会产出与 v0.23 相同的 token ID，目标是保留输出、API、词表与 merge 排名，同时保持通用性：v1 能加载 v0.23 能加载的一切，不专门针对 BPE。分词分四阶段：归一化、预分词、模型、后处理，本文所述工作主要发生在模型阶段；被测的十个模型家族中八个使用 BPE，另两个使用 WordPiece 与 Unigram。结果基于 v1 候选版，在 tokbench 仓库运行，覆盖单线程、多线程、线程扩展、逐模型、逐语言、延迟、解码吞吐、内存堆与 crate 体积。原文未给出具体加速数值。",
+   "key_points": [
+    "tokenizer 通常不是瓶颈，但大规模训练、高并发服务与反复处理长输入会使其成为压力点，导致 GPU 等 CPU",
+    "v1 产出与 v0.23 相同的 token ID，保留 API、词表与 merge 排名，并保持对所有 tokenizer 家族的通用支持",
+    "v1 的改动之一是把单一 crate 拆为 workspace：tk-encode 为必需运行时，tk-serialize、tk-convert、tk-train 按需链接（原文此处截断）"
+   ],
+   "topics": [
+    "tokenizer",
+    "performance",
+    "open-source"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 79.2,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "1902.08318"
+     ],
+     "links": [
+      "https://github.com/huggingface/blog/blob/main/tokenizers-v1.md",
+      "https://github.com/marcelroed/gigatoken",
+      "https://crates.io/crates/tiktoken-rs",
+      "https://crates.io/crates/kitoken",
+      "https://crates.io/crates/tokie",
+      "https://crates.io/crates/fastokens",
+      "https://crates.io/crates/wordchipper",
+      "https://www.npmjs.com/package/ai-tokenizer",
+      "https://github.com/huggingface/tokbench",
+      "https://huggingface.co/docs/tokenizers/pipeline",
+      "https://huggingface.co/docs/transformers/tokenizer_summary",
+      "https://github.com/huggingface/tokenizers/pull/2365",
+      "https://www.cs.sfu.ca/~ashriram/papers/2012_HPCA_Parabix.pdf",
+      "https://arxiv.org/abs/1902.08318",
+      "https://github.com/huggingface/tokenizers/pull/2201",
+      "https://github.com/huggingface/tokenizers/pull/2317",
+      "https://github.com/huggingface/tokenizers/pull/2262",
+      "https://github.com/huggingface/tokenizers/pull/2190",
+      "https://github.com/huggingface/tokenizers/pull/2188",
+      "https://github.com/huggingface/tokenizers/pull/2175",
+      "https://github.com/huggingface/tokenizers/pull/2183",
+      "https://github.com/huggingface/tokenizers/pull/2182",
+      "https://github.com/huggingface/tokenizers/pull/2304",
+      "https://github.com/huggingface/tokenizers/pull/2343",
+      "https://github.com/huggingface/tokenizers/pull/2281",
+      "https://github.com/huggingface/tokenizers/pull/2209"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "f6e31ebaae9750cf",
+   "url": "https://simonwillison.net/2026/Sep/20/hn-49779718/",
+   "title": "MCP was always a bad idea?",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-20T20:24:41+00:00",
+   "summary_short": "评论反驳“MCP是坏主意”：在需要受控、可审计的受限访问场景，MCP仍有价值。",
+   "summary_long": "这是发表在 Hacker News 上的一条评论，回应《MCP was always a bad idea?》一文。评论认为该文完全忽视了 MCP 当下带来的价值。如果运行的是拥有不受限互联网访问的完整终端代理（如 Claude Code、Codex、Meta Muse、OpenClaw 等），确实几乎没理由使用 MCP，直接让代理调用 API 即可。但如果想要比这种“YOLO”方式更受控的方案，就会需要：控制代理能访问哪些外部服务；处理认证而无需让代理直接接触 API 密钥；提供合理的界面让用户连接并认证更多服务；以及针对所发生情况的强审计日志。MCP 让提供这些能力容易得多。评论指出，认为完整编码代理不需要 MCP 就断定 MCP 过时，会忽略我们可能想构建的其他东西。",
+   "key_points": [
+    "在拥有不受限互联网访问的完整终端代理场景下，几乎没理由用 MCP，直接让代理调用 API 即可。",
+    "若要更受控（非 YOLO），则需要控制可访问的外部服务、不暴露 API 密钥的认证方式、连接认证界面和强审计日志。",
+    "MCP 让提供上述能力容易得多；仅因完整编码代理不需要就认为 MCP 过时，忽略了其他可构建的东西。"
+   ],
+   "topics": [
+    "mcp",
+    "tool-use",
+    "agent-loop"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 75.5,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "hacker-news",
+     "model-context-protocol"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://news.ycombinator.com/item?id=49779329#49779718",
+      "https://news.ycombinator.com/item?id=49779329",
+      "https://simonwillison.net/tags/hacker-news",
+      "https://simonwillison.net/tags/model-context-protocol"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "fc9a8f12e485244c",
    "url": "https://qwen.ai/blog?id=qwen-image-2.1",
@@ -4755,39 +5109,6 @@
    }
   },
   {
-   "id": "bb23b6936a6a5027",
-   "url": "https://simonwillison.net/2026/Sep/6/research-acceleration-the-view-inside-openai/",
-   "title": "Research acceleration: The view inside OpenAI",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-06T23:57:40+00:00",
-   "summary_short": "OpenAI内部RSI日聚焦递归自我改进，图表显示研究员AI支出7月骤升。",
-   "summary_long": "OpenAI内部当天被称为RSI日，RSI指递归自我改进（Recursive Self-Improvement），原文作者写道“我认为这是他们的新AGI”。这篇文章与首席科学家Jakub Pachocki的新文章《An Alien Mind》都讨论了这一主题，但本文没有展开这个缩写。原文包含OpenAI研究团队使用编码代理的细节，但没有进一步展开具体内容。文中称，与几乎所有人一样，2026年是代理工程在OpenAI真正起飞的一年，配图展示了每位研究人员AI支出的变化：7月下旬出现显著加速。作者对这一加速原因感兴趣，猜测是当时内部员工获得了后来以GPT-6 Astra名称发布的模型访问权限。原文末尾的标签包括ai、openai、generative-ai、chatgpt、llms、coding-agents、november-2025-inflection、recursive-self-improvement。原文未详述图表其他数据以及编码代理的具体使用方式。",
-   "key_points": [
-    "OpenAI当天被作者称为RSI日，即递归自我改进，作者认为这是其新AGI。",
-    "原文提及OpenAI研究团队使用编码代理，并称2026年代理工程在OpenAI真正起飞。",
-    "图表显示每位研究员AI支出在7月下旬显著加速，作者推测内部员工获得了后来发布为GPT-6 Astra的模型访问权限。"
-   ],
-   "topics": [
-    "coding-agent",
-    "recursive-self-improvement"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 82.3,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
    "id": "a8e8f9dc895a026b",
    "url": "https://openai.com/index/an-alien-mind",
    "title": "An Alien Mind",
@@ -4838,42 +5159,6 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
-   "id": "ae0c2e3335c6768e",
-   "url": "https://openai.robocurve.org/gpt-6-astra/",
-   "title": "GPT-6 Astra on robot arms",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-06T01:52:45+00:00",
-   "summary_short": "GPT-6 Astra在方块入碗任务95%成功且成本减半，拼图任务与Fable持平。",
-   "summary_long": "该文是此前Claude Fable 5与Fable 5.1对比的后续，测试了OpenAI GPT-6 Astra在相同的YAM机械臂和Inspect Robots智能体策略下执行两个操作任务。第一个任务是从桌上拾取红色方块放入碗中。Astra在20次试验中成功放置19次（95%），而Fable 5.1为8/20，Fable 5为1/20；Astra平均每次试验耗时2.5分钟（Fable 5.1为6.8分钟），估计成本每次运行0.94美元（Fable 5.1为2.12美元），输出token约2.1k。第二个任务是将带中心旋钮的圆形蓝色拼图块插入板上匹配的圆形凹槽。Astra完成插入2/20次，与Fable 5.1的2/20相同；它到达凹槽后在最后一步停滞，与Fable表现一致；估计成本每次运行1.36美元（Fable 5.1为2.18美元），耗时3.4分钟。评分由人类评分员根据最高阶段进行，采用与Fable报告相同的评分标准：0无接近、1接触、2抬起、3定位、4放置。全部共120次试验。结果显示，Astra在碗任务上完成率远高且成本约减半，但在拼图任务上完成率与Fable 5.1持平，仍未能解决最后插入步骤。",
-   "key_points": [
-    "GPT-6 Astra在方块入碗任务中20次成功19次，完成率95%，高于Fable 5.1的40%和Fable 5的5%。",
-    "碗任务中Astra平均耗时2.5分钟、成本0.94美元/次，约为Fable 5.1的一半。",
-    "拼图任务中Astra完成2/20，与Fable 5.1相同；在最后插入步骤停滞。"
-   ],
-   "topics": [
-    "eval",
-    "agent-loop",
-    "robotics"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测"
-   ],
-   "horizon": "short",
-   "score": 76.7,
-   "status": "published",
-   "extra": {
-    "hn_points": 231,
-    "hn_comments": 180,
-    "content_source": "direct",
-    "summary_mode": "full",
     "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
     "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
     "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
