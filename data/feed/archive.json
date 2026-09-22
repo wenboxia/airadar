@@ -1,6 +1,259 @@
 {
- "generated_at": "2026-09-22T00:07:48+00:00",
+ "generated_at": "2026-09-22T23:38:25+00:00",
  "items": [
+  {
+   "id": "b6b1e4118cdbb529",
+   "url": "https://openai.com/index/better-prompt-caching-for-gpt-6",
+   "title": "Better prompt caching for GPT-6",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-22T21:00:00+00:00",
+   "summary_short": "OpenAI 为 GPT-6 推出改进提示缓存，默认命中率更高并新增监控与诊断工具",
+   "summary_long": "原文介绍 OpenAI 为 GPT-6 推出的改进版提示缓存系统。背景是 GPT-6 支持持久化智能体长时间处理复杂任务（如重构代码库、产出经过调研的文档与演示文稿），这类应用连续发起彼此依赖的 API 请求，反复携带相同的指令、工具定义和上下文。OpenAI 缓存这些共享上下文以复用计算，缩短响应时间，并对缓存输入 token 提供最高 90% 的折扣。新系统默认提高缓存命中率，对 30 分钟窗口内复用的符合条件的共享前缀给予缓存折扣，并新增 Prompt Caching Dashboard 与提示缓存诊断工具：前者显示应用输入中来自缓存的比例、跟踪命中率、对比缓存与未缓存 token；后者可对比请求与近期响应，找出模型、工具、设置或输入中阻碍复用的变化，并估算受影响 token 数。原文还引用 Mario Rodriguez（Chief Product Officer）称提示缓存帮助 GitHub Copilot 大规模提供快速体验。优化手段包括显式缓存断点、在不破坏缓存的情况下调整推理强度、在工具与指令变化时保留缓存，以及预热缓存以降低延迟。",
+   "key_points": [
+    "GPT-6 系列默认实现更高的缓存命中率，对 30 分钟窗口内复用的符合条件的共享前缀提供缓存折扣，缓存输入 token 折扣最高 90%。",
+    "新增 Prompt Caching Dashboard 与提示缓存诊断工具：可跟踪缓存命中率、对比缓存与未缓存 token，并在出现意外未命中时对比请求与近期响应，定位模型、工具、设置或输入的变化（原文示例原因为 tools_changed，并给出受影响 token 数估算）。",
+    "提供多项优化方式：显式缓存断点选择要复用的提示前缀；在 GPT-6 模型上追加 configuration_update 改变推理强度而不破坏缓存；保持工具定义、schema 与顺序稳定，用 allowed_tools 或 tool_choice 控制可用工具，并用新的 developer messages 追加指令；预热缓存以降低延迟。"
+   ],
+   "topics": [
+    "context-engineering",
+    "tool-use"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 79.2,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Product"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://platform.openai.com/usage?usage_section=prompt-caching",
+      "https://developers.openai.com/api/docs/guides/prompt-caching/diagnostics",
+      "https://developers.openai.com/api/docs/guides/prompt-caching",
+      "https://developers.openai.com/api/docs/guides/reasoning?api-mode=responses#change-reasoning-mid-conversation",
+      "https://developers.openai.com/api/docs/guides/prompt-caching#manage-tools-with-append-only-updates",
+      "https://developers.openai.com/api/docs/guides/prompt-caching#prewarm-the-cache",
+      "https://developers.openai.com/api/docs/guides/prompt-caching#how-to-optimize-prompt-caching"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "0c90c73c08cf2835",
+   "url": "https://www.anthropic.com/claude-opus-5-5",
+   "title": "Claude Opus 5.5",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-22T16:29:05+00:00",
+   "summary_short": "Claude Opus 5.5 发布：成本比 Opus 5 低四成，安全测试表现最强",
+   "summary_long": "原文宣布推出 Claude Opus 5.5，是全新 Claude 5.5 家族的首个模型，称其在大多数工作上表现达到 Claude Fable 5.1 的水平，运行成本比 Opus 5 低 40%。原文称这是其“呼吁放慢前沿”以来的首个发布，模型发布前由外部评估方测试，包括 Frontier Design 和 METR。在原文所述最全面的对齐测试——自动化行为审计中，Opus 5.5 是迄今测试过的表现最强模型，比近期模型更少采取难以逆转的行动，也比 Opus 5 更抗提示注入。性能上，原文称一名测试者不到一天完成 68 万行代码迁移；在缩短网页应用各页面加载时间的任务中 40 次成功 39 次。价格方面，输入、输出 token 每百万分别为 4 美元和 20 美元，比 Opus 5 低 20%；缓存读取每百万 0.20 美元，低 60%；输出生成速度快 30% 以上，并提高 Pro、Max、Team 及按席位 Enterprise 方案的五小时用量上限。因在生物学与网络安全方面与 Claude Mythos 5.1 相当，采用与 Claude Fable 5.1 类似的防护措施；Sonnet 5.5 与 Haiku 5.5 将在未来数周跟进。",
+   "key_points": [
+    "性能：大多数工作达到 Claude Fable 5.1 水平，测试者不到一天完成 68 万行代码迁移，网页加载优化任务 40 次成功 39 次",
+    "安全：在自动化行为审计中取得迄今最佳成绩，更少采取难以逆转行动，比 Opus 5 更抗提示注入；因生物与网络安全能力与 Claude Mythos 5.1 相当，采用类似 Fable 5.1 的防护",
+    "成本与速度：典型负载下比 Opus 5 便宜 40%，输入/输出每百万 token 4/20 美元，缓存读取低 60%，输出速度快 30% 以上，并提高多个订阅方案的五小时用量上限"
+   ],
+   "topics": [
+    "alignment",
+    "prompt-injection",
+    "coding-agent"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 1085,
+    "hn_comments": 763,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://darioamodei.com/post/we-must-pace-the-frontier",
+      "https://www.imaginefrontier.com/",
+      "https://metr.org/",
+      "https://anthropic.com/claude-opus-5-5-system-card",
+      "https://www.anthropic.com/news/life-sciences-verification-program",
+      "https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet",
+      "https://www.anthropic.com/responsible-scaling-policy",
+      "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents",
+      "https://www.anthropic.com/news/improving-alignment-security-efforts",
+      "https://www.anthropic.com/news/accenture-embedded-evaluation",
+      "https://www.anthropic.com/news/claude-code-security",
+      "https://claude.com/form/life-sciences-verification-program",
+      "https://www.anthropic.com/threat-intelligence-report-september-2026",
+      "https://support.claude.com/en/articles/16761192",
+      "https://platform.claude.com/docs/en/build-with-claude/preserved-thinking",
+      "https://www.anthropic.com/news/claude-text-watermark",
+      "https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5#thinking-cant-be-disabled",
+      "https://platform.claude.com/docs/en/models/overview"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "b7ce14e363bb2f98",
+   "url": "https://www.interconnects.ai/p/debating-rsi-the-us-china-gap-and",
+   "title": "Debating RSI, the US-China Gap, and Jaggedness with JS Denain of Epoch AI",
+   "source": "Interconnects",
+   "tier": "A",
+   "published_at": "2026-09-22T13:37:45+00:00",
+   "summary_short": "JS Denain 谈 RSI、中美模型差距与 AI 加速，强调双方高度不确定。",
+   "summary_long": "这期节目由 Nathan Lambert 与 Epoch AI 的 Jean-Stanislas “JS” Denain 对话，后者是 Epoch AI 高级研究员并领导 Insights 团队。目录涵盖 RSI 预测、机器人对 AI 加速的作用、中国模型差距、蒸馏是否解释差距、中国招聘信息、开源与闭源模型安全性、Epoch AI 如何运作及前沿后训练配方。转录开头聚焦 RSI：Lambert 问 OpenAI 和 Anthropic 在宣称 RSI 即将来临时看到了什么测量。Denain 表示两家有关于 AI 加速 AI 进展的博客，但他不认为已发布内容是即将自我维持加速或完全自动化 AI 研究员工作的强证据。他指出 OpenAI 博文最突出的是模型部署中 AI 使用增加、研究人员 Codex 支出上升，图中为每月 2 倍增长，可能说明他们获得价值，但不构成六个月内发生软件智能爆炸的强证据。Lambert 问实验室内部信息是否比公开信息更令人担忧，并说想关注证据而非文化；Denain 称自己没有完整信息，目前不认为 OpenAI 或 Anthropic 看到了值得更恐慌的特定东西。原文转录在此处中断。",
+   "key_points": [
+    "对话者为 Nathan Lambert 与 Epoch AI 的 JS Denain，后者领导 Insights 团队；节目讨论 RSI 预测、机器人、中国模型差距、蒸馏、中国招聘信息、开源与闭源模型安全性、Epoch AI 运作及前沿后训练配方。",
+    "关于 RSI，Denain 认为 OpenAI 和 Anthropic 公开的 AI 加速 AI 进展博客不是即将自我维持加速或完全自动化 AI 研究员工作的强证据；OpenAI 博文中研究人员 Codex 支出每月 2 倍增长最突出，但解释可能受测量方式影响，也不构成六个月内软件智能爆炸的强证据。",
+    "Lambert 询问实验室内部是否有公开信息之外的担忧依据；Denain 表示没有完整信息，目前不认为 OpenAI 或 Anthropic 看到了某个特定东西就值得更恐慌。双方都强调对 AI 走向高度不确定。"
+   ],
+   "topics": [
+    "eval",
+    "open-source",
+    "post-training"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 76.2,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://epoch.ai/about/team/jean-stanislas-denain",
+      "https://x.com/datagenproc",
+      "https://www.linkedin.com/in/jean-stanislas-denain-087332172/",
+      "https://www.interconnects.ai/p/debating-rsi-the-us-china-gap-and?utm_source=substack&utm_medium=email&utm_content=share&action=share",
+      "https://podcasts.apple.com/us/podcast/interconnects-audio/id1719552353",
+      "https://open.spotify.com/show/6XNzfJULeVxR7SneeesDUs",
+      "https://www.interconnects.ai/podcast",
+      "https://www.interconnects.ai/t/interviews",
+      "https://epoch.ai/",
+      "https://www.interconnects.ai/p/notes-from-inside-chinas-ai-labs",
+      "https://www.interconnects.ai/p/lossy-self-improvement",
+      "https://openai.com/index/research-acceleration-view-inside-openai/",
+      "https://www.anthropic.com/institute/recursive-self-improvement",
+      "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+      "https://epoch.ai/gradient-updates/the-software-intelligence-explosion-debate-needs-experiments",
+      "https://epoch.ai/gradient-updates/toward-an-onet-for-ai-rnd",
+      "https://www.forbes.com/sites/siladityaray/2026/09/09/anthropic-alignment-lead-warns-ai-could-kill-all-humans-as-researcher-quits/",
+      "https://ai-2027.com/",
+      "https://www.dwarkesh.com/p/john-beren-charlie",
+      "https://epoch.ai/publications/parallelization-constraints-could-delay-a-technological-singularity",
+      "https://www.dwarkesh.com/p/noam-brown",
+      "https://epoch.ai/eci",
+      "https://epoch.ai/publications/have-ai-capabilities-accelerated",
+      "https://www.isattentionallyouneed.com/",
+      "https://metr.org/notes/2026-04-21-ai-rd-nanogpt-progress/",
+      "https://github.com/karpathy/autoresearch",
+      "https://tecunningham.github.io/posts/2026-03-13-apple-picking-ai.html",
+      "https://www.interconnects.ai/p/cruise-collisions-self-driving",
+      "https://epoch.ai/publications/how-fast-could-robot-production-scale-up",
+      "https://epoch.ai/gradient-updates/is-almost-everyone-wrong-about-americas-ai-power-problem",
+      "https://epoch.ai/publications/where-autonomy-works-evaluating-robot-capabilities-in-2026",
+      "https://epoch.ai/data-insights/us-vs-china-eci",
+      "https://x.com/xeophon",
+      "https://artificialanalysis.ai/",
+      "https://www.interconnects.ai/p/the-distillation-panic",
+      "https://stolen-thoughts.com/",
+      "https://www.anthropic.com/threat-intelligence-report-september-2026",
+      "https://www.interconnects.ai/p/how-much-does-distillation-really",
+      "https://epoch.ai/gradient-updates/what-we-learned-from-1604-chinese-ai-job-postings",
+      "https://www.hacktron.ai/blog/hacking-openai"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "98acfe91fd30b730",
+   "url": "https://huggingface.co/blog/transformers-llama-cpp-quants",
+   "title": "Transformers now runs llama.cpp quants",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-09-22T00:00:00+00:00",
+   "summary_short": "Transformers 支持直接加载 GGUF 量化模型，在本地机器上生成",
+   "summary_long": "Transformers 新增在本地高效运行 GGUF 模型的支持：从 Hub 挑选适配笔记本内存的 checkpoint，用熟悉的 from_pretrained 加载并生成。GGUF 由 llama.cpp 团队开发，是本地推理广泛使用的格式，该团队在 Hub 的 ggml-org 下分享量化 checkpoint，Unsloth、LM Studio Community、bartowski 等也提供多种量化版本；llama.cpp 的推理引擎支撑着 Ollama、LM Studio、Jan 等本地工具。为让性能接近 llama.cpp，作者通过 kernels 库复用其底层 ggml kernel 并减少 generate 开销，初期聚焦 Apple Silicon，从 Qwen3.5 架构开始。GGUF 把权重与元数据（tokenizer 信息、可选 chat template）打包成一个文件，支持不同量化级别；以 Unsloth Qwen3.5-4B 为例，BF16 为 8.42GB，Q4_K_M 为 2.74GB，建议从 Q4_K_M 起步。使用需 Apple Silicon Mac 及受支持的 PyTorch 与 kernels 版本。",
+   "key_points": [
+    "用法是给 from_pretrained 传 Hub model_id 与 gguf_file，无需额外配置；权重保持在 Metal 上时自动加载兼容的 ggml/Metal layer kernel，注意力用 ggml-org/ggml-attn，取不到则回退 sdpa 并给出警告，也可显式指定 attn_implementation=\"sdpa\"",
+    "初期范围是 Apple Silicon 上的本地推理，从 Qwen3.5 架构开始；需 Apple Silicon Mac、通常最近两个 PyTorch 版本、最新版 transformers（目前为 main）以及兼容的 kernels",
+    "量化文件大小参考 Unsloth 的 Qwen3.5-4B：BF16 8.42GB、Q6_K 3.53GB、Q5_K_M 3.14GB、Q4_K_M 2.74GB；Q4_K_M 混合张量精度、多数为 4 位，文档建议先试 Q4_K_M，内存充足再试 Q5_K_M 或 Q6_K"
+   ],
+   "topics": [
+    "quantization",
+    "local-inference",
+    "llama.cpp"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 77.4,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/huggingface/blog/blob/main/transformers-llama-cpp-quants.md",
+      "https://github.com/ggml-org/llama.cpp",
+      "https://github.com/ml-explore/mlx",
+      "https://x.com/huggingface?ref_src=twsrc%5Etfw",
+      "https://t.co/lsIxLoUneU",
+      "https://x.com/julien_c/status/2047647522173104145?ref_src=twsrc%5Etfw",
+      "https://huggingface.co/ggml-org",
+      "https://huggingface.co/unsloth",
+      "https://huggingface.co/lmstudio-community",
+      "https://huggingface.co/bartowski",
+      "https://huggingface.co/docs/kernels/index",
+      "https://github.com/ggml-org/ggml/blob/master/docs/gguf.md",
+      "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/tree/main",
+      "https://huggingface.co/docs/hub/gguf#quantization-types",
+      "https://huggingface.co/kernels/ggml-org/ggml-quantization",
+      "https://huggingface.co/docs/transformers/main/en/quantization/gguf",
+      "https://huggingface.co/docs/transformers/main/en/serve-cli/serving",
+      "https://huggingface.co/docs/transformers/main/en/serve-cli/serving#enable-reasoning-on-the-server",
+      "https://www.jan.ai/docs/desktop/remote-models/custom-endpoint",
+      "https://pi.dev",
+      "https://github.com/ggml-org/llama.cpp/tree/master/tools/llama-bench",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/transformers-llama-cpp-quants/benchmark-comparison.svg",
+      "https://huggingface.co/blog/ggml-joins-hf",
+      "https://huggingface.co/kernels/ggml-org/ggml-norm",
+      "https://huggingface.co/kernels/ggml-org/ggml-attn",
+      "https://huggingface.co/kernels/ggml-org/ggml-gated-delta-net",
+      "https://huggingface.co/kernels/transformers-community/topk",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/transformers-llama-cpp-quants/layer-kernel-benchmark.svg",
+      "https://github.com/huggingface/transformers/pull/48814",
+      "https://github.com/huggingface/transformers/pull/47975",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/transformers-llama-cpp-quants/generation-loop-benchmark.svg",
+      "https://github.com/huggingface/transformers/issues",
+      "https://huggingface.co/ArthurZ",
+      "https://huggingface.co/cyrilvallez",
+      "https://huggingface.co/sayakpaul",
+      "https://huggingface.co/ariG23498",
+      "https://huggingface.co/pcuenq",
+      "https://huggingface.co/lysandre"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "82b7c1ad7628107c",
    "url": "https://simonwillison.net/2026/Sep/21/jev/",
@@ -61,6 +314,45 @@
       "https://simonwillison.net/tags/llms"
      ]
     },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "015dbc4f82687be4",
+   "url": "https://linear.app/now/ci-bottleneck-reworked",
+   "title": "AI coding has made CI a bottleneck, so we reworked ours to keep up",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-21T19:23:33+00:00",
+   "summary_short": "Linear 重构 CI：测试量近四倍，PR 等待仍从 6 分钟降到 5 分多，单测机器时间减半",
+   "summary_long": "AI 让写代码变快，但验证没跟上：每个 PR 仍要过 CI，CI 因此成为瓶颈，推高基础设施成本，也拉长开发者与 agent 等反馈的时间。Linear 团队围绕\"CI 成本高\"，同时优化 PR 的 CI 等待时长与 runner 消耗。尽管测试套件自年初几乎翻四倍，PR 等待时间仍从 6 分钟以上降到 5 分钟出头，单测 runner 时间约减半。改进分四类：升级基础设施与工具、优化卡住其他工作的前置 job、减少重复 setup、提升测试执行效率；后两类原文未详述。已详述的做法包括：把负载从 GitHub Actions 迁到 CPU、存储、缓存更好的第三方 runner，切换前后两天同比 job 平均快 34%，tsc 类负载降 52%；改用原生 TypeScript 编译器 tsgo 后，tsc 检查周中位数降 73%；lint 规则改走 AST 静态分析、不再依赖类型信息，ESLint 得以去掉 TypeScript，API lint 时间降 68%、全仓 lint 降 55%。此外，路径检测与测试去重等前置 job 位于关键路径，会挡住 8 个 API 测试分片。",
+   "key_points": [
+    "背景：AI 让发布代码呈指数级加速，但每个 PR 仍须过 CI，CI 成为瓶颈，推高基础设施成本并延长开发者与 agent 的反馈等待。",
+    "成果：测试套件自年初几乎翻四倍，PR 等待时间仍从 6 分钟以上降至 5 分钟出头，单次测试的 runner 时间约减半。",
+    "基础设施与工具：负载从 GitHub Actions 迁至 CPU、存储、缓存更优的第三方 runner，切换前后两天同比 job 平均快 34%、tsc 类负载降 52%；改用原生 TypeScript 编译器 tsgo 后 tsc 检查周中位数降 73%。"
+   ],
+   "topics": [
+    "coding-agent",
+    "harness"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 75.3,
+   "status": "published",
+   "extra": {
+    "hn_points": 308,
+    "hn_comments": 381,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://oxc.rs/docs/guide/usage/linter",
+      "https://vitest.dev/"
+     ]
+    },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -5069,39 +5361,6 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
-   "id": "86ca6d285b301856",
-   "url": "https://simonwillison.net/2026/Sep/7/jakub-pachocki/",
-   "title": "Quoting Jakub Pachocki",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-07T22:26:25+00:00",
-   "summary_short": "OpenAI首席科学家：训练更强模型是为防御其他AI带来的危险。",
-   "summary_long": "OpenAI首席科学家Jakub Pachocki表示，他看到的继续快速训练更强大模型的最有力论据，是需要构建防御系统来应对其他人工智能带来的危险。他提出：“我们需要强大且对齐的人工智能用于防御；以保障基础设施、实时防范 rogue agents，并发明全新的保护措施。”他明确说，这将是OpenAI部署工作的一个主要重点。与此同时，即使预期人工智能会广泛进步并存在不确定性，也必须构建防御系统，但不能让这成为鲁莽的借口。他警告，一旦人们真正内化了事态的严重性，“不惜一切代价向前冲”的想法就显得荒谬。原文没有给出防御系统的具体技术路径、时间安排或“其他AI”的明确定义，也未详述“rogue agents”的具体形态。整段话的核心是把“更快训练更聪明的模型”与“防御其他AI的威胁”直接联系起来，并强调在推进过程中保持谨慎、反对不计代价的竞赛。",
-   "key_points": [
-    "继续快速训练更聪明模型的最强理由是构建防御系统，应对其他AI带来的危险。",
-    "防御需要强大且对齐的AI，用于保障基础设施、实时防范 rogue agents、发明全新保护措施，是OpenAI部署工作的主要重点。",
-    "不能用防御需求作为鲁莽借口；一旦内化事态严重性，不计代价向前冲的想法就显得荒谬。"
-   ],
-   "topics": [
-    "safety",
-    "rogue-agents"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 76.7,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
     "summary_mode": "full",
     "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
     "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
