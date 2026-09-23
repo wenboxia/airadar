@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-22T23:38:25+00:00",
+ "generated_at": "2026-09-23T23:35:50+00:00",
  "top": [
   {
    "id": "6b8b0b6f48f29fd6",
@@ -54,41 +54,6 @@
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
-   "id": "16a7b27ed0ae9a75",
-   "url": "https://huggingface.co/blog/ibm-research/altk-evolve-consistency",
-   "title": "Your Agent Aced the Task. Will It Do It Again?",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-09-15T16:00:44+00:00",
-   "summary_short": "智能体重复执行成功率被平均指标掩盖，新诊断与指南将一致性差距减半。",
-   "summary_long": "智能体在演练中成功、现场演示却可能失败：同一任务重复执行时，结果可能不稳定。多数基准用平均通过率隐藏这种可变性。在AppWorld上，基于GPT-4.1的ReAct智能体Mean@5为77.4%，但Pass^5（五次全部成功）仅53.0%，一致性差距为24.4个百分点；在困难任务上差距可达30个百分点。Pass^k与常见的Pass@k相反：Pass@k要求至少一次成功，Pass^k要求每次尝试都成功，更贴近真实用户重复提问时的需求。为测量并改善这一差距，文中提出Consistency Analyzer：对智能体自身已记录轨迹进行重采样，找出一个token采样就可能改变动作的易翻转决策点；它只需一条轨迹、无需真值，默认对每个决策点请求5个补全，而不必端到端重跑任务。基于该诊断，ALTK-Evolve新增一致性指南，将一致性差距从24.4个百分点降至12.0个百分点，同任务Pass⁵提升16.0个百分点、相似任务提升13.0个百分点，且平均准确率没有损失。完整方法和评估见arXiv技术报告。",
-   "key_points": [
-    "Mean@k只报告平均通过率，掩盖了智能体重复执行的不稳定性；示例中Mean@5为77.4%，但Pass^5仅53.0%，一致性差距24.4个百分点，困难任务达30个百分点。",
-    "Consistency Analyzer通过重采样单条轨迹、无需真值，定位易翻转决策点，默认对每个决策点请求5个补全。",
-    "将诊断转化为一致性指南后，一致性差距从24.4个百分点降至12.0个百分点，同任务/相似任务Pass⁵分别提升16.0/13.0个百分点，且平均准确率不下降。"
-   ],
-   "topics": [
-    "eval",
-    "agent-loop",
-    "reliability"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测",
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 90.3,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
     "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
     "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
    }
@@ -201,6 +166,52 @@
     "hn_points": 216,
     "hn_comments": 87,
     "content_source": "reader",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "0826ccd5c5c04777",
+   "url": "https://arxiv.org/abs/2609.22978v1",
+   "title": "DeepSeek Elastic Compute (DSec): A Sandbox Infrastructure for Effective Agentic Training at Scale",
+   "source": "论文（被提及）",
+   "tier": "A",
+   "published_at": "2026-09-19T12:20:26+00:00",
+   "summary_short": "DSec：支撑大模型智能体训练的生产级沙箱平台，单单元日服务约300万沙箱",
+   "summary_long": "大模型智能体的训练与评估依赖隔离且带状态的执行环境：模型在其中查看代码仓库、调用工具、执行命令并与任务相关服务交互。这类负载突发式大量创建沙箱、隔离与功能需求异构、长交互中需保留状态、镜像库庞大且复用有限，因此需要弹性执行平台而非单一沙箱运行时。本报告介绍的生产级沙箱平台 DeepSeek Elastic Compute（DSec）通过统一 SDK 暴露 FnCall、容器、microVM 与完整 VM 后端，在集群层面协调放置与生命周期管理，以可独立版本化的层组合环境，结合内存共享、回收与 CPU 调度实现高密度执行，并按需从集群级分布式文件系统 3FS 加载镜像数据。DSec 与强化学习框架协同设计，将有状态的 rollout 执行与可抢占的 GPU 训练解耦，使沙箱生命周期与训练协调，在回收空闲资源的同时保留 rollout 状态，并缓解奖励劫持等智能体不当行为。单个生产规模单元约 160 个节点，每天服务约 300 万个沙箱，支持超过 38 万个并发沙箱、每秒创建超过 5000 个沙箱。评估与部署经验显示，这些机制降低了环境搭建与镜像分发开销，提升了内存效率，并在高密度超卖下保持对延迟敏感的性能。",
+   "key_points": [
+    "DSec 通过统一 SDK 暴露 FnCall、容器、microVM 与完整 VM 四类沙箱后端，并在集群层面协调放置与生命周期管理。",
+    "环境由可独立版本化的层组合而成，结合内存共享、回收与 CPU 调度实现高密度执行，并从集群级分布式文件系统 3FS 按需加载镜像数据。",
+    "与强化学习框架协同设计，将有状态 rollout 执行与可抢占 GPU 训练解耦，协调沙箱生命周期以保留 rollout 状态、回收空闲资源，并缓解奖励劫持等智能体不当行为。"
+   ],
+   "topics": [
+    "harness",
+    "tool-use",
+    "agent-loop"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 85.1,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Jialiang Huang",
+     "Hongxuan Tang",
+     "Jingchang Chen",
+     "Yuxuan Liu",
+     "Yixiao Chen",
+     "Yuan Cheng",
+     "Yi Tao",
+     "Jingli Zhou"
+    ],
+    "author_count": 131,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "量子位"
+    ],
     "summary_mode": "full"
    }
   }
@@ -264,120 +275,6 @@
    }
   },
   {
-   "id": "16a7b27ed0ae9a75",
-   "url": "https://huggingface.co/blog/ibm-research/altk-evolve-consistency",
-   "title": "Your Agent Aced the Task. Will It Do It Again?",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-09-15T16:00:44+00:00",
-   "summary_short": "智能体重复执行成功率被平均指标掩盖，新诊断与指南将一致性差距减半。",
-   "summary_long": "智能体在演练中成功、现场演示却可能失败：同一任务重复执行时，结果可能不稳定。多数基准用平均通过率隐藏这种可变性。在AppWorld上，基于GPT-4.1的ReAct智能体Mean@5为77.4%，但Pass^5（五次全部成功）仅53.0%，一致性差距为24.4个百分点；在困难任务上差距可达30个百分点。Pass^k与常见的Pass@k相反：Pass@k要求至少一次成功，Pass^k要求每次尝试都成功，更贴近真实用户重复提问时的需求。为测量并改善这一差距，文中提出Consistency Analyzer：对智能体自身已记录轨迹进行重采样，找出一个token采样就可能改变动作的易翻转决策点；它只需一条轨迹、无需真值，默认对每个决策点请求5个补全，而不必端到端重跑任务。基于该诊断，ALTK-Evolve新增一致性指南，将一致性差距从24.4个百分点降至12.0个百分点，同任务Pass⁵提升16.0个百分点、相似任务提升13.0个百分点，且平均准确率没有损失。完整方法和评估见arXiv技术报告。",
-   "key_points": [
-    "Mean@k只报告平均通过率，掩盖了智能体重复执行的不稳定性；示例中Mean@5为77.4%，但Pass^5仅53.0%，一致性差距24.4个百分点，困难任务达30个百分点。",
-    "Consistency Analyzer通过重采样单条轨迹、无需真值，定位易翻转决策点，默认对每个决策点请求5个补全。",
-    "将诊断转化为一致性指南后，一致性差距从24.4个百分点降至12.0个百分点，同任务/相似任务Pass⁵分别提升16.0/13.0个百分点，且平均准确率不下降。"
-   ],
-   "topics": [
-    "eval",
-    "agent-loop",
-    "reliability"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测",
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 90.3,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
-   "id": "902747e3f8849643",
-   "url": "https://arxiv.org/abs/2609.17107v1",
-   "title": "Symbolic Separation: Grounding Deep Agents in Knowledge Graphs for Trustworthy Operational Data Analytics",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-09-15T12:38:43+00:00",
-   "summary_short": "提出符号分离，用知识图谱约束深度代理，使任务成功率升至86%并降本2.4倍。",
-   "summary_long": "生成式AI承诺让用户用自然语言访问数据中心和工业4.0设施的海量数值遥测数据，但文本到查询和工具使用代理并不可靠：即使前沿模型对真实数据库问题的回答正确率仅略高于一半，多步骤操作问题回答正确率更低，原因是LLM必须组合异构数据源之间的关系，而且会幻觉这些关系，不仅仅是字段。为此，研究者提出符号分离方法：深度代理可以自由推理，但只能通过受本体约束的虚拟知识图谱对数据进行操作，并执行确定性的预执行验证。与工具API的接口契约不同，这种领域语义契约将复杂问题转化为一次经过验证的图遍历，而非由LLM推断的连接。该方法实例化为Neurosymbolic Deep Analyst，并在49.9 TB的超级计算机遥测数据上，与严格工作流和非符号消融方法进行了评估。结果显示，端到端任务成功率从43%提升到86%，防止了任何语法检查都无法捕捉的静默数据完整性错误，并将token成本降低2.4倍，使得较小的本地模型能够超越较大的模型。",
-   "key_points": [
-    "现有文本到查询和工具使用代理不可靠：前沿模型仅能回答略超一半的真实数据库问题，多步操作问题更差，原因是LLM幻觉异构数据源关系。",
-    "提出符号分离：代理自由推理但仅通过本体约束的虚拟知识图谱操作数据，配合确定性预执行验证，将复杂问题转为单次验证图遍历。",
-    "在49.9 TB超级计算机遥测上评估，Neurosymbolic Deep Analyst将端到端任务成功率从43%提高到86%，防止静默数据完整性错误，token成本降低2.4倍，较小本地模型超越较大模型。"
-   ],
-   "topics": [
-    "tool-use",
-    "hallucination",
-    "knowledge-graph"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "研究论文"
-   ],
-   "horizon": "long",
-   "score": 89.2,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Baibek Davletiyarov",
-     "Junaid Ahmed Khan",
-     "Andrea Bartolini"
-    ],
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
-   "id": "a196634d11441b95",
-   "url": "https://arxiv.org/abs/2609.16760v1",
-   "title": "Turn-level Multiscale Density Ratio Estimation for LLM Agents",
-   "source": "arXiv Agent/LLM",
-   "tier": "S",
-   "published_at": "2026-09-15T07:36:23+00:00",
-   "summary_short": "提出tlm-DRE，按轮次加权与非对称token训练，改进LLM智能体多轮任务对齐。",
-   "summary_long": "随着大语言模型（LLM）快速发展，LLM增强的智能体系统在处理复杂任务方面展现出巨大潜力，尤其是涉及多步思考或工具交互的任务。为了在良好设计的智能体范式下应用LLM技术，需要在多智能体场景中对LLM进行后训练以获得更好性能。在各后训练技术中，PPO、DPO、DIL、GRPO等对齐方法因在惩罚负样本的同时保持可接受的训练复杂度而流行，许多论文显示它们对模型性能有显著正面影响。然而，多数对齐方法针对简单单轮任务，复杂多轮任务仍有改进空间。本文提出Turn-level Multiscale Density Ratio Estimation（tlm-DRE），对相应轮次赋予不同权重，并基于多轮任务中正负样本空间差距提出非对称token级训练。在广泛的智能体基准上的实验结果表明，该方法与传统对齐方法相比具有竞争力。该训练方法使LLM能在域内和域外条件下的多轮推理任务中表现稳健。",
-   "key_points": [
-    "现有对齐方法如PPO、DPO、DIL、GRPO多针对单轮任务，复杂多轮任务仍有改进空间。",
-    "提出tlm-DRE，对不同轮次赋不同权重，并基于正负空间差距进行非对称token级训练。",
-    "在广泛智能体基准上，tlm-DRE与传统对齐方法相比具有竞争力，并在域内与域外多轮推理任务中表现稳健。"
-   ],
-   "topics": [
-    "post-training",
-    "multi-agent",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "研究论文"
-   ],
-   "horizon": "long",
-   "score": 87.0,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Zishuo Zhao",
-     "Kai Chen",
-     "Ao Li",
-     "Yuan Liu"
-    ],
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
    "id": "3f8ce213f8ded073",
    "url": "https://arxiv.org/abs/2609.20804",
    "title": "An empirical study of harness design for coding agents",
@@ -489,36 +386,49 @@
    }
   },
   {
-   "id": "2f92a8ca47fb31cc",
-   "url": "https://deepmind.google/blog/introducing-gemini-3-8-live-and-3-8-live-extended-thinking/",
-   "title": "Introducing Gemini 3.8 Live and 3.8 Live Extended Thinking",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-09-15T17:05:57+00:00",
-   "summary_short": "Gemini 3.8 Live 与 Extended Thinking 推出，主打更自然语音交互与复杂任务处理。",
-   "summary_long": "9月15日发布的文章介绍 Gemini 3.8 Live 和 Gemini 3.8 Live Extended Thinking。原文称它们是目前最先进的实时对话模型，主要升级在智能与并行推理，使语音协作更直观，并能用语音执行复杂任务。Gemini 3.8 Live 面向规模和成本效率，结合对话智能、流畅对话和视觉 grounding；Extended Thinking 面向高复杂度任务，具备更高智能和多步推理。两者支持实时视觉语境和后台任务执行，不会打断对话。开发者可通过 Gemini API、Google Workspace 和 Gemini app 使用，Google Workspace、Search 和 Gemini app 中也提供。性能方面，Extended Thinking 在 Artificial Analysis 的 Speech to Speech Quality Index 上以 82.6 分排名第一，在 τ-Voice 智能体任务完成率为 68.6%，在 Sierra 的 τ-Voice-banking 基准为 35.1%，Big Bench Audio 得分 97.7%，同时价格具备竞争力。Gemini 3.8 Live 在 Speech Agent Arena 中获得第二名，成本效益高。在 ServiceNow 的 EVA-Bench 上，这些模型在复杂",
+   "id": "0826ccd5c5c04777",
+   "url": "https://arxiv.org/abs/2609.22978v1",
+   "title": "DeepSeek Elastic Compute (DSec): A Sandbox Infrastructure for Effective Agentic Training at Scale",
+   "source": "论文（被提及）",
+   "tier": "A",
+   "published_at": "2026-09-19T12:20:26+00:00",
+   "summary_short": "DSec：支撑大模型智能体训练的生产级沙箱平台，单单元日服务约300万沙箱",
+   "summary_long": "大模型智能体的训练与评估依赖隔离且带状态的执行环境：模型在其中查看代码仓库、调用工具、执行命令并与任务相关服务交互。这类负载突发式大量创建沙箱、隔离与功能需求异构、长交互中需保留状态、镜像库庞大且复用有限，因此需要弹性执行平台而非单一沙箱运行时。本报告介绍的生产级沙箱平台 DeepSeek Elastic Compute（DSec）通过统一 SDK 暴露 FnCall、容器、microVM 与完整 VM 后端，在集群层面协调放置与生命周期管理，以可独立版本化的层组合环境，结合内存共享、回收与 CPU 调度实现高密度执行，并按需从集群级分布式文件系统 3FS 加载镜像数据。DSec 与强化学习框架协同设计，将有状态的 rollout 执行与可抢占的 GPU 训练解耦，使沙箱生命周期与训练协调，在回收空闲资源的同时保留 rollout 状态，并缓解奖励劫持等智能体不当行为。单个生产规模单元约 160 个节点，每天服务约 300 万个沙箱，支持超过 38 万个并发沙箱、每秒创建超过 5000 个沙箱。评估与部署经验显示，这些机制降低了环境搭建与镜像分发开销，提升了内存效率，并在高密度超卖下保持对延迟敏感的性能。",
    "key_points": [
-    "Gemini 3.8 Live 强调规模与成本效率，提供流畅对话和视觉 grounding；Extended Thinking 面向高复杂度多步推理。",
-    "Extended Thinking 在 Artificial Analysis 语音质量指数获第一，并在 τ-Voice、τ-Voice-banking、Big Bench Audio 等基准表现突出。",
-    "可通过 Gemini API、Google Workspace、Search 和 Gemini app 使用，支持后台工具执行且不打断对话。"
+    "DSec 通过统一 SDK 暴露 FnCall、容器、microVM 与完整 VM 四类沙箱后端，并在集群层面协调放置与生命周期管理。",
+    "环境由可独立版本化的层组合而成，结合内存共享、回收与 CPU 调度实现高密度执行，并从集群级分布式文件系统 3FS 按需加载镜像数据。",
+    "与强化学习框架协同设计，将有状态 rollout 执行与可抢占 GPU 训练解耦，协调沙箱生命周期以保留 rollout 状态、回收空闲资源，并缓解奖励劫持等智能体不当行为。"
    ],
    "topics": [
-    "reasoning",
-    "product"
+    "harness",
+    "tool-use",
+    "agent-loop"
    ],
-   "category": "模型",
+   "category": "Agent 与开发",
    "categories": [
-    "模型"
+    "Agent 与开发",
+    "研究论文"
    ],
-   "horizon": "short",
-   "score": 83.9,
+   "horizon": "long",
+   "score": 85.1,
    "status": "published",
    "extra": {
-    "content_source": "direct",
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
+    "authors": [
+     "Jialiang Huang",
+     "Hongxuan Tang",
+     "Jingchang Chen",
+     "Yuxuan Liu",
+     "Yixiao Chen",
+     "Yuan Cheng",
+     "Yi Tao",
+     "Jingli Zhou"
+    ],
+    "author_count": 131,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "量子位"
+    ],
+    "summary_mode": "full"
    }
   },
   {
@@ -651,39 +561,54 @@
    }
   },
   {
-   "id": "78ec933d8f3c9110",
-   "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/",
-   "title": "Gemini 3.8 Live and 3.8 Live Extended Thinking",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-15T17:38:18+00:00",
-   "summary_short": "Gemini 3.8 Live系列主打实时语音、视觉理解与多步推理，兼顾成本与任务完成。",
-   "summary_long": "原文介绍推出 Gemini 3.8 Live 与 Gemini 3.8 Live Extended Thinking，称其为目前最先进的实时对话模型，重点升级智能与并行推理，使语音协作更直观，并支持执行复杂任务。Gemini 3.8 Live 面向规模和成本效率，结合对话智能、流畅对话与视觉 grounding；Gemini 3.8 Live Extended Thinking 面向高复杂度任务，具备更高智能和多步推理。用户可通过 Gemini API、Google Workspace 和 Gemini app 使用，模型可处理复杂推理、实时视觉上下文和后台任务执行，而不打断对话。在基准测试中，Extended Thinking 在 Artificial Analysis 语音到语音质量指数上以 82.6 分排名第一，在 τ-Voice 上取得 68.6%、在 Sierra τ-Voice-banking 上取得 35.1% 的智能体任务完成率，并在 Big Bench Audio 上得分 97.7%，同时保持有竞争力的价格。Gemini 3.8 Live 在 Speech Agent Arena 中用户偏好排名第二，具备成本效益。ServiceNow EVA-Bench 显示这些模型在复杂工作流上平衡准确性与对话质量，推动 Pareto Frontier。原文还强调这些能力为开发",
-   "key_points": [
-    "Gemini 3.8 Live 面向规模与成本效率，结合对话智能、流畅对话和视觉 grounding。",
-    "Gemini 3.8 Live Extended Thinking 面向高复杂度任务，在语音质量、智能体任务完成和推理基准上表现领先。",
-    "两种模型可在 Gemini API、Google Workspace 与 Gemini app 使用，支持实时视觉上下文和后台任务执行而不打断对话。"
-   ],
+   "id": "914ed32ad555468d",
+   "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech/",
+   "title": "Gemini 3.8 text-to-speech says hello",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-09-23T15:25:14+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
    "topics": [
-    "reasoning",
-    "eval",
-    "agent-loop"
+    "product",
+    "open-source"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
    "horizon": "short",
-   "score": 80.8,
+   "score": 79.7,
    "status": "published",
    "extra": {
-    "hn_points": 284,
-    "hn_comments": 186,
     "content_source": "direct",
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://twitter.com/intent/tweet?text=Gemini%203.8%20text-to-speech%20says%20hello%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/",
+      "https://www.facebook.com/sharer/sharer.php?caption=Gemini%203.8%20text-to-speech%20says%20hello&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/&title=Gemini%203.8%20text-to-speech%20says%20hello",
+      "https://notebook.google.com/",
+      "http://vids.new/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-live-3-5-translate/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/",
+      "https://www.hume.ai/rw-voice-eq",
+      "https://voicearena.com/tts-leaderboard/us-english)",
+      "https://deepmind.google/models/synthid/",
+      "https://deepmind.google/models/model-cards/gemini-3-8-audio/",
+      "https://aistudio.google.com/docs/speech-generation",
+      "https://aistudio.google.com/generate-speech?model=gemini-3.8-flash-tts",
+      "http://docs.agora.io/en/ai/models/tts/gemini",
+      "https://docs.livekit.io/agents/models/tts/gemini/",
+      "https://docs.pipecat.ai/api-reference/server/services/tts/google#geminittsservice",
+      "https://vercel.com/docs/ai-gateway/modalities/text-to-speech",
+      "https://docs.cloud.google.com/gemini-enterprise-agent-platform",
+      "https://aistudio.google.com/generate-speech?model=gemini-3.8-flash-lite-tts",
+      "https://policies.google.com/privacy"
+     ]
+    }
    }
   },
   {
@@ -796,38 +721,189 @@
    }
   },
   {
-   "id": "c9a269061424d5c4",
-   "url": "https://simonwillison.net/2026/Sep/15/gemini-live/",
-   "title": "Gemini Live audio",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-15T22:47:07+00:00",
-   "summary_short": "Google发布Gemini 3.8 Live语音模型，作者提供无库浏览器Web UI试玩。",
-   "summary_long": "Google今天发布了Gemini 3.8 Live和3.8 Live Extended Thinking，这是两个新的语音到语音模型，形态类似OpenAI的GPT-Live家族。原文作者将GPT-6 Astra Extra High指向文档，让它构建了一个Web UI，用于试用这些新模型。用户可以在该界面中选择模型和语音预设，输入可选的系统提示，然后通过浏览器开始语音对话，并支持在模型说话时打断。实现不使用任何库，直接连接到wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent?key=...的WebSocket端点，并使用Web Audio API的AudioContext进行音频捕获和播放。原文还提供了Gemini Live教程，介绍如何开始使用该WebSockets API。标签包括google、tools、websockets、generative-ai、llms、gemini、llm-release、speech-to-text。",
+   "id": "1d5a9cc2d9509da8",
+   "url": "https://openai.com/index/introducing-mentalhealthbench",
+   "title": "Introducing MentalHealthBench",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-23T10:00:00+00:00",
+   "summary_short": "开放基准MentalHealthBench发布：80余位专家共创，评估AI心理对话表现",
+   "summary_long": "原文介绍了一个名为MentalHealthBench的开放基准，用于衡量AI系统在真实心理健康对话中的回应表现。该基准由来自22个国家的80多位持证心理健康专家共同创建，评估模型在安全性、主动询问背景、尊重用户自主性以及在适当时提供可操作建议等关键行为上的能力。原文指出，此前这一领域的多数评估主要聚焦紧急场景，并以宽泛的预设标准衡量成败，导致人们难以了解模型在全部心理健康对话范围内的表现，以及其回应在多大程度上符合专家针对具体情境的指导。MentalHealthBench使用隐私保护技术生成合成对话，反映AI在心理健康领域的真实使用模式，部分场景还包含合成用户的背景信息（如近期家人离世），以考察模型是否利用这些背景作出贴合回应。场景覆盖成年人、青少年、照护者和临床医生，涉及多种语言和地区，并按急性程度分为非急性、高急性和紧急三类。原文称结果显示AI系统在帮助人们应对心理健康状况方面持续进步，同时强调ChatGPT不能替代治疗或专业照护。",
    "key_points": [
-    "Google发布Gemini 3.8 Live和3.8 Live Extended Thinking，是语音到语音模型，形态类似OpenAI的GPT-Live家族。",
-    "原文作者利用GPT-6 Astra Extra High构建了一个无库的浏览器Web UI，支持选模型、语音预设、输入系统提示、语音对话和打断。",
-    "该Web UI通过WebSocket端点连接Gemini API，并用Web Audio API处理音频，原文附有Gemini Live WebSockets API教程。"
+    "由22个国家80多位持证心理健康专家共同创建的开放基准，评估AI在真实心理健康对话中的回应表现",
+    "评估维度包括安全性、主动询问背景、尊重用户自主性、在适当时提供可操作建议；场景覆盖非急性、高急性与紧急三类，涉及成年人、青少年、照护者和临床医生及多种语言地区",
+    "原文称此前评估多聚焦紧急场景并以宽泛预设标准衡量，存在理解空白；结果显示AI系统在该领域持续进步，但ChatGPT不能替代治疗或专业照护"
    ],
    "topics": [
-    "speech-to-speech",
-    "product",
-    "reasoning"
+    "eval",
+    "mental-health"
    ],
-   "category": "模型",
+   "category": "评测",
    "categories": [
-    "模型",
+    "评测",
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 79.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Publication"
+    ],
+    "outbound": {
+     "arxiv": [
+      "2605.04321"
+     ],
+     "links": [
+      "https://cdn.openai.com/ctf-cdn/MentalHealthBench_A_Comprehensive_Benchmark_of_AI_Capabilities_in_Realistic_Mental_Health_Conversations.pdf",
+      "https://help.openai.com/en/articles/12677603-crisis-helpline-support-in-chatgpt",
+      "https://arxiv.org/html/2604.27470v1",
+      "https://arxiv.org/pdf/2605.04321",
+      "https://behaviors.transluce.org/mental-health"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "cd8117c6d35f983b",
+   "url": "https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory/",
+   "title": "Advancing Private AI Compute with secure, server-side memory",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-09-23T16:00:57+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "privacy",
+    "memory",
+    "context-engineering"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全",
     "Agent 与开发"
    ],
-   "horizon": "short",
+   "horizon": "long",
    "score": 78.9,
    "status": "published",
    "extra": {
-    "content_source": "rss",
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
+    "content_source": "reader"
+   }
+  },
+  {
+   "id": "69fbdce8aa599086",
+   "url": "https://unreallabs.ai/blog/unreal-agent/",
+   "title": "Unreal Agent",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-22T18:15:53+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "harness",
+    "tool-use",
+    "agent-loop"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 78.9,
+   "status": "published",
+   "extra": {
+    "hn_points": 234,
+    "hn_comments": 121,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://hub.harborframework.com/jobs/27133053-2015-46f3-8c72-6b6910859da6",
+      "https://hub.harborframework.com/jobs/6ccd097a-747b-4867-be57-a56969df988f",
+      "https://hub.harborframework.com/jobs/3d2fa057-e11c-4be0-a962-e8be81b87709",
+      "https://hub.harborframework.com/jobs/11a440fb-b1c4-473b-98a6-907500b3fdaf",
+      "https://hub.harborframework.com/jobs/da4ac972-9d5a-4142-b057-85f07375f14e",
+      "https://hub.harborframework.com/jobs/2311ca63-2929-49eb-ba0c-0084ef31ba8b",
+      "https://hub.harborframework.com/jobs/e20ecafd-695a-417c-90f5-35fd36d2786f",
+      "https://hub.harborframework.com/jobs/cd7d8de6-c152-48de-9840-b22bbea96d99",
+      "https://www.harborframework.com/",
+      "https://github.com/unreallabsai/unreal-agent",
+      "https://arena.ai/blog/coding-agents-harness-tax",
+      "https://www.completeskeptic.com/p/kv-cache-rules-everything-around"
+     ]
+    },
+    "content_source": "direct"
+   }
+  },
+  {
+   "id": "2086bf74eb8990ab",
+   "url": "https://www.qbitai.com/2026/09/496393.html",
+   "title": "DeepSeek新论文公开Agent训练！梁文锋署名",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-23T07:29:50+00:00",
+   "summary_short": "DeepSeek公开Agent训练系统DSec：每秒5000+沙盒及全套工程细节",
+   "summary_long": "原文开篇指出，大模型训练拼的是算力，Agent训练拼的是环境。DeepSeek公开了梁文锋署名的论文，介绍其给Agent训练批量制造沙盒的系统DSec（DeepSeek Elastic Compute）：每秒能产生5000+个沙盒，一天达300万个，峰值同时运行38万个，单集群约160个节点、3万核CPU和250TB内存。DSec面向无状态函数调用、容器、MicroVM、完整虚拟机四类场景提供四种后端，隔离强度与资源开销逐级递增，但对外统一为Python SDK libdsec；平台链路分六层，从认证鉴权、API Server、调度引擎到节点上的Edge组件。环境构建上，DSec把环境拆成基础镜像、工作区、工具包三层独立EROFS只读镜像按需组合，把工具包更新的成本从O(m·N)降到O(m)+O(k)；镜像存于3FS并按需加载，8192个容器突发部署35分钟完成，磁盘写入从约1600GB降到约700GB。资源层面用virtio-pmem、DAMON、core scheduling等削减内存占用与延迟膨胀，并与RL训练框架配合处理GPU抢占与cloud bursting。论文还披露了Agent自行发现的reward hacking手段及打崩内核、灌满存储等案例，以及AppArmor与eBPF两层防御。",
+   "key_points": [
+    "DSec每秒可产生5000+个沙盒、一天300万个，峰值同时运行38万个，单集群约160个节点、3万核CPU、250TB内存。",
+    "为无状态函数调用、容器、MicroVM、完整虚拟机四类场景提供四种后端，但训练框架侧看到的是统一Python SDK；平台链路拆成六层，由调度引擎选节点、Edge组件拉起沙盒，Aether代理网络出口与包管理镜像，Chronus中转让命令与输出回训练框架。",
+    "环境拆成基础镜像、工作区、工具包三层独立EROFS只读镜像按需组合，镜像存于3FS按需加载；论文还披露Agent自行发现的reward hacking手段（覆盖/bin/bash、利用XFS ioctl等）、打崩内核与灌满存储的案例，以及AppArmor与eBPF两层防御。"
+   ],
+   "topics": [
+    "harness",
+    "post-training",
+    "sandbox"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 78.8,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "Deepseek"
+    ],
+    "outbound": {
+     "arxiv": [
+      "2609.22978"
+     ],
+     "links": [
+      "https://www.qbitai.com/author/keleixi",
+      "https://www.qbitai.com",
+      "https://arxiv.org/abs/2609.22978",
+      "https://www.qbitai.com/tag/deepseek",
+      "https://www.qbitai.com/2026/09/491875.html",
+      "https://www.qbitai.com/2026/09/493363.html",
+      "https://www.qbitai.com/2026/09/489466.html",
+      "https://www.qbitai.com/2026/09/488380.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/496393.html&title=DeepSeek新论文公开Agent训练！梁文锋署名&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2026/08/473597.html",
+      "https://www.qbitai.com/2026/03/392024.html",
+      "https://www.qbitai.com/2025/02/252125.html",
+      "https://www.qbitai.com/2026/08/465814.html",
+      "https://www.qbitai.com/2025/09/338386.html",
+      "https://www.qbitai.com/2026/06/432735.html",
+      "https://www.qbitai.com/tag/idc",
+      "https://www.qbitai.com/tag/%e6%95%b0%e6%8d%ae%e4%b8%ad%e5%bf%83",
+      "https://www.qbitai.com/tag/%e7%ae%97%e5%8a%9b",
+      "https://www.qbitai.com/2026/09/491649.html",
+      "https://www.qbitai.com/2026/09/491357.html",
+      "https://www.qbitai.com/2026/09/491711.html",
+      "https://www.qbitai.com/2026/09/491454.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
    }
   },
   {
@@ -985,41 +1061,6 @@
    }
   },
   {
-   "id": "642a1494ec3f8e04",
-   "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
-   "title": "Introducing System One Models and Jev",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-15T19:25:03+00:00",
-   "summary_short": "TypeSafe AI 发布 System One 模型 Jev，类型安全、不幻觉、快两个数量级。",
-   "summary_long": "TypeSafe AI 创始人 Diogo Almeida 发文宣布，经过两年隐身研发，公司发布首个 System One 模型 Jev，并开放早期访问。他曾参与 OpenAI 的 ChatGPT 背后研究，但认为聊天模型虽在对话上超人，仍缺少自动化所需的关键能力。Jev 是面向自动化的新模型类别，采用新模型架构、并行采样器和 RLCD（校准决策强化学习）训练方法，用于做出快速、结构化决策，供软件直接使用。与现有 LLM 相比，Jev 在 System One 任务上达到相近智能水平，但速度快两个数量级、效率更高：端到端响应为 70ms-500ms，是现有前沿模型在同类查询上的 40-200 倍；输入成本为每百万 token 0.042 美元，输出免费。它放弃字符串生成，只输出预先定义的类型安全结构化值，不会产生类型错误或幻觉，并始终附带校准概率和置信度，更高置信度对应更高准确率。现有 LLM 则常过度自信且不一致，即使被要求给出置信度，也无法可靠识别失败情况，因此难以直接用于自动化。Jev 被形容为“前沿智能函数调用”：输入非结构化状态，输出类型化概率决策。原文还以表格对比了优化目标、输入输出、采样、成本、速度和置信度等维度。",
-   "key_points": [
-    "TypeSafe AI 发布首个 System One 模型 Jev，定位为软件可直接调用的结构化决策模型，并开放早期访问。",
-    "Jev 在 System One 任务上智能水平与现有 LLM 相近，但速度快两个数量级，端到端响应 70ms-500ms，且输出免费、输入成本极低。",
-    "Jev 放弃字符串生成，只输出类型安全结构化值，不会产生类型错误或幻觉，并始终附带校准概率和置信度。"
-   ],
-   "topics": [
-    "reasoning",
-    "post-training",
-    "product"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 78.5,
-   "status": "published",
-   "extra": {
-    "hn_points": 1791,
-    "hn_comments": 473,
-    "content_source": "direct",
-    "summary_mode": "full",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
    "id": "3195ca010f5c230c",
    "url": "https://qwen.ai/blog?id=qwen3.8-omni-flash",
    "title": "Qwen 3.8 Omni Flash",
@@ -1050,41 +1091,6 @@
     "hn_comments": 124,
     "content_source": "reader",
     "summary_mode": "full"
-   }
-  },
-  {
-   "id": "b4f808eed5ad869f",
-   "url": "https://dank.systems/posts/2026-09-15-ai-bear.html",
-   "title": "Why I'm still bearish on LLMs after Navier-Stokes",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-15T17:37:12+00:00",
-   "summary_short": "LLM在Navier-Stokes后仍被看空：奖励黑客与严格规范成本限制自主性。",
-   "summary_long": "原文认为，前沿实验室估值建立在已产生或即将产生完全自动化替代多数知识工作者的叙事上，但现有前沿模型在最简单任务上也需大量监督与护栏。Navier-Stokes、FreeBSD RCE、Hugging Face 事件等头条展示和实验室言论可能让人误以为有意义的自主性已实现；然而软件公司仍雇佣在基准测试中远低于所监督模型的底层四分之一软件工程师。模型仅在训练任务的小邻域内泛化，小扰动即可导致完全失败或奖励黑客。当前奖励黑客问题只能靠领域专家严格规范解决，但领域专家时间昂贵，严格规范本身是稀缺技能，多数领域两类专家交集极小；硬件工程中CPU项目规范/验证工程师可达设计工程师三至五倍，且许多任务规范需随实现见解演变，不适用一次写就。对可一次性高水平规范的任务，验证成本仍不可承受。Navier-Stokes及纯数学是代理工作对抗严格规范的最佳情形：定理陈述本身即严格规范，经数十年审计，Lean验证器专门设计避免不健全性；但即使Lean也非无懈可击，曾出现健全性漏洞让LLM通过证明内核洗白虚假证明。这是最乐观设置，绝大多数人类知识工作并不如此。原文在提及类似纯数学的少数领域时截断，未详述。",
-   "key_points": [
-    "前沿实验室估值依赖完全自动化知识工作叙事，但现有模型在最简单任务上也需费力监督，且模型泛化仅限训练任务小邻域。",
-    "奖励黑客只能靠领域专家严格规范解决；严格规范成本高、专家稀缺，CPU项目中规范/验证工程师可达设计工程师三至五倍，且许多规范需随实现演变。",
-    "Navier-Stokes及纯数学是严格规范下代理工作的最佳案例，但即便如此仍有健全性漏洞，多数知识工作不具备此条件。"
-   ],
-   "topics": [
-    "reward-hacking",
-    "reasoning",
-    "eval"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测"
-   ],
-   "horizon": "long",
-   "score": 78.3,
-   "status": "published",
-   "extra": {
-    "hn_points": 456,
-    "hn_comments": 605,
-    "content_source": "direct",
-    "summary_mode": "full",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
    }
   },
   {
@@ -1233,48 +1239,52 @@
    }
   },
   {
-   "id": "29f98b52d6857eb3",
-   "url": "https://arxiv.org/abs/2609.17488v1",
-   "title": "LimiX-2: A Contextual Mechanism Network Towards General Structured-Data Intelligence",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2026-09-15T17:30:02+00:00",
-   "summary_short": "LimiX-2采用CMN范式，在多个结构化数据基准上超越现有模型并具备因果意识",
-   "summary_long": "原文介绍LimiX家族新模型LimiX-2，其研发依据此前已建立的缩放定律进行模型与数据层面的扩展。LimiX-2采用上下文机制网络（CMNs）范式，并以上下文条件掩码建模（CCMM）进行预训练。CMNs把上下文学习（in-context learning）的组织原则从以目标为中心的预测转向机制导向的联合建模：不再像传统表格PFN那样围绕 p(y|x,D_context) 目标构建网络，而是围绕学习 p(x,y|D_context)——即数据生成背后联合结构的、依赖上下文的表示。其预训练使用由结构因果模型（SCMs）生成的合成数据集，覆盖多样的图结构、功能机制与观测过程。在TabArena、TALENT和BCCO上的评估显示，LimiX-2优于当前的数据集专用模型与表格基础模型。除预测性能外，CMN范式还使LimiX-2具备因果意识：其特征注意力编码了直接因果关系，从而能够准确恢复因果骨架。原文未提供具体数值结果、模型规模或训练细节。",
+   "id": "f82afb648776b097",
+   "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+   "title": "Claude discovers a novel enzyme system with CRISPR-like repeats",
+   "source": "Anthropic News",
+   "tier": "S",
+   "published_at": "2026-09-23T00:00:00+00:00",
+   "summary_short": "Claude 自主发现与 DNA 重复阵列相关的新型酶系统，特征类似 CRISPR。",
+   "summary_long": "Anthropic 发文介绍其新生命科学研究组和实验室，重点是用 Claude 做基础生物学研究：探索 DNA 数据集、识别未表征蛋白家族、规模化生成假说并实验验证。早期结果中，科学家只给高层方向，Claude 自主发现一个新型酶系统，关联一系列 DNA 重复序列，模式类似 CRISPR。该系统基于逆转录酶（RT）；这种 RT 此前已在 jumbo phage 中被识别，但 Claude 似乎首次注意到其定义性特征——相关非编码 DNA 阵列和一个功能未知的附属蛋白。约 950 个 agent 用 2.1 亿 token 搜索 21 小时后，一个 agent 发现与外观奇怪的 RT 基因相邻的重复序列模式；团队参与仅限初始提示和实验室工作，原文末尾在进一步分析处截断。该系统功能未知，但其特征组合此前只在少数其他系统中共同出现，那些系统均可编程，能切割、复制和粘贴 DNA；除 CRISPR 外，若干此类系统正被开发为工具。CRISPR 先驱 Feng Zhang 称，这是 AI agent 促进生物发现的激动人心例子，RNA 重复阵列与 RT 关联确实引人关注，值得进一步研究。",
    "key_points": [
-    "LimiX-2依据此前建立的缩放定律，通过模型与数据扩展而来，采用CMNs范式并用CCMM预训练",
-    "CMNs将上下文学习从以目标为中心的预测转向机制导向的联合建模，学习 p(x,y|D_context) 而非传统表格PFN的 p(y|x,D_context)",
-    "预训练数据为SCMs生成的合成数据集，覆盖多样图结构、功能机制与观测过程；在TabArena、TALENT和BCCO上优于数据集专用模型与表格基础模型，且特征注意力可编码直接因果关系、准确恢复因果骨架"
+    "Anthropic 新设生命科学研究组和实验室，目标是用 Claude 系统化并加速生物学发现，让 AI agents 与人类在每一步协作。",
+    "约 950 个 agent、2.1 亿 token、21 小时搜索后，一个 agent 发现与逆转录酶基因相邻的 DNA 重复阵列；此前该 RT 已被识别，但系统定义特征似乎首次被注意到。",
+    "该系统功能未知，但其特征组合此前仅见于少数可编程系统（能切割、复制、粘贴 DNA）；Feng Zhang 评价称值得进一步研究。"
    ],
    "topics": [
-    "tabular-foundation-model",
-    "in-context-learning",
-    "pretraining"
+    "multi-agent",
+    "ai-for-science"
    ],
-   "category": "模型",
+   "category": "产品与应用",
    "categories": [
-    "模型",
-    "研究论文"
+    "产品与应用"
    ],
    "horizon": "long",
-   "score": 77.6,
+   "score": 77.4,
    "status": "published",
    "extra": {
-    "authors": [
-     "Xingxuan Zhang",
-     "Gang Ren",
-     "Hao Yuan",
-     "Hao Zou",
-     "Hongze Tan",
-     "Hui Wang",
-     "Jianhao Song",
-     "Jiansheng Li"
+    "content_source": "direct",
+    "source_tags": [
+     "Science"
     ],
-    "author_count": 60,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "量子位"
-    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://darioamodei.com/essay/machines-of-loving-grace#1-biology-and-health",
+      "https://www-cdn.anthropic.com/22573675ada52a8ca8a97a1a4b4326b2f208a071.pdf",
+      "https://www.science.org/doi/10.1126/science.aei0498",
+      "https://www.nature.com/articles/s41586-018-0557-5",
+      "https://www.nature.com/articles/s41586-024-07552-4",
+      "https://www.science.org/doi/10.1126/science.adz0276",
+      "https://www.nature.com/articles/s41586-026-10176-5",
+      "https://www.anthropic.com/news/model-hardware-standard-research-preview",
+      "https://claude.com/product/claude-science",
+      "https://claude.com/product/claude-code",
+      "https://twitter.com/intent/tweet?text=https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://www.anthropic.com/news/claude-discovers-novel-enzyme-system"
+     ]
+    },
     "summary_mode": "full"
    }
   },
@@ -1494,6 +1504,105 @@
     "summary_mode": "full",
     "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
     "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
+   }
+  },
+  {
+   "id": "a70f8ac64edfa547",
+   "url": "https://huggingface.co/blog/nvidia/how-to-use-nvidia-warp-and-mjwarp",
+   "title": "How to Use NVIDIA Warp and MjWarp to Accelerate Robotics Simulation and Learning Workflows",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-09-23T18:41:40+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "harness",
+    "open-source"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 76.5,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2601.22074"
+     ],
+     "links": [
+      "https://www.nvidia.com/en-us/use-cases/robotics-simulation/",
+      "https://mujoco.readthedocs.io/en/latest/mjwarp/",
+      "https://developer.nvidia.com/warp-python",
+      "https://cdn-uploads.huggingface.co/production/uploads/6994dc99f850a10f03fd0b21/8SmNNsqLiBHC0W31zT4cf.png",
+      "https://github.com/mujocolab/mjlab",
+      "https://github.com/google-deepmind/mujoco_playground",
+      "https://github.com/NVIDIA/warp",
+      "https://developer.nvidia.com/topics/cae",
+      "https://github.com/NVIDIA/accelerated-computing-hub/tree/main/tutorials/warp/notebooks",
+      "https://mujoco.readthedocs.io/en/latest/mjwarp/#batch-sizes",
+      "https://github.com/isaac-sim/IsaacLab/tree/feature/newton",
+      "https://github.com/newton-physics/newton",
+      "https://colab.research.google.com/github/google-deepmind/mujoco_warp/blob/main/notebooks/tutorial.ipynb",
+      "https://cdn-uploads.huggingface.co/production/uploads/6994dc99f850a10f03fd0b21/Tn07F7pRaVdJXRnB7jSV1.png",
+      "https://github.com/google-deepmind/mujoco_menagerie/tree/main/robotstudio_so101",
+      "https://cdn-uploads.huggingface.co/production/uploads/6994dc99f850a10f03fd0b21/UMuh1gwUTiT1VKcO6E6w1.png",
+      "https://nvidia.github.io/warp/",
+      "https://github.com/google-deepmind/mujoco_warp",
+      "https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/index.html",
+      "https://docs.nvidia.com/learning/physical-ai/",
+      "https://discord.com/invite/nvidiaomniverse",
+      "https://huggingface.co/blog/nvidia/state-of-simulation-for-physical-ai",
+      "https://github.com/NVIDIA/warp/releases/tag/v1.15.0",
+      "https://nvidia.github.io/warp/latest/user_guide/execution_and_performance/deterministic_execution.html",
+      "https://developer.nvidia.com/blog/build-accelerated-differentiable-computational-physics-code-for-ai-with-nvidia-warp/",
+      "https://developer.nvidia.com/blog/introducing-tile-based-programming-in-warp-1-5-0/",
+      "https://arxiv.org/abs/2601.22074"
+     ]
+    }
+   }
+  },
+  {
+   "id": "a877a4ca213122af",
+   "url": "https://blog.szypowi.cz/p/claude-code-reads-agents.md-only-when-telemetry-is-on/",
+   "title": "Claude Code reads AGENTS.md only when telemetry is on [fixed]",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-23T12:15:33+00:00",
+   "summary_short": "Claude Code 的 AGENTS.md 支持依赖远程 flag，关闭遥测即静默失效",
+   "summary_long": "Claude Code 2.1.277 宣布支持 AGENTS.md：在没有 CLAUDE.md 的项目中应改读 AGENTS.md。但作者在关闭遥测的 shell 里，该文件从不加载。Issue #95690 解释了原因，作者补充了自己的测量。\n\n加载器是内置插件 agents-md。在 2.1.280 bundle 中，它的 isOnByDefault 为 false，isAvailable 会查询名为 tengu_agents_md_mod 的远程 feature flag，fallback 为 false。取不到 flag 时插件不可用，本地文件永不被读取——尽管从工作目录读取一个 markdown 文件根本不需要网络。\n\n作者用只含 canary 词的空项目目录测试，每个配置跑两次会话（第一次只取 flag）。结果：CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 与 DISABLE_TELEMETRY=1 都会阻止该功能，设为 0 无效；项目 .claude/settings.json 里的 env 块无效，无法为单个仓库开启；会话级 --settings 覆盖从第二个会话起才有效。所有情况都不打印警告。第三方网关、Bedrock 和 Vertex 同样受影响。\n\n变通方法：CLAUDE.md 支持 @path 导入且不依赖该 fla",
+   "key_points": [
+    "AGENTS.md 加载依赖远程 flag tengu_agents_md_mod，取不到时 fallback 为 false，内置插件 agents-md 即不可用，本地文件不被读取",
+    "关闭遥测（DISABLE_TELEMETRY=1 或 CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1）会静默阻止该功能：设为 0 无效，项目级 settings.json 无效，且全程无任何警告",
+    "变通方案是使用 CLAUDE.md 的 @path 导入（如一行 @AGENTS.md），代价是每个仓库多一个文件；Bedrock、Vertex 和第三方网关也因 flag 无法解析为 true 而受影响"
+   ],
+   "topics": [
+    "coding-agent",
+    "harness",
+    "context-engineering"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 76.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 437,
+    "hn_comments": 243,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/anthropics/claude-code/issues/95690",
+      "https://github.com/anthropics/claude-code/issues/95690#issuecomment-5791716755"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
    }
   },
   {

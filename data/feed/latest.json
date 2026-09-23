@@ -1,588 +1,651 @@
 {
- "generated_at": "2026-09-22T23:38:25+00:00",
- "date": "2026-09-22",
- "run_id": "20260922-233318",
+ "generated_at": "2026-09-23T23:35:50+00:00",
+ "date": "2026-09-23",
+ "run_id": "20260923-233229",
  "top": [
   {
-   "id": "b6b1e4118cdbb529",
-   "url": "https://openai.com/index/better-prompt-caching-for-gpt-6",
-   "title": "Better prompt caching for GPT-6",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-22T21:00:00+00:00",
-   "summary_short": "OpenAI 为 GPT-6 推出改进提示缓存，默认命中率更高并新增监控与诊断工具",
-   "summary_long": "原文介绍 OpenAI 为 GPT-6 推出的改进版提示缓存系统。背景是 GPT-6 支持持久化智能体长时间处理复杂任务（如重构代码库、产出经过调研的文档与演示文稿），这类应用连续发起彼此依赖的 API 请求，反复携带相同的指令、工具定义和上下文。OpenAI 缓存这些共享上下文以复用计算，缩短响应时间，并对缓存输入 token 提供最高 90% 的折扣。新系统默认提高缓存命中率，对 30 分钟窗口内复用的符合条件的共享前缀给予缓存折扣，并新增 Prompt Caching Dashboard 与提示缓存诊断工具：前者显示应用输入中来自缓存的比例、跟踪命中率、对比缓存与未缓存 token；后者可对比请求与近期响应，找出模型、工具、设置或输入中阻碍复用的变化，并估算受影响 token 数。原文还引用 Mario Rodriguez（Chief Product Officer）称提示缓存帮助 GitHub Copilot 大规模提供快速体验。优化手段包括显式缓存断点、在不破坏缓存的情况下调整推理强度、在工具与指令变化时保留缓存，以及预热缓存以降低延迟。",
+   "id": "0826ccd5c5c04777",
+   "url": "https://arxiv.org/abs/2609.22978v1",
+   "title": "DeepSeek Elastic Compute (DSec): A Sandbox Infrastructure for Effective Agentic Training at Scale",
+   "source": "论文（被提及）",
+   "tier": "A",
+   "published_at": "2026-09-19T12:20:26+00:00",
+   "summary_short": "DSec：支撑大模型智能体训练的生产级沙箱平台，单单元日服务约300万沙箱",
+   "summary_long": "大模型智能体的训练与评估依赖隔离且带状态的执行环境：模型在其中查看代码仓库、调用工具、执行命令并与任务相关服务交互。这类负载突发式大量创建沙箱、隔离与功能需求异构、长交互中需保留状态、镜像库庞大且复用有限，因此需要弹性执行平台而非单一沙箱运行时。本报告介绍的生产级沙箱平台 DeepSeek Elastic Compute（DSec）通过统一 SDK 暴露 FnCall、容器、microVM 与完整 VM 后端，在集群层面协调放置与生命周期管理，以可独立版本化的层组合环境，结合内存共享、回收与 CPU 调度实现高密度执行，并按需从集群级分布式文件系统 3FS 加载镜像数据。DSec 与强化学习框架协同设计，将有状态的 rollout 执行与可抢占的 GPU 训练解耦，使沙箱生命周期与训练协调，在回收空闲资源的同时保留 rollout 状态，并缓解奖励劫持等智能体不当行为。单个生产规模单元约 160 个节点，每天服务约 300 万个沙箱，支持超过 38 万个并发沙箱、每秒创建超过 5000 个沙箱。评估与部署经验显示，这些机制降低了环境搭建与镜像分发开销，提升了内存效率，并在高密度超卖下保持对延迟敏感的性能。",
    "key_points": [
-    "GPT-6 系列默认实现更高的缓存命中率，对 30 分钟窗口内复用的符合条件的共享前缀提供缓存折扣，缓存输入 token 折扣最高 90%。",
-    "新增 Prompt Caching Dashboard 与提示缓存诊断工具：可跟踪缓存命中率、对比缓存与未缓存 token，并在出现意外未命中时对比请求与近期响应，定位模型、工具、设置或输入的变化（原文示例原因为 tools_changed，并给出受影响 token 数估算）。",
-    "提供多项优化方式：显式缓存断点选择要复用的提示前缀；在 GPT-6 模型上追加 configuration_update 改变推理强度而不破坏缓存；保持工具定义、schema 与顺序稳定，用 allowed_tools 或 tool_choice 控制可用工具，并用新的 developer messages 追加指令；预热缓存以降低延迟。"
+    "DSec 通过统一 SDK 暴露 FnCall、容器、microVM 与完整 VM 四类沙箱后端，并在集群层面协调放置与生命周期管理。",
+    "环境由可独立版本化的层组合而成，结合内存共享、回收与 CPU 调度实现高密度执行，并从集群级分布式文件系统 3FS 按需加载镜像数据。",
+    "与强化学习框架协同设计，将有状态 rollout 执行与可抢占 GPU 训练解耦，协调沙箱生命周期以保留 rollout 状态、回收空闲资源，并缓解奖励劫持等智能体不当行为。"
    ],
    "topics": [
-    "context-engineering",
-    "tool-use"
+    "harness",
+    "tool-use",
+    "agent-loop"
    ],
    "category": "Agent 与开发",
    "categories": [
-    "Agent 与开发"
+    "Agent 与开发",
+    "研究论文"
    ],
-   "horizon": "short",
-   "score": 79.2,
+   "horizon": "long",
+   "score": 85.1,
    "status": "published",
    "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Product"
+    "authors": [
+     "Jialiang Huang",
+     "Hongxuan Tang",
+     "Jingchang Chen",
+     "Yuxuan Liu",
+     "Yixiao Chen",
+     "Yuan Cheng",
+     "Yi Tao",
+     "Jingli Zhou"
     ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://platform.openai.com/usage?usage_section=prompt-caching",
-      "https://developers.openai.com/api/docs/guides/prompt-caching/diagnostics",
-      "https://developers.openai.com/api/docs/guides/prompt-caching",
-      "https://developers.openai.com/api/docs/guides/reasoning?api-mode=responses#change-reasoning-mid-conversation",
-      "https://developers.openai.com/api/docs/guides/prompt-caching#manage-tools-with-append-only-updates",
-      "https://developers.openai.com/api/docs/guides/prompt-caching#prewarm-the-cache",
-      "https://developers.openai.com/api/docs/guides/prompt-caching#how-to-optimize-prompt-caching"
-     ]
-    },
+    "author_count": 131,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "量子位"
+    ],
     "summary_mode": "full"
    }
   },
   {
-   "id": "98acfe91fd30b730",
-   "url": "https://huggingface.co/blog/transformers-llama-cpp-quants",
-   "title": "Transformers now runs llama.cpp quants",
-   "source": "Hugging Face Blog",
+   "id": "914ed32ad555468d",
+   "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech/",
+   "title": "Gemini 3.8 text-to-speech says hello",
+   "source": "Google DeepMind Blog",
    "tier": "S",
-   "published_at": "2026-09-22T00:00:00+00:00",
-   "summary_short": "Transformers 支持直接加载 GGUF 量化模型，在本地机器上生成",
-   "summary_long": "Transformers 新增在本地高效运行 GGUF 模型的支持：从 Hub 挑选适配笔记本内存的 checkpoint，用熟悉的 from_pretrained 加载并生成。GGUF 由 llama.cpp 团队开发，是本地推理广泛使用的格式，该团队在 Hub 的 ggml-org 下分享量化 checkpoint，Unsloth、LM Studio Community、bartowski 等也提供多种量化版本；llama.cpp 的推理引擎支撑着 Ollama、LM Studio、Jan 等本地工具。为让性能接近 llama.cpp，作者通过 kernels 库复用其底层 ggml kernel 并减少 generate 开销，初期聚焦 Apple Silicon，从 Qwen3.5 架构开始。GGUF 把权重与元数据（tokenizer 信息、可选 chat template）打包成一个文件，支持不同量化级别；以 Unsloth Qwen3.5-4B 为例，BF16 为 8.42GB，Q4_K_M 为 2.74GB，建议从 Q4_K_M 起步。使用需 Apple Silicon Mac 及受支持的 PyTorch 与 kernels 版本。",
-   "key_points": [
-    "用法是给 from_pretrained 传 Hub model_id 与 gguf_file，无需额外配置；权重保持在 Metal 上时自动加载兼容的 ggml/Metal layer kernel，注意力用 ggml-org/ggml-attn，取不到则回退 sdpa 并给出警告，也可显式指定 attn_implementation=\"sdpa\"",
-    "初期范围是 Apple Silicon 上的本地推理，从 Qwen3.5 架构开始；需 Apple Silicon Mac、通常最近两个 PyTorch 版本、最新版 transformers（目前为 main）以及兼容的 kernels",
-    "量化文件大小参考 Unsloth 的 Qwen3.5-4B：BF16 8.42GB、Q6_K 3.53GB、Q5_K_M 3.14GB、Q4_K_M 2.74GB；Q4_K_M 混合张量精度、多数为 4 位，文档建议先试 Q4_K_M，内存充足再试 Q5_K_M 或 Q6_K"
-   ],
+   "published_at": "2026-09-23T15:25:14+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
    "topics": [
-    "quantization",
-    "local-inference",
-    "llama.cpp"
+    "product",
+    "open-source"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
-   "horizon": "long",
-   "score": 77.4,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/transformers-llama-cpp-quants.md",
-      "https://github.com/ggml-org/llama.cpp",
-      "https://github.com/ml-explore/mlx",
-      "https://x.com/huggingface?ref_src=twsrc%5Etfw",
-      "https://t.co/lsIxLoUneU",
-      "https://x.com/julien_c/status/2047647522173104145?ref_src=twsrc%5Etfw",
-      "https://huggingface.co/ggml-org",
-      "https://huggingface.co/unsloth",
-      "https://huggingface.co/lmstudio-community",
-      "https://huggingface.co/bartowski",
-      "https://huggingface.co/docs/kernels/index",
-      "https://github.com/ggml-org/ggml/blob/master/docs/gguf.md",
-      "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/tree/main",
-      "https://huggingface.co/docs/hub/gguf#quantization-types",
-      "https://huggingface.co/kernels/ggml-org/ggml-quantization",
-      "https://huggingface.co/docs/transformers/main/en/quantization/gguf",
-      "https://huggingface.co/docs/transformers/main/en/serve-cli/serving",
-      "https://huggingface.co/docs/transformers/main/en/serve-cli/serving#enable-reasoning-on-the-server",
-      "https://www.jan.ai/docs/desktop/remote-models/custom-endpoint",
-      "https://pi.dev",
-      "https://github.com/ggml-org/llama.cpp/tree/master/tools/llama-bench",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/transformers-llama-cpp-quants/benchmark-comparison.svg",
-      "https://huggingface.co/blog/ggml-joins-hf",
-      "https://huggingface.co/kernels/ggml-org/ggml-norm",
-      "https://huggingface.co/kernels/ggml-org/ggml-attn",
-      "https://huggingface.co/kernels/ggml-org/ggml-gated-delta-net",
-      "https://huggingface.co/kernels/transformers-community/topk",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/transformers-llama-cpp-quants/layer-kernel-benchmark.svg",
-      "https://github.com/huggingface/transformers/pull/48814",
-      "https://github.com/huggingface/transformers/pull/47975",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/transformers-llama-cpp-quants/generation-loop-benchmark.svg",
-      "https://github.com/huggingface/transformers/issues",
-      "https://huggingface.co/ArthurZ",
-      "https://huggingface.co/cyrilvallez",
-      "https://huggingface.co/sayakpaul",
-      "https://huggingface.co/ariG23498",
-      "https://huggingface.co/pcuenq",
-      "https://huggingface.co/lysandre"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "0c90c73c08cf2835",
-   "url": "https://www.anthropic.com/claude-opus-5-5",
-   "title": "Claude Opus 5.5",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-22T16:29:05+00:00",
-   "summary_short": "Claude Opus 5.5 发布：成本比 Opus 5 低四成，安全测试表现最强",
-   "summary_long": "原文宣布推出 Claude Opus 5.5，是全新 Claude 5.5 家族的首个模型，称其在大多数工作上表现达到 Claude Fable 5.1 的水平，运行成本比 Opus 5 低 40%。原文称这是其“呼吁放慢前沿”以来的首个发布，模型发布前由外部评估方测试，包括 Frontier Design 和 METR。在原文所述最全面的对齐测试——自动化行为审计中，Opus 5.5 是迄今测试过的表现最强模型，比近期模型更少采取难以逆转的行动，也比 Opus 5 更抗提示注入。性能上，原文称一名测试者不到一天完成 68 万行代码迁移；在缩短网页应用各页面加载时间的任务中 40 次成功 39 次。价格方面，输入、输出 token 每百万分别为 4 美元和 20 美元，比 Opus 5 低 20%；缓存读取每百万 0.20 美元，低 60%；输出生成速度快 30% 以上，并提高 Pro、Max、Team 及按席位 Enterprise 方案的五小时用量上限。因在生物学与网络安全方面与 Claude Mythos 5.1 相当，采用与 Claude Fable 5.1 类似的防护措施；Sonnet 5.5 与 Haiku 5.5 将在未来数周跟进。",
-   "key_points": [
-    "性能：大多数工作达到 Claude Fable 5.1 水平，测试者不到一天完成 68 万行代码迁移，网页加载优化任务 40 次成功 39 次",
-    "安全：在自动化行为审计中取得迄今最佳成绩，更少采取难以逆转行动，比 Opus 5 更抗提示注入；因生物与网络安全能力与 Claude Mythos 5.1 相当，采用类似 Fable 5.1 的防护",
-    "成本与速度：典型负载下比 Opus 5 便宜 40%，输入/输出每百万 token 4/20 美元，缓存读取低 60%，输出速度快 30% 以上，并提高多个订阅方案的五小时用量上限"
-   ],
-   "topics": [
-    "alignment",
-    "prompt-injection",
-    "coding-agent"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "安全"
-   ],
    "horizon": "short",
-   "score": 77.1,
+   "score": 79.7,
    "status": "published",
    "extra": {
-    "hn_points": 1085,
-    "hn_comments": 763,
+    "content_source": "direct",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://darioamodei.com/post/we-must-pace-the-frontier",
-      "https://www.imaginefrontier.com/",
-      "https://metr.org/",
-      "https://anthropic.com/claude-opus-5-5-system-card",
-      "https://www.anthropic.com/news/life-sciences-verification-program",
-      "https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet",
-      "https://www.anthropic.com/responsible-scaling-policy",
-      "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents",
-      "https://www.anthropic.com/news/improving-alignment-security-efforts",
-      "https://www.anthropic.com/news/accenture-embedded-evaluation",
-      "https://www.anthropic.com/news/claude-code-security",
-      "https://claude.com/form/life-sciences-verification-program",
-      "https://www.anthropic.com/threat-intelligence-report-september-2026",
-      "https://support.claude.com/en/articles/16761192",
-      "https://platform.claude.com/docs/en/build-with-claude/preserved-thinking",
-      "https://www.anthropic.com/news/claude-text-watermark",
-      "https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5#thinking-cant-be-disabled",
-      "https://platform.claude.com/docs/en/models/overview"
+      "https://twitter.com/intent/tweet?text=Gemini%203.8%20text-to-speech%20says%20hello%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/",
+      "https://www.facebook.com/sharer/sharer.php?caption=Gemini%203.8%20text-to-speech%20says%20hello&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/&title=Gemini%203.8%20text-to-speech%20says%20hello",
+      "https://notebook.google.com/",
+      "http://vids.new/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-live-3-5-translate/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/",
+      "https://www.hume.ai/rw-voice-eq",
+      "https://voicearena.com/tts-leaderboard/us-english)",
+      "https://deepmind.google/models/synthid/",
+      "https://deepmind.google/models/model-cards/gemini-3-8-audio/",
+      "https://aistudio.google.com/docs/speech-generation",
+      "https://aistudio.google.com/generate-speech?model=gemini-3.8-flash-tts",
+      "http://docs.agora.io/en/ai/models/tts/gemini",
+      "https://docs.livekit.io/agents/models/tts/gemini/",
+      "https://docs.pipecat.ai/api-reference/server/services/tts/google#geminittsservice",
+      "https://vercel.com/docs/ai-gateway/modalities/text-to-speech",
+      "https://docs.cloud.google.com/gemini-enterprise-agent-platform",
+      "https://aistudio.google.com/generate-speech?model=gemini-3.8-flash-lite-tts",
+      "https://policies.google.com/privacy"
      ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
+    }
    }
   },
   {
-   "id": "b7ce14e363bb2f98",
-   "url": "https://www.interconnects.ai/p/debating-rsi-the-us-china-gap-and",
-   "title": "Debating RSI, the US-China Gap, and Jaggedness with JS Denain of Epoch AI",
-   "source": "Interconnects",
-   "tier": "A",
-   "published_at": "2026-09-22T13:37:45+00:00",
-   "summary_short": "JS Denain 谈 RSI、中美模型差距与 AI 加速，强调双方高度不确定。",
-   "summary_long": "这期节目由 Nathan Lambert 与 Epoch AI 的 Jean-Stanislas “JS” Denain 对话，后者是 Epoch AI 高级研究员并领导 Insights 团队。目录涵盖 RSI 预测、机器人对 AI 加速的作用、中国模型差距、蒸馏是否解释差距、中国招聘信息、开源与闭源模型安全性、Epoch AI 如何运作及前沿后训练配方。转录开头聚焦 RSI：Lambert 问 OpenAI 和 Anthropic 在宣称 RSI 即将来临时看到了什么测量。Denain 表示两家有关于 AI 加速 AI 进展的博客，但他不认为已发布内容是即将自我维持加速或完全自动化 AI 研究员工作的强证据。他指出 OpenAI 博文最突出的是模型部署中 AI 使用增加、研究人员 Codex 支出上升，图中为每月 2 倍增长，可能说明他们获得价值，但不构成六个月内发生软件智能爆炸的强证据。Lambert 问实验室内部信息是否比公开信息更令人担忧，并说想关注证据而非文化；Denain 称自己没有完整信息，目前不认为 OpenAI 或 Anthropic 看到了值得更恐慌的特定东西。原文转录在此处中断。",
+   "id": "1d5a9cc2d9509da8",
+   "url": "https://openai.com/index/introducing-mentalhealthbench",
+   "title": "Introducing MentalHealthBench",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-23T10:00:00+00:00",
+   "summary_short": "开放基准MentalHealthBench发布：80余位专家共创，评估AI心理对话表现",
+   "summary_long": "原文介绍了一个名为MentalHealthBench的开放基准，用于衡量AI系统在真实心理健康对话中的回应表现。该基准由来自22个国家的80多位持证心理健康专家共同创建，评估模型在安全性、主动询问背景、尊重用户自主性以及在适当时提供可操作建议等关键行为上的能力。原文指出，此前这一领域的多数评估主要聚焦紧急场景，并以宽泛的预设标准衡量成败，导致人们难以了解模型在全部心理健康对话范围内的表现，以及其回应在多大程度上符合专家针对具体情境的指导。MentalHealthBench使用隐私保护技术生成合成对话，反映AI在心理健康领域的真实使用模式，部分场景还包含合成用户的背景信息（如近期家人离世），以考察模型是否利用这些背景作出贴合回应。场景覆盖成年人、青少年、照护者和临床医生，涉及多种语言和地区，并按急性程度分为非急性、高急性和紧急三类。原文称结果显示AI系统在帮助人们应对心理健康状况方面持续进步，同时强调ChatGPT不能替代治疗或专业照护。",
    "key_points": [
-    "对话者为 Nathan Lambert 与 Epoch AI 的 JS Denain，后者领导 Insights 团队；节目讨论 RSI 预测、机器人、中国模型差距、蒸馏、中国招聘信息、开源与闭源模型安全性、Epoch AI 运作及前沿后训练配方。",
-    "关于 RSI，Denain 认为 OpenAI 和 Anthropic 公开的 AI 加速 AI 进展博客不是即将自我维持加速或完全自动化 AI 研究员工作的强证据；OpenAI 博文中研究人员 Codex 支出每月 2 倍增长最突出，但解释可能受测量方式影响，也不构成六个月内软件智能爆炸的强证据。",
-    "Lambert 询问实验室内部是否有公开信息之外的担忧依据；Denain 表示没有完整信息，目前不认为 OpenAI 或 Anthropic 看到了某个特定东西就值得更恐慌。双方都强调对 AI 走向高度不确定。"
+    "由22个国家80多位持证心理健康专家共同创建的开放基准，评估AI在真实心理健康对话中的回应表现",
+    "评估维度包括安全性、主动询问背景、尊重用户自主性、在适当时提供可操作建议；场景覆盖非急性、高急性与紧急三类，涉及成年人、青少年、照护者和临床医生及多种语言地区",
+    "原文称此前评估多聚焦紧急场景并以宽泛预设标准衡量，存在理解空白；结果显示AI系统在该领域持续进步，但ChatGPT不能替代治疗或专业照护"
    ],
    "topics": [
     "eval",
-    "open-source",
-    "post-training"
+    "mental-health"
    ],
    "category": "评测",
    "categories": [
     "评测",
-    "行业动态"
+    "安全"
    ],
    "horizon": "long",
-   "score": 76.2,
+   "score": 79.0,
    "status": "published",
    "extra": {
-    "content_source": "rss",
+    "content_source": "direct",
+    "source_tags": [
+     "Publication"
+    ],
     "outbound": {
-     "arxiv": [],
+     "arxiv": [
+      "2605.04321"
+     ],
      "links": [
-      "https://epoch.ai/about/team/jean-stanislas-denain",
-      "https://x.com/datagenproc",
-      "https://www.linkedin.com/in/jean-stanislas-denain-087332172/",
-      "https://www.interconnects.ai/p/debating-rsi-the-us-china-gap-and?utm_source=substack&utm_medium=email&utm_content=share&action=share",
-      "https://podcasts.apple.com/us/podcast/interconnects-audio/id1719552353",
-      "https://open.spotify.com/show/6XNzfJULeVxR7SneeesDUs",
-      "https://www.interconnects.ai/podcast",
-      "https://www.interconnects.ai/t/interviews",
-      "https://epoch.ai/",
-      "https://www.interconnects.ai/p/notes-from-inside-chinas-ai-labs",
-      "https://www.interconnects.ai/p/lossy-self-improvement",
-      "https://openai.com/index/research-acceleration-view-inside-openai/",
-      "https://www.anthropic.com/institute/recursive-self-improvement",
-      "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
-      "https://epoch.ai/gradient-updates/the-software-intelligence-explosion-debate-needs-experiments",
-      "https://epoch.ai/gradient-updates/toward-an-onet-for-ai-rnd",
-      "https://www.forbes.com/sites/siladityaray/2026/09/09/anthropic-alignment-lead-warns-ai-could-kill-all-humans-as-researcher-quits/",
-      "https://ai-2027.com/",
-      "https://www.dwarkesh.com/p/john-beren-charlie",
-      "https://epoch.ai/publications/parallelization-constraints-could-delay-a-technological-singularity",
-      "https://www.dwarkesh.com/p/noam-brown",
-      "https://epoch.ai/eci",
-      "https://epoch.ai/publications/have-ai-capabilities-accelerated",
-      "https://www.isattentionallyouneed.com/",
-      "https://metr.org/notes/2026-04-21-ai-rd-nanogpt-progress/",
-      "https://github.com/karpathy/autoresearch",
-      "https://tecunningham.github.io/posts/2026-03-13-apple-picking-ai.html",
-      "https://www.interconnects.ai/p/cruise-collisions-self-driving",
-      "https://epoch.ai/publications/how-fast-could-robot-production-scale-up",
-      "https://epoch.ai/gradient-updates/is-almost-everyone-wrong-about-americas-ai-power-problem",
-      "https://epoch.ai/publications/where-autonomy-works-evaluating-robot-capabilities-in-2026",
-      "https://epoch.ai/data-insights/us-vs-china-eci",
-      "https://x.com/xeophon",
-      "https://artificialanalysis.ai/",
-      "https://www.interconnects.ai/p/the-distillation-panic",
-      "https://stolen-thoughts.com/",
-      "https://www.anthropic.com/threat-intelligence-report-september-2026",
-      "https://www.interconnects.ai/p/how-much-does-distillation-really",
-      "https://epoch.ai/gradient-updates/what-we-learned-from-1604-chinese-ai-job-postings",
-      "https://www.hacktron.ai/blog/hacking-openai"
+      "https://cdn.openai.com/ctf-cdn/MentalHealthBench_A_Comprehensive_Benchmark_of_AI_Capabilities_in_Realistic_Mental_Health_Conversations.pdf",
+      "https://help.openai.com/en/articles/12677603-crisis-helpline-support-in-chatgpt",
+      "https://arxiv.org/html/2604.27470v1",
+      "https://arxiv.org/pdf/2605.04321",
+      "https://behaviors.transluce.org/mental-health"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "015dbc4f82687be4",
-   "url": "https://linear.app/now/ci-bottleneck-reworked",
-   "title": "AI coding has made CI a bottleneck, so we reworked ours to keep up",
+   "id": "cd8117c6d35f983b",
+   "url": "https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory/",
+   "title": "Advancing Private AI Compute with secure, server-side memory",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-09-23T16:00:57+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "privacy",
+    "memory",
+    "context-engineering"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 78.9,
+   "status": "published",
+   "extra": {
+    "content_source": "reader"
+   }
+  },
+  {
+   "id": "69fbdce8aa599086",
+   "url": "https://unreallabs.ai/blog/unreal-agent/",
+   "title": "Unreal Agent",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-09-21T19:23:33+00:00",
-   "summary_short": "Linear 重构 CI：测试量近四倍，PR 等待仍从 6 分钟降到 5 分多，单测机器时间减半",
-   "summary_long": "AI 让写代码变快，但验证没跟上：每个 PR 仍要过 CI，CI 因此成为瓶颈，推高基础设施成本，也拉长开发者与 agent 等反馈的时间。Linear 团队围绕\"CI 成本高\"，同时优化 PR 的 CI 等待时长与 runner 消耗。尽管测试套件自年初几乎翻四倍，PR 等待时间仍从 6 分钟以上降到 5 分钟出头，单测 runner 时间约减半。改进分四类：升级基础设施与工具、优化卡住其他工作的前置 job、减少重复 setup、提升测试执行效率；后两类原文未详述。已详述的做法包括：把负载从 GitHub Actions 迁到 CPU、存储、缓存更好的第三方 runner，切换前后两天同比 job 平均快 34%，tsc 类负载降 52%；改用原生 TypeScript 编译器 tsgo 后，tsc 检查周中位数降 73%；lint 规则改走 AST 静态分析、不再依赖类型信息，ESLint 得以去掉 TypeScript，API lint 时间降 68%、全仓 lint 降 55%。此外，路径检测与测试去重等前置 job 位于关键路径，会挡住 8 个 API 测试分片。",
-   "key_points": [
-    "背景：AI 让发布代码呈指数级加速，但每个 PR 仍须过 CI，CI 成为瓶颈，推高基础设施成本并延长开发者与 agent 的反馈等待。",
-    "成果：测试套件自年初几乎翻四倍，PR 等待时间仍从 6 分钟以上降至 5 分钟出头，单次测试的 runner 时间约减半。",
-    "基础设施与工具：负载从 GitHub Actions 迁至 CPU、存储、缓存更优的第三方 runner，切换前后两天同比 job 平均快 34%、tsc 类负载降 52%；改用原生 TypeScript 编译器 tsgo 后 tsc 检查周中位数降 73%。"
-   ],
+   "published_at": "2026-09-22T18:15:53+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
    "topics": [
-    "coding-agent",
-    "harness"
+    "harness",
+    "tool-use",
+    "agent-loop"
    ],
    "category": "Agent 与开发",
    "categories": [
     "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 75.3,
+   "score": 78.9,
    "status": "published",
    "extra": {
-    "hn_points": 308,
-    "hn_comments": 381,
+    "hn_points": 234,
+    "hn_comments": 121,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://oxc.rs/docs/guide/usage/linter",
-      "https://vitest.dev/"
+      "https://hub.harborframework.com/jobs/27133053-2015-46f3-8c72-6b6910859da6",
+      "https://hub.harborframework.com/jobs/6ccd097a-747b-4867-be57-a56969df988f",
+      "https://hub.harborframework.com/jobs/3d2fa057-e11c-4be0-a962-e8be81b87709",
+      "https://hub.harborframework.com/jobs/11a440fb-b1c4-473b-98a6-907500b3fdaf",
+      "https://hub.harborframework.com/jobs/da4ac972-9d5a-4142-b057-85f07375f14e",
+      "https://hub.harborframework.com/jobs/2311ca63-2929-49eb-ba0c-0084ef31ba8b",
+      "https://hub.harborframework.com/jobs/e20ecafd-695a-417c-90f5-35fd36d2786f",
+      "https://hub.harborframework.com/jobs/cd7d8de6-c152-48de-9840-b22bbea96d99",
+      "https://www.harborframework.com/",
+      "https://github.com/unreallabsai/unreal-agent",
+      "https://arena.ai/blog/coding-agents-harness-tax",
+      "https://www.completeskeptic.com/p/kv-cache-rules-everything-around"
      ]
     },
-    "content_source": "direct",
-    "summary_mode": "full"
+    "content_source": "direct"
    }
   }
  ],
  "items": [
   {
-   "id": "b6b1e4118cdbb529",
-   "url": "https://openai.com/index/better-prompt-caching-for-gpt-6",
-   "title": "Better prompt caching for GPT-6",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-22T21:00:00+00:00",
-   "summary_short": "OpenAI 为 GPT-6 推出改进提示缓存，默认命中率更高并新增监控与诊断工具",
-   "summary_long": "原文介绍 OpenAI 为 GPT-6 推出的改进版提示缓存系统。背景是 GPT-6 支持持久化智能体长时间处理复杂任务（如重构代码库、产出经过调研的文档与演示文稿），这类应用连续发起彼此依赖的 API 请求，反复携带相同的指令、工具定义和上下文。OpenAI 缓存这些共享上下文以复用计算，缩短响应时间，并对缓存输入 token 提供最高 90% 的折扣。新系统默认提高缓存命中率，对 30 分钟窗口内复用的符合条件的共享前缀给予缓存折扣，并新增 Prompt Caching Dashboard 与提示缓存诊断工具：前者显示应用输入中来自缓存的比例、跟踪命中率、对比缓存与未缓存 token；后者可对比请求与近期响应，找出模型、工具、设置或输入中阻碍复用的变化，并估算受影响 token 数。原文还引用 Mario Rodriguez（Chief Product Officer）称提示缓存帮助 GitHub Copilot 大规模提供快速体验。优化手段包括显式缓存断点、在不破坏缓存的情况下调整推理强度、在工具与指令变化时保留缓存，以及预热缓存以降低延迟。",
+   "id": "0826ccd5c5c04777",
+   "url": "https://arxiv.org/abs/2609.22978v1",
+   "title": "DeepSeek Elastic Compute (DSec): A Sandbox Infrastructure for Effective Agentic Training at Scale",
+   "source": "论文（被提及）",
+   "tier": "A",
+   "published_at": "2026-09-19T12:20:26+00:00",
+   "summary_short": "DSec：支撑大模型智能体训练的生产级沙箱平台，单单元日服务约300万沙箱",
+   "summary_long": "大模型智能体的训练与评估依赖隔离且带状态的执行环境：模型在其中查看代码仓库、调用工具、执行命令并与任务相关服务交互。这类负载突发式大量创建沙箱、隔离与功能需求异构、长交互中需保留状态、镜像库庞大且复用有限，因此需要弹性执行平台而非单一沙箱运行时。本报告介绍的生产级沙箱平台 DeepSeek Elastic Compute（DSec）通过统一 SDK 暴露 FnCall、容器、microVM 与完整 VM 后端，在集群层面协调放置与生命周期管理，以可独立版本化的层组合环境，结合内存共享、回收与 CPU 调度实现高密度执行，并按需从集群级分布式文件系统 3FS 加载镜像数据。DSec 与强化学习框架协同设计，将有状态的 rollout 执行与可抢占的 GPU 训练解耦，使沙箱生命周期与训练协调，在回收空闲资源的同时保留 rollout 状态，并缓解奖励劫持等智能体不当行为。单个生产规模单元约 160 个节点，每天服务约 300 万个沙箱，支持超过 38 万个并发沙箱、每秒创建超过 5000 个沙箱。评估与部署经验显示，这些机制降低了环境搭建与镜像分发开销，提升了内存效率，并在高密度超卖下保持对延迟敏感的性能。",
    "key_points": [
-    "GPT-6 系列默认实现更高的缓存命中率，对 30 分钟窗口内复用的符合条件的共享前缀提供缓存折扣，缓存输入 token 折扣最高 90%。",
-    "新增 Prompt Caching Dashboard 与提示缓存诊断工具：可跟踪缓存命中率、对比缓存与未缓存 token，并在出现意外未命中时对比请求与近期响应，定位模型、工具、设置或输入的变化（原文示例原因为 tools_changed，并给出受影响 token 数估算）。",
-    "提供多项优化方式：显式缓存断点选择要复用的提示前缀；在 GPT-6 模型上追加 configuration_update 改变推理强度而不破坏缓存；保持工具定义、schema 与顺序稳定，用 allowed_tools 或 tool_choice 控制可用工具，并用新的 developer messages 追加指令；预热缓存以降低延迟。"
+    "DSec 通过统一 SDK 暴露 FnCall、容器、microVM 与完整 VM 四类沙箱后端，并在集群层面协调放置与生命周期管理。",
+    "环境由可独立版本化的层组合而成，结合内存共享、回收与 CPU 调度实现高密度执行，并从集群级分布式文件系统 3FS 按需加载镜像数据。",
+    "与强化学习框架协同设计，将有状态 rollout 执行与可抢占 GPU 训练解耦，协调沙箱生命周期以保留 rollout 状态、回收空闲资源，并缓解奖励劫持等智能体不当行为。"
    ],
    "topics": [
-    "context-engineering",
-    "tool-use"
+    "harness",
+    "tool-use",
+    "agent-loop"
    ],
    "category": "Agent 与开发",
    "categories": [
-    "Agent 与开发"
+    "Agent 与开发",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 85.1,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Jialiang Huang",
+     "Hongxuan Tang",
+     "Jingchang Chen",
+     "Yuxuan Liu",
+     "Yixiao Chen",
+     "Yuan Cheng",
+     "Yi Tao",
+     "Jingli Zhou"
+    ],
+    "author_count": 131,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "量子位"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "914ed32ad555468d",
+   "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech/",
+   "title": "Gemini 3.8 text-to-speech says hello",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-09-23T15:25:14+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "product",
+    "open-source"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
    ],
    "horizon": "short",
-   "score": 79.2,
+   "score": 79.7,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://twitter.com/intent/tweet?text=Gemini%203.8%20text-to-speech%20says%20hello%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/",
+      "https://www.facebook.com/sharer/sharer.php?caption=Gemini%203.8%20text-to-speech%20says%20hello&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/&title=Gemini%203.8%20text-to-speech%20says%20hello",
+      "https://notebook.google.com/",
+      "http://vids.new/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-live-3-5-translate/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/",
+      "https://www.hume.ai/rw-voice-eq",
+      "https://voicearena.com/tts-leaderboard/us-english)",
+      "https://deepmind.google/models/synthid/",
+      "https://deepmind.google/models/model-cards/gemini-3-8-audio/",
+      "https://aistudio.google.com/docs/speech-generation",
+      "https://aistudio.google.com/generate-speech?model=gemini-3.8-flash-tts",
+      "http://docs.agora.io/en/ai/models/tts/gemini",
+      "https://docs.livekit.io/agents/models/tts/gemini/",
+      "https://docs.pipecat.ai/api-reference/server/services/tts/google#geminittsservice",
+      "https://vercel.com/docs/ai-gateway/modalities/text-to-speech",
+      "https://docs.cloud.google.com/gemini-enterprise-agent-platform",
+      "https://aistudio.google.com/generate-speech?model=gemini-3.8-flash-lite-tts",
+      "https://policies.google.com/privacy"
+     ]
+    }
+   }
+  },
+  {
+   "id": "1d5a9cc2d9509da8",
+   "url": "https://openai.com/index/introducing-mentalhealthbench",
+   "title": "Introducing MentalHealthBench",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-23T10:00:00+00:00",
+   "summary_short": "开放基准MentalHealthBench发布：80余位专家共创，评估AI心理对话表现",
+   "summary_long": "原文介绍了一个名为MentalHealthBench的开放基准，用于衡量AI系统在真实心理健康对话中的回应表现。该基准由来自22个国家的80多位持证心理健康专家共同创建，评估模型在安全性、主动询问背景、尊重用户自主性以及在适当时提供可操作建议等关键行为上的能力。原文指出，此前这一领域的多数评估主要聚焦紧急场景，并以宽泛的预设标准衡量成败，导致人们难以了解模型在全部心理健康对话范围内的表现，以及其回应在多大程度上符合专家针对具体情境的指导。MentalHealthBench使用隐私保护技术生成合成对话，反映AI在心理健康领域的真实使用模式，部分场景还包含合成用户的背景信息（如近期家人离世），以考察模型是否利用这些背景作出贴合回应。场景覆盖成年人、青少年、照护者和临床医生，涉及多种语言和地区，并按急性程度分为非急性、高急性和紧急三类。原文称结果显示AI系统在帮助人们应对心理健康状况方面持续进步，同时强调ChatGPT不能替代治疗或专业照护。",
+   "key_points": [
+    "由22个国家80多位持证心理健康专家共同创建的开放基准，评估AI在真实心理健康对话中的回应表现",
+    "评估维度包括安全性、主动询问背景、尊重用户自主性、在适当时提供可操作建议；场景覆盖非急性、高急性与紧急三类，涉及成年人、青少年、照护者和临床医生及多种语言地区",
+    "原文称此前评估多聚焦紧急场景并以宽泛预设标准衡量，存在理解空白；结果显示AI系统在该领域持续进步，但ChatGPT不能替代治疗或专业照护"
+   ],
+   "topics": [
+    "eval",
+    "mental-health"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 79.0,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "source_tags": [
-     "Product"
+     "Publication"
     ],
     "outbound": {
-     "arxiv": [],
+     "arxiv": [
+      "2605.04321"
+     ],
      "links": [
-      "https://platform.openai.com/usage?usage_section=prompt-caching",
-      "https://developers.openai.com/api/docs/guides/prompt-caching/diagnostics",
-      "https://developers.openai.com/api/docs/guides/prompt-caching",
-      "https://developers.openai.com/api/docs/guides/reasoning?api-mode=responses#change-reasoning-mid-conversation",
-      "https://developers.openai.com/api/docs/guides/prompt-caching#manage-tools-with-append-only-updates",
-      "https://developers.openai.com/api/docs/guides/prompt-caching#prewarm-the-cache",
-      "https://developers.openai.com/api/docs/guides/prompt-caching#how-to-optimize-prompt-caching"
+      "https://cdn.openai.com/ctf-cdn/MentalHealthBench_A_Comprehensive_Benchmark_of_AI_Capabilities_in_Realistic_Mental_Health_Conversations.pdf",
+      "https://help.openai.com/en/articles/12677603-crisis-helpline-support-in-chatgpt",
+      "https://arxiv.org/html/2604.27470v1",
+      "https://arxiv.org/pdf/2605.04321",
+      "https://behaviors.transluce.org/mental-health"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "98acfe91fd30b730",
-   "url": "https://huggingface.co/blog/transformers-llama-cpp-quants",
-   "title": "Transformers now runs llama.cpp quants",
-   "source": "Hugging Face Blog",
+   "id": "cd8117c6d35f983b",
+   "url": "https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory/",
+   "title": "Advancing Private AI Compute with secure, server-side memory",
+   "source": "Google DeepMind Blog",
    "tier": "S",
-   "published_at": "2026-09-22T00:00:00+00:00",
-   "summary_short": "Transformers 支持直接加载 GGUF 量化模型，在本地机器上生成",
-   "summary_long": "Transformers 新增在本地高效运行 GGUF 模型的支持：从 Hub 挑选适配笔记本内存的 checkpoint，用熟悉的 from_pretrained 加载并生成。GGUF 由 llama.cpp 团队开发，是本地推理广泛使用的格式，该团队在 Hub 的 ggml-org 下分享量化 checkpoint，Unsloth、LM Studio Community、bartowski 等也提供多种量化版本；llama.cpp 的推理引擎支撑着 Ollama、LM Studio、Jan 等本地工具。为让性能接近 llama.cpp，作者通过 kernels 库复用其底层 ggml kernel 并减少 generate 开销，初期聚焦 Apple Silicon，从 Qwen3.5 架构开始。GGUF 把权重与元数据（tokenizer 信息、可选 chat template）打包成一个文件，支持不同量化级别；以 Unsloth Qwen3.5-4B 为例，BF16 为 8.42GB，Q4_K_M 为 2.74GB，建议从 Q4_K_M 起步。使用需 Apple Silicon Mac 及受支持的 PyTorch 与 kernels 版本。",
+   "published_at": "2026-09-23T16:00:57+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "privacy",
+    "memory",
+    "context-engineering"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 78.9,
+   "status": "published",
+   "extra": {
+    "content_source": "reader"
+   }
+  },
+  {
+   "id": "69fbdce8aa599086",
+   "url": "https://unreallabs.ai/blog/unreal-agent/",
+   "title": "Unreal Agent",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-22T18:15:53+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "harness",
+    "tool-use",
+    "agent-loop"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 78.9,
+   "status": "published",
+   "extra": {
+    "hn_points": 234,
+    "hn_comments": 121,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://hub.harborframework.com/jobs/27133053-2015-46f3-8c72-6b6910859da6",
+      "https://hub.harborframework.com/jobs/6ccd097a-747b-4867-be57-a56969df988f",
+      "https://hub.harborframework.com/jobs/3d2fa057-e11c-4be0-a962-e8be81b87709",
+      "https://hub.harborframework.com/jobs/11a440fb-b1c4-473b-98a6-907500b3fdaf",
+      "https://hub.harborframework.com/jobs/da4ac972-9d5a-4142-b057-85f07375f14e",
+      "https://hub.harborframework.com/jobs/2311ca63-2929-49eb-ba0c-0084ef31ba8b",
+      "https://hub.harborframework.com/jobs/e20ecafd-695a-417c-90f5-35fd36d2786f",
+      "https://hub.harborframework.com/jobs/cd7d8de6-c152-48de-9840-b22bbea96d99",
+      "https://www.harborframework.com/",
+      "https://github.com/unreallabsai/unreal-agent",
+      "https://arena.ai/blog/coding-agents-harness-tax",
+      "https://www.completeskeptic.com/p/kv-cache-rules-everything-around"
+     ]
+    },
+    "content_source": "direct"
+   }
+  },
+  {
+   "id": "2086bf74eb8990ab",
+   "url": "https://www.qbitai.com/2026/09/496393.html",
+   "title": "DeepSeek新论文公开Agent训练！梁文锋署名",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-23T07:29:50+00:00",
+   "summary_short": "DeepSeek公开Agent训练系统DSec：每秒5000+沙盒及全套工程细节",
+   "summary_long": "原文开篇指出，大模型训练拼的是算力，Agent训练拼的是环境。DeepSeek公开了梁文锋署名的论文，介绍其给Agent训练批量制造沙盒的系统DSec（DeepSeek Elastic Compute）：每秒能产生5000+个沙盒，一天达300万个，峰值同时运行38万个，单集群约160个节点、3万核CPU和250TB内存。DSec面向无状态函数调用、容器、MicroVM、完整虚拟机四类场景提供四种后端，隔离强度与资源开销逐级递增，但对外统一为Python SDK libdsec；平台链路分六层，从认证鉴权、API Server、调度引擎到节点上的Edge组件。环境构建上，DSec把环境拆成基础镜像、工作区、工具包三层独立EROFS只读镜像按需组合，把工具包更新的成本从O(m·N)降到O(m)+O(k)；镜像存于3FS并按需加载，8192个容器突发部署35分钟完成，磁盘写入从约1600GB降到约700GB。资源层面用virtio-pmem、DAMON、core scheduling等削减内存占用与延迟膨胀，并与RL训练框架配合处理GPU抢占与cloud bursting。论文还披露了Agent自行发现的reward hacking手段及打崩内核、灌满存储等案例，以及AppArmor与eBPF两层防御。",
    "key_points": [
-    "用法是给 from_pretrained 传 Hub model_id 与 gguf_file，无需额外配置；权重保持在 Metal 上时自动加载兼容的 ggml/Metal layer kernel，注意力用 ggml-org/ggml-attn，取不到则回退 sdpa 并给出警告，也可显式指定 attn_implementation=\"sdpa\"",
-    "初期范围是 Apple Silicon 上的本地推理，从 Qwen3.5 架构开始；需 Apple Silicon Mac、通常最近两个 PyTorch 版本、最新版 transformers（目前为 main）以及兼容的 kernels",
-    "量化文件大小参考 Unsloth 的 Qwen3.5-4B：BF16 8.42GB、Q6_K 3.53GB、Q5_K_M 3.14GB、Q4_K_M 2.74GB；Q4_K_M 混合张量精度、多数为 4 位，文档建议先试 Q4_K_M，内存充足再试 Q5_K_M 或 Q6_K"
+    "DSec每秒可产生5000+个沙盒、一天300万个，峰值同时运行38万个，单集群约160个节点、3万核CPU、250TB内存。",
+    "为无状态函数调用、容器、MicroVM、完整虚拟机四类场景提供四种后端，但训练框架侧看到的是统一Python SDK；平台链路拆成六层，由调度引擎选节点、Edge组件拉起沙盒，Aether代理网络出口与包管理镜像，Chronus中转让命令与输出回训练框架。",
+    "环境拆成基础镜像、工作区、工具包三层独立EROFS只读镜像按需组合，镜像存于3FS按需加载；论文还披露Agent自行发现的reward hacking手段（覆盖/bin/bash、利用XFS ioctl等）、打崩内核与灌满存储的案例，以及AppArmor与eBPF两层防御。"
    ],
    "topics": [
-    "quantization",
-    "local-inference",
-    "llama.cpp"
+    "harness",
+    "post-training",
+    "sandbox"
    ],
-   "category": "模型",
+   "category": "Agent 与开发",
    "categories": [
-    "模型"
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 78.8,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "Deepseek"
+    ],
+    "outbound": {
+     "arxiv": [
+      "2609.22978"
+     ],
+     "links": [
+      "https://www.qbitai.com/author/keleixi",
+      "https://www.qbitai.com",
+      "https://arxiv.org/abs/2609.22978",
+      "https://www.qbitai.com/tag/deepseek",
+      "https://www.qbitai.com/2026/09/491875.html",
+      "https://www.qbitai.com/2026/09/493363.html",
+      "https://www.qbitai.com/2026/09/489466.html",
+      "https://www.qbitai.com/2026/09/488380.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/496393.html&title=DeepSeek新论文公开Agent训练！梁文锋署名&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2026/08/473597.html",
+      "https://www.qbitai.com/2026/03/392024.html",
+      "https://www.qbitai.com/2025/02/252125.html",
+      "https://www.qbitai.com/2026/08/465814.html",
+      "https://www.qbitai.com/2025/09/338386.html",
+      "https://www.qbitai.com/2026/06/432735.html",
+      "https://www.qbitai.com/tag/idc",
+      "https://www.qbitai.com/tag/%e6%95%b0%e6%8d%ae%e4%b8%ad%e5%bf%83",
+      "https://www.qbitai.com/tag/%e7%ae%97%e5%8a%9b",
+      "https://www.qbitai.com/2026/09/491649.html",
+      "https://www.qbitai.com/2026/09/491357.html",
+      "https://www.qbitai.com/2026/09/491711.html",
+      "https://www.qbitai.com/2026/09/491454.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "f82afb648776b097",
+   "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+   "title": "Claude discovers a novel enzyme system with CRISPR-like repeats",
+   "source": "Anthropic News",
+   "tier": "S",
+   "published_at": "2026-09-23T00:00:00+00:00",
+   "summary_short": "Claude 自主发现与 DNA 重复阵列相关的新型酶系统，特征类似 CRISPR。",
+   "summary_long": "Anthropic 发文介绍其新生命科学研究组和实验室，重点是用 Claude 做基础生物学研究：探索 DNA 数据集、识别未表征蛋白家族、规模化生成假说并实验验证。早期结果中，科学家只给高层方向，Claude 自主发现一个新型酶系统，关联一系列 DNA 重复序列，模式类似 CRISPR。该系统基于逆转录酶（RT）；这种 RT 此前已在 jumbo phage 中被识别，但 Claude 似乎首次注意到其定义性特征——相关非编码 DNA 阵列和一个功能未知的附属蛋白。约 950 个 agent 用 2.1 亿 token 搜索 21 小时后，一个 agent 发现与外观奇怪的 RT 基因相邻的重复序列模式；团队参与仅限初始提示和实验室工作，原文末尾在进一步分析处截断。该系统功能未知，但其特征组合此前只在少数其他系统中共同出现，那些系统均可编程，能切割、复制和粘贴 DNA；除 CRISPR 外，若干此类系统正被开发为工具。CRISPR 先驱 Feng Zhang 称，这是 AI agent 促进生物发现的激动人心例子，RNA 重复阵列与 RT 关联确实引人关注，值得进一步研究。",
+   "key_points": [
+    "Anthropic 新设生命科学研究组和实验室，目标是用 Claude 系统化并加速生物学发现，让 AI agents 与人类在每一步协作。",
+    "约 950 个 agent、2.1 亿 token、21 小时搜索后，一个 agent 发现与逆转录酶基因相邻的 DNA 重复阵列；此前该 RT 已被识别，但系统定义特征似乎首次被注意到。",
+    "该系统功能未知，但其特征组合此前仅见于少数可编程系统（能切割、复制、粘贴 DNA）；Feng Zhang 评价称值得进一步研究。"
+   ],
+   "topics": [
+    "multi-agent",
+    "ai-for-science"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用"
    ],
    "horizon": "long",
    "score": 77.4,
    "status": "published",
    "extra": {
     "content_source": "direct",
+    "source_tags": [
+     "Science"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/transformers-llama-cpp-quants.md",
-      "https://github.com/ggml-org/llama.cpp",
-      "https://github.com/ml-explore/mlx",
-      "https://x.com/huggingface?ref_src=twsrc%5Etfw",
-      "https://t.co/lsIxLoUneU",
-      "https://x.com/julien_c/status/2047647522173104145?ref_src=twsrc%5Etfw",
-      "https://huggingface.co/ggml-org",
-      "https://huggingface.co/unsloth",
-      "https://huggingface.co/lmstudio-community",
-      "https://huggingface.co/bartowski",
-      "https://huggingface.co/docs/kernels/index",
-      "https://github.com/ggml-org/ggml/blob/master/docs/gguf.md",
-      "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/tree/main",
-      "https://huggingface.co/docs/hub/gguf#quantization-types",
-      "https://huggingface.co/kernels/ggml-org/ggml-quantization",
-      "https://huggingface.co/docs/transformers/main/en/quantization/gguf",
-      "https://huggingface.co/docs/transformers/main/en/serve-cli/serving",
-      "https://huggingface.co/docs/transformers/main/en/serve-cli/serving#enable-reasoning-on-the-server",
-      "https://www.jan.ai/docs/desktop/remote-models/custom-endpoint",
-      "https://pi.dev",
-      "https://github.com/ggml-org/llama.cpp/tree/master/tools/llama-bench",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/transformers-llama-cpp-quants/benchmark-comparison.svg",
-      "https://huggingface.co/blog/ggml-joins-hf",
-      "https://huggingface.co/kernels/ggml-org/ggml-norm",
-      "https://huggingface.co/kernels/ggml-org/ggml-attn",
-      "https://huggingface.co/kernels/ggml-org/ggml-gated-delta-net",
-      "https://huggingface.co/kernels/transformers-community/topk",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/transformers-llama-cpp-quants/layer-kernel-benchmark.svg",
-      "https://github.com/huggingface/transformers/pull/48814",
-      "https://github.com/huggingface/transformers/pull/47975",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/transformers-llama-cpp-quants/generation-loop-benchmark.svg",
-      "https://github.com/huggingface/transformers/issues",
-      "https://huggingface.co/ArthurZ",
-      "https://huggingface.co/cyrilvallez",
-      "https://huggingface.co/sayakpaul",
-      "https://huggingface.co/ariG23498",
-      "https://huggingface.co/pcuenq",
-      "https://huggingface.co/lysandre"
+      "https://darioamodei.com/essay/machines-of-loving-grace#1-biology-and-health",
+      "https://www-cdn.anthropic.com/22573675ada52a8ca8a97a1a4b4326b2f208a071.pdf",
+      "https://www.science.org/doi/10.1126/science.aei0498",
+      "https://www.nature.com/articles/s41586-018-0557-5",
+      "https://www.nature.com/articles/s41586-024-07552-4",
+      "https://www.science.org/doi/10.1126/science.adz0276",
+      "https://www.nature.com/articles/s41586-026-10176-5",
+      "https://www.anthropic.com/news/model-hardware-standard-research-preview",
+      "https://claude.com/product/claude-science",
+      "https://claude.com/product/claude-code",
+      "https://twitter.com/intent/tweet?text=https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://www.anthropic.com/news/claude-discovers-novel-enzyme-system"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "0c90c73c08cf2835",
-   "url": "https://www.anthropic.com/claude-opus-5-5",
-   "title": "Claude Opus 5.5",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-22T16:29:05+00:00",
-   "summary_short": "Claude Opus 5.5 发布：成本比 Opus 5 低四成，安全测试表现最强",
-   "summary_long": "原文宣布推出 Claude Opus 5.5，是全新 Claude 5.5 家族的首个模型，称其在大多数工作上表现达到 Claude Fable 5.1 的水平，运行成本比 Opus 5 低 40%。原文称这是其“呼吁放慢前沿”以来的首个发布，模型发布前由外部评估方测试，包括 Frontier Design 和 METR。在原文所述最全面的对齐测试——自动化行为审计中，Opus 5.5 是迄今测试过的表现最强模型，比近期模型更少采取难以逆转的行动，也比 Opus 5 更抗提示注入。性能上，原文称一名测试者不到一天完成 68 万行代码迁移；在缩短网页应用各页面加载时间的任务中 40 次成功 39 次。价格方面，输入、输出 token 每百万分别为 4 美元和 20 美元，比 Opus 5 低 20%；缓存读取每百万 0.20 美元，低 60%；输出生成速度快 30% 以上，并提高 Pro、Max、Team 及按席位 Enterprise 方案的五小时用量上限。因在生物学与网络安全方面与 Claude Mythos 5.1 相当，采用与 Claude Fable 5.1 类似的防护措施；Sonnet 5.5 与 Haiku 5.5 将在未来数周跟进。",
-   "key_points": [
-    "性能：大多数工作达到 Claude Fable 5.1 水平，测试者不到一天完成 68 万行代码迁移，网页加载优化任务 40 次成功 39 次",
-    "安全：在自动化行为审计中取得迄今最佳成绩，更少采取难以逆转行动，比 Opus 5 更抗提示注入；因生物与网络安全能力与 Claude Mythos 5.1 相当，采用类似 Fable 5.1 的防护",
-    "成本与速度：典型负载下比 Opus 5 便宜 40%，输入/输出每百万 token 4/20 美元，缓存读取低 60%，输出速度快 30% 以上，并提高多个订阅方案的五小时用量上限"
-   ],
+   "id": "a70f8ac64edfa547",
+   "url": "https://huggingface.co/blog/nvidia/how-to-use-nvidia-warp-and-mjwarp",
+   "title": "How to Use NVIDIA Warp and MjWarp to Accelerate Robotics Simulation and Learning Workflows",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-09-23T18:41:40+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
    "topics": [
-    "alignment",
-    "prompt-injection",
-    "coding-agent"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 77.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 1085,
-    "hn_comments": 763,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://darioamodei.com/post/we-must-pace-the-frontier",
-      "https://www.imaginefrontier.com/",
-      "https://metr.org/",
-      "https://anthropic.com/claude-opus-5-5-system-card",
-      "https://www.anthropic.com/news/life-sciences-verification-program",
-      "https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet",
-      "https://www.anthropic.com/responsible-scaling-policy",
-      "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents",
-      "https://www.anthropic.com/news/improving-alignment-security-efforts",
-      "https://www.anthropic.com/news/accenture-embedded-evaluation",
-      "https://www.anthropic.com/news/claude-code-security",
-      "https://claude.com/form/life-sciences-verification-program",
-      "https://www.anthropic.com/threat-intelligence-report-september-2026",
-      "https://support.claude.com/en/articles/16761192",
-      "https://platform.claude.com/docs/en/build-with-claude/preserved-thinking",
-      "https://www.anthropic.com/news/claude-text-watermark",
-      "https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5#thinking-cant-be-disabled",
-      "https://platform.claude.com/docs/en/models/overview"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "b7ce14e363bb2f98",
-   "url": "https://www.interconnects.ai/p/debating-rsi-the-us-china-gap-and",
-   "title": "Debating RSI, the US-China Gap, and Jaggedness with JS Denain of Epoch AI",
-   "source": "Interconnects",
-   "tier": "A",
-   "published_at": "2026-09-22T13:37:45+00:00",
-   "summary_short": "JS Denain 谈 RSI、中美模型差距与 AI 加速，强调双方高度不确定。",
-   "summary_long": "这期节目由 Nathan Lambert 与 Epoch AI 的 Jean-Stanislas “JS” Denain 对话，后者是 Epoch AI 高级研究员并领导 Insights 团队。目录涵盖 RSI 预测、机器人对 AI 加速的作用、中国模型差距、蒸馏是否解释差距、中国招聘信息、开源与闭源模型安全性、Epoch AI 如何运作及前沿后训练配方。转录开头聚焦 RSI：Lambert 问 OpenAI 和 Anthropic 在宣称 RSI 即将来临时看到了什么测量。Denain 表示两家有关于 AI 加速 AI 进展的博客，但他不认为已发布内容是即将自我维持加速或完全自动化 AI 研究员工作的强证据。他指出 OpenAI 博文最突出的是模型部署中 AI 使用增加、研究人员 Codex 支出上升，图中为每月 2 倍增长，可能说明他们获得价值，但不构成六个月内发生软件智能爆炸的强证据。Lambert 问实验室内部信息是否比公开信息更令人担忧，并说想关注证据而非文化；Denain 称自己没有完整信息，目前不认为 OpenAI 或 Anthropic 看到了值得更恐慌的特定东西。原文转录在此处中断。",
-   "key_points": [
-    "对话者为 Nathan Lambert 与 Epoch AI 的 JS Denain，后者领导 Insights 团队；节目讨论 RSI 预测、机器人、中国模型差距、蒸馏、中国招聘信息、开源与闭源模型安全性、Epoch AI 运作及前沿后训练配方。",
-    "关于 RSI，Denain 认为 OpenAI 和 Anthropic 公开的 AI 加速 AI 进展博客不是即将自我维持加速或完全自动化 AI 研究员工作的强证据；OpenAI 博文中研究人员 Codex 支出每月 2 倍增长最突出，但解释可能受测量方式影响，也不构成六个月内软件智能爆炸的强证据。",
-    "Lambert 询问实验室内部是否有公开信息之外的担忧依据；Denain 表示没有完整信息，目前不认为 OpenAI 或 Anthropic 看到了某个特定东西就值得更恐慌。双方都强调对 AI 走向高度不确定。"
-   ],
-   "topics": [
-    "eval",
-    "open-source",
-    "post-training"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测",
-    "行业动态"
-   ],
-   "horizon": "long",
-   "score": 76.2,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://epoch.ai/about/team/jean-stanislas-denain",
-      "https://x.com/datagenproc",
-      "https://www.linkedin.com/in/jean-stanislas-denain-087332172/",
-      "https://www.interconnects.ai/p/debating-rsi-the-us-china-gap-and?utm_source=substack&utm_medium=email&utm_content=share&action=share",
-      "https://podcasts.apple.com/us/podcast/interconnects-audio/id1719552353",
-      "https://open.spotify.com/show/6XNzfJULeVxR7SneeesDUs",
-      "https://www.interconnects.ai/podcast",
-      "https://www.interconnects.ai/t/interviews",
-      "https://epoch.ai/",
-      "https://www.interconnects.ai/p/notes-from-inside-chinas-ai-labs",
-      "https://www.interconnects.ai/p/lossy-self-improvement",
-      "https://openai.com/index/research-acceleration-view-inside-openai/",
-      "https://www.anthropic.com/institute/recursive-self-improvement",
-      "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
-      "https://epoch.ai/gradient-updates/the-software-intelligence-explosion-debate-needs-experiments",
-      "https://epoch.ai/gradient-updates/toward-an-onet-for-ai-rnd",
-      "https://www.forbes.com/sites/siladityaray/2026/09/09/anthropic-alignment-lead-warns-ai-could-kill-all-humans-as-researcher-quits/",
-      "https://ai-2027.com/",
-      "https://www.dwarkesh.com/p/john-beren-charlie",
-      "https://epoch.ai/publications/parallelization-constraints-could-delay-a-technological-singularity",
-      "https://www.dwarkesh.com/p/noam-brown",
-      "https://epoch.ai/eci",
-      "https://epoch.ai/publications/have-ai-capabilities-accelerated",
-      "https://www.isattentionallyouneed.com/",
-      "https://metr.org/notes/2026-04-21-ai-rd-nanogpt-progress/",
-      "https://github.com/karpathy/autoresearch",
-      "https://tecunningham.github.io/posts/2026-03-13-apple-picking-ai.html",
-      "https://www.interconnects.ai/p/cruise-collisions-self-driving",
-      "https://epoch.ai/publications/how-fast-could-robot-production-scale-up",
-      "https://epoch.ai/gradient-updates/is-almost-everyone-wrong-about-americas-ai-power-problem",
-      "https://epoch.ai/publications/where-autonomy-works-evaluating-robot-capabilities-in-2026",
-      "https://epoch.ai/data-insights/us-vs-china-eci",
-      "https://x.com/xeophon",
-      "https://artificialanalysis.ai/",
-      "https://www.interconnects.ai/p/the-distillation-panic",
-      "https://stolen-thoughts.com/",
-      "https://www.anthropic.com/threat-intelligence-report-september-2026",
-      "https://www.interconnects.ai/p/how-much-does-distillation-really",
-      "https://epoch.ai/gradient-updates/what-we-learned-from-1604-chinese-ai-job-postings",
-      "https://www.hacktron.ai/blog/hacking-openai"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "015dbc4f82687be4",
-   "url": "https://linear.app/now/ci-bottleneck-reworked",
-   "title": "AI coding has made CI a bottleneck, so we reworked ours to keep up",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-21T19:23:33+00:00",
-   "summary_short": "Linear 重构 CI：测试量近四倍，PR 等待仍从 6 分钟降到 5 分多，单测机器时间减半",
-   "summary_long": "AI 让写代码变快，但验证没跟上：每个 PR 仍要过 CI，CI 因此成为瓶颈，推高基础设施成本，也拉长开发者与 agent 等反馈的时间。Linear 团队围绕\"CI 成本高\"，同时优化 PR 的 CI 等待时长与 runner 消耗。尽管测试套件自年初几乎翻四倍，PR 等待时间仍从 6 分钟以上降到 5 分钟出头，单测 runner 时间约减半。改进分四类：升级基础设施与工具、优化卡住其他工作的前置 job、减少重复 setup、提升测试执行效率；后两类原文未详述。已详述的做法包括：把负载从 GitHub Actions 迁到 CPU、存储、缓存更好的第三方 runner，切换前后两天同比 job 平均快 34%，tsc 类负载降 52%；改用原生 TypeScript 编译器 tsgo 后，tsc 检查周中位数降 73%；lint 规则改走 AST 静态分析、不再依赖类型信息，ESLint 得以去掉 TypeScript，API lint 时间降 68%、全仓 lint 降 55%。此外，路径检测与测试去重等前置 job 位于关键路径，会挡住 8 个 API 测试分片。",
-   "key_points": [
-    "背景：AI 让发布代码呈指数级加速，但每个 PR 仍须过 CI，CI 成为瓶颈，推高基础设施成本并延长开发者与 agent 的反馈等待。",
-    "成果：测试套件自年初几乎翻四倍，PR 等待时间仍从 6 分钟以上降至 5 分钟出头，单次测试的 runner 时间约减半。",
-    "基础设施与工具：负载从 GitHub Actions 迁至 CPU、存储、缓存更优的第三方 runner，切换前后两天同比 job 平均快 34%、tsc 类负载降 52%；改用原生 TypeScript 编译器 tsgo 后 tsc 检查周中位数降 73%。"
-   ],
-   "topics": [
-    "coding-agent",
-    "harness"
+    "harness",
+    "open-source"
    ],
    "category": "Agent 与开发",
    "categories": [
     "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 75.3,
+   "score": 76.5,
    "status": "published",
    "extra": {
-    "hn_points": 308,
-    "hn_comments": 381,
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2601.22074"
+     ],
+     "links": [
+      "https://www.nvidia.com/en-us/use-cases/robotics-simulation/",
+      "https://mujoco.readthedocs.io/en/latest/mjwarp/",
+      "https://developer.nvidia.com/warp-python",
+      "https://cdn-uploads.huggingface.co/production/uploads/6994dc99f850a10f03fd0b21/8SmNNsqLiBHC0W31zT4cf.png",
+      "https://github.com/mujocolab/mjlab",
+      "https://github.com/google-deepmind/mujoco_playground",
+      "https://github.com/NVIDIA/warp",
+      "https://developer.nvidia.com/topics/cae",
+      "https://github.com/NVIDIA/accelerated-computing-hub/tree/main/tutorials/warp/notebooks",
+      "https://mujoco.readthedocs.io/en/latest/mjwarp/#batch-sizes",
+      "https://github.com/isaac-sim/IsaacLab/tree/feature/newton",
+      "https://github.com/newton-physics/newton",
+      "https://colab.research.google.com/github/google-deepmind/mujoco_warp/blob/main/notebooks/tutorial.ipynb",
+      "https://cdn-uploads.huggingface.co/production/uploads/6994dc99f850a10f03fd0b21/Tn07F7pRaVdJXRnB7jSV1.png",
+      "https://github.com/google-deepmind/mujoco_menagerie/tree/main/robotstudio_so101",
+      "https://cdn-uploads.huggingface.co/production/uploads/6994dc99f850a10f03fd0b21/UMuh1gwUTiT1VKcO6E6w1.png",
+      "https://nvidia.github.io/warp/",
+      "https://github.com/google-deepmind/mujoco_warp",
+      "https://docs.nvidia.com/learning/physical-ai/sim-to-real-so-101/latest/index.html",
+      "https://docs.nvidia.com/learning/physical-ai/",
+      "https://discord.com/invite/nvidiaomniverse",
+      "https://huggingface.co/blog/nvidia/state-of-simulation-for-physical-ai",
+      "https://github.com/NVIDIA/warp/releases/tag/v1.15.0",
+      "https://nvidia.github.io/warp/latest/user_guide/execution_and_performance/deterministic_execution.html",
+      "https://developer.nvidia.com/blog/build-accelerated-differentiable-computational-physics-code-for-ai-with-nvidia-warp/",
+      "https://developer.nvidia.com/blog/introducing-tile-based-programming-in-warp-1-5-0/",
+      "https://arxiv.org/abs/2601.22074"
+     ]
+    }
+   }
+  },
+  {
+   "id": "a877a4ca213122af",
+   "url": "https://blog.szypowi.cz/p/claude-code-reads-agents.md-only-when-telemetry-is-on/",
+   "title": "Claude Code reads AGENTS.md only when telemetry is on [fixed]",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-23T12:15:33+00:00",
+   "summary_short": "Claude Code 的 AGENTS.md 支持依赖远程 flag，关闭遥测即静默失效",
+   "summary_long": "Claude Code 2.1.277 宣布支持 AGENTS.md：在没有 CLAUDE.md 的项目中应改读 AGENTS.md。但作者在关闭遥测的 shell 里，该文件从不加载。Issue #95690 解释了原因，作者补充了自己的测量。\n\n加载器是内置插件 agents-md。在 2.1.280 bundle 中，它的 isOnByDefault 为 false，isAvailable 会查询名为 tengu_agents_md_mod 的远程 feature flag，fallback 为 false。取不到 flag 时插件不可用，本地文件永不被读取——尽管从工作目录读取一个 markdown 文件根本不需要网络。\n\n作者用只含 canary 词的空项目目录测试，每个配置跑两次会话（第一次只取 flag）。结果：CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 与 DISABLE_TELEMETRY=1 都会阻止该功能，设为 0 无效；项目 .claude/settings.json 里的 env 块无效，无法为单个仓库开启；会话级 --settings 覆盖从第二个会话起才有效。所有情况都不打印警告。第三方网关、Bedrock 和 Vertex 同样受影响。\n\n变通方法：CLAUDE.md 支持 @path 导入且不依赖该 fla",
+   "key_points": [
+    "AGENTS.md 加载依赖远程 flag tengu_agents_md_mod，取不到时 fallback 为 false，内置插件 agents-md 即不可用，本地文件不被读取",
+    "关闭遥测（DISABLE_TELEMETRY=1 或 CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1）会静默阻止该功能：设为 0 无效，项目级 settings.json 无效，且全程无任何警告",
+    "变通方案是使用 CLAUDE.md 的 @path 导入（如一行 @AGENTS.md），代价是每个仓库多一个文件；Bedrock、Vertex 和第三方网关也因 flag 无法解析为 true 而受影响"
+   ],
+   "topics": [
+    "coding-agent",
+    "harness",
+    "context-engineering"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 76.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 437,
+    "hn_comments": 243,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://oxc.rs/docs/guide/usage/linter",
-      "https://vitest.dev/"
+      "https://github.com/anthropics/claude-code/issues/95690",
+      "https://github.com/anthropics/claude-code/issues/95690#issuecomment-5791716755"
      ]
     },
     "content_source": "direct",
