@@ -1,926 +1,544 @@
 {
- "generated_at": "2026-09-22T23:38:25+00:00",
+ "generated_at": "2026-09-23T23:35:50+00:00",
  "items": [
   {
-   "id": "66deb2c0d67784e8",
-   "url": "https://nathan.rs/posts/gzip-lm/",
-   "title": "Can gzip be a language model?",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "e61359e960f83497",
+   "url": "https://simonwillison.net/2026/Sep/23/gemini-tts-playground/",
+   "title": "Gemini 3.8 TTS Playground",
+   "source": "Simon Willison",
    "tier": "A",
-   "published_at": "2026-09-22T06:08:39+00:00",
-   "summary_short": "用gzip做语言模型：以压缩长度给候选续写打分，并在莎士比亚语料上生成文本",
-   "summary_long": "原文先回顾自己曾写过的无神经网络语言建模：用无界 n-gram 生成莎士比亚，不训练、只计数。随后看到论文《Language Modeling is Compression》，其中提到压缩—预测等价：每个预测模型本质上是压缩器，所有压缩算法也都是预测模型。于是追问：gzip 能否做语言模型？做法是把语料预置进 gzip 的 32 KiB 滑动窗口，再用 DEFLATE 压缩候选续写；若续写重复窗口已有文本，就能用廉价反向引用表示，因此压缩后字节数越小，说明该候选越被“预期”。评分函数为 len(gzip(context+candidate))。生成时，gzipt 对字节序列做 beam search：以用户 prompt 为初始上下文（无起始 token），上下文由语料窗口加近期尾部组成，保留 beam_width 个最可压缩的部分续写，用语料中出现的字节扩展并打分，重复 horizon 字节，最后提交最可压缩的完整跨度，或按 temperature 采样。原文展示在 tiny Shakespeare 上预置后生成的未编辑输出：文本并不完全连贯，但明显掌握了一些文本特征，比原文预期更多。",
+   "published_at": "2026-09-23T17:12:27+00:00",
+   "summary_short": "Google 发布两款 Gemini TTS 模型，作者搭了可多角色对话的试玩页",
+   "summary_long": "Google 今日发布两款新的 Gemini 文本转语音模型：gemini-3.8-flash-tts 与 gemini-3.8-flash-lite-tts。它们附带超过 2,000 种声音的语音库，并支持用“仅 30 秒的本人声音或有权使用的声音样本”创建自定义声音。作者借助底层 Gemini API 开放的 CORS 策略，用 GPT-6 Astra 随手做出了一个自带密钥（bring-your-own-key）的试玩界面。该 API 的一个显著特点是便于定义多角色完整对话，每个角色可配不同声音和声音风格指令。演示片段是两只鹈鹕争论是否要搬到 Pacifica Pier，脚本由 Claude 4.5 Opus 撰写，并生成了用该工具渲染的 URL。作者用 Gemini 3.8 Flash TTS（而非更便宜的 Flash-Lite）生成 1 分 18 秒音频约耗时 20 秒，成本 2.74 美分。",
    "key_points": [
-    "压缩—预测等价：压缩器内含概率模型；编码一个符号所需比特为 -log2 p，高概率意味着少比特。",
-    "gzipt 用 gzip 的 DEFLATE 在 32 KiB 滑动窗口找匹配；续写若重复窗口文本，可用廉价反向引用压缩，故用 len(gzip(context+candidate)) 给候选打分。",
-    "生成靠 beam search 在字节序列上向前看，因为 gzip 只返回整数压缩长度，逐字节选择易出现并列和量化噪声；在 tiny Shakespeare 上输出不完全连贯，但明显体现文本特征。"
+    "Google 发布 gemini-3.8-flash-tts 和 gemini-3.8-flash-lite-tts，语音库超 2,000 种声音，30 秒音频样本即可创建自定义声音",
+    "作者用 GPT-6 Astra 基于 Gemini API 的开放 CORS 策略，做出自带密钥的试玩界面",
+    "API 便于定义多角色对话，各角色可使用不同声音与声音风格指令；演示中生成 1 分 18 秒音频约 20 秒、花费 2.74 美分"
    ],
    "topics": [
-    "compression",
-    "language-modeling"
+    "tts",
+    "voice-cloning",
+    "product"
    ],
    "category": "模型",
    "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 73.2,
-   "status": "review",
-   "extra": {
-    "hn_points": 368,
-    "hn_comments": 144,
-    "outbound": {
-     "arxiv": [
-      "2309.10668"
-     ],
-     "links": [
-      "https://arxiv.org/abs/2309.10668",
-      "https://en.wikipedia.org/wiki/Deflate",
-      "https://en.wikipedia.org/wiki/Beam_search",
-      "https://github.com/nathanrs/gzipt"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "3d48e529ad7a20b1",
-   "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
-   "title": "Introducing GPT-6 Sol and Luna",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-22T18:00:00+00:00",
-   "summary_short": "GPT-6 家族新增 Sol 与 Luna，API 价格较 GPT-5.6 降 50%",
-   "summary_long": "原文宣布 GPT-6 家族扩容：在本月早些时候推出 GPT-6 Astra 之后，新增 GPT-6 Sol 与 GPT-6 Luna 两款模型。原文称 Astra 仍是全面最强的模型，适合最苛刻的项目；Sol 与 Luna 采用与 Astra 相似的训练方法，把 Astra 在专业工作、事实性、编程、计算机使用和对齐方面的进展带到更快、更便宜的模型上。原文称改进的缓存与推理降低了服务成本，API 价格较 GPT-5.6 促销价下降 50%：Sol 输入 4→2 美元、输出 20→10 美元；Luna 输入 0.20→0.10 美元、输出 1.20→0.50 美元（每百万 token）。评测方面，原文称在 AutomationBench 上 Sol（xhigh）得分 33.2%、每任务成本 0.27 美元，优于 max 档的 Claude Opus 5，成本仅为其每任务的 9%；GPT-6 Luna（high）较前代提升 5.4 个百分点、每任务成本低 58%；Agents' Last Exam 上 Sol（max）得 56.4%，高于 Claude Opus 5 的最高分且每任务成本低 60%。内部事实性评估中，Sol 的错误量约为前代一半，接近 Astra 级可靠性而成本更低。",
-   "key_points": [
-    "GPT-6 Sol 与 Luna 采用与 Astra 相似的训练方法，把 Astra 的能力带到更快、更便宜的模型；Astra 仍是全面最强、面向最苛刻项目的选择",
-    "API 价格较 GPT-5.6 促销价下降 50%：Sol 输入 $4→$2、输出 $20→$10；Luna 输入 $0.20→$0.10、输出 $1.20→$0.50（每百万 token），源于缓存与推理改进带来的成本下降",
-    "评测数据：AutomationBench 上 Sol（xhigh）33.2%、每任务 $0.27，优于 Claude Opus 5（max）且成本为其 9%；Agents' Last Exam 上 Sol（max）56.4%；内部事实性评估中 Sol 错误量约为前代一半"
-   ],
-   "topics": [
-    "coding-agent",
-    "tool-use"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
+    "模型",
+    "产品与应用"
    ],
    "horizon": "short",
-   "score": 72.6,
+   "score": 74.7,
    "status": "review",
    "extra": {
-    "content_source": "direct",
+    "content_source": "rss",
     "source_tags": [
-     "Product"
+     "text-to-speech",
+     "gemini"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://zapier.com/benchmarks",
-      "https://agents-last-exam.org/",
-      "https://openai.com/index/research-acceleration-view-inside-openai/",
-      "https://cognition.com/frontiercode",
-      "https://deepswe.datacurve.ai/",
-      "https://osworld-v2.xlang.ai/",
-      "https://platform.openai.com/usage?usage_section=prompt-caching",
-      "https://developers.openai.com/api/docs/guides/prompt-caching/diagnostics",
-      "https://developers.openai.com/api/docs/guides/reasoning#change-reasoning-mid-conversation",
-      "https://developers.openai.com/api/docs/guides/prompt-caching#how-to-optimize-prompt-caching",
-      "https://deploymentsafety.openai.com/gpt-6-astra"
+      "https://tools.simonwillison.net/gemini-tts-playground",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Fa82f3aef2677c623d1776092d6b21224",
+      "https://simonwillison.net/2026/Sep/12/sighting-399708714/",
+      "https://claude.ai/share/3597fc77-9323-4583-aeb9-b0e4c3f654a3",
+      "https://simonwillison.net/u/vj",
+      "https://simonwillison.net/tags/text-to-speech",
+      "https://simonwillison.net/tags/gemini"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "2960c64a019e48fb",
-   "url": "https://huggingface.co/blog/evaleval-aisi",
-   "title": "How UK AISI and EvalEval Are Making Benchmark Results Reproducible",
-   "source": "Hugging Face Blog",
+   "id": "f629750b18d164a9",
+   "url": "https://github.blog/engineering/user-experience/rendering-huge-pull-requests-in-the-github-copilot-app/",
+   "title": "Rendering huge pull requests in the GitHub Copilot app",
+   "source": "GitHub Blog (AI)",
    "tier": "S",
-   "published_at": "2026-09-22T00:00:00+00:00",
-   "summary_short": "英国AISI借EvalEval平台公开评测结果与配置，提升可复现性",
-   "summary_long": "EvalEval Coalition 宣布，英国 AI 安全研究所（AISI）正使用 EvalEval 的基础设施公开分享评测结果。双方合作始于 NeurIPS 2025 的联合工作坊，AISI 的反馈参与塑造了 Every Eval Ever（EEE）schema，此次将共享基础设施投入实践。原文指出，AI 部署加速使评测成为重要证据来源，但结果格式与平台分散，常缺少复现所需信息，重跑评测又可能极其昂贵；EvalEval 以 EEE schema 与开放平台 Evaluation Cards 应对，并建立在 AISI 的 OptStop、HiBayES 及相关标准化工作之上。本次公开覆盖论文主实验五个基准——HealthBench、FrontierMath、Humanity's Last Exam、SWE-Bench Pro、Terminal-Bench 2.0——的验证结果、上下文与配置，涉及六款模型：Claude Opus 4/4.5/4.6、GPT-5/5.2/5.4；另含 Cyber CTFs 与 The Last Ones 两项网络安全评测，模型集合不同且部分重叠。数据伴随 AISI 论文《How Inference Compute Shapes Frontier LLM Evaluation》。",
+   "published_at": "2026-09-23T18:29:49+00:00",
+   "summary_short": "GitHub Copilot 应用重建 PR 视图，让 2200 文件、超百万行的超大 PR 依然流畅",
+   "summary_long": "大规模重构和迁移常常只能作为一个变更落地，有时无法干净拆分，于是留下单个巨大的 pull request，评审对话还会让它继续变大。GitHub Copilot 应用为此重建了 pull request 视图，要求即使 diff 和对话极其庞大，评审体验仍保持快速顺滑。团队用能找到的最大一个开源 PR 做验证：2,200 个文件、超过一百万行改动、400 多条行内评审评论。原文指出，快速渲染大 diff 已有成熟做法：虚拟化行、只挂载少量 DOM，并利用每行都是已知高度代码行这一事实。难点在评论——评论高度取决于 markdown 如何换行、可展开区块、是否带回复框、图片是否加载完成，这些只有渲染时才知道，且首次绘制后仍会变化。原文归纳出三类问题：测量、数据管线，以及如何在实际负载、特定引擎、特定滚动位置下发现 bug。代码 diff 面围绕“所有高度在绘制前已知”的约定构建，包括命令式复用的代码行渲染器、类型化数组几何计算、后端拥有的 diff 文档、以及精确“滚动到第 N 行”的命令式 API。",
    "key_points": [
-    "英国 AISI 使用 EvalEval 的 Every Eval Ever（EEE）schema 与 Evaluation Cards 平台公开分享评测结果；合作始于 NeurIPS 2025 联合工作坊，AISI 反馈参与塑造了 EEE schema。",
-    "公开内容为论文主实验五个基准（HealthBench、FrontierMath、Humanity's Last Exam、SWE-Bench Pro、Terminal-Bench 2.0）的验证结果、上下文与配置，覆盖 Claude Opus 4、4.5、4.6 与 GPT-5、5.2、5.4 六款模型。",
-    "另含 Cyber CTFs 与 The Last Ones 两项网络安全评测（模型集合不同、部分重叠），数据伴随 AISI 论文《How Inference Compute Shapes Frontier LLM Evaluation》；原文提到 HLE 表现随评测协议与推理算力变化。"
+    "验证对象是能找到的最大开源 PR：2,200 个文件、超一百万行改动、400 多条行内评审评论",
+    "纯代码 diff 靠虚拟化和“所有高度在绘制前已知”的约定保持快速：命令式复用行渲染器、类型化数组几何、后端 diff 文档、精确滚动 API",
+    "评论打破该约定：高度取决于 markdown 换行、可展开区块、回复框、图片加载等渲染时才知且会变化的信息；原文列出测量、数据管线、以及在实际负载下发现 bug 三类问题"
    ],
    "topics": [
-    "eval",
-    "open-source"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测"
-   ],
-   "horizon": "long",
-   "score": 69.4,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2505.05602",
-      "2606.17930",
-      "2608.14425"
-     ],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/evaleval-aisi.md",
-      "https://evalevalai.com/",
-      "https://www.aisi.gov.uk/",
-      "https://evalevalai.com/events/workshop-2025/",
-      "https://evalevalai.com/projects/every-eval-ever/",
-      "https://evalcards.evalevalai.com/",
-      "https://arxiv.org/abs/2608.14425",
-      "https://www.aisi.gov.uk/blog/hibayes-improving-llm-evaluation-with-hierarchical-bayesian-modelling",
-      "https://arxiv.org/abs/2606.17930",
-      "https://evalcards.evalevalai.com/help/get-verified",
-      "https://github.com/evaleval/every_eval_ever",
-      "https://evalevalai.com/projects/eval-cards/",
-      "https://arxiv.org/abs/2505.05602"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "827f1b5fbc42443f",
-   "url": "https://www.latent.space/p/john-platt",
-   "title": "🔬 An Oscar, Two Asteroids, and the Algorithm in Your sklearn: John Platt on AI for Science",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-09-22T21:07:39+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "ai-for-science"
+    "coding-agent",
+    "product"
    ],
    "category": "产品与应用",
    "categories": [
     "产品与应用"
    ],
    "horizon": "long",
-   "score": 68.3,
+   "score": 71.4,
    "status": "review",
    "extra": {
     "content_source": "rss",
+    "source_tags": [
+     "AI & ML",
+     "Engineering",
+     "GitHub Copilot",
+     "User experience",
+     "GitHub Copilot app"
+    ],
     "outbound": {
-     "arxiv": [
-      "2008.02217"
-     ],
+     "arxiv": [],
      "links": [
-      "https://www.atogt.com/askoscar/display-person.php?id=78091&var=0",
-      "https://en.wikipedia.org/wiki/Platt_scaling",
-      "https://en.wikipedia.org/wiki/Sequential_minimal_optimization",
-      "https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Bacon_number",
-      "https://research.google/blog/empirical-research-assistance-era-from-nature-publication-to-catalyzing-computational-discovery/",
-      "https://www.nature.com/articles/s41586-026-10658-6",
-      "https://github.com/google-research/era/tree/main/era_applications",
-      "https://research.google/blog/accelerating-scientific-discovery-with-ai-powered-empirical-software/",
-      "https://en.wikipedia.org/wiki/Monte_Carlo_tree_search",
-      "https://en.wikipedia.org/wiki/Multi-armed_bandit#Upper_Confidence_Bound_(UCB)_bandit_algorithm",
-      "https://en.wikipedia.org/wiki/Genetic_programming",
-      "https://github.com/google-research/era/tree/main/era_applications/pdfs",
-      "https://www.kaggle.com/competitions/google-research-identify-contrails-reduce-global-warming/writeups/jun-koda-1st-place-solution",
-      "https://en.wikipedia.org/wiki/Goodhart%27s_law",
-      "https://doi.org/10.1016/j.atmosenv.2020.117834",
-      "https://doi.org/10.5194/amt-19-1951-2026",
-      "https://en.wikipedia.org/wiki/Lorenz_system",
-      "https://en.wikipedia.org/wiki/Feynman_Lectures_on_Computation",
-      "https://calteches.library.caltech.edu/51/2/CargoCult.htm",
-      "https://en.wikipedia.org/wiki/Lawson_criterion",
-      "https://en.wikipedia.org/wiki/Federal_Helium_Reserve",
-      "https://arxiv.org/abs/2008.02217",
-      "https://en.wikipedia.org/wiki/Vera_C._Rubin_Observatory",
-      "https://en.wikipedia.org/wiki/Noisy_intermediate-scale_quantum_era",
-      "https://www.latent.space/p/anima"
+      "https://docs.github.com/pull-requests/how-tos/stacked-pull-requests",
+      "https://github.com/features/ai/github-app",
+      "https://github.blog/engineering/user-experience/rendering-huge-pull-requests-in-the-github-copilot-app/",
+      "https://github.blog"
      ]
-    }
+    },
+    "summary_mode": "full"
    }
   },
   {
-   "id": "196e695124f1721a",
-   "url": "https://poloclub.github.io/transformer-explainer/",
-   "title": "Transformers Explained Visually",
+   "id": "f6fab29d98448a1b",
+   "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/",
+   "title": "Gemini 3.8 text-to-speech",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-09-21T19:43:49+00:00",
-   "summary_short": "以GPT-2小模型拆解Transformer架构与嵌入流程，适合入门理解其原理。",
-   "summary_long": "原文称 Transformer 是改变人工智能方法的神经网络架构，2017 年由论文《Attention is All You Need》提出，此后成为深度学习常用架构，驱动 GPT、Llama、Gemini 等文本生成模型，也用于音频生成、图像识别、蛋白质结构预测和游戏。文本生成 Transformer 基于下一 token 预测：给定提示，预测最可能的下一个 token。其核心创新是自注意力机制，可处理整个序列并更有效捕捉长距离依赖。GPT-2 系列是典型例子；Transformer Explainer 由 GPT-2 (small) 驱动，有 1.24 亿参数，虽非最新最强，但与当前先进模型共享许多架构组件和原理。文本生成 Transformer 含三个关键组件：嵌入、Transformer 块、输出概率。嵌入把输入转为数值表示，以“Data visualization empowers users to”为例，经分词、token 嵌入、位置编码并相加得到最终嵌入。GPT-2 词表有 50,257 个 token，每个 token 为 768 维向量，嵌入矩阵约 3900 万参数。",
+   "published_at": "2026-09-23T15:29:23+00:00",
+   "summary_short": "Gemini 3.8 Flash/Lite TTS 发布，可用自然语言造声并逐行导演表演",
+   "summary_long": "原文介绍 Gemini 家族新增两款文本转语音模型：Gemini 3.8 Flash TTS 与 Gemini 3.8 Flash-Lite TTS，原文称其为目前最具表现力的音频生成模型。前者面向深度创意指导与角色设计，可用自然语言提示从零创造全新声音，并逐行导演表演，控制表演线索、节奏、方言转换和对话附和音（backchanneling）；后者面向高吞吐、低成本的规模化场景，优化批量配音、音频内容创作与表达性语音代理。两款模型可在 Google AI Studio、Gemini API、Gemini Enterprise、Gemini Notebook 和 Google Vids 中使用。能力方面，声音创作从 30 个原始声音扩展至无限库，支持生成式声音设计，可定制角色、口音与声音特征，覆盖 100 多种语言和方言；声音库提供 2000 多个可直接用于生产的声音，包含墨西哥西班牙语、魁北克法语、苏格兰英语等地区变体；还可仅凭 30 秒音频样本复刻一致的声线（原文在同意机制处被截断，未详述）。模型内置音频水印等安全工具。原文称其延续 Gemini Audio 家族，此前已有 3.5 Live Translate、3.5 Transcribe、3.8 Live 与 3.8 Live Extended Thinking。",
    "key_points": [
-    "Transformer 最早在 2017 年论文《Attention is All You Need》中提出，已成为深度学习常用架构，驱动 GPT、Llama、Gemini 等文本生成模型，并用于音频生成、图像识别、蛋白质结构预测和游戏。",
-    "文本生成 Transformer 基于下一 token 预测，核心创新是自注意力机制，可处理整个序列并更有效捕捉长距离依赖。",
-    "文本生成 Transformer 含嵌入、Transformer 块、输出概率三大组件；Transformer Explainer 由 GPT-2 (small) 驱动，124M 参数；嵌入经分词、token 嵌入、位置编码和相加；GPT-2 词表 50,257 个 token，每 token 为 768 维向量，嵌入矩阵约 3900 万参数。"
+    "Gemini 3.8 Flash TTS 面向深度创意指导与角色设计，可用自然语言从零定制角色、口音和声音特征，并逐行导演节奏、情绪、方言转换与对话附和音。",
+    "Gemini 3.8 Flash-Lite TTS 面向高吞吐、低成本的规模化场景，优化批量配音、音频内容创作和表达性语音代理。",
+    "声音库从 30 个原始声音扩展，提供 2000+ 生产可用声音与 100+ 语言方言，仅用 30 秒音频样本即可复刻声线，并内置水印等安全工具。"
    ],
    "topics": [
-    "transformer-architecture",
-    "open-source"
+    "text-to-speech",
+    "voice-cloning",
+    "audio-generation"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
-   "horizon": "long",
-   "score": 68.0,
+   "horizon": "short",
+   "score": 70.5,
    "status": "review",
    "extra": {
-    "hn_points": 593,
-    "hn_comments": 87,
-    "content_source": "reader",
+    "hn_points": 236,
+    "hn_comments": 118,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://twitter.com/intent/tweet?text=Gemini%203.8%20text-to-speech%20says%20hello%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/",
+      "https://www.facebook.com/sharer/sharer.php?caption=Gemini%203.8%20text-to-speech%20says%20hello&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech/&title=Gemini%203.8%20text-to-speech%20says%20hello",
+      "https://notebook.google.com/",
+      "http://vids.new/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-live-3-5-translate/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5-transcribe/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/",
+      "https://www.hume.ai/rw-voice-eq",
+      "https://voicearena.com/tts-leaderboard/us-english)",
+      "https://deepmind.google/models/synthid/",
+      "https://deepmind.google/models/model-cards/gemini-3-8-audio/",
+      "https://aistudio.google.com/docs/speech-generation",
+      "https://aistudio.google.com/generate-speech?model=gemini-3.8-flash-tts",
+      "http://docs.agora.io/en/ai/models/tts/gemini",
+      "https://docs.livekit.io/agents/models/tts/gemini/",
+      "https://docs.pipecat.ai/api-reference/server/services/tts/google#geminittsservice",
+      "https://vercel.com/docs/ai-gateway/modalities/text-to-speech",
+      "https://docs.cloud.google.com/gemini-enterprise-agent-platform",
+      "https://aistudio.google.com/generate-speech?model=gemini-3.8-flash-lite-tts",
+      "https://policies.google.com/privacy"
+     ]
+    },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "b4fb82cc1313a309",
-   "url": "https://openai.com/index/priorities-principles-third-party-assessments",
-   "title": "Priorities and principles for effective third party assessments",
+   "id": "bd03d329b12465d9",
+   "url": "https://www.latent.space/p/bio-security-is-an-ai-arms-race-eric",
+   "title": "🔬Bio-security is an AI Arms Race - Eric Nguyen (CEO, Radical Numerics)",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-09-23T13:27:18+00:00",
+   "summary_short": "基因组语言模型公司创办人谈生物安全军备竞赛：防御正落后，仍要推进前沿",
+   "summary_long": "OpenAI→Hugging Face攻击事件后，Anthropic的过滤器标记出网络安全与生物安全两类风险，Clem Delangue主张网络战防御能力应当开放并跟上前沿模型的攻击能力。Radical Numerics联合创始人Eric Nguyen在访谈中解释，提升生物能力的同一批模型也能让防御不掉队。他在斯坦福期间长期推不动基因组语言模型（GLM）：生物学家不相信可行、认为输出无法验证、也看不到超出既有能力的应用；他坚持推进，帮助领导了Evo的开发并参与Arc Institute的Evo 2，这些模型后来被Arc/Stanford另一团队用于生成完整噬菌体基因组并合成为功能性病毒。DNA与自然语言不同：字母表只有4个字符（ACTG），序列却极长——人类平均基因约60K，最长2.3M，整个人类基因组约3B；约3年前长上下文模型的创新（脚注：striped hyena）使这成为可能，早于前沿实验室构建1M+上下文模型。他与其他人共同创立Radical Numerics，构建并扩展GLM处理远超DNA生成的广泛生物学问题；其GLM在RNA和蛋白质上表现不错，因为DNA序列中有基因的清晰标记，在尚未尝试3D蛋白质结构、表观遗传学、自然语言等模态前就已泛化到多种“语言”。在aptamer实验中，模型只看到低分样本并按分数逐步升高，却能自行延续轨迹、重现未展示的高分——即“用DNA思考”",
+   "key_points": [
+    "Anthropic的过滤器标记网络安全与生物安全为两类风险；Clem Delangue主张网络战防御能力需要开放并跟上前沿模型的攻击能力",
+    "Eric Nguyen在斯坦福长期难以推动基因组语言模型，后帮助领导Evo开发并参与Arc Institute的Evo 2，这些模型被另一团队用于生成完整噬菌体基因组并合成为功能性病毒",
+    "DNA字母表仅4个字符（ACTG）但序列极长（人类平均基因约60K、最长2.3M、全基因组约3B），约3年前长上下文模型的创新（脚注：striped hyena）使这成为可能，早于前沿实验室的1M+上下文模型"
+   ],
+   "topics": [
+    "open-source",
+    "reasoning",
+    "post-training"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 68.0,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.biorxiv.org/content/10.1101/2025.09.12.675911v1",
+      "https://substackcdn.com/image/fetch/$s_!_dqm!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F051507bc-ebaf-43e9-9b9c-0037b1ee45e9_1392x700.png",
+      "https://github.com/togethercomputer/stripedhyena",
+      "https://substackcdn.com/image/fetch/$s_!cp9W!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcd69cd8e-9021-4c59-b0ea-13cbae20bd7c_1456x1328.png",
+      "https://en.wikipedia.org/wiki/Genome_size"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "4a34b417a0792355",
+   "url": "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/",
+   "title": "Claude Opus 5.5, GPT-6 Sol, GPT-6 Luna, and a new price war",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-22T23:46:41+00:00",
+   "summary_short": "Claude Opus 5.5同日对阵OpenAI的GPT-6 Sol与Luna，价格减半掀起新价格战",
+   "summary_long": "原文作者称，前一天是Grok 4.7与MiMo v2.6 Flash/Pro，今天Anthropic发布Claude Opus 5.5，约一小时后OpenAI发布GPT-6 Sol与GPT-6 Luna。作者给出的当日价格表为：GPT-6 Luna输入$0.10/M、缓存输入$0.01/M、输出$0.50/M；GPT-6 Sol为$2/$0.20/$10；Claude Opus 5.5为$4/$0.20/$20；GPT-6 Astra与Claude Fable 5.1均为$10/$50。作者指出GPT-6 Sol与Luna的价格是其GPT-5.6对应型号的一半，而GPT-5.6已计划11月涨价25%，因此GPT-6约为促销价的一半；GPT-5.6 Terra与GPT-6 Sol同价，作者称继续用Terra的理由就此蒸发。GPT-6 Luna是OpenAI最便宜模型之一，仅被弱得多的GPT-4.1 Nano与GPT-5 Nano超越。Claude Opus 5.5也降价：从Opus 4.5至5一直维持的$5/$25降至$4/$20（降20%），缓存读取价格下降60%；作者称这对长agentic对话意义重大，因90%以上输入token按缓存价计费。Thariq Shihipar称Opus 5.5是用户反馈的结果，沟通清晰、比Opus 5.0更便宜、具备Fable 5.1的智能、toke",
+   "key_points": [
+    "GPT-6 Sol与Luna价格均为GPT-5.6对应型号的一半；GPT-6 Luna为$0.10/M输入、$0.50/M输出，是OpenAI最便宜模型之一，仅被GPT-4.1 Nano与GPT-5 Nano超越",
+    "Claude Opus 5.5从$5/$25降至$4/$20，降幅20%，缓存读取价格下降60%，作者称这对90%以上输入token走缓存的agentic对话意义重大",
+    "作者称GPT-5.6 Terra与GPT-6 Sol同价，继续使用Terra的理由消失；GPT-5.6家族渲染的鹈鹕配色更大胆明亮，GPT-6家族更柔和"
+   ],
+   "topics": [
+    "model-release",
+    "pricing"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 66.6,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "ai",
+     "openai",
+     "generative-ai",
+     "llms",
+     "anthropic"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://x.ai/news/grok-4-7",
+      "https://news.ycombinator.com/item?id=49788838#49790209",
+      "https://mimo.xiaomi.com/mimo-v2-6",
+      "https://news.ycombinator.com/item?id=49792730#49793480",
+      "https://www.anthropic.com/claude-opus-5-5",
+      "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F40d129fc140faca378b9c9f4f16c6ec2",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Fbe7ae25af2634b68bc34b7b7aaf02cb2",
+      "https://static.simonwillison.net/static/2026/gpt-pelicans-grid.html",
+      "https://twitter.com/trq212/status/2102437686967738431",
+      "https://twitter.com/alexalbert__/status/2102466523164274839",
+      "https://simonwillison.net/tags/pelican-riding-a-bicycle/",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F61fd7c3683fffce9a3ab7c43d1180024#response-4",
+      "https://www.llm-prices.com/#it=27&ot=128000&sel=claude-opus-5-5",
+      "https://simonwillison.net/2026/Sep/1/claude-fable-5-1/#max",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F61fd7c3683fffce9a3ab7c43d1180024",
+      "https://static.simonwillison.net/static/2026/claude-pelicans-grid.html",
+      "https://agent.datasette.io/",
+      "https://simonwillison.net/2026/Jun/18/datasette-apps/",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/openai",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/anthropic",
+      "https://simonwillison.net/tags/claude",
+      "https://simonwillison.net/tags/llm-pricing",
+      "https://simonwillison.net/tags/pelican-riding-a-bicycle",
+      "https://simonwillison.net/tags/gpt"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "586b8b73e86cae4d",
+   "url": "https://drivingbench.com/",
+   "title": "GPT-6 Astra has gained the ability to drive a car",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-09-23T15:14:22+00:00",
+   "summary_short": "驾驶任务排行榜：GPT-6 Astra 唯一完赛，第二次尝试跑完 100% 赛道",
+   "summary_long": "这是一份驾驶任务排行榜：各模型在同一段连续对话中最多尝试三次，按三次中的最佳成绩排名。进度指车辆沿赛道中心线、且始终保持在中心线 4 米范围内所行驶的距离，占起点到终点区中心线长度的比例；发生碰撞时保留碰撞前已达进度。距离由首次被接受的 set_motion 到该次尝试最后一次交互结束之间的 GPS 速度积分得出，完成时间仅对完赛尝试显示，DNF 即未完成。命令数为被接受的 set_motion 与 stop_now 调用次数，token 与费用按列表价格计算并包含尝试后的反思。结果显示 GPT-6 Astra（Codex·medium）是唯一完赛者：第 1 次 49%（67.3 米，DNF），第 2 次 100%（134.7 米，5:22），消耗 6.6M token、$7.74。Claude Fable 5.1（Claude Code·medium）三次为 9%、10%、45%，均 DNF；Grok 4.6（Cursor·medium）为 8%、11%、10%，均 DNF；GPT-5.6 Sol（Codex·medium）三次均 6%，均 DNF。",
+   "key_points": [
+    "排名规则：同一连续对话内最多 3 次尝试，按其中最佳成绩排名",
+    "GPT-6 Astra（Codex·medium）第 2 次尝试达到 100%、134.7 米、用时 5:22，是榜单唯一完赛记录，该次消耗 6.6M token、$7.74",
+    "其余模型全部 DNF：Claude Fable 5.1 最佳 45%，Grok 4.6 最佳 11%，GPT-5.6 Sol 三次均为 6%"
+   ],
+   "topics": [
+    "eval",
+    "harness"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测"
+   ],
+   "horizon": "short",
+   "score": 58.2,
+   "status": "review",
+   "extra": {
+    "hn_points": 267,
+    "hn_comments": 220,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "1b1371e9ec402847",
+   "url": "https://simonwillison.net/2026/Sep/22/llm/",
+   "title": "llm 0.36",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-09-22T18:48:37+00:00",
+   "summary_short": "llm 0.36 发布：新增 GPT-6 Sol/Luna 模型，插件可声明不支持多轮对话",
+   "summary_long": "llm 发布 0.36 版本，新增两个 OpenAI 模型：gpt-6-sol 对应 GPT-6 Sol，gpt-6-luna 对应 GPT-6 Luna（#1702）。模型插件现在可以为只接受单轮提示词的模型声明 supports_conversation = False；当这类模型收到 assistant 或 tool 历史时，LLM 会抛出 llm.ConversationNotSupported，而 llm chat 会在开始会话之前就将其拒绝，首个采用该机制的插件是 llm-typesafe（#1692）。此外，llm logs 的 Markdown 输出中的推理轨迹（reasoning traces）现已被包裹在 <details><summary> 标签内（#1701）。本次发布还包含来自五位新贡献者的错误修复。原文未详述这些新模型的具体能力、上下文长度或价格等细节，也未提及发布日期与署名作者。",
+   "key_points": [
+    "新增两个 OpenAI 模型支持：gpt-6-sol 对应 GPT-6 Sol，gpt-6-luna 对应 GPT-6 Luna（#1702）",
+    "模型插件可用 supports_conversation = False 标记仅支持单轮提示词的模型；收到 assistant 或 tool 历史时 LLM 抛出 llm.ConversationNotSupported，llm chat 在开始会话前即拒绝，首个使用该机制的插件为 llm-typesafe（#1692）",
+    "llm logs 的 Markdown 输出中，推理轨迹改为包裹在 <details><summary> 标签中（#1701），并包含五位新贡献者提交的错误修复"
+   ],
+   "topics": [
+    "open-source"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 57.2,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "openai",
+     "llm"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/simonw/llm/releases/tag/0.36",
+      "https://developers.openai.com/api/docs/models/gpt-6-sol",
+      "https://developers.openai.com/api/docs/models/gpt-6-luna",
+      "https://github.com/simonw/llm/issues/1702",
+      "https://llm.datasette.io/en/stable/plugins/advanced-model-plugins.html#advanced-model-plugins-conversations",
+      "https://github.com/simonw/llm-typesafe",
+      "https://github.com/simonw/llm/issues/1692",
+      "https://github.com/simonw/llm/issues/1701",
+      "https://llm.datasette.io/en/stable/changelog.html#v0-36",
+      "https://simonwillison.net/tags/openai",
+      "https://simonwillison.net/tags/llm"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "4535e3623dac7c38",
+   "url": "https://github.blog/news-insights/research/developers-want-more-efficient-software-heres-what-over-1000-github-users-told-us-they-need/",
+   "title": "Developers want more efficient software. Here’s what over 1000 GitHub users told us they need.",
+   "source": "GitHub Blog (AI)",
+   "tier": "S",
+   "published_at": "2026-09-23T13:00:00+00:00",
+   "summary_short": "GitHub与耶鲁调查1039名用户：八成想要节能代码工具，缺的是落地路径",
+   "summary_long": "GitHub与耶鲁气候变化传播项目调查1039名GitHub用户，询问气候变化、AI、软件效率与科技行业的机构责任。八成受访者希望有工具帮助写出更节能的代码，78%想学减少软件环境足迹的最佳实践，74%想测量软件或开发流程的环境影响，70%愿为可持续性开源项目做贡献。79%担忧全球变暖，71%担忧AI系统的环境影响（含能耗、用水与碳排放），75%认为雇主积极减排很重要。但只有10%认为自己的开发方式对减少个人环境影响作用大，28%认为中等，63%认为作用小。开放题中，受访者希望估算代码库与CI/CD工作流的足迹、找出不必要的GitHub Actions运行、提升代码效率、比较AI与其他算力需求，也有人提醒不要在没有证据的情况下作环保声明。原文强调，样本来自选择接收营销邮件的GitHub月活用户，属非概率样本，仅描述受访者；与耶鲁全国代表性调查相比，GitHub用户在多项担忧指标上比例更高，如认为全球变暖正在发生为86%对68%。",
+   "key_points": [
+    "八成受访者希望有工具帮助写出更节能的代码，78%想学减少软件环境足迹的最佳实践，74%想测量软件或开发流程的环境影响，70%愿为可持续性开源项目做贡献",
+    "79%担忧全球变暖，71%担忧AI系统的环境（能耗、用水与碳排放）影响，75%认为雇主积极减少其环境影响很重要",
+    "仅10%认为自己的开发方式对减少个人环境影响作用大，63%认为作用小；原文强调样本为选择接收营销邮件的非概率样本，不代表全体开发者"
+   ],
+   "topics": [
+    "sustainability",
+    "open-source",
+    "developer-survey"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 55.5,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "News & insights",
+     "Research"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://climatecommunication.yale.edu/publications/github-survey/",
+      "https://github.com/githubnext/agentics/blob/main/docs/efficiency-improver.md",
+      "https://github.blog/news-insights/research/developers-want-more-efficient-software-heres-what-over-1000-github-users-told-us-they-need/",
+      "https://github.blog"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "62f29a5a45461faf",
+   "url": "https://www.latent.space/p/ainews-claude-opus-55-the-new-default",
+   "title": "[AINews] Claude Opus 5.5, the new default model for AINews — and everybody cuts prices 40-50%",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-09-23T06:41:41+00:00",
+   "summary_short": "Anthropic 发布 Claude Opus 5.5 并降价，AINews 即刻迁移",
+   "summary_long": "Anthropic 发布 Claude Opus 5.5，是新 Claude 5.5 家族首个模型，宣称多数任务达到 Claude Fable 5.1 的水平，运行成本比 Opus 5 低 40%、速度快约 30%；OpenAI 约一小时后发布 GPT-6 Sol 与 Luna。Opus 5.5 成为 Claude Code 与 Claude 应用（含 Cowork）默认模型，默认 medium effort，并上线 Claude Platform API 与 Slack 版 Claude Tag，Sonnet 5.5、Haiku 5.5 将在未来数周跟进。官方称其在 agentic 编程、计算机操作与知识工作上领先，并强调写作改进：把最重要信息放在前面、遵循用户写作规则。5 小时会话限额提高 20%，Pro、Max、Team 用户获得可自选的 banked rate-limit reset。token 价格下调 20% 至每百万输入/输出 4/20 美元，但因部分任务 token 用量更高而被部分抵消；Artificial Analysis 测算最高 effort 下每项 Intelligence Index 任务成本 5.98 美元，Opus 5 为 5.86 美元。这是首个配备 Fable 5.1 级网络安全、生物与前沿 LLM 开发防护的 Opus，被标记请求会回退到其他模",
+   "key_points": [
+    "Anthropic 发布 Claude Opus 5.5，为 Claude 5.5 家族首个模型，宣称多数任务达 Fable 5.1 水平，比 Opus 5 快约 30%、每任务便宜约 40%；OpenAI 约一小时后发布 GPT-6 Sol 与 Luna。",
+    "Opus 5.5 成 Claude Code 与 Claude 应用（含 Cowork）默认模型，默认 medium effort，已上线 Claude Platform API 和 Slack 版 Claude Tag；5 小时会话限额提高 20%，Pro/Max/Team 用户获得 banked rate-limit reset。",
+    "token 价格下调 20%（每百万输入/输出 $5/$25 → $4/$20），但 token 用量上升部分抵消；Artificial Analysis 测算最高 effort 下每任务 $5.98，Opus 5 为 $5.86。这是首个带 Fable 5.1 级网络、生物、前沿 LLM 开发防护的 Opus。"
+   ],
+   "topics": [
+    "model-release",
+    "pricing",
+    "coding-agent"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 53.3,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://x.com/OpenAIDevs/status/2102461432684282061",
+      "https://x.com/OpenAI/status/2102460975790137662",
+      "https://x.com/claudeai/status/2102435514855158124?s=20",
+      "https://x.com/claudeai/status/2102435517165912464?s=20",
+      "https://x.com/claudeai/status/2102435522190717210?s=20",
+      "https://x.com/claudeai/status/2102435529044250670?s=20",
+      "https://gist.github.com/swyxio/e8b1d6a32fe816b97aab988ac121783f",
+      "https://substackcdn.com/image/fetch/$s_!EpYZ!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc03f10cf-f2b7-4892-a1fd-3818f748c8c9_2556x1806.png",
+      "https://x.com/maksym_andr/status/2102445308789870683/photo/1",
+      "https://twitter.com/i/lists/1585430245762441216",
+      "https://news.smol.ai/",
+      "https://www.latent.space/p/2026",
+      "https://support.substack.com/hc/en-us/articles/8914938285204-How-do-I-subscribe-to-or-unsubscribe-from-a-section-on-Substack",
+      "https://x.com/claudeai/status/2102435511222890900",
+      "https://x.com/AnthropicAI/status/2102435703535939725",
+      "https://x.com/claudeai/status/2102435517165912464",
+      "https://x.com/ClaudeDevs/status/2102438800836489554",
+      "https://x.com/lydiahallie/status/2102438490759983302",
+      "https://x.com/claudeai/status/2102435529044250670",
+      "https://x.com/claudeai/status/2102435538120691886",
+      "https://x.com/trq212/status/2102437686967738431",
+      "https://x.com/_catwu/status/2102437713781944397",
+      "https://x.com/ClaudeDevs/status/2102438808952467507",
+      "https://x.com/_catwu/status/2102569951974584612",
+      "https://x.com/mikeyk/status/2102441803253535060",
+      "https://x.com/AiBattle_/status/2102435992640610321",
+      "https://x.com/kimmonismus/status/2102441013843554321",
+      "https://x.com/ClaudeDevs/status/2102438807698370775",
+      "https://x.com/kimmonismus/status/2102435059123056793",
+      "https://x.com/scaling01/status/2102438640211423585",
+      "https://x.com/ValsAI/status/2102568758586056955",
+      "https://x.com/ArtificialAnlys/status/2102541956014657615",
+      "https://x.com/cline/status/2102488097972007371",
+      "https://x.com/lydiahallie/status/2102513987699212344",
+      "https://x.com/theo/status/2102471386887524834",
+      "https://x.com/kimmonismus/status/2102435466348032027",
+      "https://x.com/synthwavedd/status/2102434467868799100",
+      "https://x.com/scaling01/status/2102435665061216267",
+      "https://x.com/ShayneRedford/status/2102458660702323133",
+      "https://x.com/ValsAI/status/2102568755624829439"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "01d4e543c9419cea",
+   "url": "https://openai.com/index/sam-altman-un-security-council-remarks",
+   "title": "Sam Altman’s remarks at the United Nations Security Council",
    "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-09-22T00:00:00+00:00",
-   "summary_short": "OpenAI 提出第三方独立评估的优先领域与原则，强调深度访问、独立性与问责",
-   "summary_long": "前沿AI实验室在模型训练、评估与部署安全上责任重大，第三方评估是平衡这一责任的关键一环：可扩大AI安全的外部意见输入、让公众知情，并使实验室的安全声明受到独立支撑的问责。OpenAI 称其长期与第三方评估方合作，已把第三方评估纳入 Preparedness Framework 实践，并支持推动更严格问责流程的组织与立法。合作中提供的深度访问包括技术保障措施信息、可见的思维链访问，以及用于事件响应与监控红队测试的保密数据和内部部署访问。此次提出的优先事项与原则聚焦私营及非营利独立评估机构开展的技术安全评估，与政府测试评估工作互补。有效评估需要强独立性机制、科学严谨性、稳健安全实践与清晰责任划分；实验室与独立评估方共同负有把事做好的责任，并应遵循共同的国际安全与安保标准。原文还给出“安全声明”与“安全案例”的定义，并提出四个优先评估领域，但具体内容未详述。",
+   "published_at": "2026-09-23T12:00:00+00:00",
+   "summary_short": "OpenAI CEO Altman在联合国安理会谈AI机遇、失控风险与国际合作必要性。",
+   "summary_long": "原文显示，OpenAI CEO Sam Altman在联合国安理会就人工智能发表讲话，讨论AI扩大机会的潜力、让强大系统处于人类控制之下的重要性，以及AI安全领域国际合作的必要性。他表示，近期模型快速进步让时间线显得更压缩，上行空间更具体，但风险也更迫近。他提出AI可能走向两种前景：类似创造力与发现的新文艺复兴，或类似动荡与失序的新工业革命。他认为最好的AI不是让人变成巨大机器中的齿轮，而是给人在更复杂世界中更多能动性。他也指出风险：随着AI系统能力更强、更自主，可能跑得比我们的机构更快、把权力集中在过少的人手中，或做出人们不再理解、无法控制的决定；在接近可自我改进的系统（“递归自我改进”）时这一担忧尤为突出。他称有两种AI进展可能严重走坏的方式需要避免，第一种是失去对未来的控制，行业不应因收益巨大而接受过多技术风险，也不应因竞争而草率决策；OpenAI过去曾单方面放缓，未来也会。原文未详述第二种方式及后文。",
    "key_points": [
-    "OpenAI 承诺支持覆盖训练、评估与部署的深度独立评估，使评估方能质疑其假设、发现被忽视的风险并得出自己的结论；第三方评估已纳入其 Preparedness Framework，并支持相关组织与立法。",
-    "其提供的访问形式包括技术保障措施信息、可见的思维链访问，以及用于事件响应和监控红队测试的保密数据与内部部署访问；与政府测试评估工作互为补充。",
-    "有效评估依赖强独立性机制、科学严谨性、稳健安全实践与清晰责任划分，实验室与评估方应遵循共同的国际安全与安保标准；原文给出“安全声明”“安全案例”定义并提出四个优先评估领域，具体内容原文未详述。"
+    "Altman称AI可能成为新的文艺复兴，也可能像新的工业革命带来动荡与失序。",
+    "他指出随着AI更强大、更自主，风险包括跑得比机构快、权力过度集中、决策超出人类理解与控制，接近“递归自我改进”时尤为关键。",
+    "他强调不应因收益巨大而接受过多技术风险、不应为竞争草率决策，并称OpenAI过去曾单方面放缓、未来也会；原文称有两种可能严重走坏的方式，但仅详述第一种。"
    ],
    "topics": [
     "alignment",
-    "eval",
-    "open-source"
+    "ai-governance"
    ],
    "category": "安全",
    "categories": [
     "安全",
     "行业动态"
    ],
-   "horizon": "long",
-   "score": 66.6,
+   "horizon": "short",
+   "score": 51.5,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
-     "Safety"
+     "Global Affairs"
     ],
     "summary_mode": "full"
    }
   },
   {
-   "id": "6156bdf8e9b02550",
-   "url": "https://www.qbitai.com/2026/09/494120.html",
-   "title": "基元律动韩凯：从多模型调度到反馈闭环，探索Agent持续进化",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-22T10:06:34+00:00",
-   "summary_short": "基元律动韩凯谈Agent：用模型路由降本、以反馈闭环迭代模型",
-   "summary_long": "9月22日，在2026杭州云栖大会企业级Agent实践峰会上，基元律动联合创始人兼CTO韩凯发表演讲《从Harness到RSI飞轮》。他认为，多模型长期异构并存、算力资源多元供给将成为大模型产业的长期结构；随着Agent承担越来越复杂的任务，如何组织不同模型、并把应用中的反馈转化为模型改进依据，正成为新的技术课题。据国家数据局披露，2026年3月我国日均Token调用量已超过140万亿，较2024年初增长超千倍。韩凯指出，一次复杂Agent任务往往涉及十余次乃至数十次模型调用，任务表现既取决于模型本身，也取决于模型选择、工具调用与上下文管理等系统能力。基元律动以开源项目OpenSquilla探索模型路由：公司公布的端到端Agent评测显示，在特定测试配置下保留固定旗舰模型基线99.96%的任务质量，成本降低88.9%；在DRACO深度研究评测中，多模型协同配置得分超过该组实验中最强单模型基线，成本约为其三分之一。此外，韩凯介绍了面向RSI（递归式自我改进）的反馈闭环，以及基于通义Qwen3.5底座后训练的NeoHorse-1系列模型的初步验证结果。",
-   "key_points": [
-    "韩凯判断多模型异构并存、算力多元供给将是大模型产业的长期结构；一次复杂Agent任务常涉及十余次乃至数十次模型调用，表现取决于模型与模型选择、工具调用、上下文管理等系统能力",
-    "开源项目OpenSquilla验证模型路由价值：特定测试配置下保留固定旗舰模型基线99.96%的任务质量、成本降低88.9%；DRACO深度研究评测中多模型协同得分超过该组最强单模型基线，成本约为其三分之一",
-    "RSI反馈闭环以场景能力需求为牵引，经评测识别模型与调度策略改进方向并针对性优化，再回场景验证；基于通义Qwen3.5底座后训练的NeoHorse-1初版技术报告显示，十项基准中4B宏平均分由58.94升至64.87，9B由65.60升至69.04"
-   ],
-   "topics": [
-    "harness",
-    "model-routing",
-    "post-training"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 63.8,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "基元律动"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/qbitai",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/%e5%9f%ba%e5%85%83%e5%be%8b%e5%8a%a8",
-      "https://www.qbitai.com/2026/09/494043.html",
-      "https://www.qbitai.com/2026/09/493865.html",
-      "https://www.qbitai.com/2026/09/493819.html",
-      "https://www.qbitai.com/2026/09/493629.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/494120.html&title=基元律动韩凯：从多模型调度到反馈闭环，探索Agent持续进化&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2026/09/490750.html",
-      "https://www.qbitai.com/2026/08/480079.html",
-      "https://www.qbitai.com/2026/09/485555.html",
-      "https://www.qbitai.com/tag/agent-infra",
-      "https://www.qbitai.com/tag/%e5%a4%a7%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/tag/%e7%8e%8b%e4%ba%91%e9%b9%a4",
-      "https://www.qbitai.com/2026/09/491649.html",
-      "https://www.qbitai.com/2026/09/491357.html",
-      "https://www.qbitai.com/2026/09/491711.html",
-      "https://www.qbitai.com/2026/09/490686.html",
-      "https://www.qbitai.com/2026/09/491454.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "e50a7a8bbd4639f4",
-   "url": "https://www.qbitai.com/2026/09/494179.html",
-   "title": "6天烧光2000多万，拿下开源第一！小米史无前例「炼丹直播」收官",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-22T11:50:28+00:00",
-   "summary_short": "小米直播6天强化学习训练MiMo-V2.6，烧掉350万美元登开源模型第一",
-   "summary_long": "小米把一次大模型强化学习训练搬进直播间，持续6天。MiMo-V2.6的Pro和Flash双双跑完30个训练Step，最终账单350万美元（约2344万元人民币）。Pro为1.02万亿参数、420亿激活，在Artificial Analysis Intelligence Index上得46分，位列开源第一；Hugging Face CEO称「太棒了」。小米MiMo负责人罗福莉称这是「迄今为止任何开源模型团队所进行的规模最大的单次强化学习训练之一」，并表示其研究创新和工程挑战超过她曾参与的DeepSeek-R1。战报显示，Pro跑完30个Step用时5天3小时、约260万美元，Flash用时3天10小时、约90万美元；每个Step含1568个Prompt、每题16条路线。30个Step后Flash平均通过率相对提升25%、Pro提升12%；样本外测试DeepSWE v1.1上Pro从58.4涨到72.57分，Flash从48.7涨到65.68分。AutomationBench上Pro得53.1分，超过Claude Opus 5的50.3分和GPT-5.6 Sol的45.8分。小米同步开放Pro和Flash权重、技术报告、7000多个RL任务环境、端到端RL训练框架及mini-harnesses等。",
-   "key_points": [
-    "6天训练总花费350万美元（约2344万元人民币），Pro用5天3小时约260万美元，Flash用3天10小时约90万美元，双双跑完30个Step",
-    "MiMo-V2.6-Pro在Artificial Analysis Intelligence Index上得46分位列开源第一，AutomationBench得53.1分，超过Claude Opus 5的50.3分和GPT-5.6 Sol的45.8分",
-    "30个Step后Flash平均通过率相对提升25%、Pro提升12%；DeepSWE v1.1上Pro从58.4升至72.57分，Flash从48.7升至65.68分"
-   ],
-   "topics": [
-    "post-training",
-    "open-source",
-    "coding-agent"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 63.2,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "首页轮播",
-     "小米"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/yishui",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/%e5%b0%8f%e7%b1%b3",
-      "https://www.qbitai.com/2026/09/491091.html",
-      "https://www.qbitai.com/2026/09/493241.html",
-      "https://www.qbitai.com/2026/09/491357.html",
-      "https://www.qbitai.com/2026/09/486934.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/494179.html&title=6天烧光2000多万，拿下开源第一！小米史无前例「炼丹直播」收官&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2026/03/389624.html",
-      "https://www.qbitai.com/2023/03/43261.html",
-      "https://www.qbitai.com/tag/%e5%b0%8f%e9%b9%8f%e6%b1%bd%e8%bd%a6",
-      "https://www.qbitai.com/tag/%e6%99%ba%e8%83%bd%e8%bd%a6%e7%9c%9fhigh",
-      "https://www.qbitai.com/2019/06/3017.html",
-      "https://www.qbitai.com/tag/%e5%b0%8f%e7%88%b1%e8%80%81%e5%b8%88",
-      "https://www.qbitai.com/tag/%e5%b0%8f%e7%b1%b3%e6%89%8b%e7%8e%af4",
-      "https://www.qbitai.com/tag/%e7%b1%b3%e5%ae%b6",
-      "https://www.qbitai.com/2026/03/383902.html",
-      "https://www.qbitai.com/tag/%e8%8b%b9%e6%9e%9c",
-      "https://www.qbitai.com/2024/12/232213.html",
-      "https://www.qbitai.com/tag/meet2025%e6%99%ba%e8%83%bd%e6%9c%aa%e6%9d%a5%e5%a4%a7%e4%bc%9a",
-      "https://www.qbitai.com/2019/12/10399.html",
-      "https://www.qbitai.com/tag/%e4%be%9b%e5%ba%94%e9%93%be",
-      "https://www.qbitai.com/2026/09/491649.html",
-      "https://www.qbitai.com/2026/09/491711.html",
-      "https://www.qbitai.com/2026/09/490686.html",
-      "https://www.qbitai.com/2026/09/491454.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "20af5c3822b9beb3",
-   "url": "https://www.latent.space/p/ainews-xiaomi-mimo-v26-pro-1t-a42b",
-   "title": "[AINews] Xiaomi MiMo-V2.6-Pro 1T-A42B: the new top Open Weights model, trained for $3M",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-09-22T06:30:56+00:00",
-   "summary_short": "小米发布MiMo-V2.6系列原生全模态模型，并开源RL环境代码与训练配方",
-   "summary_long": "小米发布MiMo-V2.6系列，含两款原生全模态模型：MiMo-V2.6-Pro为迄今最强模型，MiMo-V2.6-Flash在智能、效率与成本间取得最佳平衡；同时推出MiMo-V2.6-Pro-UltraSpeed，同等质量下输出速度最高提升20倍。小米传统上不被列入中国AI六小虎，此次发布因此出乎既有格局之外。\n\n据技术报告，其强化学习算力沿三个方向扩展：更大批量与更高吞吐，采用完全异步架构，每次更新1,568个样本，训练上下文长度最高达100万，每步3.5至3.7B token；更多任务与更丰富环境，覆盖代码、通用智能体、视觉与网络安全，使各能力相互增益；更多评分算力，组内相对比较为长程RL任务提供更精确多样的奖励信号，形成自我改进闭环，并引导模型走更短路径、每任务消耗更少token。小米称将开源全部工具链，包括环境代码与训练配方，但完整7k+任务数据集尚未发布。此前，现于小米任职的前DeepSeek工程师Fuli Luo公开直播最终RL训练过程，展现出异常的内部指标透明度。",
-   "key_points": [
-    "MiMo-V2.6系列为原生全模态，Pro为迄今最强、Flash平衡智能/效率/成本，另推出UltraSpeed版本，同等质量下输出速度最高提升20倍",
-    "技术报告称RL算力沿三轴扩展：完全异步架构下每次更新1,568个样本、最高100万上下文、每步3.5至3.7B token；多任务环境覆盖代码、通用智能体、视觉与网络安全；组内相对比较提供更精确多样的奖励信号并形成自我改进闭环",
-    "小米将开源全部工具链（含环境代码与训练配方），但完整7k+任务数据集尚未发布；前DeepSeek工程师Fuli Luo公开直播最终RL训练过程"
-   ],
-   "topics": [
-    "post-training",
-    "reasoning",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 62.3,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://ai.engineer/shanghai",
-      "https://en.wikipedia.org/wiki/AI_tiger",
-      "https://substackcdn.com/image/fetch/$s_!3_JT!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe2e1163e-d6ca-41dc-93b6-65900faa37d1_1508x900.png",
-      "https://x.com/_LuoFuli/status/2100296686719610932",
-      "https://mimo.xiaomi.com/rl/",
-      "https://x.com/eliebakouch/status/2100316319459500128",
-      "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/blob/main/MiMo_V2_6_technical_report.pdf",
-      "https://substackcdn.com/image/fetch/$s_!zbvL!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Faf7a24ce-df99-410f-85ef-d4f83c7649c3_1542x818.png",
-      "https://github.com/XiaomiMiMo/verl/tree/mimo-oss/recipes/code",
-      "https://github.com/XiaomiMiMo/verl/tree/mimo-oss/recipes/arvo",
-      "https://github.com/XiaomiMiMo/verl/tree/mimo-oss/recipes/general",
-      "https://github.com/XiaomiMiMo/verl/tree/mimo-oss/recipes/design/webdev",
-      "https://github.com/XiaomiMiMo/verl/tree/mimo-oss/recipes/design/music",
-      "https://github.com/XiaomiMiMo/verl/tree/mimo-oss/config/agent",
-      "https://github.com/XiaomiMiMo/mimoagent/tree/mimo-oss/src/mimoagent/environments",
-      "https://twitter.com/i/lists/1585430245762441216",
-      "https://news.smol.ai/",
-      "https://www.latent.space/p/2026",
-      "https://support.substack.com/hc/en-us/articles/8914938285204-How-do-I-subscribe-to-or-unsubscribe-from-a-section-on-Substack",
-      "https://x.com/natolambert/status/2102006127877660735",
-      "https://x.com/natolambert/status/2102035165660770730",
-      "https://x.com/Yuchenj_UW/status/2102082682603925935",
-      "https://x.com/ClementDelangue/status/2102085295650828487",
-      "https://x.com/teortaxesTex/status/2102089221066354801",
-      "https://x.com/Thom_Wolf/status/2102123398230954053",
-      "https://x.com/Polymarket/status/2102076673835364449",
-      "https://x.com/XiaomiMiMo/status/2102138559952290106",
-      "https://x.com/ArtificialAnlys/status/2102128560962187701",
-      "https://x.com/victormustar/status/2102130481676395003",
-      "https://x.com/eliebakouch/status/2102045988143710664",
-      "https://x.com/xeophon/status/2102128537276686594",
-      "https://x.com/eliebakouch/status/2102136275708879078",
-      "https://x.com/bertgodel/status/2102139330127102120",
-      "https://x.com/Thom_Wolf/status/2102137611011674173",
-      "https://x.com/zephyr_z9/status/2102131465383551123",
-      "https://x.com/tianjun_zhang/status/2102152886520291472",
-      "https://x.com/karpathy/status/2102124533729955960",
-      "https://x.com/willdepue/status/2102070249453469823",
-      "https://x.com/ClementDelangue/status/2102071917926613310",
-      "https://x.com/sarah_edo/status/2102025642862600634"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "18dcc1c8f6f41c0e",
-   "url": "https://arcturus-labs.com/blog/2026/09/21/will-openai-eat-jevs-lunch/",
-   "title": "OpenAI is well positioned to fast-follow Jev",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-22T14:42:59+00:00",
-   "summary_short": "TypeSafe 的 Jev 用 LLM 概率做分类爆红，作者称 OpenAI 有条件快速跟进复制",
-   "summary_long": "TypeSafe 推出的 Jev 给大语言模型带来新玩法，据 Vercel 称，它在 AI Gateway 历史上被采用的速度超过任何其他模型。但作者认为阴云已现：OpenAI 无疑在关注并决定下一步，且有能力快速跟进——不仅复制 Jev 的旗舰产品，还能把这一能力折入即将推出的模型与智能体，产生 Jev 难以复制的新行为。作者的核心论点是：OpenAI 多年来一直把自家 LLM 当作隐式分类器使用，只是没针对通用分类任务训练、也没把通用分类打包成独立产品；若 OpenAI 能复制训练，就能很快复制 Jev，并把新分类器用于快速模型选择、更高效的思考、更好的安全护栏，以及更聪明、更快、更便宜的模型。成败关键在 TypeSafe 是否有护城河，作者眼中最大的护城河是 TypeSafe 的训练数据与训练流程。作者假设 Jev 用的仍是接近传统 LLM 的东西，依据是 Latent Space 报道许多早期克隆确实基于 LLM。",
-   "key_points": [
-    "据 Vercel，Jev 是 AI Gateway 历史上采用最快的模型；作者担心 OpenAI 有能力快速跟进，并把它融入自有模型与智能体",
-    "作者认为 Jev 机制接近传统 LLM：单步生成下一个 token 的概率分布，noul 问题只看 true/false 并归一化，choice 问题看候选 token 的相对概率取最高者，与作者 2025 年关于 logprobs 分类的博客属同一模式",
-    "OpenAI 自至少工具调用推出以来就把 LLM 隐式用作专用分类器（ChatML 中 <|im_start|> 后的首个 token 标识 user 或 assistant）；关键变量是 TypeSafe 的训练数据与训练流程能否构成护城河"
-   ],
-   "topics": [
-    "competition"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 60.0,
-   "status": "review",
-   "extra": {
-    "hn_points": 248,
-    "hn_comments": 182,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://vercel.com/blog/ai-gateway-jev-model-launch",
-      "https://www.latent.space/p/ainews-here-are-6-clones-of-jev-in",
-      "https://arcturus-labs.com/blog/2025/03/31/supercharging-llm-classifications-with-logprobs/",
-      "https://blog.jnbrymn.com/2024/01/30/tool-invocation--demonstrating-the-marvel-of-gpts-flexibility",
-      "https://twitter.com/CompleteSkeptic/status/2100617775823966680",
-      "https://arcturus-labs.com/blog/2026/09/16/typesafes-jev-trades-text-generation-for-instant-calibrated-decisions/#but-are-those-probabilities-any-good",
-      "https://docs.typesafe.ai/model-jaggedness/jev-1.13",
-      "https://www.youtube.com/watch?v=cFx9Z3ZXca0&t=1925s"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "518602a6e2afa11e",
-   "url": "https://simonwillison.net/2026/Sep/22/llm-typesafe/",
-   "title": "llm-typesafe 0.1a0",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-22T15:54:16+00:00",
-   "summary_short": "llm-typesafe 0.1a0：为 LLM 接入 Jev 模型，支持是/否、选择、打分三类问答",
-   "summary_long": "llm-typesafe 0.1a0 是为 LLM 新增的插件，用于支持 TypeSafe AI 的新模型 Jev。安装方式为 llm install llm-typesafe，随后设置 API key：llm keys set typesafe，原文给出了获取 key 的入口，并称等待名单推进得相当快。配置完成后即可用 llm -m jev 搭配 -s 系统提示词提问。原文演示了三类用法：一是是/否的“noul”问题，例如判断某条消息是否明确要求退款，输出形如 {\"type\": \"noul\", \"noul\": 0.99}；二是选择题，使用 -o answer_type choice，并用 -o criteria 传入 JSON 形式的分支定义，例如把消息判给 billing、technical 或 other；三是打分题，使用 -o answer_type score，criteria 传入按等级排列的 JSON 数组，例如把问题可复现程度分为三档。原文注明更多细节可查看 README。",
-   "key_points": [
-    "插件 llm-typesafe 0.1a0 为 LLM 增加对 TypeSafe AI 新模型 Jev 的支持，安装命令为 llm install llm-typesafe。",
-    "使用前需用 llm keys set typesafe 设置 API key，原文给出获取 key 的入口并称等待名单推进较快。",
-    "通过 llm -m jev、-s 提示词与 -o 选项可提出三类问题：noul 是/否（输出如 {\"type\": \"noul\", \"noul\": 0.99}）、choice 选择（criteria 为 JSON 分支定义）、score 打分（criteria 为等级数组）。"
-   ],
-   "topics": [
-    "structured-output"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 59.7,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "projects",
-     "llm",
-     "jev"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/simonw/llm-typesafe/releases/tag/0.1a0",
-      "https://llm.datasette.io/",
-      "https://simonwillison.net/2026/Sep/21/jev/",
-      "https://console.typesafe.ai/",
-      "https://github.com/simonw/llm-typesafe/blob/main/README.md",
-      "https://simonwillison.net/tags/projects",
-      "https://simonwillison.net/tags/llm",
-      "https://simonwillison.net/tags/jev"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "e051d84547769c97",
-   "url": "https://alexn.org/blog/2026/09/22/ai-has-no-wisdom-and-neither-will-you/",
-   "title": "AI Has No Wisdom and Neither Will You",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-22T12:11:09+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "coding-agent"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 58.2,
-   "status": "review",
-   "extra": {
-    "hn_points": 363,
-    "hn_comments": 508,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://en.wikipedia.org/wiki/Dreyfus_model_of_skill_acquisition",
-      "https://alexn.org/about/"
-     ]
-    },
-    "content_source": "direct"
-   }
-  },
-  {
-   "id": "245d063e08eba24c",
-   "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack/",
-   "title": "Pentagon says overreliance on AI contributed to missile strike on Iran school",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-22T19:03:38+00:00",
-   "summary_short": "美军内部调查：错误情报、过时影像与过度依赖AI导致伊朗学校遭袭，123名儿童死亡",
-   "summary_long": "五角大楼内部调查发现，错误情报、过时影像资料以及对人工智能技术的过度依赖，共同导致了2月28日对伊朗米纳卜一所学校的导弹袭击。两枚“战斧”导弹击中Shajarah Tayyebeh小学及其场地，造成150多人死亡，其中至少123名儿童；就儿童伤亡而言，这是21世纪最严重的美军目标定位错误。参与调查的官员称，袭击并非源于单一灾难性决定，而是多个较小失误的累积，调查还发现了一系列本可避免灾难的错失机会。官员表示，2月底政府要求发动大规模空袭，仅最初24小时内就打击了1000多个伊朗目标，压缩了最终确定目标的时间；加上目标基础信息缺口、平民保护人员削减和过度依赖AI，为致命错误埋下伏笔。联合国调查人员称有合理理由认定此次袭击构成战争罪；美国尚未公开承担责任，特朗普曾暗示责任在德黑兰。调查于3月启动，报告已基本完成但未公布，最终公开多少细节尚不明确。",
-   "key_points": [
-    "五角大楼内部调查认定，错误情报、过时影像与过度依赖AI等因素共同导致2月28日伊朗米纳卜Shajarah Tayyebeh小学遭两枚“战斧”导弹袭击，150多人死亡，含至少123名儿童",
-    "官员称袭击是多个较小失误的累积而非单一灾难性决定：2月底政府要求大规模空袭、24小时内打击超1000个伊朗目标，压缩了目标确定时间，叠加目标信息缺口、平民保护人员削减与对AI的过度依赖",
-    "联合国调查人员称有合理理由认定此次袭击构成战争罪；美国尚未公开承担责任；3月启动的调查报告已基本完成但尚未公布，公开细节范围不明"
-   ],
-   "topics": [
-    "product",
-    "alignment"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 58.2,
-   "status": "review",
-   "extra": {
-    "hn_points": 341,
-    "hn_comments": 174,
-    "content_source": "reader",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "1643cd352c0ff1da",
-   "url": "https://www.qbitai.com/2026/09/494263.html",
-   "title": "讲真，我没看出这图是AI做的，更没想到是国产AI做的",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-22T13:57:10+00:00",
-   "summary_short": "商汤U1 Pro正式上线，实测显示生图后可连续多轮精修、多图合成与八格连续动作",
-   "summary_long": "商汤科技正式发布SenseNova U1 Pro（原文称其为此前被称作“今年WAIC最惊艳的图”背后的模型），目前可在商汤小浣熊平台使用，API也已开始向企业客户开放。原文提到，小浣熊平台仅支持复杂图片生成，企业客户可通过API或SenseNova Studio体验多轮修改等功能，因此作者申请邀请码后在SenseNova Studio上展开实测，模型2K清晰度起步、最高4K。实测共五轮：其一上传实拍生活照并重构为纸质风格，再限定范围只把黑色圆领T恤改白，原文称在黑色T恤、黑色皮带、黑色裤子与胸牌遮挡的情况下仍精准拿捏边界；其二用四张参考图合成一张猫咪经营的微缩咖啡店海报，要求区分各图作用并保留指定文字；其三在同一张海报上连续三轮修改价格、主标题与杯子颜色，原文称其它部分没有发生变化；其四按参考猫咪生成4列×2行八格连续动作图，并可转为GIF，原文认为这种宫格在AI视频生成场景中比较实用；其五不给输入图和素材，仅凭一段Prompt让模型自行查阅NASA公开资料，制作月相科普海报。",
-   "key_points": [
-    "商汤科技发布SenseNova U1 Pro正式版，可在商汤小浣熊平台使用，API已向企业客户开放；小浣熊平台目前仅支持复杂图片生成，多轮修改等功能需通过API或SenseNova Studio体验",
-    "实测覆盖生活照换风格、局部改色、四图合成微缩咖啡店海报、连续三轮修改同一张海报、生成八格连续动作图，原文称修改时其它区域没有变化",
-    "八格连续动作图可转为GIF，原文认为该方式在AI视频生成场景中比较实用；另测试了不给输入图、仅凭Prompt让模型查阅NASA资料生成月相科普海报"
-   ],
-   "topics": [
-    "product",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 55.2,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "SenseNova",
-     "SenseNova U1 Pro",
-     "商汤科技"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/shisan",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/sensenova",
-      "https://www.qbitai.com/tag/sensenova-u1-pro",
-      "https://www.qbitai.com/tag/%e5%95%86%e6%b1%a4%e7%a7%91%e6%8a%80",
-      "https://www.qbitai.com/2026/09/494430.html",
-      "https://www.qbitai.com/2026/09/492973.html",
-      "https://www.qbitai.com/2026/09/492912.html",
-      "https://www.qbitai.com/2026/09/491454.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/494263.html&title=讲真，我没看出这图是AI做的，更没想到是国产AI做的&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2024/05/145724.html",
-      "https://www.qbitai.com/tag/gpt-4",
-      "https://www.qbitai.com/tag/sensechat",
-      "https://www.qbitai.com/tag/%e5%a4%a7%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/2026/04/395194.html",
-      "https://www.qbitai.com/tag/ai%e5%8e%9f%e7%94%9f",
-      "https://www.qbitai.com/tag/%e5%95%86%e6%b1%a4%e5%a4%a7%e8%a3%85%e7%bd%ae",
-      "https://www.qbitai.com/2025/10/344252.html",
-      "https://www.qbitai.com/tag/ai-x-ip",
-      "https://www.qbitai.com/tag/%e7%9f%a5%e8%af%86%e4%ba%a7%e6%9d%83",
-      "https://www.qbitai.com/2026/08/465673.html",
-      "https://www.qbitai.com/tag/sensenova-u1-5-lite-preview",
-      "https://www.qbitai.com/tag/%e7%94%9f%e5%9b%be%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/2024/09/195748.html",
-      "https://www.qbitai.com/tag/ai%e7%94%9f%e6%88%90%e4%bb%a3%e7%a0%81",
-      "https://www.qbitai.com/tag/%e6%b2%99%e5%88%a9%e6%96%87",
-      "https://www.qbitai.com/2025/07/315809.html",
-      "https://www.qbitai.com/tag/ai%e7%8e%a9%e5%85%b7",
-      "https://www.qbitai.com/tag/%e6%b1%95%e5%a4%b4%e5%b8%82",
-      "https://www.qbitai.com/2026/09/491649.html",
-      "https://www.qbitai.com/2026/09/491357.html",
-      "https://www.qbitai.com/2026/09/491711.html",
-      "https://www.qbitai.com/2026/09/490686.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "fb8ad85c459c0cb6",
-   "url": "https://huggingface.co/blog/omlx",
-   "title": "Jun Kim, oMLX creator and maintainer, joins Hugging Face to support the MLX community",
-   "source": "Hugging Face Blog",
+   "id": "7cff1964bf19497f",
+   "url": "https://openai.com/index/ringg",
+   "title": "Ringg’s AI agents resolve up to 65% of customer calls with OpenAI",
+   "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-09-22T00:00:00+00:00",
-   "summary_short": "oMLX 作者 Jun Kim 加入 Hugging Face，专职推动 MLX 本地 AI 生态",
-   "summary_long": "Hugging Face 发文宣布欢迎 oMLX 的创建者与维护者 Jun Kim（Jundot）加入团队。原文称 Hugging Face 完全投入本地 AI，而 MLX 是该生态的核心组成部分；MLX 是 Apple 面向本地 AI 的框架，尤其针对 Apple Silicon 优化。Hugging Face 表示自 2023 年 MLX 作为 Awni 与 Angelos 的“圣诞礼物”发布以来一直是其支持者，并以 Hugging Face 是人们寻找和贡献 MLX 模型的 Hub 为荣。对 oMLX 的影响是稳定性与更快的开发：从副业变成有资助、持续维护的项目，使 Jun 能更好地引导贡献者并做长期建设；oMLX 仍保持 Apache 2.0，仍由 Jun 领导。对 MLX 整体的影响：最终目标是让社区能以任何形式运行本地 AI，并提供相应工具与模块；oMLX 将作为新想法的试验场，同时复用 mlx-lm、mlx-vlm 等依赖的基础工作，并在合理处向上游贡献。文中提到已与 mlx-lm、mlx-vlm、LMStudio 等合作，希望加强与 Cheng、Prince、Yagil 及其团队的关系。一个具体重点是让 transformers 模型定义快速过渡为可被不同引擎使用的参考 MLX 实现。",
+   "published_at": "2026-09-23T12:00:00+00:00",
+   "summary_short": "Ringg 用 GPT-5.6 跑客服 Agent，最高自动解决 65% 请求，成本降约 90%",
+   "summary_long": "Ringg 是覆盖语音、聊天、WhatsApp 和网页的 Agent 平台。它服务印度大型消费企业时发现，呼叫量上升通常靠加人应对，推高成本与复杂度，客服还要在碎片化系统中手动帮客户完成任务。因此 Ringg 搭建了以 GPT-5.6 等高效模型为核心的企业 Agent 平台，把合适的实时负载从 GPT-4.1 迁移到 GPT-5.6 后，模型成本降低约 90%，同时满足质量与延迟要求。其 Agent 每月处理超 700 万通接通电话，最高可自动解决 65% 的请求，客户平均 CSAT 为 4.8。编排层可跨 CRM、工单、支付、排期系统与内部 API 执行动作，必要时连同对话摘要转人工；知识系统结合结构化过滤与语义检索；任务可分派给资格审核、支持、核验、排期、升级等子 Agent。模型按任务路由：GPT-4.1 承担多数实时语音与聊天流量，GPT-5.6 Luna 留在生产栈中用于更合适的请求，GPT-5.6 Terra 做通话后总结与情绪分类，GPT-5.6 Sol 支持评估与提示改进。联合创始人 Siddharth Tripathi 表示，模型质量只是一部分，还需要低延迟、可靠工具调用、强指令遵循与可规模化的经济性。",
    "key_points": [
-    "Jun Kim（oMLX 创建者与维护者）加入 Hugging Face；oMLX 仍是 Apache 2.0，继续由他领导。",
-    "oMLX 从副业变为有资助、持续维护的项目，预期带来稳定性和更快的开发。",
-    "Hugging Face 称 oMLX 将作为新想法试验场，复用 mlx-lm、mlx-vlm 等依赖，并希望加强与 mlx-lm、mlx-vlm、LMStudio 团队的合作；具体重点之一是简化新 transformers 模型在 MLX 上运行（从模型定义到参考 MLX 实现）的流程。"
+    "Agent 每月处理超 700 万通接通电话，最高自动解决 65% 的请求，客户平均 CSAT 为 4.8",
+    "把合适的实时负载从 GPT-4.1 迁移至 GPT-5.6，模型成本降低约 90%",
+    "模型按任务路由：GPT-4.1 负责多数实时语音与聊天，GPT-5.6 Luna 用于更合适的请求，Terra 做通话后分析与情绪分类，Sol 支持评估与提示改进"
    ],
    "topics": [
-    "open-source"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 54.9,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/omlx.md",
-      "https://x.com/awnihannun/status/1732184443451019431?s=20",
-      "https://x.com/angeloskath/status/1732304844403429477?s=20",
-      "https://github.com/jundot/omlx",
-      "https://github.com/ml-explore/mlx-lm",
-      "https://github.com/Blaizzy/mlx-vlm",
-      "https://x.com/zcbenz",
-      "https://x.com/Prince_Canuma",
-      "https://x.com/yagilb"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "cdb477377ba30006",
-   "url": "https://artificialanalysis.ai/models/claude-opus-5-5",
-   "title": "Claude Opus 5.5 Intelligence, Performance and Price Analysis (Max)",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-22T16:51:31+00:00",
-   "summary_short": "Artificial Analysis 评测：Claude Opus 5.5 智能指数居首，但价格偏贵",
-   "summary_long": "Artificial Analysis 对 Anthropic 的 Claude Opus 5.5（Adaptive Reasoning, Max Effort, Default Fallback）进行了智能、性能与价格分析。该专有模型发布于 2026 年 9 月，属推理模型，支持文本与图像输入、输出文本，上下文窗口 1M tokens。在 Artificial Analysis 智能指数 v4.3.2（含 AA-Briefcase v1.1、GDPval-AA v2.1、AutomationBench-AA、Terminal-Bench 4.0、SciCode、Humanity's Last Exam、GDP.pdf、CritPt、AA-Omniscience、AA-LCR v1.1 共 10 项评估）中得分 58，在 212 个模型中排名第 1，高于同类中位数 25，原文评价其处于智能领先位置。但评测中它生成了 260M tokens，远高于中位数 88M，被标注为非常冗长，冗长度排名 95/212。价格上，输入 $4.00、输出 $20.00 每 1M tokens，均被标为偏贵（中位数分别为 $2.00 与 $10.00），缓存折扣 95%，每智能指数任务成本 $5.98，成本排名 93/212，完整评估总花费 $8708.20。输出速度原文标注为 N/A。原文结论称其智能",
-   "key_points": [
-    "智能指数得分 58，在 212 个模型中排名第 1，同类中位数 25；原文明确指出其在智能方面领先",
-    "输入 $4.00 / 输出 $20.00 每 1M tokens，均被标为偏贵；成本排名 93/212，每智能指数任务成本 $5.98，评估总花费 $8708.20",
-    "推理模型，支持文本与图像输入、输出文本，上下文窗口 1M tokens；评测中生成 260M tokens，远高于中位数 88M，属非常冗长，输出速度标注为 N/A"
-   ],
-   "topics": [
-    "eval"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测"
-   ],
-   "horizon": "short",
-   "score": 53.0,
-   "status": "review",
-   "extra": {
-    "hn_points": 214,
-    "hn_comments": 61,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.anthropic.com/"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "da8758f6c8ac5964",
-   "url": "https://www.qbitai.com/2026/09/494429.html",
-   "title": "陆川手搓历史现场，王珞丹熬夜抽卡，阿里全模态开始兜底生产",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-22T15:59:35+00:00",
-   "summary_short": "阿里云栖大会亮出全模态模型矩阵，陆川用AI五天复原400年前明代灾难现场",
-   "summary_long": "9月22日云栖大会上，阿里云集中发布全模态模型矩阵：Qwen3.8-Max开始自己训练自己，Qwen3.8-Flash提前放出下一代架构，Qwen3.8-Omni为大模型开辟全新思考分区，Qwen4已开练，Qwen4.5、Qwen5也在路上，参数规模瞄准5万亿至10万亿；同场亮相的还有图像模型Qwen-Image-3.1、音乐模型Happy Shrimp 1.1、世界模型HappyOyster 2.0 Preview、语音模型Qwen-Audio-3.1、同传模型Qwen3.8-LiveTranslate，下一代视频模型预告11月发布。阿里判断，三年之内会出现一个原生的全模态统一生成模型。导演陆川与团队用AI在5天内复原400年前明代灾难现场，按传统影视工业做法这类场景需数月时间和千万级投入，过去一场爆炸戏就要耗费19天；团队前后约做四轮提示词优化，模型对烟尘、碎片的还原准确度达到团队预期95%以上。原文据此讨论多模态进入生产环境后的三层考验：内容生产、专业创作，以及进入终端和物理世界。",
-   "key_points": [
-    "陆川团队用阿里视频生成模型5天复原400年前明代灾难现场，传统做法需数月与千万级投入，过去一场爆炸戏要19天；模型对烟尘、碎片的还原准确度达团队预期95%以上",
-    "云栖大会发布全模态模型矩阵：Qwen3.8-Max/Flash/Omni、已开练的Qwen4，以及图像、音乐、世界、语音、同传模型，参数规模瞄准5万亿至10万亿，下一代视频模型预告11月发布",
-    "原文提出多模态进入生产环境的三层考验——内容生产（Wan3.0支持单次30秒生成、曾列Artificial Analysis两项榜单第一）、专业创作（需理解导演意图、处理音乐版权与产业规则）、终端与物理世界（Qwen-Audio-3.1-Realtime已进入千问办公、千问AI眼镜、桌面机器人等）"
-   ],
-   "topics": [
-    "multimodal",
-    "post-training",
-    "product"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 52.2,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/tianyanlin",
-      "https://www.qbitai.com",
-      "https://weixin.qq.com/sph/ANA3TH0RL",
-      "https://www.qbitai.com/2026/09/494420.html",
-      "https://www.qbitai.com/2026/09/492238.html",
-      "https://www.qbitai.com/2026/09/490416.html",
-      "https://www.qbitai.com/2026/09/489277.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/494429.html&title=陆川手搓历史现场，王珞丹熬夜抽卡，阿里全模态开始兜底生产&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2026/09/491649.html",
-      "https://www.qbitai.com/2026/09/491357.html",
-      "https://www.qbitai.com/2026/09/491711.html",
-      "https://www.qbitai.com/2026/09/490686.html",
-      "https://www.qbitai.com/2026/09/491454.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "0f1ff99a4515acfc",
-   "url": "https://www.cryptocellar.org/bgac/the-mvueh-break.html",
-   "title": "OpenAI GPT–6 Astra breaks Enigma message that has resisted solution since 2005",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-22T13:52:15+00:00",
-   "summary_short": "GPT–6 Astra自主破译自2005年未解的Enigma电报MVUEH",
-   "summary_long": "2026年9月15日，Carter Leffer联系原文叙述者，请求验证对1941年7月10日德国陆军Enigma电报MVUEH的破译。该电报由战术呼号2ny的电台发出，由SS-Totenkopf Quartiermeister Ib电台于当日17:30接收，登记为1941年7月来报第172号，自2005年以来未被破译。2017年Alex Shovkoplyas破译了同日另一封未破电报Nr.173 SIPVX，但其密钥与当日通用密钥略有不同，未能用于MVUEH。MVUEH密钥与同日其他密钥完全不同，滚轮顺序为253而非512；明文与SIPVX几乎相同，仅长度差12字母（82对94），差异源于Bitte被错加密为Btte，且SIPVX重复了发报者签名Waschbusch。破译还发现密文转录有多处错误，Enigma左轮在第72字母处发生翻转。最引人注目的是，GPT–6 Astra完全自主完成破译；Carter Leffer只指示它尝试破译Crypto Cellar Research网站上的未破电报。它自行选定MVUEH，以重复地名ROSENOW ROSENOW为crib，开发Python和C++的Enigma模拟器与Bombe后完成破译。原文称仍在分析其日志。",
-   "key_points": [
-    "MVUEH为1941年7月10日德国陆军Enigma电报，由呼号2ny电台发出，Ib电台17:30接收并登记为Nr.172，自2005年以来未被破译。",
-    "MVUEH密钥与同日其他密钥不同，滚轮顺序253而非512；明文与Nr.173 SIPVX几乎相同，长度82对94，差异源于Bitte错成Btte及SIPVX重复发报者签名Waschbusch。",
-    "破译发现密文转录多处错误、Enigma左轮在第72字母处翻转；GPT–6 Astra完全自主选定MVUEH，以ROSENOW ROSENOW为crib，开发Enigma模拟器和Bombe完成破译，原文称仍在分析日志。"
-   ],
-   "topics": [
-    "eval",
-    "reasoning",
-    "coding-agent"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测"
-   ],
-   "horizon": "short",
-   "score": 51.2,
-   "status": "review",
-   "extra": {
-    "hn_points": 533,
-    "hn_comments": 354,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://cryptocellar.org/index.html",
-      "http://creativecommons.org/licenses/by-nc-sa/4.0/",
-      "https://cryptocellar.org/bgac/index.html"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "6cf30f044df65ecb",
-   "url": "https://github.com/jev-chat/jev-chat-jarvis",
-   "title": "jev-chat/jev-chat-jarvis — 装在手机上的对话副驾：在微信 / QQ / X / 飞书里读懂对方、给出候选回复、一键填入输入框，发不发由你。非侵入，只读屏幕，不 hook 不改包。",
-   "source": "GitHub Trending (AI)",
-   "tier": "B",
-   "published_at": "2026-09-21T11:12:53+00:00",
-   "summary_short": "手机上的对话副驾：在微信/QQ/X/飞书读懂对方、给候选回复",
-   "summary_long": "",
-   "key_points": [
-    "装在手机上的对话副驾",
-    "在微信 / QQ / X / 飞书里读懂对方",
-    "给出候选回复"
-   ],
-   "topics": [
-    "product"
+    "product",
+    "multi-agent",
+    "rag"
    ],
    "category": "产品与应用",
    "categories": [
-    "产品与应用",
-    "开源项目"
+    "产品与应用"
    ],
    "horizon": "short",
-   "score": 50.3,
+   "score": 50.1,
    "status": "review",
    "extra": {
-    "stars": 3703,
-    "language": "Kotlin",
-    "summary_mode": "brief"
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.ringg.ai/"
+     ]
+    },
+    "summary_mode": "full"
    }
   }
  ]
