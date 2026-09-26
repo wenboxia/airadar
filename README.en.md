@@ -145,6 +145,7 @@ flowchart LR
 No servers: fetching and scoring run in GitHub Actions, data is committed back to the repo, and the front end is a static site. The LLM has no web access; it only processes originals fetched by code.
 
 > **Why "workflow", not "agent"**
+>
 > Anthropic's *[Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)* distinguishes workflows, where the steps follow predefined code paths, from agents, where the model decides its own process and tools.
 > AIRadar's step order is fixed in [`pipeline/main.py`](pipeline/main.py); the model only scores, summarizes, classifies and self-checks — no tool calls, no loops. It is **prompt chaining + routing**.
 > That's deliberate: fixed steps can be evaluated one by one and degrade by rule. ([D49](docs/decisions.md#d49), Chinese)
@@ -163,13 +164,13 @@ No servers: fetching and scoring run in GitHub Actions, data is committed back t
 
 ## Evaluation
 
-| What | How | Current result | Script |
-|---|---|---|---|
-| Data integrity | Field and status checks on every run | 824 items, 0 violations (09-25) | [`run_eval.py`](evals/run_eval.py) |
-| Scoring and routing | 111-item golden set judged by the author, agreement computed per route | See table below | [`triage_prompt_eval.py`](evals/triage_prompt_eval.py) |
-| Classification | ① Same prompt, same 100 items, classified twice: primary-category agreement (noise floor)<br>② OpenAI / Anthropic's own feed tags as reference | Agreement 93% (V4.1 Flash)<br>Primary hit 88% (195 items sampled) | [`classify_stability.py`](tools/classify_stability.py) · [`feed_tag_eval.py`](evals/feed_tag_eval.py) |
-| Summary faithfulness | A different vendor's model (Kimi) as judge, 3 votes per item | Early sample: 2 of 8 unfaithful; in model selection V4 Pro 0/8, V4.1 Flash 1/9 | [`judge_hallucination.py`](evals/judge_hallucination.py) · [`summary_model_eval.py`](evals/summary_model_eval.py) |
-| Model selection | Six models paired on the same golden set: completion rate, accuracy, latency, cost | V4.1 Flash chosen: ties V4 Pro on classification, ~3× faster, misses 2 more in scoring | [`eval_report.md`](docs/eval_report.md) (Chinese) |
+| What | How | Current result |
+|---|---|---|
+| **Data integrity** | Field and status checks on every run ([run_eval.py](evals/run_eval.py)) | 824 items, 0 violations (09-25) |
+| **Scoring and routing** | 111-item golden set judged by the author, agreement computed per route ([triage_prompt_eval.py](evals/triage_prompt_eval.py)) | See table below |
+| **Classification** | ① Same prompt, same 100 items, classified twice: primary-category agreement as the noise floor ([classify_stability.py](tools/classify_stability.py))<br>② OpenAI / Anthropic's own feed tags as reference ([feed_tag_eval.py](evals/feed_tag_eval.py)) | Agreement 93% (V4.1 Flash)<br>Primary hit 88% (195 items sampled) |
+| **Summary faithfulness** | A different vendor's model (Kimi) as judge, 3 votes per item ([judge_hallucination.py](evals/judge_hallucination.py) · [summary_model_eval.py](evals/summary_model_eval.py)) | Early sample: 2 of 8 unfaithful; in model selection V4 Pro 0/8, V4.1 Flash 1/9 |
+| **Model selection** | Six models paired on the same golden set: completion rate, accuracy, latency, cost ([eval_report.md](docs/eval_report.md), Chinese) | V4.1 Flash chosen: ties V4 Pro on classification, ~3× faster, misses 2 more in scoring |
 
 **Golden set v2**: 111 human judgments (39 accepted). The system has three outputs, so the three routes are scored separately rather than with binary precision / recall:
 
