@@ -1,0 +1,54 @@
+<!doctype html>
+<!-- README 横幅的源文件，由 tools/readme_shots.py banner 渲染成 docs/images/banner.png。
+     用 HTML 而不是 SVG：GitHub 里 <img> 引用的 SVG 加载不了网页字体，中文会回退成读者本机的字体 -->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=IBM+Plex+Mono:wght@400;500&display=block" rel="stylesheet" />
+<style>
+  html, body { margin: 0; background: #0a0d0e; }
+  .card {
+    width: 1440px; height: 400px; box-sizing: border-box; position: relative; overflow: hidden;
+    border: 1px solid #232c30; background:
+      radial-gradient(circle at 78% 50%, rgba(95,179,196,.10), transparent 45%),
+      repeating-linear-gradient(0deg, transparent 0 39px, rgba(35,44,48,.35) 39px 40px),
+      repeating-linear-gradient(90deg, transparent 0 39px, rgba(35,44,48,.35) 39px 40px), #0a0d0e;
+    color: #eceae4; font-family: "PingFang SC", "Hiragino Sans GB", sans-serif;
+  }
+  .text { position: absolute; left: 96px; top: 78px; }
+  h1 { margin: 0; font: 400 118px/1 "Instrument Serif", Georgia, serif; letter-spacing: -1px; }
+  .zh { margin-top: 22px; font-size: 30px; letter-spacing: 1px; color: #eceae4; }
+  .en { margin-top: 10px; font: 400 17px/1.4 "IBM Plex Mono", monospace; color: #adb9bb; letter-spacing: .5px; }
+  .chain { margin-top: 34px; font: 400 15px/1 "IBM Plex Mono", monospace; color: #7a8a8d; letter-spacing: 1px; }
+  .chain b { color: #f0b429; font-weight: 500; }
+  svg { position: absolute; right: 70px; top: 20px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="text">
+    <h1>AIRadar</h1>
+    <div class="zh">每日定时运行的 AI 行业情报工作流</div>
+    <div class="en">A daily scheduled AI-industry intelligence workflow</div>
+    <div class="chain">fetch → dedupe → <b>triage</b> → summarize → classify → publish</div>
+  </div>
+  <svg width="360" height="360" viewBox="-180 -180 360 360">
+    <defs>
+      <linearGradient id="sweep" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#5fb3c4" stop-opacity="0" />
+        <stop offset="1" stop-color="#5fb3c4" stop-opacity=".35" />
+      </linearGradient>
+    </defs>
+    <g fill="none" stroke="#2d6b78">
+      <circle r="165" /><circle r="118" stroke-dasharray="2 5" /><circle r="70" stroke-dasharray="2 5" />
+      <path d="M-165 0H165M0-165V165" stroke-opacity=".5" />
+    </g>
+    <path d="M0 0 L165 0 A165 165 0 0 0 128 -104 Z" fill="url(#sweep)" />
+    <line x1="0" y1="0" x2="165" y2="0" stroke="#5fb3c4" stroke-width="1.5" />
+    <g fill="#f0b429"><circle cx="58" cy="-40" r="5" /><circle cx="96" cy="-22" r="4" /><circle cx="-60" cy="-88" r="4" /><circle cx="-102" cy="56" r="4.5" /></g>
+    <g fill="#7f9c6b"><circle cx="30" cy="-108" r="4" /><circle cx="110" cy="48" r="4" /><circle cx="-40" cy="96" r="4" /><circle cx="-128" cy="-20" r="3.5" /><circle cx="72" cy="112" r="3.5" /></g>
+    <circle r="3" fill="#5fb3c4" />
+  </svg>
+</div>
+</body>
+</html>
