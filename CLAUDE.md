@@ -74,6 +74,9 @@ cd web && npm run build                  # 构建（AIRADAR_BASE=/airadar/ 走 P
 python3 tools/backfill_categories.py --report   # 分类体系改版前后的对比表（默认看 D43 那次）
 python3 tools/rescore_review_backlog.py --report # 待审队列按新打分标准重算后的去向（D45）
 python3 tools/build_golden_v2.py build           # 黄金集 v2 首次写入（已完成，golden.jsonl 非空时会拒绝执行）
+python3 tools/run_stats.py --check-gh           # README「运行数据」表的唯一来源（只算定时运行，按主力模型分段）
+python3 tools/readme_chart.py                    # README 运行数据图（数据取自 run_stats）
+/tmp/pw/bin/python tools/readme_shots.py         # README 横幅与截图（Playwright 装在临时 venv，用系统 Chrome）
 ```
 
 部署：`daily.yml` 里 scan → build → deploy 串在一起。**不要指望 push 触发 pages.yml 来更新数据**——
