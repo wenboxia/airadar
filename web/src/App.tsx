@@ -363,6 +363,16 @@ export default function App() {
           {stats.data && (
             <> 最近更新 {new Date(stats.data.generated_at).toLocaleString('zh-CN')}</>
           )}
+          <br />
+          源码、评测与设计决策：{' '}
+          <a
+            href="https://github.com/wenboxia/airadar"
+            target="_blank"
+            rel="noreferrer"
+            className="text-scope transition-colors hover:text-signal"
+          >
+            github.com/wenboxia/airadar
+          </a>
         </div>
       </footer>
     </div>
