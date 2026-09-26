@@ -145,6 +145,7 @@ flowchart LR
 没有服务器：抓取和打分在 GitHub Actions 里跑，数据提交回仓库，前端是静态页。LLM 不联网，只处理代码抓回来的原文。
 
 > **为什么叫工作流，不叫 Agent**
+>
 > 按 Anthropic《[Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)》的分法，步骤由代码预先写好的是工作流，由模型自己决定流程和工具的才是 agent。
 > AIRadar 的步骤顺序写死在 [`pipeline/main.py`](pipeline/main.py)，模型只做打分、摘要、分类、自检，不调用工具，也没有循环，是**提示链 + 路由**。
 > 这是刻意的：固定步骤才能逐段评测、按规则降级。（[D49](docs/decisions.md#d49)）
@@ -163,13 +164,13 @@ flowchart LR
 
 ## 评测
 
-| 测什么 | 怎么测 | 当前结果 | 脚本 |
-|---|---|---|---|
-| 数据完整性 | 字段、状态合法性，每次运行必跑 | 824 条，0 违规（09-25） | [`run_eval.py`](evals/run_eval.py) |
-| 打分与路由 | 111 条本人判断的黄金集，三条路径分别算认同率 | 见下表 | [`triage_prompt_eval.py`](evals/triage_prompt_eval.py) |
-| 分类 | ① 同一 prompt 对同样 100 条连分两次，看主类一致率（噪声底）<br>② 拿 OpenAI / Anthropic 官网自带的标签当参照 | 一致率 93%（V4.1 Flash）<br>主类命中 88%（195 条样本） | [`classify_stability.py`](tools/classify_stability.py) · [`feed_tag_eval.py`](evals/feed_tag_eval.py) |
-| 摘要忠实度 | 另一家模型（Kimi）当裁判，每条判 3 次取多数 | 早期 8 条抽样判出 2 条不忠实；选型时 V4 Pro 0/8、V4.1 Flash 1/9 | [`judge_hallucination.py`](evals/judge_hallucination.py) · [`summary_model_eval.py`](evals/summary_model_eval.py) |
-| 模型选型 | 六个型号在同一批黄金集上配对对比：完成率、准确率、延迟、成本 | 主力选 V4.1 Flash：分类与 V4 Pro 打平、快约 3 倍，打分多漏 2 条 | [`eval_report.md`](docs/eval_report.md) |
+| 测什么 | 怎么测 | 当前结果 |
+|---|---|---|
+| **数据完整性** | 字段、状态合法性，每次运行必跑（[run_eval.py](evals/run_eval.py)） | 824 条，0 违规（09-25） |
+| **打分与路由** | 111 条本人判断的黄金集，三条路径分别算认同率（[triage_prompt_eval.py](evals/triage_prompt_eval.py)） | 见下表 |
+| **分类** | ① 同一 prompt 对同样 100 条连分两次，看主类一致率，当噪声底（[classify_stability.py](tools/classify_stability.py)）<br>② 拿 OpenAI / Anthropic 官网自带的标签当参照（[feed_tag_eval.py](evals/feed_tag_eval.py)） | 一致率 93%（V4.1 Flash）<br>主类命中 88%（195 条样本） |
+| **摘要忠实度** | 另一家模型（Kimi）当裁判，每条判 3 次取多数（[judge_hallucination.py](evals/judge_hallucination.py) · [summary_model_eval.py](evals/summary_model_eval.py)） | 早期 8 条抽样判出 2 条不忠实；选型时 V4 Pro 0/8、V4.1 Flash 1/9 |
+| **模型选型** | 六个型号在同一批黄金集上配对对比：完成率、准确率、延迟、成本（[eval_report.md](docs/eval_report.md)） | 主力选 V4.1 Flash：分类与 V4 Pro 打平、快约 3 倍，打分多漏 2 条 |
 
 **黄金集 v2**：111 条人工判断（收录 39 条）。系统是三路输出，所以三条路径分开评，不套二分类的精确率 / 召回率：
 
