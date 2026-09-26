@@ -1,6 +1,6 @@
-"""AIRadar AgentLoop 入口。
+"""AIRadar 流水线入口。
 
-手写 agent loop（不用 LangGraph，理由见 docs/decisions.md D1）：
+手写编排（不用 LangGraph，理由见 docs/decisions.md D1；按 Anthropic 的分法这是工作流不是 agent，见 D49）：
 线性 pipeline + 置信度条件路由，每个 stage 是一个带统一契约的 skill：
     run(items: list[Item], ctx: Context) -> list[Item]
 stage 内部各自兜底；这里做外层舱壁：单 stage 崩溃记录错误后跳过，不炸整个运行。
