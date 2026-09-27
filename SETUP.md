@@ -14,9 +14,7 @@
 
 ---
 
-## 日常两件事
-
-### 1. 处理审批 issue（约 3 分钟）
+## 日常：处理审批 issue（约 3 分钟）
 
 每周一（北京时间早上）定时任务开一张审批单，共 12 条，分三块：待审候选 7 条（系统拿不准的，按最新打分标准从高到低）、自动发布抽查 4 条（从最近两周自动发布的里随机抽）、旧池捞回 1 条（已出队的旧条目）。
 网站「待审」页显示的就是这张单子，只能看，勾选在 GitHub 上做。
@@ -30,27 +28,12 @@
 
 次日运行会自动回收决策、更新知识库、并根据通过率给出信源策略建议。
 
-### 2. 黄金集扩充（可选；v2 已于 09-17 标完 111 条）
-
-只增不删；要扩充时用下面的命令导出新一批，标错的用 `"deprecated": true` 标记。
-
-```bash
-cd ~/Desktop/airadar
-python3 evals/prelabel.py --n 25      # 按分数段分层导出新一批草稿
-python3 evals/review_golden.py        # 逐条标注
-```
-
-按 `y`（收录）/ `n`（筛掉）/ `s`（跳过）/ `q`（存盘退出）；收录的会问分类（v2 起黄金集不标分类，直接回车跳过）并让你写一句理由。
-**每条自动存盘，随时可停**，下次跑同一条命令接着来，已标过的自动跳过。
-
-标准只有一句：**三个月后你还愿意在知识库里搜到它吗？**
-
 ---
 
 ## 本地常用操作
 
 ```bash
-cd ~/Desktop/airadar
+cd airadar
 
 python3 -m pipeline.main --limit 5     # 本地试跑（每信源 5 条）
 python3 -m pipeline.sources_health     # 信源体检：找出停更/失效的源
@@ -73,7 +56,7 @@ Actions 的每日工作流里 scan → build → deploy 三个 job 依次跑完�
 注意：不能指望数据提交去触发 `pages.yml`——每日回写用的是 GITHUB_TOKEN，这类提交不会触发其他工作流（线上数据曾因此停在 08-29）。
 
 **想换模型或加信源？**
-- 换模型：先在黄金集上离线对比（`evals/triage_prompt_eval.py --model …`、`evals/summary_model_eval.py`，见 CLAUDE.md），再改 `.env`（本地）+ GitHub 仓库 Settings → Secrets and variables → Actions（云端）
+- 换模型：先在黄金集上离线对比（`evals/triage_prompt_eval.py --model …`、`evals/summary_model_eval.py`），再改 `.env`（本地）+ GitHub 仓库 Settings → Secrets and variables → Actions（云端）
 - 加信源：改 `pipeline/sources.yaml`。**按信源本身是什么直接定级**（官方 S / 专家 A / 媒体 B / 跨界 C），发不发交给模型打分；记得填 `expected_cadence_days` 给信源体检用。评估后决定不抓的写成 X 级并写明理由
 
 ---
