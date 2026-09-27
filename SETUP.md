@@ -74,7 +74,7 @@ Actions 的每日工作流里 scan → build → deploy 三个 job 依次跑完�
 
 **想换模型或加信源？**
 - 换模型：先在黄金集上离线对比（`evals/triage_prompt_eval.py --model …`、`evals/summary_model_eval.py`，见 CLAUDE.md），再改 `.env`（本地）+ GitHub 仓库 Settings → Secrets and variables → Actions（云端）
-- 加信源：改 `pipeline/sources.yaml`。**按信源本身是什么直接定级**（官方 S / 专家 A / 媒体 B / 跨界 C），发不发交给模型打分；记得填 `expected_cadence_days` 给信源体检用。评估后决定不抓的写成 X 级并写明理由（D38、D40）
+- 加信源：改 `pipeline/sources.yaml`。**按信源本身是什么直接定级**（官方 S / 专家 A / 媒体 B / 跨界 C），发不发交给模型打分；记得填 `expected_cadence_days` 给信源体检用。评估后决定不抓的写成 X 级并写明理由
 
 ---
 

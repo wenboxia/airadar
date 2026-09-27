@@ -12,13 +12,13 @@ from ..models import Context
 MANIFEST = {
     "name": "classify", "version": "0.3.1",
     "input": "list[Item]", "output": "list[Item]（含 category/categories/topics/horizon）",
-    "eval_cases": "evals/feed_tag_eval.py（官网自带标签）· tools/classify_stability.py（重跑一致率）",
+    "eval_cases": "evals/feed_tag_eval.py（官网自带标签）· evals/classify_stability.py（重跑一致率）",
 }
 
 # 2026-09-17 改为平铺 8 类（D43），取代 D39 的 13 类。
 # 旧体系把两种问题塞在一张表里：「这是什么东西」（论文、开源项目）和「讲的是什么」（Agent、安全），
 # 于是「Agent 工程 + 论文」共现 78 次，「工程实践」重分一次有 52% 会变。
-# 这次按我的决定：模型发布与训练合并为「模型」；两个安全类合并为「安全」——
+# 这次的决定：模型发布与训练合并为「模型」；两个安全类合并为「安全」——
 # 调研的 9 家资讯产品没有一家拆成两个，OpenAI 虽拆了，Security 文章 31% 同时挂 Safety；
 # 「开源项目」「研究论文」保留，但由链接判定，不让模型猜。
 # 旧分类快照：categories_v1（D39 之前）、categories_v2（本次改版之前）。

@@ -10,7 +10,7 @@
 """
 import json
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from ..config import ROOT
 from ..models import Context
@@ -50,11 +50,16 @@ def _source_registry() -> dict:
     import yaml
     with open(os.path.join(ROOT, "pipeline", "sources.yaml"), encoding="utf-8") as f:
         sources = yaml.safe_load(f)["sources"]
-    by_tier = {}
+    by_tier, gates = {}, []
     for s in sources:
+        # 论文闸门没有自己的订阅源，只从其他信源正文里挑出被提到的论文——它是闸门，不算信源
+        if s.get("type") == "arxiv_mentions":
+            gates.append(s["name"])
+            continue
         by_tier.setdefault(s["tier"], []).append(s["name"])
     # total 只数在抓的；X 级是「评估过、决定不抓」，名单照样导出供机制页展示
-    return {"total": sum(1 for s in sources if s["tier"] != "X"), "by_tier": by_tier}
+    total = sum(len(v) for t, v in by_tier.items() if t != "X")
+    return {"total": total, "by_tier": by_tier, "gates": gates}
 
 
 def _archive_provenance(db) -> dict:
@@ -78,6 +83,7 @@ def _archive_provenance(db) -> dict:
 def write_stats(ctx: Context):
     """单独抽出来是因为要被调用两次：publish 阶段写一次（保证有文件），
     main.py 在 save_run 之后再写一次——否则 stats.json 永远少记当次运行。"""
+    runs = ctx.db.all_runs()
     _dump("stats.json", {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "totals": ctx.db.counts(),
@@ -86,8 +92,14 @@ def write_stats(ctx: Context):
         # 筛选按钮的顺序跟类目表走，不按字母排——前端不再各抄一份类目表
         "categories": CATEGORIES,
         "runs": [{"run_id": r["run_id"], "started_at": r["started_at"],
-                  "stats": r["stats"]} for r in ctx.db.all_runs()[:30]],
+                  "stats": r["stats"]} for r in runs[:30]],
+        # 刊头的「已运行 N 天」：runs 只留最近 30 条给机制页画图，拿它的长度当运行次数会永远卡在 30
+        "run_days": len({_bj_date(r["started_at"]) for r in runs}),
     })
+
+
+def _bj_date(iso: str) -> str:
+    return (datetime.fromisoformat(iso.replace("Z", "+00:00")) + timedelta(hours=8)).strftime("%Y-%m-%d")
 
 
 def run(items: list, ctx: Context) -> list:
@@ -123,7 +135,7 @@ def run(items: list, ctx: Context) -> list:
         "items": [_item_view(d) for d in pending],
     })
 
-    # 知识库：全部长期留存的内容，不受 7 天窗口限制（我明确要的"长期沉淀"入口）
+    # 知识库：全部长期留存的内容，不受 7 天窗口限制（"长期沉淀"的入口）
     _dump("archive.json", {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "items": [_item_view(d) for d in ctx.db.archive_items()],

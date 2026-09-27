@@ -14,7 +14,7 @@ on:
         type: boolean
         default: false
 
-# 需要写权限把数据 commit 回仓库 / 开审批 issue（零服务器架构，见 docs/decisions.md D3）
+# 需要写权限把数据 commit 回仓库 / 开审批 issue（零服务器架构：数据就存在仓库里）
 # pages / id-token 给同一工作流里的部署 job 用（见文件末尾的说明）
 permissions:
   contents: write
@@ -81,20 +81,19 @@ jobs:
         run: |
           git config user.name  "airadar-bot"
           git config user.email "airadar-bot@users.noreply.github.com"
-          git add data/ evals/results/
+          # 只回写 data/：评测结果文件只在开发机保留，不进仓库
+          git add data/
           if git diff --staged --quiet; then
             echo "本次无数据变更，跳过回写"; exit 0
           fi
           mkdir -p /tmp/airadar-out
           cp -r data /tmp/airadar-out/
-          cp -r evals/results /tmp/airadar-out/
           for attempt in 1 2 3; do
             git fetch origin main
             git reset --hard origin/main
-            rm -rf data evals/results
+            rm -rf data
             cp -r /tmp/airadar-out/data data
-            cp -r /tmp/airadar-out/results evals/results
-            git add data/ evals/results/
+            git add data/
             git diff --staged --quiet && { echo "与远端一致，无需提交"; exit 0; }
             git commit -m "扫描 $(date -u +%Y-%m-%d)"
             if git push; then echo "回写成功（第 $attempt 次尝试）"; exit 0; fi

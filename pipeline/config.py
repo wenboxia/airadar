@@ -69,7 +69,7 @@ class Config:
     hallucination_check: bool = True  # 发布级条目做摘要自检
 
     # 关注方向（triage 打分里的**举例**，不是白名单——prompt 里已写明这一点）。
-    # 以前这是一张白名单，黄金集里 3 条我会收的具身智能内容因此被压到 51–59 分。
+    # 以前这是一张白名单，黄金集里 3 条人工判定该收的具身智能内容因此被压到 51–59 分。
     focus: str = ("Agent 工程（agent loop/tool use/memory/context/harness/MCP/multi-agent/评测）、"
                   "大模型进展（新模型发布/后训练/推理能力）、"
                   "世界模型与具身智能（机器人、空间智能、3D 生成与重建）、"

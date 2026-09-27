@@ -4,7 +4,7 @@ import type { Stats } from '../types'
  *  "编辑部 × 仪器"的张力就是这个产品的定位——它做的是资深编辑的活，用的是机器的方式。 */
 export function Masthead({ stats, date }: { stats: Stats | null; date?: string }) {
   const totals = stats?.totals ?? {}
-  const runs = stats?.runs?.length ?? 0
+  const days = stats?.run_days ?? 0
   const all = Object.values(totals).reduce((a, b) => a + b, 0)
   const kept = totals.published ?? 0
   const rate = all ? Math.round((kept / all) * 100) : 0
@@ -18,7 +18,7 @@ export function Masthead({ stats, date }: { stats: Stats | null; date?: string }
       />
 
       <div className="relative mx-auto max-w-6xl px-6 py-8 lg:px-10">
-        {/* 回仓库的入口：访客从网站进来，要一步就能看到源码、评测和设计决策 */}
+        {/* 回仓库的入口：从网站进来的人一步就能看到源码和评测 */}
         <a
           href="https://github.com/wenboxia/airadar"
           target="_blank"
@@ -55,8 +55,8 @@ export function Masthead({ stats, date }: { stats: Stats | null; date?: string }
             {[
               { k: '已收录', v: kept, unit: '条' },
               { k: '通过率', v: rate, unit: '%' },
-              { k: '运行', v: runs, unit: '次' },
-            ].map((m) => (
+              { k: '已运行', v: days, unit: '天' },
+            ].filter((m) => m.k !== '已运行' || days > 0).map((m) => (
               <div key={m.k}>
                 <dt className="font-mono text-[9px] tracking-[0.2em] text-ink-faint uppercase">
                   {m.k}

@@ -40,7 +40,7 @@ def _run(llm_out, url="https://example.com/a", llm_ok=True):
 
 class TestTaxonomy(unittest.TestCase):
     def test_flat_eight_categories(self):
-        """我定的平铺 8 类：模型与安全各合成一个，开源 / 论文保留。"""
+        """人工定的平铺 8 类：模型与安全各合成一个，开源 / 论文保留。"""
         self.assertEqual(classify.CATEGORIES, [
             "模型", "Agent 与开发", "评测", "安全", "产品与应用", "行业动态", "开源项目", "研究论文"])
         self.assertEqual(len(set(classify.CATEGORIES)), 8)
@@ -73,6 +73,7 @@ class TestTaxonomy(unittest.TestCase):
         self.assertEqual(len(problems), 1)
         self.assertIn("old", problems[0])
 
+    @unittest.skipUnless((ROOT / "evals" / "review_golden.py").exists(), "标注工具只在开发机上")
     def test_labeling_tool_shares_the_same_list(self):
         """标注工具必须和 pipeline 用同一份类目表，不许各抄一份。"""
         spec = importlib.util.spec_from_file_location(

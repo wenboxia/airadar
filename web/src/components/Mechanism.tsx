@@ -1,7 +1,7 @@
 import type { Stats } from '../types'
 
 /** 「机制」页 —— 产品的自我说明书。
- *  访客打开这一页就能看懂整个系统怎么运转、数据从哪来、质量怎么保证。 */
+ *  打开这一页就能看懂整个系统怎么运转、数据从哪来、质量怎么保证。 */
 
 const PIPELINE = [
   { n: 'fetch', zh: '抓取', d: '分层信源注册表。LLM 不联网，联网由确定性代码完成——信源可控、原文可存、幻觉可查。' },
@@ -126,6 +126,12 @@ export function Mechanism({ stats }: { stats: Stats | null }) {
             )
           })}
         </div>
+        {reg?.gates?.length ? (
+          <p className="mt-3 border-l-2 border-rule pl-3 text-[12.5px] leading-relaxed text-ink-dim">
+            另有<span className="text-ink">论文闸门</span>（{reg.gates.join(' · ')}）：它没有自己的订阅源，
+            只抓上面这些信源正文里提到的 arXiv 论文——被 2 个以上信源提到、或是两周内的实验室技术报告才放行，按 A 级打分。
+          </p>
+        ) : null}
         <p className="mt-4 text-[13.5px] leading-[1.8] text-ink-dim">
           <span className="text-signal">载体无罪，看运营主体。</span>
           微信公众号不是原罪——字节跳动技术团队的公众号与其官网博客权威性等价。

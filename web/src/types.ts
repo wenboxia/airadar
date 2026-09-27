@@ -55,7 +55,7 @@ export interface Stats {
   generated_at: string
   totals: Record<string, number>
   /** 由 pipeline 从 sources.yaml 导出——展示层不硬编码信源，避免与实现脱节 */
-  sources?: { total: number; by_tier: Record<string, string[]> }
+  sources?: { total: number; by_tier: Record<string, string[]>; gates?: string[] }
   /** classify.CATEGORIES 的顺序，筛选按钮照此排列 */
   categories?: string[]
   /** 知识库里有多少条真被人看过。三种背书分开报，合并会夸大人工参与度 */
@@ -67,6 +67,8 @@ export interface Stats {
     auto_only: number
   }
   runs: RunStat[]
+  /** 有运行记录的天数（北京时间）。runs 只保留最近 30 条，不能拿它的长度当运行次数 */
+  run_days?: number
 }
 
 export interface TrendTopic {

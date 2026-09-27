@@ -4,7 +4,7 @@
 每天随定时任务跑；结果存 evals/results/{ts}.json，跨版本可对比（回归测试思想）。
 它只评**库里已经落地**的判断（auto_status）——改 prompt / 换模型当天跑它，数字不会变。
 改动上线前的对照放在独立脚本里：打分 triage_prompt_eval.py，分类 feed_tag_eval.py +
-tools/classify_stability.py，摘要 judge_hallucination.py / summary_model_eval.py，成本 model_cost_latency.py。
+evals/classify_stability.py，摘要 judge_hallucination.py / summary_model_eval.py，成本 model_cost_latency.py。
 """
 import json
 import os
