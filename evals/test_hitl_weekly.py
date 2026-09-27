@@ -253,6 +253,8 @@ class TestQueueRules(_Base):
         self.assertEqual(self.status("c3")["status"], "review")
         self.assertIn("c3", [r["id"] for r, _ in hitl._excluded(self.db)])
 
+    @unittest.skipUnless((pathlib.Path(__file__).parent.parent / "tools" / "rescore_review_backlog.py").exists(),
+                         "一次性重算工具只在开发机上")
     def test_rescore_version_string_matches_the_writer(self):
         """队列读的版本号必须和重打分工具写的是同一个常量。
         第一次就写差了：一处 "0.3.0"、一处 "triage-0.3.0"，于是 115 条不达标的照常排队，

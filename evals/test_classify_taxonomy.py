@@ -163,6 +163,7 @@ class TestCategorySnapshots(unittest.TestCase):
         self.assertIsNone(row["categories_v1"], "迁移不该自己填值，由回填脚本负责")
         self.assertIsNone(row["categories_v2"])
 
+    @unittest.skipUnless((ROOT / "tools" / "backfill_categories.py").exists(), "一次性回填工具只在开发机上")
     def test_backfill_never_writes_judgments(self):
         """回填只改分类。碰 status 是改人的判断，碰 auto_status 是改系统原判（D28）。"""
         src = (ROOT / "tools" / "backfill_categories.py").read_text(encoding="utf-8")
