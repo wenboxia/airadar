@@ -9,7 +9,7 @@
 |---|---|
 | 线上地址 | https://wenboxia.github.io/airadar/ |
 | 仓库 | https://github.com/wenboxia/airadar |
-| 自动运行 | 每天北京时间 **05:00**（GitHub Actions；避开 DeepSeek 峰时） |
+| 自动运行 | 每天北京时间 **05:00** 定时（GitHub Actions；定时任务常被延后，近期实际多在 07:00–09:00 开跑，仍在 DeepSeek 峰时之前） |
 | 部署方式 | **GitHub Pages**：每日工作流 `daily.yml` 跑完数据后接着部署；`pages.yml` 只在人手推送前端代码或手动触发时部署 |
 
 ---
@@ -37,7 +37,7 @@ cd airadar
 
 python3 -m pipeline.main --limit 5     # 本地试跑（每信源 5 条）
 python3 -m pipeline.sources_health     # 信源体检：找出停更/失效的源
-python3 evals/run_eval.py              # 跑评测看当前准确率
+python3 evals/run_eval.py              # 规则校验；有黄金集时再算三路认同率（黄金集不在公开仓库里）
 python3 -m pipeline.hitl review        # 本地审批（不想开 GitHub 时）
 cd web && npm run dev                  # 本地看前端
 ```
@@ -56,7 +56,7 @@ Actions 的每日工作流里 scan → build → deploy 三个 job 依次跑完�
 注意：不能指望数据提交去触发 `pages.yml`——每日回写用的是 GITHUB_TOKEN，这类提交不会触发其他工作流（线上数据曾因此停在 08-29）。
 
 **想换模型或加信源？**
-- 换模型：先在黄金集上离线对比（`evals/triage_prompt_eval.py --model …`、`evals/summary_model_eval.py`），再改 `.env`（本地）+ GitHub 仓库 Settings → Secrets and variables → Actions（云端）
+- 换模型：先在黄金集上离线对比（`evals/triage_prompt_eval.py --model …`、`evals/summary_model_eval.py`；黄金集不在公开仓库里，没有它时 `triage_prompt_eval.py` 跑不了），再改 `.env`（本地）+ GitHub 仓库 Settings → Secrets and variables → Actions（云端）
 - 加信源：改 `pipeline/sources.yaml`。**按信源本身是什么直接定级**（官方 S / 专家 A / 媒体 B / 跨界 C），发不发交给模型打分；记得填 `expected_cadence_days` 给信源体检用。评估后决定不抓的写成 X 级并写明理由
 
 ---
