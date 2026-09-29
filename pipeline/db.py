@@ -91,7 +91,16 @@ class DB:
             print(f"  [migrate] 已从审批记录反推 {len(touched)} 条的原始判断（auto_status=review）")
 
     def existing_ids(self) -> set:
-        return {r["id"] for r in self.conn.execute("SELECT id FROM items")}
+        """库里已有条目的 id，外加按**当前**规范化规则从 URL 重算的 id。
+        旧条目存的 id 是按当时的规则算的；规范化规则变了以后（比如 arXiv 去掉版本号），
+        只比存下来的 id 就认不出同一篇。已有的 id 不改写（数据不手改），只在比对时两套一起用。"""
+        from .stages.dedupe import item_id
+        ids = set()
+        for r in self.conn.execute("SELECT id, url FROM items"):
+            ids.add(r["id"])
+            if r["url"]:
+                ids.add(item_id(r["url"]))
+        return ids
 
     def upsert_items(self, items: list, run_id: str):
         for it in items:

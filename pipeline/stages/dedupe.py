@@ -1,16 +1,17 @@
 """Stage 2: dedupe —— 去重。
 
-两层：URL 规范化（去 utm 等跟踪参数）+ 批内标题相似度（同一事件多信源报道时保高 tier 的）。
+两层：URL 规范化（去 utm 等跟踪参数；arXiv 统一成不带版本号的 abs 链接）+ 批内标题相似度（同一事件多信源报道时保高 tier 的）。
 同时过滤掉知识库里已存在的条目（跨天去重）。
 """
 import hashlib
+import re
 from difflib import SequenceMatcher
 from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
 from ..models import Context
 
 MANIFEST = {
-    "name": "dedupe", "version": "0.1.0",
+    "name": "dedupe", "version": "0.2.0",
     "input": "list[Item]", "output": "list[Item]（去重后，已赋 id）",
     "eval_cases": "evals/golden_set/",
 }
@@ -19,8 +20,18 @@ _TRACK_PREFIXES = ("utm_", "ref", "fbclid", "gclid", "source")
 _TIER_ORDER = {"S": 0, "A": 1, "B": 2, "C": 3, "D": 4, "X": 5}
 
 
+# 同一篇论文有好几种写法：abs / pdf / html、带不带 v1 这类版本号、http / https、export 子域名。
+# 论文闸门从 arXiv 接口拿到的链接带版本号，别处链的常常不带——DSec 就因此被发了两次
+_ARXIV_HOSTS = ("arxiv.org", "www.arxiv.org", "export.arxiv.org")
+_ARXIV_PATH = re.compile(r"^/(?:abs|pdf|html)/(\d{4}\.\d{4,5})(?:v\d+)?(?:\.pdf)?/?$", re.I)
+
+
 def canonical_url(url: str) -> str:
     p = urlparse(url.strip())
+    if p.netloc.lower() in _ARXIV_HOSTS:
+        m = _ARXIV_PATH.match(p.path)
+        if m:
+            return f"https://arxiv.org/abs/{m.group(1)}"
     query = [(k, v) for k, v in parse_qsl(p.query)
              if not any(k.lower().startswith(t) for t in _TRACK_PREFIXES)]
     return urlunparse((p.scheme.lower(), p.netloc.lower(),
