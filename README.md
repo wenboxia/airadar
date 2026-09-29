@@ -126,12 +126,3 @@ cd web && npm install && npm run dev
 ```
 
 接入模型、部署到自己的仓库见 [SETUP.md](SETUP.md)。
-
-## 相关项目
-
-- **[两仪 · Liangyi](https://github.com/wenboxia/liangyi)**：One idea, two opposing expert views, one synthesized decision. A Claude Code workflow for adversarial product development — inspired by the I Ching.
-- **[VoyageGuard](https://github.com/wenboxia/VoyageGuard)**：AI Agent 驱动的出行气象风险决策工具，专注飞机与船只场景，LLM 推理 + 规则引擎安全网双重保障。
-
-## License
-
-[MIT](LICENSE) © 2026 wenboxia

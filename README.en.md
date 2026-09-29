@@ -126,12 +126,3 @@ cd web && npm install && npm run dev
 ```
 
 Connecting models and deploying to your own repo: [SETUP.md](SETUP.md) (Chinese).
-
-## Related projects
-
-- **[Liangyi](https://github.com/wenboxia/liangyi)**: One idea, two opposing expert views, one synthesized decision. A Claude Code workflow for adversarial product development — inspired by the I Ching.
-- **[VoyageGuard](https://github.com/wenboxia/VoyageGuard)**: an AI-agent-driven travel weather-risk decision tool for flights and ships, with LLM reasoning plus a rule-engine safety net.
-
-## License
-
-[MIT](LICENSE) © 2026 wenboxia
