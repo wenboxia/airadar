@@ -1,0 +1,112 @@
+{
+ "run_id": "20260930-001624",
+ "started": "2026-09-30T00:16:24+00:00",
+ "finished": "2026-09-30T00:20:26+00:00",
+ "mode": "LLM 模式 | 降级链 primary(deepseek-flash) → fallback(glm-5.3)",
+ "stats": {
+  "fetch": {
+   "total": 42,
+   "per_source": {
+    "Anthropic News": 0,
+    "Google DeepMind Blog": 0,
+    "GitHub Blog (AI)": 3,
+    "MCP Official Blog": 0,
+    "Lilian Weng": 0,
+    "Andrej Karpathy": 0,
+    "Hugging Face Blog": 3,
+    "Simon Willison": 5,
+    "GitHub Trending (AI)": "failed: HTTPError",
+    "Eugene Yan": 0,
+    "OpenAI News": 6,
+    "Interconnects": 0,
+    "Sebastian Raschka": 1,
+    "Latent Space": 3,
+    "Dwarkesh Podcast": 0,
+    "Import AI": 1,
+    "AI Snake Oil": 1,
+    "Ethan Mollick": 0,
+    "Hacker News (AI 高分帖)": 12,
+    "量子位": 7
+   }
+  },
+  "timing": {
+   "fetch": 38.4,
+   "dedupe": 0.0,
+   "triage": 21.8,
+   "summarize": 113.9,
+   "classify": 68.5,
+   "publish": 0.1
+  },
+  "dedupe": {
+   "kept": 24,
+   "dropped_already_in_db": 16,
+   "dropped_dup_url": 2,
+   "dropped_dup_title": 0
+  },
+  "llm_calls": 65,
+  "llm_tokens": 138364,
+  "llm_prompt_tokens": 80551,
+  "llm_completion_tokens": 57813,
+  "calls_by_provider": {
+   "primary": 63,
+   "fallback": 2
+  },
+  "triage": {
+   "published": 6,
+   "review": 13,
+   "discarded": 5,
+   "llm_scored": 24,
+   "degraded": 0,
+   "capped": 0,
+   "by_kind": {
+    "一手发布": 7,
+    "论文": 2,
+    "二手转述": 6,
+    "从业者判断": 2,
+    "开源项目": 2,
+    "营销通稿": 2,
+    "公司动态": 3
+   }
+  },
+  "summarize": {
+   "summarized": 17,
+   "brief_mode": 0,
+   "hallucination_flagged": 0,
+   "degraded_title_only": 2
+  },
+  "classify": {
+   "classified": 18,
+   "degraded_heuristic": 1
+  },
+  "publish": {
+   "published": 6,
+   "pending": 13,
+   "db_totals": {
+    "discarded": 187,
+    "published": 334,
+    "review": 375
+   }
+  },
+  "budget": {
+   "tokens_used": 138364,
+   "calls_made": 65,
+   "token_limit": 400000,
+   "call_limit": 260
+  },
+  "memory": {
+   "topics": 39,
+   "span_days": 615,
+   "lifecycle_ready": true
+  }
+ },
+ "errors": [
+  {
+   "where": "fetch",
+   "error": "GitHub Trending (AI): 403 Client Error: rate limit exceeded for url: https://api.github.com/search/repositories?q=topic:llm+created:%3E2026-08-31&sort=stars&order=desc&per_page=5"
+  },
+  {
+   "where": "fetch",
+   "error": "arxiv_mentions: HTTPSConnectionPool(host='export.arxiv.org', port=443): Read timed out. (read timeout=30)"
+  }
+ ]
+}

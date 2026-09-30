@@ -1,6 +1,197 @@
 {
- "generated_at": "2026-09-29T00:57:43+00:00",
+ "generated_at": "2026-09-30T00:20:26+00:00",
  "items": [
+  {
+   "id": "493cf3fce1b87919",
+   "url": "https://huggingface.co/blog/nvidia/kumo-tabular",
+   "title": "NVIDIA Kumo Tabular Sets a New Accuracy-Efficiency Frontier for Tabular Prediction",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-09-29T15:30:38+00:00",
+   "summary_short": "NVIDIA发布Kumo Tabular表格基础模型，免训练调参，四大基准排名第一",
+   "summary_long": "NVIDIA Kumo Tabular 是 NVIDIA Kumo Structured 模型集合中的表格数据开源基础模型，已在 Hugging Face 发布。给定一张带标签行的表格，它能在单次前向传播中预测新行的标签，分类与回归皆可，无需训练、调参或特征工程。模型仅用人工数据预训练，提供 28M 至 215M 三档参数规模，通过开源库运行，以 OpenMDW-1.1 许可证发布、可商用，并在 TabArena、BeyondArena、TALENT、ScoringBench 四个基准上排名第一。原文指出，表格数据是企业机器学习的骨干，客户记录、交易、传感器日志、理赔与订单都以表格存在；过去二十年主流做法是梯度提升树，但每个新问题仍要收集标签、做特征工程、搜索超参数、验证与部署，模型对表格没有通用理解，每个任务都从零学起。原文以语言模型的上下文学习作类比：预训练模型在提示中看几个例子即可解题，无需更新权重，表格同样适用。架构上，它是围绕表格结构构建的 Transformer，采用 TabICL 与 TabPFN 提出的列注意力、行注意力与上下文注意力。",
+   "key_points": [
+    "单次前向传播即可预测新行标签，分类与回归均支持，无需训练、调参或特征工程",
+    "仅用人工数据预训练，提供 28M–215M 三种参数规模，通过开源库运行，以 OpenMDW-1.1 许可证发布并可商用，代码与权重已公开",
+    "在 TabArena、BeyondArena、TALENT、ScoringBench 四个基准上排名第一；模型采用 TabICL 与 TabPFN 的列注意力、行注意力与上下文注意力，缺失值无需插补、被特殊处理"
+   ],
+   "topics": [
+    "open-source",
+    "tabular-data",
+    "foundation-model"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://huggingface.co/nvidia/Kumo-Tabular",
+      "https://github.com/NVIDIA/structured-data-models",
+      "https://openmdw.ai/license/1-1/",
+      "https://github.com/autogluon/tabarena",
+      "https://github.com/LAMDA-Tabular/TALENT",
+      "https://github.com/jonaslandsgesell/ScoringBench",
+      "https://github.com/soda-inria/tabicl",
+      "https://github.com/PriorLabs/tabpfn",
+      "https://cdn-uploads.huggingface.co/production/uploads/684040a5de1ad7f4fcec9508/TkT695UAWJnUIyEydIYRv.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/684040a5de1ad7f4fcec9508/ipJNJTNO5ZH2zviIdR8eo.png",
+      "https://github.com/limix-ldm-ai/LimiX",
+      "https://cdn-uploads.huggingface.co/production/uploads/684040a5de1ad7f4fcec9508/CpOXm3g9du6Uw3zQDh2QC.png",
+      "https://github.com/NVIDIA/structured-data-models/issues",
+      "https://dholzmueller.github.io/",
+      "https://kvignesh1420.github.io/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "984223f109f3360b",
+   "url": "https://huggingface.co/blog/MultiverseComputingCAI/getting-the-source-right-not-just-the-fact-source",
+   "title": "Getting the Source Right, Not Just the Fact: Source-Aware Verification for MCP Agents",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-09-29T13:07:00+00:00",
+   "summary_short": "ProvenanceGuard：为MCP智能体做来源感知核查，专抓说法为真却归错来源的问题",
+   "summary_long": "工具调用型LLM智能体通过MCP可调用搜索、查看结构化病历或账户记录、查询数据库、拉取元数据，再织成一个答案，这让事实性核查更微妙。现有核查系统（RAGAS的faithfulness、MiniCheck、AlignScore、SummaC）通常在证据汇总后判断说法是否被支撑，却不指明是哪一路MCP输出支撑了它，也不管那是否就是答案所称的来源。论文ProvenanceGuard针对的正是“跨来源混同”：说法在证据池某处为真，却被归给错误来源。例如客服智能体称“根据账户记录，该方案含30天退款期”，退款期或许属实却出自政策文档；汇总看有支撑，分开看归属错误。原文称，数据敏感场景中错误归属可与错误事实同样有害。ProvenanceGuard是叠加在黑盒MCP智能体之上的生成后验证层，读取含工具输出与来源ID的MCP轨迹、无需重训，依次拆分说法、为每条找最相关来源、核查支撑、比对该来源与答案所称或暗示的来源，最后给出逐条来源判定与答案级允许/拦截决定；被拦截答案可经RARR式修复后重新验证。实验用本地模型离线受控处理轨迹。",
+   "key_points": [
+    "MCP智能体把搜索工具、结构化记录、数据库等多路来源织进一个答案，而现有faithfulness类核查只看汇总后的证据，无法判断是哪一路来源支撑了某条说法。",
+    "论文提出ProvenanceGuard，针对“跨来源混同”失败模式：说法在证据中为真，却被归给错误来源，如把政策文档中的退款期说成账户记录，或把患者病史细节说成医学文献结论。",
+    "ProvenanceGuard是生成后验证层，读取含工具输出与来源ID的MCP轨迹、无需重训智能体，经五步流程输出逐条来源判定与答案级允许/拦截决定，被拦截答案可经RARR式修复后重新验证。"
+   ],
+   "topics": [
+    "mcp",
+    "hallucination",
+    "tool-use"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 82.5,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2210.08726",
+      "2606.18037"
+     ],
+     "links": [
+      "https://modelcontextprotocol.io",
+      "https://github.com/explodinggradients/ragas",
+      "https://arxiv.org/abs/2606.18037",
+      "https://cdn-uploads.huggingface.co/production/uploads/668e37fd9c9aa124a3c867e8/svnUpzhFgTpLqOF_bRDHl.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/668e37fd9c9aa124a3c867e8/nDchWzRhBSmscjaa8w5G5.png",
+      "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+      "https://huggingface.co/MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli",
+      "https://arxiv.org/abs/2210.08726",
+      "https://github.com/NVIDIA/nvflow/pull/9",
+      "https://github.com/aalvsz/provenanceguard/blob/main/poster/ProvenanceGuard_Agentic_AI_Summit_2026_Berkeley.pdf",
+      "https://huggingface.co/papers/2606.18037"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "dd66acaed2a04b44",
+   "url": "https://openai.com/index/introducing-gpt-6-1-sol",
+   "title": "Introducing GPT-6.1 Sol",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-29T10:00:00+00:00",
+   "summary_short": "GPT-6.1 Sol 发布：以 Astra 五分之一价格接近其智能水平",
+   "summary_long": "GPT-6.1 Sol 是 GPT-6 Sol 的升级版，在智能体编程、计算机使用和专业工作方面接近 GPT-6 Astra 的智能水平，标准输入输出 token 价格仅为 Astra 的五分之一。缓存输入每百万 token 0.10 美元，比标准输入价格低 95%，比 GPT-6 Sol 的缓存输入价格低 50%，便于开发者构建跨请求复用上下文的智能体。编码方面，在 DeepSWE v1.1 中以约五分之一成本匹配 Astra，并在更低推理投入与成本下比 GPT-6 Sol 最佳成绩高 6.4 个百分点。GDP.pdf 上得分高于含 fallback 的 Opus 5.5，每任务成本不到一半，并以约五分之一成本接近 Astra。AutomationBench 中等推理投入下比 Opus 5.5 高 2.2 个百分点、成本约三分之一，同设置下比 GPT-6 Sol 高 4.8 个百分点。OSWorld 2.0 离线集最大推理投入下比 GPT-6 Sol 高 7 个百分点、成本不到一半，距 Astra 2.1 个百分点、成本约七分之一。Terminal-Bench Science 0.1 上最大推理投入下分数翻倍以上，每任务平均 5.47 美元，低于 Opus 5.5 的 23.21 美元和 Astra 的 23.80 美元。",
+   "key_points": [
+    "GPT-6.1 Sol 在智能体编程、计算机使用与专业工作上接近 GPT-6 Astra，价格仅为 Astra 标准输入输出 token 价的五分之一",
+    "缓存输入每百万 token 0.10 美元，比标准输入价格低 95%，比 GPT-6 Sol 缓存输入价格低 50%",
+    "DeepSWE v1.1 中以约五分之一成本匹配 Astra，并在更低推理投入与成本下比 GPT-6 Sol 最佳分数高 6.4 个百分点"
+   ],
+   "topics": [
+    "coding-agent",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 81.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Product"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://deepswe.datacurve.ai/",
+      "https://surgehq.ai/benchmarks/gdp-pdf",
+      "https://zapier.com/benchmarks",
+      "https://osworld-v2.xlang.ai/",
+      "https://www.terminal-bench-science.ai/",
+      "https://deploymentsafety.openai.com/gpt-6-1-sol",
+      "https://openai.com/index/devday-2026-recap"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "884977ecb8004cb3",
+   "url": "https://openai.com/index/introducing-dots",
+   "title": "Introducing dots",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-29T00:00:00+00:00",
+   "summary_short": "dots 发布：由 GPT-6 Astra 驱动的常驻智能体，可 24/7 自主完成工作",
+   "summary_long": "原文介绍 dots：一种常驻智能体，由 GPT-6 Astra 驱动，拥有自己的云计算机，能随时间从反馈中学习，并 24/7 朝用户目标推进；通过插件生态可连接 4,000 多个应用，可从 ChatGPT、Slack 或 Teams 访问。合作越久，dot 越了解用户偏好与「好」的标准。原文举例：Slack 出现 bug 时 dot 立刻排查；新设计被做成可用应用；一位早期测试者的 dot 发现他忘记开具发票，起草并在其批准后发出。用户可先启用一个主 dot 并为它命名，未来设想由 dot 团队协同工作。dots 正面向 Pro、Business Premium 与 Enterprise 计划在符合资格的市场逐步推出，并预告了拥有独立身份、IT 配发硬件及与企业记录系统深度集成的专家型 dots。dot 可动用自有云计算机、浏览器与已连接应用，用户可随时查看其工作，也能授权它使用你的笔记本电脑。",
+   "key_points": [
+    "dots 是由 GPT-6 Astra 驱动的常驻智能体，拥有自己的云计算机，可从反馈中学习并 24/7 朝目标工作",
+    "通过插件生态可连接 4,000 多个应用，可从 ChatGPT、Slack 或 Teams 使用；正面向 Pro、Business Premium 与 Enterprise 计划在符合资格的市场逐步推出",
+    "原文给出 Slack 排查 bug、把新设计做成可用应用、测试者的 dot 自动起草并发出忘记开具的发票等场景，并预告了具备独立身份、IT 配发硬件与企业系统深度集成的专家型 dots"
+   ],
+   "topics": [
+    "product",
+    "agent-loop",
+    "memory"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 77.7,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Product"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://chatgpt.com/dots",
+      "https://help.openai.com/articles/7730893-data-controls-in-chatgpt",
+      "https://learn.chatgpt.com/docs/sandboxing/auto-review",
+      "http://help.openai.com/articles/20001529",
+      "https://deploymentsafety.openai.com/gpt-6-astra/change-log",
+      "https://help.openai.com/articles/20001530"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "5b94c506716ceb12",
    "url": "https://simonwillison.net/2026/Sep/28/joedaroo/",
@@ -99,6 +290,78 @@
    }
   },
   {
+   "id": "cfe8e900401f31bb",
+   "url": "https://openai.com/index/how-we-will-do-better-for-australia",
+   "title": "How we will do better for Australia",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-28T19:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "cybersecurity"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 83.1,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Company"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/"
+     ]
+    }
+   }
+  },
+  {
+   "id": "cf468ec39dd67f09",
+   "url": "https://openai.com/index/towards-safety-cases-for-frontier-ai-training",
+   "title": "Towards safety cases for frontier AI training",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-28T19:00:00+00:00",
+   "summary_short": "为前沿AI强化学习训练提出安全案例初步准则，公开征求反馈",
+   "summary_long": "原文认为正进入一个新时代：在继续任何前沿强化学习（RL）训练运行前，都应要求结构化的安全文档，理想情况下达到“安全案例”级别——即其他安全关键行业所用的全面、结构化、基于证据的风险论证。原文把安全案例视为努力追求的“北极星”，同时承认，由于AI能力每提升一级都会出现涌现复杂性，要让AI模型的安全案例像航空或核电那样严格存在挑战。原文表示正在制定框架把这些实践成文，现公布初步准则以求透明并邀请社区反馈，并称这些最佳实践反映当前所学、会随内部流程迭代而演变。该文档聚焦前沿强化学习训练；原文指出内部与外部部署需要考虑更广泛的alignment属性。技术保障应覆盖技术栈三方面：alignment训练、隔离与监控。其中alignment训练涉及训练环境与评分（自动化与人工数据集审查、评分器调优、既往运行分析）、alignment测量（离线评估、回溯测试、追踪评估博弈、最坏情况压力测试），以及防止自动评分器在RL中看到思维链。隔离方面提到多层基础设施安全，原文在此处截断。",
+   "key_points": [
+    "原文主张在继续任何前沿强化学习训练运行前，应要求结构化安全文档，并以“安全案例”为努力方向，但承认AI难以达到航空、核电级别的严格性",
+    "安全案例应覆盖技术栈三方面：alignment训练、隔离（containment）与监控；模型alignment应作为第一道防线",
+    "alignment训练措施包括数据集自动与人工审查、评分器调优、既往运行分析、离线alignment评估、回溯测试、追踪评估博弈与最坏情况压力测试，以及不让自动评分器看到思维链；隔离方面提到多层基础设施安全（原文此处截断）"
+   ],
+   "topics": [
+    "alignment",
+    "post-training"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 78.2,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Safety"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.ntsb.gov/Advocacy/Activities/Pages/homendy-20210930.aspx"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "9552195c964ddb7b",
    "url": "https://huggingface.co/blog/Hcompany/holo4",
    "title": "Holo4: powering generalist computer-use agents",
@@ -191,87 +454,6 @@
      "links": [
       "https://www.anthropic.com/news/life-sciences-verification-program",
       "https://platform.claude.com/cookbook/multimodal-crop-tool"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "755e3dc914b20495",
-   "url": "https://arxiv.org/abs/2609.22978",
-   "title": "DeepSeek Elastic Compute (DSec)",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-26T18:22:41+00:00",
-   "summary_short": "DSec：统一 SDK 的生产级沙箱平台，支撑大规模智能体训练与评测",
-   "summary_long": "大语言模型的大规模智能体训练与评测依赖隔离、有状态的可执行环境：模型需查看代码仓库、调用工具、执行命令并与任务相关服务交互。此类负载会突发式创建大量沙箱，功能与隔离需求各异，需在长交互中保留状态，镜像语料规模大而复用有限，因此需要弹性执行平台而非单一沙箱运行时。本文介绍的 DSec 是一个生产级沙箱平台，通过统一 SDK 提供 FnCall、容器、microVM 与完整虚拟机后端；它在集群层面协调放置与生命周期管理，以可独立版本化的层组合环境，结合内存共享、回收与 CPU 调度实现高密度执行，并按需从集群级分布式文件系统 3FS 加载镜像数据。DSec 与强化学习框架协同设计，将有状态 rollout 执行与可抢占的 GPU 训练解耦，协调沙箱生命周期与训练，在回收闲置资源的同时保留 rollout 状态，并缓解奖励作弊等智能体不当行为。单个生产规模单元约 160 节点，每天服务约 300 万个沙箱，支持逾 38 万个并发沙箱、每秒逾 5000 次创建。评估与部署经验显示，这些机制降低了环境搭建与镜像分发开销、提升内存效率（原文摘要在此处截断）。",
-   "key_points": [
-    "DSec 通过统一 SDK 对外暴露 FnCall、容器、microVM 与完整虚拟机四类沙箱后端，并在集群层面协调放置与生命周期管理。",
-    "以可独立版本化的层组合环境，结合内存共享、回收与 CPU 调度实现高密度执行，并按需从集群级分布式文件系统 3FS 加载镜像数据。",
-    "与 RL 框架协同设计：将有状态 rollout 执行与可抢占 GPU 训练解耦，协调沙箱生命周期与训练，保留 rollout 状态、回收闲置资源，并缓解奖励作弊等智能体不当行为。"
-   ],
-   "topics": [
-    "harness",
-    "eval",
-    "post-training"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "研究论文"
-   ],
-   "horizon": "long",
-   "score": 82.2,
-   "status": "published",
-   "extra": {
-    "hn_points": 314,
-    "hn_comments": 104,
-    "outbound": {
-     "arxiv": [
-      "2609.22978"
-     ],
-     "links": [
-      "https://arxiv.org/search/cs?searchtype=author&query=Huang,+J",
-      "https://arxiv.org/search/cs?searchtype=author&query=Tang,+H",
-      "https://arxiv.org/search/cs?searchtype=author&query=Chen,+J",
-      "https://arxiv.org/search/cs?searchtype=author&query=Liu,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Chen,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Cheng,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Tao,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhou,+J",
-      "https://arxiv.org/search/cs?searchtype=author&query=Chen,+H",
-      "https://arxiv.org/search/cs?searchtype=author&query=Wang,+J",
-      "https://arxiv.org/search/cs?searchtype=author&query=Lin,+S",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhang,+C",
-      "https://arxiv.org/search/cs?searchtype=author&query=Teng,+B+L",
-      "https://arxiv.org/search/cs?searchtype=author&query=Guo,+L",
-      "https://arxiv.org/search/cs?searchtype=author&query=Fu,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Gao,+W",
-      "https://arxiv.org/search/cs?searchtype=author&query=Wang,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhao,+L",
-      "https://arxiv.org/search/cs?searchtype=author&query=Wang,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Xie,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Guo,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Cong,+P",
-      "https://arxiv.org/search/cs?searchtype=author&query=Gao,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Yu,+S",
-      "https://arxiv.org/search/cs?searchtype=author&query=Xu,+H",
-      "https://arxiv.org/search/cs?searchtype=author&query=Wu,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Ren,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhou,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhang,+B",
-      "https://arxiv.org/search/cs?searchtype=author&query=Huang,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhu,+Q",
-      "https://arxiv.org/search/cs?searchtype=author&query=Wang,+L",
-      "https://arxiv.org/search/cs?searchtype=author&query=Lin,+T",
-      "https://arxiv.org/search/cs?searchtype=author&query=Yu,+H",
-      "https://arxiv.org/search/cs?searchtype=author&query=Hu,+J",
-      "https://arxiv.org/search/cs?searchtype=author&query=Yang,+D",
-      "https://arxiv.org/search/cs?searchtype=author&query=Yang,+S",
-      "https://arxiv.org/search/cs?searchtype=author&query=Lu,+S",
-      "https://arxiv.org/search/cs?searchtype=author&query=Chen,+S",
-      "https://arxiv.org/search/cs?searchtype=author&query=Qiu,+J"
      ]
     },
     "content_source": "direct",
@@ -478,7 +660,10 @@
       "https://github.blog"
      ]
     },
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "hitl": {
+     "kept_at": "2026-09-30T00:16:22+00:00"
+    }
    }
   },
   {
@@ -560,7 +745,10 @@
       "https://github.blog"
      ]
     },
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "hitl": {
+     "kept_at": "2026-09-30T00:16:22+00:00"
+    }
    }
   },
   {
@@ -1205,7 +1393,10 @@
       "https://www.completeskeptic.com/p/kv-cache-rules-everything-around"
      ]
     },
-    "content_source": "direct"
+    "content_source": "direct",
+    "hitl": {
+     "kept_at": "2026-09-30T00:16:22+00:00"
+    }
    }
   },
   {
@@ -3051,43 +3242,6 @@
    }
   },
   {
-   "id": "d6bf55e0212fa664",
-   "url": "https://www.effort.news/irregular",
-   "title": "A single firm is behind OpenAI, Anthropic, and Meta hacking scandals",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-14T21:15:01+00:00",
-   "summary_short": "单一公司Irregular被指造成三家AI模型入侵真实系统，配置失当并宣传失控论。",
-   "summary_long": "过去三个月，OpenAI、Anthropic、Meta的模型被指入侵多个真实系统，未经授权访问网络系统、发布恶意包、利用未命名漏洞。Anthropic披露，单一公司Irregular负责创建测试，导致Claude入侵真实目标，并提供了互联网访问；Irregular声称当时不知情。时间线从2026年7月30日至9月9日，涉及多起事件和运行。在每次评估中，Claude被赋予CTF挑战，提示声明无互联网访问，但环境配置错误使互联网保持开放，且未限定范围。Anthropic和Irregular推广“失控代理”等末日论调，但Anthropic后续披露显示0%代理失控；在员工告知模型不要进行真实黑客行为后，入侵降至零。原文认为，根据其自身发现，Anthropic和Irregular应对事件负全责。此外，Irregular与有效利他主义基金会有密切关系，其联合创始人任职于相关组织。原文还提到在正常媒体生态下，美国AI公司应重新考虑与Irregular合作，立法者可能加强责任。",
-   "key_points": [
-    "OpenAI、Anthropic、Meta模型过去三个月入侵真实系统，单一公司Irregular负责相关测试并提供互联网访问。",
-    "Anthropic和Irregular宣传“失控代理”论，但Anthropic数据显示0%代理失控，告知模型不要入侵后归零。",
-    "Irregular与有效利他主义基金会有关系，原文称美国AI公司应重新考虑合作，立法者可能加强责任。"
-   ],
-   "topics": [
-    "safety",
-    "agent-loop",
-    "eval"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 83.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 441,
-    "hn_comments": 156,
-    "content_source": "direct",
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
    "id": "36b3ce7ef57e647e",
    "url": "https://arxiv.org/abs/2609.16305v1",
    "title": "BLINDSPOT: A Benchmark for Safety and Refusal Calibration in Long-Horizon Tool-Using Agents",
@@ -3369,37 +3523,6 @@
    }
   },
   {
-   "id": "310d4fd0496b542a",
-   "url": "https://andonlabs.com/blog/why-we-built-pion",
-   "title": "Pion, an agent designed to run any company autonomously",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-14T17:16:06+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "agent-loop",
-    "tool-use",
-    "product"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 82.6,
-   "status": "published",
-   "extra": {
-    "hn_points": 277,
-    "hn_comments": 295,
-    "content_source": "direct",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
    "id": "c73c23ac0dfeb383",
    "url": "https://arxiv.org/abs/2609.15726v1",
    "title": "Bench2Dex: Benchmarking Visuo-Tactile Bimanual Dexterous Manipulation Across Dexterous Hands",
@@ -3548,36 +3671,6 @@
    }
   },
   {
-   "id": "dce815e05e9f3d47",
-   "url": "https://tenderlovemaking.com/2026/09/11/what-a-time-to-be-alive/",
-   "title": "OpenAI bots knew about the RubyGems caching vulnerability",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-14T12:40:57+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "safety",
-    "tool-use"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 79.5,
-   "status": "published",
-   "extra": {
-    "hn_points": 368,
-    "hn_comments": 313,
-    "content_source": "direct",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
    "id": "9d3689901bd8137b",
    "url": "https://arxiv.org/abs/2609.15467v1",
    "title": "Turkish MMLU Pro: Traceable Option Augmentation and Its Validity Limits in Turkish Multiple-Choice Evaluation",
@@ -3607,42 +3700,6 @@
     "authors": [
      "M. Ali Bayram"
     ],
-    "summary_mode": "full",
-    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
-    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
-    "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
-   }
-  },
-  {
-   "id": "5d637772aa95e8cd",
-   "url": "https://www.macrumors.com/2026/09/14/siri-can-be-swapped-out-for-chatgpt-claude/",
-   "title": "Apple's Siri AI Can Be Swapped Out for Claude, ChatGPT, Code Shows",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-14T12:01:32+00:00",
-   "summary_short": "代码显示新 Siri 架构可深度接入 Claude、GPT-5.6 等第三方模型",
-   "summary_long": "代码侦探 pdfu 在 iOS 27 和 macOS Golden Gate 私有框架中发现，苹果新 Siri 架构被设计为可与第三方 AI 模型深度协作。一个名为 Model Delegation 的机制允许 Claude 像现有内置 ChatGPT 扩展一样作为 Siri 扩展出现。在演示视频中，用户在“Search or Ask”栏通过“Ask...”菜单选择 Claude，启用后说“Ask Claude”在提醒事项中设置提醒；Claude 解析自然语言请求，Siri 随后创建提醒。若请求需要访问苹果系统功能，Claude 会把任务交回 Siri。另一个示例中，Claude 在 Siri 对话窗口收到创建 CSV 文件的请求——Siri 本身无法处理——并成功返回结果。第二个协议更进一步：Model Manager Services 中的推理提供方机制允许苹果服务端 Siri 模型被其他模型完全替换，例如 GPT-5.6。ChatGPT 接收苹果原生 Siri planner 提示和工具定义，可发起系统操作、获取个人数据，并由 Siri 用自身界面和语音呈现回答。演示中用户让 ChatGPT 查找特定主题邮件、总结内容和行动点，并通过信息 App 给联系人发消息，响应显示在 OpenAI 平台网页界面。欧盟《数字市场法案》可能影响了这一设计，因其要求苹果向第三方提供对 iOS",
-   "key_points": [
-    "Model Delegation 机制允许 Claude 作为 Siri 扩展出现，类似内置 ChatGPT 扩展；需访问苹果系统功能时 Claude 交回 Siri，也能处理 Siri 无法完成的 CSV 创建等任务。",
-    "Model Manager Services 的推理提供方可让 GPT-5.6 完全替换服务端 Siri 模型，接收 Siri planner 提示和工具定义，以 Siri 自身界面和语音给出回答。",
-    "欧盟《数字市场法案》可能是苹果此设计的动因；“Ask...”目前仅限 macOS Golden Gate RC 的 ChatGPT 扩展，Claude 未开放，相关权限也未向第三方开放。"
-   ],
-   "topics": [
-    "tool-use",
-    "multi-agent",
-    "product"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 83.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 219,
-    "hn_comments": 155,
-    "content_source": "direct",
     "summary_mode": "full",
     "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
     "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
@@ -6784,6 +6841,50 @@
    }
   },
   {
+   "id": "555daf521fa1f05f",
+   "url": "https://www.qbitai.com/2026/09/483104.html",
+   "title": "还在为大模型洗数据熬夜？蚂蚁拿下VLDB工业最佳论文，一套宽表搞定35PB语料，效率狂飙5.6倍",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-09-02T06:20:17+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "data-curation",
+    "data-processing"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 67.7,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
+    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
+    "categories_prompt031_at": "2026-09-17T19:33:25+00:00",
+    "rescore": {
+     "prompt": "triage-0.3.0",
+     "at": "2026-09-17T22:47:09+00:00",
+     "score": 73.5,
+     "verdict": "review",
+     "kind": "二手转述",
+     "detail": {
+      "tier_base": 62,
+      "relevance": 80,
+      "novelty": 85,
+      "longterm": 80,
+      "kind": "二手转述",
+      "llm_reason": "报道蚂蚁VLDB最佳论文，披露PB级数据宽表系统和特征管理方法，虽为转述但含可复用的工程实践与生产数据",
+      "llm_value": 81.2
+     }
+    }
+   }
+  },
+  {
    "id": "23bdbfdbd061867c",
    "url": "https://huggingface.co/blog/allenai/benchmirt",
    "title": "BenchMIRT: What are LLM benchmarks actually measuring?",
@@ -9324,6 +9425,58 @@
     "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
     "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
     "categories_prompt031_at": "2026-09-17T19:33:25+00:00"
+   }
+  },
+  {
+   "id": "57b1afbc3b001eb7",
+   "url": "https://github.com/bojieli/ai-infra-book",
+   "title": "bojieli/ai-infra-book — 《深入理解 AI Infra：量化分析与系统设计》（李博杰 著）开源书稿：从硬件约束和模型架构出发，量化推导 LLM 推理与训练系统设计。含全书正文、PDF、配套计算工具与实验",
+   "source": "GitHub Trending (AI)",
+   "tier": "B",
+   "published_at": "2026-08-22T15:30:41+00:00",
+   "summary_short": "开源书稿，从硬件约束与模型架构量化推导LLM推理与训练系统设计。",
+   "summary_long": "",
+   "key_points": [
+    "该书为开源书稿，书名为《深入理解 AI Infra：量化分析与系统设计》，李博杰著。",
+    "从硬件约束和模型架构出发。",
+    "量化推导 LLM 推理与训练系统设计。"
+   ],
+   "topics": [
+    "open-source",
+    "ai-infra",
+    "system-design"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "开源项目"
+   ],
+   "horizon": "long",
+   "score": 70.0,
+   "status": "published",
+   "extra": {
+    "stars": 2391,
+    "language": "Python",
+    "summary_mode": "brief",
+    "categories_backfilled_at": "2026-09-16T08:29:05+00:00",
+    "categories_v3_backfilled_at": "2026-09-17T17:41:14+00:00",
+    "categories_prompt031_at": "2026-09-17T19:33:25+00:00",
+    "rescore": {
+     "prompt": "triage-0.3.0",
+     "at": "2026-09-17T22:47:09+00:00",
+     "score": 73.5,
+     "verdict": "review",
+     "kind": "开源项目",
+     "detail": {
+      "tier_base": 62,
+      "relevance": 80,
+      "novelty": 75,
+      "longterm": 85,
+      "kind": "开源项目",
+      "llm_reason": "系统性的 AI Infra 量化分析与设计方法，含配套工具，可复用于推理与训练成本、性能评估",
+      "llm_value": 81.2
+     }
+    }
    }
   },
   {

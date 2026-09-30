@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-29T00:57:43+00:00",
+ "generated_at": "2026-09-30T00:20:26+00:00",
  "top": [
   {
    "id": "ca5f208a03f2580d",
@@ -46,7 +46,10 @@
       "https://github.blog"
      ]
     },
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "hitl": {
+     "kept_at": "2026-09-30T00:16:22+00:00"
+    }
    }
   },
   {
@@ -131,6 +134,39 @@
    }
   },
   {
+   "id": "cfe8e900401f31bb",
+   "url": "https://openai.com/index/how-we-will-do-better-for-australia",
+   "title": "How we will do better for Australia",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-28T19:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "cybersecurity"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 83.1,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Company"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/"
+     ]
+    }
+   }
+  },
+  {
    "id": "e82bf04022f67ea0",
    "url": "https://transluce.org/agent-activity",
    "title": "Early rogue AI agent activity and attempts to hack found on urlquery.net",
@@ -201,87 +237,6 @@
       "https://urlquery.net/report/c9721695-9456-4c4b-bff2-3652f646f16e",
       "https://urlquery.net/report/8e1afe36-ee38-44de-8f2f-de01ecc9ac17",
       "https://urlquery.net/report/209375ce-0f6b-41e0-9ac3-6acd4ab3538a"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "755e3dc914b20495",
-   "url": "https://arxiv.org/abs/2609.22978",
-   "title": "DeepSeek Elastic Compute (DSec)",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-26T18:22:41+00:00",
-   "summary_short": "DSec：统一 SDK 的生产级沙箱平台，支撑大规模智能体训练与评测",
-   "summary_long": "大语言模型的大规模智能体训练与评测依赖隔离、有状态的可执行环境：模型需查看代码仓库、调用工具、执行命令并与任务相关服务交互。此类负载会突发式创建大量沙箱，功能与隔离需求各异，需在长交互中保留状态，镜像语料规模大而复用有限，因此需要弹性执行平台而非单一沙箱运行时。本文介绍的 DSec 是一个生产级沙箱平台，通过统一 SDK 提供 FnCall、容器、microVM 与完整虚拟机后端；它在集群层面协调放置与生命周期管理，以可独立版本化的层组合环境，结合内存共享、回收与 CPU 调度实现高密度执行，并按需从集群级分布式文件系统 3FS 加载镜像数据。DSec 与强化学习框架协同设计，将有状态 rollout 执行与可抢占的 GPU 训练解耦，协调沙箱生命周期与训练，在回收闲置资源的同时保留 rollout 状态，并缓解奖励作弊等智能体不当行为。单个生产规模单元约 160 节点，每天服务约 300 万个沙箱，支持逾 38 万个并发沙箱、每秒逾 5000 次创建。评估与部署经验显示，这些机制降低了环境搭建与镜像分发开销、提升内存效率（原文摘要在此处截断）。",
-   "key_points": [
-    "DSec 通过统一 SDK 对外暴露 FnCall、容器、microVM 与完整虚拟机四类沙箱后端，并在集群层面协调放置与生命周期管理。",
-    "以可独立版本化的层组合环境，结合内存共享、回收与 CPU 调度实现高密度执行，并按需从集群级分布式文件系统 3FS 加载镜像数据。",
-    "与 RL 框架协同设计：将有状态 rollout 执行与可抢占 GPU 训练解耦，协调沙箱生命周期与训练，保留 rollout 状态、回收闲置资源，并缓解奖励作弊等智能体不当行为。"
-   ],
-   "topics": [
-    "harness",
-    "eval",
-    "post-training"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "研究论文"
-   ],
-   "horizon": "long",
-   "score": 82.2,
-   "status": "published",
-   "extra": {
-    "hn_points": 314,
-    "hn_comments": 104,
-    "outbound": {
-     "arxiv": [
-      "2609.22978"
-     ],
-     "links": [
-      "https://arxiv.org/search/cs?searchtype=author&query=Huang,+J",
-      "https://arxiv.org/search/cs?searchtype=author&query=Tang,+H",
-      "https://arxiv.org/search/cs?searchtype=author&query=Chen,+J",
-      "https://arxiv.org/search/cs?searchtype=author&query=Liu,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Chen,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Cheng,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Tao,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhou,+J",
-      "https://arxiv.org/search/cs?searchtype=author&query=Chen,+H",
-      "https://arxiv.org/search/cs?searchtype=author&query=Wang,+J",
-      "https://arxiv.org/search/cs?searchtype=author&query=Lin,+S",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhang,+C",
-      "https://arxiv.org/search/cs?searchtype=author&query=Teng,+B+L",
-      "https://arxiv.org/search/cs?searchtype=author&query=Guo,+L",
-      "https://arxiv.org/search/cs?searchtype=author&query=Fu,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Gao,+W",
-      "https://arxiv.org/search/cs?searchtype=author&query=Wang,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhao,+L",
-      "https://arxiv.org/search/cs?searchtype=author&query=Wang,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Xie,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Guo,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Cong,+P",
-      "https://arxiv.org/search/cs?searchtype=author&query=Gao,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Yu,+S",
-      "https://arxiv.org/search/cs?searchtype=author&query=Xu,+H",
-      "https://arxiv.org/search/cs?searchtype=author&query=Wu,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Ren,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhou,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhang,+B",
-      "https://arxiv.org/search/cs?searchtype=author&query=Huang,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhu,+Q",
-      "https://arxiv.org/search/cs?searchtype=author&query=Wang,+L",
-      "https://arxiv.org/search/cs?searchtype=author&query=Lin,+T",
-      "https://arxiv.org/search/cs?searchtype=author&query=Yu,+H",
-      "https://arxiv.org/search/cs?searchtype=author&query=Hu,+J",
-      "https://arxiv.org/search/cs?searchtype=author&query=Yang,+D",
-      "https://arxiv.org/search/cs?searchtype=author&query=Yang,+S",
-      "https://arxiv.org/search/cs?searchtype=author&query=Lu,+S",
-      "https://arxiv.org/search/cs?searchtype=author&query=Chen,+S",
-      "https://arxiv.org/search/cs?searchtype=author&query=Qiu,+J"
      ]
     },
     "content_source": "direct",
@@ -335,7 +290,10 @@
       "https://github.blog"
      ]
     },
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "hitl": {
+     "kept_at": "2026-09-30T00:16:22+00:00"
+    }
    }
   },
   {
@@ -420,6 +378,39 @@
    }
   },
   {
+   "id": "cfe8e900401f31bb",
+   "url": "https://openai.com/index/how-we-will-do-better-for-australia",
+   "title": "How we will do better for Australia",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-28T19:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "cybersecurity"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 83.1,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Company"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/"
+     ]
+    }
+   }
+  },
+  {
    "id": "e82bf04022f67ea0",
    "url": "https://transluce.org/agent-activity",
    "title": "Early rogue AI agent activity and attempts to hack found on urlquery.net",
@@ -497,83 +488,97 @@
    }
   },
   {
-   "id": "755e3dc914b20495",
-   "url": "https://arxiv.org/abs/2609.22978",
-   "title": "DeepSeek Elastic Compute (DSec)",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-26T18:22:41+00:00",
-   "summary_short": "DSec：统一 SDK 的生产级沙箱平台，支撑大规模智能体训练与评测",
-   "summary_long": "大语言模型的大规模智能体训练与评测依赖隔离、有状态的可执行环境：模型需查看代码仓库、调用工具、执行命令并与任务相关服务交互。此类负载会突发式创建大量沙箱，功能与隔离需求各异，需在长交互中保留状态，镜像语料规模大而复用有限，因此需要弹性执行平台而非单一沙箱运行时。本文介绍的 DSec 是一个生产级沙箱平台，通过统一 SDK 提供 FnCall、容器、microVM 与完整虚拟机后端；它在集群层面协调放置与生命周期管理，以可独立版本化的层组合环境，结合内存共享、回收与 CPU 调度实现高密度执行，并按需从集群级分布式文件系统 3FS 加载镜像数据。DSec 与强化学习框架协同设计，将有状态 rollout 执行与可抢占的 GPU 训练解耦，协调沙箱生命周期与训练，在回收闲置资源的同时保留 rollout 状态，并缓解奖励作弊等智能体不当行为。单个生产规模单元约 160 节点，每天服务约 300 万个沙箱，支持逾 38 万个并发沙箱、每秒逾 5000 次创建。评估与部署经验显示，这些机制降低了环境搭建与镜像分发开销、提升内存效率（原文摘要在此处截断）。",
+   "id": "984223f109f3360b",
+   "url": "https://huggingface.co/blog/MultiverseComputingCAI/getting-the-source-right-not-just-the-fact-source",
+   "title": "Getting the Source Right, Not Just the Fact: Source-Aware Verification for MCP Agents",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-09-29T13:07:00+00:00",
+   "summary_short": "ProvenanceGuard：为MCP智能体做来源感知核查，专抓说法为真却归错来源的问题",
+   "summary_long": "工具调用型LLM智能体通过MCP可调用搜索、查看结构化病历或账户记录、查询数据库、拉取元数据，再织成一个答案，这让事实性核查更微妙。现有核查系统（RAGAS的faithfulness、MiniCheck、AlignScore、SummaC）通常在证据汇总后判断说法是否被支撑，却不指明是哪一路MCP输出支撑了它，也不管那是否就是答案所称的来源。论文ProvenanceGuard针对的正是“跨来源混同”：说法在证据池某处为真，却被归给错误来源。例如客服智能体称“根据账户记录，该方案含30天退款期”，退款期或许属实却出自政策文档；汇总看有支撑，分开看归属错误。原文称，数据敏感场景中错误归属可与错误事实同样有害。ProvenanceGuard是叠加在黑盒MCP智能体之上的生成后验证层，读取含工具输出与来源ID的MCP轨迹、无需重训，依次拆分说法、为每条找最相关来源、核查支撑、比对该来源与答案所称或暗示的来源，最后给出逐条来源判定与答案级允许/拦截决定；被拦截答案可经RARR式修复后重新验证。实验用本地模型离线受控处理轨迹。",
    "key_points": [
-    "DSec 通过统一 SDK 对外暴露 FnCall、容器、microVM 与完整虚拟机四类沙箱后端，并在集群层面协调放置与生命周期管理。",
-    "以可独立版本化的层组合环境，结合内存共享、回收与 CPU 调度实现高密度执行，并按需从集群级分布式文件系统 3FS 加载镜像数据。",
-    "与 RL 框架协同设计：将有状态 rollout 执行与可抢占 GPU 训练解耦，协调沙箱生命周期与训练，保留 rollout 状态、回收闲置资源，并缓解奖励作弊等智能体不当行为。"
+    "MCP智能体把搜索工具、结构化记录、数据库等多路来源织进一个答案，而现有faithfulness类核查只看汇总后的证据，无法判断是哪一路来源支撑了某条说法。",
+    "论文提出ProvenanceGuard，针对“跨来源混同”失败模式：说法在证据中为真，却被归给错误来源，如把政策文档中的退款期说成账户记录，或把患者病史细节说成医学文献结论。",
+    "ProvenanceGuard是生成后验证层，读取含工具输出与来源ID的MCP轨迹、无需重训智能体，经五步流程输出逐条来源判定与答案级允许/拦截决定，被拦截答案可经RARR式修复后重新验证。"
    ],
    "topics": [
-    "harness",
-    "eval",
-    "post-training"
+    "mcp",
+    "hallucination",
+    "tool-use"
    ],
    "category": "Agent 与开发",
    "categories": [
-    "Agent 与开发",
-    "研究论文"
+    "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 82.2,
+   "score": 82.5,
    "status": "published",
    "extra": {
-    "hn_points": 314,
-    "hn_comments": 104,
+    "content_source": "direct",
     "outbound": {
      "arxiv": [
-      "2609.22978"
+      "2210.08726",
+      "2606.18037"
      ],
      "links": [
-      "https://arxiv.org/search/cs?searchtype=author&query=Huang,+J",
-      "https://arxiv.org/search/cs?searchtype=author&query=Tang,+H",
-      "https://arxiv.org/search/cs?searchtype=author&query=Chen,+J",
-      "https://arxiv.org/search/cs?searchtype=author&query=Liu,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Chen,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Cheng,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Tao,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhou,+J",
-      "https://arxiv.org/search/cs?searchtype=author&query=Chen,+H",
-      "https://arxiv.org/search/cs?searchtype=author&query=Wang,+J",
-      "https://arxiv.org/search/cs?searchtype=author&query=Lin,+S",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhang,+C",
-      "https://arxiv.org/search/cs?searchtype=author&query=Teng,+B+L",
-      "https://arxiv.org/search/cs?searchtype=author&query=Guo,+L",
-      "https://arxiv.org/search/cs?searchtype=author&query=Fu,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Gao,+W",
-      "https://arxiv.org/search/cs?searchtype=author&query=Wang,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhao,+L",
-      "https://arxiv.org/search/cs?searchtype=author&query=Wang,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Xie,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Guo,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Cong,+P",
-      "https://arxiv.org/search/cs?searchtype=author&query=Gao,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Yu,+S",
-      "https://arxiv.org/search/cs?searchtype=author&query=Xu,+H",
-      "https://arxiv.org/search/cs?searchtype=author&query=Wu,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Ren,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhou,+Y",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhang,+B",
-      "https://arxiv.org/search/cs?searchtype=author&query=Huang,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhu,+Q",
-      "https://arxiv.org/search/cs?searchtype=author&query=Wang,+L",
-      "https://arxiv.org/search/cs?searchtype=author&query=Lin,+T",
-      "https://arxiv.org/search/cs?searchtype=author&query=Yu,+H",
-      "https://arxiv.org/search/cs?searchtype=author&query=Hu,+J",
-      "https://arxiv.org/search/cs?searchtype=author&query=Yang,+D",
-      "https://arxiv.org/search/cs?searchtype=author&query=Yang,+S",
-      "https://arxiv.org/search/cs?searchtype=author&query=Lu,+S",
-      "https://arxiv.org/search/cs?searchtype=author&query=Chen,+S",
-      "https://arxiv.org/search/cs?searchtype=author&query=Qiu,+J"
+      "https://modelcontextprotocol.io",
+      "https://github.com/explodinggradients/ragas",
+      "https://arxiv.org/abs/2606.18037",
+      "https://cdn-uploads.huggingface.co/production/uploads/668e37fd9c9aa124a3c867e8/svnUpzhFgTpLqOF_bRDHl.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/668e37fd9c9aa124a3c867e8/nDchWzRhBSmscjaa8w5G5.png",
+      "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2",
+      "https://huggingface.co/MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli",
+      "https://arxiv.org/abs/2210.08726",
+      "https://github.com/NVIDIA/nvflow/pull/9",
+      "https://github.com/aalvsz/provenanceguard/blob/main/poster/ProvenanceGuard_Agentic_AI_Summit_2026_Berkeley.pdf",
+      "https://huggingface.co/papers/2606.18037"
      ]
     },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "dd66acaed2a04b44",
+   "url": "https://openai.com/index/introducing-gpt-6-1-sol",
+   "title": "Introducing GPT-6.1 Sol",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-29T10:00:00+00:00",
+   "summary_short": "GPT-6.1 Sol 发布：以 Astra 五分之一价格接近其智能水平",
+   "summary_long": "GPT-6.1 Sol 是 GPT-6 Sol 的升级版，在智能体编程、计算机使用和专业工作方面接近 GPT-6 Astra 的智能水平，标准输入输出 token 价格仅为 Astra 的五分之一。缓存输入每百万 token 0.10 美元，比标准输入价格低 95%，比 GPT-6 Sol 的缓存输入价格低 50%，便于开发者构建跨请求复用上下文的智能体。编码方面，在 DeepSWE v1.1 中以约五分之一成本匹配 Astra，并在更低推理投入与成本下比 GPT-6 Sol 最佳成绩高 6.4 个百分点。GDP.pdf 上得分高于含 fallback 的 Opus 5.5，每任务成本不到一半，并以约五分之一成本接近 Astra。AutomationBench 中等推理投入下比 Opus 5.5 高 2.2 个百分点、成本约三分之一，同设置下比 GPT-6 Sol 高 4.8 个百分点。OSWorld 2.0 离线集最大推理投入下比 GPT-6 Sol 高 7 个百分点、成本不到一半，距 Astra 2.1 个百分点、成本约七分之一。Terminal-Bench Science 0.1 上最大推理投入下分数翻倍以上，每任务平均 5.47 美元，低于 Opus 5.5 的 23.21 美元和 Astra 的 23.80 美元。",
+   "key_points": [
+    "GPT-6.1 Sol 在智能体编程、计算机使用与专业工作上接近 GPT-6 Astra，价格仅为 Astra 标准输入输出 token 价的五分之一",
+    "缓存输入每百万 token 0.10 美元，比标准输入价格低 95%，比 GPT-6 Sol 缓存输入价格低 50%",
+    "DeepSWE v1.1 中以约五分之一成本匹配 Astra，并在更低推理投入与成本下比 GPT-6 Sol 最佳分数高 6.4 个百分点"
+   ],
+   "topics": [
+    "coding-agent",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 81.0,
+   "status": "published",
+   "extra": {
     "content_source": "direct",
+    "source_tags": [
+     "Product"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://deepswe.datacurve.ai/",
+      "https://surgehq.ai/benchmarks/gdp-pdf",
+      "https://zapier.com/benchmarks",
+      "https://osworld-v2.xlang.ai/",
+      "https://www.terminal-bench-science.ai/",
+      "https://deploymentsafety.openai.com/gpt-6-1-sol",
+      "https://openai.com/index/devday-2026-recap"
+     ]
+    },
     "summary_mode": "full"
    }
   },
@@ -661,7 +666,10 @@
       "https://github.blog"
      ]
     },
-    "summary_mode": "full"
+    "summary_mode": "full",
+    "hitl": {
+     "kept_at": "2026-09-30T00:16:22+00:00"
+    }
    }
   },
   {
@@ -757,51 +765,6 @@
    }
   },
   {
-   "id": "b6b1e4118cdbb529",
-   "url": "https://openai.com/index/better-prompt-caching-for-gpt-6",
-   "title": "Better prompt caching for GPT-6",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-22T21:00:00+00:00",
-   "summary_short": "OpenAI 为 GPT-6 推出改进提示缓存，默认命中率更高并新增监控与诊断工具",
-   "summary_long": "原文介绍 OpenAI 为 GPT-6 推出的改进版提示缓存系统。背景是 GPT-6 支持持久化智能体长时间处理复杂任务（如重构代码库、产出经过调研的文档与演示文稿），这类应用连续发起彼此依赖的 API 请求，反复携带相同的指令、工具定义和上下文。OpenAI 缓存这些共享上下文以复用计算，缩短响应时间，并对缓存输入 token 提供最高 90% 的折扣。新系统默认提高缓存命中率，对 30 分钟窗口内复用的符合条件的共享前缀给予缓存折扣，并新增 Prompt Caching Dashboard 与提示缓存诊断工具：前者显示应用输入中来自缓存的比例、跟踪命中率、对比缓存与未缓存 token；后者可对比请求与近期响应，找出模型、工具、设置或输入中阻碍复用的变化，并估算受影响 token 数。原文还引用 Mario Rodriguez（Chief Product Officer）称提示缓存帮助 GitHub Copilot 大规模提供快速体验。优化手段包括显式缓存断点、在不破坏缓存的情况下调整推理强度、在工具与指令变化时保留缓存，以及预热缓存以降低延迟。",
-   "key_points": [
-    "GPT-6 系列默认实现更高的缓存命中率，对 30 分钟窗口内复用的符合条件的共享前缀提供缓存折扣，缓存输入 token 折扣最高 90%。",
-    "新增 Prompt Caching Dashboard 与提示缓存诊断工具：可跟踪缓存命中率、对比缓存与未缓存 token，并在出现意外未命中时对比请求与近期响应，定位模型、工具、设置或输入的变化（原文示例原因为 tools_changed，并给出受影响 token 数估算）。",
-    "提供多项优化方式：显式缓存断点选择要复用的提示前缀；在 GPT-6 模型上追加 configuration_update 改变推理强度而不破坏缓存；保持工具定义、schema 与顺序稳定，用 allowed_tools 或 tool_choice 控制可用工具，并用新的 developer messages 追加指令；预热缓存以降低延迟。"
-   ],
-   "topics": [
-    "context-engineering",
-    "tool-use"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 79.2,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Product"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://platform.openai.com/usage?usage_section=prompt-caching",
-      "https://developers.openai.com/api/docs/guides/prompt-caching/diagnostics",
-      "https://developers.openai.com/api/docs/guides/prompt-caching",
-      "https://developers.openai.com/api/docs/guides/reasoning?api-mode=responses#change-reasoning-mid-conversation",
-      "https://developers.openai.com/api/docs/guides/prompt-caching#manage-tools-with-append-only-updates",
-      "https://developers.openai.com/api/docs/guides/prompt-caching#prewarm-the-cache",
-      "https://developers.openai.com/api/docs/guides/prompt-caching#how-to-optimize-prompt-caching"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "1d5a9cc2d9509da8",
    "url": "https://openai.com/index/introducing-mentalhealthbench",
    "title": "Introducing MentalHealthBench",
@@ -872,51 +835,6 @@
    "status": "published",
    "extra": {
     "content_source": "reader"
-   }
-  },
-  {
-   "id": "69fbdce8aa599086",
-   "url": "https://unreallabs.ai/blog/unreal-agent/",
-   "title": "Unreal Agent",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-22T18:15:53+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "harness",
-    "tool-use",
-    "agent-loop"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 78.9,
-   "status": "published",
-   "extra": {
-    "hn_points": 234,
-    "hn_comments": 121,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://hub.harborframework.com/jobs/27133053-2015-46f3-8c72-6b6910859da6",
-      "https://hub.harborframework.com/jobs/6ccd097a-747b-4867-be57-a56969df988f",
-      "https://hub.harborframework.com/jobs/3d2fa057-e11c-4be0-a962-e8be81b87709",
-      "https://hub.harborframework.com/jobs/11a440fb-b1c4-473b-98a6-907500b3fdaf",
-      "https://hub.harborframework.com/jobs/da4ac972-9d5a-4142-b057-85f07375f14e",
-      "https://hub.harborframework.com/jobs/2311ca63-2929-49eb-ba0c-0084ef31ba8b",
-      "https://hub.harborframework.com/jobs/e20ecafd-695a-417c-90f5-35fd36d2786f",
-      "https://hub.harborframework.com/jobs/cd7d8de6-c152-48de-9840-b22bbea96d99",
-      "https://www.harborframework.com/",
-      "https://github.com/unreallabsai/unreal-agent",
-      "https://arena.ai/blog/coding-agents-harness-tax",
-      "https://www.completeskeptic.com/p/kv-cache-rules-everything-around"
-     ]
-    },
-    "content_source": "direct"
    }
   },
   {
@@ -1046,6 +964,90 @@
    }
   },
   {
+   "id": "cf468ec39dd67f09",
+   "url": "https://openai.com/index/towards-safety-cases-for-frontier-ai-training",
+   "title": "Towards safety cases for frontier AI training",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-28T19:00:00+00:00",
+   "summary_short": "为前沿AI强化学习训练提出安全案例初步准则，公开征求反馈",
+   "summary_long": "原文认为正进入一个新时代：在继续任何前沿强化学习（RL）训练运行前，都应要求结构化的安全文档，理想情况下达到“安全案例”级别——即其他安全关键行业所用的全面、结构化、基于证据的风险论证。原文把安全案例视为努力追求的“北极星”，同时承认，由于AI能力每提升一级都会出现涌现复杂性，要让AI模型的安全案例像航空或核电那样严格存在挑战。原文表示正在制定框架把这些实践成文，现公布初步准则以求透明并邀请社区反馈，并称这些最佳实践反映当前所学、会随内部流程迭代而演变。该文档聚焦前沿强化学习训练；原文指出内部与外部部署需要考虑更广泛的alignment属性。技术保障应覆盖技术栈三方面：alignment训练、隔离与监控。其中alignment训练涉及训练环境与评分（自动化与人工数据集审查、评分器调优、既往运行分析）、alignment测量（离线评估、回溯测试、追踪评估博弈、最坏情况压力测试），以及防止自动评分器在RL中看到思维链。隔离方面提到多层基础设施安全，原文在此处截断。",
+   "key_points": [
+    "原文主张在继续任何前沿强化学习训练运行前，应要求结构化安全文档，并以“安全案例”为努力方向，但承认AI难以达到航空、核电级别的严格性",
+    "安全案例应覆盖技术栈三方面：alignment训练、隔离（containment）与监控；模型alignment应作为第一道防线",
+    "alignment训练措施包括数据集自动与人工审查、评分器调优、既往运行分析、离线alignment评估、回溯测试、追踪评估博弈与最坏情况压力测试，以及不让自动评分器看到思维链；隔离方面提到多层基础设施安全（原文此处截断）"
+   ],
+   "topics": [
+    "alignment",
+    "post-training"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 78.2,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Safety"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.ntsb.gov/Advocacy/Activities/Pages/homendy-20210930.aspx"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "884977ecb8004cb3",
+   "url": "https://openai.com/index/introducing-dots",
+   "title": "Introducing dots",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-09-29T00:00:00+00:00",
+   "summary_short": "dots 发布：由 GPT-6 Astra 驱动的常驻智能体，可 24/7 自主完成工作",
+   "summary_long": "原文介绍 dots：一种常驻智能体，由 GPT-6 Astra 驱动，拥有自己的云计算机，能随时间从反馈中学习，并 24/7 朝用户目标推进；通过插件生态可连接 4,000 多个应用，可从 ChatGPT、Slack 或 Teams 访问。合作越久，dot 越了解用户偏好与「好」的标准。原文举例：Slack 出现 bug 时 dot 立刻排查；新设计被做成可用应用；一位早期测试者的 dot 发现他忘记开具发票，起草并在其批准后发出。用户可先启用一个主 dot 并为它命名，未来设想由 dot 团队协同工作。dots 正面向 Pro、Business Premium 与 Enterprise 计划在符合资格的市场逐步推出，并预告了拥有独立身份、IT 配发硬件及与企业记录系统深度集成的专家型 dots。dot 可动用自有云计算机、浏览器与已连接应用，用户可随时查看其工作，也能授权它使用你的笔记本电脑。",
+   "key_points": [
+    "dots 是由 GPT-6 Astra 驱动的常驻智能体，拥有自己的云计算机，可从反馈中学习并 24/7 朝目标工作",
+    "通过插件生态可连接 4,000 多个应用，可从 ChatGPT、Slack 或 Teams 使用；正面向 Pro、Business Premium 与 Enterprise 计划在符合资格的市场逐步推出",
+    "原文给出 Slack 排查 bug、把新设计做成可用应用、测试者的 dot 自动起草并发出忘记开具的发票等场景，并预告了具备独立身份、IT 配发硬件与企业系统深度集成的专家型 dots"
+   ],
+   "topics": [
+    "product",
+    "agent-loop",
+    "memory"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 77.7,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Product"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://chatgpt.com/dots",
+      "https://help.openai.com/articles/7730893-data-controls-in-chatgpt",
+      "https://learn.chatgpt.com/docs/sandboxing/auto-review",
+      "http://help.openai.com/articles/20001529",
+      "https://deploymentsafety.openai.com/gpt-6-astra/change-log",
+      "https://help.openai.com/articles/20001530"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "5b94c506716ceb12",
    "url": "https://simonwillison.net/2026/Sep/28/joedaroo/",
    "title": "Quoting @joedaroo",
@@ -1145,133 +1147,53 @@
    }
   },
   {
-   "id": "98acfe91fd30b730",
-   "url": "https://huggingface.co/blog/transformers-llama-cpp-quants",
-   "title": "Transformers now runs llama.cpp quants",
+   "id": "493cf3fce1b87919",
+   "url": "https://huggingface.co/blog/nvidia/kumo-tabular",
+   "title": "NVIDIA Kumo Tabular Sets a New Accuracy-Efficiency Frontier for Tabular Prediction",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-09-22T00:00:00+00:00",
-   "summary_short": "Transformers 支持直接加载 GGUF 量化模型，在本地机器上生成",
-   "summary_long": "Transformers 新增在本地高效运行 GGUF 模型的支持：从 Hub 挑选适配笔记本内存的 checkpoint，用熟悉的 from_pretrained 加载并生成。GGUF 由 llama.cpp 团队开发，是本地推理广泛使用的格式，该团队在 Hub 的 ggml-org 下分享量化 checkpoint，Unsloth、LM Studio Community、bartowski 等也提供多种量化版本；llama.cpp 的推理引擎支撑着 Ollama、LM Studio、Jan 等本地工具。为让性能接近 llama.cpp，作者通过 kernels 库复用其底层 ggml kernel 并减少 generate 开销，初期聚焦 Apple Silicon，从 Qwen3.5 架构开始。GGUF 把权重与元数据（tokenizer 信息、可选 chat template）打包成一个文件，支持不同量化级别；以 Unsloth Qwen3.5-4B 为例，BF16 为 8.42GB，Q4_K_M 为 2.74GB，建议从 Q4_K_M 起步。使用需 Apple Silicon Mac 及受支持的 PyTorch 与 kernels 版本。",
+   "published_at": "2026-09-29T15:30:38+00:00",
+   "summary_short": "NVIDIA发布Kumo Tabular表格基础模型，免训练调参，四大基准排名第一",
+   "summary_long": "NVIDIA Kumo Tabular 是 NVIDIA Kumo Structured 模型集合中的表格数据开源基础模型，已在 Hugging Face 发布。给定一张带标签行的表格，它能在单次前向传播中预测新行的标签，分类与回归皆可，无需训练、调参或特征工程。模型仅用人工数据预训练，提供 28M 至 215M 三档参数规模，通过开源库运行，以 OpenMDW-1.1 许可证发布、可商用，并在 TabArena、BeyondArena、TALENT、ScoringBench 四个基准上排名第一。原文指出，表格数据是企业机器学习的骨干，客户记录、交易、传感器日志、理赔与订单都以表格存在；过去二十年主流做法是梯度提升树，但每个新问题仍要收集标签、做特征工程、搜索超参数、验证与部署，模型对表格没有通用理解，每个任务都从零学起。原文以语言模型的上下文学习作类比：预训练模型在提示中看几个例子即可解题，无需更新权重，表格同样适用。架构上，它是围绕表格结构构建的 Transformer，采用 TabICL 与 TabPFN 提出的列注意力、行注意力与上下文注意力。",
    "key_points": [
-    "用法是给 from_pretrained 传 Hub model_id 与 gguf_file，无需额外配置；权重保持在 Metal 上时自动加载兼容的 ggml/Metal layer kernel，注意力用 ggml-org/ggml-attn，取不到则回退 sdpa 并给出警告，也可显式指定 attn_implementation=\"sdpa\"",
-    "初期范围是 Apple Silicon 上的本地推理，从 Qwen3.5 架构开始；需 Apple Silicon Mac、通常最近两个 PyTorch 版本、最新版 transformers（目前为 main）以及兼容的 kernels",
-    "量化文件大小参考 Unsloth 的 Qwen3.5-4B：BF16 8.42GB、Q6_K 3.53GB、Q5_K_M 3.14GB、Q4_K_M 2.74GB；Q4_K_M 混合张量精度、多数为 4 位，文档建议先试 Q4_K_M，内存充足再试 Q5_K_M 或 Q6_K"
+    "单次前向传播即可预测新行标签，分类与回归均支持，无需训练、调参或特征工程",
+    "仅用人工数据预训练，提供 28M–215M 三种参数规模，通过开源库运行，以 OpenMDW-1.1 许可证发布并可商用，代码与权重已公开",
+    "在 TabArena、BeyondArena、TALENT、ScoringBench 四个基准上排名第一；模型采用 TabICL 与 TabPFN 的列注意力、行注意力与上下文注意力，缺失值无需插补、被特殊处理"
    ],
    "topics": [
-    "quantization",
-    "local-inference",
-    "llama.cpp"
+    "open-source",
+    "tabular-data",
+    "foundation-model"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
-   "horizon": "long",
-   "score": 77.4,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/transformers-llama-cpp-quants.md",
-      "https://github.com/ggml-org/llama.cpp",
-      "https://github.com/ml-explore/mlx",
-      "https://x.com/huggingface?ref_src=twsrc%5Etfw",
-      "https://t.co/lsIxLoUneU",
-      "https://x.com/julien_c/status/2047647522173104145?ref_src=twsrc%5Etfw",
-      "https://huggingface.co/ggml-org",
-      "https://huggingface.co/unsloth",
-      "https://huggingface.co/lmstudio-community",
-      "https://huggingface.co/bartowski",
-      "https://huggingface.co/docs/kernels/index",
-      "https://github.com/ggml-org/ggml/blob/master/docs/gguf.md",
-      "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/tree/main",
-      "https://huggingface.co/docs/hub/gguf#quantization-types",
-      "https://huggingface.co/kernels/ggml-org/ggml-quantization",
-      "https://huggingface.co/docs/transformers/main/en/quantization/gguf",
-      "https://huggingface.co/docs/transformers/main/en/serve-cli/serving",
-      "https://huggingface.co/docs/transformers/main/en/serve-cli/serving#enable-reasoning-on-the-server",
-      "https://www.jan.ai/docs/desktop/remote-models/custom-endpoint",
-      "https://pi.dev",
-      "https://github.com/ggml-org/llama.cpp/tree/master/tools/llama-bench",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/transformers-llama-cpp-quants/benchmark-comparison.svg",
-      "https://huggingface.co/blog/ggml-joins-hf",
-      "https://huggingface.co/kernels/ggml-org/ggml-norm",
-      "https://huggingface.co/kernels/ggml-org/ggml-attn",
-      "https://huggingface.co/kernels/ggml-org/ggml-gated-delta-net",
-      "https://huggingface.co/kernels/transformers-community/topk",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/transformers-llama-cpp-quants/layer-kernel-benchmark.svg",
-      "https://github.com/huggingface/transformers/pull/48814",
-      "https://github.com/huggingface/transformers/pull/47975",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/transformers-llama-cpp-quants/generation-loop-benchmark.svg",
-      "https://github.com/huggingface/transformers/issues",
-      "https://huggingface.co/ArthurZ",
-      "https://huggingface.co/cyrilvallez",
-      "https://huggingface.co/sayakpaul",
-      "https://huggingface.co/ariG23498",
-      "https://huggingface.co/pcuenq",
-      "https://huggingface.co/lysandre"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "0c90c73c08cf2835",
-   "url": "https://www.anthropic.com/claude-opus-5-5",
-   "title": "Claude Opus 5.5",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-22T16:29:05+00:00",
-   "summary_short": "Claude Opus 5.5 发布：成本比 Opus 5 低四成，安全测试表现最强",
-   "summary_long": "原文宣布推出 Claude Opus 5.5，是全新 Claude 5.5 家族的首个模型，称其在大多数工作上表现达到 Claude Fable 5.1 的水平，运行成本比 Opus 5 低 40%。原文称这是其“呼吁放慢前沿”以来的首个发布，模型发布前由外部评估方测试，包括 Frontier Design 和 METR。在原文所述最全面的对齐测试——自动化行为审计中，Opus 5.5 是迄今测试过的表现最强模型，比近期模型更少采取难以逆转的行动，也比 Opus 5 更抗提示注入。性能上，原文称一名测试者不到一天完成 68 万行代码迁移；在缩短网页应用各页面加载时间的任务中 40 次成功 39 次。价格方面，输入、输出 token 每百万分别为 4 美元和 20 美元，比 Opus 5 低 20%；缓存读取每百万 0.20 美元，低 60%；输出生成速度快 30% 以上，并提高 Pro、Max、Team 及按席位 Enterprise 方案的五小时用量上限。因在生物学与网络安全方面与 Claude Mythos 5.1 相当，采用与 Claude Fable 5.1 类似的防护措施；Sonnet 5.5 与 Haiku 5.5 将在未来数周跟进。",
-   "key_points": [
-    "性能：大多数工作达到 Claude Fable 5.1 水平，测试者不到一天完成 68 万行代码迁移，网页加载优化任务 40 次成功 39 次",
-    "安全：在自动化行为审计中取得迄今最佳成绩，更少采取难以逆转行动，比 Opus 5 更抗提示注入；因生物与网络安全能力与 Claude Mythos 5.1 相当，采用类似 Fable 5.1 的防护",
-    "成本与速度：典型负载下比 Opus 5 便宜 40%，输入/输出每百万 token 4/20 美元，缓存读取低 60%，输出速度快 30% 以上，并提高多个订阅方案的五小时用量上限"
-   ],
-   "topics": [
-    "alignment",
-    "prompt-injection",
-    "coding-agent"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "安全"
-   ],
    "horizon": "short",
    "score": 77.1,
    "status": "published",
    "extra": {
-    "hn_points": 1085,
-    "hn_comments": 763,
+    "content_source": "direct",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://darioamodei.com/post/we-must-pace-the-frontier",
-      "https://www.imaginefrontier.com/",
-      "https://metr.org/",
-      "https://anthropic.com/claude-opus-5-5-system-card",
-      "https://www.anthropic.com/news/life-sciences-verification-program",
-      "https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet",
-      "https://www.anthropic.com/responsible-scaling-policy",
-      "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents",
-      "https://www.anthropic.com/news/improving-alignment-security-efforts",
-      "https://www.anthropic.com/news/accenture-embedded-evaluation",
-      "https://www.anthropic.com/news/claude-code-security",
-      "https://claude.com/form/life-sciences-verification-program",
-      "https://www.anthropic.com/threat-intelligence-report-september-2026",
-      "https://support.claude.com/en/articles/16761192",
-      "https://platform.claude.com/docs/en/build-with-claude/preserved-thinking",
-      "https://www.anthropic.com/news/claude-text-watermark",
-      "https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5#thinking-cant-be-disabled",
-      "https://platform.claude.com/docs/en/models/overview"
+      "https://huggingface.co/nvidia/Kumo-Tabular",
+      "https://github.com/NVIDIA/structured-data-models",
+      "https://openmdw.ai/license/1-1/",
+      "https://github.com/autogluon/tabarena",
+      "https://github.com/LAMDA-Tabular/TALENT",
+      "https://github.com/jonaslandsgesell/ScoringBench",
+      "https://github.com/soda-inria/tabicl",
+      "https://github.com/PriorLabs/tabpfn",
+      "https://cdn-uploads.huggingface.co/production/uploads/684040a5de1ad7f4fcec9508/TkT695UAWJnUIyEydIYRv.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/684040a5de1ad7f4fcec9508/ipJNJTNO5ZH2zviIdR8eo.png",
+      "https://github.com/limix-ldm-ai/LimiX",
+      "https://cdn-uploads.huggingface.co/production/uploads/684040a5de1ad7f4fcec9508/CpOXm3g9du6Uw3zQDh2QC.png",
+      "https://github.com/NVIDIA/structured-data-models/issues",
+      "https://dholzmueller.github.io/",
+      "https://kvignesh1420.github.io/"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -1488,83 +1410,6 @@
      ]
     },
     "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "b7ce14e363bb2f98",
-   "url": "https://www.interconnects.ai/p/debating-rsi-the-us-china-gap-and",
-   "title": "Debating RSI, the US-China Gap, and Jaggedness with JS Denain of Epoch AI",
-   "source": "Interconnects",
-   "tier": "A",
-   "published_at": "2026-09-22T13:37:45+00:00",
-   "summary_short": "JS Denain 谈 RSI、中美模型差距与 AI 加速，强调双方高度不确定。",
-   "summary_long": "这期节目由 Nathan Lambert 与 Epoch AI 的 Jean-Stanislas “JS” Denain 对话，后者是 Epoch AI 高级研究员并领导 Insights 团队。目录涵盖 RSI 预测、机器人对 AI 加速的作用、中国模型差距、蒸馏是否解释差距、中国招聘信息、开源与闭源模型安全性、Epoch AI 如何运作及前沿后训练配方。转录开头聚焦 RSI：Lambert 问 OpenAI 和 Anthropic 在宣称 RSI 即将来临时看到了什么测量。Denain 表示两家有关于 AI 加速 AI 进展的博客，但他不认为已发布内容是即将自我维持加速或完全自动化 AI 研究员工作的强证据。他指出 OpenAI 博文最突出的是模型部署中 AI 使用增加、研究人员 Codex 支出上升，图中为每月 2 倍增长，可能说明他们获得价值，但不构成六个月内发生软件智能爆炸的强证据。Lambert 问实验室内部信息是否比公开信息更令人担忧，并说想关注证据而非文化；Denain 称自己没有完整信息，目前不认为 OpenAI 或 Anthropic 看到了值得更恐慌的特定东西。原文转录在此处中断。",
-   "key_points": [
-    "对话者为 Nathan Lambert 与 Epoch AI 的 JS Denain，后者领导 Insights 团队；节目讨论 RSI 预测、机器人、中国模型差距、蒸馏、中国招聘信息、开源与闭源模型安全性、Epoch AI 运作及前沿后训练配方。",
-    "关于 RSI，Denain 认为 OpenAI 和 Anthropic 公开的 AI 加速 AI 进展博客不是即将自我维持加速或完全自动化 AI 研究员工作的强证据；OpenAI 博文中研究人员 Codex 支出每月 2 倍增长最突出，但解释可能受测量方式影响，也不构成六个月内软件智能爆炸的强证据。",
-    "Lambert 询问实验室内部是否有公开信息之外的担忧依据；Denain 表示没有完整信息，目前不认为 OpenAI 或 Anthropic 看到了某个特定东西就值得更恐慌。双方都强调对 AI 走向高度不确定。"
-   ],
-   "topics": [
-    "eval",
-    "open-source",
-    "post-training"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测",
-    "行业动态"
-   ],
-   "horizon": "long",
-   "score": 76.2,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://epoch.ai/about/team/jean-stanislas-denain",
-      "https://x.com/datagenproc",
-      "https://www.linkedin.com/in/jean-stanislas-denain-087332172/",
-      "https://www.interconnects.ai/p/debating-rsi-the-us-china-gap-and?utm_source=substack&utm_medium=email&utm_content=share&action=share",
-      "https://podcasts.apple.com/us/podcast/interconnects-audio/id1719552353",
-      "https://open.spotify.com/show/6XNzfJULeVxR7SneeesDUs",
-      "https://www.interconnects.ai/podcast",
-      "https://www.interconnects.ai/t/interviews",
-      "https://epoch.ai/",
-      "https://www.interconnects.ai/p/notes-from-inside-chinas-ai-labs",
-      "https://www.interconnects.ai/p/lossy-self-improvement",
-      "https://openai.com/index/research-acceleration-view-inside-openai/",
-      "https://www.anthropic.com/institute/recursive-self-improvement",
-      "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
-      "https://epoch.ai/gradient-updates/the-software-intelligence-explosion-debate-needs-experiments",
-      "https://epoch.ai/gradient-updates/toward-an-onet-for-ai-rnd",
-      "https://www.forbes.com/sites/siladityaray/2026/09/09/anthropic-alignment-lead-warns-ai-could-kill-all-humans-as-researcher-quits/",
-      "https://ai-2027.com/",
-      "https://www.dwarkesh.com/p/john-beren-charlie",
-      "https://epoch.ai/publications/parallelization-constraints-could-delay-a-technological-singularity",
-      "https://www.dwarkesh.com/p/noam-brown",
-      "https://epoch.ai/eci",
-      "https://epoch.ai/publications/have-ai-capabilities-accelerated",
-      "https://www.isattentionallyouneed.com/",
-      "https://metr.org/notes/2026-04-21-ai-rd-nanogpt-progress/",
-      "https://github.com/karpathy/autoresearch",
-      "https://tecunningham.github.io/posts/2026-03-13-apple-picking-ai.html",
-      "https://www.interconnects.ai/p/cruise-collisions-self-driving",
-      "https://epoch.ai/publications/how-fast-could-robot-production-scale-up",
-      "https://epoch.ai/gradient-updates/is-almost-everyone-wrong-about-americas-ai-power-problem",
-      "https://epoch.ai/publications/where-autonomy-works-evaluating-robot-capabilities-in-2026",
-      "https://epoch.ai/data-insights/us-vs-china-eci",
-      "https://x.com/xeophon",
-      "https://artificialanalysis.ai/",
-      "https://www.interconnects.ai/p/the-distillation-panic",
-      "https://stolen-thoughts.com/",
-      "https://www.anthropic.com/threat-intelligence-report-september-2026",
-      "https://www.interconnects.ai/p/how-much-does-distillation-really",
-      "https://epoch.ai/gradient-updates/what-we-learned-from-1604-chinese-ai-job-postings",
-      "https://www.hacktron.ai/blog/hacking-openai"
-     ]
-    },
     "summary_mode": "full"
    }
   },
