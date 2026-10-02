@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-10-01T00:32:09+00:00",
+ "generated_at": "2026-10-02T00:41:41+00:00",
  "totals": {
-  "discarded": 196,
-  "published": 340,
-  "review": 391
+  "discarded": 203,
+  "published": 342,
+  "review": 401
  },
  "sources": {
   "total": 20,
@@ -47,11 +47,11 @@
   ]
  },
  "archive": {
-  "total": 237,
+  "total": 233,
   "human_approved": 10,
   "human_kept": 5,
   "human_retracted": 3,
-  "auto_only": 222
+  "auto_only": 218
  },
  "categories": [
   "模型",
@@ -64,6 +64,99 @@
   "研究论文"
  ],
  "runs": [
+  {
+   "run_id": "20261002-003751",
+   "started_at": "2026-10-02T00:37:51+00:00",
+   "stats": {
+    "fetch": {
+     "total": 48,
+     "per_source": {
+      "GitHub Blog (AI)": 1,
+      "MCP Official Blog": 0,
+      "Anthropic News": 1,
+      "Hugging Face Blog": 1,
+      "Simon Willison": 2,
+      "Andrej Karpathy": 0,
+      "Lilian Weng": 0,
+      "Eugene Yan": 0,
+      "Google DeepMind Blog": 2,
+      "OpenAI News": 5,
+      "Interconnects": 0,
+      "Hacker News (AI 高分帖)": 9,
+      "GitHub Trending (AI)": 10,
+      "Sebastian Raschka": 0,
+      "Latent Space": 4,
+      "Dwarkesh Podcast": 1,
+      "Import AI": 0,
+      "Ethan Mollick": 1,
+      "AI Snake Oil": 1,
+      "量子位": 10
+     }
+    },
+    "timing": {
+     "fetch": 37.7,
+     "dedupe": 0.0,
+     "triage": 16.9,
+     "summarize": 161.8,
+     "classify": 13.5,
+     "publish": 0.1
+    },
+    "dedupe": {
+     "kept": 19,
+     "dropped_already_in_db": 29,
+     "dropped_dup_url": 0,
+     "dropped_dup_title": 0
+    },
+    "llm_calls": 44,
+    "llm_tokens": 86504,
+    "llm_prompt_tokens": 49948,
+    "llm_completion_tokens": 36556,
+    "calls_by_provider": {
+     "primary": 42,
+     "fallback": 2
+    },
+    "triage": {
+     "published": 2,
+     "review": 10,
+     "discarded": 7,
+     "llm_scored": 19,
+     "degraded": 0,
+     "capped": 0,
+     "by_kind": {
+      "从业者判断": 6,
+      "营销通稿": 5,
+      "一手发布": 3,
+      "二手转述": 4,
+      "公司动态": 1
+     }
+    },
+    "summarize": {
+     "summarized": 10,
+     "brief_mode": 0,
+     "hallucination_flagged": 0,
+     "degraded_title_only": 2
+    },
+    "classify": {
+     "classified": 12,
+     "degraded_heuristic": 0
+    },
+    "publish": {
+     "published": 2,
+     "pending": 10,
+     "db_totals": {
+      "discarded": 203,
+      "published": 342,
+      "review": 401
+     }
+    },
+    "budget": {
+     "tokens_used": 86504,
+     "calls_made": 44,
+     "token_limit": 400000,
+     "call_limit": 260
+    }
+   }
+  },
   {
    "run_id": "20261001-002718",
    "started_at": "2026-10-01T00:27:18+00:00",
@@ -2686,89 +2779,7 @@
      "call_limit": 260
     }
    }
-  },
-  {
-   "run_id": "20260902-004854",
-   "started_at": "2026-09-02T00:48:54+00:00",
-   "stats": {
-    "fetch": {
-     "total": 65,
-     "per_source": {
-      "GitHub Blog (AI)": 0,
-      "MCP Official Blog": 0,
-      "Hugging Face Blog": 2,
-      "arXiv Agent/LLM": 15,
-      "Anthropic News": 1,
-      "Lilian Weng": 0,
-      "Andrej Karpathy": 0,
-      "Simon Willison": 7,
-      "Google DeepMind Blog": 1,
-      "OpenAI News": 6,
-      "Import AI": "failed: HTTPError",
-      "AI Snake Oil": 0,
-      "Dwarkesh Podcast": 2,
-      "Eugene Yan": 0,
-      "Latent Space": 2,
-      "Hacker News (AI 高分帖)": 9,
-      "Interconnects": 0,
-      "GitHub Trending (AI)": 10,
-      "量子位": 10
-     }
-    },
-    "timing": {
-     "fetch": 5.4,
-     "dedupe": 0.1,
-     "triage": 196.1,
-     "summarize": 1211.4,
-     "classify": 282.6,
-     "publish": 0.0
-    },
-    "dedupe": {
-     "kept": 44,
-     "dropped_already_in_db": 21,
-     "dropped_dup_url": 0,
-     "dropped_dup_title": 0
-    },
-    "llm_calls": 148,
-    "llm_tokens": 266946,
-    "calls_by_provider": {
-     "primary": 143,
-     "fallback": 5
-    },
-    "triage": {
-     "published": 25,
-     "review": 18,
-     "discarded": 1,
-     "llm_scored": 44,
-     "degraded": 0
-    },
-    "summarize": {
-     "summarized": 39,
-     "brief_mode": 1,
-     "hallucination_flagged": 0,
-     "degraded_title_only": 4
-    },
-    "classify": {
-     "classified": 43,
-     "degraded_heuristic": 0
-    },
-    "publish": {
-     "published": 25,
-     "pending": 18,
-     "db_totals": {
-      "discarded": 27,
-      "published": 95,
-      "review": 57
-     }
-    },
-    "budget": {
-     "tokens_used": 266946,
-     "calls_made": 148,
-     "token_limit": 400000,
-     "call_limit": 260
-    }
-   }
   }
  ],
- "run_days": 35
+ "run_days": 36
 }
