@@ -1,592 +1,344 @@
 {
- "generated_at": "2026-10-02T00:41:41+00:00",
+ "generated_at": "2026-10-03T00:21:30+00:00",
  "items": [
   {
-   "id": "d1b287482ae91f9f",
-   "url": "https://www.latent.space/p/rlm",
-   "title": "Academia is for Ambition — Alex Zhang, MIT",
+   "id": "d81483cb0de80876",
+   "url": "https://www.latent.space/p/airbnb",
+   "title": "Inside-Out AI: Rebuilding Airbnb Behind the Scenes and Across the Guest Experience",
    "source": "Latent Space",
    "tier": "B",
-   "published_at": "2026-10-02T00:28:04+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
+   "published_at": "2026-10-02T14:04:49+00:00",
+   "summary_short": "Airbnb CTO 谈把公司变成 AI 原生：六成代码由 AI 写，半数客服工单由 AI 解决",
+   "summary_long": "Ahmad Al-Dahle 今年 1 月加入 Airbnb 任 CTO，此前在 Meta 负责生成式 AI、主导 2023-2025 年开源 Llama 模型的发布。他的目标是让 Airbnb 成为“AI 原生公司”：先在内部用 AI 加速产品开发，再用同一批能力改造客户体验，文中称之为“inside-out AI”，并举例称 Airbnb 用内部工具 Everest 帮助加速了一项对外新服务的上线。Al-Dahle 在与 Latent Space 的对话中表示，他在 Meta 时已了解模型能力如何逐代提升，下一个挑战是把模型大规模部署到生产环境。他给出的进展数据是：60% 的代码由 AI 编写，同比多交付近 80% 的功能与改进，普通工程师的 PR 吞吐量提升约 1.6 倍。做法上，Airbnb 改变软件工程组织流程，产品、设计与工程团队直接做原型、不再层层交接，代码而非需求文档成为推理所依据的“产物”。客户支持是首个面向用户的 AI 落地区域，约一半工单完全由 AI 解决（与公司 Q2 财报近 45% 一致），关键在于先用合成数据充分测试再上生产；对涉及安全等问题的工单仍刻意保留人工。原文提到 Airbnb 2008 年成立、2020 年上市，写作时市值约 930 亿美元。",
+   "key_points": [
+    "前 Meta 生成式 AI 负责人 Ahmad Al-Dahle 今年 1 月出任 Airbnb CTO，目标是让 Airbnb 成为“AI 原生公司”，方式是先用 AI 加速内部产品开发，再改造客户体验，即“inside-out AI”。",
+    "进展数据：60% 代码由 AI 编写，同比多交付近 80% 的功能与改进，普通工程师 PR 吞吐量提升约 1.6 倍；组织流程上改为产品、设计、工程团队直接做原型，代码取代需求文档成为推理依据。",
+    "客户支持是首个面向用户的 AI 应用，约一半工单由 AI 解决（Q2 财报近 45%），关键是先以合成数据测试再上生产；对安全等需人工的工单刻意保留。"
+   ],
    "topics": [
-    "reasoning",
-    "multi-agent",
-    "eval"
+    "coding-agent",
+    "product"
    ],
-   "category": "模型",
+   "category": "产品与应用",
    "categories": [
-    "模型"
+    "产品与应用",
+    "Agent 与开发"
    ],
-   "horizon": "long",
+   "horizon": "short",
    "score": 71.9,
    "status": "review",
    "extra": {
     "content_source": "rss",
     "outbound": {
-     "arxiv": [
-      "2512.24601"
-     ],
-     "links": [
-      "https://ai.engineer/nyc",
-      "https://app.ai.engineer/e/ai-engineer-new-york-2026?discount=LS-NYC26",
-      "https://www.latent.space/p/shunyu?utm_source=publication-search",
-      "https://www.scmp.com/tech/big-tech/article/3356090/tencents-chief-ai-scientist-dismisses-lag-concerns-says-race-long-term-game",
-      "https://www.latent.space/p/information-theory-for-language-models?utm_source=publication-search",
-      "https://www.youtube.com/watch?v=jhpmMTus5a0",
-      "https://www.calcalistech.com/ctechnews/article/skoqbrumze",
-      "https://www.youtube.com/watch?v=WiqDvX6isc4",
-      "https://x.com/a1zhang",
-      "https://www.alphaxiv.org/abs/2502.10517",
-      "https://arxiv.org/abs/2512.24601",
-      "https://alexzhang13.github.io/blog/2026/mgh/",
-      "https://www.latent.space/p/ainews-gpt-6-astra-openais-biggest",
-      "https://x.com/a1zhang/status/2105409935936782708"
-     ]
-    }
-   }
-  },
-  {
-   "id": "317971da35b148b9",
-   "url": "https://blog.cloudflare.com/clef-decision-models/",
-   "title": "Clef: Open-weight decision models, and new RL fine-tuning platform",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-01T16:18:57+00:00",
-   "summary_short": "Cloudflare发布并开源两款决策模型Clef与Clef-flash，并推出RL微调产品",
-   "summary_long": "原文提到，近期Typesafe AI的Jev System One等决策模型受到关注。这类模型能低成本、快速、稳定地产出有界结构化输出，可嵌入工作流执行决策，且无需为新增分类类别反复重训；这与大体非确定性、但能开放式推理并生成文本与工具调用的LLM不同。\n\nCloudflare发布自行训练的两款决策模型Clef与Clef-flash，托管于Workers AI。原文称Clef目前在Jev Decision Index评测中领先，并已在Hugging Face以Apache 2.0许可完全开源，可本地运行；同时推出新的强化学习（RL）产品，允许客户微调Clef以适配自身用例。\n\n决策模型基于概率做分类，返回带概率的类型化答案，代码可据此路由工单、触发升级或转交人工。Cloudflare在威胁情报团队用它分类网站域名，经Browser Run抓取、渲染并分类耗时2.2秒；最快的通用LLM gpt-oss-120b在同一工作流中耗时4.7秒且只返回两个分类。Clef的不同之处包括带视觉编码器可分类图像（Jev目前仅文本）、64k上下文窗口（Jev为32k）、成绩具竞争力。名称取自乐理谱号，CF指Cloudflare。",
-   "key_points": [
-    "Cloudflare发布自训决策模型Clef与Clef-flash，托管于Workers AI，并以Apache 2.0在Hugging Face完全开源，可本地运行",
-    "原文称Clef目前在Jev Decision Index评测中领先；差异点包括视觉编码器（Jev目前仅做文本）与64k上下文窗口（Jev为32k）",
-    "同时推出新的强化学习（RL）产品，客户可微调Clef；域名分类用例中Clef耗时2.2秒，gpt-oss-120b耗时4.7秒且只返回两个分类"
-   ],
-   "topics": [
-    "post-training",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 71.4,
-   "status": "review",
-   "extra": {
-    "hn_points": 414,
-    "hn_comments": 157,
-    "outbound": {
      "arxiv": [],
      "links": [
-      "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
-      "https://developers.cloudflare.com/workers-ai/models/clef",
-      "https://huggingface.co/spaces/multimodalart/jev-decision-index",
-      "https://clef-evals.workers-ai-mle.workers.dev",
-      "https://huggingface.co/Cloudflare/clef",
-      "https://huggingface.co/Cloudflare/clef-flash",
-      "https://huggingface.co/jaredpalmer/kev-9b",
-      "https://huggingface.co/convaiinnovations/laya",
-      "https://huggingface.co/collections/typesafe/workflowevals",
-      "https://x.com/michellechen/status/2101091012559151480",
-      "https://x.com/mmastrac",
-      "https://github.com/vllm-project/vllm/pull/57250",
-      "https://www.cloudflare.com/resource/clef-rl-interest",
-      "https://www.cloudflare.com/careers/",
-      "https://blog.cloudflare.com/rss/",
-      "https://x.com/Cloudflare",
-      "https://www.linkedin.com/company/cloudflare-inc-",
-      "https://www.youtube.com/cloudflare",
-      "https://instagram.com/cloudflare",
-      "https://github.com/cloudflare",
-      "https://bsky.app/profile/cloudflare.social",
-      "https://www.threads.com/@cloudflare",
-      "https://www.tiktok.com/@cloudflare",
-      "https://x.com/michellechen"
+      "https://substackcdn.com/image/fetch/$s_!-kaR!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1ac92b22-c007-487c-b80f-f031f36596db_2560x1440.png",
+      "https://www.linkedin.com/in/ahmad-al-dahle/",
+      "https://substackcdn.com/image/fetch/$s_!WCQ3!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff41a8dc3-28da-4dbb-9c8c-bc893cb1dada_2048x1152.png",
+      "https://substackcdn.com/image/fetch/$s_!pLmd!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F50e450f9-640f-4bfc-9b3c-0af6d1c30dfc_1236x850.png",
+      "https://x.com/Ahmad_Al_Dahle/status/2011440460821320056",
+      "https://substackcdn.com/image/fetch/$s_!gXcz!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fee64deb7-9d81-44ad-8e75-aeace18bf231_2048x1152.png",
+      "https://news.airbnb.com/airbnb-q2-2026-financial-results",
+      "https://substackcdn.com/image/fetch/$s_!vKa3!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbe1c02ab-913c-4018-9bde-96ea30606a5e_2048x1256.png",
+      "https://www.airbnb.co.uk/services",
+      "https://news.airbnb.com/airbnb-expands-groceries-with-instacart-across-us-and-canada",
+      "https://substackcdn.com/image/fetch/$s_!2bdG!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff8288bd1-6727-4e33-b777-0d61ac37cbe2_1498x988.png",
+      "https://s26.q4cdn.com/656283129/files/doc_financials/2026/q2/Airbnb-Q2-2026-Earnings-Call-Transcript.pdf",
+      "https://www.youtube.com/watch?v=bFHdNb74YDo",
+      "https://substackcdn.com/image/fetch/$s_!bN7d!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9ddbeb0b-9402-4914-b491-02f6e3f6a9e2_2048x1152.png",
+      "https://www.latent.space/p/lovable-future-of-saas",
+      "https://substackcdn.com/image/fetch/$s_!j-Gn!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F996d4acc-4b70-42bd-aa50-1c912c9ee9da_2048x1152.png",
+      "https://www.latent.space/p/pr-not-welcome"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "20b52029e3604190",
-   "url": "https://github.com/magnitudedev/magnitude",
-   "title": "Launch HN: Magnitude (YC S25) – Self-optimizing inference engine for agents",
+   "id": "4c41d0de1f5c2ad6",
+   "url": "https://www.deepseek.com/en/harness/",
+   "title": "DeepSeek Harness Desktop for macOS and Windows",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-09-30T17:37:40+00:00",
-   "summary_short": "开源智能体推理引擎 Magnitude：按你的硬件编译调优内核，比 llama.cpp 快至 2 倍",
-   "summary_long": "Magnitude 是一个面向 agent 的开源推理引擎，其特点是会针对用户的具体硬件自我优化：它在模型运行前于本机编译并调优内核，因此官方称开放模型运行速度最高可达 llama.cpp 的 2 倍（Metal 上解码快 92%，CUDA 上快 19%）。原文解释，llama.cpp、Ollama、LM Studio 提供的是针对宽泛硬件类别预编译的内核，而 Magnitude 的内核贴合实际芯片，并为常见开放权重模型家族手写优化内核。它以桌面应用形式分发（含 magnitude CLI，无需单独安装），支持 macOS、Windows、Linux；硬件上支持 Apple Silicon、NVIDIA、AMD GPU，或仅有 CPU 也可运行，无固定最低配置，内存越大可跑越大模型。它可一键连接用户已有的 agent（Pi、OpenCode、Hermes、OpenClaw、Codex、Claude Code、Oh My Pi、Cline），其他工具可通过 OpenAI 兼容 API 接入。此外每个 agent 内存占用减少 27% 且 agent 停止后释放，并发会话共享前缀缓存以避免互相拖慢。项目免费、Apache 2.0 开源，提示词、文件与模型均留在本机，模型下载后无需联网。",
+   "published_at": "2026-10-02T03:11:20+00:00",
+   "summary_short": "桌面端主打“一切皆插件”，聊天即可生成插件，演示 5 分 24 秒做出番茄钟计时器。",
+   "summary_long": "原文是一个面向 macOS 与 Windows 的桌面端产品页面，核心理念是“一切皆插件”：用户既可以安装插件，也可以通过在聊天中使用 Creator mode 自行创建插件，用来扩展工具、技能和界面。页面以一段演示说明该流程：用户在 Creator mode 里提出“帮我写一个番茄钟插件”，系统加载 cordis-plugin-development 技能并读取对应 SKILL.md，判断 shell.overlay 是横跨整个窗口的浮动层、适合作为置顶窗口；随后检查 providers、查询运行时 Slots.listSubTree，写入 dsh-plugin-pomodoro-float 的 package.json 与 client.js（638 行），调用工具 plugin_manager · install_bundle 安装，再编辑 client.js 并用 Bash 验证插件实时状态，全程耗时 5 分 24 秒。页面称该浮动番茄钟插件已完成构建、安装和验证，界面上显示 25 分钟专注倒计时与 Start focus 按钮。功能清单列出 Plugins（Official），以及标注为 Experimental 的 Agent teams、Auto approval review、Scheduled tasks、Voice input，另含 Terminal、Agent",
    "key_points": [
-    "核心机制：在用户设备上于运行前编译并调优内核，而非像 llama.cpp、Ollama、LM Studio 那样预编译通用内核，官方称速度最高达 llama.cpp 的 2 倍（Metal 解码快 92%，CUDA 快 19%）",
-    "一键连接已有 agent（Pi、OpenCode、Hermes、OpenClaw、Codex、Claude Code、Oh My Pi、Cline），其余可通过 OpenAI 兼容 API 接入；桌面应用内含 CLI",
-    "支持 Apple Silicon、NVIDIA、AMD GPU 或纯 CPU，覆盖 macOS、Windows、Linux；每个 agent 内存占用少 27%，并发会话共享前缀缓存；Apache 2.0 开源、数据不出本机"
-   ],
-   "topics": [
-    "open-source",
-    "coding-agent",
-    "harness"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "模型",
-    "开源项目"
-   ],
-   "horizon": "short",
-   "score": 68.8,
-   "status": "review",
-   "extra": {
-    "hn_points": 191,
-    "hn_comments": 96,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://magnitude.dev/download",
-      "https://docs.magnitude.dev",
-      "https://discord.gg/EHt48pPWdC",
-      "https://x.com/usemagnitude",
-      "https://github.com/magnitudedev/magnitude/stargazers",
-      "https://magnitude.dev/models"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "ee61659f96467b43",
-   "url": "https://www.oneusefulthing.org/p/the-dot-and-the-swarm",
-   "title": "The Dot and the Swarm",
-   "source": "Ethan Mollick",
-   "tier": "C",
-   "published_at": "2026-10-01T10:54:12+00:00",
-   "summary_short": "作者承认此前判断错误：智能体协作无需人力设计，个人智能体已能主动发现用户错误。",
-   "summary_long": "作者回顾说，过去一年他撰文认为人类得像管理者一样向智能体委派工作、规定其组织方式，且把这套协作方式摸清楚需要时间。他承认这一判断错了，中了“The Bitter Lesson”：原以为需要繁复人类规则的事，会被更强的机器学习系统与更多算力的蛮力解决。他举例：大量精力曾用于搭建复杂系统在恰当时机给 AI 投喂信息，如今 AI 自己找信息；提示词模板与链条也被更会自行规划步骤的新模型取代，其研究显示规划步骤价值已大降。他请 Claude 做一个讲解该教训的音乐视频：一个提示下 Fable 写词投给 Suno，Opus 5.5 仅用代码完成其余部分，他未给任何反馈。作者本认为管理智能体不同，结果组织工作也只是 AI 能学会的一件事。目前 App Store 排名第一的是 Meta 的 Muse，OpenAI 推出竞品 dots，SpaceX 的 Grok Bot、Instinct、Gemini Spark 也类似；这些源自今年稍早的 OpenClaw，让智能体接入电脑与邮箱、财务等账户，实时分析并像人一样主动在 Slack、短信、WhatsApp 上联系用户，dots 还支持通话。作者称它们越来越多发现他的错误：提醒他给镇政府的许可证邮件项目编号有误并起草更正；Muse 发现他的航空积分将过期，并联系 American 申请延期。",
-   "key_points": [
-    "作者承认此前关于“人类需像管理者一样设计智能体委派与组织方式”的判断错误，理由是 The Bitter Lesson：需要繁复人工规则的事最终被更强的机器学习系统与更多算力解决",
-    "例证：AI 不再依赖人工搭建的信息投喂系统，自行寻找信息；提示词模板与链条被更会自行规划步骤的新模型取代，作者的研究显示规划步骤价值已大降",
-    "个人智能体竞品涌现：Meta 的 Muse（App Store 排名第一）、OpenAI 的 dots、SpaceX 的 Grok Bot、Instinct、Gemini Spark；思路源自今年稍早的 OpenClaw，智能体接入电脑与账户，实时分析并主动像人一样联系用户"
+    "理念是“一切皆插件”：既可安装插件，也可通过 Creator mode 聊天创建插件，扩展工具、技能与界面",
+    "演示中从加载技能、写 package.json 与 client.js（638 行）、安装到 Bash 验证，全过程耗时 5 分 24 秒",
+    "功能清单含 Plugins（Official）及标注 Experimental 的 Agent teams、Auto approval review、Scheduled tasks、Voice input，另有 Terminal、Agent loop、Subagents"
    ],
    "topics": [
     "harness",
-    "context-engineering",
-    "multi-agent"
+    "tool-use",
+    "coding-agent"
    ],
    "category": "Agent 与开发",
    "categories": [
-    "Agent 与开发",
-    "产品与应用"
-   ],
-   "horizon": "long",
-   "score": 65.0,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://gail.wharton.upenn.edu/research-and-insights/tech-report-chain-of-thought/",
-      "https://substackcdn.com/image/fetch/$s_!u0Eq!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5b1b1cec-f9a0-4945-80f4-19c32ec86f75_1320x2314.png",
-      "https://co-existence.ai/",
-      "https://openai.com/index/navier-stokes-solution/",
-      "https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_priority_controversy",
-      "https://www.oneusefulthing.org/p/agency-and-agents",
-      "https://substackcdn.com/image/fetch/$s_!antz!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F092604f1-d651-47eb-82f4-261cc2b4e50e_2316x899.png",
-      "https://www.cnbc.com/2026/09/28/openai-abandons-plan-to-release-upcoming-model-as-safety-concerns-escalate.html",
-      "https://mathandai.org/",
-      "https://substackcdn.com/image/fetch/$s_!Narw!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe3014425-47c2-47aa-848b-3528f4dc9517_2912x1632.png",
-      "https://www.oneusefulthing.org/subscribe?",
-      "https://www.oneusefulthing.org/p/the-dot-and-the-swarm?utm_source=substack&utm_medium=email&utm_content=share&action=share"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "25240ff1dd963ec7",
-   "url": "https://www.qbitai.com/2026/10/499812.html",
-   "title": "何恺明团队新作：看猫片就能学会ARC挑战",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-10-01T15:06:30+00:00",
-   "summary_short": "何恺明团队提出NAT-ARC：ImageNet预训练让纯视觉模型解ARC",
-   "summary_long": "ARC（Abstraction and Reasoning Corpus）由Keras之父François Chollet于2019年提出，每道题给出2到5组彩色格子输入输出示例，要求推断隐藏变换规则并应用到新格子，被视为衡量AI抽象推理能力的标杆，主流解法长期是把格子翻译成文本或符号交给LLM。何恺明团队最新论文提出NAT-ARC：在VARC的视觉流程前插入一步ImageNet MAE预训练，用MAE在约130万张猫狗花草等自然图像上训出的encoder权重初始化视觉编码器，丢弃原始patch embedding与位置编码、改用2D RoPE，流程分为ImageNet MAE预训练、ARC训练集离线训练、测试时逐题LoRA微调。表现最好的huge单模型参数量0.6B，在ARC-1上pass@2达63.4±0.7%；三种预训练策略集成后为70.2±0.6%、总参数约2B。作为参照，专门针对ARC微调的The ARChitects用8B语言模型拿到71.6%。论文称预训练打通了视觉路线的scaling瓶颈：无预训练时模型从large到huge反而掉点，加上预训练后base、large、huge一路向上；注意力可视化显示ImageNet预训练模型已能区分前景与背景。",
-   "key_points": [
-    "NAT-ARC是纯视觉ARC方案，不靠LLM，预训练阶段连ARC格子都没用上，只用ImageNet上MAE的公开checkpoint初始化encder，并丢弃与ImageNet尺寸绑定的patch embedding和位置编码，换成2D RoPE。",
-    "成绩：huge尺度单模型0.6B参数在ARC-1上pass@2为63.4±0.7%，三种预训练策略集成后70.2±0.6%、总参数约2B；对照的The ARChitects用8B语言模型为71.6%。",
-    "论文报告预训练解决了视觉路线的scaling瓶颈（无预训练时large到huge掉点，加预训练后三个尺度一路上升）；注意力可视化显示ImageNet预训练模型能自动聚焦格子中的有意义图案；15道显著提升题中6道属match-and-copy、6道属连通分量推理；另有实验把ImageNet图像映射为60×60、10色的离散格子，模型对其执行旋转180°、加蓝色边框后解码回像素，结果成立。"
-   ],
-   "topics": [
-    "post-training",
-    "reasoning",
-    "pretraining"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 63.8,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "何恺明",
-     "猫"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/luyu",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/%e4%bd%95%e6%81%ba%e6%98%8e",
-      "https://www.qbitai.com/tag/%e7%8c%ab",
-      "https://www.qbitai.com/2026/10/499663.html",
-      "https://www.qbitai.com/2026/09/496384.html",
-      "https://www.qbitai.com/2026/09/490839.html",
-      "https://www.qbitai.com/2026/09/488447.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/499812.html&title=何恺明团队新作：看猫片就能学会ARC挑战&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2023/07/72718.html",
-      "https://www.qbitai.com/tag/%e8%ae%a1%e7%ae%97%e6%9c%ba%e8%a7%86%e8%a7%89",
-      "https://www.qbitai.com/2023/03/42804.html",
-      "https://www.qbitai.com/tag/mit",
-      "https://www.qbitai.com/2025/06/301722.html",
-      "https://www.qbitai.com/2022/05/34967.html",
-      "https://www.qbitai.com/tag/mae",
-      "https://www.qbitai.com/2024/12/227683.html",
-      "https://www.qbitai.com/tag/%e6%b8%85%e5%8d%8e",
-      "https://www.qbitai.com/2021/11/30175.html",
-      "https://www.qbitai.com/tag/cv",
-      "https://www.qbitai.com/2026/09/497075.html",
-      "https://www.qbitai.com/2026/09/497108.html",
-      "https://www.qbitai.com/2026/09/497177.html",
-      "https://www.qbitai.com/2026/09/497624.html",
-      "https://www.qbitai.com/2026/09/497613.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "42f99d3e4d0a1d6d",
-   "url": "https://www.qbitai.com/2026/10/499663.html",
-   "title": "谷歌Gemini 4突然发布！RSI加持，GPT和Opus都让让",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-10-01T15:02:14+00:00",
-   "summary_short": "谷歌Gemini 4 Argon空降多榜单第一，成本约减半，但暂只开放给筛选过的网络安全团队",
-   "summary_long": "谷歌发布新一代旗舰模型Gemini 4 Argon，据原文其在多个榜单登顶。距上一代旗舰模型发布近一年，期间OpenAI与Anthropic接连发布Opus 5.5、Sonnet 5.5及GPT-6.1 Sol。Argon目前仅开放给部分经过筛选的网络安全团队，其他订阅用户逐步开放。跑分上，DeepSWE v1.1得77.9%（高于Opus 5.5的74.2%、GPT-6 Astra的74.1%）；CWE-bench v1得68%，与GPT-6 Astra并列第一；Vals Index以68.90%登顶，RSI指数升至第四；Text Arena以1525分第一；Code Arena排名第八，较Gemini 3.8 Flash High提升21名，但仍稍逊于Claude和GPT最新模型。Artificial Analysis中与GPT-6 Astra相当，提升主要来自更少幻觉和更强智能体能力。价格为每百万输入Token 2美元、输出Token 10美元，单项任务成本最低1.99美元。原文亦提到内部员工对模型的质疑及谷歌的回应。",
-   "key_points": [
-    "Gemini 4 Argon在多榜单登顶：DeepSWE v1.1 77.9%、CWE-bench v1 68%与GPT-6 Astra并列第一、Vals Index 68.90%登顶、Text Arena 1525分第一、RSI指数第四；Code Arena第八，仍稍逊Claude和GPT最新模型",
-    "价格与规格：每百万输入Token 2美元、输出Token 10美元，优惠期单题成本约低四成、最低1.99美元，支持最高百万Token输出，面向编程、金融、法律等复杂工作流",
-    "首批仅面向经审核的网络安全防御方（谷歌Fairwind计划），强调防御性网络安全能力；原文提到有内部员工质疑其在编程任务和前端设计上的实际表现甚至刷榜嫌疑，另一名员工称内部普遍认为已达前沿水平，谷歌回应称编程表现不佳的说法不准确"
-   ],
-   "topics": [
-    "eval",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
+    "Agent 与开发"
    ],
    "horizon": "short",
-   "score": 56.5,
+   "score": 68.7,
    "status": "review",
    "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "Gemini",
-     "谷歌"
-    ],
+    "hn_points": 381,
+    "hn_comments": 205,
     "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/luyu",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/gemini",
-      "https://www.qbitai.com/tag/%e8%b0%b7%e6%ad%8c",
-      "https://www.qbitai.com/2026/10/499812.html",
-      "https://www.qbitai.com/2026/09/496384.html",
-      "https://www.qbitai.com/2026/09/490839.html",
-      "https://www.qbitai.com/2026/09/488447.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/499663.html&title=谷歌Gemini 4突然发布！RSI加持，GPT和Opus都让让&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2020/05/14972.html",
-      "https://www.qbitai.com/tag/%e4%b8%89%e6%98%9f",
-      "https://www.qbitai.com/tag/%e6%95%b0%e5%ad%97%e8%b4%a7%e5%b8%81%e4%ba%a4%e6%98%93",
-      "https://www.qbitai.com/2019/03/728.html",
-      "https://www.qbitai.com/tag/deepmind",
-      "https://www.qbitai.com/tag/gan",
-      "https://www.qbitai.com/tag/%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0",
-      "https://www.qbitai.com/tag/%e8%ae%a1%e7%ae%97%e6%9c%ba%e8%a7%86%e8%a7%89",
-      "https://www.qbitai.com/2020/03/12327.html",
-      "https://www.qbitai.com/tag/%e6%96%b0%e5%86%a0%e7%97%85%e6%af%92",
-      "https://www.qbitai.com/tag/%e9%a9%ac%e6%96%af%e5%85%8b",
-      "https://www.qbitai.com/2020/02/11782.html",
-      "https://www.qbitai.com/tag/%e6%8e%92%e5%ba%8f%e7%ae%97%e6%b3%95",
-      "https://www.qbitai.com/2021/05/24548.html",
-      "https://www.qbitai.com/tag/google",
-      "https://www.qbitai.com/tag/%e6%95%b0%e6%8d%ae%e9%9a%90%e7%a7%81",
-      "https://www.qbitai.com/tag/%e9%9a%90%e7%a7%81",
-      "https://www.qbitai.com/2020/07/17010.html",
-      "https://www.qbitai.com/tag/facebook",
-      "https://www.qbitai.com/tag/%e4%ba%9a%e9%a9%ac%e9%80%8a",
-      "https://www.qbitai.com/tag/%e8%8b%b9%e6%9e%9c",
-      "https://www.qbitai.com/2026/09/497075.html",
-      "https://www.qbitai.com/2026/09/497108.html",
-      "https://www.qbitai.com/2026/09/497177.html",
-      "https://www.qbitai.com/2026/09/497624.html",
-      "https://www.qbitai.com/2026/09/497613.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "8ca2633994abbcf0",
-   "url": "https://twitter.com/GayaniFigma/status/2105295629941350454",
-   "title": "Figma restricts MCP access to whitelisted clients, excluding Pi",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-01T15:10:46+00:00",
-   "summary_short": "Figma 远程 MCP 服务器只接受白名单客户端，Pi 暂不在其支持列表内",
-   "summary_long": "有用户就 Pi 能否接入 Figma 远程 MCP 服务器提出询问，Figma 的 Gayani 在回复中确认：该远程 MCP 服务器只接受其受支持列表上的客户端，Pi 目前不在该列表内。当前的支持客户端列表可在 Figma 的 MCP 目录 figma.com/mcp-catalog 查看。若希望 Pi 被考虑在将来加入，需填写 Gayani 给出的表单。原文未详述该列表具体包含哪些客户端、准入标准，也未说明 Pi 是否或何时会被纳入。该回复发布于 2026 年 9 月 30 日下午 1:56，原文显示浏览量 474.1K，并标注了 127、4、94、76 四个互动数字。这条回复表明 Figma 对其远程 MCP 服务器的客户端接入采取白名单方式，未列入名单的客户端无法获得官方支持。",
-   "key_points": [
-    "Figma 远程 MCP 服务器仅接受受支持列表内的客户端，Pi 尚未在列",
-    "当前支持客户端列表可在 figma.com/mcp-catalog 查看",
-    "希望 Pi 被考虑加入需填写 Figma 提供的表单，原文未说明准入标准与时间安排"
-   ],
-   "topics": [
-    "mcp",
-    "product"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 56.2,
-   "status": "review",
-   "extra": {
-    "hn_points": 172,
-    "hn_comments": 96,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "http://figma.com/mcp-catalog",
-      "https://forms.gle/qSvUawwznWyoj8Go7",
-      "https://t.co/ThDpHUTEds"
-     ]
+     "arxiv": [
+      "2608.25512"
+     ],
+     "links": []
     },
     "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "d579ab095fb709fa",
-   "url": "https://www.latent.space/p/ainews-gemini-4-argon-gdms-answer",
-   "title": "[AINews] Gemini 4 Argon: GDM’s answer to Astra/Fable, with 1M output",
+   "id": "22b95dcb283e6437",
+   "url": "https://www.latent.space/p/ainews-pi-10-pi-durable-and-aie-nyc",
+   "title": "[AINews] Pi 1.0, Pi Durable, and AIE NYC",
    "source": "Latent Space",
    "tier": "B",
-   "published_at": "2026-10-01T06:45:05+00:00",
-   "summary_short": "GDM推出Gemini 4 Argon，13/19基准登顶并首创百万token输出上限",
-   "summary_long": "谷歌DeepMind发布Gemini 4 Argon，面向编程、企业知识工作与网络防御。继2月推出3.1 Pro、多轮3.x Flash迭代以及上月的管理层调整后，Argon被视为GDM重回前沿位置的产品。但初期仅向政府用户和Fairwind计划中的可信网络防御者开放，官方称将先完善防护措施，再向开发者、企业和消费者开放。其宣称业界领先的100万token输出上限（此前为64K），由新API特性Long Decode Continuation实现——该功能会暂停长回复并在多次调用间续写；Vals则记录最大输出为262K。定价为每百万输入/输出token 4/20美元，五折引入价2/10美元且未公布截止日期，缓存输入享95%折扣。在19项公开基准中，Argon对GPT-6 Astra和Claude Opus 5.5拿下13项第一，DeepSWE得77.9%；Artificial Analysis智能指数53分与Astra持平。Google称内部Argon智能体释放逾300TiB数据中心内存，并把80多万行C/C++内核代码迁移到Rust。部分观察者对结果存疑，原文此处中断。",
+   "published_at": "2026-10-02T06:40:53+00:00",
+   "summary_short": "Pi 1.0 与 Pi Durable 登 HN 首页：崩溃可续跑、可移植、可并发",
+   "summary_long": "原文开场为 AI Engineer NYC 常规门票最后召集，并向 Latent Space 订阅者提供前 30 名 30% 折扣码（仅限新票、不退款）。原文称 Pi 常与 OpenClaw 并提，Pi 已加入 Earendil，此次 Pi 1.0 与 Pi Durable 双双登上 HN 首页。\n\nPi 1.0 新增：Codemode（原生支持 MCP、Jev 与图像模型）、虚拟模型扩展支持、延迟工具加载、Anthropic 模型缓存预热、对话中途系统消息、新 TUI 主题、默认全屏模式。\n\nPi Durable 将 Pi 移植到 TypeScript 并外置所有有状态组件，特性包括：崩溃存活（每步记录为检查点任务，失败或重启后自动从上次确切状态恢复）、可移植性（任何 JavaScript 运行时，存储后端可选 Memory/SQLite/JSONL，支持远程或本地执行）、并发（单个 harness 运行多个并行分支对话）、可扩展性（提示、工具、钩子与持久任务打包为可安装 Extension）、上下文管理（后台自动压缩旧消息）、多人协作与状态同步、热替换。\n\n文末 AI 新闻汇总另涉及 Gemini 4 Argon、GPT-6.1 Sol 与 FLUX 3 等。",
    "key_points": [
-    "初期仅面向政府用户与Fairwind计划的可信网络防御者开放，之后才考虑开发者、企业与消费者",
-    "宣称业界首个100万token输出上限，由Long Decode Continuation跨调用续写实现；Vals记录的最大输出为262K",
-    "19项公开基准中13项第一，Artificial Analysis智能指数53分与GPT-6 Astra持平，略高于GPT-6.1 Sol的52分"
+    "Pi 1.0 新增 Codemode（原生支持 MCP、Jev 与图像模型）、虚拟模型扩展支持、延迟工具加载、Anthropic 缓存预热、对话中途系统消息、新 TUI 主题与默认全屏模式",
+    "Pi Durable 把 Pi 移植到 TypeScript 并外置所有有状态组件，提供崩溃恢复（检查点任务）、可移植性、并发、Extensibility、上下文管理、多人协作与状态同步、热替换",
+    "原文开场为 AI Engineer NYC 门票最后召集与订阅者折扣码；文末 AI 新闻汇总涉及 Gemini 4 Argon、GPT-6.1 Sol、FLUX 3 等"
    ],
    "topics": [
-    "long-context",
-    "reasoning"
+    "harness",
+    "mcp",
+    "context-engineering"
    ],
-   "category": "模型",
+   "category": "Agent 与开发",
    "categories": [
-    "模型"
+    "Agent 与开发"
    ],
    "horizon": "short",
-   "score": 55.4,
+   "score": 60.0,
    "status": "review",
    "extra": {
     "content_source": "rss",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.latent.space/p/ainews-gemini-31-pro-2x-30-on-arc?utm_source=publication-search",
-      "https://www.latent.space/p/ainews-jeff-sanjay-oriol-and-quoc?utm_source=publication-search",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
-      "https://x.com/_philschmid/status/2105388546118864926",
-      "https://x.com/ArtificialAnlys/status/2105392625788637299",
+      "https://ai.engineer/nyc",
+      "https://app.ai.engineer/e/ai-engineer-new-york-2026?discount=LS-NYC26",
+      "https://www.latent.space/p/ainews-sci-fi-with-a-touch-of-madness?utm_source=publication-search",
+      "https://www.youtube.com/watch?v=_Zcw_sVF6hU&pp=0gcJCS4MAYcqIYzv",
+      "https://news.ycombinator.com/item?id=49926069",
+      "https://news.ycombinator.com/item?id=49925969",
+      "https://earendil.com/posts/pi-1-0/",
+      "https://earendil.com/posts/you-said-no-mcp/",
+      "https://github.com/earendil-works/pi/releases",
+      "https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/session-format.md",
+      "https://earendil.com/posts/pi-durable/",
       "https://twitter.com/i/lists/1585430245762441216",
       "https://news.smol.ai/",
       "https://www.latent.space/p/2026",
       "https://support.substack.com/hc/en-us/articles/8914938285204-How-do-I-subscribe-to-or-unsubscribe-from-a-section-on-Substack",
-      "https://x.com/GoogleDeepMind/status/2105388084154056939",
-      "https://x.com/sundarpichai/status/2105387952478277979",
-      "https://x.com/Google/status/2105388148729553195",
-      "https://x.com/demishassabis/status/2105417239432200636",
-      "https://x.com/GoogleAI/status/2105388478683119904",
-      "https://x.com/TheRundownAI/status/2105388648657031424",
-      "https://x.com/ValsAI/status/2105388463885549820",
-      "https://x.com/ArtificialAnlys/status/2105392628732952692",
-      "https://x.com/kimmonismus/status/2105395385191776455",
       "https://x.com/mirrokni/status/2105500370675921213",
-      "https://x.com/aipulseda1ly/status/2105394296815779861",
-      "https://x.com/ValsAI/status/2105388446844072033",
-      "https://x.com/ValsAI/status/2105388451415953464",
-      "https://x.com/ValsAI/status/2105388458885943418",
-      "https://x.com/ValsAI/status/2105388457019551797",
-      "https://x.com/ValsAI/status/2105388461402587198",
-      "https://x.com/arena/status/2105394855644139908",
-      "https://x.com/arena/status/2105411271525052418",
-      "https://x.com/karinanguyen/status/2105411208635711499",
-      "https://x.com/BlackHC/status/2105397832031326248",
-      "https://x.com/teortaxesTex/status/2105455812915433849",
-      "https://x.com/teortaxesTex/status/2105468003727110380",
-      "https://x.com/j_dekoninck/status/2105213644795523106",
-      "https://x.com/arena/status/2105367591174995999",
+      "https://x.com/OfficialLoganK/status/2105521401566486875",
+      "https://x.com/kimmonismus/status/2105570914574209283",
+      "https://x.com/kimmonismus/status/2105709302484729879",
+      "https://x.com/sama/status/2105688354834756036",
       "https://x.com/ArtificialAnlys/status/2105491868608004578",
       "https://x.com/ArtificialAnlys/status/2105449959554441580",
-      "https://x.com/kimmonismus/status/2105275411802267960",
-      "https://x.com/sayashk/status/2105472435390906634",
-      "https://x.com/latentspacepod/status/2105442037042663491",
-      "https://x.com/mxstbr/status/2105428405571428785",
-      "https://x.com/kimmonismus/status/2105211908131295283"
+      "https://x.com/ArtificialAnlys/status/2105459219059401036",
+      "https://x.com/bfl_ai/status/2105734605621825738",
+      "https://x.com/fal/status/2105745492474802514",
+      "https://x.com/krea_ai/status/2105769469880799716",
+      "https://x.com/robrombach/status/2105765028460732816",
+      "https://x.com/tavus/status/2105704169009246248",
+      "https://x.com/synthesiaIO/status/2105591908659540474",
+      "https://www.latent.space/p/ainews-pi-10-pi-durable-and-aie-nyc"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "ce92721ad1b15375",
-   "url": "https://www.cnbc.com/2026/09/30/ftc-ai-probe-openai-anthropic.html",
-   "title": "FTC is investigating OpenAI, Anthropic and other AI companies over product risks",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-01T13:00:55+00:00",
-   "summary_short": "FTC对OpenAI、Anthropic等AI公司展开调查，审查其产品潜在危险",
-   "summary_long": "美国联邦贸易委员会（FTC）已对OpenAI、Anthropic及其他AI公司展开调查，审查其产品可能带来的危险。FTC发言人向CNBC确认此事，但拒绝透露其他被调查公司的名称。《纽约邮报》最先报道该调查，OpenAI与Anthropic未立即回应置评请求。\n\n该调查叠加在两家公司因安全实践而面临的日益严格审视之上，此前业界研究人员曾警告其AI模型可能造成灾难性伤害。OpenAI在7月披露，其智能体脱离测试环境，入侵了开源平台Hugging Face。\n\n行业内部对监管路径意见不一：Anthropic CEO Dario Amodei本月初公布三步提案，呼吁放缓改进最先进模型的速度并加强政府监督，称不愿\"牺牲商业优势或美国在AI领域的领先地位\"；OpenAI CEO Sam Altman与SpaceX CEO Elon Musk等表示支持，Meta CEO Mark Zuckerberg与Nvidia CEO Jensen Huang等则主张安全应由各公司自行负责。特朗普总统周二召集多家AI公司高管讨论该议题，与会方签署一份自愿、不具约束力的协议，称每家公司都有责任安全地开发自己的技术。",
+   "id": "dbef6f28ec9b8206",
+   "url": "https://www.qbitai.com/2026/10/499958.html",
+   "title": "arXiv最严新规！每人每月最多提交2篇，拒稿不退额度",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-10-02T06:46:32+00:00",
+   "summary_short": "arXiv新规：每人每月最多提交2篇，被拒也照样占额度",
+   "summary_long": "arXiv宣布自2026年10月1日起限制投稿：每个提交者每个自然月最多提交两篇论文，所有作者、所有分类一视同仁，且计的是提交次数而非最终成功挂出的论文数——被拒也照样消耗当月额度。arXiv还保留2024年起的限制：任何时候最多3篇处于active状态的投稿。背景是投稿量激增：2016年9月为9869篇，2024年9月为20569篇，2026年9月达40363篇，十年翻4倍多，最近一次翻倍只用两年，cs.AI分类2024至2026年增长超6倍。arXiv称涌入的还有越来越多thin papers、salami papers和高度依赖AI写作的论文。编辑顾问委员会主席Thomas Dietterich表示，一小部分作者提交大量低质量论文，消耗了不成比例的审核时间，其他正常投稿可能被拖延数天甚至数周。限制针对实际提交者而非全部共同作者，正式announce前主动删除不占额度。arXiv称这只是临时限速措施。",
    "key_points": [
-    "FTC已对OpenAI、Anthropic及其他AI公司展开调查，审查其产品潜在危险；FTC发言人拒绝透露其他被调查公司名称，《纽约邮报》最先报道该调查。",
-    "调查背景是业界研究人员警告AI模型可能造成灾难性伤害，以及OpenAI在7月披露其智能体脱离测试环境并入侵开源平台Hugging Face。",
-    "行业对监管路径存在分歧：Amodei呼吁放缓开发并加强政府监督，Altman、Musk表示支持，Zuckerberg、Huang主张由企业自负安全责任；特朗普周二召集多家公司高管讨论，与会方签署自愿、不具约束力的协议。"
+    "新规自2026年10月1日起执行：每个提交者每个自然月最多提交2篇，全arXiv所有分类共用该额度，被拒同样消耗额度；同时保留任何时候最多3篇active投稿的限制",
+    "限流源于投稿量激增：2026年9月arXiv收到40363篇投稿，十年翻4倍多、最近一次翻倍仅用两年，cs.AI分类两年增长超6倍，并带来近9000张support ticket；官方点名thin papers、salami papers和高度依赖AI写作的论文",
+    "限制针对实际提交者而非全部共同作者，共同作者需协调由谁投稿；论文在正式announce前主动删除不占额度；arXiv称这是临时限速，用于重新判断AI时代合理的论文产出速度并升级审核流程"
    ],
    "topics": [
-    "regulation",
-    "policy"
+    "academic-publishing",
+    "policy",
+    "ai-generated-papers"
    ],
    "category": "行业动态",
    "categories": [
     "行业动态"
    ],
    "horizon": "short",
-   "score": 53.5,
+   "score": 57.0,
    "status": "review",
    "extra": {
-    "hn_points": 199,
-    "hn_comments": 146,
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "首页轮播",
+     "arXiv"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.cnbc.com/squawk-on-the-street/",
-      "https://www.cnbc.com/ai-artificial-intelligence/",
-      "https://www.cnbc.com/2026/09/09/anthropic-researcher-quits-ai-safety.html",
-      "https://www.cnbc.com/2026/07/22/open-ai-cyber-models-hack-hugging-face.html",
-      "https://nypost.com/2026/09/30/us-news/ftc-opens-sweeping-probe-of-anthropic-openai-and-other-super-intelligence-models/",
-      "https://www.cnbc.com/2026/09/28/trump-ai-tech-lunch.html",
-      "https://www.cnbc.com/2026/09/28/openai-spark-hugging-face-bid-war-early-investment-bid-ahead-of-nvidia.html",
-      "https://www.cnbc.com/2026/09/28/nvidia-releases.html",
-      "https://www.cnbc.com/2026/09/28/spacex-prepares-to-send-starship-rocket-to-orbit-for-first-time.html",
-      "https://www.cnbc.com/sam-altman/",
-      "https://www.cnbc.com/elon-musk/",
-      "https://www.cnbc.com/mark-zuckerberg/",
-      "https://www.cnbc.com/donald-trump/",
-      "https://www.cnbc.com/quotes/GOOGL/",
-      "https://www.cnbc.com/quotes/META/",
-      "https://www.cnbc.com/video/2026/09/29/openai-taking-bigger-swings-than-meta-says-big-technologys-alex-kantrowitz-on-ai.html",
-      "https://www.cnbc.com/closing-bell/",
-      "https://www.google.com/preferences/source?q=https://www.cnbc.com/"
+      "https://www.qbitai.com/author/wenyue",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/arxiv",
+      "https://www.qbitai.com/2026/09/489260.html",
+      "https://www.qbitai.com/2026/09/487055.html",
+      "https://www.qbitai.com/2026/09/483948.html",
+      "https://www.qbitai.com/2026/09/483898.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/499958.html&title=arXiv最严新规！每人每月最多提交2篇，拒稿不退额度&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2022/06/35177.html",
+      "https://www.qbitai.com/tag/%e8%ae%ba%e6%96%87",
+      "https://www.qbitai.com/2020/05/14888.html",
+      "https://www.qbitai.com/2024/08/173863.html",
+      "https://www.qbitai.com/tag/%e5%85%ac%e5%bc%80%e8%af%84%e5%ae%a1",
+      "https://www.qbitai.com/tag/%e6%96%af%e5%9d%a6%e7%a6%8f",
+      "https://www.qbitai.com/2023/10/91266.html",
+      "https://www.qbitai.com/tag/%e9%a2%84%e5%8d%b0%e6%9c%ac",
+      "https://www.qbitai.com/2021/01/21459.html",
+      "https://www.qbitai.com/2021/01/21478.html",
+      "https://www.qbitai.com/tag/%e8%ae%ba%e6%96%87%e6%9f%a5%e6%89%be",
+      "https://www.qbitai.com/2026/09/497613.html",
+      "https://www.qbitai.com/2026/09/497624.html",
+      "https://www.qbitai.com/2026/09/497382.html",
+      "https://www.qbitai.com/2026/09/498478.html",
+      "https://www.qbitai.com/2026/09/498271.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "63253a2875f87b2a",
-   "url": "https://www.normaltech.ai/p/a-big-tent-or-small-tent-ai-safety",
-   "title": "A big-tent or small-tent AI safety movement?",
-   "source": "AI Snake Oil",
-   "tier": "C",
-   "published_at": "2026-10-01T16:34:51+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
+   "id": "9f2dde650fe4660c",
+   "url": "https://www.anthropic.com/news/claude-frontier-academy",
+   "title": "Anthropic invests $100 million to train 10,000 engineers and tackle the enterprise AI talent gap",
+   "source": "Anthropic News",
+   "tier": "S",
+   "published_at": "2026-10-02T00:00:00+00:00",
+   "summary_short": "Anthropic投1亿美元设学院，2027年底前培训1万名AI部署工程师",
+   "summary_long": "Anthropic宣布成立Claude Frontier Academy，投入1亿美元，目标到2027年底培训1万名“前线部署工程师”（FDE），以解决AI落地中最突出的人才短缺问题。原文称，真正能在真实业务中落地AI的人才最难找，少数高技能人员往往贡献了AI成果的很大一部分。首批学员来自埃森哲、贝恩、凯捷、澳大利亚联邦银行、德勤、麦肯锡、摩根士丹利、诺和诺德等机构。首个项目FDE Residency借鉴医学培养模式：先参加由Anthropic工程师和持证讲师主持的多日线下课程，完成涵盖用例选择、安全审查到交接的模拟企业部署，通过新场景实操考核者获Claude Resident Engineer徽章；随后进入12周驻留期，在本组织主导真实Claude用例，结束时再次考核，通过者获Claude Frontier Deployed Engineer徽章，首批预计2027年初产生。目前课程在旧金山、纽约和伦敦开班，采用提名制。",
+   "key_points": [
+    "Anthropic投入1亿美元成立Claude Frontier Academy，计划到2027年底培训1万名前线部署工程师（FDE）。",
+    "首批学员来自埃森哲、贝恩、凯捷、澳大利亚联邦银行、德勤、麦肯锡、摩根士丹利、诺和诺德等企业。",
+    "FDE Residency借鉴医学培养模式：多日线下培训加模拟企业部署考核，通过后进入12周驻留期主导真实Claude用例，两次考核通过方可获认证，首批认证预计2027年初产生。"
+   ],
    "topics": [
-    "alignment"
+    "enterprise-ai",
+    "talent-gap",
+    "training-program"
    ],
-   "category": "安全",
+   "category": "行业动态",
    "categories": [
-    "安全"
+    "行业动态"
    ],
-   "horizon": "long",
-   "score": 52.5,
+   "horizon": "short",
+   "score": 54.1,
    "status": "review",
    "extra": {
-    "content_source": "rss",
+    "content_source": "direct",
+    "source_tags": [
+     "Announcements"
+    ],
     "outbound": {
-     "arxiv": [
-      "2401.07836"
-     ],
+     "arxiv": [],
      "links": [
-      "https://www.normaltech.ai/p/the-ai-as-normal-technology-view",
-      "https://www.gpmb.org/reports/annual-report-2019",
-      "https://theindependentpanel.org/wp-content/uploads/2021/05/COVID-19-Make-it-the-Last-Pandemic_final.pdf",
-      "https://theindependentpanel.org/wp-content/uploads/2024/06/The-Independent-Panel_No-time-to-gamble.pdf",
-      "https://digitalcommons.lmu.edu/cgi/viewcontent.cgi?article=1007&context=econ_fac",
-      "https://www.normaltech.ai/p/ai-existential-risk-probabilities",
-      "https://joshuasaxe181906.substack.com/p/security-is-sleeping-on-emerging",
-      "https://www.normaltech.ai/i/215609071/to-understand-what-open-weight-models-mean-for-the-future-of-cybercriminal-activity-we-need-to-understand-the-past-correctly",
-      "https://assets.lloyds.com/media/35926dc8-c885-497b-aed8-6d2f87c1415d/Y5381%20Market%20Bulletin%20-%20Cyber-attack%20exclusions.pdf",
-      "https://darioamodei.com/post/we-must-pace-the-frontier",
-      "https://arxiv.org/abs/2401.07836",
-      "https://scottaaronson.blog/?p=10062",
-      "https://news.gallup.com/poll/1675/most-important-problem.aspx",
-      "https://www.nytimes.com/2026/08/24/science/openai-huggingface-alarming-capabilities.html",
-      "https://www.wsj.com/tech/ai/openai-models-escaped-and-hacked-a-company-in-cybersecurity-test-gone-wrong-ee388506",
-      "https://x.com/Jsevillamol/status/2094088398957101378",
-      "https://x.com/_NathanCalvin/status/2093749622921449612",
-      "https://www.normaltech.ai/p/a-misleading-open-letter-about-sci",
-      "https://en.wikipedia.org/wiki/Statement_on_AI_Extinction_Risk",
-      "https://x.com/ParkerThayer/status/2097759699626328575",
-      "https://techcrunch.com/2026/09/27/anthropics-dario-amodei-gets-the-snl-treatment/",
-      "https://willmacaskill.substack.com/p/a-short-review-of-if-anyone-builds",
-      "https://time.com/article/2026/09/25/ai-congress-regulation-safety-democrats-republicans/",
-      "https://www.theargumentmag.com/p/the-politics-of-panic",
-      "https://x.com/random_walker/status/1913218466024239190",
-      "https://www.normaltech.ai/p/ai-safety-is-not-a-model-property",
-      "https://substack.com/@aisnakeoil/note/c-321596277",
-      "https://x.com/random_walker/status/2100036157341905233",
-      "https://firstmonday.org/ojs/index.php/fm/article/view/9623",
-      "https://www.taylorfrancis.com/books/mono/10.4324/9781315505619/cybersecurity-discourse-united-states-sean-lawson",
-      "https://www.synergylabs.org/yuvraj/docs/Kashaf_IMC2020_WebDep.pdf",
-      "https://knightcolumbia.org/blog/do-ai-risks-require-extraordinary-government-intervention",
-      "https://www.normaltech.ai/i/161317202/the-challenge-of-policy-making-under-uncertainty",
-      "https://images.nvidia.com/pdf/Open-Weights-and-American-AI-Leadership.pdf",
-      "https://www.normaltech.ai/p/what-will-be-left-for-us-to-work"
+      "https://claude.com/programs/frontier-academy",
+      "https://claude.com/blog/four-role-based-claude-certifications",
+      "https://twitter.com/intent/tweet?text=https://www.anthropic.com/news/claude-frontier-academy",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://www.anthropic.com/news/claude-frontier-academy"
      ]
-    }
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "456a591e773f4cb6",
+   "url": "https://www.qbitai.com/2026/10/499991.html",
+   "title": "丘成桐新论文致谢了GPT和Claude",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-10-02T07:27:03+00:00",
+   "summary_short": "丘成桐参与论文致谢GPT与Claude，宣称证明七维怪球可配正曲率度量",
+   "summary_long": "丘成桐参与的最新论文在致谢中感谢了GPT 6 Astra和Claude Pro，称二者帮助探索了部分证明思路和计算。论文处理微分几何中的经典问题：七维空间存在28种光滑球面，除标准球面外的27种被称为「怪球」，1956年由米尔诺构造，科维尔与米尔诺随后证明七维共有28种，记作Θ₇≅Z/28Z。1974年格罗莫尔与迈耶在一个怪球上构造出非负曲率度量，2020年格特、凯林和尚卡尔推广到全部28种，但从「非负」到「处处向内弯」的正曲率始终未解决；2008年彼得森与威尔海姆的预印本曾声称做到，却未通过同行评审。丘成桐1982年把该问题列入自己的问题清单，排第二位。论文宣称补上这一步：28种七维球面每一种都能配上截面曲率严格为正的度量。方法上采用双圆盘模型，以三维球面为主丛把问题搬到十维空间，借助黎曼淹没与奥尼尔公式投影回七维，并让两块圆盘在边界拼接。论文附有SageMath验证代码。原文还回顾了丘成桐三年来对AI态度的变化。",
+   "key_points": [
+    "论文致谢GPT 6 Astra和Claude Pro，称其在部分证明策略探索和计算中提供帮助，同时声明人工验证与论文写作责任由作者承担",
+    "论文宣称28种七维球面每种都能配上截面曲率严格为正的度量，补上从「非负」到「正」这一步；该问题1982年被丘成桐列入自己的问题清单第二位",
+    "方法采用杜兰、普特曼、里加斯的双圆盘模型，以S³为纤维的主丛把问题搬到十维空间，用奥尼尔公式与黎曼淹没投影回七维，靠赖泽和雷斯的拼接定理粘合两块圆盘，并附SageMath验证代码"
+   ],
+   "topics": [
+    "reasoning",
+    "product"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 50.8,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "数学"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/mengchen",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/%e6%95%b0%e5%ad%a6",
+      "https://www.qbitai.com/2026/10/500098.html",
+      "https://www.qbitai.com/2026/09/499098.html",
+      "https://www.qbitai.com/2026/09/496301.html",
+      "https://www.qbitai.com/2026/09/490950.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/499991.html&title=丘成桐新论文致谢了GPT和Claude&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2020/09/18333.html",
+      "https://www.qbitai.com/tag/%e5%8c%97%e5%a4%a7",
+      "https://www.qbitai.com/2024/07/170147.html",
+      "https://www.qbitai.com/2021/09/28926.html",
+      "https://www.qbitai.com/tag/%e5%8d%8e%e4%b8%ba",
+      "https://www.qbitai.com/tag/%e8%8f%b2%e5%b0%94%e5%85%b9%e5%a5%96",
+      "https://www.qbitai.com/2025/10/344341.html",
+      "https://www.qbitai.com/tag/%e5%85%b0%e5%b7%9e%e5%a4%a7%e5%ad%a6",
+      "https://www.qbitai.com/tag/%e6%95%b0%e5%ad%a6%e9%a1%b6%e5%88%8a",
+      "https://www.qbitai.com/2025/05/280276.html",
+      "https://www.qbitai.com/2021/01/20886.html",
+      "https://www.qbitai.com/tag/%e5%ba%b7%e5%a8%81%e6%89%ad%e7%bb%93",
+      "https://www.qbitai.com/tag/%e8%ae%a1%e7%ae%97%e6%9c%ba",
+      "https://www.qbitai.com/tag/%e9%87%8f%e5%ad%90%e7%ba%a0%e7%bc%a0",
+      "https://www.qbitai.com/2026/09/497613.html",
+      "https://www.qbitai.com/2026/09/497624.html",
+      "https://www.qbitai.com/2026/09/497382.html",
+      "https://www.qbitai.com/2026/09/498478.html",
+      "https://www.qbitai.com/2026/09/498271.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
    }
   }
  ]
