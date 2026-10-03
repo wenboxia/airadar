@@ -1,224 +1,220 @@
 {
- "generated_at": "2026-10-03T00:21:30+00:00",
+ "generated_at": "2026-10-03T23:44:50+00:00",
  "items": [
   {
-   "id": "d81483cb0de80876",
-   "url": "https://www.latent.space/p/airbnb",
-   "title": "Inside-Out AI: Rebuilding Airbnb Behind the Scenes and Across the Guest Experience",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-10-02T14:04:49+00:00",
-   "summary_short": "Airbnb CTO 谈把公司变成 AI 原生：六成代码由 AI 写，半数客服工单由 AI 解决",
-   "summary_long": "Ahmad Al-Dahle 今年 1 月加入 Airbnb 任 CTO，此前在 Meta 负责生成式 AI、主导 2023-2025 年开源 Llama 模型的发布。他的目标是让 Airbnb 成为“AI 原生公司”：先在内部用 AI 加速产品开发，再用同一批能力改造客户体验，文中称之为“inside-out AI”，并举例称 Airbnb 用内部工具 Everest 帮助加速了一项对外新服务的上线。Al-Dahle 在与 Latent Space 的对话中表示，他在 Meta 时已了解模型能力如何逐代提升，下一个挑战是把模型大规模部署到生产环境。他给出的进展数据是：60% 的代码由 AI 编写，同比多交付近 80% 的功能与改进，普通工程师的 PR 吞吐量提升约 1.6 倍。做法上，Airbnb 改变软件工程组织流程，产品、设计与工程团队直接做原型、不再层层交接，代码而非需求文档成为推理所依据的“产物”。客户支持是首个面向用户的 AI 落地区域，约一半工单完全由 AI 解决（与公司 Q2 财报近 45% 一致），关键在于先用合成数据充分测试再上生产；对涉及安全等问题的工单仍刻意保留人工。原文提到 Airbnb 2008 年成立、2020 年上市，写作时市值约 930 亿美元。",
+   "id": "3577570198f46e55",
+   "url": "https://dwarfstar.sh/",
+   "title": "From the creator of Redis; run LLM locally with ds4",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-02T18:01:16+00:00",
+   "summary_short": "ds4：C 语言窄域推理引擎，让 DeepSeek V4 等前沿开放权重模型跑在本地",
+   "summary_long": "DwarfStar 4（ds4）是用 C 编写的窄域推理引擎，面向高内存 Mac、CUDA 与 ROCm 机器，采用 MIT 许可，支持 DeepSeek V4 / V4.1 Flash、GLM 5.x 与 Qwen3.8 Flash Next，涵盖文本与视觉模型。它不做通用 GGUF 运行器，只跟进少量模型家族并逐一端到端验证所支持的布局。三项核心设计：非对称 2-bit 量化压缩路由专家、保留关键共享路径精度；KV cache 写入 SSD 并按 prompt hash 恢复，重启无需全量重算；一个引擎提供 ./ds4 命令行、./ds4-server 本地 API 与 ./ds4-agent 常驻编码会话，共享同一份模型状态与缓存。ds4-server 兼容 OpenAI 与 Anthropic 风格 API，本地编码代理可用 base URL 接入。使用流程为下载项目 GGUF、按后端编译、启动 CLI 或服务器，通用 GGUF 文件不在目标之列。原文给出的参考数据：M5 Max 128GB 在 2,048 token 下 prefill 790.2 t/s、生成 39.4 t/s，65,536 token 下为 398.5 / 27.6 t/s；DGX Spark 128GB 相应为 825.8 / 18.1 与 823.0 / 13.8 t/s。",
    "key_points": [
-    "前 Meta 生成式 AI 负责人 Ahmad Al-Dahle 今年 1 月出任 Airbnb CTO，目标是让 Airbnb 成为“AI 原生公司”，方式是先用 AI 加速内部产品开发，再改造客户体验，即“inside-out AI”。",
-    "进展数据：60% 代码由 AI 编写，同比多交付近 80% 的功能与改进，普通工程师 PR 吞吐量提升约 1.6 倍；组织流程上改为产品、设计、工程团队直接做原型，代码取代需求文档成为推理依据。",
-    "客户支持是首个面向用户的 AI 应用，约一半工单由 AI 解决（Q2 财报近 45%），关键是先以合成数据测试再上生产；对安全等需人工的工单刻意保留。"
+    "支持 DeepSeek V4 / V4.1 Flash、GLM 5.x、Qwen3.8 Flash Next，采用 MIT 许可，基于 C / Metal / CUDA / ROCm",
+    "非对称 2-bit 量化只压缩路由专家、保留关键共享路径精度，使路由式 MoE 在高内存机器上可行；KV cache 可写入 SSD 并按 prompt hash 恢复，避免重启后全量重算 prefill",
+    "一套引擎三种接口：./ds4 聊天、./ds4-server 本地 API、./ds4-agent 常驻编码会话；ds4-server 兼容 OpenAI 与 Anthropic 风格 API，本地编码代理可经 base URL 连接"
    ],
    "topics": [
-    "coding-agent",
-    "product"
+    "local-inference",
+    "quantization",
+    "open-source"
    ],
-   "category": "产品与应用",
+   "category": "模型",
    "categories": [
-    "产品与应用",
+    "模型",
     "Agent 与开发"
    ],
    "horizon": "short",
-   "score": 71.9,
+   "score": 73.2,
    "status": "review",
    "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://substackcdn.com/image/fetch/$s_!-kaR!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1ac92b22-c007-487c-b80f-f031f36596db_2560x1440.png",
-      "https://www.linkedin.com/in/ahmad-al-dahle/",
-      "https://substackcdn.com/image/fetch/$s_!WCQ3!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff41a8dc3-28da-4dbb-9c8c-bc893cb1dada_2048x1152.png",
-      "https://substackcdn.com/image/fetch/$s_!pLmd!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F50e450f9-640f-4bfc-9b3c-0af6d1c30dfc_1236x850.png",
-      "https://x.com/Ahmad_Al_Dahle/status/2011440460821320056",
-      "https://substackcdn.com/image/fetch/$s_!gXcz!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fee64deb7-9d81-44ad-8e75-aeace18bf231_2048x1152.png",
-      "https://news.airbnb.com/airbnb-q2-2026-financial-results",
-      "https://substackcdn.com/image/fetch/$s_!vKa3!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbe1c02ab-913c-4018-9bde-96ea30606a5e_2048x1256.png",
-      "https://www.airbnb.co.uk/services",
-      "https://news.airbnb.com/airbnb-expands-groceries-with-instacart-across-us-and-canada",
-      "https://substackcdn.com/image/fetch/$s_!2bdG!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff8288bd1-6727-4e33-b777-0d61ac37cbe2_1498x988.png",
-      "https://s26.q4cdn.com/656283129/files/doc_financials/2026/q2/Airbnb-Q2-2026-Earnings-Call-Transcript.pdf",
-      "https://www.youtube.com/watch?v=bFHdNb74YDo",
-      "https://substackcdn.com/image/fetch/$s_!bN7d!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9ddbeb0b-9402-4914-b491-02f6e3f6a9e2_2048x1152.png",
-      "https://www.latent.space/p/lovable-future-of-saas",
-      "https://substackcdn.com/image/fetch/$s_!j-Gn!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F996d4acc-4b70-42bd-aa50-1c912c9ee9da_2048x1152.png",
-      "https://www.latent.space/p/pr-not-welcome"
-     ]
-    },
+    "hn_points": 340,
+    "hn_comments": 98,
+    "content_source": "reader",
     "summary_mode": "full"
    }
   },
   {
-   "id": "4c41d0de1f5c2ad6",
-   "url": "https://www.deepseek.com/en/harness/",
-   "title": "DeepSeek Harness Desktop for macOS and Windows",
+   "id": "fc994d69ad09d9fe",
+   "url": "https://claude.dev/blog/getting-the-most-out-of-opus-5-5/",
+   "title": "Getting the most out of Opus 5.5 in Claude and Claude Code",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-02T03:11:20+00:00",
-   "summary_short": "桌面端主打“一切皆插件”，聊天即可生成插件，演示 5 分 24 秒做出番茄钟计时器。",
-   "summary_long": "原文是一个面向 macOS 与 Windows 的桌面端产品页面，核心理念是“一切皆插件”：用户既可以安装插件，也可以通过在聊天中使用 Creator mode 自行创建插件，用来扩展工具、技能和界面。页面以一段演示说明该流程：用户在 Creator mode 里提出“帮我写一个番茄钟插件”，系统加载 cordis-plugin-development 技能并读取对应 SKILL.md，判断 shell.overlay 是横跨整个窗口的浮动层、适合作为置顶窗口；随后检查 providers、查询运行时 Slots.listSubTree，写入 dsh-plugin-pomodoro-float 的 package.json 与 client.js（638 行），调用工具 plugin_manager · install_bundle 安装，再编辑 client.js 并用 Bash 验证插件实时状态，全程耗时 5 分 24 秒。页面称该浮动番茄钟插件已完成构建、安装和验证，界面上显示 25 分钟专注倒计时与 Start focus 按钮。功能清单列出 Plugins（Official），以及标注为 Experimental 的 Agent teams、Auto approval review、Scheduled tasks、Voice input，另含 Terminal、Agent",
+   "published_at": "2026-10-03T18:29:30+00:00",
+   "summary_short": "Opus 5.5 使用指南：如何交代任务、控制长任务、验收结果",
+   "summary_long": "这是 claude.dev 博客发布的一份 Opus 5.5 使用指南，覆盖在 Claude 应用和 Claude Code 中如何提示、引导长任务与检查结果。原文称 Opus 5.5 基本兼容现有用法，但有几点不同：更长时间自主工作、直白说明自己做了什么、每次回复前都会思考。具体建议包括：一次性给出完整任务并写明“完成”的标准（如测试通过、端点全部迁移），然后放手让它运行——原文称其相比 Opus 5 在多步骤长任务上提升最大，早期测试者让它以极少监督连续运行数小时编码任务；删掉“仔细思考”“逐步思考”之类指令，因为它总会自行思考并决定思考量，在聊天产品测试中删除该句后回复启动更快且质量无明显下降；长任务运行中可直接追加消息，因为重启成本更高；设计类任务要列出不想要的风格，否则它会退回少数默认样式。在 Claude Code 中，建议在 CLAUDE.md 里写明何时停下询问、何时继续，因为长任务中它有时会停下来汇报而非继续推进。原文在此处截断，其余内容未详述。",
    "key_points": [
-    "理念是“一切皆插件”：既可安装插件，也可通过 Creator mode 聊天创建插件，扩展工具、技能与界面",
-    "演示中从加载技能、写 package.json 与 client.js（638 行）、安装到 Bash 验证，全过程耗时 5 分 24 秒",
-    "功能清单含 Plugins（Official）及标注 Experimental 的 Agent teams、Auto approval review、Scheduled tasks、Voice input，另有 Terminal、Agent loop、Subagents"
+    "给出完整任务并明确“完成”的标准，然后让它自主运行：Opus 5.5 相比 Opus 5 在多步骤长任务上提升最大，早期测试者曾让它以极少监督运行数小时编码任务",
+    "删除提示词中的“仔细思考”“逐步思考”等句子——它每次回复前都会思考并自行决定思考量，测试中删除后回复更快、质量无明显下降；需要简短回答时直接说“回答即可”，在 Claude Code 中可调整 effort",
+    "设计类任务需列出不想要的风格（如不要米白背景、标题斜体强调词、编号 01/02/03 标签、等宽字体标签、胶囊按钮），泛泛的“避免通用感”只会换成另一种默认样式；在 Claude Code 中可用 CLAUDE.md 规定何时停止询问"
    ],
    "topics": [
-    "harness",
-    "tool-use",
-    "coding-agent"
+    "coding-agent",
+    "context-engineering",
+    "agent-loop"
    ],
    "category": "Agent 与开发",
    "categories": [
     "Agent 与开发"
    ],
-   "horizon": "short",
-   "score": 68.7,
+   "horizon": "long",
+   "score": 73.1,
    "status": "review",
    "extra": {
-    "hn_points": 381,
-    "hn_comments": 205,
+    "hn_points": 141,
+    "hn_comments": 93,
     "outbound": {
-     "arxiv": [
-      "2608.25512"
-     ],
-     "links": []
+     "arxiv": [],
+     "links": [
+      "https://www.anthropic.com/claude-opus-5-5"
+     ]
     },
     "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "22b95dcb283e6437",
-   "url": "https://www.latent.space/p/ainews-pi-10-pi-durable-and-aie-nyc",
-   "title": "[AINews] Pi 1.0, Pi Durable, and AIE NYC",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-10-02T06:40:53+00:00",
-   "summary_short": "Pi 1.0 与 Pi Durable 登 HN 首页：崩溃可续跑、可移植、可并发",
-   "summary_long": "原文开场为 AI Engineer NYC 常规门票最后召集，并向 Latent Space 订阅者提供前 30 名 30% 折扣码（仅限新票、不退款）。原文称 Pi 常与 OpenClaw 并提，Pi 已加入 Earendil，此次 Pi 1.0 与 Pi Durable 双双登上 HN 首页。\n\nPi 1.0 新增：Codemode（原生支持 MCP、Jev 与图像模型）、虚拟模型扩展支持、延迟工具加载、Anthropic 模型缓存预热、对话中途系统消息、新 TUI 主题、默认全屏模式。\n\nPi Durable 将 Pi 移植到 TypeScript 并外置所有有状态组件，特性包括：崩溃存活（每步记录为检查点任务，失败或重启后自动从上次确切状态恢复）、可移植性（任何 JavaScript 运行时，存储后端可选 Memory/SQLite/JSONL，支持远程或本地执行）、并发（单个 harness 运行多个并行分支对话）、可扩展性（提示、工具、钩子与持久任务打包为可安装 Extension）、上下文管理（后台自动压缩旧消息）、多人协作与状态同步、热替换。\n\n文末 AI 新闻汇总另涉及 Gemini 4 Argon、GPT-6.1 Sol 与 FLUX 3 等。",
+   "id": "f52e74133e2d25d6",
+   "url": "https://arstechnica.com/science/2026/10/ai-finally-beat-the-best-stratego-player-in-history-and-did-it-on-a-budget/",
+   "title": "With most information hidden, the game Stratego had stumped AI until now",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-02T14:11:24+00:00",
+   "summary_short": "AI Ataraxos击败最强Stratego人类选手，训练仅需16块GPU",
+   "summary_long": "国际象棋、围棋和扑克先后被AI攻克，但暗棋类游戏Stratego长期挡住AI，连DeepMind也未能造出能可靠击败顶尖人类选手的机器。如今，来自卡内基梅隆大学、MIT、纽约大学和斯坦福大学的研究团队做到了：其AI名为Ataraxos，以15胜1负4平击败被视为史上最强的Stratego选手Pim Niemeijer，训练仅用16块GPU、花费数千美元。Stratego中每人有40枚代表军衔的棋子，另有炸弹和军旗，棋子身份只在两子相撞时才揭晓；原文称可能的布局超过一个decillion，且一局可轻松持续2000步（国际象棋通常约40步），还涉及诈唬与可信度之间的平衡。Ataraxos像DeepNash一样通过自我对弈学习，共下1.63亿局，区别在于每局后的调整幅度：训练早期做大胆的大幅策略调整，后期则小幅微调。更大的创新是行动前的搜索——用第二个神经网络即信念模型，根据对手的走法猜测其暗子身份，从而采样出可能布局并推演候选着法。其名称源自希腊语中表示平静的词。",
    "key_points": [
-    "Pi 1.0 新增 Codemode（原生支持 MCP、Jev 与图像模型）、虚拟模型扩展支持、延迟工具加载、Anthropic 缓存预热、对话中途系统消息、新 TUI 主题与默认全屏模式",
-    "Pi Durable 把 Pi 移植到 TypeScript 并外置所有有状态组件，提供崩溃恢复（检查点任务）、可移植性、并发、Extensibility、上下文管理、多人协作与状态同步、热替换",
-    "原文开场为 AI Engineer NYC 门票最后召集与订阅者折扣码；文末 AI 新闻汇总涉及 Gemini 4 Argon、GPT-6.1 Sol、FLUX 3 等"
+    "Ataraxos以15胜1负4平击败被认为史上最强的Stratego选手Pim Niemeijer，训练仅需16块GPU和数千美元",
+    "Stratego的难点在于隐藏信息规模极大（原文称超过一个decillion种布局）、对局可长达2000步，且需要诈唬与可信度之间的平衡，此前DeepMind的DeepNash未能解决",
+    "关键创新是行动前的搜索：一个信念模型神经网络根据对手走法猜测其暗子，采样可能布局并推演候选着法；自对弈训练共1.63亿局，早期大幅调整、后期微调"
+   ],
+   "topics": [
+    "post-training",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 71.7,
+   "status": "review",
+   "extra": {
+    "hn_points": 277,
+    "hn_comments": 141,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://doi.org/10.1038/s41586-026-11036-y",
+      "https://arstechnica.com/author/jacek_krywko/",
+      "https://arstechnica.com/science/2026/10/ai-finally-beat-the-best-stratego-player-in-history-and-did-it-on-a-budget/#comments"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "87a7234dae36c1fa",
+   "url": "https://www.youtube.com/watch?v=NnV_cWeoo5Q",
+   "title": "Greg Kroah-Hartman – Security in the LLM Age [video]",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-02T02:51:27+00:00",
+   "summary_short": "简介为空，原文未提供可概括的内容。",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "cybersecurity",
+    "open-source"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 70.5,
+   "status": "review",
+   "extra": {
+    "hn_points": 325,
+    "hn_comments": 118,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.youtube.com/about/",
+      "https://www.youtube.com/about/press/",
+      "https://www.youtube.com/about/copyright/",
+      "https://www.youtube.com/creators/",
+      "https://www.youtube.com/ads/",
+      "https://developers.google.com/youtube",
+      "https://www.youtube.com/about/policies/",
+      "https://www.youtube.com/howyoutubeworks?utm_campaign=ytgen&utm_source=ythp&utm_medium=LeftNav&utm_content=txt&u=https%3A%2F%2Fwww.youtube.com%2Fhowyoutubeworks%3Futm_source%3Dythp%26utm_medium%3DLeftNav%26utm_campaign%3Dytgen",
+      "https://tv.youtube.com/learn/nflsundayticket"
+     ]
+    },
+    "summary_mode": "brief"
+   }
+  },
+  {
+   "id": "4451b333657f3e5b",
+   "url": "https://www.qbitai.com/2026/10/501381.html",
+   "title": "DeepSeek扩招！弹性计算团队大量HC，尤其需要资深工程师",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-10-03T07:54:43+00:00",
+   "summary_short": "DeepSeek弹性计算团队扩招，并公开DSec大规模Agent沙盒基础设施技术细节",
+   "summary_long": "DeepSeek弹性计算团队扩招，大量HC，尤其需要资深工程师。此次未发岗位JD，而是发布技术分享《DeepSeek弹性计算（DSec）：面向大规模Agent训练的沙盒基础设施》。DSec支撑DeepSeek-V4全部训练、评测和数据预处理流程，从V3.2到V4.1的Agent沙盒负载都跑在其上；一套扩展分片约160台服务器、3万CPU核心、250TB内存，每天服务约300万个沙盒，高峰同时在线超38万个，每秒可创建5000多个，已在生产环境部署多个分片。接下来要把Agent运行环境的数量和种类扩充成百上千倍。文中介绍多项优化：环境拆成base image、workspace、toolkit三层；镜像按需加载（生产数据显示Agent实际访问数据仅占镜像4.2%到13.3%）；生产环境资源超卖率超50倍；MicroVM共享宿主页缓存与空闲内存回收；CPU分级调度。此外还有pack_diff增量快照与轨迹分叉、Agent执行与GPU训练解耦，以及针对Agent越权行为的AppArmor与eBPF防护；原文也承认面对内核漏洞尚缺通用防御机制。",
+   "key_points": [
+    "DSec一套扩展分片约160台服务器、3万CPU核心和250TB内存，日均服务约300万沙盒，高峰在线超38万个，每秒创建5000多个。",
+    "通过环境三层拆分、镜像按需加载、内存共享与CPU调度压低单环境成本，生产环境资源超卖率已超50倍。",
+    "统一支持FnCall、Container、MicroVM、Full VM四种后端，并用pack_diff增量快照实现轨迹分叉，以AppArmor和eBPF给Agent划安全边界。"
    ],
    "topics": [
     "harness",
-    "mcp",
-    "context-engineering"
+    "sandbox",
+    "infrastructure"
    ],
    "category": "Agent 与开发",
    "categories": [
     "Agent 与开发"
    ],
-   "horizon": "short",
-   "score": 60.0,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://ai.engineer/nyc",
-      "https://app.ai.engineer/e/ai-engineer-new-york-2026?discount=LS-NYC26",
-      "https://www.latent.space/p/ainews-sci-fi-with-a-touch-of-madness?utm_source=publication-search",
-      "https://www.youtube.com/watch?v=_Zcw_sVF6hU&pp=0gcJCS4MAYcqIYzv",
-      "https://news.ycombinator.com/item?id=49926069",
-      "https://news.ycombinator.com/item?id=49925969",
-      "https://earendil.com/posts/pi-1-0/",
-      "https://earendil.com/posts/you-said-no-mcp/",
-      "https://github.com/earendil-works/pi/releases",
-      "https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/session-format.md",
-      "https://earendil.com/posts/pi-durable/",
-      "https://twitter.com/i/lists/1585430245762441216",
-      "https://news.smol.ai/",
-      "https://www.latent.space/p/2026",
-      "https://support.substack.com/hc/en-us/articles/8914938285204-How-do-I-subscribe-to-or-unsubscribe-from-a-section-on-Substack",
-      "https://x.com/mirrokni/status/2105500370675921213",
-      "https://x.com/OfficialLoganK/status/2105521401566486875",
-      "https://x.com/kimmonismus/status/2105570914574209283",
-      "https://x.com/kimmonismus/status/2105709302484729879",
-      "https://x.com/sama/status/2105688354834756036",
-      "https://x.com/ArtificialAnlys/status/2105491868608004578",
-      "https://x.com/ArtificialAnlys/status/2105449959554441580",
-      "https://x.com/ArtificialAnlys/status/2105459219059401036",
-      "https://x.com/bfl_ai/status/2105734605621825738",
-      "https://x.com/fal/status/2105745492474802514",
-      "https://x.com/krea_ai/status/2105769469880799716",
-      "https://x.com/robrombach/status/2105765028460732816",
-      "https://x.com/tavus/status/2105704169009246248",
-      "https://x.com/synthesiaIO/status/2105591908659540474",
-      "https://www.latent.space/p/ainews-pi-10-pi-durable-and-aie-nyc"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "dbef6f28ec9b8206",
-   "url": "https://www.qbitai.com/2026/10/499958.html",
-   "title": "arXiv最严新规！每人每月最多提交2篇，拒稿不退额度",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-10-02T06:46:32+00:00",
-   "summary_short": "arXiv新规：每人每月最多提交2篇，被拒也照样占额度",
-   "summary_long": "arXiv宣布自2026年10月1日起限制投稿：每个提交者每个自然月最多提交两篇论文，所有作者、所有分类一视同仁，且计的是提交次数而非最终成功挂出的论文数——被拒也照样消耗当月额度。arXiv还保留2024年起的限制：任何时候最多3篇处于active状态的投稿。背景是投稿量激增：2016年9月为9869篇，2024年9月为20569篇，2026年9月达40363篇，十年翻4倍多，最近一次翻倍只用两年，cs.AI分类2024至2026年增长超6倍。arXiv称涌入的还有越来越多thin papers、salami papers和高度依赖AI写作的论文。编辑顾问委员会主席Thomas Dietterich表示，一小部分作者提交大量低质量论文，消耗了不成比例的审核时间，其他正常投稿可能被拖延数天甚至数周。限制针对实际提交者而非全部共同作者，正式announce前主动删除不占额度。arXiv称这只是临时限速措施。",
-   "key_points": [
-    "新规自2026年10月1日起执行：每个提交者每个自然月最多提交2篇，全arXiv所有分类共用该额度，被拒同样消耗额度；同时保留任何时候最多3篇active投稿的限制",
-    "限流源于投稿量激增：2026年9月arXiv收到40363篇投稿，十年翻4倍多、最近一次翻倍仅用两年，cs.AI分类两年增长超6倍，并带来近9000张support ticket；官方点名thin papers、salami papers和高度依赖AI写作的论文",
-    "限制针对实际提交者而非全部共同作者，共同作者需协调由谁投稿；论文在正式announce前主动删除不占额度；arXiv称这是临时限速，用于重新判断AI时代合理的论文产出速度并升级审核流程"
-   ],
-   "topics": [
-    "academic-publishing",
-    "policy",
-    "ai-generated-papers"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 57.0,
+   "horizon": "long",
+   "score": 68.5,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
      "资讯",
-     "首页轮播",
-     "arXiv"
+     "Deepseek"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
       "https://www.qbitai.com/author/wenyue",
       "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/arxiv",
+      "https://www.qbitai.com/tag/deepseek",
+      "https://www.qbitai.com/2026/10/499958.html",
       "https://www.qbitai.com/2026/09/489260.html",
       "https://www.qbitai.com/2026/09/487055.html",
       "https://www.qbitai.com/2026/09/483948.html",
-      "https://www.qbitai.com/2026/09/483898.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/499958.html&title=arXiv最严新规！每人每月最多提交2篇，拒稿不退额度&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2022/06/35177.html",
-      "https://www.qbitai.com/tag/%e8%ae%ba%e6%96%87",
-      "https://www.qbitai.com/2020/05/14888.html",
-      "https://www.qbitai.com/2024/08/173863.html",
-      "https://www.qbitai.com/tag/%e5%85%ac%e5%bc%80%e8%af%84%e5%ae%a1",
-      "https://www.qbitai.com/tag/%e6%96%af%e5%9d%a6%e7%a6%8f",
-      "https://www.qbitai.com/2023/10/91266.html",
-      "https://www.qbitai.com/tag/%e9%a2%84%e5%8d%b0%e6%9c%ac",
-      "https://www.qbitai.com/2021/01/21459.html",
-      "https://www.qbitai.com/2021/01/21478.html",
-      "https://www.qbitai.com/tag/%e8%ae%ba%e6%96%87%e6%9f%a5%e6%89%be",
-      "https://www.qbitai.com/2026/09/497613.html",
-      "https://www.qbitai.com/2026/09/497624.html",
-      "https://www.qbitai.com/2026/09/497382.html",
-      "https://www.qbitai.com/2026/09/498478.html",
-      "https://www.qbitai.com/2026/09/498271.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/501381.html&title=DeepSeek扩招！弹性计算团队大量HC，尤其需要资深工程师&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2026/07/461220.html",
+      "https://www.qbitai.com/tag/ai",
+      "https://www.qbitai.com/2026/05/414316.html",
+      "https://www.qbitai.com/2026/03/392024.html",
+      "https://www.qbitai.com/2025/02/251168.html",
+      "https://www.qbitai.com/tag/%e7%99%be%e5%ba%a6",
+      "https://www.qbitai.com/2026/01/370460.html",
+      "https://www.qbitai.com/tag/%e8%b0%b7%e6%ad%8c",
+      "https://www.qbitai.com/2025/02/258439.html",
+      "https://www.qbitai.com/tag/deepseek-r1",
+      "https://www.qbitai.com/tag/deepseek-v3",
+      "https://www.qbitai.com/tag/%e5%bc%80%e6%ba%90",
+      "https://www.qbitai.com/2026/09/498584.html",
+      "https://www.qbitai.com/2026/09/498605.html",
+      "https://www.qbitai.com/2026/09/498546.html",
+      "https://www.qbitai.com/2026/09/498633.html",
+      "https://www.qbitai.com/2026/09/498787.html",
       "https://weibo.com/qbitai?is_all=1",
       "https://www.zhihu.com/org/liang-zi-wei-48/activities",
       "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
@@ -229,109 +225,107 @@
    }
   },
   {
-   "id": "9f2dde650fe4660c",
-   "url": "https://www.anthropic.com/news/claude-frontier-academy",
-   "title": "Anthropic invests $100 million to train 10,000 engineers and tackle the enterprise AI talent gap",
-   "source": "Anthropic News",
-   "tier": "S",
-   "published_at": "2026-10-02T00:00:00+00:00",
-   "summary_short": "Anthropic投1亿美元设学院，2027年底前培训1万名AI部署工程师",
-   "summary_long": "Anthropic宣布成立Claude Frontier Academy，投入1亿美元，目标到2027年底培训1万名“前线部署工程师”（FDE），以解决AI落地中最突出的人才短缺问题。原文称，真正能在真实业务中落地AI的人才最难找，少数高技能人员往往贡献了AI成果的很大一部分。首批学员来自埃森哲、贝恩、凯捷、澳大利亚联邦银行、德勤、麦肯锡、摩根士丹利、诺和诺德等机构。首个项目FDE Residency借鉴医学培养模式：先参加由Anthropic工程师和持证讲师主持的多日线下课程，完成涵盖用例选择、安全审查到交接的模拟企业部署，通过新场景实操考核者获Claude Resident Engineer徽章；随后进入12周驻留期，在本组织主导真实Claude用例，结束时再次考核，通过者获Claude Frontier Deployed Engineer徽章，首批预计2027年初产生。目前课程在旧金山、纽约和伦敦开班，采用提名制。",
+   "id": "e35138269f8b51f6",
+   "url": "https://github.com/anteloc/ldraw-nova",
+   "title": "Show HN: Made an open-source Lego AI generator",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-02T20:00:15+00:00",
+   "summary_short": "开源项目 ldraw-nova：让 AI 代理按你的想法自动生成可搭建的 LDraw 乐高模型",
+   "summary_long": "原文称，作者的目标是让 agentic LLM 能设计可搭建的实体物件。发现 LDraw 这种既简单、底层又可执行、能产出 3D CAD 模型的“汇编语言”（原文玩笑）后，作者尝试让 ChatGPT 和 Claude 用它写代码；早期测试结果出人意料地好，后续项目也有不错结果，但始终不足以认定生成的模型正确。此前有三次尝试：ldbuilder-ai、py2bricks、py4bricks。ldraw-nova 让用户给 AI agent 一个模型想法，加以引导、让它搭建，最终得到 LDraw 乐高模型；产出包括 LDraw 源码、3D 查看器、3D 播放器、Meta Quest 3 交互 VR、图片、Blender 可编辑的 .glb glTF 文件（元信息为 Blender 自定义属性）、聊天记录与 agent 思考过程。它以 Docker Web 应用运行，需两个同 tag 的兄弟仓库，首次构建约需 5GB 磁盘。agent 找零件与示例模型依赖 jev-rerank 语义搜索与重排（背后是 TypeSafe 的 Jev System One 模型），未设 API key 时回退全文搜索，模型可能更差。作者结论：给 agent 工具生成 LDraw 源码可绕开几何数学；agent 从能产出模型的 python 代码中学习效果更好。",
    "key_points": [
-    "Anthropic投入1亿美元成立Claude Frontier Academy，计划到2027年底培训1万名前线部署工程师（FDE）。",
-    "首批学员来自埃森哲、贝恩、凯捷、澳大利亚联邦银行、德勤、麦肯锡、摩根士丹利、诺和诺德等企业。",
-    "FDE Residency借鉴医学培养模式：多日线下培训加模拟企业部署考核，通过后进入12周驻留期主导真实Claude用例，两次考核通过方可获认证，首批认证预计2027年初产生。"
+    "ldraw-nova 让 AI agent 按模型想法搭建 LDraw 乐高模型，输出 LDraw 源码、3D 查看器/播放器、Meta Quest 3 交互 VR、图片，以及 Blender 可编辑的 .glb glTF 文件（元信息为 Blender 自定义属性），并保留聊天记录与思考过程。",
+    "以 Docker Web 应用方式运行，需 ldraw-nova 与 ldraw-nova-docker 两个同 tag（v0.6.0）仓库，首次构建约需 5GB 磁盘；入口为 https://localhost:8443（自签名证书，支持 VR）和 http://localhost:8765（纯 HTTP，不支持 VR），应用无登录，只应在可信网络运行。",
+    "agent 依赖 jev-rerank 语义搜索与重排（由 TypeSafe 的 Jev System One 模型支持，需 TYPESAFE_API_KEY）查找零件与示例模型，否则回退全文搜索、可能产出更差的模型；作者的两点结论是工具化生成 LDraw 源码可绕开几何数学，agent 从能产出模型的 python 代码学习效果更好。"
    ],
    "topics": [
-    "enterprise-ai",
-    "talent-gap",
-    "training-program"
+    "tool-use",
+    "rag",
+    "coding-agent"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "开源项目"
+   ],
+   "horizon": "long",
+   "score": 64.2,
+   "status": "review",
+   "extra": {
+    "hn_points": 140,
+    "hn_comments": 49,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.ldraw.org/",
+      "https://youtu.be/YDjjxGqWpgU",
+      "https://github.com/anteloc/jev-rerank",
+      "https://typesafe.ai/",
+      "https://git-scm.com/downloads",
+      "https://docs.docker.com/get-started/get-docker/",
+      "https://github.com/anteloc/ldraw-nova",
+      "https://github.com/anteloc/ldraw-nova-docker",
+      "https://localhost:8443",
+      "http://localhost:8765",
+      "https://github.com/anteloc/ldbuilder-ai",
+      "https://github.com/anteloc/py2bricks",
+      "https://github.com/anteloc/py4bricks",
+      "https://tcobbs.github.io/ldview/",
+      "https://github.com/leozide/leocad",
+      "https://www.melkert.net/LDCad",
+      "https://github.com/segfault87/ldraw.rs",
+      "https://github.com/hbmartin/pyldraw3"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "23d0d9ad437ef2f0",
+   "url": "https://www.qbitai.com/2026/10/500148.html",
+   "title": "Jev估值100亿美元！创始人Diogo Almeida回答一切",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-10-03T02:38:19+00:00",
+   "summary_short": "Jev估值100亿美元，创始人访谈：可靠性才是产品灵魂",
+   "summary_long": "Jev估值100亿美元。TypeSafe AI联合创始人兼CEO Diogo Almeida在最新一期Latent Space访谈中回答一切。Jev是一款“不会聊天、只会做决定”的模型：有人用它筛选海量论文、预判客户需求，还有人开源了“Jev聊天助手”。发布仅6天，Jev发布视频浏览量突破3870万；在第三方JevBench v1.2.1综合榜中，Jev 1.13.0以75.3分排名第一。Almeida称日处理量已突破一万亿token，夜间流量持续走高，说明大量调用来自机器自动化；他认为注册量参考价值有限，真正棘手的是调用速率限制。他批评公开benchmark极易被操纵，更相信长期积累的产品体验与信任，并称行业卷速度、拼成本却丢了可靠性，而可靠性才是产品真正的灵魂。他质疑AI能挑战千禧年大奖难题，却在有经济价值的实际工作上贡献几乎为零，判断当前模型创造的商业价值不到1%，把五年内拉动TFP增长3%作为目标，并表示即便给十亿美元也不会从零预训练大模型。",
+   "key_points": [
+    "公开benchmark极易被操纵，即便开发者没主动作弊也可能被榜单牵着走；他更愿相信长期积累的产品体验与信任，主张把模型放进自己的工作流去评估。",
+    "Jev发布6天视频浏览量突破3870万，在第三方JevBench v1.2.1综合榜以75.3分排名第一；日处理量已突破一万亿token且夜间流量持续走高。",
+    "他认为行业卷速度、拼成本却丢了可靠性，而可靠性是产品真正的灵魂；判断当前几乎所有模型创造的商业价值不到1%，目标是五年内拉动TFP增长3%，并称就算给十亿美元也不会从零预训练大模型。"
+   ],
+   "topics": [
+    "eval"
    ],
    "category": "行业动态",
    "categories": [
     "行业动态"
    ],
    "horizon": "short",
-   "score": 54.1,
+   "score": 56.8,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
-     "Announcements"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://claude.com/programs/frontier-academy",
-      "https://claude.com/blog/four-role-based-claude-certifications",
-      "https://twitter.com/intent/tweet?text=https://www.anthropic.com/news/claude-frontier-academy",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://www.anthropic.com/news/claude-frontier-academy"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "456a591e773f4cb6",
-   "url": "https://www.qbitai.com/2026/10/499991.html",
-   "title": "丘成桐新论文致谢了GPT和Claude",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-10-02T07:27:03+00:00",
-   "summary_short": "丘成桐参与论文致谢GPT与Claude，宣称证明七维怪球可配正曲率度量",
-   "summary_long": "丘成桐参与的最新论文在致谢中感谢了GPT 6 Astra和Claude Pro，称二者帮助探索了部分证明思路和计算。论文处理微分几何中的经典问题：七维空间存在28种光滑球面，除标准球面外的27种被称为「怪球」，1956年由米尔诺构造，科维尔与米尔诺随后证明七维共有28种，记作Θ₇≅Z/28Z。1974年格罗莫尔与迈耶在一个怪球上构造出非负曲率度量，2020年格特、凯林和尚卡尔推广到全部28种，但从「非负」到「处处向内弯」的正曲率始终未解决；2008年彼得森与威尔海姆的预印本曾声称做到，却未通过同行评审。丘成桐1982年把该问题列入自己的问题清单，排第二位。论文宣称补上这一步：28种七维球面每一种都能配上截面曲率严格为正的度量。方法上采用双圆盘模型，以三维球面为主丛把问题搬到十维空间，借助黎曼淹没与奥尼尔公式投影回七维，并让两块圆盘在边界拼接。论文附有SageMath验证代码。原文还回顾了丘成桐三年来对AI态度的变化。",
-   "key_points": [
-    "论文致谢GPT 6 Astra和Claude Pro，称其在部分证明策略探索和计算中提供帮助，同时声明人工验证与论文写作责任由作者承担",
-    "论文宣称28种七维球面每种都能配上截面曲率严格为正的度量，补上从「非负」到「正」这一步；该问题1982年被丘成桐列入自己的问题清单第二位",
-    "方法采用杜兰、普特曼、里加斯的双圆盘模型，以S³为纤维的主丛把问题搬到十维空间，用奥尼尔公式与黎曼淹没投影回七维，靠赖泽和雷斯的拼接定理粘合两块圆盘，并附SageMath验证代码"
-   ],
-   "topics": [
-    "reasoning",
-    "product"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 50.8,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "数学"
+     "资讯"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
       "https://www.qbitai.com/author/mengchen",
       "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/%e6%95%b0%e5%ad%a6",
+      "https://www.youtube.com/watch?v=cFx9Z3ZXca0",
       "https://www.qbitai.com/2026/10/500098.html",
+      "https://www.qbitai.com/2026/10/499991.html",
       "https://www.qbitai.com/2026/09/499098.html",
       "https://www.qbitai.com/2026/09/496301.html",
-      "https://www.qbitai.com/2026/09/490950.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/499991.html&title=丘成桐新论文致谢了GPT和Claude&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2020/09/18333.html",
-      "https://www.qbitai.com/tag/%e5%8c%97%e5%a4%a7",
-      "https://www.qbitai.com/2024/07/170147.html",
-      "https://www.qbitai.com/2021/09/28926.html",
-      "https://www.qbitai.com/tag/%e5%8d%8e%e4%b8%ba",
-      "https://www.qbitai.com/tag/%e8%8f%b2%e5%b0%94%e5%85%b9%e5%a5%96",
-      "https://www.qbitai.com/2025/10/344341.html",
-      "https://www.qbitai.com/tag/%e5%85%b0%e5%b7%9e%e5%a4%a7%e5%ad%a6",
-      "https://www.qbitai.com/tag/%e6%95%b0%e5%ad%a6%e9%a1%b6%e5%88%8a",
-      "https://www.qbitai.com/2025/05/280276.html",
-      "https://www.qbitai.com/2021/01/20886.html",
-      "https://www.qbitai.com/tag/%e5%ba%b7%e5%a8%81%e6%89%ad%e7%bb%93",
-      "https://www.qbitai.com/tag/%e8%ae%a1%e7%ae%97%e6%9c%ba",
-      "https://www.qbitai.com/tag/%e9%87%8f%e5%ad%90%e7%ba%a0%e7%bc%a0",
-      "https://www.qbitai.com/2026/09/497613.html",
-      "https://www.qbitai.com/2026/09/497624.html",
-      "https://www.qbitai.com/2026/09/497382.html",
-      "https://www.qbitai.com/2026/09/498478.html",
-      "https://www.qbitai.com/2026/09/498271.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/500148.html&title=Jev估值100亿美元！创始人Diogo Almeida回答一切&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2026/09/498584.html",
+      "https://www.qbitai.com/2026/09/498605.html",
+      "https://www.qbitai.com/2026/09/498546.html",
+      "https://www.qbitai.com/2026/09/498633.html",
+      "https://www.qbitai.com/2026/09/498787.html",
       "https://weibo.com/qbitai?is_all=1",
       "https://www.zhihu.com/org/liang-zi-wei-48/activities",
       "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",

@@ -1,6 +1,297 @@
 {
- "generated_at": "2026-10-03T00:21:30+00:00",
+ "generated_at": "2026-10-03T23:44:50+00:00",
  "items": [
+  {
+   "id": "3ba89625595d4416",
+   "url": "https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/",
+   "title": "We're going to need default hard budget caps on pretty much everything",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-10-03T23:34:02+00:00",
+   "summary_short": "呼吁按用量计费的服务默认设硬性预算上限，AWS、谷歌云已跟进",
+   "summary_long": "原文呼吁按用量计费的服务与 API 应默认提供“硬性预算上限”：达到每月 X 美元后直接切断并返回错误，而非只发警告邮件。作者认为编码智能体与个人智能体大幅降低了启动“会花钱”代码的摩擦——调用付费 API、托管 Web 应用、可计费存储与计算——没人愿意醒来发现服务在睡觉时又花掉几百甚至几千美元。对“企业不想托管应用因超预算报错”的反驳，作者认为多数人宁愿报错也不愿收到上万美元账单，故硬上限应设为默认，想冒险者需主动勾选“移除预算上限”并自负后续费用。作者最希望 AWS 提供该功能，称不少人因担心失控服务致其破产而拒绝在个人项目用 AWS，也有人因此吃亏。文中提到 AWS 已于 9 月 16 日发布说明，可设每月支出上限，达到后项目当月暂停，但提示新体验仅面向有限客户；Google Cloud 7 月推出 Spend Caps，可对项目内特定服务设月度财务上限。作者还希望智能体倾向推荐有硬上限的供应商。",
+   "key_points": [
+    "主张硬性预算上限应成为默认：达到每月额度即切断服务并返回错误，仅发警告邮件的软上限不够，取消上限需主动勾选并自负后续费用。",
+    "背景是编码智能体和个人智能体降低了启动付费 API、托管应用等会花钱代码的摩擦，可能出现失控花费。",
+    "AWS 于 9 月 16 日发布可设置每月支出上限、达到后项目当月暂停的功能，但新体验仅面向有限客户逐步开放；Google Cloud 于 7 月推出 Spend Caps，可对项目内特定服务设月度财务上限。"
+   ],
+   "topics": [
+    "cloud-billing",
+    "coding-agent"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 79.7,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "amazon-web-services",
+     "ai",
+     "coding-agents"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://aws.amazon.com/about-aws/whats-new/2026/09/New-AWS-Builder-Experience/",
+      "https://docs.aws.amazon.com/accounts/latest/reference/create-spend-limit.html",
+      "https://cloud.google.com/blog/topics/cost-management/new-early-anomalies-and-spend-caps-on-google-cloud-budgets",
+      "https://simonwillison.net/tags/amazon-web-services",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/coding-agents"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "89764eae00994ca8",
+   "url": "https://huggingface.co/blog/microsoft/thinkingbox",
+   "title": "The Agent Said It Was Done. The Database Disagreed.",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-03T22:56:48+00:00",
+   "summary_short": "ThinkingBox不用工具调用、只用数据库末态给AI智能体打分",
+   "summary_long": "微软与Hugging Face联合发布基准ThinkingBox（已通过Hugging Face提供）：它让智能体在隔离的MCP工具会话中运行，评分依据不是生成的语句或工具调用，而是它留在后端的终端状态与副作用。原文举例：客户的745美元厨电卡在纳什维尔配送中心的承运商“异常”中、已超预计送达15天，智能体做了九次工具调用、两次查退款政策，最后把工单标为已解决并回复“您的查询已解决”，但要求的末态是“on hold（待处理）”，客户也没得到真正答复——只检查工具调用的评分看不出问题，数据库会不同意。ThinkingBox覆盖507个有状态业务流程，每项任务对多个LLM模型各独立运行20次、从相同干净后端出发，以避免“一次成功等于可靠”。在覆盖12个模型、121,680次有效试验的公共集消融中，79,853次未通过可执行检查；这些失败中67.24%仍干净终止、调用了改状态的工具且无最终工具错误，而可执行检查发现其中77.61%存在字段值错误、43.30%有非预期额外副作用、25.36%缺失必需副作用（这些结论有重叠）。原文称该例改编自基准任务sandbox_external_retail_group1.py:test_case_ST003_006，失败检查为单一字段：工单状态是solved而要求末态是hold。",
+   "key_points": [
+    "评测对象是智能体留下的后端末态与副作用，最终回复和合法工具调用只算代理指标",
+    "覆盖507个有状态业务流程，每项任务从相同干净后端独立运行20次，报告pass@1、pass@20等三项指标",
+    "121,680次有效试验中79,853次未通过可执行检查，其中67.24%仍干净终止、调用了改状态工具且无最终工具错误"
+   ],
+   "topics": [
+    "eval",
+    "tool-use",
+    "mcp"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测"
+   ],
+   "horizon": "long",
+   "score": 87.3,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2608.19741"
+     ],
+     "links": [
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/Dzuml_9K2lfRq4hZi17EY.png",
+      "https://arxiv.org/abs/2608.19741",
+      "https://github.com/huggingface/OpenEnv/tree/main/envs/thinkingbox_env",
+      "https://github.com/microsoft/thinkingbox-data/blob/thinkingbox-bench-v1.0/dataset/test_case/sandbox_external_retail/sandbox_external_retail_group1.py#L984-L1223",
+      "https://arxiv.org/pdf/2608.19741",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/DjaLNZKNeU--Xy2WFCvVX.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/NONd2WGm4vtGpsVgs-CIq.png",
+      "https://openrouter.ai/",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/oGmXYrxoNPJfsQndxlcMD.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/elbRGqTXW6PIqci7xcEJN.png",
+      "https://huggingface.co/docs/openenv/environments/thinkingbox",
+      "https://huggingface.co/datasets/microsoft/ThinkingBox-Bench",
+      "https://docs.astral.sh/uv/",
+      "https://github.com/microsoft/thinkingbox-data",
+      "https://github.com/microsoft/thinkingbox/blob/main/docs/llm_endpoint_config.md",
+      "https://github.com/huggingface/OpenEnv/blob/main/examples/thinkingbox/example_usage.py",
+      "https://github.com/microsoft/thinkingbox",
+      "https://github.com/microsoft/thinkingbox/blob/main/docs/tutorial.md",
+      "https://github.com/microsoft/thinkingbox-data/releases/tag/thinkingbox-bench-v1.0",
+      "https://huggingface.co/papers/2608.19741",
+      "https://github.com/microsoft/thinkingbox-training",
+      "https://cdla.dev/permissive-2-0/",
+      "https://github.com/microsoft/thinkingbox/discussions"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "9a14422b82b9b3e3",
+   "url": "https://tej.as/blog/aleph-alpha-kolibri",
+   "title": "Aleph Alpha Kolibri: How the sovereign German LLM works",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-03T10:43:51+00:00",
+   "summary_short": "Aleph Alpha 开源 78B MoE 模型 Kolibri，每 token 仅激活 3.5B 参数",
+   "summary_long": "Aleph Alpha 发布开源权重的大语言模型 Kolibri，支持德语和英语，2026 年 10 月 3 日以 Apache 2.0 许可释出，权重在 Hugging Face，在德国和芬兰的基础设施上从零训练。它是混合专家（MoE）模型：总参数 781 亿，每个 token 只激活 34.6 亿（4.4%）。共 50 层，每层 384 个专家加 1 个共享专家，路由为每个 token 选 6 个专家。原生上下文 262,144 token，测试至 1,048,576；知识截止 2026 年 6 月 18 日；推理分 none/low/medium/high 四档；支持工具调用；FP8 权重约 78 GB；训练约 24 万亿 token，逾五分之一为德语，使用 768 块 NVIDIA B200 GPU。Aleph Alpha 称其\"主权\"：在德国与芬兰、欧洲和德国法律下构建，无外国控制，客户可自由部署、知识产权安全、数据不出本地。模型卡也说明训练中用过 Google Gemma 4、Mistral-NeMo 改写文本以及 Qwen3-32B 的标注数据。按 Aleph Alpha 自己的评测，它在两种语言上得分高于所有同规模对比模型。",
+   "key_points": [
+    "总参数 781 亿的 MoE，50 层每层 384 个专家加 1 个共享专家，每 token 仅激活 34.6 亿参数（4.4%）",
+    "Apache 2.0 释出权重并放在 Hugging Face，在德国和芬兰基础设施上从零训练，Aleph Alpha 保留训练代码与方法权利",
+    "Aleph Alpha 称其\"主权\"：欧洲法律下构建、无外国控制、客户可自行部署且数据不出本地；模型卡承认训练中使用了 Gemma 4、Mistral-NeMo 与 Qwen3-32B"
+   ],
+   "topics": [
+    "open-source",
+    "tool-use",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 77.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 409,
+    "hn_comments": 11,
+    "outbound": {
+     "arxiv": [
+      "2104.09864",
+      "2309.01431",
+      "2404.06654",
+      "2512.11614"
+     ],
+     "links": [
+      "https://aleph-alpha.com/",
+      "https://www.apache.org/licenses/LICENSE-2.0",
+      "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+      "https://artificialintelligenceact.eu/",
+      "https://www.linkedin.com/in/michaellhofmann/",
+      "https://aleph-alpha.com/downloads/tech-report.pdf",
+      "https://aleph-alpha.com/en/blog/kolibri-has-landed-a-sovereign-open-weight-model/",
+      "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+      "https://european-union.europa.eu/",
+      "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
+      "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407",
+      "https://huggingface.co/Qwen/Qwen3-32B",
+      "https://aleph-alpha.com/en/blog/training-on-the-party-line/",
+      "https://huggingface.co/blog/moe",
+      "https://www.youtube.com/watch?v=uNj3y2pItrA&t=72s",
+      "https://huggingface.co/blog/moe#what-does-an-expert-learn",
+      "https://www.bundesverfassungsgericht.de/EN/",
+      "https://en.wikipedia.org/wiki/GPT-5",
+      "https://github.com/openai/tiktoken",
+      "https://en.wikipedia.org/wiki/Byte-pair_encoding",
+      "https://www.gesetze-im-internet.de/gg/",
+      "https://www.gesetze-im-internet.de/englisch_gg/",
+      "https://huggingface.co/openai/gpt-oss-120b",
+      "https://huggingface.co/Qwen/Qwen3.5-35B-A3B",
+      "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603",
+      "https://arxiv.org/abs/2104.09864",
+      "https://www.youtube.com/watch?v=uMksIqpbVoY&t=364s",
+      "https://arxiv.org/abs/2404.06654",
+      "https://x.com/Aleph__Alpha/status/2103139585039511700",
+      "https://aleph-alpha.com/en/blog/through-the-valley-of-tears-cold-starting-german-reasoning-in-llms/",
+      "https://en.wikipedia.org/wiki/American_Invitational_Mathematics_Examination",
+      "https://developer.nvidia.com/nemotron",
+      "https://arxiv.org/abs/2512.11614",
+      "https://artificialanalysis.ai/evaluations/omniscience",
+      "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "https://arxiv.org/abs/2309.01431",
+      "https://gorilla.cs.berkeley.edu/leaderboard.html",
+      "https://huggingface.co/zai-org/GLM-4.7-Flash",
+      "https://www.tbench.ai/"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "a650c74fe354cb9f",
+   "url": "https://aleph-alpha.com/en/blog/kolibri-has-landed-a-sovereign-open-weight-model/",
+   "title": "Kolibri: A Sovereign Open-Weight Model",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-03T09:36:04+00:00",
+   "summary_short": "Aleph Alpha发布Kolibri：78B总参3B激活的英德双语MoE开放权重模型",
+   "summary_long": "Kolibri是Aleph Alpha发布的新模型：英德双语Mixture-of-Experts Transformer，总参数78B、激活3B，支持最长1M token上下文，完整权重已在Hugging Face开放下载，采用Apache 2.0许可。它是持续迭代训练管线的成果：团队先用Kolibri Origin（30B总参、3B激活、65k上下文）验证管线，Kolibri复用同一条管线完成数据摄取与清洗、消融、预训练、后训练到最终评测，支撑数百次消融实验，硬件故障或数据中断时无需人工介入即可稳定训练。模型针对德语、推理、数学和agentic行为专门化，面向公共管理、工业与航空航天等受监管领域的关键任务，强调供应链完整性、部署自由与知识产权安全，小体积便于本地部署、无需将内部数据送往第三方推理服务。原文称其在英语和德语的质量-服务成本上处于帕累托前沿，在数学、编程、grounding与长上下文任务上可匹配激活参数最高为其四倍的模型。",
+   "key_points": [
+    "Kolibri为英德双语MoE Transformer，总参数78B、激活3B，支持最长1M token上下文，完整权重在Hugging Face以Apache 2.0许可开放下载",
+    "模型由持续迭代的训练管线产出：此前用Kolibri Origin（30B总参、3B激活、65k上下文）验证管线，Kolibri复用同一管线并跑过数百次消融实验，训练在硬件故障或数据中断时无需人工介入",
+    "针对德语、推理、数学与agentic行为专门化，面向公共管理、工业与航空航天等受监管领域的关键任务，强调供应链完整性、部署自由与知识产权安全"
+   ],
+   "topics": [
+    "open-source",
+    "reasoning",
+    "post-training"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 76.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 477,
+    "hn_comments": 291,
+    "outbound": {
+     "arxiv": [
+      "1508.07909",
+      "1804.10959",
+      "2309.01431",
+      "2512.11614"
+     ],
+     "links": [
+      "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+      "https://arxiv.org/abs/1508.07909",
+      "https://arxiv.org/abs/1804.10959",
+      "https://arxiv.org/abs/2512.11614",
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public",
+      "https://arxiv.org/abs/2309.01431",
+      "https://github.com/Aleph-Alpha-Research/eval-framework",
+      "https://github.com/Aleph-Alpha/aleph-alpha-inference"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "8ae48c8dd8c51ab3",
+   "url": "https://blog.sshh.io/p/the-harness-is-the-company",
+   "title": "Every SaaS business will become a harness around a model",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-02T21:06:56+00:00",
+   "summary_short": "SaaS公司都将变成围绕模型的harness，人只负责品味与判断",
+   "summary_long": "原文把“harness”宽泛定义为围绕无状态 LLM 的全部基础设施、界面、上下文与状态；harness 可由针对特定任务的子 harness 组成，负责编排的顶层叫“meta-harness”，而“软件工厂”就是一个由写规格、写代码、写审查等小 harness 加一个决定何时运行什么的顶层构成的 harness。作者认为，许多软件服务公司会沿这样一条轨迹演进：最初以传统 SaaS 方式卖软件服务，没有 harness；接着工程师与 agent 结对干活，产品、销售等职能也陆续与 agent 协作提效，由个人操作 harness；随后许多核心任务转到云端后台 agent（笔记本跑不了二十个），工程、产品、销售都通过写 prompt 触发并审查输出，由个人编排 harness；再之后核心任务交给主动型后台 agent，持续审查退化为抽样审查，agent 越来越多地自行决定做什么，变成 harness 编排个人。走到最后，公司本身就是 harness：生产软件服务的工作从人转移到 harness，“产品”完全是模型输出，公司提供上下文、集成和面向人的审查界面；组织架构反转成“把人放在哪里能让 harness 榨取最多品味与判断力”，人也成为 harness 的一部分。针对“这会变成 AI 垃圾工厂”的质疑，作者认为那种看法预设了公司是无人值守的，真正的解法是让 harness 挑选人工",
+   "key_points": [
+    "harness 被定义为围绕无状态 LLM 的全部基础设施、界面、上下文与状态；软件工厂是由多个小 harness 加顶层编排构成",
+    "演进轨迹分四步：无 harness → 个人与 agent 协作 → 核心任务转云端后台 agent、个人编排 harness → 主动型 agent 编排个人，公司本身成为 harness",
+    "变成 harness 后，“产品”完全是模型输出，公司提供上下文、集成与审查界面，组织架构变成安排人、让 harness 获取最多品味与判断力的工具"
+   ],
+   "topics": [
+    "harness",
+    "multi-agent",
+    "context-engineering"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 77.6,
+   "status": "published",
+   "extra": {
+    "hn_points": 160,
+    "hn_comments": 104,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://substack.com/@shrivu",
+      "https://substackcdn.com/image/fetch/$s_!DMig!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd8cf3fdf-c311-47d0-b42d-f75864c4dd68_1620x897.png",
+      "https://en.wikipedia.org/wiki/Lights_out_(manufacturing)",
+      "https://substackcdn.com/image/fetch/$s_!tPqs!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcb6e7dab-cf7d-4625-9a34-22e28004b4ae_1604x897.png",
+      "https://builders.abnormal.ai/p/nora-our-first-agent-employee",
+      "https://rlvrbook.com/chapters/01-introduction.html#what-rlvr-is",
+      "https://blog.sshh.io/p/the-transposed-organization",
+      "https://background-agents.com/",
+      "https://substackcdn.com/image/fetch/$s_!rBvF!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F83849b6a-e988-4458-b072-788a781d43f9_889x324.png",
+      "https://en.wikipedia.org/wiki/Systems_development_life_cycle"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "8e206c4d9ed6ea5b",
    "url": "https://openai.com/index/practical-guide-building-gpt-6",
@@ -75,6 +366,40 @@
       "https://openai.com/index/invideo-builds-with-gpt-6-astra/"
      ]
     },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "90e946a5da3efac2",
+   "url": "https://wagtail.org/blog/one-month-on-glm-53-flash/",
+   "title": "One month coding with GLM 5.3 Flash",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-02T15:29:15+00:00",
+   "summary_short": "作者挑战整月只用GLM 5.3 Flash编码，2B tokens后仅一半用在目标模型，但学到很多",
+   "summary_long": "作者原本计划整个9月只使用一个高效开源模型GLM 5.3 Flash，实测后认为这个想法在实践中并不太可行，全月共消耗2B tokens。按AgentsView统计，上半月成功只用目标模型，花费68美元，约4kWh能耗、365克碳排放；下半月则有1B tokens流向其他模型。原文列出三个意外障碍：一是为实验性Wagtail MCP原型做vibe coding时选错了模型，几乎一夜之间消耗450M tokens、150美元、5kWh能耗，原文称以约五分之一成本、稍微多花点力气也可能达到类似结果；二是推理提供商容量不如囤积GPU的大实验室，GLM 5.3 Flash性能出现下降，作者只能切换到DeepSeek V4.1 Flash、Qwen 3.8 Flash等同类模型；三是为对模型做Wagtail任务基准测试，需要跨模型数据，必须持续试验各类模型。文章也肯定GLM 5.3 Flash本身表现出色：1M上下文窗口、支持视觉、在多家提供商可用，被用于Wagtail本身、用它搭建的站点、UI任务、AI研发与文档写作。作者结论是这次挑战技术上失败，仅50%用量落在目标模型，能耗约35kWh而非10kWh。",
+   "key_points": [
+    "挑战全月只用GLM 5.3 Flash，2B tokens中只有1B用在目标模型，能耗约35kWh而非预期的10kWh，作者自认技术上失败",
+    "三大障碍：vibe coding的Wagtail MCP原型选错模型，一夜消耗450M tokens/150美元/5kWh；推理提供商容量不足导致GLM 5.3 Flash性能下降，被迫切到DeepSeek V4.1 Flash、Qwen 3.8 Flash；为基准测试需跨模型数据",
+    "GLM 5.3 Flash本身被评为优秀：1M上下文窗口、支持视觉、多家提供商可用，作者希望把只用一个模型的挑战延续到日常生产环节而非R&D"
+   ],
+   "topics": [
+    "coding-agent",
+    "mcp",
+    "product"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 77.6,
+   "status": "published",
+   "extra": {
+    "hn_points": 220,
+    "hn_comments": 177,
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -2626,62 +2951,6 @@
    }
   },
   {
-   "id": "dd7eb0ba55d9d4ba",
-   "url": "https://simonwillison.net/2026/Sep/18/thariq-shihipar/",
-   "title": "Quoting Thariq Shihipar",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-09-18T19:09:27+00:00",
-   "summary_short": "Claude Code 从 2.1.277 起支持 AGENTS.md，无 CLAUDE.md 时自动启用",
-   "summary_long": "Claude Code 正在加入对 AGENTS.md 的支持。据 Thariq Shihipar 介绍，从 2.1.277 版本开始，如果某个文件夹里没有 CLAUDE.md，Claude 就会检查并使用 AGENTS.md。这项 AGENTS.md 支持是基于 Claude Code mods 构建的，而 mods 是即将推出的、用于自定义 Claude Code harness 的方式。此次提供的是一个内置 mod，但用户之后也可以按自己的需要构建自定义版本的项目指令。原文还给出了该 mod 的源码链接，并指向可以查看更多 mods 的地址。除上述内容外，原文未详述 mods 的具体机制、后续发布时间安排，也未说明 AGENTS.md 与 CLAUDE.md 在格式、优先级等方面的差别。原文标签包含 coding-agents、anthropic、claude-code、generative-ai、ai、llms。",
-   "key_points": [
-    "Claude Code 从 2.1.277 版本开始支持 AGENTS.md：文件夹中没有 CLAUDE.md 时会检查并使用 AGENTS.md",
-    "该支持基于即将推出的 Claude Code mods（用于自定义 Claude Code harness）构建，此次提供的是内置 mod",
-    "用户之后可自行构建自定义版本的项目指令；原文给出了该 mod 的源码链接，并指向更多 mods 的地址"
-   ],
-   "topics": [
-    "coding-agent",
-    "harness",
-    "context-engineering"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 77.2,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "thariq-shihipar",
-     "coding-agents",
-     "anthropic",
-     "claude-code",
-     "generative-ai"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/anthropics/claude-code/tree/main/mods/agents-md",
-      "https://twitter.com/trq212/status/2101009392611278961",
-      "https://github.com/anthropics/claude-code/tree/main/mods",
-      "https://simonwillison.net/tags/thariq-shihipar",
-      "https://simonwillison.net/tags/coding-agents",
-      "https://simonwillison.net/tags/anthropic",
-      "https://simonwillison.net/tags/claude-code",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/llms"
-     ]
-    },
-    "summary_mode": "full",
-    "hitl": {
-     "kept_at": "2026-09-26T23:28:07+00:00"
-    }
-   }
-  },
-  {
    "id": "3f8ce213f8ded073",
    "url": "https://arxiv.org/abs/2609.20804",
    "title": "An empirical study of harness design for coding agents",
@@ -2753,103 +3022,6 @@
       "https://core.ac.uk/services/recommender",
       "https://info.arxiv.org/labs/index.html",
       "https://info.arxiv.org/help/mathjax.html"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "b3566f3850891301",
-   "url": "https://tokenstead.ai/guides/zcode-silent-git-history-upload",
-   "title": "ZCode, the GLM coding agent, silently uploads your Git history",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-18T10:35:28+00:00",
-   "summary_short": "开发者逆向发现 ZCode 登录后静默打包整个工作区（含完整 .git 历史）加密上传阿里云 OSS，且密钥仅服务端可解",
-   "summary_long": "2026 年 9 月 18 日，一位名为 ferstar 的开发者发布了对 ZCode 的逆向分析。ZCode 是 GLM 系列开放权重模型背后、总部位于北京的公司 Z.ai 推出的 AI 编码桌面应用。原文称，只要应用处于登录状态，它就会静默把用户的整个工作区打包——包括完整的 .git 历史、LFS 资源缓存、reflog 和全局应用配置——加密后上传至阿里云对象存储 OSS。研究者自己的抓取记录是：从一个 345MB 的商业工作区生成 313MB 加密归档，含 42,411 个文件，并在调查期间记录到 564 次上传失败尝试。文中指出，GLM 权重开源不等于运行 ZCode 的外壳开源，评论区有数人误以为 ZCode 是开源的。ferstar 的帖子获得 27.6 万次浏览，FeiZ 的中文提醒帖获得 6.38 万次浏览。最受引用的回应来自 Petri Kuittinen：“不要信任闭源 AI 外壳。”关键细节是加密密钥：ZCode 采用信封加密，对称密钥由服务端在上传凭证协商时下发的 RSA-OAEP 公钥封装，对应私钥只存在于 Z.ai 云端，ferstar 用本地所有私钥尝试解封均告失败。",
-   "key_points": [
-    "ZCode 登录后会静默打包整个工作区并加密上传至阿里云 OSS，抓取样本为 42,411 个文件的 313MB 加密归档，来自 345MB 商业工作区",
-    "归档内容中 .git 目录占 86.6%：LFS 196.1MB(56.8%)、objects 102.2MB(29.6%)、logs 0.6MB(0.2%)、源码与文档 46.2MB(13.4%)",
-    "采用信封加密，对称密钥由服务端下发的 RSA-OAEP 公钥封装，私钥只在 Z.ai 云端，本地无法解密；上传流程由客户端 app.asar 逆向还原，凭证来自 zcode.z.ai，归档直传阿里云 OSS 并回调注册"
-   ],
-   "topics": [
-    "privacy",
-    "cybersecurity",
-    "coding-agent"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 76.2,
-   "status": "published",
-   "extra": {
-    "hn_points": 258,
-    "hn_comments": 13,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://x.com/a_green_being/status/2076598897779020159",
-      "https://x.com/dedene",
-      "https://blog.ferstar.org/en/posts/zcode-silent-workspace-snapshot-upload/",
-      "https://x.com/ferstar_org/status/2100805861002355154",
-      "https://x.com/Fei2411/status/2100847306203599047",
-      "https://zcode.z.ai/en/changelog",
-      "https://www.v2ex.com/t/1242973",
-      "https://lookonchain.com/feeds/73032"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full",
-    "hitl": {
-     "kept_at": "2026-09-26T23:28:07+00:00"
-    }
-   }
-  },
-  {
-   "id": "39b208522bb559fd",
-   "url": "https://www.hacktron.ai/blog/hacking-openai",
-   "title": "A heap overflow and SSO misconfiguration to compromise OpenAI internal repos",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-18T02:47:24+00:00",
-   "summary_short": "串联两漏洞可劫持OpenAI员工账号并进入其内部仓库",
-   "summary_long": "Hacktron团队（Harsh Jaiswal、Mohan Pedhapati、Rahul Maini）披露：2026年7月25日，他们串联两个漏洞，攻破多名OpenAI员工的ChatGPT账号，进而访问OpenAI内部代码仓库，并可能触及其他已连接的服务（原文点名GitHub、Slack和邮件）。这两个漏洞分别是：Discourse图片上传所用ImageMagick依赖的libheif图像解码器RCE（根源为Debian缺失安全回补），以及OpenAI身份基础设施中的SSO配置缺陷。从初始发现到获得OpenAI仓库访问权，全过程不足72小时。为在不窥探敏感信息的前提下证明访问权限，他们用该员工的Codex在OpenAI内部monorepo（openai/openai）提交了一个无害的PoC PR。团队随后向OpenAI与Discourse报告并配合修复：OpenAI在提交约14小时后确认修复，并支付6500美元赏金，同时说明针对community.openai.com的测试本不在其赏金计划范围内，该奖励认可的是OpenAI侧的发现；Discourse于7月28日发布GHSA-vhm9-85gw-x335，并提供补丁与重建指引，同时加入图像处理沙箱作为纵深防御。团队已将研究扩展为“HEIF Heist”项目。",
-   "key_points": [
-    "漏洞链由两环构成：Debian缺失安全回补导致libheif图像解码器RCE，经ImageMagick影响Discourse图片上传；叠加OpenAI身份基础设施中的SSO配置缺陷",
-    "影响范围：可接管OpenAI员工的ChatGPT与Codex账号，并可能触及其连接的GitHub、Slack、邮件等服务，最终访问OpenAI内部仓库",
-    "披露与修复：从发现到进入内部仓库不足72小时；OpenAI约14小时后确认修复并支付6500美元赏金（该奖励针对OpenAI侧发现，Discourse测试本被排除在赏金计划外）；Discourse于7月28日发布GHSA-vhm9-85gw-x335，并加入图像处理沙箱"
-   ],
-   "topics": [
-    "cybersecurity"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 75.9,
-   "status": "published",
-   "extra": {
-    "hn_points": 464,
-    "hn_comments": 196,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "http://community.openai.com/",
-      "https://github.com/discourse/discourse/security/advisories/GHSA-vhm9-85gw-x335",
-      "https://heif-heist.com",
-      "https://xkcd.com/2347/",
-      "https://github.com/discourse/discourse/commit/a07188016987de1613c961277e2e928aaa7c37ec",
-      "https://meta.discourse.org/t/support-for-heic-images/144326",
-      "https://github.com/strukturag/libheif/commit/85e21ad44eba931314337300a2376b8d28f085ae",
-      "https://lists.debian.org/debian-security-announce/2026/msg00328.html",
-      "https://www.anthropic.com/news/claude-opus-5",
-      "https://www.rand.org/pubs/research_briefs/RBA2849-1.html",
-      "https://github.com/strukturag/libheif/releases/tag/v1.23.4",
-      "https://imagemagick.org/security-policy/"
      ]
     },
     "content_source": "direct",

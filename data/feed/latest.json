@@ -1,377 +1,606 @@
 {
- "generated_at": "2026-10-03T00:21:30+00:00",
+ "generated_at": "2026-10-03T23:44:50+00:00",
  "date": "2026-10-03",
- "run_id": "20261003-002009",
+ "run_id": "20261003-234232",
  "top": [
   {
-   "id": "d599f0a282be129f",
-   "url": "https://huggingface.co/blog/allenai/astabrief",
-   "title": "Open-sourcing AstaBrief, the fast report-generation model in Asta",
+   "id": "89764eae00994ca8",
+   "url": "https://huggingface.co/blog/microsoft/thinkingbox",
+   "title": "The Agent Said It Was Done. The Database Disagreed.",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-02T15:19:50+00:00",
-   "summary_short": "Ai2开源AstaBrief 8B：把研究问题与文献生成带引用报告，速度约快3.5倍",
-   "summary_long": "Ai2 开源 AstaBrief 8B，一个把研究问题与检索文献片段转化为带引用报告的模型，已在 Asta 的“生成报告”功能中作为 Fast 模式上线，与 Claude 驱动的 Thinking 模式并列，模型权重与训练数据一并开源。\n\n原文称，科研要求答案有证据支撑、不悄悄扩大研究结论、研究者能核验输出；Asta 用户常带大量背景与约束提问，并把报告当作可继续使用的研究产物。Ai2 由此测试：专为科学报告训练的小型开放模型，能否在质量上比肩所用专有模型，同时降低生成时间与服务成本。\n\n开发用到数万条真实研究查询、以引用为中心的过滤、偏好数据，以及一次性写完整份报告而非逐节生成的重设计流程。原文称生成时间相比其追踪的专有模型接近一个数量级下降；完整 Asta 流程中 Fast 模式平均每份 51.1 秒，Thinking 模式 178.5 秒，约快 3.5 倍。模型以 Qwen3-8B 起步，精力主要投入后训练数据、评测与脚手架。\n\n开放权重使机构可在自有基础设施上运行，适用于敏感或未发表工作；并发布可适配的工作流示例，便于用研究者自己的 PDF 生成报告。原文提示，训练与评测多在 2025 年完成，对比的专有模型反映当时前沿，未对当今前沿模型重跑完整评测。",
+   "published_at": "2026-10-03T22:56:48+00:00",
+   "summary_short": "ThinkingBox不用工具调用、只用数据库末态给AI智能体打分",
+   "summary_long": "微软与Hugging Face联合发布基准ThinkingBox（已通过Hugging Face提供）：它让智能体在隔离的MCP工具会话中运行，评分依据不是生成的语句或工具调用，而是它留在后端的终端状态与副作用。原文举例：客户的745美元厨电卡在纳什维尔配送中心的承运商“异常”中、已超预计送达15天，智能体做了九次工具调用、两次查退款政策，最后把工单标为已解决并回复“您的查询已解决”，但要求的末态是“on hold（待处理）”，客户也没得到真正答复——只检查工具调用的评分看不出问题，数据库会不同意。ThinkingBox覆盖507个有状态业务流程，每项任务对多个LLM模型各独立运行20次、从相同干净后端出发，以避免“一次成功等于可靠”。在覆盖12个模型、121,680次有效试验的公共集消融中，79,853次未通过可执行检查；这些失败中67.24%仍干净终止、调用了改状态的工具且无最终工具错误，而可执行检查发现其中77.61%存在字段值错误、43.30%有非预期额外副作用、25.36%缺失必需副作用（这些结论有重叠）。原文称该例改编自基准任务sandbox_external_retail_group1.py:test_case_ST003_006，失败检查为单一字段：工单状态是solved而要求末态是hold。",
    "key_points": [
-    "AstaBrief 8B 以 Qwen3-8B 为起点，输入研究问题与检索文献片段，输出带引用的报告；已在 Asta 的“生成报告”中作为 Fast 模式上线，与 Claude 驱动的 Thinking 模式并列。",
-    "开发用到数万条真实研究查询、以引用为中心的过滤、偏好数据，以及一次性写完整份报告而非逐节生成的重设计流程；完整 Asta 流程中 Fast 模式平均每份 51.1 秒，Thinking 模式 178.5 秒，约快 3.5 倍。",
-    "模型权重与训练数据开源，并发布可适配的工作流示例，让机构在自有基础设施上运行、用研究者自己的 PDF 生成报告，适用于涉及敏感或未发表工作的研究。"
+    "评测对象是智能体留下的后端末态与副作用，最终回复和合法工具调用只算代理指标",
+    "覆盖507个有状态业务流程，每项任务从相同干净后端独立运行20次，报告pass@1、pass@20等三项指标",
+    "121,680次有效试验中79,853次未通过可执行检查，其中67.24%仍干净终止、调用了改状态工具且无最终工具错误"
    ],
    "topics": [
-    "open-source",
-    "post-training",
-    "rag"
+    "eval",
+    "tool-use",
+    "mcp"
    ],
-   "category": "模型",
+   "category": "评测",
    "categories": [
-    "模型"
+    "评测"
    ],
-   "horizon": "short",
-   "score": 81.0,
+   "horizon": "long",
+   "score": 87.3,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
      "arxiv": [
-      "2508.20033"
+      "2608.19741"
      ],
      "links": [
-      "https://huggingface.co/allenai/AstaBrief_8B",
-      "https://huggingface.co/collections/allenai/astabrief",
-      "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/AdqLEBgtQnaDXKLdylC3l.png",
-      "https://asta.allen.ai/",
-      "https://github.com/allenai/ai2-scholarqa-lib/tree/main/api/scholarqa/lite",
-      "https://allenai.org/omai",
-      "https://allenai.org/blog/dr-tulu",
-      "https://allenai.org/blog/nature-openscilm",
-      "https://aclanthology.org/2025.acl-demo.49.pdf",
-      "https://allenai.org/blog/asta-interaction-dataset",
-      "https://github.com/allenai/ai2-scholarqa-eval",
-      "https://arxiv.org/abs/2508.20033",
-      "https://royalsocietypublishing.org/rsos/article/12/4/241776/235656/Generalization-bias-in-large-language-model",
-      "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/nBB2ourke1eQYpjq2mGD5.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/3dI-e2nnf6FDQw6ay-x9N.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/Ek19fGImhqROo_qSUt5LV.png"
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/Dzuml_9K2lfRq4hZi17EY.png",
+      "https://arxiv.org/abs/2608.19741",
+      "https://github.com/huggingface/OpenEnv/tree/main/envs/thinkingbox_env",
+      "https://github.com/microsoft/thinkingbox-data/blob/thinkingbox-bench-v1.0/dataset/test_case/sandbox_external_retail/sandbox_external_retail_group1.py#L984-L1223",
+      "https://arxiv.org/pdf/2608.19741",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/DjaLNZKNeU--Xy2WFCvVX.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/NONd2WGm4vtGpsVgs-CIq.png",
+      "https://openrouter.ai/",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/oGmXYrxoNPJfsQndxlcMD.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/elbRGqTXW6PIqci7xcEJN.png",
+      "https://huggingface.co/docs/openenv/environments/thinkingbox",
+      "https://huggingface.co/datasets/microsoft/ThinkingBox-Bench",
+      "https://docs.astral.sh/uv/",
+      "https://github.com/microsoft/thinkingbox-data",
+      "https://github.com/microsoft/thinkingbox/blob/main/docs/llm_endpoint_config.md",
+      "https://github.com/huggingface/OpenEnv/blob/main/examples/thinkingbox/example_usage.py",
+      "https://github.com/microsoft/thinkingbox",
+      "https://github.com/microsoft/thinkingbox/blob/main/docs/tutorial.md",
+      "https://github.com/microsoft/thinkingbox-data/releases/tag/thinkingbox-bench-v1.0",
+      "https://huggingface.co/papers/2608.19741",
+      "https://github.com/microsoft/thinkingbox-training",
+      "https://cdla.dev/permissive-2-0/",
+      "https://github.com/microsoft/thinkingbox/discussions"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "a885ed61f54a415a",
-   "url": "https://huggingface.co/blog/ServiceNow-AI/autosynthdata",
-   "title": "AutoSynthData: Generating Training Data for Enterprise Agents",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-02T04:01:31+00:00",
-   "summary_short": "ServiceNow 用模型失败与教师成功自动生成企业智能体训练任务",
-   "summary_long": "企业需要能在自身环境中可靠工作的智能体，其任务受所用系统、遵循的规则与数据状态影响；一个通用能力很强的模型仍可能在某个工作流、某组工具或某条约束上出错。难点在于把弱点变成训练数据：单次失败信息有限，训练需要大量能在不同情境中演练同一能力的新任务，且这些任务必须能在环境中完成、像真实用户会提出的请求、并有可靠的成功判定方式。ServiceNow CoreAI 构建的 AutoSynthData 利用目标模型的失败与更强教师的成功，决定模型下一步该学什么，再生成并验证演练这些能力的新任务；模型提升后，课程转向它仍然觉得困难的部分。文章以 EnterpriseOps Gym（Malay 等，2026）及已发布数据集演示该流程，并提出任务抽象 task =（系统规范、用户提示、验证器）：系统规范涵盖系统指令、环境策略及种子数据库状态等任务级初始化；用户提示须满足可行性、真实性、难度；验证器须满足一致性、正确性、完备性。",
+   "id": "3ba89625595d4416",
+   "url": "https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/",
+   "title": "We're going to need default hard budget caps on pretty much everything",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-10-03T23:34:02+00:00",
+   "summary_short": "呼吁按用量计费的服务默认设硬性预算上限，AWS、谷歌云已跟进",
+   "summary_long": "原文呼吁按用量计费的服务与 API 应默认提供“硬性预算上限”：达到每月 X 美元后直接切断并返回错误，而非只发警告邮件。作者认为编码智能体与个人智能体大幅降低了启动“会花钱”代码的摩擦——调用付费 API、托管 Web 应用、可计费存储与计算——没人愿意醒来发现服务在睡觉时又花掉几百甚至几千美元。对“企业不想托管应用因超预算报错”的反驳，作者认为多数人宁愿报错也不愿收到上万美元账单，故硬上限应设为默认，想冒险者需主动勾选“移除预算上限”并自负后续费用。作者最希望 AWS 提供该功能，称不少人因担心失控服务致其破产而拒绝在个人项目用 AWS，也有人因此吃亏。文中提到 AWS 已于 9 月 16 日发布说明，可设每月支出上限，达到后项目当月暂停，但提示新体验仅面向有限客户；Google Cloud 7 月推出 Spend Caps，可对项目内特定服务设月度财务上限。作者还希望智能体倾向推荐有硬上限的供应商。",
    "key_points": [
-    "企业智能体的问题在于模型可能对特定环境的工作流、工具组合或约束处理不佳，而这些正是需要改进的弱点。",
-    "AutoSynthData 用目标模型的失败与更强教师的成功决定学习方向，自动生成并验证新任务，课程随模型改进向仍困难的部分转移。",
-    "研究把任务抽象为 task =（系统规范、用户提示、验证器）；用户提示需可行、真实、有难度，验证器需一致、正确、完备。"
+    "主张硬性预算上限应成为默认：达到每月额度即切断服务并返回错误，仅发警告邮件的软上限不够，取消上限需主动勾选并自负后续费用。",
+    "背景是编码智能体和个人智能体降低了启动付费 API、托管应用等会花钱代码的摩擦，可能出现失控花费。",
+    "AWS 于 9 月 16 日发布可设置每月支出上限、达到后项目当月暂停的功能，但新体验仅面向有限客户逐步开放；Google Cloud 于 7 月推出 Spend Caps，可对项目内特定服务设月度财务上限。"
    ],
    "topics": [
-    "post-training",
-    "harness",
-    "agent-loop"
+    "cloud-billing",
+    "coding-agent"
    ],
-   "category": "模型",
+   "category": "行业动态",
    "categories": [
-    "模型",
-    "Agent 与开发"
+    "行业动态"
    ],
    "horizon": "long",
-   "score": 79.5,
+   "score": 79.7,
    "status": "published",
    "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2603.13594"
-     ],
-     "links": [
-      "https://cdn-uploads.huggingface.co/production/uploads/68642da9885da181fde1ad70/mlI168havBLGXY2qbd4ud.png",
-      "https://arxiv.org/abs/2603.13594",
-      "https://huggingface.co/datasets/ServiceNow-AI/EnterpriseOps-Gym",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/sM50frTSx9Q7Yyh6UNcGz.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/huMlVCBcc-IseCIk5uEIJ.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/ZwShYC2FDYFXU9yR9yz1t.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/UCTRFFZ7ttq6JEXZr5_Qi.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/zUTtl1ILl-fTtA-0RZdgV.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/r3nXamYF6OEI2ezj7MX78.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/ONKQXJ1u9buDLEa-AuXMo.png",
-      "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "https://huggingface.co/Qwen/Qwen3.8-27B",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/D2CdcykJInh82mYAMGz3I.png",
-      "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/3G6bJhA0JKZMJdiwfeHYs.png"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "8e206c4d9ed6ea5b",
-   "url": "https://openai.com/index/practical-guide-building-gpt-6",
-   "title": "A model guide for the GPT-6 family",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-02T16:15:00+00:00",
-   "summary_short": "GPT‑6 系列模型使用指南：按任务选模型、调推理等级并控制上下文与成本",
-   "summary_long": "这份指南发布于2026年10月2日，原文称 GPT‑6 是其迄今最先进的模型套件，可按工作类型选择不同模型。指南给出四点建议：在生产环境中高效运行，用缓存与 compaction 管理上下文和成本，衡量任务成功率与延迟，并规划监控与数据控制；把模型匹配到工作负载；调整提示与技能，让提示、技能与仓库指令在交付内容、可独立完成的范围与完成标准上保持一致；用 steering、async tools 和 delegation 保持长任务推进，并明确模型何时应请求输入。模型选择上，GPT‑6 Astra 用于需要最大智能的最难推理，GPT‑6.1 Sol 用于复杂编码、研究与计算机使用，GPT‑6 Luna 用于目标明确的大规模聚焦任务和日常重复工作，如提取发票字段、分类请求或生成结构化摘要。推理等级分 Low、Medium、High 以及 Extra high／Max，可在 API 中于对话中途调整。原文还提到，缓存输入 token 的费用最多可比未缓存低 95%，具体取决于模型。",
-   "key_points": [
-    "GPT‑6 被原文称为迄今最先进的模型套件，指南围绕生产环境运行、模型匹配工作负载、提示与技能调整、长任务跟踪四方面给出建议",
-    "模型分工：GPT‑6 Astra 面向最难推理，GPT‑6.1 Sol 面向复杂编码、研究与计算机使用，GPT‑6 Luna 面向目标明确的大规模聚焦任务与日常重复工作",
-    "成本与上下文管理：缓存输入 token 费用最多比未缓存低 95%（取决于模型），compaction 可在保留续接所需状态的前提下缩小上下文，推理等级 Low／Medium／High／Extra high／Max 可在 API 中中途调整"
-   ],
-   "topics": [
-    "context-engineering",
-    "reasoning",
-    "tool-use"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 79.2,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
+    "content_source": "rss",
     "source_tags": [
-     "Product"
+     "amazon-web-services",
+     "ai",
+     "coding-agents"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://developers.openai.com/api/docs/guides/prompt-caching",
-      "https://developers.openai.com/api/docs/guides/compaction",
-      "https://developers.openai.com/api/docs/guides/reasoning",
-      "https://developers.openai.com/api/docs/guides/steering",
-      "https://developers.openai.com/api/docs/guides/async-tool-calling",
-      "https://developers.openai.com/api/docs/guides/responses-multi-agent#overview",
-      "https://developers.openai.com/api/docs/guides/cost-optimization#cost-and-latency",
-      "https://developers.openai.com/api/docs/guides/latency-optimization#parallelize",
-      "https://developers.openai.com/api/docs/guides/prompt-caching#why-prompt-caching-matters",
-      "https://platform.openai.com/usage?usage_section=prompt-caching",
-      "https://developers.openai.com/api/docs/guides/prompt-caching/diagnostics",
-      "https://developers.openai.com/api/docs/guides/safety-checks/misalignment-monitoring",
-      "https://developers.openai.com/api/docs/guides/your-data",
-      "https://developers.openai.com/api/docs/guides/deployment-checklist#choose-a-model-for-the-workload",
-      "https://developers.openai.com/api/docs/models/gpt-6-astra",
-      "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
-      "https://developers.openai.com/api/docs/models/gpt-6-luna",
-      "https://developers.openai.com/api/docs/models/compare",
-      "https://developers.openai.com/api/docs/guides/reasoning#change-reasoning-mid-conversation",
-      "https://developers.openai.com/api/docs/guides/fast-mode",
-      "https://developers.openai.com/api/docs/guides/ultrafast-mode",
-      "https://x.com/OpenAIDevs/status/2104996045482778973",
-      "https://x.com/pvncher/status/2095991462416490862",
-      "https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra#better-skills",
-      "https://developers.openai.com/api/docs/guides/reasoning-best-practices#how-to-prompt-reasoning-models-effectively",
-      "https://developers.openai.com/api/docs/guides/latest-model#initiative-and-follow-through",
-      "https://developers.openai.com/api/docs/guides/latest-model#personality-and-writing-style",
-      "https://developers.openai.com/api/docs/guides/steering#send-a-steering-message",
-      "https://developers.openai.com/api/docs/guides/websocket-mode",
-      "https://developers.openai.com/api/docs/guides/async-tool-calling#how-async-tools-work",
-      "https://developers.openai.com/blog/mastering-codex-remote-for-engineering#2-learn-the-difference-between-queue-and-steer",
-      "https://developers.openai.com/api/docs/guides/tools-computer-use",
-      "https://developers.openai.com/api/docs/guides/tools-computer-use#code-execution-harness-examples",
-      "https://openai.com/index/harvey-from-context-to-confidence-with-astra/",
-      "https://openai.com/index/cognition-devin-testing-with-astra/",
-      "https://openai.com/index/hex-gpt-6-astra/",
-      "https://openai.com/index/invideo-builds-with-gpt-6-astra/"
+      "https://aws.amazon.com/about-aws/whats-new/2026/09/New-AWS-Builder-Experience/",
+      "https://docs.aws.amazon.com/accounts/latest/reference/create-spend-limit.html",
+      "https://cloud.google.com/blog/topics/cost-management/new-early-anomalies-and-spend-caps-on-google-cloud-budgets",
+      "https://simonwillison.net/tags/amazon-web-services",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/coding-agents"
      ]
     },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "90e946a5da3efac2",
+   "url": "https://wagtail.org/blog/one-month-on-glm-53-flash/",
+   "title": "One month coding with GLM 5.3 Flash",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-02T15:29:15+00:00",
+   "summary_short": "作者挑战整月只用GLM 5.3 Flash编码，2B tokens后仅一半用在目标模型，但学到很多",
+   "summary_long": "作者原本计划整个9月只使用一个高效开源模型GLM 5.3 Flash，实测后认为这个想法在实践中并不太可行，全月共消耗2B tokens。按AgentsView统计，上半月成功只用目标模型，花费68美元，约4kWh能耗、365克碳排放；下半月则有1B tokens流向其他模型。原文列出三个意外障碍：一是为实验性Wagtail MCP原型做vibe coding时选错了模型，几乎一夜之间消耗450M tokens、150美元、5kWh能耗，原文称以约五分之一成本、稍微多花点力气也可能达到类似结果；二是推理提供商容量不如囤积GPU的大实验室，GLM 5.3 Flash性能出现下降，作者只能切换到DeepSeek V4.1 Flash、Qwen 3.8 Flash等同类模型；三是为对模型做Wagtail任务基准测试，需要跨模型数据，必须持续试验各类模型。文章也肯定GLM 5.3 Flash本身表现出色：1M上下文窗口、支持视觉、在多家提供商可用，被用于Wagtail本身、用它搭建的站点、UI任务、AI研发与文档写作。作者结论是这次挑战技术上失败，仅50%用量落在目标模型，能耗约35kWh而非10kWh。",
+   "key_points": [
+    "挑战全月只用GLM 5.3 Flash，2B tokens中只有1B用在目标模型，能耗约35kWh而非预期的10kWh，作者自认技术上失败",
+    "三大障碍：vibe coding的Wagtail MCP原型选错模型，一夜消耗450M tokens/150美元/5kWh；推理提供商容量不足导致GLM 5.3 Flash性能下降，被迫切到DeepSeek V4.1 Flash、Qwen 3.8 Flash；为基准测试需跨模型数据",
+    "GLM 5.3 Flash本身被评为优秀：1M上下文窗口、支持视觉、多家提供商可用，作者希望把只用一个模型的挑战延续到日常生产环节而非R&D"
+   ],
+   "topics": [
+    "coding-agent",
+    "mcp",
+    "product"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 77.6,
+   "status": "published",
+   "extra": {
+    "hn_points": 220,
+    "hn_comments": 177,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "8ae48c8dd8c51ab3",
+   "url": "https://blog.sshh.io/p/the-harness-is-the-company",
+   "title": "Every SaaS business will become a harness around a model",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-02T21:06:56+00:00",
+   "summary_short": "SaaS公司都将变成围绕模型的harness，人只负责品味与判断",
+   "summary_long": "原文把“harness”宽泛定义为围绕无状态 LLM 的全部基础设施、界面、上下文与状态；harness 可由针对特定任务的子 harness 组成，负责编排的顶层叫“meta-harness”，而“软件工厂”就是一个由写规格、写代码、写审查等小 harness 加一个决定何时运行什么的顶层构成的 harness。作者认为，许多软件服务公司会沿这样一条轨迹演进：最初以传统 SaaS 方式卖软件服务，没有 harness；接着工程师与 agent 结对干活，产品、销售等职能也陆续与 agent 协作提效，由个人操作 harness；随后许多核心任务转到云端后台 agent（笔记本跑不了二十个），工程、产品、销售都通过写 prompt 触发并审查输出，由个人编排 harness；再之后核心任务交给主动型后台 agent，持续审查退化为抽样审查，agent 越来越多地自行决定做什么，变成 harness 编排个人。走到最后，公司本身就是 harness：生产软件服务的工作从人转移到 harness，“产品”完全是模型输出，公司提供上下文、集成和面向人的审查界面；组织架构反转成“把人放在哪里能让 harness 榨取最多品味与判断力”，人也成为 harness 的一部分。针对“这会变成 AI 垃圾工厂”的质疑，作者认为那种看法预设了公司是无人值守的，真正的解法是让 harness 挑选人工",
+   "key_points": [
+    "harness 被定义为围绕无状态 LLM 的全部基础设施、界面、上下文与状态；软件工厂是由多个小 harness 加顶层编排构成",
+    "演进轨迹分四步：无 harness → 个人与 agent 协作 → 核心任务转云端后台 agent、个人编排 harness → 主动型 agent 编排个人，公司本身成为 harness",
+    "变成 harness 后，“产品”完全是模型输出，公司提供上下文、集成与审查界面，组织架构变成安排人、让 harness 获取最多品味与判断力的工具"
+   ],
+   "topics": [
+    "harness",
+    "multi-agent",
+    "context-engineering"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 77.6,
+   "status": "published",
+   "extra": {
+    "hn_points": 160,
+    "hn_comments": 104,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://substack.com/@shrivu",
+      "https://substackcdn.com/image/fetch/$s_!DMig!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd8cf3fdf-c311-47d0-b42d-f75864c4dd68_1620x897.png",
+      "https://en.wikipedia.org/wiki/Lights_out_(manufacturing)",
+      "https://substackcdn.com/image/fetch/$s_!tPqs!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcb6e7dab-cf7d-4625-9a34-22e28004b4ae_1604x897.png",
+      "https://builders.abnormal.ai/p/nora-our-first-agent-employee",
+      "https://rlvrbook.com/chapters/01-introduction.html#what-rlvr-is",
+      "https://blog.sshh.io/p/the-transposed-organization",
+      "https://background-agents.com/",
+      "https://substackcdn.com/image/fetch/$s_!rBvF!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F83849b6a-e988-4458-b072-788a781d43f9_889x324.png",
+      "https://en.wikipedia.org/wiki/Systems_development_life_cycle"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "9a14422b82b9b3e3",
+   "url": "https://tej.as/blog/aleph-alpha-kolibri",
+   "title": "Aleph Alpha Kolibri: How the sovereign German LLM works",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-03T10:43:51+00:00",
+   "summary_short": "Aleph Alpha 开源 78B MoE 模型 Kolibri，每 token 仅激活 3.5B 参数",
+   "summary_long": "Aleph Alpha 发布开源权重的大语言模型 Kolibri，支持德语和英语，2026 年 10 月 3 日以 Apache 2.0 许可释出，权重在 Hugging Face，在德国和芬兰的基础设施上从零训练。它是混合专家（MoE）模型：总参数 781 亿，每个 token 只激活 34.6 亿（4.4%）。共 50 层，每层 384 个专家加 1 个共享专家，路由为每个 token 选 6 个专家。原生上下文 262,144 token，测试至 1,048,576；知识截止 2026 年 6 月 18 日；推理分 none/low/medium/high 四档；支持工具调用；FP8 权重约 78 GB；训练约 24 万亿 token，逾五分之一为德语，使用 768 块 NVIDIA B200 GPU。Aleph Alpha 称其\"主权\"：在德国与芬兰、欧洲和德国法律下构建，无外国控制，客户可自由部署、知识产权安全、数据不出本地。模型卡也说明训练中用过 Google Gemma 4、Mistral-NeMo 改写文本以及 Qwen3-32B 的标注数据。按 Aleph Alpha 自己的评测，它在两种语言上得分高于所有同规模对比模型。",
+   "key_points": [
+    "总参数 781 亿的 MoE，50 层每层 384 个专家加 1 个共享专家，每 token 仅激活 34.6 亿参数（4.4%）",
+    "Apache 2.0 释出权重并放在 Hugging Face，在德国和芬兰基础设施上从零训练，Aleph Alpha 保留训练代码与方法权利",
+    "Aleph Alpha 称其\"主权\"：欧洲法律下构建、无外国控制、客户可自行部署且数据不出本地；模型卡承认训练中使用了 Gemma 4、Mistral-NeMo 与 Qwen3-32B"
+   ],
+   "topics": [
+    "open-source",
+    "tool-use",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 77.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 409,
+    "hn_comments": 11,
+    "outbound": {
+     "arxiv": [
+      "2104.09864",
+      "2309.01431",
+      "2404.06654",
+      "2512.11614"
+     ],
+     "links": [
+      "https://aleph-alpha.com/",
+      "https://www.apache.org/licenses/LICENSE-2.0",
+      "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+      "https://artificialintelligenceact.eu/",
+      "https://www.linkedin.com/in/michaellhofmann/",
+      "https://aleph-alpha.com/downloads/tech-report.pdf",
+      "https://aleph-alpha.com/en/blog/kolibri-has-landed-a-sovereign-open-weight-model/",
+      "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+      "https://european-union.europa.eu/",
+      "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
+      "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407",
+      "https://huggingface.co/Qwen/Qwen3-32B",
+      "https://aleph-alpha.com/en/blog/training-on-the-party-line/",
+      "https://huggingface.co/blog/moe",
+      "https://www.youtube.com/watch?v=uNj3y2pItrA&t=72s",
+      "https://huggingface.co/blog/moe#what-does-an-expert-learn",
+      "https://www.bundesverfassungsgericht.de/EN/",
+      "https://en.wikipedia.org/wiki/GPT-5",
+      "https://github.com/openai/tiktoken",
+      "https://en.wikipedia.org/wiki/Byte-pair_encoding",
+      "https://www.gesetze-im-internet.de/gg/",
+      "https://www.gesetze-im-internet.de/englisch_gg/",
+      "https://huggingface.co/openai/gpt-oss-120b",
+      "https://huggingface.co/Qwen/Qwen3.5-35B-A3B",
+      "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603",
+      "https://arxiv.org/abs/2104.09864",
+      "https://www.youtube.com/watch?v=uMksIqpbVoY&t=364s",
+      "https://arxiv.org/abs/2404.06654",
+      "https://x.com/Aleph__Alpha/status/2103139585039511700",
+      "https://aleph-alpha.com/en/blog/through-the-valley-of-tears-cold-starting-german-reasoning-in-llms/",
+      "https://en.wikipedia.org/wiki/American_Invitational_Mathematics_Examination",
+      "https://developer.nvidia.com/nemotron",
+      "https://arxiv.org/abs/2512.11614",
+      "https://artificialanalysis.ai/evaluations/omniscience",
+      "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "https://arxiv.org/abs/2309.01431",
+      "https://gorilla.cs.berkeley.edu/leaderboard.html",
+      "https://huggingface.co/zai-org/GLM-4.7-Flash",
+      "https://www.tbench.ai/"
+     ]
+    },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   }
  ],
  "items": [
   {
-   "id": "d599f0a282be129f",
-   "url": "https://huggingface.co/blog/allenai/astabrief",
-   "title": "Open-sourcing AstaBrief, the fast report-generation model in Asta",
+   "id": "89764eae00994ca8",
+   "url": "https://huggingface.co/blog/microsoft/thinkingbox",
+   "title": "The Agent Said It Was Done. The Database Disagreed.",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-02T15:19:50+00:00",
-   "summary_short": "Ai2开源AstaBrief 8B：把研究问题与文献生成带引用报告，速度约快3.5倍",
-   "summary_long": "Ai2 开源 AstaBrief 8B，一个把研究问题与检索文献片段转化为带引用报告的模型，已在 Asta 的“生成报告”功能中作为 Fast 模式上线，与 Claude 驱动的 Thinking 模式并列，模型权重与训练数据一并开源。\n\n原文称，科研要求答案有证据支撑、不悄悄扩大研究结论、研究者能核验输出；Asta 用户常带大量背景与约束提问，并把报告当作可继续使用的研究产物。Ai2 由此测试：专为科学报告训练的小型开放模型，能否在质量上比肩所用专有模型，同时降低生成时间与服务成本。\n\n开发用到数万条真实研究查询、以引用为中心的过滤、偏好数据，以及一次性写完整份报告而非逐节生成的重设计流程。原文称生成时间相比其追踪的专有模型接近一个数量级下降；完整 Asta 流程中 Fast 模式平均每份 51.1 秒，Thinking 模式 178.5 秒，约快 3.5 倍。模型以 Qwen3-8B 起步，精力主要投入后训练数据、评测与脚手架。\n\n开放权重使机构可在自有基础设施上运行，适用于敏感或未发表工作；并发布可适配的工作流示例，便于用研究者自己的 PDF 生成报告。原文提示，训练与评测多在 2025 年完成，对比的专有模型反映当时前沿，未对当今前沿模型重跑完整评测。",
+   "published_at": "2026-10-03T22:56:48+00:00",
+   "summary_short": "ThinkingBox不用工具调用、只用数据库末态给AI智能体打分",
+   "summary_long": "微软与Hugging Face联合发布基准ThinkingBox（已通过Hugging Face提供）：它让智能体在隔离的MCP工具会话中运行，评分依据不是生成的语句或工具调用，而是它留在后端的终端状态与副作用。原文举例：客户的745美元厨电卡在纳什维尔配送中心的承运商“异常”中、已超预计送达15天，智能体做了九次工具调用、两次查退款政策，最后把工单标为已解决并回复“您的查询已解决”，但要求的末态是“on hold（待处理）”，客户也没得到真正答复——只检查工具调用的评分看不出问题，数据库会不同意。ThinkingBox覆盖507个有状态业务流程，每项任务对多个LLM模型各独立运行20次、从相同干净后端出发，以避免“一次成功等于可靠”。在覆盖12个模型、121,680次有效试验的公共集消融中，79,853次未通过可执行检查；这些失败中67.24%仍干净终止、调用了改状态的工具且无最终工具错误，而可执行检查发现其中77.61%存在字段值错误、43.30%有非预期额外副作用、25.36%缺失必需副作用（这些结论有重叠）。原文称该例改编自基准任务sandbox_external_retail_group1.py:test_case_ST003_006，失败检查为单一字段：工单状态是solved而要求末态是hold。",
    "key_points": [
-    "AstaBrief 8B 以 Qwen3-8B 为起点，输入研究问题与检索文献片段，输出带引用的报告；已在 Asta 的“生成报告”中作为 Fast 模式上线，与 Claude 驱动的 Thinking 模式并列。",
-    "开发用到数万条真实研究查询、以引用为中心的过滤、偏好数据，以及一次性写完整份报告而非逐节生成的重设计流程；完整 Asta 流程中 Fast 模式平均每份 51.1 秒，Thinking 模式 178.5 秒，约快 3.5 倍。",
-    "模型权重与训练数据开源，并发布可适配的工作流示例，让机构在自有基础设施上运行、用研究者自己的 PDF 生成报告，适用于涉及敏感或未发表工作的研究。"
+    "评测对象是智能体留下的后端末态与副作用，最终回复和合法工具调用只算代理指标",
+    "覆盖507个有状态业务流程，每项任务从相同干净后端独立运行20次，报告pass@1、pass@20等三项指标",
+    "121,680次有效试验中79,853次未通过可执行检查，其中67.24%仍干净终止、调用了改状态工具且无最终工具错误"
+   ],
+   "topics": [
+    "eval",
+    "tool-use",
+    "mcp"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测"
+   ],
+   "horizon": "long",
+   "score": 87.3,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2608.19741"
+     ],
+     "links": [
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/Dzuml_9K2lfRq4hZi17EY.png",
+      "https://arxiv.org/abs/2608.19741",
+      "https://github.com/huggingface/OpenEnv/tree/main/envs/thinkingbox_env",
+      "https://github.com/microsoft/thinkingbox-data/blob/thinkingbox-bench-v1.0/dataset/test_case/sandbox_external_retail/sandbox_external_retail_group1.py#L984-L1223",
+      "https://arxiv.org/pdf/2608.19741",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/DjaLNZKNeU--Xy2WFCvVX.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/NONd2WGm4vtGpsVgs-CIq.png",
+      "https://openrouter.ai/",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/oGmXYrxoNPJfsQndxlcMD.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/elbRGqTXW6PIqci7xcEJN.png",
+      "https://huggingface.co/docs/openenv/environments/thinkingbox",
+      "https://huggingface.co/datasets/microsoft/ThinkingBox-Bench",
+      "https://docs.astral.sh/uv/",
+      "https://github.com/microsoft/thinkingbox-data",
+      "https://github.com/microsoft/thinkingbox/blob/main/docs/llm_endpoint_config.md",
+      "https://github.com/huggingface/OpenEnv/blob/main/examples/thinkingbox/example_usage.py",
+      "https://github.com/microsoft/thinkingbox",
+      "https://github.com/microsoft/thinkingbox/blob/main/docs/tutorial.md",
+      "https://github.com/microsoft/thinkingbox-data/releases/tag/thinkingbox-bench-v1.0",
+      "https://huggingface.co/papers/2608.19741",
+      "https://github.com/microsoft/thinkingbox-training",
+      "https://cdla.dev/permissive-2-0/",
+      "https://github.com/microsoft/thinkingbox/discussions"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "3ba89625595d4416",
+   "url": "https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/",
+   "title": "We're going to need default hard budget caps on pretty much everything",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-10-03T23:34:02+00:00",
+   "summary_short": "呼吁按用量计费的服务默认设硬性预算上限，AWS、谷歌云已跟进",
+   "summary_long": "原文呼吁按用量计费的服务与 API 应默认提供“硬性预算上限”：达到每月 X 美元后直接切断并返回错误，而非只发警告邮件。作者认为编码智能体与个人智能体大幅降低了启动“会花钱”代码的摩擦——调用付费 API、托管 Web 应用、可计费存储与计算——没人愿意醒来发现服务在睡觉时又花掉几百甚至几千美元。对“企业不想托管应用因超预算报错”的反驳，作者认为多数人宁愿报错也不愿收到上万美元账单，故硬上限应设为默认，想冒险者需主动勾选“移除预算上限”并自负后续费用。作者最希望 AWS 提供该功能，称不少人因担心失控服务致其破产而拒绝在个人项目用 AWS，也有人因此吃亏。文中提到 AWS 已于 9 月 16 日发布说明，可设每月支出上限，达到后项目当月暂停，但提示新体验仅面向有限客户；Google Cloud 7 月推出 Spend Caps，可对项目内特定服务设月度财务上限。作者还希望智能体倾向推荐有硬上限的供应商。",
+   "key_points": [
+    "主张硬性预算上限应成为默认：达到每月额度即切断服务并返回错误，仅发警告邮件的软上限不够，取消上限需主动勾选并自负后续费用。",
+    "背景是编码智能体和个人智能体降低了启动付费 API、托管应用等会花钱代码的摩擦，可能出现失控花费。",
+    "AWS 于 9 月 16 日发布可设置每月支出上限、达到后项目当月暂停的功能，但新体验仅面向有限客户逐步开放；Google Cloud 于 7 月推出 Spend Caps，可对项目内特定服务设月度财务上限。"
+   ],
+   "topics": [
+    "cloud-billing",
+    "coding-agent"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 79.7,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "amazon-web-services",
+     "ai",
+     "coding-agents"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://aws.amazon.com/about-aws/whats-new/2026/09/New-AWS-Builder-Experience/",
+      "https://docs.aws.amazon.com/accounts/latest/reference/create-spend-limit.html",
+      "https://cloud.google.com/blog/topics/cost-management/new-early-anomalies-and-spend-caps-on-google-cloud-budgets",
+      "https://simonwillison.net/tags/amazon-web-services",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/coding-agents"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "90e946a5da3efac2",
+   "url": "https://wagtail.org/blog/one-month-on-glm-53-flash/",
+   "title": "One month coding with GLM 5.3 Flash",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-02T15:29:15+00:00",
+   "summary_short": "作者挑战整月只用GLM 5.3 Flash编码，2B tokens后仅一半用在目标模型，但学到很多",
+   "summary_long": "作者原本计划整个9月只使用一个高效开源模型GLM 5.3 Flash，实测后认为这个想法在实践中并不太可行，全月共消耗2B tokens。按AgentsView统计，上半月成功只用目标模型，花费68美元，约4kWh能耗、365克碳排放；下半月则有1B tokens流向其他模型。原文列出三个意外障碍：一是为实验性Wagtail MCP原型做vibe coding时选错了模型，几乎一夜之间消耗450M tokens、150美元、5kWh能耗，原文称以约五分之一成本、稍微多花点力气也可能达到类似结果；二是推理提供商容量不如囤积GPU的大实验室，GLM 5.3 Flash性能出现下降，作者只能切换到DeepSeek V4.1 Flash、Qwen 3.8 Flash等同类模型；三是为对模型做Wagtail任务基准测试，需要跨模型数据，必须持续试验各类模型。文章也肯定GLM 5.3 Flash本身表现出色：1M上下文窗口、支持视觉、在多家提供商可用，被用于Wagtail本身、用它搭建的站点、UI任务、AI研发与文档写作。作者结论是这次挑战技术上失败，仅50%用量落在目标模型，能耗约35kWh而非10kWh。",
+   "key_points": [
+    "挑战全月只用GLM 5.3 Flash，2B tokens中只有1B用在目标模型，能耗约35kWh而非预期的10kWh，作者自认技术上失败",
+    "三大障碍：vibe coding的Wagtail MCP原型选错模型，一夜消耗450M tokens/150美元/5kWh；推理提供商容量不足导致GLM 5.3 Flash性能下降，被迫切到DeepSeek V4.1 Flash、Qwen 3.8 Flash；为基准测试需跨模型数据",
+    "GLM 5.3 Flash本身被评为优秀：1M上下文窗口、支持视觉、多家提供商可用，作者希望把只用一个模型的挑战延续到日常生产环节而非R&D"
+   ],
+   "topics": [
+    "coding-agent",
+    "mcp",
+    "product"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 77.6,
+   "status": "published",
+   "extra": {
+    "hn_points": 220,
+    "hn_comments": 177,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "8ae48c8dd8c51ab3",
+   "url": "https://blog.sshh.io/p/the-harness-is-the-company",
+   "title": "Every SaaS business will become a harness around a model",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-02T21:06:56+00:00",
+   "summary_short": "SaaS公司都将变成围绕模型的harness，人只负责品味与判断",
+   "summary_long": "原文把“harness”宽泛定义为围绕无状态 LLM 的全部基础设施、界面、上下文与状态；harness 可由针对特定任务的子 harness 组成，负责编排的顶层叫“meta-harness”，而“软件工厂”就是一个由写规格、写代码、写审查等小 harness 加一个决定何时运行什么的顶层构成的 harness。作者认为，许多软件服务公司会沿这样一条轨迹演进：最初以传统 SaaS 方式卖软件服务，没有 harness；接着工程师与 agent 结对干活，产品、销售等职能也陆续与 agent 协作提效，由个人操作 harness；随后许多核心任务转到云端后台 agent（笔记本跑不了二十个），工程、产品、销售都通过写 prompt 触发并审查输出，由个人编排 harness；再之后核心任务交给主动型后台 agent，持续审查退化为抽样审查，agent 越来越多地自行决定做什么，变成 harness 编排个人。走到最后，公司本身就是 harness：生产软件服务的工作从人转移到 harness，“产品”完全是模型输出，公司提供上下文、集成和面向人的审查界面；组织架构反转成“把人放在哪里能让 harness 榨取最多品味与判断力”，人也成为 harness 的一部分。针对“这会变成 AI 垃圾工厂”的质疑，作者认为那种看法预设了公司是无人值守的，真正的解法是让 harness 挑选人工",
+   "key_points": [
+    "harness 被定义为围绕无状态 LLM 的全部基础设施、界面、上下文与状态；软件工厂是由多个小 harness 加顶层编排构成",
+    "演进轨迹分四步：无 harness → 个人与 agent 协作 → 核心任务转云端后台 agent、个人编排 harness → 主动型 agent 编排个人，公司本身成为 harness",
+    "变成 harness 后，“产品”完全是模型输出，公司提供上下文、集成与审查界面，组织架构变成安排人、让 harness 获取最多品味与判断力的工具"
+   ],
+   "topics": [
+    "harness",
+    "multi-agent",
+    "context-engineering"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 77.6,
+   "status": "published",
+   "extra": {
+    "hn_points": 160,
+    "hn_comments": 104,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://substack.com/@shrivu",
+      "https://substackcdn.com/image/fetch/$s_!DMig!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd8cf3fdf-c311-47d0-b42d-f75864c4dd68_1620x897.png",
+      "https://en.wikipedia.org/wiki/Lights_out_(manufacturing)",
+      "https://substackcdn.com/image/fetch/$s_!tPqs!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcb6e7dab-cf7d-4625-9a34-22e28004b4ae_1604x897.png",
+      "https://builders.abnormal.ai/p/nora-our-first-agent-employee",
+      "https://rlvrbook.com/chapters/01-introduction.html#what-rlvr-is",
+      "https://blog.sshh.io/p/the-transposed-organization",
+      "https://background-agents.com/",
+      "https://substackcdn.com/image/fetch/$s_!rBvF!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F83849b6a-e988-4458-b072-788a781d43f9_889x324.png",
+      "https://en.wikipedia.org/wiki/Systems_development_life_cycle"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "9a14422b82b9b3e3",
+   "url": "https://tej.as/blog/aleph-alpha-kolibri",
+   "title": "Aleph Alpha Kolibri: How the sovereign German LLM works",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-03T10:43:51+00:00",
+   "summary_short": "Aleph Alpha 开源 78B MoE 模型 Kolibri，每 token 仅激活 3.5B 参数",
+   "summary_long": "Aleph Alpha 发布开源权重的大语言模型 Kolibri，支持德语和英语，2026 年 10 月 3 日以 Apache 2.0 许可释出，权重在 Hugging Face，在德国和芬兰的基础设施上从零训练。它是混合专家（MoE）模型：总参数 781 亿，每个 token 只激活 34.6 亿（4.4%）。共 50 层，每层 384 个专家加 1 个共享专家，路由为每个 token 选 6 个专家。原生上下文 262,144 token，测试至 1,048,576；知识截止 2026 年 6 月 18 日；推理分 none/low/medium/high 四档；支持工具调用；FP8 权重约 78 GB；训练约 24 万亿 token，逾五分之一为德语，使用 768 块 NVIDIA B200 GPU。Aleph Alpha 称其\"主权\"：在德国与芬兰、欧洲和德国法律下构建，无外国控制，客户可自由部署、知识产权安全、数据不出本地。模型卡也说明训练中用过 Google Gemma 4、Mistral-NeMo 改写文本以及 Qwen3-32B 的标注数据。按 Aleph Alpha 自己的评测，它在两种语言上得分高于所有同规模对比模型。",
+   "key_points": [
+    "总参数 781 亿的 MoE，50 层每层 384 个专家加 1 个共享专家，每 token 仅激活 34.6 亿参数（4.4%）",
+    "Apache 2.0 释出权重并放在 Hugging Face，在德国和芬兰基础设施上从零训练，Aleph Alpha 保留训练代码与方法权利",
+    "Aleph Alpha 称其\"主权\"：欧洲法律下构建、无外国控制、客户可自行部署且数据不出本地；模型卡承认训练中使用了 Gemma 4、Mistral-NeMo 与 Qwen3-32B"
    ],
    "topics": [
     "open-source",
-    "post-training",
-    "rag"
+    "tool-use",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 77.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 409,
+    "hn_comments": 11,
+    "outbound": {
+     "arxiv": [
+      "2104.09864",
+      "2309.01431",
+      "2404.06654",
+      "2512.11614"
+     ],
+     "links": [
+      "https://aleph-alpha.com/",
+      "https://www.apache.org/licenses/LICENSE-2.0",
+      "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+      "https://artificialintelligenceact.eu/",
+      "https://www.linkedin.com/in/michaellhofmann/",
+      "https://aleph-alpha.com/downloads/tech-report.pdf",
+      "https://aleph-alpha.com/en/blog/kolibri-has-landed-a-sovereign-open-weight-model/",
+      "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+      "https://european-union.europa.eu/",
+      "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
+      "https://huggingface.co/google/gemma-4-26b-a4b-it",
+      "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407",
+      "https://huggingface.co/Qwen/Qwen3-32B",
+      "https://aleph-alpha.com/en/blog/training-on-the-party-line/",
+      "https://huggingface.co/blog/moe",
+      "https://www.youtube.com/watch?v=uNj3y2pItrA&t=72s",
+      "https://huggingface.co/blog/moe#what-does-an-expert-learn",
+      "https://www.bundesverfassungsgericht.de/EN/",
+      "https://en.wikipedia.org/wiki/GPT-5",
+      "https://github.com/openai/tiktoken",
+      "https://en.wikipedia.org/wiki/Byte-pair_encoding",
+      "https://www.gesetze-im-internet.de/gg/",
+      "https://www.gesetze-im-internet.de/englisch_gg/",
+      "https://huggingface.co/openai/gpt-oss-120b",
+      "https://huggingface.co/Qwen/Qwen3.5-35B-A3B",
+      "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603",
+      "https://arxiv.org/abs/2104.09864",
+      "https://www.youtube.com/watch?v=uMksIqpbVoY&t=364s",
+      "https://arxiv.org/abs/2404.06654",
+      "https://x.com/Aleph__Alpha/status/2103139585039511700",
+      "https://aleph-alpha.com/en/blog/through-the-valley-of-tears-cold-starting-german-reasoning-in-llms/",
+      "https://en.wikipedia.org/wiki/American_Invitational_Mathematics_Examination",
+      "https://developer.nvidia.com/nemotron",
+      "https://arxiv.org/abs/2512.11614",
+      "https://artificialanalysis.ai/evaluations/omniscience",
+      "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "https://arxiv.org/abs/2309.01431",
+      "https://gorilla.cs.berkeley.edu/leaderboard.html",
+      "https://huggingface.co/zai-org/GLM-4.7-Flash",
+      "https://www.tbench.ai/"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "a650c74fe354cb9f",
+   "url": "https://aleph-alpha.com/en/blog/kolibri-has-landed-a-sovereign-open-weight-model/",
+   "title": "Kolibri: A Sovereign Open-Weight Model",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-03T09:36:04+00:00",
+   "summary_short": "Aleph Alpha发布Kolibri：78B总参3B激活的英德双语MoE开放权重模型",
+   "summary_long": "Kolibri是Aleph Alpha发布的新模型：英德双语Mixture-of-Experts Transformer，总参数78B、激活3B，支持最长1M token上下文，完整权重已在Hugging Face开放下载，采用Apache 2.0许可。它是持续迭代训练管线的成果：团队先用Kolibri Origin（30B总参、3B激活、65k上下文）验证管线，Kolibri复用同一条管线完成数据摄取与清洗、消融、预训练、后训练到最终评测，支撑数百次消融实验，硬件故障或数据中断时无需人工介入即可稳定训练。模型针对德语、推理、数学和agentic行为专门化，面向公共管理、工业与航空航天等受监管领域的关键任务，强调供应链完整性、部署自由与知识产权安全，小体积便于本地部署、无需将内部数据送往第三方推理服务。原文称其在英语和德语的质量-服务成本上处于帕累托前沿，在数学、编程、grounding与长上下文任务上可匹配激活参数最高为其四倍的模型。",
+   "key_points": [
+    "Kolibri为英德双语MoE Transformer，总参数78B、激活3B，支持最长1M token上下文，完整权重在Hugging Face以Apache 2.0许可开放下载",
+    "模型由持续迭代的训练管线产出：此前用Kolibri Origin（30B总参、3B激活、65k上下文）验证管线，Kolibri复用同一管线并跑过数百次消融实验，训练在硬件故障或数据中断时无需人工介入",
+    "针对德语、推理、数学与agentic行为专门化，面向公共管理、工业与航空航天等受监管领域的关键任务，强调供应链完整性、部署自由与知识产权安全"
+   ],
+   "topics": [
+    "open-source",
+    "reasoning",
+    "post-training"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
    "horizon": "short",
-   "score": 81.0,
+   "score": 76.2,
    "status": "published",
    "extra": {
-    "content_source": "direct",
+    "hn_points": 477,
+    "hn_comments": 291,
     "outbound": {
      "arxiv": [
-      "2508.20033"
+      "1508.07909",
+      "1804.10959",
+      "2309.01431",
+      "2512.11614"
      ],
      "links": [
-      "https://huggingface.co/allenai/AstaBrief_8B",
-      "https://huggingface.co/collections/allenai/astabrief",
-      "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/AdqLEBgtQnaDXKLdylC3l.png",
-      "https://asta.allen.ai/",
-      "https://github.com/allenai/ai2-scholarqa-lib/tree/main/api/scholarqa/lite",
-      "https://allenai.org/omai",
-      "https://allenai.org/blog/dr-tulu",
-      "https://allenai.org/blog/nature-openscilm",
-      "https://aclanthology.org/2025.acl-demo.49.pdf",
-      "https://allenai.org/blog/asta-interaction-dataset",
-      "https://github.com/allenai/ai2-scholarqa-eval",
-      "https://arxiv.org/abs/2508.20033",
-      "https://royalsocietypublishing.org/rsos/article/12/4/241776/235656/Generalization-bias-in-large-language-model",
-      "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/nBB2ourke1eQYpjq2mGD5.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/3dI-e2nnf6FDQw6ay-x9N.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/Ek19fGImhqROo_qSUt5LV.png"
+      "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+      "https://arxiv.org/abs/1508.07909",
+      "https://arxiv.org/abs/1804.10959",
+      "https://arxiv.org/abs/2512.11614",
+      "https://huggingface.co/datasets/ArtificialAnalysis/AA-Omniscience-Public",
+      "https://arxiv.org/abs/2309.01431",
+      "https://github.com/Aleph-Alpha-Research/eval-framework",
+      "https://github.com/Aleph-Alpha/aleph-alpha-inference"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a885ed61f54a415a",
-   "url": "https://huggingface.co/blog/ServiceNow-AI/autosynthdata",
-   "title": "AutoSynthData: Generating Training Data for Enterprise Agents",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-02T04:01:31+00:00",
-   "summary_short": "ServiceNow 用模型失败与教师成功自动生成企业智能体训练任务",
-   "summary_long": "企业需要能在自身环境中可靠工作的智能体，其任务受所用系统、遵循的规则与数据状态影响；一个通用能力很强的模型仍可能在某个工作流、某组工具或某条约束上出错。难点在于把弱点变成训练数据：单次失败信息有限，训练需要大量能在不同情境中演练同一能力的新任务，且这些任务必须能在环境中完成、像真实用户会提出的请求、并有可靠的成功判定方式。ServiceNow CoreAI 构建的 AutoSynthData 利用目标模型的失败与更强教师的成功，决定模型下一步该学什么，再生成并验证演练这些能力的新任务；模型提升后，课程转向它仍然觉得困难的部分。文章以 EnterpriseOps Gym（Malay 等，2026）及已发布数据集演示该流程，并提出任务抽象 task =（系统规范、用户提示、验证器）：系统规范涵盖系统指令、环境策略及种子数据库状态等任务级初始化；用户提示须满足可行性、真实性、难度；验证器须满足一致性、正确性、完备性。",
-   "key_points": [
-    "企业智能体的问题在于模型可能对特定环境的工作流、工具组合或约束处理不佳，而这些正是需要改进的弱点。",
-    "AutoSynthData 用目标模型的失败与更强教师的成功决定学习方向，自动生成并验证新任务，课程随模型改进向仍困难的部分转移。",
-    "研究把任务抽象为 task =（系统规范、用户提示、验证器）；用户提示需可行、真实、有难度，验证器需一致、正确、完备。"
-   ],
-   "topics": [
-    "post-training",
-    "harness",
-    "agent-loop"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 79.5,
-   "status": "published",
-   "extra": {
     "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2603.13594"
-     ],
-     "links": [
-      "https://cdn-uploads.huggingface.co/production/uploads/68642da9885da181fde1ad70/mlI168havBLGXY2qbd4ud.png",
-      "https://arxiv.org/abs/2603.13594",
-      "https://huggingface.co/datasets/ServiceNow-AI/EnterpriseOps-Gym",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/sM50frTSx9Q7Yyh6UNcGz.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/huMlVCBcc-IseCIk5uEIJ.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/ZwShYC2FDYFXU9yR9yz1t.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/UCTRFFZ7ttq6JEXZr5_Qi.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/zUTtl1ILl-fTtA-0RZdgV.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/r3nXamYF6OEI2ezj7MX78.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/ONKQXJ1u9buDLEa-AuXMo.png",
-      "https://huggingface.co/google/gemma-4-26B-A4B-it",
-      "https://huggingface.co/Qwen/Qwen3.8-27B",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/D2CdcykJInh82mYAMGz3I.png",
-      "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
-      "https://cdn-uploads.huggingface.co/production/uploads/66a41f3c1d52bffc13c285a5/3G6bJhA0JKZMJdiwfeHYs.png"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "8e206c4d9ed6ea5b",
-   "url": "https://openai.com/index/practical-guide-building-gpt-6",
-   "title": "A model guide for the GPT-6 family",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-02T16:15:00+00:00",
-   "summary_short": "GPT‑6 系列模型使用指南：按任务选模型、调推理等级并控制上下文与成本",
-   "summary_long": "这份指南发布于2026年10月2日，原文称 GPT‑6 是其迄今最先进的模型套件，可按工作类型选择不同模型。指南给出四点建议：在生产环境中高效运行，用缓存与 compaction 管理上下文和成本，衡量任务成功率与延迟，并规划监控与数据控制；把模型匹配到工作负载；调整提示与技能，让提示、技能与仓库指令在交付内容、可独立完成的范围与完成标准上保持一致；用 steering、async tools 和 delegation 保持长任务推进，并明确模型何时应请求输入。模型选择上，GPT‑6 Astra 用于需要最大智能的最难推理，GPT‑6.1 Sol 用于复杂编码、研究与计算机使用，GPT‑6 Luna 用于目标明确的大规模聚焦任务和日常重复工作，如提取发票字段、分类请求或生成结构化摘要。推理等级分 Low、Medium、High 以及 Extra high／Max，可在 API 中于对话中途调整。原文还提到，缓存输入 token 的费用最多可比未缓存低 95%，具体取决于模型。",
-   "key_points": [
-    "GPT‑6 被原文称为迄今最先进的模型套件，指南围绕生产环境运行、模型匹配工作负载、提示与技能调整、长任务跟踪四方面给出建议",
-    "模型分工：GPT‑6 Astra 面向最难推理，GPT‑6.1 Sol 面向复杂编码、研究与计算机使用，GPT‑6 Luna 面向目标明确的大规模聚焦任务与日常重复工作",
-    "成本与上下文管理：缓存输入 token 费用最多比未缓存低 95%（取决于模型），compaction 可在保留续接所需状态的前提下缩小上下文，推理等级 Low／Medium／High／Extra high／Max 可在 API 中中途调整"
-   ],
-   "topics": [
-    "context-engineering",
-    "reasoning",
-    "tool-use"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 79.2,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Product"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://developers.openai.com/api/docs/guides/prompt-caching",
-      "https://developers.openai.com/api/docs/guides/compaction",
-      "https://developers.openai.com/api/docs/guides/reasoning",
-      "https://developers.openai.com/api/docs/guides/steering",
-      "https://developers.openai.com/api/docs/guides/async-tool-calling",
-      "https://developers.openai.com/api/docs/guides/responses-multi-agent#overview",
-      "https://developers.openai.com/api/docs/guides/cost-optimization#cost-and-latency",
-      "https://developers.openai.com/api/docs/guides/latency-optimization#parallelize",
-      "https://developers.openai.com/api/docs/guides/prompt-caching#why-prompt-caching-matters",
-      "https://platform.openai.com/usage?usage_section=prompt-caching",
-      "https://developers.openai.com/api/docs/guides/prompt-caching/diagnostics",
-      "https://developers.openai.com/api/docs/guides/safety-checks/misalignment-monitoring",
-      "https://developers.openai.com/api/docs/guides/your-data",
-      "https://developers.openai.com/api/docs/guides/deployment-checklist#choose-a-model-for-the-workload",
-      "https://developers.openai.com/api/docs/models/gpt-6-astra",
-      "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
-      "https://developers.openai.com/api/docs/models/gpt-6-luna",
-      "https://developers.openai.com/api/docs/models/compare",
-      "https://developers.openai.com/api/docs/guides/reasoning#change-reasoning-mid-conversation",
-      "https://developers.openai.com/api/docs/guides/fast-mode",
-      "https://developers.openai.com/api/docs/guides/ultrafast-mode",
-      "https://x.com/OpenAIDevs/status/2104996045482778973",
-      "https://x.com/pvncher/status/2095991462416490862",
-      "https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra#better-skills",
-      "https://developers.openai.com/api/docs/guides/reasoning-best-practices#how-to-prompt-reasoning-models-effectively",
-      "https://developers.openai.com/api/docs/guides/latest-model#initiative-and-follow-through",
-      "https://developers.openai.com/api/docs/guides/latest-model#personality-and-writing-style",
-      "https://developers.openai.com/api/docs/guides/steering#send-a-steering-message",
-      "https://developers.openai.com/api/docs/guides/websocket-mode",
-      "https://developers.openai.com/api/docs/guides/async-tool-calling#how-async-tools-work",
-      "https://developers.openai.com/blog/mastering-codex-remote-for-engineering#2-learn-the-difference-between-queue-and-steer",
-      "https://developers.openai.com/api/docs/guides/tools-computer-use",
-      "https://developers.openai.com/api/docs/guides/tools-computer-use#code-execution-harness-examples",
-      "https://openai.com/index/harvey-from-context-to-confidence-with-astra/",
-      "https://openai.com/index/cognition-devin-testing-with-astra/",
-      "https://openai.com/index/hex-gpt-6-astra/",
-      "https://openai.com/index/invideo-builds-with-gpt-6-astra/"
-     ]
-    },
     "summary_mode": "full"
    }
   }
