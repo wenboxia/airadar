@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-03T23:44:50+00:00",
+ "generated_at": "2026-10-04T23:56:21+00:00",
  "items": [
   {
    "id": "3ba89625595d4416",
@@ -105,6 +105,39 @@
       "https://github.com/microsoft/thinkingbox/discussions"
      ]
     },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "2ad697ead091eb32",
+   "url": "https://liao.gg/blog/agents-dont-need-memory",
+   "title": "Agents don't need memory, they need documentation",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-03T17:03:37+00:00",
+   "summary_short": "原文主张agent不需要\"记忆\"插件，而需要可读写更新的文档工作区",
+   "summary_long": "原文认为，市面上的\"记忆\"插件解决的是错误的问题。它们分析对话、生成上千个孤立片段塞进向量数据库，每次提问时附加最相似的5条，agent困惑时再手动搜索更多。原文指出所有记忆插件架构相同：遍历会话记录、生成记忆片段、插入RAG库、每次提问检索top 5注入、不够则给agent一个搜索工具；更花哨的版本加入多层记忆分类、后台审查合并去重的守护进程、夜间重写记忆的\"dreamers\"、持续上下文压缩、重排序器等，这些只是在同一有缺陷的架构上叠加消耗token的功能，因此都不可靠。原文称这类插件有诸多问题（仅提到\"五个\"，未逐条详述），其共同假设是\"agent会遗忘，所以要记住更多、索引更好、检索更聪明\"，整个论点围绕捕获与回忆过去。原文反驳：没有人会重看三年前的会议来回忆某个功能的约束，人们是写下来并用记录。因此解法不是让agent搜索过去一千万token的对话，而是基于文档的记忆。原文提到AGENTS.md证明agent需要上下文，但单文件往往是项目唯一文档、并不够；agent需要结构化工作区，主动记录指令、规格、决策、研究、索引，工作时读取、工作后更新，使循环从prompt→build→forget变为prompt→consult→build→update，记忆从外挂RAG库变成可读、可更新、可分享的工作区。",
+   "key_points": [
+    "记忆插件普遍是\"遍历会话记录→生成片段→插入RAG→每次注入top 5→需要时给搜索工具\"这一套架构",
+    "原文认为附加的多层记忆、后台去重、夜间重写、压缩、重排序等只是在掩盖同一架构缺陷，故不可靠",
+    "其共同假设是\"agent会遗忘，所以要记得更多更好\"，但原文指出没人靠重看旧会议来回忆知识，人是写下来再用"
+   ],
+   "topics": [
+    "memory",
+    "context-engineering",
+    "agent-loop"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 342,
+    "hn_comments": 209,
+    "content_source": "reader",
     "summary_mode": "full"
    }
   },
