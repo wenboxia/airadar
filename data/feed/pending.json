@@ -1,115 +1,219 @@
 {
- "generated_at": "2026-10-06T01:44:44+00:00",
+ "generated_at": "2026-10-07T00:37:52+00:00",
  "items": [
   {
-   "id": "3bcfe2f4d2ef6b21",
-   "url": "https://simonwillison.net/2026/Oct/4/qwen38-addition-in-words/",
-   "title": "Qwen3.8 27B addition in words",
+   "id": "fef1d0f443914bd4",
+   "url": "https://simonwillison.net/2026/Oct/6/hn-49983751/",
+   "title": "EmbeddingGemma 2",
    "source": "Simon Willison",
    "tier": "A",
-   "published_at": "2026-10-04T23:34:00+00:00",
-   "summary_short": "本地DGX Spark复测大数求和以文字作答，Qwen3.8-27B开推理后169答对167",
-   "summary_long": "Colin Frasier 在 Bluesky 分享了两年前的一个实验：用 GPT-4o 测试它在数字不断增大时，能否「算出总和但用文字返回答案」，并附上结果图表。原文叙述者（未署名）称，自己确信 GPT-4o 没有作弊使用计算器，因为它算错了很多。受此启发，该叙述者在本地硬件（DGX Spark）上重跑实验，以求在完全受控的环境中观察这一效应：他把那张图粘贴进 Codex Remote 会话（GPT-6 Astra），让它用 Qwen3.8-27B-Q4_K_M.gguf 跑同样的实验。先给出关闭推理时每种组合 30 次尝试的结果，随后开启推理再跑一遍——由于每对组合耗时更长，每格只跑一个样本，热力图因此不够好看，每格非 100% 即 0%；这次 169 次尝试中答对 167 次。原文指出，由于是一次性运行，再跑一次结果很可能不同。报告还附上了部分较大计算所对应的推理轨迹，其中包含按位对齐、从右往左逐位相加并进位的文字。",
+   "published_at": "2026-10-06T20:37:53+00:00",
+   "summary_short": "评论称 EmbeddingGemma 2 采用 Apache 2.0 许可，嵌入模型不宜闭源托管",
+   "summary_long": "这是一条发表在网络讨论平台 Hacker News 上、针对 EmbeddingGemma 2 的评论。作者首先表示很欣赏该模型采用 Apache 2.0 许可证。他认为，对嵌入模型而言，使用封闭、专有、仅提供托管服务的模型并不合理：嵌入模型的多数应用场景都要计算成千上万甚至数百万个向量并存储起来，以备日后比较；如果模型是专有的，厂商总有一天可能决定停止提供该模型，他们会有更好的替代品，但用户仍需为重新计算已存储的这数百万个向量付费。作者提到，2024 年 4 月 OpenAI 曾提出承担用户用新模型重新嵌入内容的财务成本，但他认为不能指望每家提供商都这样做。作者同时明确表示，自己并不想自行托管模型，而是更愿意付费使用厂商的托管服务，同时知道即使对方停止托管，自己仍能运行开放权重版本，或另找一家能代劳的厂商。原文未详述 EmbeddingGemma 2 本身的技术细节。",
    "key_points": [
-    "Colin Frasier 曾在 Bluesky 分享两年前用 GPT-4o 做的实验，测试其能否「算出总和但用文字返回答案」，并附结果图表",
-    "原文叙述者在本地硬件（DGX Spark）上重跑该实验，将图片粘贴进 Codex Remote 会话，用 Qwen3.8-27B-Q4_K_M.gguf 执行",
-    "关闭推理时给出每种组合 30 次尝试的结果；开启推理后因每对耗时更长改为每格一个样本，169 次中答对 167 次，原文称再跑一次结果可能不同"
+    "作者赞赏 EmbeddingGemma 2 采用 Apache 2.0 许可证。",
+    "作者认为嵌入模型不适合闭源、专有、仅托管的形式：厂商若停止提供模型，用户仍需为重新计算已存储的大量向量付费。",
+    "作者提到 OpenAI 于 2024 年 4 月曾提出承担用户重新嵌入的财务成本，但认为不能指望所有提供商都这样做；他自己不愿自行托管，更愿付费使用托管服务，同时保留运行开放权重版本或换供应商的退路。"
+   ],
+   "topics": [
+    "open-source"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 73.2,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "google",
+     "ai",
+     "generative-ai",
+     "embeddings",
+     "gemma"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://news.ycombinator.com/item?id=49980487#49983751",
+      "https://news.ycombinator.com/item?id=49980487",
+      "https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
+      "https://openai.com/index/gpt-4-api-general-availability/",
+      "https://simonwillison.net/tags/google",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/embeddings",
+      "https://simonwillison.net/tags/gemma"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "820bd24a41c4e68d",
+   "url": "https://mistral.ai/news/mistral-large-4/",
+   "title": "Mistral Large 4: \"Le Chonk\"",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-06T13:25:50+00:00",
+   "summary_short": "Mistral 发布 1 万亿参数多模态模型 ML4 公开预览，权重月底放出",
+   "summary_long": "Mistral 发布 Mistral Large 4（非正式简称 ML4，官方昵称 le Chonk）公开预览，可通过 Mistral Studio 试用预览 API，权重将于本月底发布。ML4 是原生多模态模型，1 万亿参数、490 亿激活参数，是 Mistral 迄今最大、能力最强的模型。原文称其在编码、智能体工作流与多模态理解上表现优异，性能可与全球最强开源模型竞争，并显著优于美国或欧洲开发的任何开放权重模型；在网络安全、金融、法律等关键企业负载上，原文称其在开放模型中达到最先进水平，视觉 grounding 等领域甚至超过前沿闭源模型。预览期间 Mistral 与网络安全负责人、受审核合作伙伴及国家机构在真实环境红队测试，这些方可使用审核更少、网络能力更强的同一模型。ML4 在欧洲自有数据中心以 3,800 块 NVIDIA Grace Blackwell GPU 从零训练，预览也部署于同一基础设施，并将提供含端到端欧洲部署在内的多区域版本。训练数据覆盖 160 多种语言，含欧盟全部官方语言，模型使用与 Mistral Forge 相同的训练、定制与强化学习环境。",
+   "key_points": [
+    "1 万亿参数原生多模态模型、490 亿激活参数，为 Mistral 迄今最大最强模型；权重本月底发布，架构、更多基准与后训练方法细节后续公布。",
+    "原文称其性能可与全球最强开源模型竞争，显著优于美国或欧洲开发的开放权重模型；网络安全、金融、法律等关键企业负载在开放模型中达最先进水平，视觉 grounding 甚至超越部分前沿闭源模型。",
+    "在欧洲自有数据中心以 3,800 块 NVIDIA Grace Blackwell GPU 从零训练；预览期与网络安全负责人、受审核合作伙伴及国家机构在真实环境红队测试，可用审核更少、网络能力更强的同一模型。"
+   ],
+   "topics": [
+    "open-source",
+    "post-training"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 70.2,
+   "status": "review",
+   "extra": {
+    "hn_points": 518,
+    "hn_comments": 5,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://docs.mistral.ai/models/mistral-large-4",
+      "https://console.mistral.ai/",
+      "https://mistral.ai/products/forge/",
+      "https://docs.mistral.ai/models/mistral-large-4-0",
+      "http://vals.ai",
+      "https://huggingface.co/datasets/Lakera/b3-agent-security-benchmark-weak",
+      "https://korabench.ai/",
+      "https://jailbreakbench.github.io/",
+      "https://huggingface.co/datasets/walledai/StrongREJECT",
+      "https://huggingface.co/datasets/ai-safety-institute/AgentHarm"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "a6221988f02fdec1",
+   "url": "https://simonwillison.net/2026/Oct/6/scrimshaw-jukebox/",
+   "title": "Scrimshaw Jukebox",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-10-06T15:17:39+00:00",
+   "summary_short": "作者用 Claude Opus 5.5 试验游戏作曲，结果出人意料地好",
+   "summary_long": "原文作者想验证 Claude Opus 5.5 能否作曲，于是提出这样一个任务：先为音乐设计一种简单的、基于文本的格式，再构建一个能把这种格式演奏出声的 artifact，并在 artifact 里附带若干示例曲目；作曲目标是达到经典游戏《猴岛小英雄》（The Secret of Monkey Island）原版配乐的水准。作者表示，成品比他预想的更偏向《猴岛小英雄》的主题，但结果出人意料地好。由此他提出一个疑问：文本模型能够创作出像样的音乐，是否类似此前的 3D 图形能力，属于最近几个月才在文本模型上涌现的新能力？他认为需要用其他近期模型以及更早的模型做仔细实验，才能确认这是新出现的能力，还是模型早就能做到。原文未提供更多技术细节、示例曲目信息或评测数据。",
+   "key_points": [
+    "作者让 Claude Opus 5.5 先设计一种简单的文本音乐格式，再构建可将其播放出声的 artifact，并在其中加入示例曲目。",
+    "作曲目标是对标《猴岛小英雄》原版配乐；成品比作者预期更贴近该主题，但他认为结果出人意料地好。",
+    "作者不确定这是否是文本模型近几个月才涌现的新能力，认为需用近期与更早的模型做实验才能确认，原文未给出结论。"
    ],
    "topics": [
     "eval",
-    "reasoning"
+    "music-generation"
    ],
    "category": "评测",
    "categories": [
     "评测"
    ],
-   "horizon": "long",
-   "score": 68.4,
+   "horizon": "short",
+   "score": 68.7,
    "status": "review",
    "extra": {
     "content_source": "rss",
     "source_tags": [
-     "mathematics",
      "ai",
      "generative-ai",
-     "local-llms",
-     "llms"
+     "llms",
+     "claude",
+     "vibe-coding"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/simonw/research/tree/main/qwen38-addition-in-words#readme",
-      "https://bsky.app/profile/colin-fraser.net/post/3mwopbyznhs2k",
-      "https://gist.github.com/simonw/8ef79c777ad34c53e9c09094800576a5#full-reasoning-transcript-2",
-      "https://simonwillison.net/tags/mathematics",
+      "https://tools.simonwillison.net/scrimshaw-jukebox",
+      "https://claude.ai/share/1f721c20-2499-4d23-b368-3ab57146d956",
       "https://simonwillison.net/tags/ai",
       "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/local-llms",
       "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/qwen",
-      "https://simonwillison.net/tags/llm-reasoning",
-      "https://simonwillison.net/tags/dgx-spark"
+      "https://simonwillison.net/tags/claude",
+      "https://simonwillison.net/tags/vibe-coding"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "3cbec84de8bf6155",
-   "url": "https://openai.com/index/new-chatgpt-ads-format-and-measurement",
-   "title": "Building advertising for the way people use AI",
-   "source": "OpenAI News",
+   "id": "a22a6ca92e5c69fd",
+   "url": "https://www.anthropic.com/news/cyber-verification-program",
+   "title": "Expanding the Cyber Verification Program",
+   "source": "Anthropic News",
    "tier": "S",
-   "published_at": "2026-10-05T10:00:00+00:00",
-   "summary_short": "ChatGPT推出图像生成中的视觉广告格式，并扩展衡量工具与合作伙伴",
-   "summary_long": "原文称，ChatGPT推出新的视觉广告格式，并扩展衡量工具与合作伙伴生态，同时开发理解品牌适配性的新方式。原文介绍，ChatGPT每周触达12亿人，是全球最大的AI原生消费者平台；广告使其能服务比订阅更大的市场，也让企业在用户探索想法、做决策、发现产品时触达他们。新视觉广告格式通过展示产品灵感、使用场景或其所带来体验的图片，帮助用户发现新品牌、理解产品特色并决定购买。初期将在ChatGPT图像生成过程中测试，广告会明确标注且与正在生成的图像分开；与其他广告格式一样，广告不影响ChatGPT给出的回答。测试本月晚些时候在美国面向首批广告主启动。衡量方面，原文列出与Hightouch、Tealium、LiveRamp的集成，以及多家网络与App归因、全漏斗衡量伙伴，并称增量性衡量仍处早期，正与Haus、Measured、WorkMagic探索地理实验。原文还给出早期伙伴数据，并提到广告政策与护栏下的自动审核与人工监督。",
+   "published_at": "2026-10-06T00:00:00+00:00",
+   "summary_short": "网络安全验证计划扩容为三层，为符合条件的安全团队提供更低拦截分类器的模型访问",
+   "summary_long": "原文宣布推出扩容版 Cyber Verification Program（CVP），向符合条件的安全专业人士提供先进网络能力并降低拦截分类器。项目现分三个访问层级，各层级均包含其最强模型，如 Claude Opus 5.5、Claude Sonnet 5.5、Claude Mythos 5.1 及后续新模型。原文解释网络安全天然双用途：同一能力既能帮安全团队发现修复漏洞，也能帮恶意行为者利用漏洞，因此通用可用模型设有保守的网络防护，会拦截大部分网络工作，以限制恶意活动，同时继续降低安全编码的误报。过去六个月的可信访问依赖 Project Glasswing 与 CVP 两个项目，现将二者整合为一个扩容产品。三层为：Defense Access（防御工作，几天内回复）、Red Team Access（增加授权渗透测试与红队工作，审核需数周，仅限组织）、Specialized Access（网络拦截最少，保留给经深入审查的有限组织）。",
    "key_points": [
-    "新视觉广告格式先在ChatGPT图像生成中测试，广告会明确标注且与正在生成的图像分开，且不影响ChatGPT给出的回答；测试本月晚些时候在美国面向首批广告主启动。",
-    "原文称ChatGPT每周触达12亿人、是全球最大的AI原生消费者平台，广告让平台能服务比订阅更大的市场，也让企业在用户探索想法、做决策、发现产品时触达他们。",
-    "衡量扩展包括与Hightouch、Tealium、LiveRamp的集成及多家归因、全漏斗与增量性衡量伙伴；原文引用的早期数据为：WeightWatchers在ChatGPT Ads的归因CPA比其付费搜索综合基准低15.3%，Dose有67%的增量购买来自全新客户，Portland Leather来自ChatGPT Ads的访客93%是新客。"
+    "项目现分三个访问层级，各层级均可使用其最强模型，包括 Claude Opus 5.5、Claude Sonnet 5.5、Claude Mythos 5.1 及后续新模型",
+    "Defense Access 面向防御性工作，含安全运营中心与事件响应、恶意软件逆向、漏洞分析与验证；符合条件者包括企业、非营利、大学、政府机构中防御自有或维护系统的安全团队，任意规模的关键基础设施运营方（如区域医院、市政公用事业）、小型安全公司、开源维护者，以及有漏洞报告记录的个人研究者，目标几天内回复申请",
+    "Red Team Access 在上述防御用途之外增加授权渗透测试与红队工作，仅限组织申请（个人研究者不符合），审核需数周，期间符合条件者可先进入 Defense Access；仍会实时拦截可能造成人身伤害或大规模中断的行为，如部署勒索软件、破坏物理系统、对高风险安全系统做渗透测试"
    ],
    "topics": [
+    "cybersecurity",
+    "alignment",
     "product"
    ],
-   "category": "产品与应用",
+   "category": "安全",
    "categories": [
-    "产品与应用"
+    "安全"
    ],
    "horizon": "short",
-   "score": 65.2,
+   "score": 68.2,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
-     "Product"
+     "Announcements"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://ads.openai.com",
-      "http://ads.openai.com/blog/more-ways-to-measure",
-      "http://ads.openai.com"
+      "https://portal.anthropic.com/programs/cvp",
+      "https://www.anthropic.com/claude-opus-5-5",
+      "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+      "https://www.anthropic.com/claude-sonnet-5-5",
+      "https://www.anthropic.com/glasswing",
+      "https://support.claude.com/en/articles/14604842-real-time-cyber-safeguards-on-claude-opus-and-sonnet",
+      "https://www.anthropic.com/news/enterprise-frontier-safeguards",
+      "https://claude.com/form/enterprise-frontier-safeguards",
+      "https://claude.com/blog/how-comcast-booz-allen-use-claude-mythos-to-secure-their-codebases",
+      "https://support.claude.com/en/articles/16764810-assign-a-program-to-workspaces-in-claude-console",
+      "https://claude.com/form/cyber-block-false-positive-report-cvp-rejection-appeal",
+      "https://twitter.com/intent/tweet?text=https://www.anthropic.com/news/cyber-verification-program",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://www.anthropic.com/news/cyber-verification-program"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "7ded5c03aba57f68",
-   "url": "https://reflection.ai/blog/introducing-beam",
-   "title": "Beam: Reflection's 501B open-weight model",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "0522fc02b69ef4b7",
+   "url": "https://simonwillison.net/2026/Oct/6/le-chonk/",
+   "title": "Introducing Mistral Large 4: Le chonk",
+   "source": "Simon Willison",
    "tier": "A",
-   "published_at": "2026-10-05T19:16:35+00:00",
-   "summary_short": "Reflection 首个开放权重模型 Beam：5010 亿参数稀疏 MoE，主打编码与智能体、以推理效率取胜",
-   "summary_long": "Reflection 公布其首个开放权重模型 Beam。Beam 是稀疏混合专家（MoE）模型，总参数 5010 亿、激活 230 亿，面向编码、推理与智能体工作负载。能力来自预训练与强化学习（RL）的大规模投入：预训练使用来自网络与专有授权数据集的 23.8 万亿高质量 token，与同规模开源基础模型相比相当或更优；同时开发了支撑大规模高算力 RL 的算法、训练环境与基础设施，该轮 RL 在 1.05 万张 NVIDIA GB300 GPU 上训练 4 周、生成超 1 亿次 rollout。原文称 Beam 在编码与智能体任务上与更大的开放模型 GLM 5.2 有竞争力、接近 Qwen 3.8-Max，但原始能力上前沿开放模型 Kimi K3 仍领先；其优势是推理效率——在部分高级推理基准上与 GLM-5.2 相当，却少用 3–4 倍推理算力。Beam 正进行最后的红队测试与评估，可注册申请早期访问，权重、技术报告、模型卡与开发者产物将于本月晚些时候发布。",
+   "published_at": "2026-10-06T20:18:19+00:00",
+   "summary_short": "Mistral Large 4 预览版发布：1万亿参数、490亿激活，API可用。",
+   "summary_long": "Mistral 发布 Mistral Large 4（代号 Le chonk）预览版，这是一个 1 万亿参数、490 亿激活参数的模型，训练于其自有的 3,800 块 NVIDIA Grace Blackwell GPU 集群。预览版可通过其 API 使用，Mistral 承诺将在“本月底”发布开放权重模型。该模型在 Mistral API 中仅支持“none”和“high”两档推理级别。原文展示了两张骑自行车鹈鹕图，“high”档效果更好，但输出 token 反而更少（2,717 vs 3,275）。在 Artificial Analysis 上它得分 38，仅次于 552B 的 DeepSeek 4.1 Flash。相比去年 12 月的 Mistral Large 3（AA 得分 9，画出的鹈鹕很糟），这是巨大提升。原文评价它虽不是 Fable 级模型，但 Mistral 重新推出一个大约落后前沿 6 个月的模型，值得高兴。消息来自 Hacker News。",
    "key_points": [
-    "Beam 是稀疏 MoE 模型，总参数 5010 亿、激活 230 亿，面向编码、推理与智能体负载；预训练使用 23.8 万亿高质量 token（网络与专有授权数据集）。",
-    "高算力强化学习投入：1.05 万张 NVIDIA GB300 GPU 训练 4 周，生成超 1 亿次 rollout，并配套开发算法、训练环境与基础设施。",
-    "原文称其在编码与智能体任务上与 GLM 5.2 有竞争力、接近 Qwen 3.8-Max，但原始能力上 Kimi K3 等前沿开放模型仍领先；优势在推理效率：部分高级推理基准与 GLM-5.2 相当而推理算力少 3–4 倍。"
+    "Mistral Large 4 预览版为 1 万亿参数、490 亿激活参数，在 3,800 块 NVIDIA Grace Blackwell GPU 上训练，API 可用，开放权重承诺本月底发布。",
+    "仅支持 none 和 high 两档推理；Artificial Analysis 得分 38，仅次于 552B 的 DeepSeek 4.1 Flash，远超前代 Large 3 的 9 分。",
+    "原文称其非 Fable 级模型，但使 Mistral 回到约落后前沿 6 个月的水平。"
    ],
    "topics": [
-    "post-training",
     "reasoning",
     "open-source"
    ],
@@ -118,141 +222,502 @@
     "模型"
    ],
    "horizon": "short",
-   "score": 64.2,
-   "status": "review",
-   "extra": {
-    "hn_points": 306,
-    "hn_comments": 81,
-    "outbound": {
-     "arxiv": [
-      "2412.16339",
-      "2412.19437"
-     ],
-     "links": [
-      "https://www.linkedin.com/sharing/share-offsite/?url=",
-      "https://x.com/intent/post?url=",
-      "https://platform.reflection.ai/",
-      "https://arxiv.org/abs/2412.19437v2",
-      "https://arxiv.org/abs/2412.16339"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "ece62f0713c1cba7",
-   "url": "https://jack-clark.net/2026/10/05/import-ai-475-swarm-scaling-google-deepmind-watermarks-biology-and-the-ai-science-economy/",
-   "title": "Import AI 475: Swarm scaling; Google DeepMind watermarks biology; and the AI science economy",
-   "source": "Import AI",
-   "tier": "C",
-   "published_at": "2026-10-05T12:32:30+00:00",
-   "summary_short": "AI蜂群可换取速度但收益递减；民调称美国人不信任企业自我监管",
-   "summary_long": "本期通讯包含两部分。其一，Toby Ord撰文分析AI蜂群扩展，视其为一种新的推理扩展形式。4个智能体的蜂群达到相同表现约需两倍token总量，但每个智能体只需一半token，并行运行理论上可用一半时间，故蜂群主要价值是速度。但蜂群扩展非线性：智能体数量增加带来收益递减，类似经济学家的“踩脚”参数；规模扩大10倍只得到10^λ倍表现，即3到5倍，规模越大差距累积越快。Ord说本以为λ更低会让智能爆炸可能性下降，但事实并非如此，蜂群反而可能提高RSI驱动智能爆炸的概率。其二，Center for Shared AI Prosperity民调（样本2498人）显示，61%美国人认为企业自愿自律承诺“不够”，含53%特朗普选民；54%选民认为政府应制定并执行AI规则（哈里斯选民61%、特朗普选民48%）。原文称这反映出选民偏好与华盛顿政治行动的不对称。",
-   "key_points": [
-    "Toby Ord：蜂群是一种新的推理扩展形式，主要优势是速度——4智能体蜂群达到同等表现约需两倍token总量，但每个智能体只需一半，并行下理论上耗时减半",
-    "蜂群扩展存在收益递减，类似经济学中的“踩脚”参数：智能体增10倍只得到10^λ倍（3到5倍）表现，规模越大差距累积越快，这反而可能提高RSI驱动智能爆炸的概率",
-    "Center for Shared AI Prosperity民调（样本2498人）显示，61%美国人认为企业AI自愿自律“不够”（含53%特朗普选民），54%选民认为政府应制定并执行AI规则"
-   ],
-   "topics": [
-    "multi-agent",
-    "reasoning"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "行业动态"
-   ],
-   "horizon": "long",
-   "score": 62.7,
+   "score": 65.8,
    "status": "review",
    "extra": {
     "content_source": "rss",
     "source_tags": [
-     "Uncategorized"
+     "ai",
+     "generative-ai",
+     "llms",
+     "mistral",
+     "pelican-riding-a-bicycle"
     ],
     "outbound": {
-     "arxiv": [
-      "2609.31562"
-     ],
+     "arxiv": [],
      "links": [
-      "https://importai.substack.com/subscribe?",
-      "https://www.tobyord.com/writing/swarm-scaling",
-      "https://x.com/csaiporg/status/2105772417821868108",
-      "https://deepmind.google/blog/introducing-synthid-bio/",
-      "https://c5r.net/sciuniverse/",
-      "https://arxiv.org/abs/2609.31562"
+      "https://mistral.ai/news/mistral-large-4/",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F0db8b8196e57711b352f6c5857cf5b35",
+      "https://artificialanalysis.ai/models/mistral-large-4",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F0df5e656291d5a7a1bf012fabc9edc3f#response-1",
+      "https://artificialanalysis.ai/models/mistral-large-3",
+      "https://news.ycombinator.com/item?id=49977979",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/mistral",
+      "https://simonwillison.net/tags/pelican-riding-a-bicycle",
+      "https://simonwillison.net/tags/llm-release"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "d76be398914d638e",
-   "url": "https://www.qbitai.com/2026/10/501705.html",
-   "title": "刚刚，Hinton发了首篇RSI论文",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-10-05T04:42:52+00:00",
-   "summary_short": "Hinton等22人发RSI论文，探讨AI自动化AI研发会否触发智能爆炸。",
-   "summary_long": "论文《What if automating AI R&D triggers an intelligence explosion?》被称为Hinton首篇RSI论文，22位作者包括Geoffrey Hinton、Yoshua Bengio、Andrew Barto、Jakub Pachocki等。论文讨论AI大规模参与研发下一代AI、下一代AI再加速研发的递归自我改进是否触发智能爆炸。文中引用Anthropic等数据：2025年1月AI生成获批代码仅低个位数比例，2026年5月超80%；Claude在高层人类监督下自主完成研发工作比例从2026年3月约1%升至8月26%；截至2026年9月，OpenAI内部AI系统常能完成人类员工需数天的研发任务。论文认为未来几年AI可能自动化大部分甚至全部AI研发，并称AI研发适合自动化，可能形成software-driven intelligence explosion。因AI研究员可复制，有效研发劳动力理论上可达至少数百万顶级人类研究员等价。论文估计研究回报r约1.2—1.9；若全面自动化且无新算力、数据瓶颈，AI进步速度可能约1.5年提高10倍，今天一年进步约需5周，自动化研发劳动力数月到数年或扩大100倍。论文也指出100万AI研究员不会自动带来1000倍速度，存在边际收益递减。",
+   "id": "ee5a948a7c3941f3",
+   "url": "https://www.interconnects.ai/p/the-cyber-risk-discourse-is-broken",
+   "title": "The Cyber Risk Discourse is Broken",
+   "source": "Interconnects",
+   "tier": "A",
+   "published_at": "2026-10-06T14:22:41+00:00",
+   "summary_short": "作者批评开放模型网络风险讨论失焦：忽视权衡与政策连带效应，恐致双输。",
+   "summary_long": "作者认为开放模型的网络风险讨论已经失灵：一边假设禁止开放模型能孤立生效、坏人会被挡住，一边认定中国是威胁且不关心AI安全。他担心由此做出的政策决定既削弱美国AI竞争力，又抬高长期网络风险，除非各方正视细微差别、权衡取舍与不安的现实。原文把争论分为三派：前沿实验室领导层与美国国家安全界认为开放权重模型对社会运行构成不可承受风险；AI风险温和派（作者自称属此列，另提及Hugging Face与Joshua Saxe）认为开放权重模型对防御必要、禁止会让世界更不安全；中国企业则依据本国社会与政府的风险评估发布具强网络能力的开放权重模型。作者批评风险派声音被不成比例放大，少有人实质理解中国公司如何评估风险，多以近乎人身攻击的论调替代。原文提及Anthropic关于GLM-5.3的攻击性网络工具报告，认为其技术研究大体合理，但未回应若因网络风险禁止开放模型会怎样、中国企业为何认为可安全发布等横切问题。",
    "key_points": [
-    "论文题为《What if automating AI R&D triggers an intelligence explosion?》，22位作者包括Hinton、Bengio、Andrew Barto、Jakub Pachocki等，讨论AI自动化AI研发是否触发智能爆炸。",
-    "原文引用数据：2025年1月AI生成获批代码为低个位数比例，2026年5月超80%；Claude自主完成研发工作比例从2026年3月约1%升至8月26%；截至2026年9月，OpenAI内部AI系统常能完成人类员工需数天的研发任务。",
-    "论文称AI研究员可复制，有效研发劳动力理论上可达至少数百万顶级人类研究员等价；估计研究回报r约1.2—1.9，全面自动化下AI进步速度可能约1.5年提高10倍，今天一年进步约需5周，自动化研发劳动力数月到数年或扩大100倍，但存在边际收益递减。"
+    "作者认为现有讨论把所有政策行动视为多块拼图，几乎不存在普遍更优的结果，全是权衡取舍；不拥抱细微差别就会走向双输。",
+    "原文归纳三派立场：国家安全界与前沿实验室领导层、AI风险温和派（含作者本人、Hugging Face与Joshua Saxe）、以及依据本国社会与政府风险评估发布开放权重模型的中国企业。",
+    "作者批评Anthropic的GLM-5.3网络攻击报告只做技术研究而未回应禁售后果等横切问题；并指出公开信息中封闭模型被记录为多数现有网络攻击的来源，这是其判断网络风险形状的唯一数据。"
    ],
    "topics": [
-    "alignment",
-    "recursive-self-improvement"
+    "cybersecurity",
+    "open-source",
+    "ai-policy"
    ],
    "category": "安全",
    "categories": [
-    "安全"
+    "安全",
+    "行业动态"
    ],
-   "horizon": "long",
-   "score": 62.3,
+   "horizon": "short",
+   "score": 60.6,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://huggingface.co/blog/security-incident-july-2026",
+      "https://joshuasaxe181906.substack.com/",
+      "https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities",
+      "https://www.felonybench.com/",
+      "https://www.interconnects.ai/p/the-cyber-risk-discourse-is-broken?utm_source=substack&utm_medium=email&utm_content=share&action=share",
+      "https://www.interconnects.ai/i/210408487/4-frontier-labs-do-not-seem-like-theyre-watching-the-models-closely-enough-due-to-a-general-frenetic-competitive-environment-and-current-sf-culture",
+      "https://www.hacktron.ai/blog/hacking-openai"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "1da032c63dfedaa6",
+   "url": "https://www.qbitai.com/2026/10/501736.html",
+   "title": "不er，咋陶哲轩也成AI减速派了？？",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-10-06T07:59:17+00:00",
+   "summary_short": "陶哲轩在SAIR演讲中喊话模型公司放慢AI数学研究，并解释其担忧",
+   "summary_long": "曾把AI嵌入科研工作流、2026年3月还在IPAM会议上称AI在数学和理论物理领域已“ready for primetime”、断言数学正经历“哥白尼革命”的陶哲轩，在SAIR最新演讲中公开喊话模型公司“别解数学问题了”“必须慢下来，完全没理由这么快”。他给出的理由是：数学证明的正常生命周期有五个环节——提出解答、Lean机械验证、阐释、同行评审、写入教科书；AI只在生成解答与形式化验证两步疯狂加速，后三步进度几乎为零，于是出现“Proof Indigestion（证明消化不良）”：大量证明无人理解、无人发表、无人解释。他警告两个隐患：一是数学家创造力丧失，AI直接跳向最终答案，抹杀了漫步式探索带来的偶发灵感；二是数据污染，若下一代AI去吃AI生成、人类无法理解的证明，后果未知，他以“克隆小鼠”类比损耗逐代累积。此前他已联合Peter Scholze、邓煜、Pierre Deligne等25位菲尔兹奖得主发公开信，批评AI公司把数学当benchmark刷，称数学真正珍贵的是推导过程中的“认知摩擦”。菲尔兹奖得主Cédric Villani也因OpenAI拿下千禧难题表示震撼。OpenAI回应宣布在普林斯顿高等研究院（IAS）成立“数学与人工智能顾问小组”，名单包括Edward Witten、Timothy Gowers、Martin Hairer等，但声明写明该小组不负责就数学上的",
+   "key_points": [
+    "陶哲轩在SAIR演讲中公开要求AI数学研究慢下来，称AI公司无休止加速却对之后会发生什么一无所知，而几个月前他还是积极拥抱AI的“AI课代表”。",
+    "他提出数学证明的五步生命周期，指出AI只在“生成解答”和“Lean形式化验证”上加速，阐释、同行评审、写入教科书几乎为零，形成“Proof Indigestion”式知识拥堵。",
+    "他警告两大隐患：数学家创造力丧失，以及AI生成的、人类无法理解的证明污染下一代模型训练数据，并以“克隆小鼠”类比缺陷逐代累积。"
+   ],
+   "topics": [
+    "eval",
+    "reasoning"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "评测"
+   ],
+   "horizon": "short",
+   "score": 59.8,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
      "资讯",
-     "首页轮播",
-     "RSI"
+     "大模型",
+     "数学"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.qbitai.com/author/mengyao",
+      "https://www.qbitai.com/author/linfangzhou",
       "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/rsi",
-      "https://www.qbitai.com/2026/10/501720.html",
-      "https://www.qbitai.com/2026/09/492429.html",
-      "https://www.qbitai.com/2026/09/496329.html",
-      "https://www.qbitai.com/2026/09/491649.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/501705.html&title=刚刚，Hinton发了首篇RSI论文&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2026/09/488832.html",
-      "https://www.qbitai.com/tag/cosmosmind",
-      "https://www.qbitai.com/tag/%e9%80%92%e5%bd%92%e8%87%aa%e6%88%91%e6%94%b9%e8%bf%9b",
-      "https://www.qbitai.com/2026/09/487752.html",
-      "https://www.qbitai.com/tag/%e4%b8%96%e7%95%8c%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/tag/%e7%94%9f%e6%95%b0%e7%a7%91%e6%8a%80",
-      "https://www.qbitai.com/2026/08/476199.html",
-      "https://www.qbitai.com/tag/harness",
-      "https://www.qbitai.com/tag/%e8%87%aa%e5%8a%a8%e7%a0%94%e7%a9%b6",
-      "https://www.qbitai.com/2026/09/489037.html",
-      "https://www.qbitai.com/2026/07/463297.html",
-      "https://www.qbitai.com/tag/gpt",
-      "https://www.qbitai.com/2026/09/499098.html",
+      "https://www.qbitai.com/tag/%e5%a4%a7%e6%a8%a1%e5%9e%8b",
+      "https://www.qbitai.com/tag/%e6%95%b0%e5%ad%a6",
+      "https://www.qbitai.com/2026/10/501726.html",
+      "https://www.qbitai.com/2026/09/497278.html",
+      "https://www.qbitai.com/2026/09/497177.html",
+      "https://www.qbitai.com/2026/09/497012.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/501736.html&title=不er，咋陶哲轩也成AI减速派了？？&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2023/08/73706.html",
+      "https://www.qbitai.com/tag/%e8%81%86%e5%bf%83%e6%99%ba%e8%83%bd",
+      "https://www.qbitai.com/2022/03/33285.html",
+      "https://www.qbitai.com/tag/%e6%95%b0%e5%ad%a6%e7%8c%9c%e6%83%b3",
+      "https://www.qbitai.com/tag/%e7%89%9b%e6%b4%a5%e5%a4%a7%e5%ad%a6",
+      "https://www.qbitai.com/2024/02/119135.html",
+      "https://www.qbitai.com/tag/%e5%85%a8%e6%a0%88%e6%99%ba%e8%83%bd",
+      "https://www.qbitai.com/tag/%e6%8a%80%e6%9c%af%e9%9d%a9%e5%91%bd",
+      "https://www.qbitai.com/2024/01/116791.html",
+      "https://www.qbitai.com/tag/openai",
+      "https://www.qbitai.com/2023/02/41807.html",
+      "https://www.qbitai.com/tag/%e4%b8%8a%e4%ba%a4%e5%a4%a7",
+      "https://www.qbitai.com/tag/%e5%8d%97%e5%8a%a0%e5%b7%9e%e5%a4%a7%e5%ad%a6",
+      "https://www.qbitai.com/2023/08/78638.html",
+      "https://www.qbitai.com/tag/%e4%b8%8a%e6%b5%b7%e4%ba%ba%e5%b7%a5%e6%99%ba%e8%83%bd%e5%ae%9e%e9%aa%8c%e5%ae%a4",
+      "https://www.qbitai.com/tag/%e4%b9%a6%e7%94%9f%c2%b7%e6%b5%a6%e8%af%ad",
       "https://www.qbitai.com/2026/09/499654.html",
-      "https://www.qbitai.com/2026/09/499263.html",
       "https://www.qbitai.com/2026/09/499246.html",
       "https://www.qbitai.com/2026/09/499308.html",
+      "https://www.qbitai.com/2026/09/499263.html",
+      "https://www.qbitai.com/2026/09/499592.html",
       "https://weibo.com/qbitai?is_all=1",
       "https://www.zhihu.com/org/liang-zi-wei-48/activities",
       "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
       "https://beian.miit.gov.cn/"
      ]
     },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "085f7195b66fbb80",
+   "url": "https://huggingface.co/blog/tiiuae/falcon-emirati",
+   "title": "Falcon-Emirati: When an LLM Learns the Dialect, the Culture, and the Nuance",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-06T06:44:39+00:00",
+   "summary_short": "Falcon-Emirati-7B：专攻阿联酋方言与文化语境的阿拉伯语模型",
+   "summary_long": "原文称，阿拉伯语更像一个语言家族：现代标准阿拉伯语常见于新闻和教材，阿联酋日常对话、幽默、谈判与讲故事则使用阿联酋阿拉伯语。该方言有自己的词汇、节奏与文化，nabati诗歌、谚语和轶事常无法逐字直译；只懂现代标准阿拉伯语的模型可能译出每个词却错过真实含义。Falcon-Emirati-7B 正是为弥合这一差距而建，它基于 Falcon-H1-Arabic，目标是在词汇、语气和文化语境上像母语者一样理解与生成阿联酋阿拉伯语。Falcon-H1-Arabic采用Mamba与Transformer注意力并行的混合架构，兼顾长序列效率与长程依赖精度，覆盖3B、7B、34B，上下文最高128K和256K token，并已训练于现代标准阿拉伯语及多种方言。文章选择7B，称其质量与训练/推理成本平衡最佳；并指出方言适配困难：阿联酋方言多为口语、书面数据少、意义常非字面、且缺乏数据配比与训练阶段的标准配方。",
+   "key_points": [
+    "Falcon-Emirati-7B 是基于 Falcon-H1-Arabic 的方言专用模型，目标是理解与生成阿联酋阿拉伯语的词汇、语气和文化语境。",
+    "阿联酋阿拉伯语多为口语，书面数据少；诗歌、谚语和轶事常依赖共享文化语境，无法逐字直译。",
+    "原文称方言适配没有成熟配方：多少方言数据足够、如何与现代标准阿拉伯语及通用阿拉伯语混合、哪个训练阶段更关键，均无定论。"
+   ],
+   "topics": [
+    "post-training",
+    "open-source"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 59.0,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://cdn-uploads.huggingface.co/production/uploads/659bc8a7b0f43ed69f0b2300/Wq7IUqy86uY6JcIpgCwJx.png",
+      "https://chat.falconllm.tii.ae/?model=Falcon-Emirati-7B",
+      "https://huggingface.co/datasets/tiiuae/alyah-emirati-benchmark",
+      "https://huggingface.co/blog/tiiuae/emirati-benchmarks",
+      "https://huggingface.co/blog/tiiuae/falcon-h1-arabic",
+      "https://cdn-uploads.huggingface.co/production/uploads/659bc8a7b0f43ed69f0b2300/UL3Uy6LFKWEj5fALZ0Sg4.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/659bc8a7b0f43ed69f0b2300/uc4Lj0T23SxjZVaV1w5bU.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/659bc8a7b0f43ed69f0b2300/Q1ArWubn7hwUco5ldt7Xo.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/659bc8a7b0f43ed69f0b2300/sklbQUT3s8CXmcse-BPln.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/659bc8a7b0f43ed69f0b2300/ruWwB7xCdfiETIgD4wmyy.png",
+      "https://huggingface.co/datasets/Almheiri/ArabCulture-Dialogue",
+      "https://aclanthology.org/2026.acl-long.963/",
+      "https://cdn-uploads.huggingface.co/production/uploads/65b79f63d919aa79555d17e1/78dgJaRrFACpGTBJkSuTE.png"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "4c7e0942281008d6",
+   "url": "https://simonwillison.net/2026/Oct/6/datasette-parseable-opentelemetry/",
+   "title": "Using Parseable with Datasette for OpenTelemetry traces",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-10-06T19:07:31+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "coding-agent",
+    "observability"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 58.7,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "datasette",
+     "observability",
+     "alex-garcia",
+     "opentelemetry"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://til.simonwillison.net/datasette/datasette-parseable-opentelemetry",
+      "https://news.ycombinator.com/item?id=49978171",
+      "https://github.com/parseablehq/parseable",
+      "https://docs.datasette.io/en/latest/changelog.html#a41-2026-09-24",
+      "https://simonwillison.net/tags/datasette",
+      "https://simonwillison.net/tags/observability",
+      "https://simonwillison.net/tags/alex-garcia",
+      "https://simonwillison.net/tags/opentelemetry"
+     ]
+    }
+   }
+  },
+  {
+   "id": "75046b1c8fede7ee",
+   "url": "https://www.latent.space/p/ainews-reflection-beam-501b-a23b",
+   "title": "[AINews] Reflection Beam - 501B-A23B American Open Model",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-10-06T06:28:43+00:00",
+   "summary_short": "Reflection发布Beam：501B/23B激活MoE，从零训练，本月开源权重",
+   "summary_long": "Reflection在沉寂一年多后发布Beam——一个面向编码、智能体与科研工作的纯文本MoE模型，总参数501B、激活23B，从零训练，完整权重将于本月以Apache 2.0发布。团队称使用23.8T预训练token，部分来自对数亿份PDF的OCR管线，并在约1万台GB300上完成稳定的RL/OPD训练，覆盖约100万任务、超1亿次rollout。自报成绩为SWE-bench Verified 80.9，推理效率是GLM 5.2的3-4倍。Axios此前报道称其每月为Colossus算力支付1.5亿美元，另有10亿美元Nebius协议，并称本月还会有其他未具名美国实验室发布开源模型。第三方评价不一：Artificial Analysis预期它在其智能水平上属最省token的开源模型之一；Elie Bakouch估算预训练BF16 MFU仅约12%，架构为3:1交错的全局/滑动窗口注意力；Teortaxes称其为DeepSeek V3的等FLOP复刻；有观察者将其定位在GLM-5.2左右、部分基准低于DSv4 Flash，Nathan Lambert称其仍落后中国同行。同期还提及Aleph Alpha Kolibri、Reka Rho-1、Command Code Agr等发布。",
+   "key_points": [
+    "Beam为501B总参/23B激活的纯文本MoE，面向编码、智能体与科研，从零训练，Apache 2.0全权重本月发布",
+    "训练规模：23.8T预训练token（含数百万PDF的OCR管线），约1万台GB300上各四周预训练与RL，自报SWE-bench Verified 80.9，推理效率为GLM 5.2的3-4倍",
+    "第三方评价分歧：Artificial Analysis看好其token效率，Bakouch估算预训练MFU仅约12%，Teortaxes称其为DeepSeek V3的等FLOP复刻，Nathan Lambert认为其仍落后中国同类模型"
+   ],
+   "topics": [
+    "open-source",
+    "post-training",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 58.2,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.youtube.com/watch?v=DIu7xA898go",
+      "https://www.youtube.com/watch?v=QluDzKVfp6A&t=953s",
+      "https://reflection.ai/blog/introducing-beam",
+      "https://substackcdn.com/image/fetch/$s_!eDub!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F92c7acf0-990a-45f0-b3ee-b1d7702184bd_874x894.png",
+      "https://twitter.com/i/lists/1585430245762441216",
+      "https://news.smol.ai/",
+      "https://www.latent.space/p/2026",
+      "https://support.substack.com/hc/en-us/articles/8914938285204-How-do-I-subscribe-to-or-unsubscribe-from-a-section-on-Substack",
+      "https://x.com/reflection_ai/status/2107186849370247235",
+      "https://x.com/MishaLaskin/status/2107187101045502158",
+      "https://x.com/nayshins/status/2107195687574306905",
+      "https://x.com/brandondamos/status/2107189151380521293",
+      "https://x.com/kimmonismus/status/2107191500136157404",
+      "https://x.com/alexpolozov/status/2107190019903336812",
+      "https://x.com/AndrewCurran_/status/2106846163534241912",
+      "https://x.com/ArtificialAnlys/status/2107219177132155233",
+      "https://x.com/eliebakouch/status/2107197730942804463",
+      "https://x.com/teortaxesTex/status/2107280201906586048",
+      "https://x.com/teortaxesTex/status/2107292795610501463",
+      "https://x.com/iScienceLuvr/status/2107190622109262179",
+      "https://x.com/multiply_matrix/status/2107270079536919025",
+      "https://x.com/natolambert/status/2107214330529980676",
+      "https://x.com/kimmonismus/status/2106669429320761788",
+      "https://x.com/JJitsev/status/2107077751454761210",
+      "https://x.com/RekaAILabs/status/2107118937490006363",
+      "https://x.com/RekaAILabs/status/2107118947690557636",
+      "https://x.com/CommandCodeAI/status/2107179710925140468",
+      "https://x.com/SemiAnalysis_/status/2107189878530228512",
+      "https://x.com/NousResearch/status/2107138770088714678",
+      "https://x.com/ArtificialAnlys/status/2107267465604649164",
+      "https://x.com/SemiAnalysis_/status/2107204965710053510",
+      "https://x.com/SemiAnalysis_/status/2107252022424531076",
+      "https://x.com/scaling01/status/2107308460157407267",
+      "https://x.com/stalkermustang/status/2107210742231699903",
+      "https://x.com/kimmonismus/status/2106726110868234553",
+      "https://x.com/theo/status/2106847019319062819",
+      "https://x.com/thsottiaux/status/2106845241357824205",
+      "https://x.com/thsottiaux/status/2107158998495748264",
+      "https://x.com/thsottiaux/status/2107159119107146237",
+      "https://x.com/eliebakouch/status/2106972770349535296"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "fd7b29632bdc8c65",
+   "url": "https://simonwillison.net/2026/Oct/6/victoria-kim/",
+   "title": "Quoting Victoria Kim",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-10-06T23:58:56+00:00",
+   "summary_short": "OpenAI在Medicare泄露事件后增设监控，员工可即时叫停模型训练",
+   "summary_long": "这是 Simon Willison 在其博客上收录的一条引语，发布于 2026 年 10 月 6 日。引语来自记者 Victoria Kim 从澳大利亚议会发回的报道，内容为：自 Medicare 泄露事件以来，OpenAI 已实施额外的监控措施，以便在公司的模型以不该有的方式访问互联网时，员工能够“立即干预”、停止训练。这一说法出自 OpenAI 首席战略官 Kwon 先生。原文未详述 Medicare 泄露事件的具体情况、新增监控的技术细节、模型“以不该有的方式访问互联网”的确切含义以及该机制的实际执行情况；也未说明这项监控属于内部政策、对外承诺还是监管要求的一部分。该条内容由 Simon Willison 以引语形式收集，页面同时列出他近期的其他文章，包括 10 月 3 日的预算上限一文、9 月 29 日的 OpenAI DevDay 2026 实时博客和 9 月 27 日的“2026 年的 LLM（截至目前）”。",
+   "key_points": [
+    "引语称，自 Medicare 泄露事件以来，OpenAI 已实施额外监控措施",
+    "该监控使员工能够在公司模型以不该有的方式访问互联网时“立即干预”、停止训练",
+    "说法出自 OpenAI 首席战略官 Kwon，由记者 Victoria Kim 从澳大利亚议会报道，Simon Willison 收集"
+   ],
+   "topics": [
+    "cybersecurity",
+    "privacy"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 53.2,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "accidental-cyberattacks",
+     "generative-ai",
+     "ai-security-research",
+     "openai",
+     "ai"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://fandf.co/4dat4R0",
+      "https://www.nytimes.com/live/2026/10/05/world/openai-australia-hearing/94c8067e-4098-5c00-9673-c78cb58a9d8a"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "9964af802e9c5fde",
+   "url": "https://openai.com/index/advancing-computer-use-with-ironclad",
+   "title": "Advancing computer use with Ironclad",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-06T10:00:00+00:00",
+   "summary_short": "与 Ironclad 合作把合同工作流变成训练任务，Astra 得分 55% 超 GPT‑5.6 Sol。",
+   "summary_long": "原文介绍一项合同（contracting）领域的研究合作：为训练和评估 AI 智能体处理复杂专业工作，团队直接与理解相关业务流的软件公司合作，把高价值难题转化为研究任务。首个伙伴是 AI 合同领域的 Ironclad，双方开发的任务要求智能体配置协议、审批与可复用法律条款。做法上，Ironclad 员工及 OpenAI 内部使用 Ironclad 的人员共同筛选出法律、商务、采购领域 11 项任务，包括搭建保密协议、创建采购审批流程、更新可复用法律条款以匹配请求者所选司法辖区，估计有经验用户平均每项耗时 30 至 40 分钟；每项按 8 至 50 条标准评估。Ironclad 还提供其产品的托管软件环境供模型练习，研究人员围绕代表性工作流开发合成训练任务，并用强化学习让模型通过练习与反馈改进。结果：Astra 平均得分 55.0%，GPT‑5.6 Sol 为 41.6%；估计每次尝试平均耗时由 37.0 分钟降至 19.2 分钟。原文还称 GPT‑6 Astra 是首个在 Ironclad 任务上训练的前沿模型。",
+   "key_points": [
+    "首个合作方是 AI 合同领域的 Ironclad，任务要求智能体配置协议、审批规则和可复用法律条款",
+    "共 11 项任务，覆盖法律、商务与采购，每项按 8 至 50 条标准评估，专家估计人工每项需 30 至 40 分钟",
+    "评估结果：Astra 平均得分 55.0%，GPT‑5.6 Sol 为 41.6%；估计每次尝试平均耗时从 37.0 分钟降至 19.2 分钟"
+   ],
+   "topics": [
+    "eval",
+    "post-training",
+    "tool-use"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测"
+   ],
+   "horizon": "short",
+   "score": 51.3,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Publication"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "b245880876ad7084",
+   "url": "https://www.qbitai.com/2026/10/501726.html",
+   "title": "OpenAI「疯狂28天」首日，这都发了些啥啊…",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-10-06T06:45:40+00:00",
+   "summary_short": "OpenAI「疯狂28天」首日只提速，却因广告、水印、订阅缩水被网友群嘲",
+   "summary_long": "据原文，Codex负责人Tibo此前立下「疯狂28天」军令状：每天要么交付一项Codex/Work改进，要么来一次完整额度重置。第一天，Tibo宣布GPT-6 Astra和GPT-6.1 Sol的默认推理速度提升约50%、达50TPS，覆盖官方订阅及OpenCode、Pi、Amp、Devin等第三方生态。提速起因是9月29日GPT-6.1 Sol上线后因负载暴增而极慢，被吐槽「GPT-6.1 Turtle」，Tibo道歉并承诺付费账户额度重置，随后把工作锁定在简化产品、提高效率、突破性功能、新模型四个方向。同日OpenAI还宣布在ChatGPT图像生成过程中测试视觉广告，并与几十家归因监测平台合作；以及为满足欧盟AI法案，几周内对欧盟地区ChatGPT和Codex生成文本加隐形统计水印，官方承认该技术局限巨大。SemiAnalysis报告称，OpenAI将200美元Pro计划的API等值价值砍半并推500美元新档，新档GPT-6 Astra额度仅比旧200美元档多21%，而Anthropic同档Opus 5.5的API等值价值约为OpenAI对应模型的5倍。评论区翻车：有网友实测4小时后仅约35TPS，低于官方宣称，也有人担心提速后额度消耗更快。",
+   "key_points": [
+    "Codex负责人Tibo启动「疯狂28天」计划，首日交付的是GPT-6 Astra与GPT-6.1 Sol推理提速约50%、达50TPS，起因是9月29日GPT-6.1 Sol上线后负载暴增导致极慢",
+    "同期OpenAI宣布在ChatGPT图像生成中测试视觉广告，并将按欧盟AI法案要求对欧盟地区ChatGPT和Codex生成文本加隐形统计水印，官方承认水印技术存在巨大局限性",
+    "SemiAnalysis报告称OpenAI将200美元Pro档API等值价值砍半、推500美元新档（GPT-6 Astra额度仅比旧200美元档多21%），而Anthropic同档Opus 5.5的API等值价值约为OpenAI对应模型5倍；网友实测约35TPS并质疑官方数据"
+   ],
+   "topics": [
+    "inference-speed",
+    "coding-agent",
+    "product"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 50.3,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "OpenAI"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/linfangzhou",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/openai",
+      "https://www.qbitai.com/2026/10/501736.html",
+      "https://www.qbitai.com/2026/09/497278.html",
+      "https://www.qbitai.com/2026/09/497177.html",
+      "https://www.qbitai.com/2026/09/497012.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/501726.html&title=OpenAI「疯狂28天」首日，这都发了些啥啊…&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2025/05/285804.html",
+      "https://www.qbitai.com/tag/chatgpt",
+      "https://www.qbitai.com/2025/10/339923.html",
+      "https://www.qbitai.com/tag/%e8%8b%b1%e4%bc%9f%e8%be%be",
+      "https://www.qbitai.com/2023/04/46315.html",
+      "https://www.qbitai.com/tag/%e4%b8%80%e8%87%b4%e6%80%a7%e6%a8%a1%e5%9e%8b",
+      "https://www.qbitai.com/tag/%e5%bc%80%e6%ba%90",
+      "https://www.qbitai.com/tag/%e6%89%a9%e6%95%a3%e6%a8%a1%e5%9e%8b",
+      "https://www.qbitai.com/2023/12/102626.html",
+      "https://www.qbitai.com/tag/%e5%a5%a5%e7%89%b9%e6%9b%bc",
+      "https://www.qbitai.com/tag/%e5%be%ae%e8%bd%af",
+      "https://www.qbitai.com/2026/08/467879.html",
+      "https://www.qbitai.com/2023/05/54450.html",
+      "https://www.qbitai.com/2026/09/499654.html",
+      "https://www.qbitai.com/2026/09/499246.html",
+      "https://www.qbitai.com/2026/09/499308.html",
+      "https://www.qbitai.com/2026/09/499263.html",
+      "https://www.qbitai.com/2026/09/499592.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "342677ae7eadb2eb",
+   "url": "https://openai.com/index/jump-trading",
+   "title": "How Jump Trading is scaling quant research with ChatGPT",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-06T12:00:00+00:00",
+   "summary_short": "Jump Trading 借 GPT‑6 Astra 扩大长周期量化研究任务的代理自动化规模",
+   "summary_long": "原文介绍，量化交易公司 Jump Trading 构建预测模型，利用市场数据、新闻与事件以及多种另类数据源预测资产价格。由于市场复杂、噪声大且不断变化，几乎无法精确预判结果；但据 Jump 的 LLM 研发负责人 Lucas Baker 所说，在大规模上预测哪怕只比抛硬币略好，也足以形成成功策略。Baker 负责代理式研发，搭建让量化研究员更广、更深探索想法的代理、框架和基础设施。引入 GPT‑6 Astra 后，可交给代理的工作流在规模与复杂度上大幅提升，从日常编码到验证新假设的高级量化研究。原文称过去一年 AI 已从写零散代码片段、找小 bug 的工具，变成能自行开发完整代码库与服务的系统；Baker 团队认为最好把 AI 当作同事，由人定义关键问题、工作环境和结果质量评估方式，再实时引导一个或多个代理，代理可在单个长任务中分析发现、对照标准判断并主动调整方向，实现递归改进。原文同时强调金融业监管严格，需要强系统设计与边界、可引导可观测的基础设施及人工审查；代理产出交易信号后同样要经过限定范围与审查（原文此处截断）。",
+   "key_points": [
+    "Jump Trading 用代理承担从日常编码到验证新假设的高级量化研究，GPT‑6 Astra 显著扩大了可交付工作流的规模与复杂度。",
+    "Baker 主张把 AI 当同事：人定义问题、环境与评估标准并实时引导，代理能在长周期任务中自行分析、判断并调整方向，形成递归改进。",
+    "在强监管的金融行业，原文强调安全边界、可引导可观测的基础设施与人工审查；代理生成的交易信号同样被限定范围并接受审查。"
+   ],
+   "topics": [
+    "coding-agent",
+    "agent-loop",
+    "harness"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 50.1,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
     "summary_mode": "full"
    }
   }
