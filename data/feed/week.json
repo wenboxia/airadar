@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-07T00:37:52+00:00",
+ "generated_at": "2026-10-08T00:57:59+00:00",
  "top": [
   {
    "id": "89764eae00994ca8",
@@ -149,6 +149,45 @@
    }
   },
   {
+   "id": "0ca1450969b5beb5",
+   "url": "https://openai.com/index/gpt-6-for-everyone",
+   "title": "GPT-6 and Intelligent UI for everyone",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-07T00:00:00+00:00",
+   "summary_short": "GPT‑6 向全体 ChatGPT 用户开放，新增可交互界面 Intelligent UI",
+   "summary_long": "2026年10月7日发布：上个月推出的首批 GPT‑6 模型仅面向付费用户，今天则以一款新 GPT‑6 模型覆盖每周超过12亿的 ChatGPT 使用者。GPT‑6 在 ChatGPT 中引入 Intelligent UI——一项让 ChatGPT 用完全可交互界面快速作答的新能力，使日常答案更视觉化、复杂主题更易理解，并能即时生成工具解决问题。据原文，GPT‑6 可依据问题决定文本、视觉与交互元素如何组合，回答可包含图形、可点击按钮、表单、图表及可直接使用的交互体验；格式随提问而变，比较适合并排呈现，解释适合交互图表，文字最有用时就给文字。例子包括把周日烤肉时间与食谱并列、公路旅行停靠点标在地图上，以及生成储蓄计算器、分账工具或小游戏。实现上，原文称给了模型为每个问题自行创建最合适界面的自由，同时保持网页与移动端体验快速、熟悉，并构建了原生可流式传输组件库，以及随模型生成过程处理界面的编译器。",
+   "key_points": [
+    "上月的首批 GPT‑6 仅面向付费用户，此次以新模型向每周超12亿 ChatGPT 用户开放",
+    "Intelligent UI 让回答包含图形、可点击按钮、表单、图表等交互元素，格式随问题类型变化",
+    "用户可要求即时生成工具，如储蓄计算器、分账工具或对话内小游戏"
+   ],
+   "topics": [
+    "product"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 84.9,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Product"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://deploymentsafety.openai.com/gpt-6-october"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "dabfa79f68b85520",
    "url": "https://github.com/FeSens/openTPU",
    "title": "OpenTPU – An open-source AI accelerator, developed by AI",
@@ -186,55 +225,6 @@
      ]
     },
     "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "0bf00b70dbd762e2",
-   "url": "https://huggingface.co/blog/allenai/olmocore3",
-   "title": "Introducing Olmo-core 3: Open, scalable training infrastructure for large MoEs",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-01T15:01:43+00:00",
-   "summary_short": "Olmo-core 3 发布：开源 MoE 训练框架，可扩展至万亿参数",
-   "summary_long": "Olmo-core 3 是面向大语言模型的开发框架升级，核心是重新设计的开放混合专家（MoE）训练系统，目标是在保持计算效率的同时把 MoE 训练扩展到万亿参数规模，也是下一代 Olmo 背后的核心系统之一。原文指出，训练大模型算力需求大、成本与能耗高，许多学术研究者和较小实验室难以参与；MoE 虽更高效，但完整模型仍需驻留 GPU 显存并在训练中更新，跨集群把输入路由到正确专家也带来通信与协调开销，MoE 越大这些开销越会侵蚀其优势。基准测试中专家池从 8 增至 128、每 token 仍只选 4 个专家，每 token 活跃参数约 3.2B，总参数容量从 4.6B 增至 47B，吞吐下降不到 5%；同一基础设施已在超过一万亿总参数上做过基准测试。早期 MoE 实现用 FSDP，Olmo-core 3 改用基于 DDP 的系统，让专家常驻 GPU、把数据路由过去，避免反复聚合权重。在 8 块 NVIDIA B300 GPU 的初步测试中，470 亿参数 MoE 达每 GPU 每秒 52,000 token，此前为 19,400，约 2.7 倍。",
-   "key_points": [
-    "Olmo-core 3 用重新设计的开放 MoE 训练系统，把 MoE 训练扩展到万亿参数规模并保持计算效率，是下一代 Olmo 的核心系统之一",
-    "基准测试：专家池 8→128、每 token 仍只选 4 个专家，每 token 活跃参数约 3.2B 不变，总参数容量 4.6B→47B，吞吐下降不到 5%；同一基础设施已在超一万亿总参数上测试",
-    "训练栈从 FSDP 换为基于 DDP 的系统，专家常驻 GPU、数据路由到专家；并行技术包括专家并行、流水线并行和分布式优化器"
-   ],
-   "topics": [
-    "moe-training",
-    "distributed-training",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 83.4,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://allenai.org/papers/olmocore3",
-      "https://github.com/allenai/olmo-core",
-      "https://narrative.allen.ai/scaling-up-training",
-      "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/gZSxRv34VBkkUCXDoq7UE.png",
-      "https://www.datocms-assets.com/64837/1790799330-olmo-core-3-blog-draft-google-docs-image-2.png?fit=max&h=810&w=1550",
-      "https://allenai.org/blog/olmoe-an-open-small-and-state-of-the-art-mixture-of-experts-model-c258432d0514",
-      "https://allenai.org/blog/olmo3",
-      "https://narrative.allen.ai/scaling-up-training#data-parallelism",
-      "https://www.datocms-assets.com/64837/1790799917-olmo-core-3-blog-draft-google-docs-image-3.png?fit=max&h=810&w=1550",
-      "https://narrative.allen.ai/scaling-up-training#expert-parallelism",
-      "https://narrative.allen.ai/scaling-up-training#pipeline-parallelism",
-      "https://narrative.allen.ai/scaling-training",
-      "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/n5JgwywROtehA5Zr6-Dbf.jpeg"
-     ]
-    },
     "summary_mode": "full"
    }
   }
@@ -382,6 +372,45 @@
       "https://github.com/openai/math",
       "https://agmai.org/",
       "https://agmai.org/general-sep29/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "0ca1450969b5beb5",
+   "url": "https://openai.com/index/gpt-6-for-everyone",
+   "title": "GPT-6 and Intelligent UI for everyone",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-07T00:00:00+00:00",
+   "summary_short": "GPT‑6 向全体 ChatGPT 用户开放，新增可交互界面 Intelligent UI",
+   "summary_long": "2026年10月7日发布：上个月推出的首批 GPT‑6 模型仅面向付费用户，今天则以一款新 GPT‑6 模型覆盖每周超过12亿的 ChatGPT 使用者。GPT‑6 在 ChatGPT 中引入 Intelligent UI——一项让 ChatGPT 用完全可交互界面快速作答的新能力，使日常答案更视觉化、复杂主题更易理解，并能即时生成工具解决问题。据原文，GPT‑6 可依据问题决定文本、视觉与交互元素如何组合，回答可包含图形、可点击按钮、表单、图表及可直接使用的交互体验；格式随提问而变，比较适合并排呈现，解释适合交互图表，文字最有用时就给文字。例子包括把周日烤肉时间与食谱并列、公路旅行停靠点标在地图上，以及生成储蓄计算器、分账工具或小游戏。实现上，原文称给了模型为每个问题自行创建最合适界面的自由，同时保持网页与移动端体验快速、熟悉，并构建了原生可流式传输组件库，以及随模型生成过程处理界面的编译器。",
+   "key_points": [
+    "上月的首批 GPT‑6 仅面向付费用户，此次以新模型向每周超12亿 ChatGPT 用户开放",
+    "Intelligent UI 让回答包含图形、可点击按钮、表单、图表等交互元素，格式随问题类型变化",
+    "用户可要求即时生成工具，如储蓄计算器、分账工具或对话内小游戏"
+   ],
+   "topics": [
+    "product"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 84.9,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Product"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://deploymentsafety.openai.com/gpt-6-october"
      ]
     },
     "summary_mode": "full"
@@ -575,43 +604,47 @@
    }
   },
   {
-   "id": "6a91381a429232e7",
-   "url": "https://openai.com/index/disrupting-a-coordinated-model-distillation-campaign",
-   "title": "Disrupting a coordinated model-distillation campaign",
-   "source": "OpenAI News",
+   "id": "b96448f5a5529676",
+   "url": "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
+   "title": "Secret protection must scale with software",
+   "source": "GitHub Blog (AI)",
    "tier": "S",
-   "published_at": "2026-09-30T10:30:00+00:00",
-   "summary_short": "OpenAI称阻断协同蒸馏行动，核心活动指向Moonshot AI相关人员",
-   "summary_long": "OpenAI称其发现并阻断了一场旨在提取模型受保护推理的协同行动，最早活动出现在7月第一周，符合“对抗性蒸馏”特征。运营者未破解加密、入侵数据库或直接访问存储对话，而是操纵模型交互，使隐藏推理以请求者可见的形式被大规模复现，违反服务条款。观察到的手法包括把一段对话中的加密推理复制到另一段对话，要求模型解密并转写。独立研究人员也通过负责任披露报告了相关跨模型与对话压缩漏洞，OpenAI确认攻击路径真实存在。7月24日至25日出现高峰，涉及4000多名用户的1.6万次请求；相关提示模式活动涉及超1.5万名用户，7月28日被完全阻断。OpenAI称无法确定是否全部来自单一行为体，但将核心集群归因于与Kimi开发者Moonshot AI相关的人员。OpenAI认为这带来安全与国家安全风险：被提取的推理可在不保留原有防护的情况下用于训练另一模型，并可加速先进能力转移，且并非其独有。应对措施包括账号执法、技术管控及与行业伙伴协调。",
+   "published_at": "2026-10-07T17:45:34+00:00",
+   "summary_short": "GitHub 称每三个 PR 已有一个涉及 AI 智能体，密钥防护须随代码生成速度同步扩展",
+   "summary_long": "原文指出，GitHub 上如今每三个 pull request 就有一个涉及 AI 智能体，一年前这一比例还不足十分之一；若该速度延续，两年内推到 GitHub 的代码多数可能由智能体编写，其中许多或许从未被人类完整阅读。公开可见代码中约每两秒出现一个新密钥，过去三年每年翻倍。作者用九个完整季度的数据反驳“AI 让开发者变粗心”的说法：2024 年二季度至 2026 年二季度，被筛查的 push 增长 2.84 倍，携带凭据的 push 增长 2.59 倍，未发现每次 push 密钥流行率的可统计趋势；同期开发者覆盖 push 拦截的比例从 6.63% 线性降至 3.93%。真正的瓶颈在节奏：人工撤销密钥的平均时间约 40 天，约五分之一超过 90 天。因此原文主张由算力承担更多防护：作者与 Microsoft Applied Sciences 共同构建的微调分类器把 push protection 扩展到非结构化密钥，可在不到两毫秒内评估整组候选密钥，并可能使可阻止的密钥数量翻倍以上。GitHub 通过密钥扫描伙伴计划覆盖 150 多家技术伙伴，2026 年二季度公开扫描平均每秒报告 26 个凭据匹配。",
    "key_points": [
-    "活动最早出现在7月第一周，7月24日至25日高峰涉及4000多名用户的1.6万次请求，相关提示模式活动涉及超1.5万名用户，7月28日被完全阻断",
-    "手法包括复制一段对话中的加密推理、在另一段对话中要求模型解密并转写；未破解加密、未入侵数据库、未直接访问存储的用户对话",
-    "OpenAI未确定所有运营者是否来自单一行为体，但将活动的一个核心集群归因于与Kimi开发者Moonshot AI相关的人员，并已通过Frontier Model Forum与业界共享信息"
+    "GitHub 上每三个 pull request 已有一个涉及 AI 智能体，一年前不足十分之一；约每两秒就有一个新密钥出现在公开可见代码中，过去三年每年翻倍。",
+    "九个完整季度数据显示：筛查 push 增长 2.84 倍、携带凭据的 push 增长 2.59 倍，每次 push 的密钥流行率无可统计趋势，开发者覆盖 push 拦截的比例从 6.63% 降至 3.93%。",
+    "人工撤销密钥平均约 40 天、约五分之一超过 90 天；与 Microsoft Applied Sciences 共建的微调分类器可在不到两毫秒内评估整组候选密钥，可能使可阻止的密钥数量翻倍以上。"
    ],
    "topics": [
-    "jailbreak",
     "cybersecurity",
-    "model-extraction"
+    "privacy",
+    "open-source"
    ],
    "category": "安全",
    "categories": [
-    "安全",
-    "行业动态"
+    "安全"
    ],
-   "horizon": "short",
-   "score": 81.8,
+   "horizon": "long",
+   "score": 81.3,
    "status": "published",
    "extra": {
-    "content_source": "direct",
+    "content_source": "rss",
     "source_tags": [
-     "Security"
+     "AI & ML",
+     "Generative AI",
+     "GitHub Copilot",
+     "AI",
+     "Secret Protection"
     ],
     "outbound": {
-     "arxiv": [
-      "2608.09867"
-     ],
+     "arxiv": [],
      "links": [
-      "https://arxiv.org/abs/2608.09867"
+      "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4",
+      "https://docs.github.com/en/code-security/tutorials/secret-scanning-partner-program",
+      "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
+      "https://github.blog"
      ]
     },
     "summary_mode": "full"
@@ -725,6 +758,48 @@
       "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/nBB2ourke1eQYpjq2mGD5.png",
       "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/3dI-e2nnf6FDQw6ay-x9N.png",
       "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/Ek19fGImhqROo_qSUt5LV.png"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "0825a4897dea2e82",
+   "url": "https://huggingface.co/blog/LiquidAI/open-d1",
+   "title": "Multimodal open d1 decision models for the edge",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-07T16:54:33+00:00",
+   "summary_short": "开源多模态决策模型 d1-3B、d1-omni-600M，边缘端毫秒级出结果。",
+   "summary_long": "原文发布 d1 决策模型家族的两款开放模型：d1-3B 与实验性的 d1-omni-600M。据原文，d1-3B 在 Decision Index 0.2.1 得分 48.57，是 10B 以下最佳决策模型，超过所有 4B、9B 模型和 Decider 35B-A3B（47.11）。d1-3B 支持文本与图像，d1-omni-600M 支持文本加图像或文本加音频。\n\n模型基于 Liquid Foundation Models 构建。与生成式模型不同，决策模型不逐 token 生成，而是在单次前向中给出答案：d1-3B 由解码器架构的 LFM2.5-VL-3B 训练，d1-omni-600M 由双向编码器 LFM2.5-Encoder-350M 训练并加入视觉与音频编码器。\n\n在七个公开数据集（阅读理解、毒性检测、意图分类、医学问答、跨语言理解）上，d1-3B 平均 82.9 为表内最高，d1-omni-600M 平均 78.4，以四分之一参数量超过 Decider 2B（77.1）。原文未报告视觉或音频基准，因 Decision Index v0.3 仅含私有视觉切分，音频决策基准仍属开放问题。\n\n与 NVIDIA 合作在 RTX 4090 与三款 Jetson 设备上评测 d1-3B：单问答均低于 50 毫秒，三问约为单问的 1.3 倍。d1-omni-600M 属早期研究版本，",
+   "key_points": [
+    "d1-3B 在 Decision Index 0.2.1 得分 48.57，为 10B 以下最佳决策模型，超过所有 4B、9B 模型与 Decider 35B-A3B（47.11）。",
+    "d1-3B 支持文本与图像；d1-omni-600M 支持文本加图像或文本加音频，目前为实验性早期研究版本，仍在继续开发。",
+    "七个公开数据集平均分：d1-3B 为 82.9（表内最高），d1-omni-600M 为 78.4，以四分之一参数量超过 Decider 2B（77.1）。"
+   ],
+   "topics": [
+    "post-training",
+    "reasoning",
+    "open-source"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 80.4,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.liquid.ai/blog/d1-decision-model",
+      "https://huggingface.co/LiquidAI/d1-3b",
+      "https://huggingface.co/LiquidAI/d1-omni-600M",
+      "https://huggingface.co/LiquidAI/LFM2.5-VL-3B",
+      "https://huggingface.co/LiquidAI/LFM2.5-Encoder-350M",
+      "https://huggingface.co/spaces/LiquidAI/system-one-arcade"
      ]
     },
     "summary_mode": "full"
@@ -959,53 +1034,105 @@
    }
   },
   {
-   "id": "311e095023e6d9fd",
-   "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/",
-   "title": "Gemini 4 Argon: our next era of frontier intelligence",
-   "source": "Google DeepMind Blog",
+   "id": "5bdd694c62903534",
+   "url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
+   "title": "One Model Family, Two Gold-Level Results: Fine-Tuning Nemotron for IOI and IMO",
+   "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-09-30T20:01:45+00:00",
-   "summary_short": "谷歌发布Gemini 4 Argon，主打复杂长程任务，先向可信网络防御者开放",
-   "summary_long": "谷歌宣布推出新前沿模型 Gemini 4 Argon，正通过 Fairwind 计划向一批可信网络防御者开放。该模型为复杂、长程工作流设计，在真实软件工程、法律金融等企业知识工作及网络安全防御中提供前沿性能，并具备业内领先的 100 万 token 上限，用于深度多步问题求解。Argon 已在谷歌内部使用：帮助量子计算研究者优化子程序时空资源，数分钟内超过已发表基线 40%；其智能体分析全舰队性能剖析遥测，自主应用内存优化，先期释放超 300 TiB 内存，预计总计节省 500 TiB 至 1 PiB；在 C/C++ 到 Rust 迁移中覆盖 re2、libgav1 直至 Fuchsia Zircon 内核 80 万行以上代码，其中对 libgav1 替换 3.2 万行 SIMD 代码，产出快 2.7 倍、输出一致的安全 Rust 解码器。谷歌称将分阶段发布，正参与美国政府自愿的发布前模型访问流程，介绍性价格为每百万输入 token 2 美元、输出 token 10 美元，缓存输入享 95% 折扣。",
-   "key_points": [
-    "Gemini 4 Argon 正通过 Fairwind 计划向一批可信网络防御者开放，具备业内领先的 100 万 token 上限，面向复杂长程工作流",
-    "已在谷歌内部用于量子算法优化（超过已发表基线 40%）、数据中心内存优化（先期释放超 300 TiB，预计 500 TiB 至 1 PiB）及 C/C++ 到 Rust 的大规模代码迁移",
-    "采取分阶段发布，正参与美国政府自愿的发布前模型访问流程；介绍性价格为每百万输入 token 2 美元、输出 token 10 美元，缓存输入享 95% 折扣"
-   ],
+   "published_at": "2026-10-07T12:45:31+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
    "topics": [
-    "coding-agent",
+    "post-training",
     "reasoning"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
-   "horizon": "short",
-   "score": 78.3,
+   "horizon": "long",
+   "score": 78.4,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
      "arxiv": [
-      "2601.11516"
+      "2609.02849",
+      "2609.10712"
      ],
      "links": [
-      "https://twitter.com/intent/tweet?text=Gemini%204%20Argon%3A%20our%20next%20era%20of%20frontier%20intelligence%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
-      "https://www.facebook.com/sharer/sharer.php?caption=Gemini%204%20Argon%3A%20our%20next%20era%20of%20frontier%20intelligence&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/&title=Gemini%204%20Argon%3A%20our%20next%20era%20of%20frontier%20intelligence",
-      "https://blog.google/authors/koray-kavukcuoglu/",
-      "https://deepmind.google/fairwind-program/",
-      "https://www.vals.ai/benchmarks/vals_index",
-      "https://www.wiz.io/",
-      "https://www.wiz.io/scan-for-good",
-      "https://cwe-bench.com/",
-      "https://cwe-bench.com/?v=v0",
-      "https://deepmind.google/blog/strengthening-our-frontier-safety-framework/",
-      "https://arxiv.org/abs/2601.11516",
-      "https://institute.deepmind.com/essays/the-case-for-reasoning-transparency/",
-      "https://deepmind.google/blog/securing-the-future-of-ai-agents/"
+      "https://arxiv.org/abs/2609.10712",
+      "https://arxiv.org/abs/2609.02849",
+      "https://cdn-uploads.huggingface.co/production/uploads/67b8b0096c3182e96bf6cea1/LqM9etFUGTjJT116M7Hq8.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/67b8b0096c3182e96bf6cea1/GptKxXbYlSsm2ksIJqZzE.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/67b8b0096c3182e96bf6cea1/Wo0kpoA9qTLPaxWv48DnL.png",
+      "https://huggingface.co/blog/nvidia/ioi-gold-medal-with-open-weight",
+      "https://huggingface.co/collections/nvidia/nemotron-labs-imo-2026",
+      "https://github.com/NVIDIA-NeMo/Skills/tree/main/recipes/nemotron-imo-tts",
+      "https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-3-Competitive-Coding-550B-A55B-NVFP4",
+      "https://github.com/NVIDIA-NeMo/Skills"
+     ]
+    }
+   }
+  },
+  {
+   "id": "0a7d6e8e8b6e8899",
+   "url": "https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
+   "title": "EmbeddingGemma 2: An open, lightweight multimodal embedding model",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-06T16:03:49+00:00",
+   "summary_short": "EmbeddingGemma 2 开源：740M 参数原生多模态嵌入，主打端侧",
+   "summary_long": "谷歌 DeepMind 去年推出 EmbeddingGemma，为端侧提供轻量高质量文本嵌入，下载量超 2000 万次，被用于端侧搜索与隐私优先的 RAG 流程。现发布 EmbeddingGemma 2，从文本扩展到统一代码、图像、视频与音频的共享嵌入空间。模型基于 Gemma 4 架构，以 Apache 2.0 许可发布，740M 参数，面向端侧推理，可依文字查询检索语音备忘或数小时录音。它采用模块化设计，纯文本最低 270M 参数，视觉编码器 170M、音频编码器 300M 可选；借助 Matryoshka 表示学习，输出向量可从 768 维截断至 512/256/128 维，最高减少 6 倍存储。量化后在 Pixel 11 Pro 上纯文本权重约需 191MB 活动内存，全模态约 567MB。上下文窗口 8K token，约为一代 4 倍，可处理 5.5 分钟音频、29 张图像、58 个视频帧或交错组合。质量上，MTEB Code 提升 9.92 分（68.76 至 78.68）；在图像、视频、文档与音频上刷新 sub-1B 模型的质量/参数标准。原文称本地生成嵌入有助保障数据隐私、降低延迟，并可支持完全离线的跨模态检索，搭配 Gemma 4 可实现端侧 RAG。",
+   "key_points": [
+    "基于 Gemma 4 架构、Apache 2.0 许可、740M 参数，原生把文本、代码、图像、视频、音频映射到统一嵌入空间，面向端侧推理",
+    "模块化与高效：纯文本最低 270M 参数，视觉 170M、音频 300M 编码器可选；MRL 支持向量 768 维截断至 512/256/128 维，最高 6 倍存储缩减；8K token 上下文，可处理 5.5 分钟音频、29 张图像、58 个视频帧或交错组合",
+    "MTEB Code 从 68.76 提升至 78.68，在 MTEB Code、MAEB 等基准的 sub-1B 多模态嵌入模型中领先，并称在文本、视觉、音频任务上匹配或超越许多更大模型"
+   ],
+   "topics": [
+    "open-source",
+    "rag"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 78.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 414,
+    "hn_comments": 46,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://twitter.com/intent/tweet?text=EmbeddingGemma%202%3A%20an%20open%2C%20lightweight%20multimodal%20embedding%20model%20%40google&url=https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
+      "https://www.facebook.com/sharer/sharer.php?caption=EmbeddingGemma%202%3A%20an%20open%2C%20lightweight%20multimodal%20embedding%20model&u=https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/&title=EmbeddingGemma%202%3A%20an%20open%2C%20lightweight%20multimodal%20embedding%20model",
+      "https://developers.googleblog.com/en/introducing-embeddinggemma/",
+      "https://ai.google.dev/gemma/docs/embeddinggemma/model_card_2",
+      "https://developers.google.com/edge/gallery",
+      "https://developers.google.com/edge/foresight",
+      "https://developers.google.com/edge/mediapipe/solutions/decision/decision_maker",
+      "http://developers.googleblog.com/google-ai-edge-with-embeddinggemma-2",
+      "https://huggingface.co/google/embeddinggemma-2",
+      "https://www.kaggle.com/models/google/embeddinggemma-2",
+      "https://huggingface.co/litert-community",
+      "https://developers.google.com/edge/litert-lm",
+      "https://huggingface.co/spaces/webml-community/embeddinggemma-2-webgpu",
+      "https://github.com/Blaizzy/mlx-vlm",
+      "https://huggingface.co/ggml-org/embeddinggemma-2-GGUF",
+      "http://ollama.com/library/embeddinggemma-2",
+      "https://qdrant.tech/blog/embeddinggemma-2/",
+      "https://unsloth.ai/docs/models/embeddinggemma-2",
+      "https://developers.googleblog.com/en/embeddinggemma-2-the-developer-guide/",
+      "https://ai.google.dev/gemma/docs/embeddinggemma",
+      "https://ai.google.dev/gemma/docs/embeddinggemma/inference-embeddinggemma-with-sentence-transformers",
+      "https://ai.google.dev/gemma/docs/embeddinggemma/fine-tuning-embeddinggemma-with-sentence-transformers"
      ]
     },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -1061,33 +1188,34 @@
    }
   },
   {
-   "id": "396b95f3429cd00b",
-   "url": "https://deepmind.google/blog/introducing-synthid-bio/",
-   "title": "Introducing SynthID Bio",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-09-30T15:03:07+00:00",
-   "summary_short": "SynthID Bio 为AI生成的蛋白质嵌入水印，实验室验证不损害生物功能",
-   "summary_long": "生成式AI已能预测蛋白质结构（AlphaFold）、设计全新蛋白质（AlphaProteo、ProteinMPNN）乃至新型噬菌体，但新设计可能绕过DNA合成筛查，被错误标注的合成3D结构也可能污染公共数据库、误导下游研究。SynthID Bio是一套面向合成生物学的加水印方法：按数据类型调整策略，对序列微调氨基酸选择，对预测3D结构调整原子坐标，留下可检测信号，实验显示未损害蛋白质生物功能。团队用AlphaProteo搭配启用SynthID Bio的ProteinMPNN验证蛋白结合体水印，在VEGF-A、SARS-CoV-2刺突蛋白RBD和PD-L1三个靶点的湿实验中，加水印设计的命中率、结合亲和力与天然序列多样性均与未加水印版本相当，首次得到既带水印又具生物功能的蛋白结合体。方法上它微调AlphaFold 3扩散网络的一小部分，使预测的3D坐标本身携带可检测签名。原文将这类水印定位为生物安全多层“瑞士奶酪”防御中的一层可验证层。",
+   "id": "a91d48e8a913a842",
+   "url": "https://penguin-mail.com/",
+   "title": "Penguin Mail – open-source Rust email client for Linux with AI",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-06T21:59:43+00:00",
+   "summary_short": "Penguin Mail 1.0：Linux 开源邮件客户端，可选本地 AI 助手",
+   "summary_long": "Penguin Mail 发布 1.0.0 版本，是面向 x86_64 Linux 的自由软件，采用 GPL-3.0-or-later 许可。它可登录 Gmail、Outlook.com、Hotmail、Live、Microsoft 365，以及 Fastmail、iCloud、Yahoo 或任意 IMAP、POP3、SMTP 服务器，并按地址自动查找服务器设置。多账户可合并在一个收件箱；应用常驻系统托盘持续同步，显示未读数并提供可操作的提醒。日历有日、周、月和议程视图，覆盖 Google、Microsoft 及服务商支持的 CalDAV，可直接在收到邀请的邮件里回复。联系人来自 Google、Microsoft 或 CardDAV，输入收件人时给出建议。签名与加密走用户自己的 GnuPG，应用不保存密钥、也不索要口令。Gmail 过滤器、Microsoft 收件箱规则和支持的 Sieve 规则以白话列出，并有添加表单。AI 默认关闭，选定模型后才启用，可经 LM Studio 或 Ollama 在本地运行，发信或改设置前会先询问。应用无自建服务器、无跟踪、无广告。",
    "key_points": [
-    "SynthID Bio 把不可感知的签名直接嵌入生物代码，不仅可在数字模型上验证，也能在合成出的实体蛋白质上验证，实验室测试中不损害其生物功能。",
-    "湿实验覆盖 VEGF-A、SARS-CoV-2 刺突蛋白 RBD 和 PD-L1 三个靶点，加水印设计的命中率、结合亲和力与天然序列多样性均与未加水印版本相当，为首次获得的可加水印且具生物功能的蛋白结合体。",
-    "针对3D结构，方法微调 AlphaFold 3 扩散网络的一小部分，使预测坐标天然携带可检测签名，不取决于由谁运行模型；在保持预测准确性与关键结构特征分布的同时具备近乎完美的可检测性，并能抵抗数字噪声或轻微坐标变化。"
+    "支持 Gmail、Outlook.com、Hotmail、Live、Microsoft 365、Fastmail、iCloud、Yahoo 及任意 IMAP、POP3、SMTP 账户，按地址自动查找服务器设置，多账户可合并为一个收件箱并常驻托盘同步、显示未读数",
+    "内置日历（日/周/月/议程，Google、Microsoft 及服务商支持的 CalDAV）、联系人（Google、Microsoft 或 CardDAV），并可通过用户自己的 GnuPG 签名加密，应用不保存密钥、不索要口令",
+    "AI 默认关闭，选定模型后可经 LM Studio 或 Ollama 在本地运行，按 Ctrl+J 提问并由应用自带工具读取邮箱、展示执行过的每一步，发信或改设置前会先询问"
    ],
    "topics": [
+    "product",
     "open-source",
-    "alignment",
-    "post-training"
+    "privacy"
    ],
-   "category": "安全",
+   "category": "产品与应用",
    "categories": [
-    "安全",
-    "模型"
+    "产品与应用"
    ],
-   "horizon": "long",
+   "horizon": "short",
    "score": 78.0,
    "status": "published",
    "extra": {
+    "hn_points": 230,
+    "hn_comments": 175,
     "content_source": "reader",
     "summary_mode": "full"
    }
@@ -1172,6 +1300,74 @@
     "hn_points": 220,
     "hn_comments": 177,
     "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "a343c9786e70baad",
+   "url": "https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/",
+   "title": "Claude Haiku 5.5",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-10-07T20:56:21+00:00",
+   "summary_short": "Anthropic 发布快速低价模型 Claude Haiku 5.5，定价与 GPT-6 Luna 持平",
+   "summary_long": "Anthropic 发布新的快速低成本模型 Claude Haiku 5.5。原文称上一代 Haiku 4.5 发布已近一年，定价为每百万输入 1 美元、输出 5 美元，当时就偏贵，是上月发布的 OpenAI GPT-6 Luna 的 10 倍。Haiku 5.5 定价与 Luna 完全一致：10 万 token 以内 0.10/0.50 美元，超出后涨 5 倍至 0.50/2.50 美元；Luna 在 27.2 万 token 处才涨价，且仅到 0.20/0.75 美元。作者用 token 计数器发现同一长提示在 Haiku 5.5 下耗用约 1.25 倍 token，属隐性涨价。作者的结论是：负载在 10 万 token 以内时 Haiku 与 Luna 同价且基准分数更高，超出则 Luna 更划算。测试中 Haiku 5.5 不允许关闭推理、默认 medium。作者还提到 Anthropic 把 Sonnet 5.5 缓存读取价格减半，并为订阅新增月度 API 额度：Max 5x 每月 100 美元、Max 20x 200 美元、Team 最高 500 美元共享，额度不结转。",
+   "key_points": [
+    "Haiku 5.5 定价与 OpenAI GPT-6 Luna 持平：10 万 token 内 0.10/0.50 美元，超出后涨 5 倍至 0.50/2.50 美元；Luna 在 27.2 万 token 处仅涨至 0.20/0.75 美元",
+    "新模型的 tokenizer 更不慷慨，同一长提示消耗 token 约为 Haiku 4.5 的 1.25 倍，构成隐性涨价；且 Haiku 5.5 不支持关闭推理，默认 medium",
+    "Anthropic 同时把 Sonnet 5.5 的缓存读取价格减半，并给 Max/Team 订阅者发放不结转的月度 API 额度（Max 5x 100 美元、Max 20x 200 美元、Team 最高 500 美元共享）"
+   ],
+   "topics": [
+    "pricing",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 77.2,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "ai",
+     "generative-ai",
+     "llms",
+     "anthropic",
+     "claude"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://simonwillison.net/2026/Sep/28/claude-sonnet-5-5/",
+      "https://www.anthropic.com/claude-haiku-5-5",
+      "https://simonwillison.net/2025/Oct/15/claude-haiku-45/",
+      "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/#gpt-6-sol-and-luna-are-half-the-price-of-their-gpt-5-6-equivalents",
+      "https://tools.simonwillison.net/claude-token-counter",
+      "https://github.com/simonw/llm-anthropic/releases/tag/0.30",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F485dfa24b4efa1267ee2d0911594fb81",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F485dfa24b4efa1267ee2d0911594fb81#response",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F485dfa24b4efa1267ee2d0911594fb81#reasoning-3",
+      "https://www.llm-prices.com/#it=27&ot=67647&sel=claude-haiku-5.5",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F375ae4f2bb68999976b8da50548c788d#response",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F18c9f7fc3b3705cf88514cb9170ec246",
+      "https://news.ycombinator.com/item?id=49977979#49982139",
+      "https://www.llm-prices.com/#it=18&ot=1513&ic=1&oc=5",
+      "https://claude.ai/new#settings/billing",
+      "https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/",
+      "https://support.claude.com/en/articles/17154008-monthly-api-credits-for-max-and-team-plans#h_dfc1659cee",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/anthropic",
+      "https://simonwillison.net/tags/claude",
+      "https://simonwillison.net/tags/llm-pricing",
+      "https://simonwillison.net/tags/pelican-riding-a-bicycle",
+      "https://simonwillison.net/tags/llm-release"
+     ]
+    },
     "summary_mode": "full"
    }
   },
@@ -1340,48 +1536,6 @@
       "https://simonwillison.net/tags/jev"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "f9d283d850cc3a91",
-   "url": "https://earendil.com/posts/you-said-no-mcp/",
-   "title": "You said no MCP",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-30T09:55:23+00:00",
-   "summary_short": "Pi 曾声明不支持 MCP，如今将其纳入核心并解释原因",
-   "summary_long": "Earendil Engineering 在邮件中解释，Pi 曾明确声明不支持 MCP，官方播客和 Mario 的文章也多次表达否定，但升级后的 Pi 已将 MCP 纳入核心。原因一是 MCP 在过去一年发生了变化；二是纳入核心所需的改动本身具有普遍价值——这些改动也让 Jev 更容易在 Pi 中使用，因为 Pi 需要的与 MCP 相似，都是一个解释器式沙箱。\n\n原文称 MCP 最大的问题仍是难以组合，即便有 codemode 这个用于组合工具调用的沙箱也未能完全兑现，但这更多是 MCP 服务器和不同 harness 做法的问题。作者认为 MCP 应更接近带智能工具发现的 OpenAPI：工具返回结构化数据，并可通过文档与描述被发现；Pi 中的 MCP 建立在把工具暴露给 JavaScript 沙箱之上。\n\n对于为何不直接只做 Codemode，原文称与 Pi 现有工具表达方式有关：Pi 近期已支持延迟工具加载、对话中途系统消息和推理等级变化，但工具装载尚未升级；Codemode 下需判断工具是给 LLM 还是只给 codemode 部分，而普通 MCP 扩展缺乏足够元数据。作者表示拥抱才是积极影响一件事的方式。",
-   "key_points": [
-    "Pi 此前公开声明不支持 MCP，官方播客与 Mario 的文章也多次表达否定，如今 MCP 已成为 Pi 核心支持的功能。",
-    "原文称纳入核心不仅因 MCP 自身发生变化，也因所需改动本身有普遍价值，例如让 Jev 更容易在 Pi 中使用。",
-    "原文仍认为 MCP 难以组合，主张其应更接近带智能工具发现的 OpenAPI（工具返回结构化数据、可凭文档与描述被发现），并把工具暴露给 JavaScript 沙箱。"
-   ],
-   "topics": [
-    "mcp",
-    "tool-use",
-    "harness"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 76.5,
-   "status": "published",
-   "extra": {
-    "hn_points": 603,
-    "hn_comments": 335,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://en.wikipedia.org/wiki/Model_Context_Protocol",
-      "https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/",
-      "https://lucumr.pocoo.org/2016/11/5/be-careful-about-what-you-dislike/",
-      "https://github.com/nicobailon/pi-mcp-adapter"
-     ]
-    },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -1589,75 +1743,6 @@
       "https://simonwillison.net/tags/llms",
       "https://simonwillison.net/tags/ai-ethics",
       "https://simonwillison.net/tags/accidental-cyberattacks"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "6fbc44660a9172a5",
-   "url": "https://www.qbitai.com/2026/09/499308.html",
-   "title": "DeepSeek知乎独家发文，首次公开V4.1 Agent训练“大本营”DSec",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-09-30T05:18:05+00:00",
-   "summary_short": "DeepSeek知乎发文，首次系统阐释支撑V4训练的沙盒基础设施DSec",
-   "summary_long": "DeepSeek在知乎独家发布技术长文，首次系统阐释支撑DeepSeek-V4全部训练、评测与数据预处理流程的沙盒基础设施DSec（DeepSeek弹性计算）。相关技术报告已公开至arXiv，由DeepSeek联合清华大学发布，作者团队超过130人，梁文锋位列其中。原文指出，Agent训练需要在真实环境中反复试错，其负载呈脉冲式创建、CPU长期闲置而内存需持续驻留、镜像复用率低、任务耗时长且易被抢占等特点，这决定了DSec的设计。DSec支持FnCall、Container、MicroVM和Full VM四种执行后端，通过统一Python SDK接入；将环境拆分为基础镜像、工作区、工具包三层，以EROFS存储、OverlayFS按需组合；并采用镜像按需加载与高密度资源管理，生产环境超卖率超过50倍。从DeepSeek-V4.1开始，轨迹执行逻辑迁入DSec，与GPU训练解耦。",
-   "key_points": [
-    "DSec是支撑DeepSeek-V4全部训练、评测与数据预处理流程的沙盒基础设施；技术报告由DeepSeek联合清华大学发布，作者团队超130人，梁文锋位列其中。",
-    "三项核心机制：镜像按需加载（集中创建8192个容器实验中，任务完成时间从60多分钟缩短至约35分钟，磁盘写入减少约57%）、基础镜像/工作区/工具包的可组合环境层（EROFS存储+OverlayFS组合）、高密度资源管理（生产环境超卖率超过50倍）。",
-    "从DeepSeek-V4.1开始，Agent执行逻辑迁移至DSec，拆分为Agent沙盒与工作容器，部署在可被抢占的GPU资源池之外，使GPU训练任务被抢占时Agent执行状态仍能完整保留。"
-   ],
-   "topics": [
-    "harness",
-    "agent-loop",
-    "eval"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 75.5,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "知乎"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/qbitai",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/%e7%9f%a5%e4%b9%8e",
-      "https://www.qbitai.com/2026/09/499239.html",
-      "https://www.qbitai.com/2026/09/499263.html",
-      "https://www.qbitai.com/2026/09/499135.html",
-      "https://www.qbitai.com/2026/09/499019.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/09/499308.html&title=DeepSeek知乎独家发文，首次公开V4.1 Agent训练“大本营”DSec&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2020/05/14267.html",
-      "https://www.qbitai.com/tag/ddos",
-      "https://www.qbitai.com/tag/%e4%b8%be%e6%8a%a5",
-      "https://www.qbitai.com/tag/%e7%a0%b4%e8%a7%a3",
-      "https://www.qbitai.com/2026/07/455496.html",
-      "https://www.qbitai.com/2026/06/436211.html",
-      "https://www.qbitai.com/2019/08/6210.html",
-      "https://www.qbitai.com/2024/11/214459.html",
-      "https://www.qbitai.com/tag/ai%e6%90%9c%e7%b4%a2",
-      "https://www.qbitai.com/2026/03/392697.html",
-      "https://www.qbitai.com/tag/a2a",
-      "https://www.qbitai.com/2026/09/496925.html",
-      "https://www.qbitai.com/2026/09/496961.html",
-      "https://www.qbitai.com/2026/09/497075.html",
-      "https://www.qbitai.com/2026/09/497108.html",
-      "https://www.qbitai.com/2026/09/496816.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
      ]
     },
     "summary_mode": "full"
