@@ -1,24 +1,303 @@
 {
- "generated_at": "2026-10-08T00:57:59+00:00",
+ "generated_at": "2026-10-09T01:12:14+00:00",
  "items": [
   {
-   "id": "19355795289bf641",
-   "url": "https://github.com/docker/docker-agent",
-   "title": "Docker Agent",
+   "id": "4bb428a07b2a9a89",
+   "url": "https://www.anthropic.com/claude-haiku-5-5",
+   "title": "Claude Haiku 5.5",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-07T17:48:38+00:00",
-   "summary_short": "一款用 YAML 声明式配置构建、运行和分享 AI agent 的 Docker CLI 插件",
-   "summary_long": "docker-agent 是一个 docker CLI 插件，可通过 docker agent 命令运行，让用户创建并运行能协作解决复杂问题的智能 AI agent，无需编写代码。用户在 YAML 中定义 agent、为其配置工具后运行，例如 docker agent run agent.yaml，示例配置中包含模型、描述、指令与 toolsets（如 ref: docker:duckduckgo 的 mcp 类型）。其特点包括：多 agent 架构，可组建专业 agent 团队并自动委派任务；丰富工具生态，含内置工具并支持任意 MCP server（本地、远程或基于 Docker）；不绑定 AI provider，支持 OpenAI、Anthropic、Gemini、AWS Bedrock、Mistral、xAI、Docker Model Runner 等；声明式、可版本化、可分享的 YAML 配置；内置 think、todo、memory 等推理工具；RAG 提供 BM25、embeddings、混合检索与重排序等可插拔检索；agent 可推送到任意 OCI registry 打包分享。安装方式包括 Docker Desktop（4.63+）预装的 CLI 插件、Homebrew 与 GitHub Releases 二进制，需设置至少一个 API key 或使用 Docker ",
+   "published_at": "2026-10-07T18:01:32+00:00",
+   "summary_short": "Claude Haiku 5.5 发布：号称最便宜最快小模型，成本降约75%",
+   "summary_long": "原文介绍 Claude Haiku 5.5，称其为迄今发布的最便宜、最快、能力最强的小模型，面向高并发、成本敏感任务，可稳定处理摘要、压缩、数据库查询、分类等快速重复性工作，并可与 Opus 5.5、Sonnet 5.5 配合，作为编码工作的子代理；因是迄今最快模型，也适合实时客服、浏览器操作等速度敏感场景。\n\n价格上，原文称其比 Haiku 4.5 便宜很多，平均运行成本降低约 75%；同时 Sonnet 5.5 的缓存读取价格减半，使其在多数代理类工作中便宜约 20%；并为 Claude Max 与 Team 订阅用户新增每月 API 额度，用于支持在 Claude 平台构建代理与应用。\n\n性能方面，Haiku 5.5 在 GDPval-AA v2.1 得 1620（Haiku 4.5 为 735），OSWorld 2.1 离线子集 72.4%（Haiku 4.5 为 15.7%），Humanity's Last Exam 无工具 45.9%、有工具 57.4%，Terminal-Bench 4.0 为 39.2%。它是首个带可调 effort 设置的 Haiku 级模型。原文称早期测试中客户反馈与上述性能、成本改善一致，并列出来自 Asana、HubSpot、AlphaSense、Box、Rogo、Cognition 等客户的评价。",
    "key_points": [
-    "docker-agent 是 docker CLI 插件，用 YAML 声明式定义 agent 与工具，无需写代码，可运行默认 agent、OCI registry 中的 agent 或本地配置。",
-    "核心特性：多 agent 协作与任务委派、内置工具加任意 MCP server、不绑定 AI provider、think/todo/memory 推理工具、RAG 检索、推送至 OCI registry 分享。",
-    "安装途径为 Docker Desktop 4.63+ 预装插件、Homebrew 或 GitHub Releases 二进制，需至少一个 API key 或使用 Docker Model Runner；原文提到会收集匿名使用数据。"
+    "定位为高并发、成本敏感的小模型，覆盖摘要、压缩、数据库查询、分类等重复性任务，并可作为编码子代理与 Opus 5.5、Sonnet 5.5 配合",
+    "价格：比 Haiku 4.5 平均运行成本低约 75%；Sonnet 5.5 缓存读取价格减半，多数代理类工作便宜约 20%；Claude Max 与 Team 订阅用户新增每月 API 额度",
+    "基准成绩：GDPval-AA v2.1 1620（Haiku 4.5 为 735）、OSWorld 2.1 离线子集 72.4%（15.7%）、Humanity's Last Exam 无工具 45.9%/有工具 57.4%、Terminal-Bench 4.0 39.2%"
    ],
    "topics": [
-    "multi-agent",
-    "mcp",
-    "rag"
+    "reasoning",
+    "coding-agent"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 73.7,
+   "status": "review",
+   "extra": {
+    "hn_points": 1033,
+    "hn_comments": 482,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.anthropic.com/claude-haiku-5-5-system-card",
+      "https://www.anthropic.com/news/life-sciences-verification-program",
+      "https://www.anthropic.com/news/cyber-verification-program",
+      "https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide",
+      "https://support.claude.com/en/articles/17154008",
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/browser-use-sdk"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "dfe3686a93214525",
+   "url": "https://www.latent.space/p/periodic",
+   "title": "Synthesis Superintelligence: from Semiconductors to Superconductors — Periodic Labs’ Liam Fedus and Ekin Dogus Cubuk",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-10-08T16:27:54+00:00",
+   "summary_short": "Periodic Labs谈\"合成超级智能\"：让模型在真实物理实验中学习以发现新材料",
+   "summary_long": "据原文，Periodic Labs去年9月才成立，一年后已被视为最杰出的AI科学家实验室之一，人才密度高，在自主实验室建设上进展显著。本期节目中，Periodic Labs的Liam Fedus与Ekin Dogus Cubuk做客swyx和Brandon的对话，解释为什么科学发现与数学、编程有本质区别，以及要构建真正能发现新材料的AI科学家需要什么。他们深入讲述Periodic对\"合成超级智能\"（synthesis superintelligence）的设想：以物理实验为基础的强化学习、AI驱动的材料表征、模拟与密度泛函理论（DFT）、高通量实验室，以及从做科学的整个过程而非仅从已发表结果中学习的系统。他们还解释为什么前沿模型仍将需要做实验、为什么失败的实验可能是有价值的训练数据之一、给每台实验室设备\"140 IQ\"意味着什么，以及自主实验如何可能把数十年的科学试错压缩到几个月。讨论还覆盖材料发现闭环中的预测、合成与表征，室温超导、新磁体、电池与更高效计算，量子计算为何未必自动解决材料发现，数据质量与负面结果的重要性，以及跨AI、化学、物理和定制硬件扩展自主实验室。",
+   "key_points": [
+    "Periodic Labs去年9月成立，一年后被视为最杰出的AI科学家实验室之一；其判断是AI的下一个前沿不在于训练更多互联网数据，而在于让模型在真实世界中实验。",
+    "\"合成超级智能\"设想包含：以物理实验为基础的强化学习、AI驱动的材料表征、模拟与DFT、高通量实验室，以及从科研全过程而非仅发表结果中学习的系统。",
+    "讨论要点包括失败实验可能成为最有价值的训练数据之一、给每台实验室设备\"140 IQ\"、自主实验或能把数十年试错压缩到数月，以及室温超导、磁体、电池、更高效计算等目标。"
+   ],
+   "topics": [
+    "agent-loop",
+    "post-training"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 73.1,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://periodic.com/",
+      "https://x.com/periodiclabs/status/1973056525204595129",
+      "https://x.com/chrisbarber/status/2106059993976119707",
+      "https://x.com/LiamFedus/status/2048424362093797399",
+      "https://x.com/periodiclabs/status/2105147336020378063?s=20",
+      "https://www.linkedin.com/in/liam-fedus-26547811/",
+      "https://x.com/LiamFedus",
+      "https://www.linkedin.com/in/ekin-dogus-cubuk-9148b8114/",
+      "https://x.com/ekindogus"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "077dea1e8a7adb2e",
+   "url": "https://openai.com/index/disrupting-ai-enabled-false-front-operations",
+   "title": "Disrupting AI-enabled “false front” operations",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-08T00:00:00+00:00",
+   "summary_short": "两家俄伊“虚假前台”影响行动被禁，俄方首现5级行动",
+   "summary_long": "原文称，过去两年半该机构持续报告威胁行为者试图利用其模型从事网络攻击、隐蔽影响行动（IO）、诈骗等违反使用政策的行为。近期它封禁了两个IO——分别来自俄罗斯和伊朗——它们把模型与传统技术手段结合，支撑复杂的“false front”（虚假前台）实体，向目标受众洗白地缘政治与冲突相关信息。伊朗行动运营七个“记者”人设，向全球中小型线上媒体投稿长文，并批量生成社交媒体评论，多围绕美伊战争话题；俄罗斯行动疑似拉拢拉美不知情者在地运营“智库”，并制作虚假“泄露”文件和音频脚本，部分已被发现在网上传播。两者都大量用AI起草内部报告，并采用可疑或欺骗性方法夸大自身成效。原文强调，这些行动与AI时代前的复杂影响行动高度相似，只是AI让部分工作流更容易。按IO Breakout Scale（1至6级），俄方行动被评为第5级，是该机构开始报告以来首次被瓦解的5级行动，伊朗行动为第4级，两者内容均落地主流媒体。",
+   "key_points": [
+    "伊朗与俄罗斯两个IO被禁，二者用模型配合传统手段运营“虚假前台”实体，向目标受众输送地缘政治与冲突相关信息",
+    "伊朗行动设七个“记者”人设向中小型线上媒体投长文；俄方疑似利用拉美不知情者运营“智库”，并造假“泄露”文件与音频脚本",
+    "按IO Breakout Scale，俄方行动为第5级、伊朗为第4级，两者内容进入主流媒体；原文称落地真实媒体的行动潜在触达与影响最大"
+   ],
+   "topics": [
+    "cybersecurity",
+    "influence-operations"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 71.2,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Safety"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.counterpunch.org/2017/12/25/go-ask-alice-the-curious-case-of-alice-donovan-2/",
+      "https://www.washingtonpost.com/world/national-security/kremlin-trolls-burned-across-the-internet-as-washington-debated-options/2017/12/23/e7b9dc92-e403-11e7-ab50-621fe0588340_story.html?utm_term=.32e178d370c3",
+      "https://about.fb.com/news/2020/09/august-2020-cib-report/",
+      "https://www.brookings.edu/articles/the-breakout-scale-measuring-the-impact-of-influence-operations/",
+      "https://www.opendemocracy.net/en/russia-bolivia-south-america-putin-evo-morales-wagner-prigozhin-covert-operations-propaganda-disinformation-foreign-interference/",
+      "https://forbiddenstories.org/projects_posts/propaganda-machine-secret-files-russia-influence/",
+      "https://lupa.com.ec/verificaciones/noboa-mercenarios-ucrania-ecuador/",
+      "https://x.com/GildaAlcivarOk/status/2067034085021676030",
+      "https://www.extra.com.pe/actualidad/polemica-en-colegio-de-lima-actividad-sobre-ucrania-pone-en-el-centro-del-debate-a-figuras-historicas-noticia/",
+      "https://trome.com/actualidad/nacional/ucrania-acerca-su-historia-a-estudiantes-en-peru-embajada-noticia/",
+      "https://myslpolska.info/2026/07/02/piskorski-zelenski-jako-kontynuator-bandery/",
+      "https://i.pl/petlura-bandera-i-zelenski-w-peru-jak-ukrainski-nacjonalizm-rozprzestrzenil-sie-za-ocean/ar/c1p2-29161355",
+      "https://web.archive.org/web/20260705015147/https://dailynewshungary.com/how-portraits-of-bandera-and-zelenskyy/",
+      "https://diariouno.pe/2026/07/19/actividades-de-la-embajada-de-ucrania-en-peru-intentan-involucrar-a-lima-en-conflictos-internacionales/",
+      "https://www.ecuavisa.com/amp/sociedad/cuenta-falsa-educacion-lealtad-daniel-noboa-erik-prince-escuelas-20260616-0105.html",
+      "https://www.primicias.ec/sociedad/ministerio-educacion-juramento-escolar-correos-falsos-profesores-denuncia-video-125589/",
+      "https://ecuadorchequea.com/lo-que-sabemos-y-lo-que-no-sobre-juramento-a-noboa-en-las-escuelas-de-quito-y-guayaquil/",
+      "https://www.expreso.ec/politica/desmienten-video-ninos-haciendo-juramento-daniel-noboa-erik-prince-286024.html",
+      "https://boliviaverifica.bo/falso-no-se-corta-el-agua-potable-en-un-estado-de-sitio/?utm_source=chatgpt.com",
+      "https://www.facebook.com/photo.php?fbid=1426877002799780&set=pb.100064324827050.-2207520000&type=3",
+      "https://www.cancilleria.gob.ar/es/actualidad/noticias/190-anos-de-la-ocupacion-ilegal-de-las-islas-malvinas",
+      "https://cancilleria.gob.ar/es/actualidad/comunicados/malvinas-la-firme-postura-argentina-presentada-por-timerman-en-la-onu-recibio",
+      "https://www.poder360.com.br/poder-internacional/brasileiro-diz-ter-sido-capturado-por-forcas-russas-na-ucrania/",
+      "https://www.tvn-2.com/",
+      "http://ecuadorchequea.com/cuando-una-cuenta-falsa-habla-como-si-fuera-un-medio-como-operan-las-paginas-que-usurpan-la-imagen-de-prensa-en-ecuador/",
+      "https://transparency.meta.com/sr/first-half-2026-Adversarial-threat-report/",
+      "https://cdn.openai.com/pdf/df438d70-e3fe-4a6c-a403-ff632def8f79/disrupting-malicious-uses-of-ai.pdf",
+      "https://cdn.openai.com/threat-intelligence-reports/disrupting-malicious-uses-of-our-models-february-2025-update.pdf"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "91ed3eb235f3237f",
+   "url": "https://huggingface.co/blog/tiiuae/falcon-asr",
+   "title": "Introducing Falcon ASR",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-07T13:21:03+00:00",
+   "summary_short": "TII发布1.6B参数Falcon-ASR，主打阿联酋方言阿拉伯语识别",
+   "summary_long": "阿布扎比技术创新研究院（TII）发布Falcon-ASR，一个1.6B参数的语音识别模型，面向阿拉伯语、尤其侧重阿联酋方言，同时支持英语、法语、西班牙语和葡萄牙语。在六个阿拉伯语测试集上，其平均词错率为20.92%，而原文所用榜单快照中最佳公开结果为23.17%，即领先2.25个百分点。在TII内部的阿联酋方言评测中，模型取得22.73%词错率与10.19%字错率，为对比系统中最低，词错率比次优的Qwen3-Omni低4.07个百分点；该评测使用留出录音与人工校验的转写文本，以补充公开数据中Casablanca的UAE子集。模型支持词级时间戳，将每个转写词对应到音频中的位置。训练中引入了背景噪声、重叠语音、音乐、房间混响、电话效应以及语速和音高变化等条件，阿联酋语料也做同样处理。英语方面，在Hugging Face Open ASR Leaderboard所用的七个公开测试集上平均词错率为5.74%。五种语言共用同一套权重，无需语言标志，输出为所讲语言的转写。模型基于此前的Falcon3-Audio工作。",
+   "key_points": [
+    "1.6B参数，以阿拉伯语为主并侧重阿联酋方言，同时支持英语、法语、西班牙语和葡萄牙语，五种语言共用同一套权重、无需语言标志",
+    "六个阿拉伯语测试集平均WER 20.92%，比原文所用榜单快照中最佳公开结果23.17%好2.25个百分点；内部阿联酋评测WER 22.73%、CER 10.19%，为对比系统中最低，WER比Qwen3-Omni低4.07个百分点",
+    "支持词级时间戳，训练覆盖背景噪声、重叠语音、音乐、混响、电话效应与语速音高变化，模型基于此前Falcon3-Audio工作"
+   ],
+   "topics": [
+    "open-source",
+    "post-training"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 70.0,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2509.07526"
+     ],
+     "links": [
+      "https://cdn-uploads.huggingface.co/production/uploads/671a3e44cf97dc64441e170a/KlCZJ9xrl4-O7A0RdA0vA.png",
+      "https://huggingface.co/spaces/tiiuae/falcon-asr-demo",
+      "https://huggingface.co/spaces/elmresearchcenter/open_universal_arabic_asr_leaderboard",
+      "https://cdn-uploads.huggingface.co/production/uploads/671a3e44cf97dc64441e170a/NYwM1xdaK1aiCwnEGz4q5.png",
+      "https://huggingface.co/datasets/UBC-NLP/Casablanca",
+      "https://cdn-uploads.huggingface.co/production/uploads/671a3e44cf97dc64441e170a/Un8dfcA_GCcu2orNpkTA4.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/671a3e44cf97dc64441e170a/jYVEru5FjM_UeCsJtRE9E.png",
+      "https://arxiv.org/abs/2509.07526",
+      "https://huggingface.co/blog/tiiuae/falcon-emirati"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "db9c355075ab2255",
+   "url": "https://www.anthropic.com/news/anthropic-cyber-mission",
+   "title": "Introducing the Anthropic Cyber Mission",
+   "source": "Anthropic News",
+   "tier": "S",
+   "published_at": "2026-10-08T00:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "cybersecurity",
+    "open-source"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 65.0,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Announcements"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "http://anthropic.com/research/launching-opt-in-vuln-finding-service-for-open-source",
+      "https://www.anthropic.com/glasswing",
+      "https://www.anthropic.com/news/cyber-verification-program",
+      "http://claude.com/form/critical-infrastructure-defense-program-interest",
+      "https://statescoop.com/anthropic-launches-15m-cyber-defense-program-for-state-local-tribal-and-territorial-governments/",
+      "https://red.anthropic.com/2026/cvd/",
+      "https://red.anthropic.com/oss-scanner",
+      "https://github.com/google/oss-fuzz",
+      "https://claude.com/resources/articles/bringing-claude-mythos-5-to-more-defenders",
+      "https://claude.com/contact-sales/claude-for-oss",
+      "https://portal.anthropic.com/login",
+      "https://claude.com/product/claude-security",
+      "https://www.anthropic.com/news/expanding-project-glasswing",
+      "https://twitter.com/intent/tweet?text=https://www.anthropic.com/news/anthropic-cyber-mission",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://www.anthropic.com/news/anthropic-cyber-mission"
+     ]
+    }
+   }
+  },
+  {
+   "id": "133541a06ad093b7",
+   "url": "https://github.com/openai/math/blob/main/history.md",
+   "title": "OpenAI Withdraws 3 Math Papers",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-08T08:08:37+00:00",
+   "summary_short": "一处符号错误致三篇数学论文被撤，另修订14篇并更新形式化进度",
+   "summary_long": "2026年10月7日的更新显示，一处符号错误使一个stabilization-trace cancellation论证失效，也令两篇依赖论文所使用的构造失效。因此以下三篇手稿被撤回：《Algebraicity of Weil classes on split abelian eightfolds》《Algebraicity of Kuga–Satake Correspondences for K3 Surfaces》《The rational Hodge conjecture for products of K3 surfaces》。被撤稿论文现附有说明缺口并链接存档手稿的通知。\n\n同时修订了另外14篇手稿，涉及证明修复、陈述更正、更清晰的假设与依赖，以及一处过时引用更正：Lipschitz heights与Ashkin–Teller currents（4篇）修复交叉、边界附着、条件化与收敛论证；Kähler极小模型纲领与abundance（6篇）扩充正性与收缩论证；Taming与hypersymplectic形变（2篇）更正锥相等性主张等；Incompressible Box Transport and Finite Computation与Exact Birch–Swinnerton-Dyer Formula from Low Selmer Corank各有修订。因这些修复还更",
+   "key_points": [
+    "一处符号错误使stabilization-trace cancellation论证失效，并令两篇依赖论文的构造失效，导致三篇手稿被撤回",
+    "另修订14篇手稿，涵盖证明修复、陈述更正、假设与依赖厘清及一处过时引用更正，并因修复更新13篇手稿以引用修订版",
+    "新增6项形式化与5项其他补充，顶线结果形式化比例达300/719，约42%"
+   ],
+   "topics": [
+    "research-integrity"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "开源项目"
+   ],
+   "horizon": "short",
+   "score": 62.1,
+   "status": "review",
+   "extra": {
+    "hn_points": 338,
+    "hn_comments": 3,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "9082ea4d357e3723",
+   "url": "https://github.com/Oldcircle/geo-sleuth",
+   "title": "Oldcircle/geo-sleuth — An agent skill that finds where a photo was taken — OpenStreetMap geometry, elevation skylines, satellite imagery and street view — and shows its work. Works with Claude Code, Codex, Cursor, Gemini CLI, OpenCode and GitHub Copilot.",
+   "source": "GitHub Trending (AI)",
+   "tier": "B",
+   "published_at": "2026-09-18T08:51:34+00:00",
+   "summary_short": "一个可定位照片拍摄地点的 agent skill，会展示其工作过程",
+   "summary_long": "",
+   "key_points": [
+    "该 agent skill 用于找出照片的拍摄地点",
+    "使用 OpenStreetMap 几何数据、海拔天际线、卫星影像和街景",
+    "会展示其工作过程（shows its work）"
+   ],
+   "topics": [
+    "tool-use",
+    "open-source"
    ],
    "category": "Agent 与开发",
    "categories": [
@@ -26,374 +305,83 @@
     "开源项目"
    ],
    "horizon": "long",
-   "score": 74.7,
+   "score": 62.0,
    "status": "review",
    "extra": {
-    "hn_points": 171,
-    "hn_comments": 81,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://modelcontextprotocol.io/",
-      "https://docs.docker.com/ai/model-runner/",
-      "https://github.com/docker/docker-agent/releases",
-      "https://docker.github.io/docker-agent/getting-started/set-up-a-model",
-      "https://docker.github.io/docker-agent/",
-      "https://docker.github.io/docker-agent/getting-started/installation",
-      "https://docker.github.io/docker-agent/getting-started/quickstart",
-      "https://docker.github.io/docker-agent/concepts/agents",
-      "https://docker.github.io/docker-agent/concepts/models",
-      "https://docker.github.io/docker-agent/concepts/tools",
-      "https://docker.github.io/docker-agent/concepts/multi-agent",
-      "https://docker.github.io/docker-agent/configuration/overview",
-      "https://docker.github.io/docker-agent/features/tui",
-      "https://docker.github.io/docker-agent/features/cli",
-      "https://docker.github.io/docker-agent/features/mcp-mode",
-      "https://docker.github.io/docker-agent/tools/rag",
-      "https://docker.github.io/docker-agent/providers/overview",
-      "https://docker.github.io/docker-agent/providers/dmr",
-      "https://docker.github.io/docker-agent/community/contributing",
-      "https://docker.github.io/docker-agent/community/telemetry",
-      "http://dockr.ly/comm-slack",
-      "https://dockercommunity.slack.com/archives/C09DASHHRU4"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "65b10d5e370b52bc",
-   "url": "https://mistral.ai/news/mistral-large-4/\\",
-   "title": "Mistral Large 4",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-06T13:15:49+00:00",
-   "summary_short": "Mistral 发布 1 万亿参数多模态模型 Large 4 公开预览，权重月底开放",
-   "summary_long": "Mistral 宣布 Mistral Large 4（非正式称 ML4，官方昵称 le Chonk）开启公开预览，可在 Mistral Studio 试用预览 API，权重将于本月底发布。该模型为原生多模态，总参数 1 万亿、激活参数 520 亿，是 Mistral 迄今规模最大、能力最强的模型，在编程、智能体工作流和多模态理解上表现突出。原文称其性能已可与全球最强开源模型竞争，并显著优于美国或欧洲开发的开源权重模型，在网络安全、金融、法律等关键企业负载上为开源模型中最优；在视觉接地等领域甚至超过前沿闭源模型。模型在 Mistral 位于欧洲的自有数据中心、使用 3,800 块 NVIDIA Grace Blackwell GPU 从零训练，预览也由同一基础设施提供服务。发布前正与网络安全负责人、经审核的合作伙伴及国家机构在真实环境中做红队测试，这些方可访问降低审核、扩展网络能力的同一模型。训练数据涵盖 160 多种语言，包括欧盟全部官方语言。原文还称后续将公布模型架构、更多基准与后训练方法细节。",
-   "key_points": [
-    "ML4 为原生多模态模型，总参数 1 万亿、激活参数 520 亿，是 Mistral 迄今最大最强模型；预览 API 已上线，权重本月底发布。",
-    "在欧洲自有数据中心用 3,800 块 NVIDIA Grace Blackwell GPU 从零训练，全球多区域部署，含由 Mistral 端到端运营、受欧洲法律约束的欧洲部署。",
-    "网络安全表现：Artificial Analysis Cyber Index 全球前五、领先非中国开发的开源权重模型；漏洞复现并修补测试得 82% 为所有模型最高，Cybench 解出 93%。"
-   ],
-   "topics": [
-    "open-source",
-    "post-training",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 72.2,
-   "status": "review",
-   "extra": {
-    "hn_points": 1994,
-    "hn_comments": 1190,
-    "content_source": "reader",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "865c9186faadde13",
-   "url": "https://strandsagents.com/blog/introducing-strands-decider/",
-   "title": "Strands Decider 2B: a small, open-source, decision model",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-07T02:02:11+00:00",
-   "summary_short": "Strands Decider 2B：2B参数开源决策模型，可在本地运行、数十毫秒作答",
-   "summary_long": "Strands Decider 2B 是一款小型决策模型，面向快速实验、本地开发与创新。原文称，决策模型（又称“系统一”模型）自 TypeSafe AI 本月初发布 Jev 以来受到关注：它不像 LLM 那样生成任意文本，而是在给定选项间做选择或给出简单数值分数，因此更快、同等规模下能力更强、延迟极低，且总能从选项中给出答案。代价是单次并行生成的方式使其在复杂问题上明显弱于推理模型，也无法胜任编码、聊天机器人、文档摘要等常见 LLM 任务。此外，它能为每个决策给出高质量可靠性分数（前沿 LLM 推理 API 不具备），并可高效地对同一 prompt 提多个问题，适合驱动 Strands Harness SDK 等智能体工作流。该模型为 2B 参数，可在本地 CPU 或 GPU 运行，数十毫秒内返回答案，准确率与校准度与同类已知模型相比有竞争力。架构上取预训练 LLM 躯干 Qwen3.5-2B，去掉 LM head，换成约百万参数的指针头，躯干用 rank-16 LoRA 微调；此前 slot head 版本表现明显更差，本次发布的是 v19。模型已在 GitHub 开源，权重发布于 Hugging Face，含全部训练数据与脚本。评估在 JevBench 公开集上测准确率、以 Brier 分数测校准度。",
-   "key_points": [
-    "决策模型在选项间作答或打分，换取速度、低延迟和总能给出答案，但弱于推理模型，且不适合编码、聊天机器人和文档摘要",
-    "还可为每个决策给出高质量可靠性分数，并能高效地对同一 prompt 提多个问题，适合驱动 Strands Harness SDK 等智能体工作流",
-    "Strands Decider 2B 为 2B 参数，可在本地 CPU 或 GPU 运行，数十毫秒返回答案，准确率与校准度与同类已知模型有竞争力"
-   ],
-   "topics": [
-    "post-training",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 70.8,
-   "status": "review",
-   "extra": {
-    "hn_points": 274,
-    "hn_comments": 78,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://aws.amazon.com/blogs/opensource/introducing-strands-labs-get-hands-on-today-with-state-of-the-art-experimental-approaches-to-agentic-development/",
-      "https://github.com/strands-labs/strands-decider",
-      "https://huggingface.co/StrandsAgents",
-      "https://benchmarkheaven.com/jev-models"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "f2c199a6dd88e539",
-   "url": "https://www.latent.space/p/stacklok",
-   "title": "Can a Cloud-Native Harness Make Agents Reliable Beyond the Desktop?",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-10-07T14:10:45+00:00",
-   "summary_short": "K8s 创始团队发布开源云原生 harness Mecatl，让编码智能体在云端托管运行。",
-   "summary_long": "编码智能体的基本架构是 LLM 在循环中调用工具并携带上下文。因本地实现最容易，许多智能体先从终端工具做起、再做成桌面应用（Claude Code 最初就是 CLI）。但现代 agent harness 若不能在云端管理就有明显局限：2025 年以来 OpenAI 与 Anthropic 都试图把 harness 移向云端，成效不一，挑战包括会话可靠、工具执行隔离与上下文保留。这被类比为 2010 年代初的容器编排——2014 年出现的 Google 开源项目 Kubernetes 成为大规模云应用管理的主导系统，开启“云原生”时代。\n\n两位 Kubernetes 创造者 Craig McLuckie 与 Joe Beda 正通过 Stacklok 押注同一思路。Stacklok 2023 年获 Accel、Madrona、Bain Capital 1750 万美元 A 轮，最初做软件供应链安全，近期转向基于 Kubernetes 的智能体方案。其最受关注的产品是 6 月在 GitHub 开源的云原生 harness Mecatl（阿兹特克语“绳索”，读作 MEH-kah-tl）。McLuckie 称云原生是把“价值所在从桌面移到云端”；Beda 说代码与上下文常源自本地环境，“IP 就在那里”，放在桌面更难管理，并称“搬移式”上云会在智能体生命周期与安全暂停（等待人类输入）上出问",
-   "key_points": [
-    "两位 Kubernetes 创造者 Craig McLuckie 与 Joe Beda 所在的 Stacklok 推出开源云原生 harness Mecatl（6 月在 GitHub 启动），试图把编码智能体从桌面转移到云端管理。",
-    "Beda 称桌面优先的 harness 通常把循环、本地执行与会话状态放在同一进程或紧耦合进程中；用 VM/容器/沙箱“搬移式”上云会在智能体生命周期与安全暂停（quiesce）上出问题，因此主张从头重新设计。",
-    "McLuckie 把云原生解释为“把价值所在从桌面移到云端”，Beda 补充代码与上下文常源自本地环境、“IP 就在那里”；McLuckie 还质疑为何智能体循环与工具调用子系统如此紧耦合、为何用人类身份体系来理解智能体身份。"
-   ],
-   "topics": [
-    "harness",
-    "context-engineering",
-    "agent-loop"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 69.8,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://substackcdn.com/image/fetch/$s_!r55R!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe1c3cd3d-2682-47cb-9be6-74302c1ca8ea_2560x1440.png",
-      "https://www.linkedin.com/in/craigmcluckie/",
-      "https://www.linkedin.com/in/jbeda/",
-      "https://stacklok.com/",
-      "https://substackcdn.com/image/fetch/$s_!Fyku!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc30a90d0-b71c-423b-8276-121270e8a1f2_2048x1009.png",
-      "https://stacklok.com/company/",
-      "https://techcrunch.com/2023/05/17/kubernetes-and-sigstore-founders-raise-17-5m-to-launch-software-supply-chain-startup-stacklok/",
-      "https://github.com/stacklok/mecatl",
-      "https://substackcdn.com/image/fetch/$s_!S0cr!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc06dd164-5a59-474b-bae7-886e6b4b06bf_1600x922.png",
-      "https://github.com/stacklok/mecatl?tab=readme-ov-file",
-      "https://pi.dev/",
-      "https://www.latent.space/p/flue-2",
-      "https://substackcdn.com/image/fetch/$s_!kI_1!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6743fa62-62b0-4915-942c-bc81f3d537ff_1339x820.png",
-      "https://mecatl.dev/docs/building/deployment/mecak8s",
-      "https://substackcdn.com/image/fetch/$s_!Veeq!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F75525a15-e747-469e-b269-6f591f949ab2_1600x1044.png",
-      "https://substackcdn.com/image/fetch/$s_!UJLX!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc24b3c85-0c18-4e93-91f3-4ba6b178319f_1544x910.png",
-      "https://github.com/stacklok/toolhive?tab=readme-ov-file",
-      "https://substackcdn.com/image/fetch/$s_!Kh-g!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1dbf73d9-fb87-4891-9e96-a0b84fb3adc2_1634x1058.png",
-      "https://stacklok.com/solutions/ai-gateway/",
-      "https://www.latent.space/p/glean-model-routing",
-      "https://substackcdn.com/image/fetch/$s_!swTE!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5b0fb44a-1aaa-4845-b738-339c74b6c6ab_1588x716.png",
-      "https://stacklok.com/resources/state-of-ai-architecture-2026/",
-      "https://cybercultural.com/p/018-birth-of-cloud-computing/#amazon-web-services-and-the-birth-of-cloud-computing"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a824fffb27a52f9c",
-   "url": "https://www.zohaib.cc/blog/smartest-claude-code-feature",
-   "title": "Claude Code’s suggested message feature: I think the real customer is the model",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-06T18:00:34+00:00",
-   "summary_short": "原文未详述：所给简介为空，无内容可概括",
-   "summary_long": "",
-   "key_points": [
-    "简介为（无），原文未提供任何可改写信息"
-   ],
-   "topics": [
-    "coding-agent",
-    "context-engineering",
-    "harness"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 66.3,
-   "status": "review",
-   "extra": {
-    "hn_points": 263,
-    "hn_comments": 152,
+    "stars": 1453,
+    "language": "Python",
     "summary_mode": "brief"
    }
   },
   {
-   "id": "ad4e14640e358f44",
-   "url": "https://openai.com/index/teens-learn-and-plan",
-   "title": "Helping teens learn, plan, and shape the future of AI",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-07T12:00:00+00:00",
-   "summary_short": "ChatGPT for Teens 将上线大学申请规划工具 College Planner，并公布青少年学习工具使用数据",
-   "summary_long": "ChatGPT for Teens 是自动应用于被识别为18岁以下账户的默认体验。官方公布早期进展：有访问权限的青少年平均比尚未获得的同龄人多发送约270万条学习相关消息；最常选用的开场提示是「发展我的想法」「给我的草稿反馈」「帮我核查证据」。一周内近120万青少年用 Learning Visualizations 理解数理概念，超18万用 Study Mode。内置休息提醒下，青少年日均使用不到15分钟，不到2%连续使用超3小时；在有提醒的对话中，近一半在5分钟内休息或结束对话。即将加入的 College Planner 把申请要求、截止日期、任务与助学金步骤整合成一份计划，学生可更新进度、用时间线提前规划并随时提问，也可了解如何支付大学费用。初期面向美国10–12年级、计划就读四年制大学的学生，未来拟扩展到更多国家及两年制、技术和职业学校。",
+   "id": "b920cb13ba60867b",
+   "url": "https://www.qbitai.com/2026/10/502083.html",
+   "title": "不等Gemini 4了！谷歌发布办公Agent，支持调用Claude",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-10-09T00:16:56+00:00",
+   "summary_short": "谷歌发布通用办公Agent，可自选底层模型甚至调用Claude",
+   "summary_long": "Google Cloud发布由CEO Thomas Kurian署名的长文《Welcome to Gemini at Work 2026: Introducing the Gemini agent》，集中介绍Gemini在企业Agent领域的更新，最重磅的是全新发布的Gemini Agent。按谷歌设想，这是覆盖各类工作任务、能长期运行的通用办公Agent，可查资料、写邮件、做PPT、分析数据、编写并运行代码，能跨应用调用工具、自行规划任务，必要时召集多个子Agent。其工作原则是“给目标，而非逐步指令”，核心能力含统一入口、云端持久运行、跨平台调用、多Agent协作、事件触发和定时任务。两个特别之处：一是可拥有企业身份，有邮箱、日历和独立账号；二是能按任务自动选择底层模型，现阶段可在Gemini系列与Anthropic的Claude系列间动态选择，按效果、速度和成本权衡。原文还提出Coworker Agent、四种记忆机制，并对比了Meta的Muse与OpenAI的Dots。",
    "key_points": [
-    "ChatGPT for Teens 是自动应用于被识别为18岁以下账户的默认体验；有访问权限的青少年平均多发送约270万条学习相关消息，一周内近120万人使用 Learning Visualizations，超18万人使用 Study Mode。",
-    "使用时长数据显示：青少年日均使用不到15分钟，不到2%连续使用超三小时，远低于公开报道的青少年社交媒体平均5小时；在有休息提醒的对话中近一半在5分钟内休息或结束。",
-    "即将推出的 College Planner 整合申请要求、截止日期、任务和助学金步骤，初期面向美国10–12年级计划就读四年制大学的学生，未来拟扩展到更多国家及两年制、技术和职业学校。"
+    "Gemini Agent定位于覆盖各类工作任务、可长期运行的通用办公Agent，强调跨应用调用、多Agent协作、事件触发与定时任务，原则是“给目标而非逐步指令”",
+    "可拥有独立企业身份（邮箱、日历、账号），并具备会话、语义、程序性、情景四种记忆，还能自己编写Skills保存工作方法",
+    "底层模型可动态选择，现阶段覆盖Gemini系列与Anthropic的Claude系列并配套Smart Routing，模型更换时已积累的上下文、Skills和企业数据可保留"
    ],
    "topics": [
-    "product"
+    "multi-agent",
+    "memory",
+    "tool-use"
    ],
-   "category": "产品与应用",
+   "category": "Agent 与开发",
    "categories": [
+    "Agent 与开发",
     "产品与应用"
    ],
    "horizon": "short",
-   "score": 59.4,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Product"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.apa.org/monitor/2024/04/teen-social-use-mental-health",
-      "https://collegeadvisingcorps.org/",
-      "https://digitalwellnesslab.org/",
-      "https://digitalwellnesslab.org/student-advisory-council/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a3e9723993ae6e82",
-   "url": "https://www.rswebsols.com/news/meta-and-microsoft-take-steps-to-reduce-employee-usage-of-claude-ai/",
-   "title": "Meta and Microsoft take steps to reduce employee usage of Claude AI",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-07T18:49:40+00:00",
-   "summary_short": "Meta与微软收缩员工对Claude的使用，转向自研编程工具",
-   "summary_long": "据The Information 10月5日报道，Meta与微软已开始大幅减少员工对Anthropic旗下Claude AI的使用，转向各自的自研编程工具。这一调整着眼于内部支出与工作流程，而非停止通过微软产品向客户提供Claude。微软此前预计内部在Anthropic技术上的年支出将超过10亿美元，在管理层要求员工减少使用Claude、更多采用GitHub Copilot和OpenAI框架后，该估算下调超过三分之一；其云与AI部门员工的月度AI支出上限从每人10万美元降至多数情况下约1万美元，而这些数字是支出上限而非实际支出。Meta的Claude Code用户从今年早些时候约6万降至约3万，裁员有影响，但报道将主因归为转向自研的MetaCode与Muse Code：MetaCode内部用户超过3万，Muse Code超过6000，后者已于8月面向客户开展外部测试。报道称Meta在28天内为Claude Code投入超过1.05亿美元。两家公司仍是Anthropic的重要客户，Anthropic报告的年化收入节奏为650亿美元。",
-   "key_points": [
-    "微软内部Anthropic年支出预估超10亿美元，被下调超三分之一；云与AI部门员工月度AI支出上限从10万美元降至多数约1万美元。",
-    "Meta的Claude Code用户从今年早些时候约6万降至约3万，主因是转向自研的MetaCode（超3万内部用户）与Muse Code（超6000用户），后者8月起面向客户外部测试。",
-    "两家公司仍是Anthropic的重要客户，且微软并未将Claude撤出面向客户的产品，客户通过微软企业平台使用Anthropic模型的支出仍在上升。"
-   ],
-   "topics": [
-    "coding-agent",
-    "product"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 59.1,
-   "status": "review",
-   "extra": {
-    "hn_points": 261,
-    "hn_comments": 258,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.rswebsols.com/learn/topic/technology/",
-      "https://www.rswebsols.com/learn/topic/cybersecurity/",
-      "https://cybersecuritynews.com/meta-microsoft-claude-ai/?utm_source=rswebsols.com",
-      "https://www.rswebsols.com/member/~e481d394e81110c368/",
-      "https://www.rswebsols.com/",
-      "https://www.facebook.com/in.rswebsols",
-      "https://x.com/rswebsols",
-      "https://www.linkedin.com/in/neil-rswebsols",
-      "https://www.instagram.com/rswebsols",
-      "https://www.addtoany.com/add_to/facebook?linkurl=https%3A%2F%2Fwww.rswebsols.com%2Fnews%2Fmeta-and-microsoft-take-steps-to-reduce-employee-usage-of-claude-ai%2F&linkname=Meta%20and%20Microsoft%20Take%20Steps%20to%20Reduce%20Employee%20Usage%20of%20Claude%20AI",
-      "https://www.addtoany.com/add_to/x?linkurl=https%3A%2F%2Fwww.rswebsols.com%2Fnews%2Fmeta-and-microsoft-take-steps-to-reduce-employee-usage-of-claude-ai%2F&linkname=Meta%20and%20Microsoft%20Take%20Steps%20to%20Reduce%20Employee%20Usage%20of%20Claude%20AI",
-      "https://www.addtoany.com/add_to/pinterest?linkurl=https%3A%2F%2Fwww.rswebsols.com%2Fnews%2Fmeta-and-microsoft-take-steps-to-reduce-employee-usage-of-claude-ai%2F&linkname=Meta%20and%20Microsoft%20Take%20Steps%20to%20Reduce%20Employee%20Usage%20of%20Claude%20AI",
-      "https://www.addtoany.com/add_to/linkedin?linkurl=https%3A%2F%2Fwww.rswebsols.com%2Fnews%2Fmeta-and-microsoft-take-steps-to-reduce-employee-usage-of-claude-ai%2F&linkname=Meta%20and%20Microsoft%20Take%20Steps%20to%20Reduce%20Employee%20Usage%20of%20Claude%20AI",
-      "https://www.addtoany.com/add_to/reddit?linkurl=https%3A%2F%2Fwww.rswebsols.com%2Fnews%2Fmeta-and-microsoft-take-steps-to-reduce-employee-usage-of-claude-ai%2F&linkname=Meta%20and%20Microsoft%20Take%20Steps%20to%20Reduce%20Employee%20Usage%20of%20Claude%20AI",
-      "https://www.addtoany.com/add_to/whatsapp?linkurl=https%3A%2F%2Fwww.rswebsols.com%2Fnews%2Fmeta-and-microsoft-take-steps-to-reduce-employee-usage-of-claude-ai%2F&linkname=Meta%20and%20Microsoft%20Take%20Steps%20to%20Reduce%20Employee%20Usage%20of%20Claude%20AI",
-      "https://www.addtoany.com/share",
-      "https://www.rswebsols.com/news/us-equity-markets-software-stocks-reach-2026-peak-amid-easing-ai-disruption-concerns/",
-      "https://www.rswebsols.com/news/without-china-the-u-s-cannot-succeed-in-the-ai-competition-against-china/",
-      "https://www.rswebsols.com/news/metas-muse-ai-agent-ignites-surge-for-amd-and-intel-as-personal-computing-evolves/",
-      "https://www.rswebsols.com/news/jim-cramer-declares-microsoft-a-major-victor-in-ai-as-copilot-gains-traction/",
-      "https://www.rswebsols.com/news/caution-openai-and-anthropic-deepseek-and-moonshot-secure-new-funding-as-chinese-open-weight-ai-models-attract-us-user-base/",
-      "https://www.rswebsols.com/news/googles-ai-innovations-revolutionize-classrooms-in-sweden/"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "1cd9e00c8199d8e7",
-   "url": "https://www.qbitai.com/2026/10/501749.html",
-   "title": "OpenAI一夜甩出722篇数学论文！黎曼霍奇BSD全上阵，数学家：读不过来",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-10-07T01:05:13+00:00",
-   "summary_short": "OpenAI公开722篇数学手稿，涉多项千禧难题，数学家质疑读不过来",
-   "summary_long": "OpenAI公开了722篇数学手稿，归成372组结果，全部出自一个尚未发布的内部模型。据OpenAI介绍，模型共尝试约4000个研究问题，平均每项结果消耗的算力约相当于ChatGPT Pro思考3小时；论文、源码与部分Lean证明被一并上传GitHub，另含10份模型推理摘要。目录覆盖17个方向，包括准黎曼猜想、有理数域上的希尔伯特第十问题、BSD猜想、霍奇猜想、唯一游戏猜想、π的无理性指数、卡塔兰常数的无理性，以及自旋玻璃、量子磁性、自由群因子、相对论性弗拉索夫—麦克斯韦方程等。发布后，由九位学者组成的独立数学与AI顾问组发表声明，其中包括三位菲尔兹奖得主，称这是数学界的一件大事，但不代表认可这些结果，也不代表认可OpenAI产出成果的过程；得克萨斯大学奥斯汀分校数学家Francesco Maggi等人质疑结果产出速度远超人类理解速度。仓库也注明，各项手稿核验进度不一，部分成果尚无Lean形式化证明。",
-   "key_points": [
-    "722篇手稿归成372组结果，覆盖数论、代数几何、理论计算机、统计力学等17个方向，全部出自同一个未发布内部模型，模型共尝试约4000个研究问题，平均每项结果算力约相当于ChatGPT Pro思考3小时",
-    "涉及三道上千禧难题：声称ζ函数和所有狄利克雷L函数在实部大于7/8区域无零点（另一份独立证明给出11/12版本并排除西格尔零点）、有理数域上的希尔伯特第十问题无通用算法、BSD猜想在特定条件下得到完整公式、霍奇猜想覆盖复乘阿贝尔簇与K3曲面乘积",
-    "由九位学者组成的独立数学与AI顾问组（含三位菲尔兹奖得主）声明称这是数学界大事，但不代表认可结果或OpenAI产出成果的过程；仓库注明核验进度不一，部分成果尚无Lean形式化证明"
-   ],
-   "topics": [
-    "reasoning",
-    "scientific-research"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 56.3,
+   "score": 60.5,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
      "资讯",
-     "首页轮播",
-     "OpenAI",
-     "数学"
+     "Gemini Agent",
+     "谷歌"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.qbitai.com/author/tingyu",
+      "https://www.qbitai.com/author/hengyu",
       "https://www.qbitai.com",
-      "https://openai.com/index/sharing-ai-progress-in-mathematics/",
-      "https://github.com/openai/math",
-      "https://agmai.org/",
-      "https://x.com/thsottiaux/status/2107575657014468879",
-      "https://www.qbitai.com/tag/openai",
-      "https://www.qbitai.com/tag/%e6%95%b0%e5%ad%a6",
-      "https://www.qbitai.com/2026/10/501451.html",
-      "https://www.qbitai.com/2026/09/498815.html",
-      "https://www.qbitai.com/2026/09/496170.html",
-      "https://www.qbitai.com/2026/09/497613.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/501749.html&title=OpenAI一夜甩出722篇数学论文！黎曼霍奇BSD全上阵，数学家：读不过来&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2025/08/321158.html",
-      "https://www.qbitai.com/tag/ai%e5%b9%bb%e8%a7%89",
-      "https://www.qbitai.com/tag/chatgpt",
-      "https://www.qbitai.com/tag/gpt-5",
-      "https://www.qbitai.com/2024/07/170147.html",
-      "https://www.qbitai.com/2024/09/190948.html",
-      "https://www.qbitai.com/2024/11/218727.html",
-      "https://www.qbitai.com/tag/%e6%99%ba%e8%83%bd%e4%bd%93",
-      "https://www.qbitai.com/2025/02/259041.html",
-      "https://www.qbitai.com/tag/gpt-4-5",
+      "https://cloud.google.com/blog/products/ai-machine-learning/welcome-to-gemini-at-work-2026/",
+      "https://www.qbitai.com/tag/gemini-agent",
+      "https://www.qbitai.com/tag/%e8%b0%b7%e6%ad%8c",
+      "https://www.qbitai.com/2026/10/502009.html",
+      "https://www.qbitai.com/2026/09/499246.html",
+      "https://www.qbitai.com/2026/09/498584.html",
+      "https://www.qbitai.com/2026/10/501825.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/502083.html&title=不等Gemini 4了！谷歌发布办公Agent，支持调用Claude&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2020/02/11933.html",
+      "https://www.qbitai.com/tag/%e6%96%b0%e5%86%a0%e7%97%85%e6%af%92",
+      "https://www.qbitai.com/2020/02/11620.html",
+      "https://www.qbitai.com/tag/ai%e9%9d%a2%e8%af%95",
+      "https://www.qbitai.com/tag/%e5%ae%9e%e4%b9%a0",
+      "https://www.qbitai.com/2024/12/233183.html",
+      "https://www.qbitai.com/tag/sora",
+      "https://www.qbitai.com/tag/%e8%a7%86%e9%a2%91%e7%94%9f%e6%88%90",
+      "https://www.qbitai.com/2021/02/21710.html",
+      "https://www.qbitai.com/tag/ai%e9%98%b2%e6%8a%96",
+      "https://www.qbitai.com/tag/%e5%8f%b0%e6%b9%be%e5%a4%a7%e5%ad%a6",
+      "https://www.qbitai.com/2024/12/235571.html",
+      "https://www.qbitai.com/2024/12/229123.html",
+      "https://www.qbitai.com/tag/gemini",
+      "https://www.qbitai.com/tag/llama",
+      "https://www.qbitai.com/tag/meta",
       "https://www.qbitai.com/tag/%e5%a4%a7%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/2023/06/63625.html",
-      "https://www.qbitai.com/tag/gpt-4",
-      "https://www.qbitai.com/tag/%e9%99%b6%e5%93%b2%e8%bd%a9",
-      "https://www.qbitai.com/2026/10/499812.html",
-      "https://www.qbitai.com/2026/10/499663.html",
       "https://www.qbitai.com/2026/10/500098.html",
       "https://www.qbitai.com/2026/10/499991.html",
       "https://www.qbitai.com/2026/10/499958.html",
+      "https://www.qbitai.com/2026/10/501381.html",
+      "https://www.qbitai.com/2026/10/501368.html",
       "https://weibo.com/qbitai?is_all=1",
       "https://www.zhihu.com/org/liang-zi-wei-48/activities",
       "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
@@ -404,73 +392,420 @@
    }
   },
   {
-   "id": "26088bef70ca8bcf",
-   "url": "https://github.com/lemomo-ai/lemo-opuscar",
-   "title": "lemomo-ai/lemo-opuscar — Claude Code skill for short films with no video model: 43 film styles, each a style prompt plus a demo film made entirely in code by Claude Opus 5.5 (incl. OPUSCAR 98). By Lemomo. | Opus5.5 x 43 种影片风格：风格提示词 + 纯代码样片 + 导演与技术指南",
-   "source": "GitHub Trending (AI)",
+   "id": "f2d85267cf549817",
+   "url": "https://www.qbitai.com/2026/10/501995.html",
+   "title": "ChatGPT踢到铁板了！能破解千禧数学难题，但论文复现率低至13.98%？",
+   "source": "量子位",
    "tier": "B",
-   "published_at": "2026-09-26T10:10:41+00:00",
-   "summary_short": "无需视频模型的 Claude Code 短片 skill：43 种影片风格，各含风格提示词与纯代码样片",
-   "summary_long": "",
+   "published_at": "2026-10-08T09:28:44+00:00",
+   "summary_short": "首个多学科论文复现基准PaperBenchX发布，最强模型完整复现率仅13.98%",
+   "summary_long": "UniPat AI 发布 PaperBenchX，原文称其为国际上第一个多学科端到端论文结果复现的 Benchmark。它从93篇真实研究论文构建93个复现任务，横跨电磁、光子、化学、材料、生物、机器人等12个研究方向和10种领域原生科学环境，含3168条专家校验的评分项。考试规则是：Agent 拿到论文、装好对应科学软件的容器化环境和说明复现哪部分的任务书，交回一份可执行的复现工作流；评分标准、容差和参考答案全部对 Agent 隐藏。系统会删掉全部输出、断开网络，在隔离环境里从头重跑，只相信重放产物，原文称这相当于为科学仿真搭的一道「Lean」。结果是10组受测配置中表现最强的 GPT-6 Astra 完整复现率只有13.98%；建模与执行阶段平均得分分别为62.70%和61.84%，验证阶段仅42.80%。轨迹分析显示交互轮数越多分数不一定越高，前期论文理解与建模决策是否合理，很大程度上决定后续计算是否会变成资源浪费。团队已开源12个代表性测试任务，并维护81个封闭测试任务。",
    "key_points": [
-    "这是一个用于短片的 Claude Code skill，不使用视频模型",
-    "共 43 种影片风格",
-    "每种风格包含一段风格提示词，以及一部完全用代码制作的样片"
+    "PaperBenchX 从93篇研究论文构建93个复现任务，覆盖电磁、光子、化学、材料、生物、机器人等12个研究方向和10种领域原生科学环境，含3168条专家校验评分项。",
+    "受测10组前沿模型与Agent框架配置中，表现最强的GPT-6 Astra完整复现率仅13.98%；阶段得分显示建模62.70%、执行61.84%，验证只有42.80%。",
+    "评测只认重新生成的证据：Agent交卷后系统删掉全部输出、断网并在隔离环境重跑，评分器只相信重放产物；目前团队开源12个测试任务并维护81个封闭任务。"
+   ],
+   "topics": [
+    "eval",
+    "reasoning",
+    "coding-agent"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测"
+   ],
+   "horizon": "short",
+   "score": 60.5,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "首页轮播",
+     "AI4S"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/yunzhong",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/ai4s",
+      "https://www.qbitai.com/2026/09/488725.html",
+      "https://www.qbitai.com/2026/09/488672.html",
+      "https://www.qbitai.com/2026/08/479132.html",
+      "https://www.qbitai.com/2026/08/473395.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/501995.html&title=ChatGPT踢到铁板了！能破解千禧数学难题，但论文复现率低至13.98%？&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2025/10/347572.html",
+      "https://www.qbitai.com/2025/10/347231.html",
+      "https://www.qbitai.com/2025/10/345745.html",
+      "https://www.qbitai.com/2025/07/315035.html",
+      "https://www.qbitai.com/tag/2025-waic",
+      "https://www.qbitai.com/2025/07/314007.html",
+      "https://www.qbitai.com/2022/11/39309.html",
+      "https://www.qbitai.com/tag/ai%e5%88%b6%e8%8d%af",
+      "https://www.qbitai.com/tag/%e6%b7%b1%e5%8a%bf%e7%a7%91%e6%8a%80",
+      "https://www.qbitai.com/2026/10/500098.html",
+      "https://www.qbitai.com/2026/10/499991.html",
+      "https://www.qbitai.com/2026/10/499958.html",
+      "https://www.qbitai.com/2026/10/501381.html",
+      "https://www.qbitai.com/2026/10/501368.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "7bdbb68374d51e4c",
+   "url": "https://www.cnbc.com/2026/10/08/open-ai-revenue-nvidia-oracle-coreweave.html",
+   "title": "OpenAI annualised revenues $20B less than previously signalled",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-08T16:45:58+00:00",
+   "summary_short": "OpenAI年化收入约500亿美元，低于此前报道的680亿，AI股集体下挫",
+   "summary_long": "CNBC确认，OpenAI向投资者表示其9月底年化收入约为500亿美元，低于上月底广泛报道的680亿美元，500亿美元这一数字由《金融时报》率先报道。知情人士称，680亿美元包含OpenAI合作伙伴的总收入，这样便于投资者与主要竞争对手Anthropic做更直接的比较。消息令AI股下挫：英伟达跌3%、甲骨文跌近6%、CoreWeave跌近8%，AMD、博通、英特尔、超微电脑也均下跌。OpenAI还在投资者演示中称，第三季度总运行率增长77%，企业业务运行率增长107%。OpenAI正面临向投资者证明其8520亿美元估值的压力，并为市场广泛预期的重磅IPO做准备：公司6月已向监管机构秘密提交招股书，高管暗示瞄准2027年上市。Anthropic同样在筹备大型IPO，据报道寻求2万亿美元估值，并曾在8月告知投资者其7月底年化收入运行率达650亿美元。独立金融研究机构New Constructs称Anthropic即将进行的IPO是“2026年最荒谬的IPO”，估值仅1500亿美元。",
+   "key_points": [
+    "OpenAI告知投资者其9月底年化收入约为500亿美元，低于上月底广泛报道的680亿美元；知情人士称680亿美元包含其合作伙伴的总收入，便于与竞争对手Anthropic直接比较",
+    "OpenAI还称第三季度总运行率增长77%、企业业务运行率增长107%；消息公布后英伟达跌3%、甲骨文跌近6%、CoreWeave跌近8%，AMD、博通、英特尔、超微电脑同样下跌",
+    "OpenAI面临向投资者证明8520亿美元估值的压力，已于6月秘密提交招股书、高管暗示瞄准2027年上市；Anthropic也在筹备大型IPO，据报道寻求2万亿美元估值"
+   ],
+   "topics": [
+    "product",
+    "open-source"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 60.3,
+   "status": "review",
+   "extra": {
+    "hn_points": 350,
+    "hn_comments": 246,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.cnbc.com/ai-artificial-intelligence/",
+      "https://www.cnbc.com/2026/09/29/openai-devday-2026-live-updates.html",
+      "https://www.ft.com/content/b66a9858-f8fb-46cb-b506-44bfe26fca2a?syn-25a6b1a6=1",
+      "https://www.cnbc.com/2026/10/07/google-finland-data-center-halt.html",
+      "https://www.cnbc.com/2026/10/06/meta-joins-companies-to-tame-chaos-of-doing-business-with-ai-bots.html",
+      "https://www.cnbc.com/2026/10/06/anduril-navy-submarine-shipyard-contract.html",
+      "https://www.cnbc.com/2026/10/06/anthropic-claude-startups-program.html",
+      "https://www.cnbc.com/2026/06/08/openai-confidentially-files-for-ipo-prepping-wall-street-for-ai-debut.html",
+      "https://www.cnbc.com/2026/08/19/open-ai-ipo-timing-2027-friar.html",
+      "https://www.cnbc.com/2026/06/01/anthropic-ipo-s1-prospectus.html",
+      "https://www.cnbc.com/2026/08/13/anthropic-cfo-early-ipo-meetings-valuation.html",
+      "https://www.cnbc.com/2026/08/17/anthropic-says-annualized-revenue-climbed-to-65-billion-in-july.html",
+      "https://www.cnbc.com/2026/10/07/anthropic-will-be-most-ridiculous-ipo-of-year-analyst-says.html",
+      "https://www.reuters.com/business/finance/anthropics-ipo-prospectus-shows-sweeping-ai-vision-surging-costs-2026-09-28/",
+      "https://www.cnbc.com/2026/09/09/anthropic-researcher-quits-ai-safety.html",
+      "https://www.cnbc.com/2026/09/26/openai-agent-model-behavior-review.html",
+      "https://www.cnbc.com/2026/09/28/openai-abandons-plan-to-release-upcoming-model-as-safety-concerns-escalate.html",
+      "https://www.cnbc.com/sam-altman/",
+      "https://www.cnbc.com/2026/09/13/china-dilemma-ai-slowdown-anthropic.html",
+      "https://www.cnbc.com/2026/03/31/openai-funding-round-ipo.html",
+      "https://www.cnbc.com/video/2026/10/08/openai-annualized-revenues-20-billion-less-than-previously-signaled-report.html",
+      "https://www.cnbc.com/the-exchange/",
+      "https://www.google.com/preferences/source?q=https://www.cnbc.com/"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "b05bddb8d5c0db30",
+   "url": "https://www.qbitai.com/2026/10/501834.html",
+   "title": "GPT-6今起免费用！拒答变少，话变多了",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-10-08T01:07:19+00:00",
+   "summary_short": "GPT-6向ChatGPT免费用户推送：聊天框可生成交互界面，回答变长",
+   "summary_long": "OpenAI宣布GPT-6开始向ChatGPT推送：Plus、Pro、Business、Enterprise用户自10月7日起用GPT-6 Sol，免费和Go用户自10月8日起用GPT-6 Luna，替换此前的GPT-5.6 Sol和Luna。新功能Intelligent UI让聊天框按问题生成图表、按钮和交互工具，答案可边思考边逐步呈现；OpenAI称需网页搜索的问题上，GPT-6 Instant开始回答平均比GPT-5.6 Instant早44%。此次更新只针对Chat体验，Work和Codex所用模型不切换。同日发布的部署安全报告显示，两款模型在网络安全、生物化学达High门槛未及Critical，AI自我改进未到High，定级与防护措施沿用GPT-5.6。报告也列出回退：Luna在自伤、血腥、色情评测中下降，面向未成年人的年龄限制内容、色情与情感依赖项目两版本均显著回退，情感依赖从0.927降至0.734；回答明显变长，HealthBench Professional上Luna平均长度由2,920字符升至5,289。",
+   "key_points": [
+    "推送安排：付费用户10月7日起用GPT-6 Sol，免费与Go用户10月8日起用GPT-6 Luna，分别替换GPT-5.6 Sol和Luna；本轮更新只针对Chat体验，Work和Codex模型不切换。",
+    "Intelligent UI让聊天框按问题生成图表、按钮和交互工具，交互组件可随生成过程逐步显示；需网页搜索的问题上，GPT-6 Instant开始回答平均比GPT-5.6 Instant早44%。",
+    "安全报告：网络安全与生物化学均达High未及Critical，AI自我改进未到High；多轮越狱防守优于GPT-5.6 Sol，指令层级抵抗率Sol 99.99%、Luna 99.79%，Codex Auto-review中GPT-6无绕审案例。"
+   ],
+   "topics": [
+    "product",
+    "alignment"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 57.7,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "OpenAI"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/tingyu",
+      "https://www.qbitai.com",
+      "https://openai.com/index/gpt-6-for-everyone/",
+      "https://deploymentsafety.openai.com/gpt-6-october",
+      "https://www.qbitai.com/tag/openai",
+      "https://www.qbitai.com/2026/09/497613.html",
+      "https://www.qbitai.com/2026/09/497382.html",
+      "https://www.qbitai.com/2026/10/501749.html",
+      "https://www.qbitai.com/2026/10/501451.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/501834.html&title=GPT-6今起免费用！拒答变少，话变多了&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2025/04/271711.html",
+      "https://www.qbitai.com/2023/12/103124.html",
+      "https://www.qbitai.com/tag/%e5%a5%a5%e7%89%b9%e6%9b%bc",
+      "https://www.qbitai.com/2025/01/244073.html",
+      "https://www.qbitai.com/tag/agent",
+      "https://www.qbitai.com/2025/10/341421.html",
+      "https://www.qbitai.com/2024/04/136662.html",
+      "https://www.qbitai.com/tag/gpt-4",
+      "https://www.qbitai.com/tag/%e9%bb%91%e5%ae%a2",
+      "https://www.qbitai.com/2025/08/319587.html",
+      "https://www.qbitai.com/tag/gpt-5",
+      "https://www.qbitai.com/tag/meta",
+      "https://www.qbitai.com/2026/10/500098.html",
+      "https://www.qbitai.com/2026/10/499991.html",
+      "https://www.qbitai.com/2026/10/499958.html",
+      "https://www.qbitai.com/2026/10/501381.html",
+      "https://www.qbitai.com/2026/10/501368.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "f33b64fe9640bfa0",
+   "url": "https://www.dgt.is/blog/2026-10-07-deepseek-freek-out/",
+   "title": "Why isn't the industry freaking out about DeepSeek 4.1 Flash?",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-08T00:14:48+00:00",
+   "summary_short": "实测DeepSeek 4.1 Flash一月：能力接近前沿模型且极便宜",
+   "summary_long": "原文作者称自己已重度使用DeepSeek 4.1 Flash约一个月、横跨十几个项目。他认为该模型能力很强，比“前沿”模型便宜数个量级，使用中不看模型名就分不清是DeepSeek还是Opus，也不介意没有4.1“Pro”。由此他发问：前沿实验室为何没有恐慌？他称中国模型可能落后Anthropic/OpenAI一两个月，但蒸馏后的中国模型能承担同样工作量，而开发者只在意性价比。他用每月10美元的OpenCode Go订阅，DeepSeek几乎不限量：某些任务成本从1美元降到0.003美元，一次会话预期成本很少超过1美元；他也用4.1 Flash做复杂规划与研究，偶尔调Opus 5.5做最终代码审查，再让DeepSeek执行修复。技术上，他称DeepSeek把KV缓存较V1缩小约437倍，这是全天会话低于1美元的关键，并称Opus 5.5也有类似效率提升。他称自托管在经济上不划算，但若关注隐私，缓存优化终将走向本地。原文未给出具体基准数据。",
+   "key_points": [
+    "作者重度使用DeepSeek 4.1 Flash约一个月，认为其能力接近前沿模型（不看模型名分不清与Opus的差别），价格却便宜数个量级。",
+    "借助每月10美元的OpenCode Go订阅，DeepSeek几乎不限量；部分任务成本从1美元降至0.003美元，一次会话预期成本很少超过1美元。",
+    "他称DeepSeek把KV缓存较V1缩小约437倍，是全天会话低于1美元的原因，并称Opus 5.5也有类似效率提升；他还认为自托管经济上不划算，但隐私导向的本地缓存优化即将到来。"
+   ],
+   "topics": [
+    "product",
+    "inference-cost",
+    "kv-cache"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 56.7,
+   "status": "review",
+   "extra": {
+    "hn_points": 387,
+    "hn_comments": 324,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://oneshotlm.com/model/deepseek-deepseek-v4-1-flash/",
+      "https://artificialanalysis.ai/models/releases/comparisons/claude-opus-5-5-vs-deepseek-v4-1-flash",
+      "https://techcrunch.com/2026/02/23/anthropic-accuses-chinese-ai-labs-of-mining-claude-as-us-debates-ai-chip-exports/",
+      "https://github.com/jonocodes/RSilo",
+      "https://insufferable.dev/posts/the-ai-race-just-got-awkward/",
+      "https://yegge.ai/essays/the-shape-of-things-to-come/",
+      "https://x.com/doodlestein/status/2012740971088289858?s=20"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "26cfcf0b22735a62",
+   "url": "https://twitter.com/danintheory/status/2108065033070789090",
+   "title": "OpenAI withdraws three mathematical results",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-08T07:05:40+00:00",
+   "summary_short": "原文未提供简介内容，无法概括",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "hallucination",
+    "reasoning"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 56.4,
+   "status": "review",
+   "extra": {
+    "hn_points": 247,
+    "hn_comments": 543,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://t.co/HI6otY2NTO"
+     ]
+    },
+    "summary_mode": "brief"
+   }
+  },
+  {
+   "id": "d52167838f811731",
+   "url": "https://www.latent.space/p/ainews-claude-haiku-55-better-than",
+   "title": "[AINews] Claude Haiku 5.5 — better than GPT-6 Luna at the same pricing",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-10-08T07:27:51+00:00",
+   "summary_short": "Anthropic发布Haiku 5.5：最便宜最快小模型，同日下调Sonnet价格",
+   "summary_long": "Anthropic 发布 Claude Haiku 5.5，这是其约一年来首次更新 Haiku 系列。官方称其为「迄今最便宜、最快、能力最强的小模型」，平均运行成本比 Haiku 4.5 低约 75%，定价与 OpenAI 的 GPT-6 Luna 对齐；同日 Anthropic 还下调了 Sonnet 5.5 与订阅方案的价格。模型已在 Claude Platform 和 Claude Code 上线，官方把它定位为与 Opus 5.5 或 Sonnet 5.5 搭配的 subagent，用于摘要、压缩、数据库查询等高频、成本敏感任务。定价分档：100K token 以下输入/输出每百万 token 为 $0.10/$0.50，缓存读取 $0.01；超过 100K 为 $0.50/$2.50，缓存读取 $0.05。Sonnet 5.5 缓存读取由 $0.20 降至 $0.10，官方称长时或 agentic 任务约便宜 20%。订阅用户获赠每月 Claude Platform API 额度，同日 Python 与 TypeScript SDK 内置 computer-use 与 browser-use 工具集。Artificial Analysis 的 Intelligence Index 为 43（max effort），比上一代 Haiku 高 26 分。原文提到的主要保留意见",
+   "key_points": [
+    "Anthropic 发布 Claude Haiku 5.5，约一年来首次 Haiku 更新，官方称最便宜、最快、最强小模型，平均运行成本比 Haiku 4.5 低约 75%",
+    "定价与 GPT-6 Luna 对齐：100K token 以下输入/输出 $0.10/$0.50 每百万 token，超 100K 为 $0.50/$2.50；同日 Sonnet 5.5 缓存读取从 $0.20 减半至 $0.10，订阅方案降价并附赠 API 额度",
+    "Artificial Analysis 的 Intelligence Index 为 43（max effort），比上代 Haiku 高 26 分，略超 GLM-5.3 Flash、Gemini 3.8 Flash 与 GPT-6 Luna，低于 Claude Sonnet 5.5（56）13 分"
+   ],
+   "topics": [
+    "small-model",
+    "pricing"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 54.3,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.latent.space/p/ainews-ai-vs-saas-the-unreasonable?utm_source=publication-search",
+      "https://twitter.com/i/lists/1585430245762441216",
+      "https://news.smol.ai/",
+      "https://www.latent.space/p/2026",
+      "https://support.substack.com/hc/en-us/articles/8914938285204-How-do-I-subscribe-to-or-unsubscribe-from-a-section-on-Substack",
+      "https://x.com/scaling01/status/2107889433777258535",
+      "https://x.com/kimmonismus/status/2107890621834990038",
+      "https://x.com/kimmonismus/status/2107892761709993985",
+      "https://x.com/kimmonismus/status/2107892976374472811",
+      "https://x.com/claudeai/status/2107894039626277339",
+      "https://x.com/AnthropicAI/status/2107894208547983705",
+      "https://x.com/ClaudeDevs/status/2107895955144208813",
+      "https://x.com/mikeyk/status/2107894911907614872",
+      "https://x.com/ClaudeDevs/status/2107895956872290654",
+      "https://x.com/claudeai/status/2107894060229034197",
+      "https://x.com/ClaudeDevs/status/2107895957933408429",
+      "https://x.com/ClaudeDevs/status/2107925762720326090",
+      "https://x.com/ClaudeDevs/status/2107925764163113107",
+      "https://x.com/cursor_ai/status/2107897245282799864",
+      "https://x.com/cursor_ai/status/2107897257651769464",
+      "https://x.com/code/status/2107936051482300756",
+      "https://x.com/cognition/status/2107942832921075726",
+      "https://x.com/arena/status/2107906881276826082",
+      "https://x.com/ArtificialAnlys/status/2107911905822351609",
+      "https://x.com/ArtificialAnlys/status/2107911912499618086",
+      "https://x.com/ArtificialAnlys/status/2107911915788018161",
+      "https://x.com/ShayneRedford/status/2107942496601010512",
+      "https://x.com/alexalbert__/status/2107912771568554415",
+      "https://x.com/TheRundownAI/status/2107901352340836491",
+      "https://x.com/LoganMarkewich/status/2107911680550433252",
+      "https://x.com/jerryjliu0/status/2107940101217309041",
+      "https://x.com/simonw/status/2107938675405586713",
+      "https://x.com/simonw/status/2107939154122404015",
+      "https://x.com/AI_Screening/status/2107906044915749274",
+      "https://x.com/kimmonismus/status/2107894978332557756",
+      "https://x.com/theo/status/2107914587354063142",
+      "https://x.com/theo/status/2107915920714944999",
+      "https://x.com/theo/status/2107960523958681921",
+      "https://x.com/draecomino/status/2107898484338917777",
+      "https://x.com/kipperrii/status/2107903755236831663"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "f6d3626eb7c890d9",
+   "url": "https://openai.com/index/legalon-halves-codex-costs",
+   "title": "LegalOn halves Codex costs while maintaining development speed",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-08T12:00:00+00:00",
+   "summary_short": "LegalOn 按任务匹配模型并设用量上限，Codex 成本减半而开发速度不变",
+   "summary_long": "原文介绍 LegalOn Technologies 提供面向全球的专业 AI，用 AI 支持法律工作及其他关键业务职能，并推动组织自身 AI 原生化。公司将 Codex 引入开发流程并在组织内推广，但采用度上升后出现成本控制难题：无限使用高性能模型会推高支出，一刀切限制又可能削弱 AI 带来的效率提升。其 AI 驱动的开发 CoE（AID CoE）制定模型选择指南，测试并监控模型，管理者把结论传达给团队，使工程师能自行选择最合适的模型；公司还通过管理员设置引入系统管控，为部门和个人设每月用量上限，由 AID CoE 监控用量并按业务需要调整。团队从轻量模型起步，随任务复杂度提升再切换到更强模型。公司最初让开发者无限使用 Fast 模式下的 GPT-5.5，后改为默认限制 Fast 模式、仅在需要时单独申请。原文称其在维持开发速度的同时将成本减半，估计每日成本降低 65%，成熟业务领域成本降低 20%。原文末尾内容不完整。",
+   "key_points": [
+    "按任务复杂度与开发阶段在 GPT-6 Luna、GPT-6.1 Sol、GPT-6 Astra 间选择，并让预算与各业务增长阶段对齐，公司在维持开发速度的同时将成本减半。",
+    "AID CoE 制定模型选择指南并监控模型与用量，管理者向团队传达结果，使工程师可自主选型；同时通过管理员设置为部门和个人设每月用量上限。",
+    "分工方式：Luna 处理需求清晰的代码实现与日常自动化（主要作为子代理）；Sol 负责标准设计、数据分析与文档；Astra 负责复杂分析、复杂软件设计与协调代理等高级判断。"
    ],
    "topics": [
     "coding-agent",
-    "harness",
-    "context-engineering"
+    "product",
+    "harness"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 52.5,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "39a6cfc0a703e394",
+   "url": "https://github.com/QingYunA/answer-me-with-html",
+   "title": "QingYunA/answer-me-with-html — Answer me with HTML — an agent skill that answers hard questions with a one-page HTML you can actually read. 让 AI Agent 用一页 HTML 回答复杂问题。",
+   "source": "GitHub Trending (AI)",
+   "tier": "B",
+   "published_at": "2026-10-02T09:57:40+00:00",
+   "summary_short": "Answer me with HTML 是一个 agent skill，用一页可读的 HTML 回答复杂问题。",
+   "summary_long": "",
+   "key_points": [
+    "名称/主题为 Answer me with HTML",
+    "它是一个 agent skill",
+    "用途是用一页 HTML 回答难题（hard questions）"
+   ],
+   "topics": [
+    "tool-use",
+    "harness"
    ],
    "category": "Agent 与开发",
    "categories": [
     "Agent 与开发",
     "开源项目"
    ],
-   "horizon": "short",
-   "score": 52.7,
+   "horizon": "long",
+   "score": 52.5,
    "status": "review",
    "extra": {
-    "stars": 1347,
+    "stars": 2324,
     "language": "JavaScript",
     "summary_mode": "brief"
-   }
-  },
-  {
-   "id": "04e9dc3828b5420c",
-   "url": "https://openai.com/index/radisson",
-   "title": "Radisson Hotel Group brings hotel discovery into ChatGPT",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-07T07:00:00+00:00",
-   "summary_short": "Radisson联手Accenture上线ChatGPT酒店插件，早期预订转化约为自然搜索1.5倍。",
-   "summary_long": "Radisson Hotel Group与Accenture（Accenture Song）合作，使用OpenAI技术构建了Radisson Hotels ChatGPT插件，帮助旅客在行程规划阶段比较酒店、探索旅行选项并预订。原文称，该插件从搭建到上线仅用6周。早期结果显示，插件的预订转化约为Radisson自然搜索的1.5倍（2026年7—8月数据）。除插件外，Radisson还是酒店业中率先在ChatGPT投放赞助广告的企业之一，把品牌插件与付费广告结合为统一的发现策略，原文称已记录的结账与预订事件中有54%归因于广告曝光。Radisson首席商务官Gianni Di Fede与全球电商副总裁Velit Dundar在文中表示，AI正在彻底改变人们搜索和预订酒店的方式，公司希望让客人从旅行想法自然过渡到可放心预订的酒店，并把对话连接到其直接预订体验。背景方面，Radisson在EMEA和APAC拥有十个酒店品牌，运营及在建酒店超过1,640家；过去七年Accenture协助其通过直接数字渠道提升预订。",
-   "key_points": [
-    "Radisson Hotel Group与Accenture Song合作，用OpenAI技术构建ChatGPT插件，帮助旅客查找、比较和预订酒店，从搭建到上线耗时6周。",
-    "早期数据显示（2026年7—8月），插件带来的预订转化约为Radisson自然搜索的1.5倍；已记录的结账与预订事件中54%归因于赞助广告曝光。",
-    "Radisson将品牌插件与ChatGPT赞助广告整合为统一的发现策略，意在连接直接预订体验；其在EMEA和APAC拥有十个品牌、运营及在建酒店超1,640家，Accenture已协助其发展直接数字渠道七年。"
-   ],
-   "topics": [
-    "product"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 51.0,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://chatgpt.com/plugins/plugin_asdk_app_6a9a8d3450b88191835993047364a53b",
-      "https://ads.openai.com/",
-      "https://chatgpt.com/plugins/plugin_asdk_app_6a9a8d3450b88191835993047364a53b?openaicom_referred=true"
-     ]
-    },
-    "summary_mode": "full"
    }
   }
  ]

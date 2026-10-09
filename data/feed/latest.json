@@ -1,568 +1,245 @@
 {
- "generated_at": "2026-10-08T00:57:59+00:00",
- "date": "2026-10-08",
- "run_id": "20261008-005320",
+ "generated_at": "2026-10-09T01:12:14+00:00",
+ "date": "2026-10-09",
+ "run_id": "20261009-010713",
  "top": [
   {
-   "id": "0ca1450969b5beb5",
-   "url": "https://openai.com/index/gpt-6-for-everyone",
-   "title": "GPT-6 and Intelligent UI for everyone",
-   "source": "OpenAI News",
+   "id": "0f05fd4155a46f47",
+   "url": "https://huggingface.co/blog/building-with-ml-intern",
+   "title": "The model that didn't exist, so you made it yourself",
+   "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-07T00:00:00+00:00",
-   "summary_short": "GPT‑6 向全体 ChatGPT 用户开放，新增可交互界面 Intelligent UI",
-   "summary_long": "2026年10月7日发布：上个月推出的首批 GPT‑6 模型仅面向付费用户，今天则以一款新 GPT‑6 模型覆盖每周超过12亿的 ChatGPT 使用者。GPT‑6 在 ChatGPT 中引入 Intelligent UI——一项让 ChatGPT 用完全可交互界面快速作答的新能力，使日常答案更视觉化、复杂主题更易理解，并能即时生成工具解决问题。据原文，GPT‑6 可依据问题决定文本、视觉与交互元素如何组合，回答可包含图形、可点击按钮、表单、图表及可直接使用的交互体验；格式随提问而变，比较适合并排呈现，解释适合交互图表，文字最有用时就给文字。例子包括把周日烤肉时间与食谱并列、公路旅行停靠点标在地图上，以及生成储蓄计算器、分账工具或小游戏。实现上，原文称给了模型为每个问题自行创建最合适界面的自由，同时保持网页与移动端体验快速、熟悉，并构建了原生可流式传输组件库，以及随模型生成过程处理界面的编译器。",
+   "published_at": "2026-10-08T00:00:00+00:00",
+   "summary_short": "作者用 ML Intern 一天做出 CPU 可跑的 0.8B 提示改写模型，算力仅 16 美元",
+   "summary_long": "作者想要 Qwen-Image 2.1 自带提示改写器的小型版本：官方版是 9B、约需 20GB 内存、写一段话前要先思考数千 token，Hub 上只有同一 9B 的压缩副本。他把需求描述给 ML Intern，第二天就得到 CPU 可跑的 0.8B 版本，有效输出率 99.7%，token 消耗约为教师模型的四分之一；含用 9B 标注 8,797 条示例请求在内，项目算力共 16 美元。随后几天他又以同样方式做了五个模型，每个都始于 HuggingChat 中开启 ML-intern 的一条消息，终于 Hub 上的公开模型及模型卡评测。ML-intern 会规划工作、花钱前先要预算、正式任务前跑小测试，再在 Hugging Face 硬件上训练、评测、发布。作者称首条提示词最花心思，关键写法是：训练前先要基线分数、加一个带检查的 smoke test、末尾写明交付物与花费上限；七个项目的提示词已公开在 GitHub。文中还举例：他用 Claude 整合三个来源做出含 3,017 张标注图、覆盖 21 类病虫害与营养缺乏的数据集，由 ML-intern 微调 Qwen3.5-2B。",
    "key_points": [
-    "上月的首批 GPT‑6 仅面向付费用户，此次以新模型向每周超12亿 ChatGPT 用户开放",
-    "Intelligent UI 让回答包含图形、可点击按钮、表单、图表等交互元素，格式随问题类型变化",
-    "用户可要求即时生成工具，如储蓄计算器、分账工具或对话内小游戏"
+    "0.8B 提示改写模型可在 CPU 上运行，有效输出率 99.7%，token 用量约为 9B 教师模型的四分之一。",
+    "整个项目（含 9B 模型标注 8,797 条示例请求）算力花费 16 美元；随后几天以同样方式又做了五个模型。",
+    "提示词关键写法：训练前先要基线分数、加带检查的 smoke test、写明交付物与花费上限；七份提示词已公开在 GitHub。"
    ],
    "topics": [
-    "product"
+    "agent-loop",
+    "post-training",
+    "harness"
    ],
-   "category": "模型",
+   "category": "Agent 与开发",
    "categories": [
-    "模型",
-    "产品与应用"
+    "Agent 与开发",
+    "模型"
    ],
-   "horizon": "short",
-   "score": 84.9,
+   "horizon": "long",
+   "score": 84.3,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "source_tags": [
-     "Product"
-    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://deploymentsafety.openai.com/gpt-6-october"
+      "https://github.com/huggingface/blog/blob/main/building-with-ml-intern.md",
+      "https://huggingface.co/Qwen/Qwen-Image-2.1-PE-T2I",
+      "https://huggingface.co/chat/?mode=ml-intern",
+      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-PE-T2I-Pocket-0.8B",
+      "https://github.com/yvrjsharma/ml-intern-prompts",
+      "https://huggingface.co/ML-Intern-lab/citrus-disease-vlm#results",
+      "https://huggingface.co/Qwen/Qwen3.5-2B",
+      "https://huggingface.co/Project-AgML",
+      "https://huggingface.co/datasets/ML-Intern-lab/citrus-disease-vlm-instruct",
+      "https://huggingface.co/ML-Intern-lab/citrus-disease-vlm",
+      "https://huggingface.co/spaces/ML-Intern-lab/citrus-doctor",
+      "https://huggingface.co/black-forest-labs/FLUX.2-klein-base-4B",
+      "https://huggingface.co/datasets/Chunte/huggy_for_training",
+      "https://huggingface.co/ML-Intern-lab/huggy-flux2-klein-lora",
+      "https://huggingface.co/spaces/ML-Intern-lab/huggy-generator",
+      "https://huggingface.co/datasets/suvadityamuk/google-scanned-objects",
+      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-viewpoint-orbit-LoRA",
+      "https://huggingface.co/datasets/ML-Intern-lab/gso-orbit-rgba",
+      "https://huggingface.co/spaces/ML-Intern-lab/Qwen-Image-2.1-viewpoint-orbit-LoRA",
+      "https://huggingface.co/Viggle/Qwen-Image-2.1-viggle-turbo",
+      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-doodle-in-LoRA#main-comparison--160-test-pairs",
+      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-doodle-in-LoRA",
+      "https://huggingface.co/datasets/ML-Intern-lab/doodle-in-pairs",
+      "https://huggingface.co/spaces/ML-Intern-lab/Qwen-Image-2.1-doodle-in-LoRA",
+      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-PE-T2I-Pocket-2B",
+      "https://huggingface.co/datasets/ML-Intern-lab/Qwen-Image-2.1-rewriter-distill",
+      "https://huggingface.co/spaces/ML-Intern-lab/Qwen-Image-2.1-pocket-studio",
+      "https://huggingface.co/spaces/ML-Intern-lab/Qwen-Image-2.1-rewriter-arena",
+      "https://huggingface.co/Logolabs/agate-preview-002",
+      "https://huggingface.co/ML-Intern-lab/agate-preview-002-4step",
+      "https://huggingface.co/datasets/ML-Intern-lab/agate-preview-002-4step-latents",
+      "https://huggingface.co/spaces/ML-Intern-lab/agate-preview-002-4step-webgpu",
+      "https://huggingface.co/spaces/ML-Intern-lab/agate-preview-002-4step-live",
+      "https://huggingface.co/chat/",
+      "https://x.com/Gradio",
+      "https://x.com/huggingface"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "b96448f5a5529676",
-   "url": "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
-   "title": "Secret protection must scale with software",
-   "source": "GitHub Blog (AI)",
+   "id": "7a238471d7092596",
+   "url": "https://www.anthropic.com/news/2026-usage-policy-update",
+   "title": "2026 Usage Policy update",
+   "source": "Anthropic News",
    "tier": "S",
-   "published_at": "2026-10-07T17:45:34+00:00",
-   "summary_short": "GitHub 称每三个 PR 已有一个涉及 AI 智能体，密钥防护须随代码生成速度同步扩展",
-   "summary_long": "原文指出，GitHub 上如今每三个 pull request 就有一个涉及 AI 智能体，一年前这一比例还不足十分之一；若该速度延续，两年内推到 GitHub 的代码多数可能由智能体编写，其中许多或许从未被人类完整阅读。公开可见代码中约每两秒出现一个新密钥，过去三年每年翻倍。作者用九个完整季度的数据反驳“AI 让开发者变粗心”的说法：2024 年二季度至 2026 年二季度，被筛查的 push 增长 2.84 倍，携带凭据的 push 增长 2.59 倍，未发现每次 push 密钥流行率的可统计趋势；同期开发者覆盖 push 拦截的比例从 6.63% 线性降至 3.93%。真正的瓶颈在节奏：人工撤销密钥的平均时间约 40 天，约五分之一超过 90 天。因此原文主张由算力承担更多防护：作者与 Microsoft Applied Sciences 共同构建的微调分类器把 push protection 扩展到非结构化密钥，可在不到两毫秒内评估整组候选密钥，并可能使可阻止的密钥数量翻倍以上。GitHub 通过密钥扫描伙伴计划覆盖 150 多家技术伙伴，2026 年二季度公开扫描平均每秒报告 26 个凭据匹配。",
+   "published_at": "2026-10-08T00:00:00+00:00",
+   "summary_short": "Anthropic发布2026版使用政策：整合欺骗活动规则，澄清选举、武器与监控禁令",
+   "summary_long": "Anthropic于2026年10月8日发布新版使用政策，11月12日生效。原文称，过去一年Claude承担了更长、更独立的工作，因此本次更新提供新示例，说明规则如何适用于这些新能力；更新还依据过去一年在影响力行动、武器开发、监控方面观察到的新滥用模式（见其最新威胁情报报告）。多数修改意在澄清既有规则，同时澄清了健康、金融等高风险用例的要求，新增对Claude被用于自主采取物理行动的控制，并处理针对模型的滥用行为。具体变化包括：将分散在选举、欺诈、隐私、虚假信息各处的规则整合为新章节“不得参与欺骗性活动或人为制造活动”，适用于任何政治或商业欺骗行为，涵盖掩盖信息幕后主体、借虚假账号放大内容、搭建影响力行动工具与基础设施；选举章节更名为“不得破坏民主进程”，聚焦禁止欺骗选民或破坏选举，并取消对个性化投票与竞选定向的一刀切禁令，因该禁令覆盖了合法公民工作（如为他语选民写信息、发送选票补救通知），原规则针对的行为仍被禁止；武器章节明确禁止范围含使武器运作的软件与部件及武装无人机等自主载具；监控与刑事司法章节被重写，禁止未经同意追踪他人。",
    "key_points": [
-    "GitHub 上每三个 pull request 已有一个涉及 AI 智能体，一年前不足十分之一；约每两秒就有一个新密钥出现在公开可见代码中，过去三年每年翻倍。",
-    "九个完整季度数据显示：筛查 push 增长 2.84 倍、携带凭据的 push 增长 2.59 倍，每次 push 的密钥流行率无可统计趋势，开发者覆盖 push 拦截的比例从 6.63% 降至 3.93%。",
-    "人工撤销密钥平均约 40 天、约五分之一超过 90 天；与 Microsoft Applied Sciences 共建的微调分类器可在不到两毫秒内评估整组候选密钥，可能使可阻止的密钥数量翻倍以上。"
+    "原文称多数更新意在澄清既有规则，并新增对Claude被用于自主采取物理行动的控制、澄清健康与金融等高风险用例要求、处理针对模型的滥用行为",
+    "新增“不得参与欺骗性活动或人为制造活动”章节，把原本分散在选举、欺诈、隐私、虚假信息部分的规则整合起来，适用于任何政治或商业欺骗活动",
+    "选举章节更名为“不得破坏民主进程”并取消个性化投票与竞选定向的一刀切禁令；武器禁令明确覆盖使武器运作的软件与部件；监控章节被重写，未经同意追踪他人（实时或分析既有数据）均被禁止"
    ],
    "topics": [
-    "cybersecurity",
-    "privacy",
-    "open-source"
+    "usage-policy",
+    "abuse-prevention",
+    "autonomous-agents"
    ],
    "category": "安全",
    "categories": [
     "安全"
    ],
    "horizon": "long",
-   "score": 81.3,
+   "score": 79.5,
    "status": "published",
    "extra": {
-    "content_source": "rss",
+    "content_source": "direct",
     "source_tags": [
-     "AI & ML",
-     "Generative AI",
-     "GitHub Copilot",
-     "AI",
-     "Secret Protection"
+     "Announcements"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4",
-      "https://docs.github.com/en/code-security/tutorials/secret-scanning-partner-program",
-      "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
-      "https://github.blog"
+      "https://www.anthropic.com/threat-intelligence-report-september-2026",
+      "https://www.anthropic.com/legal/aup",
+      "https://www.anthropic.com/supported-countries",
+      "https://www.anthropic.com/news/model-hardware-standard-research-preview",
+      "https://www.anthropic.com/research/end-subset-conversations",
+      "https://www.anthropic.com/news/updating-restrictions-of-sales-to-unsupported-regions",
+      "https://twitter.com/intent/tweet?text=https://www.anthropic.com/news/2026-usage-policy-update",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://www.anthropic.com/news/2026-usage-policy-update"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "0825a4897dea2e82",
-   "url": "https://huggingface.co/blog/LiquidAI/open-d1",
-   "title": "Multimodal open d1 decision models for the edge",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-07T16:54:33+00:00",
-   "summary_short": "开源多模态决策模型 d1-3B、d1-omni-600M，边缘端毫秒级出结果。",
-   "summary_long": "原文发布 d1 决策模型家族的两款开放模型：d1-3B 与实验性的 d1-omni-600M。据原文，d1-3B 在 Decision Index 0.2.1 得分 48.57，是 10B 以下最佳决策模型，超过所有 4B、9B 模型和 Decider 35B-A3B（47.11）。d1-3B 支持文本与图像，d1-omni-600M 支持文本加图像或文本加音频。\n\n模型基于 Liquid Foundation Models 构建。与生成式模型不同，决策模型不逐 token 生成，而是在单次前向中给出答案：d1-3B 由解码器架构的 LFM2.5-VL-3B 训练，d1-omni-600M 由双向编码器 LFM2.5-Encoder-350M 训练并加入视觉与音频编码器。\n\n在七个公开数据集（阅读理解、毒性检测、意图分类、医学问答、跨语言理解）上，d1-3B 平均 82.9 为表内最高，d1-omni-600M 平均 78.4，以四分之一参数量超过 Decider 2B（77.1）。原文未报告视觉或音频基准，因 Decision Index v0.3 仅含私有视觉切分，音频决策基准仍属开放问题。\n\n与 NVIDIA 合作在 RTX 4090 与三款 Jetson 设备上评测 d1-3B：单问答均低于 50 毫秒，三问约为单问的 1.3 倍。d1-omni-600M 属早期研究版本，",
-   "key_points": [
-    "d1-3B 在 Decision Index 0.2.1 得分 48.57，为 10B 以下最佳决策模型，超过所有 4B、9B 模型与 Decider 35B-A3B（47.11）。",
-    "d1-3B 支持文本与图像；d1-omni-600M 支持文本加图像或文本加音频，目前为实验性早期研究版本，仍在继续开发。",
-    "七个公开数据集平均分：d1-3B 为 82.9（表内最高），d1-omni-600M 为 78.4，以四分之一参数量超过 Decider 2B（77.1）。"
-   ],
-   "topics": [
-    "post-training",
-    "reasoning",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 80.4,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.liquid.ai/blog/d1-decision-model",
-      "https://huggingface.co/LiquidAI/d1-3b",
-      "https://huggingface.co/LiquidAI/d1-omni-600M",
-      "https://huggingface.co/LiquidAI/LFM2.5-VL-3B",
-      "https://huggingface.co/LiquidAI/LFM2.5-Encoder-350M",
-      "https://huggingface.co/spaces/LiquidAI/system-one-arcade"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "5bdd694c62903534",
-   "url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
-   "title": "One Model Family, Two Gold-Level Results: Fine-Tuning Nemotron for IOI and IMO",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-07T12:45:31+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "post-training",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 78.4,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2609.02849",
-      "2609.10712"
-     ],
-     "links": [
-      "https://arxiv.org/abs/2609.10712",
-      "https://arxiv.org/abs/2609.02849",
-      "https://cdn-uploads.huggingface.co/production/uploads/67b8b0096c3182e96bf6cea1/LqM9etFUGTjJT116M7Hq8.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/67b8b0096c3182e96bf6cea1/GptKxXbYlSsm2ksIJqZzE.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/67b8b0096c3182e96bf6cea1/Wo0kpoA9qTLPaxWv48DnL.png",
-      "https://huggingface.co/blog/nvidia/ioi-gold-medal-with-open-weight",
-      "https://huggingface.co/collections/nvidia/nemotron-labs-imo-2026",
-      "https://github.com/NVIDIA-NeMo/Skills/tree/main/recipes/nemotron-imo-tts",
-      "https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-3-Competitive-Coding-550B-A55B-NVFP4",
-      "https://github.com/NVIDIA-NeMo/Skills"
-     ]
-    }
-   }
-  },
-  {
-   "id": "0a7d6e8e8b6e8899",
-   "url": "https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
-   "title": "EmbeddingGemma 2: An open, lightweight multimodal embedding model",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-06T16:03:49+00:00",
-   "summary_short": "EmbeddingGemma 2 开源：740M 参数原生多模态嵌入，主打端侧",
-   "summary_long": "谷歌 DeepMind 去年推出 EmbeddingGemma，为端侧提供轻量高质量文本嵌入，下载量超 2000 万次，被用于端侧搜索与隐私优先的 RAG 流程。现发布 EmbeddingGemma 2，从文本扩展到统一代码、图像、视频与音频的共享嵌入空间。模型基于 Gemma 4 架构，以 Apache 2.0 许可发布，740M 参数，面向端侧推理，可依文字查询检索语音备忘或数小时录音。它采用模块化设计，纯文本最低 270M 参数，视觉编码器 170M、音频编码器 300M 可选；借助 Matryoshka 表示学习，输出向量可从 768 维截断至 512/256/128 维，最高减少 6 倍存储。量化后在 Pixel 11 Pro 上纯文本权重约需 191MB 活动内存，全模态约 567MB。上下文窗口 8K token，约为一代 4 倍，可处理 5.5 分钟音频、29 张图像、58 个视频帧或交错组合。质量上，MTEB Code 提升 9.92 分（68.76 至 78.68）；在图像、视频、文档与音频上刷新 sub-1B 模型的质量/参数标准。原文称本地生成嵌入有助保障数据隐私、降低延迟，并可支持完全离线的跨模态检索，搭配 Gemma 4 可实现端侧 RAG。",
-   "key_points": [
-    "基于 Gemma 4 架构、Apache 2.0 许可、740M 参数，原生把文本、代码、图像、视频、音频映射到统一嵌入空间，面向端侧推理",
-    "模块化与高效：纯文本最低 270M 参数，视觉 170M、音频 300M 编码器可选；MRL 支持向量 768 维截断至 512/256/128 维，最高 6 倍存储缩减；8K token 上下文，可处理 5.5 分钟音频、29 张图像、58 个视频帧或交错组合",
-    "MTEB Code 从 68.76 提升至 78.68，在 MTEB Code、MAEB 等基准的 sub-1B 多模态嵌入模型中领先，并称在文本、视觉、音频任务上匹配或超越许多更大模型"
-   ],
-   "topics": [
-    "open-source",
-    "rag"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 78.2,
-   "status": "published",
-   "extra": {
-    "hn_points": 414,
-    "hn_comments": 46,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://twitter.com/intent/tweet?text=EmbeddingGemma%202%3A%20an%20open%2C%20lightweight%20multimodal%20embedding%20model%20%40google&url=https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
-      "https://www.facebook.com/sharer/sharer.php?caption=EmbeddingGemma%202%3A%20an%20open%2C%20lightweight%20multimodal%20embedding%20model&u=https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/&title=EmbeddingGemma%202%3A%20an%20open%2C%20lightweight%20multimodal%20embedding%20model",
-      "https://developers.googleblog.com/en/introducing-embeddinggemma/",
-      "https://ai.google.dev/gemma/docs/embeddinggemma/model_card_2",
-      "https://developers.google.com/edge/gallery",
-      "https://developers.google.com/edge/foresight",
-      "https://developers.google.com/edge/mediapipe/solutions/decision/decision_maker",
-      "http://developers.googleblog.com/google-ai-edge-with-embeddinggemma-2",
-      "https://huggingface.co/google/embeddinggemma-2",
-      "https://www.kaggle.com/models/google/embeddinggemma-2",
-      "https://huggingface.co/litert-community",
-      "https://developers.google.com/edge/litert-lm",
-      "https://huggingface.co/spaces/webml-community/embeddinggemma-2-webgpu",
-      "https://github.com/Blaizzy/mlx-vlm",
-      "https://huggingface.co/ggml-org/embeddinggemma-2-GGUF",
-      "http://ollama.com/library/embeddinggemma-2",
-      "https://qdrant.tech/blog/embeddinggemma-2/",
-      "https://unsloth.ai/docs/models/embeddinggemma-2",
-      "https://developers.googleblog.com/en/embeddinggemma-2-the-developer-guide/",
-      "https://ai.google.dev/gemma/docs/embeddinggemma",
-      "https://ai.google.dev/gemma/docs/embeddinggemma/inference-embeddinggemma-with-sentence-transformers",
-      "https://ai.google.dev/gemma/docs/embeddinggemma/fine-tuning-embeddinggemma-with-sentence-transformers"
-     ]
-    },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   }
  ],
  "items": [
   {
-   "id": "0ca1450969b5beb5",
-   "url": "https://openai.com/index/gpt-6-for-everyone",
-   "title": "GPT-6 and Intelligent UI for everyone",
-   "source": "OpenAI News",
+   "id": "0f05fd4155a46f47",
+   "url": "https://huggingface.co/blog/building-with-ml-intern",
+   "title": "The model that didn't exist, so you made it yourself",
+   "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-07T00:00:00+00:00",
-   "summary_short": "GPT‑6 向全体 ChatGPT 用户开放，新增可交互界面 Intelligent UI",
-   "summary_long": "2026年10月7日发布：上个月推出的首批 GPT‑6 模型仅面向付费用户，今天则以一款新 GPT‑6 模型覆盖每周超过12亿的 ChatGPT 使用者。GPT‑6 在 ChatGPT 中引入 Intelligent UI——一项让 ChatGPT 用完全可交互界面快速作答的新能力，使日常答案更视觉化、复杂主题更易理解，并能即时生成工具解决问题。据原文，GPT‑6 可依据问题决定文本、视觉与交互元素如何组合，回答可包含图形、可点击按钮、表单、图表及可直接使用的交互体验；格式随提问而变，比较适合并排呈现，解释适合交互图表，文字最有用时就给文字。例子包括把周日烤肉时间与食谱并列、公路旅行停靠点标在地图上，以及生成储蓄计算器、分账工具或小游戏。实现上，原文称给了模型为每个问题自行创建最合适界面的自由，同时保持网页与移动端体验快速、熟悉，并构建了原生可流式传输组件库，以及随模型生成过程处理界面的编译器。",
+   "published_at": "2026-10-08T00:00:00+00:00",
+   "summary_short": "作者用 ML Intern 一天做出 CPU 可跑的 0.8B 提示改写模型，算力仅 16 美元",
+   "summary_long": "作者想要 Qwen-Image 2.1 自带提示改写器的小型版本：官方版是 9B、约需 20GB 内存、写一段话前要先思考数千 token，Hub 上只有同一 9B 的压缩副本。他把需求描述给 ML Intern，第二天就得到 CPU 可跑的 0.8B 版本，有效输出率 99.7%，token 消耗约为教师模型的四分之一；含用 9B 标注 8,797 条示例请求在内，项目算力共 16 美元。随后几天他又以同样方式做了五个模型，每个都始于 HuggingChat 中开启 ML-intern 的一条消息，终于 Hub 上的公开模型及模型卡评测。ML-intern 会规划工作、花钱前先要预算、正式任务前跑小测试，再在 Hugging Face 硬件上训练、评测、发布。作者称首条提示词最花心思，关键写法是：训练前先要基线分数、加一个带检查的 smoke test、末尾写明交付物与花费上限；七个项目的提示词已公开在 GitHub。文中还举例：他用 Claude 整合三个来源做出含 3,017 张标注图、覆盖 21 类病虫害与营养缺乏的数据集，由 ML-intern 微调 Qwen3.5-2B。",
    "key_points": [
-    "上月的首批 GPT‑6 仅面向付费用户，此次以新模型向每周超12亿 ChatGPT 用户开放",
-    "Intelligent UI 让回答包含图形、可点击按钮、表单、图表等交互元素，格式随问题类型变化",
-    "用户可要求即时生成工具，如储蓄计算器、分账工具或对话内小游戏"
+    "0.8B 提示改写模型可在 CPU 上运行，有效输出率 99.7%，token 用量约为 9B 教师模型的四分之一。",
+    "整个项目（含 9B 模型标注 8,797 条示例请求）算力花费 16 美元；随后几天以同样方式又做了五个模型。",
+    "提示词关键写法：训练前先要基线分数、加带检查的 smoke test、写明交付物与花费上限；七份提示词已公开在 GitHub。"
    ],
    "topics": [
-    "product"
+    "agent-loop",
+    "post-training",
+    "harness"
    ],
-   "category": "模型",
+   "category": "Agent 与开发",
    "categories": [
-    "模型",
-    "产品与应用"
+    "Agent 与开发",
+    "模型"
    ],
-   "horizon": "short",
-   "score": 84.9,
+   "horizon": "long",
+   "score": 84.3,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "source_tags": [
-     "Product"
-    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://deploymentsafety.openai.com/gpt-6-october"
+      "https://github.com/huggingface/blog/blob/main/building-with-ml-intern.md",
+      "https://huggingface.co/Qwen/Qwen-Image-2.1-PE-T2I",
+      "https://huggingface.co/chat/?mode=ml-intern",
+      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-PE-T2I-Pocket-0.8B",
+      "https://github.com/yvrjsharma/ml-intern-prompts",
+      "https://huggingface.co/ML-Intern-lab/citrus-disease-vlm#results",
+      "https://huggingface.co/Qwen/Qwen3.5-2B",
+      "https://huggingface.co/Project-AgML",
+      "https://huggingface.co/datasets/ML-Intern-lab/citrus-disease-vlm-instruct",
+      "https://huggingface.co/ML-Intern-lab/citrus-disease-vlm",
+      "https://huggingface.co/spaces/ML-Intern-lab/citrus-doctor",
+      "https://huggingface.co/black-forest-labs/FLUX.2-klein-base-4B",
+      "https://huggingface.co/datasets/Chunte/huggy_for_training",
+      "https://huggingface.co/ML-Intern-lab/huggy-flux2-klein-lora",
+      "https://huggingface.co/spaces/ML-Intern-lab/huggy-generator",
+      "https://huggingface.co/datasets/suvadityamuk/google-scanned-objects",
+      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-viewpoint-orbit-LoRA",
+      "https://huggingface.co/datasets/ML-Intern-lab/gso-orbit-rgba",
+      "https://huggingface.co/spaces/ML-Intern-lab/Qwen-Image-2.1-viewpoint-orbit-LoRA",
+      "https://huggingface.co/Viggle/Qwen-Image-2.1-viggle-turbo",
+      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-doodle-in-LoRA#main-comparison--160-test-pairs",
+      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-doodle-in-LoRA",
+      "https://huggingface.co/datasets/ML-Intern-lab/doodle-in-pairs",
+      "https://huggingface.co/spaces/ML-Intern-lab/Qwen-Image-2.1-doodle-in-LoRA",
+      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-PE-T2I-Pocket-2B",
+      "https://huggingface.co/datasets/ML-Intern-lab/Qwen-Image-2.1-rewriter-distill",
+      "https://huggingface.co/spaces/ML-Intern-lab/Qwen-Image-2.1-pocket-studio",
+      "https://huggingface.co/spaces/ML-Intern-lab/Qwen-Image-2.1-rewriter-arena",
+      "https://huggingface.co/Logolabs/agate-preview-002",
+      "https://huggingface.co/ML-Intern-lab/agate-preview-002-4step",
+      "https://huggingface.co/datasets/ML-Intern-lab/agate-preview-002-4step-latents",
+      "https://huggingface.co/spaces/ML-Intern-lab/agate-preview-002-4step-webgpu",
+      "https://huggingface.co/spaces/ML-Intern-lab/agate-preview-002-4step-live",
+      "https://huggingface.co/chat/",
+      "https://x.com/Gradio",
+      "https://x.com/huggingface"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "b96448f5a5529676",
-   "url": "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
-   "title": "Secret protection must scale with software",
-   "source": "GitHub Blog (AI)",
+   "id": "7a238471d7092596",
+   "url": "https://www.anthropic.com/news/2026-usage-policy-update",
+   "title": "2026 Usage Policy update",
+   "source": "Anthropic News",
    "tier": "S",
-   "published_at": "2026-10-07T17:45:34+00:00",
-   "summary_short": "GitHub 称每三个 PR 已有一个涉及 AI 智能体，密钥防护须随代码生成速度同步扩展",
-   "summary_long": "原文指出，GitHub 上如今每三个 pull request 就有一个涉及 AI 智能体，一年前这一比例还不足十分之一；若该速度延续，两年内推到 GitHub 的代码多数可能由智能体编写，其中许多或许从未被人类完整阅读。公开可见代码中约每两秒出现一个新密钥，过去三年每年翻倍。作者用九个完整季度的数据反驳“AI 让开发者变粗心”的说法：2024 年二季度至 2026 年二季度，被筛查的 push 增长 2.84 倍，携带凭据的 push 增长 2.59 倍，未发现每次 push 密钥流行率的可统计趋势；同期开发者覆盖 push 拦截的比例从 6.63% 线性降至 3.93%。真正的瓶颈在节奏：人工撤销密钥的平均时间约 40 天，约五分之一超过 90 天。因此原文主张由算力承担更多防护：作者与 Microsoft Applied Sciences 共同构建的微调分类器把 push protection 扩展到非结构化密钥，可在不到两毫秒内评估整组候选密钥，并可能使可阻止的密钥数量翻倍以上。GitHub 通过密钥扫描伙伴计划覆盖 150 多家技术伙伴，2026 年二季度公开扫描平均每秒报告 26 个凭据匹配。",
+   "published_at": "2026-10-08T00:00:00+00:00",
+   "summary_short": "Anthropic发布2026版使用政策：整合欺骗活动规则，澄清选举、武器与监控禁令",
+   "summary_long": "Anthropic于2026年10月8日发布新版使用政策，11月12日生效。原文称，过去一年Claude承担了更长、更独立的工作，因此本次更新提供新示例，说明规则如何适用于这些新能力；更新还依据过去一年在影响力行动、武器开发、监控方面观察到的新滥用模式（见其最新威胁情报报告）。多数修改意在澄清既有规则，同时澄清了健康、金融等高风险用例的要求，新增对Claude被用于自主采取物理行动的控制，并处理针对模型的滥用行为。具体变化包括：将分散在选举、欺诈、隐私、虚假信息各处的规则整合为新章节“不得参与欺骗性活动或人为制造活动”，适用于任何政治或商业欺骗行为，涵盖掩盖信息幕后主体、借虚假账号放大内容、搭建影响力行动工具与基础设施；选举章节更名为“不得破坏民主进程”，聚焦禁止欺骗选民或破坏选举，并取消对个性化投票与竞选定向的一刀切禁令，因该禁令覆盖了合法公民工作（如为他语选民写信息、发送选票补救通知），原规则针对的行为仍被禁止；武器章节明确禁止范围含使武器运作的软件与部件及武装无人机等自主载具；监控与刑事司法章节被重写，禁止未经同意追踪他人。",
    "key_points": [
-    "GitHub 上每三个 pull request 已有一个涉及 AI 智能体，一年前不足十分之一；约每两秒就有一个新密钥出现在公开可见代码中，过去三年每年翻倍。",
-    "九个完整季度数据显示：筛查 push 增长 2.84 倍、携带凭据的 push 增长 2.59 倍，每次 push 的密钥流行率无可统计趋势，开发者覆盖 push 拦截的比例从 6.63% 降至 3.93%。",
-    "人工撤销密钥平均约 40 天、约五分之一超过 90 天；与 Microsoft Applied Sciences 共建的微调分类器可在不到两毫秒内评估整组候选密钥，可能使可阻止的密钥数量翻倍以上。"
+    "原文称多数更新意在澄清既有规则，并新增对Claude被用于自主采取物理行动的控制、澄清健康与金融等高风险用例要求、处理针对模型的滥用行为",
+    "新增“不得参与欺骗性活动或人为制造活动”章节，把原本分散在选举、欺诈、隐私、虚假信息部分的规则整合起来，适用于任何政治或商业欺骗活动",
+    "选举章节更名为“不得破坏民主进程”并取消个性化投票与竞选定向的一刀切禁令；武器禁令明确覆盖使武器运作的软件与部件；监控章节被重写，未经同意追踪他人（实时或分析既有数据）均被禁止"
    ],
    "topics": [
-    "cybersecurity",
-    "privacy",
-    "open-source"
+    "usage-policy",
+    "abuse-prevention",
+    "autonomous-agents"
    ],
    "category": "安全",
    "categories": [
     "安全"
    ],
    "horizon": "long",
-   "score": 81.3,
+   "score": 79.5,
    "status": "published",
    "extra": {
-    "content_source": "rss",
+    "content_source": "direct",
     "source_tags": [
-     "AI & ML",
-     "Generative AI",
-     "GitHub Copilot",
-     "AI",
-     "Secret Protection"
+     "Announcements"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4",
-      "https://docs.github.com/en/code-security/tutorials/secret-scanning-partner-program",
-      "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
-      "https://github.blog"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "0825a4897dea2e82",
-   "url": "https://huggingface.co/blog/LiquidAI/open-d1",
-   "title": "Multimodal open d1 decision models for the edge",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-07T16:54:33+00:00",
-   "summary_short": "开源多模态决策模型 d1-3B、d1-omni-600M，边缘端毫秒级出结果。",
-   "summary_long": "原文发布 d1 决策模型家族的两款开放模型：d1-3B 与实验性的 d1-omni-600M。据原文，d1-3B 在 Decision Index 0.2.1 得分 48.57，是 10B 以下最佳决策模型，超过所有 4B、9B 模型和 Decider 35B-A3B（47.11）。d1-3B 支持文本与图像，d1-omni-600M 支持文本加图像或文本加音频。\n\n模型基于 Liquid Foundation Models 构建。与生成式模型不同，决策模型不逐 token 生成，而是在单次前向中给出答案：d1-3B 由解码器架构的 LFM2.5-VL-3B 训练，d1-omni-600M 由双向编码器 LFM2.5-Encoder-350M 训练并加入视觉与音频编码器。\n\n在七个公开数据集（阅读理解、毒性检测、意图分类、医学问答、跨语言理解）上，d1-3B 平均 82.9 为表内最高，d1-omni-600M 平均 78.4，以四分之一参数量超过 Decider 2B（77.1）。原文未报告视觉或音频基准，因 Decision Index v0.3 仅含私有视觉切分，音频决策基准仍属开放问题。\n\n与 NVIDIA 合作在 RTX 4090 与三款 Jetson 设备上评测 d1-3B：单问答均低于 50 毫秒，三问约为单问的 1.3 倍。d1-omni-600M 属早期研究版本，",
-   "key_points": [
-    "d1-3B 在 Decision Index 0.2.1 得分 48.57，为 10B 以下最佳决策模型，超过所有 4B、9B 模型与 Decider 35B-A3B（47.11）。",
-    "d1-3B 支持文本与图像；d1-omni-600M 支持文本加图像或文本加音频，目前为实验性早期研究版本，仍在继续开发。",
-    "七个公开数据集平均分：d1-3B 为 82.9（表内最高），d1-omni-600M 为 78.4，以四分之一参数量超过 Decider 2B（77.1）。"
-   ],
-   "topics": [
-    "post-training",
-    "reasoning",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 80.4,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.liquid.ai/blog/d1-decision-model",
-      "https://huggingface.co/LiquidAI/d1-3b",
-      "https://huggingface.co/LiquidAI/d1-omni-600M",
-      "https://huggingface.co/LiquidAI/LFM2.5-VL-3B",
-      "https://huggingface.co/LiquidAI/LFM2.5-Encoder-350M",
-      "https://huggingface.co/spaces/LiquidAI/system-one-arcade"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "5bdd694c62903534",
-   "url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
-   "title": "One Model Family, Two Gold-Level Results: Fine-Tuning Nemotron for IOI and IMO",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-07T12:45:31+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "post-training",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 78.4,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2609.02849",
-      "2609.10712"
-     ],
-     "links": [
-      "https://arxiv.org/abs/2609.10712",
-      "https://arxiv.org/abs/2609.02849",
-      "https://cdn-uploads.huggingface.co/production/uploads/67b8b0096c3182e96bf6cea1/LqM9etFUGTjJT116M7Hq8.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/67b8b0096c3182e96bf6cea1/GptKxXbYlSsm2ksIJqZzE.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/67b8b0096c3182e96bf6cea1/Wo0kpoA9qTLPaxWv48DnL.png",
-      "https://huggingface.co/blog/nvidia/ioi-gold-medal-with-open-weight",
-      "https://huggingface.co/collections/nvidia/nemotron-labs-imo-2026",
-      "https://github.com/NVIDIA-NeMo/Skills/tree/main/recipes/nemotron-imo-tts",
-      "https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-3-Competitive-Coding-550B-A55B-NVFP4",
-      "https://github.com/NVIDIA-NeMo/Skills"
-     ]
-    }
-   }
-  },
-  {
-   "id": "0a7d6e8e8b6e8899",
-   "url": "https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
-   "title": "EmbeddingGemma 2: An open, lightweight multimodal embedding model",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-06T16:03:49+00:00",
-   "summary_short": "EmbeddingGemma 2 开源：740M 参数原生多模态嵌入，主打端侧",
-   "summary_long": "谷歌 DeepMind 去年推出 EmbeddingGemma，为端侧提供轻量高质量文本嵌入，下载量超 2000 万次，被用于端侧搜索与隐私优先的 RAG 流程。现发布 EmbeddingGemma 2，从文本扩展到统一代码、图像、视频与音频的共享嵌入空间。模型基于 Gemma 4 架构，以 Apache 2.0 许可发布，740M 参数，面向端侧推理，可依文字查询检索语音备忘或数小时录音。它采用模块化设计，纯文本最低 270M 参数，视觉编码器 170M、音频编码器 300M 可选；借助 Matryoshka 表示学习，输出向量可从 768 维截断至 512/256/128 维，最高减少 6 倍存储。量化后在 Pixel 11 Pro 上纯文本权重约需 191MB 活动内存，全模态约 567MB。上下文窗口 8K token，约为一代 4 倍，可处理 5.5 分钟音频、29 张图像、58 个视频帧或交错组合。质量上，MTEB Code 提升 9.92 分（68.76 至 78.68）；在图像、视频、文档与音频上刷新 sub-1B 模型的质量/参数标准。原文称本地生成嵌入有助保障数据隐私、降低延迟，并可支持完全离线的跨模态检索，搭配 Gemma 4 可实现端侧 RAG。",
-   "key_points": [
-    "基于 Gemma 4 架构、Apache 2.0 许可、740M 参数，原生把文本、代码、图像、视频、音频映射到统一嵌入空间，面向端侧推理",
-    "模块化与高效：纯文本最低 270M 参数，视觉 170M、音频 300M 编码器可选；MRL 支持向量 768 维截断至 512/256/128 维，最高 6 倍存储缩减；8K token 上下文，可处理 5.5 分钟音频、29 张图像、58 个视频帧或交错组合",
-    "MTEB Code 从 68.76 提升至 78.68，在 MTEB Code、MAEB 等基准的 sub-1B 多模态嵌入模型中领先，并称在文本、视觉、音频任务上匹配或超越许多更大模型"
-   ],
-   "topics": [
-    "open-source",
-    "rag"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 78.2,
-   "status": "published",
-   "extra": {
-    "hn_points": 414,
-    "hn_comments": 46,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://twitter.com/intent/tweet?text=EmbeddingGemma%202%3A%20an%20open%2C%20lightweight%20multimodal%20embedding%20model%20%40google&url=https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
-      "https://www.facebook.com/sharer/sharer.php?caption=EmbeddingGemma%202%3A%20an%20open%2C%20lightweight%20multimodal%20embedding%20model&u=https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/&title=EmbeddingGemma%202%3A%20an%20open%2C%20lightweight%20multimodal%20embedding%20model",
-      "https://developers.googleblog.com/en/introducing-embeddinggemma/",
-      "https://ai.google.dev/gemma/docs/embeddinggemma/model_card_2",
-      "https://developers.google.com/edge/gallery",
-      "https://developers.google.com/edge/foresight",
-      "https://developers.google.com/edge/mediapipe/solutions/decision/decision_maker",
-      "http://developers.googleblog.com/google-ai-edge-with-embeddinggemma-2",
-      "https://huggingface.co/google/embeddinggemma-2",
-      "https://www.kaggle.com/models/google/embeddinggemma-2",
-      "https://huggingface.co/litert-community",
-      "https://developers.google.com/edge/litert-lm",
-      "https://huggingface.co/spaces/webml-community/embeddinggemma-2-webgpu",
-      "https://github.com/Blaizzy/mlx-vlm",
-      "https://huggingface.co/ggml-org/embeddinggemma-2-GGUF",
-      "http://ollama.com/library/embeddinggemma-2",
-      "https://qdrant.tech/blog/embeddinggemma-2/",
-      "https://unsloth.ai/docs/models/embeddinggemma-2",
-      "https://developers.googleblog.com/en/embeddinggemma-2-the-developer-guide/",
-      "https://ai.google.dev/gemma/docs/embeddinggemma",
-      "https://ai.google.dev/gemma/docs/embeddinggemma/inference-embeddinggemma-with-sentence-transformers",
-      "https://ai.google.dev/gemma/docs/embeddinggemma/fine-tuning-embeddinggemma-with-sentence-transformers"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a91d48e8a913a842",
-   "url": "https://penguin-mail.com/",
-   "title": "Penguin Mail – open-source Rust email client for Linux with AI",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-06T21:59:43+00:00",
-   "summary_short": "Penguin Mail 1.0：Linux 开源邮件客户端，可选本地 AI 助手",
-   "summary_long": "Penguin Mail 发布 1.0.0 版本，是面向 x86_64 Linux 的自由软件，采用 GPL-3.0-or-later 许可。它可登录 Gmail、Outlook.com、Hotmail、Live、Microsoft 365，以及 Fastmail、iCloud、Yahoo 或任意 IMAP、POP3、SMTP 服务器，并按地址自动查找服务器设置。多账户可合并在一个收件箱；应用常驻系统托盘持续同步，显示未读数并提供可操作的提醒。日历有日、周、月和议程视图，覆盖 Google、Microsoft 及服务商支持的 CalDAV，可直接在收到邀请的邮件里回复。联系人来自 Google、Microsoft 或 CardDAV，输入收件人时给出建议。签名与加密走用户自己的 GnuPG，应用不保存密钥、也不索要口令。Gmail 过滤器、Microsoft 收件箱规则和支持的 Sieve 规则以白话列出，并有添加表单。AI 默认关闭，选定模型后才启用，可经 LM Studio 或 Ollama 在本地运行，发信或改设置前会先询问。应用无自建服务器、无跟踪、无广告。",
-   "key_points": [
-    "支持 Gmail、Outlook.com、Hotmail、Live、Microsoft 365、Fastmail、iCloud、Yahoo 及任意 IMAP、POP3、SMTP 账户，按地址自动查找服务器设置，多账户可合并为一个收件箱并常驻托盘同步、显示未读数",
-    "内置日历（日/周/月/议程，Google、Microsoft 及服务商支持的 CalDAV）、联系人（Google、Microsoft 或 CardDAV），并可通过用户自己的 GnuPG 签名加密，应用不保存密钥、不索要口令",
-    "AI 默认关闭，选定模型后可经 LM Studio 或 Ollama 在本地运行，按 Ctrl+J 提问并由应用自带工具读取邮箱、展示执行过的每一步，发信或改设置前会先询问"
-   ],
-   "topics": [
-    "product",
-    "open-source",
-    "privacy"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 78.0,
-   "status": "published",
-   "extra": {
-    "hn_points": 230,
-    "hn_comments": 175,
-    "content_source": "reader",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a343c9786e70baad",
-   "url": "https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/",
-   "title": "Claude Haiku 5.5",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-07T20:56:21+00:00",
-   "summary_short": "Anthropic 发布快速低价模型 Claude Haiku 5.5，定价与 GPT-6 Luna 持平",
-   "summary_long": "Anthropic 发布新的快速低成本模型 Claude Haiku 5.5。原文称上一代 Haiku 4.5 发布已近一年，定价为每百万输入 1 美元、输出 5 美元，当时就偏贵，是上月发布的 OpenAI GPT-6 Luna 的 10 倍。Haiku 5.5 定价与 Luna 完全一致：10 万 token 以内 0.10/0.50 美元，超出后涨 5 倍至 0.50/2.50 美元；Luna 在 27.2 万 token 处才涨价，且仅到 0.20/0.75 美元。作者用 token 计数器发现同一长提示在 Haiku 5.5 下耗用约 1.25 倍 token，属隐性涨价。作者的结论是：负载在 10 万 token 以内时 Haiku 与 Luna 同价且基准分数更高，超出则 Luna 更划算。测试中 Haiku 5.5 不允许关闭推理、默认 medium。作者还提到 Anthropic 把 Sonnet 5.5 缓存读取价格减半，并为订阅新增月度 API 额度：Max 5x 每月 100 美元、Max 20x 200 美元、Team 最高 500 美元共享，额度不结转。",
-   "key_points": [
-    "Haiku 5.5 定价与 OpenAI GPT-6 Luna 持平：10 万 token 内 0.10/0.50 美元，超出后涨 5 倍至 0.50/2.50 美元；Luna 在 27.2 万 token 处仅涨至 0.20/0.75 美元",
-    "新模型的 tokenizer 更不慷慨，同一长提示消耗 token 约为 Haiku 4.5 的 1.25 倍，构成隐性涨价；且 Haiku 5.5 不支持关闭推理，默认 medium",
-    "Anthropic 同时把 Sonnet 5.5 的缓存读取价格减半，并给 Max/Team 订阅者发放不结转的月度 API 额度（Max 5x 100 美元、Max 20x 200 美元、Team 最高 500 美元共享）"
-   ],
-   "topics": [
-    "pricing",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 77.2,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "ai",
-     "generative-ai",
-     "llms",
-     "anthropic",
-     "claude"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://simonwillison.net/2026/Sep/28/claude-sonnet-5-5/",
-      "https://www.anthropic.com/claude-haiku-5-5",
-      "https://simonwillison.net/2025/Oct/15/claude-haiku-45/",
-      "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/#gpt-6-sol-and-luna-are-half-the-price-of-their-gpt-5-6-equivalents",
-      "https://tools.simonwillison.net/claude-token-counter",
-      "https://github.com/simonw/llm-anthropic/releases/tag/0.30",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F485dfa24b4efa1267ee2d0911594fb81",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F485dfa24b4efa1267ee2d0911594fb81#response",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F485dfa24b4efa1267ee2d0911594fb81#reasoning-3",
-      "https://www.llm-prices.com/#it=27&ot=67647&sel=claude-haiku-5.5",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F375ae4f2bb68999976b8da50548c788d#response",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F18c9f7fc3b3705cf88514cb9170ec246",
-      "https://news.ycombinator.com/item?id=49977979#49982139",
-      "https://www.llm-prices.com/#it=18&ot=1513&ic=1&oc=5",
-      "https://claude.ai/new#settings/billing",
-      "https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/",
-      "https://support.claude.com/en/articles/17154008-monthly-api-credits-for-max-and-team-plans#h_dfc1659cee",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/anthropic",
-      "https://simonwillison.net/tags/claude",
-      "https://simonwillison.net/tags/llm-pricing",
-      "https://simonwillison.net/tags/pelican-riding-a-bicycle",
-      "https://simonwillison.net/tags/llm-release"
+      "https://www.anthropic.com/threat-intelligence-report-september-2026",
+      "https://www.anthropic.com/legal/aup",
+      "https://www.anthropic.com/supported-countries",
+      "https://www.anthropic.com/news/model-hardware-standard-research-preview",
+      "https://www.anthropic.com/research/end-subset-conversations",
+      "https://www.anthropic.com/news/updating-restrictions-of-sales-to-unsupported-regions",
+      "https://twitter.com/intent/tweet?text=https://www.anthropic.com/news/2026-usage-policy-update",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://www.anthropic.com/news/2026-usage-policy-update"
      ]
     },
     "summary_mode": "full"
