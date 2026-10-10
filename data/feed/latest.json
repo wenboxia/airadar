@@ -1,123 +1,49 @@
 {
- "generated_at": "2026-10-09T01:12:14+00:00",
- "date": "2026-10-09",
- "run_id": "20261009-010713",
+ "generated_at": "2026-10-10T00:42:04+00:00",
+ "date": "2026-10-10",
+ "run_id": "20261010-003959",
  "top": [
   {
-   "id": "0f05fd4155a46f47",
-   "url": "https://huggingface.co/blog/building-with-ml-intern",
-   "title": "The model that didn't exist, so you made it yourself",
+   "id": "43ef54e74d276082",
+   "url": "https://huggingface.co/blog/allenai/impactful-scheduling",
+   "title": "Impactful scheduling for GPU clusters",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-08T00:00:00+00:00",
-   "summary_short": "作者用 ML Intern 一天做出 CPU 可跑的 0.8B 提示改写模型，算力仅 16 美元",
-   "summary_long": "作者想要 Qwen-Image 2.1 自带提示改写器的小型版本：官方版是 9B、约需 20GB 内存、写一段话前要先思考数千 token，Hub 上只有同一 9B 的压缩副本。他把需求描述给 ML Intern，第二天就得到 CPU 可跑的 0.8B 版本，有效输出率 99.7%，token 消耗约为教师模型的四分之一；含用 9B 标注 8,797 条示例请求在内，项目算力共 16 美元。随后几天他又以同样方式做了五个模型，每个都始于 HuggingChat 中开启 ML-intern 的一条消息，终于 Hub 上的公开模型及模型卡评测。ML-intern 会规划工作、花钱前先要预算、正式任务前跑小测试，再在 Hugging Face 硬件上训练、评测、发布。作者称首条提示词最花心思，关键写法是：训练前先要基线分数、加一个带检查的 smoke test、末尾写明交付物与花费上限；七个项目的提示词已公开在 GitHub。文中还举例：他用 Claude 整合三个来源做出含 3,017 张标注图、覆盖 21 类病虫害与营养缺乏的数据集，由 ML-intern 微调 Qwen3.5-2B。",
+   "published_at": "2026-10-09T15:20:29+00:00",
+   "summary_short": "Ai2 用 GPU 时间预算、分层公平分配与时间切片契约替换优先级调度器",
+   "summary_long": "Ai2 的 AI 基础设施团队负责提供大规模分布式训练所需的 GPU 算力，并把这项任务拆为四层递进的指标：可用性、占用率、影响力与利用率。本文聚焦如何提升调度决策的影响力。团队最近用包含 GPU 时间预算、分层公平分配和时间切片契约的系统，替换了原有的优先级调度器，从而把“每个研究项目应获得多少 GPU 时间”的讨论，从逐案处理的运维事务转变为透明的行政预算流程。Ai2 管理数千块 NVIDIA H100、B200、B300 GPU，集群规模从 88 到 1024 块不等，服务约 150 名内部研究人员，覆盖 LLM 与 VLM 训练、机器人强化学习仿真以及科研智能体用例的后训练等方向。GPU 需求远超供给，任一时刻未满足的请求量是可用 GPU 的 2-3 倍。旧调度器允许工作负载选择不被抢占，由此出现 GPU“占坑”、优先级膨胀（最终 100% 的已调度工作负载都使用 HIGH 优先级，低优先级被饿死），以及值班工程师把大部分工单响应时间用于协商关停不可抢占负载。原文把这一局面称为观察“公地悲剧”的实验室。",
    "key_points": [
-    "0.8B 提示改写模型可在 CPU 上运行，有效输出率 99.7%，token 用量约为 9B 教师模型的四分之一。",
-    "整个项目（含 9B 模型标注 8,797 条示例请求）算力花费 16 美元；随后几天以同样方式又做了五个模型。",
-    "提示词关键写法：训练前先要基线分数、加带检查的 smoke test、写明交付物与花费上限；七份提示词已公开在 GitHub。"
+    "Ai2 用 GPU 时间预算、分层公平分配和时间切片契约替换了基于优先级的调度器，把 GPU 时间分配从逐案运维任务变为行政预算流程",
+    "Ai2 管理数千块 NVIDIA H100、B200、B300 GPU，集群规模 88 至 1024 块，服务约 150 名研究人员；未满足的 GPU 请求是可用量的 2-3 倍",
+    "旧调度器允许工作负载选择不被抢占，导致 GPU 占坑、优先级膨胀（100% 已调度负载使用 HIGH 优先级、低优先级被饿死）以及值班工程师被迫协商关停不可抢占负载"
    ],
    "topics": [
-    "agent-loop",
-    "post-training",
-    "harness"
+    "gpu-scheduling",
+    "infrastructure"
    ],
    "category": "Agent 与开发",
    "categories": [
-    "Agent 与开发",
-    "模型"
+    "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 84.3,
+   "score": 83.1,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/building-with-ml-intern.md",
-      "https://huggingface.co/Qwen/Qwen-Image-2.1-PE-T2I",
-      "https://huggingface.co/chat/?mode=ml-intern",
-      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-PE-T2I-Pocket-0.8B",
-      "https://github.com/yvrjsharma/ml-intern-prompts",
-      "https://huggingface.co/ML-Intern-lab/citrus-disease-vlm#results",
-      "https://huggingface.co/Qwen/Qwen3.5-2B",
-      "https://huggingface.co/Project-AgML",
-      "https://huggingface.co/datasets/ML-Intern-lab/citrus-disease-vlm-instruct",
-      "https://huggingface.co/ML-Intern-lab/citrus-disease-vlm",
-      "https://huggingface.co/spaces/ML-Intern-lab/citrus-doctor",
-      "https://huggingface.co/black-forest-labs/FLUX.2-klein-base-4B",
-      "https://huggingface.co/datasets/Chunte/huggy_for_training",
-      "https://huggingface.co/ML-Intern-lab/huggy-flux2-klein-lora",
-      "https://huggingface.co/spaces/ML-Intern-lab/huggy-generator",
-      "https://huggingface.co/datasets/suvadityamuk/google-scanned-objects",
-      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-viewpoint-orbit-LoRA",
-      "https://huggingface.co/datasets/ML-Intern-lab/gso-orbit-rgba",
-      "https://huggingface.co/spaces/ML-Intern-lab/Qwen-Image-2.1-viewpoint-orbit-LoRA",
-      "https://huggingface.co/Viggle/Qwen-Image-2.1-viggle-turbo",
-      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-doodle-in-LoRA#main-comparison--160-test-pairs",
-      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-doodle-in-LoRA",
-      "https://huggingface.co/datasets/ML-Intern-lab/doodle-in-pairs",
-      "https://huggingface.co/spaces/ML-Intern-lab/Qwen-Image-2.1-doodle-in-LoRA",
-      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-PE-T2I-Pocket-2B",
-      "https://huggingface.co/datasets/ML-Intern-lab/Qwen-Image-2.1-rewriter-distill",
-      "https://huggingface.co/spaces/ML-Intern-lab/Qwen-Image-2.1-pocket-studio",
-      "https://huggingface.co/spaces/ML-Intern-lab/Qwen-Image-2.1-rewriter-arena",
-      "https://huggingface.co/Logolabs/agate-preview-002",
-      "https://huggingface.co/ML-Intern-lab/agate-preview-002-4step",
-      "https://huggingface.co/datasets/ML-Intern-lab/agate-preview-002-4step-latents",
-      "https://huggingface.co/spaces/ML-Intern-lab/agate-preview-002-4step-webgpu",
-      "https://huggingface.co/spaces/ML-Intern-lab/agate-preview-002-4step-live",
-      "https://huggingface.co/chat/",
-      "https://x.com/Gradio",
-      "https://x.com/huggingface"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "7a238471d7092596",
-   "url": "https://www.anthropic.com/news/2026-usage-policy-update",
-   "title": "2026 Usage Policy update",
-   "source": "Anthropic News",
-   "tier": "S",
-   "published_at": "2026-10-08T00:00:00+00:00",
-   "summary_short": "Anthropic发布2026版使用政策：整合欺骗活动规则，澄清选举、武器与监控禁令",
-   "summary_long": "Anthropic于2026年10月8日发布新版使用政策，11月12日生效。原文称，过去一年Claude承担了更长、更独立的工作，因此本次更新提供新示例，说明规则如何适用于这些新能力；更新还依据过去一年在影响力行动、武器开发、监控方面观察到的新滥用模式（见其最新威胁情报报告）。多数修改意在澄清既有规则，同时澄清了健康、金融等高风险用例的要求，新增对Claude被用于自主采取物理行动的控制，并处理针对模型的滥用行为。具体变化包括：将分散在选举、欺诈、隐私、虚假信息各处的规则整合为新章节“不得参与欺骗性活动或人为制造活动”，适用于任何政治或商业欺骗行为，涵盖掩盖信息幕后主体、借虚假账号放大内容、搭建影响力行动工具与基础设施；选举章节更名为“不得破坏民主进程”，聚焦禁止欺骗选民或破坏选举，并取消对个性化投票与竞选定向的一刀切禁令，因该禁令覆盖了合法公民工作（如为他语选民写信息、发送选票补救通知），原规则针对的行为仍被禁止；武器章节明确禁止范围含使武器运作的软件与部件及武装无人机等自主载具；监控与刑事司法章节被重写，禁止未经同意追踪他人。",
-   "key_points": [
-    "原文称多数更新意在澄清既有规则，并新增对Claude被用于自主采取物理行动的控制、澄清健康与金融等高风险用例要求、处理针对模型的滥用行为",
-    "新增“不得参与欺骗性活动或人为制造活动”章节，把原本分散在选举、欺诈、隐私、虚假信息部分的规则整合起来，适用于任何政治或商业欺骗活动",
-    "选举章节更名为“不得破坏民主进程”并取消个性化投票与竞选定向的一刀切禁令；武器禁令明确覆盖使武器运作的软件与部件；监控章节被重写，未经同意追踪他人（实时或分析既有数据）均被禁止"
-   ],
-   "topics": [
-    "usage-policy",
-    "abuse-prevention",
-    "autonomous-agents"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "long",
-   "score": 79.5,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Announcements"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.anthropic.com/threat-intelligence-report-september-2026",
-      "https://www.anthropic.com/legal/aup",
-      "https://www.anthropic.com/supported-countries",
-      "https://www.anthropic.com/news/model-hardware-standard-research-preview",
-      "https://www.anthropic.com/research/end-subset-conversations",
-      "https://www.anthropic.com/news/updating-restrictions-of-sales-to-unsupported-regions",
-      "https://twitter.com/intent/tweet?text=https://www.anthropic.com/news/2026-usage-policy-update",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://www.anthropic.com/news/2026-usage-policy-update"
+      "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/hZQv5zhQmQIHLt5_e9m_R.png",
+      "https://www.datocms-assets.com/64837/1791481674-impactful-scheduling-for-gpu-clusters-google-docs-image-2.png?fit=max&h=810&w=1550",
+      "https://www.semanticscholar.org/paper/Dominant-Resource-Fairness%3A-Fair-Allocation-of-Ghodsi-Zaharia/b1a47759dbcf87ed132838be39f8ab244e78e2d6",
+      "https://en.wikipedia.org/wiki/Knapsack_problem",
+      "https://www.datocms-assets.com/64837/1791481494-impactful-scheduling-for-gpu-clusters-google-docs-image-1.png?fit=max&h=810&w=1550",
+      "https://issues.apache.org/jira/browse/HADOOP-3746",
+      "https://slurm.schedmd.com/fair_tree.html",
+      "https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/FairScheduler.html",
+      "https://www.datocms-assets.com/64837/1791481919-impactful-scheduling-for-gpu-clusters-google-docs-image-4.png?fit=max&h=810&w=1550",
+      "https://www.datocms-assets.com/64837/1791482152-impactful-scheduling-for-gpu-clusters-google-docs-image-5.png?fit=max&h=810&w=1550",
+      "https://allenai.org/careers"
      ]
     },
     "summary_mode": "full"
@@ -126,120 +52,46 @@
  ],
  "items": [
   {
-   "id": "0f05fd4155a46f47",
-   "url": "https://huggingface.co/blog/building-with-ml-intern",
-   "title": "The model that didn't exist, so you made it yourself",
+   "id": "43ef54e74d276082",
+   "url": "https://huggingface.co/blog/allenai/impactful-scheduling",
+   "title": "Impactful scheduling for GPU clusters",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-08T00:00:00+00:00",
-   "summary_short": "作者用 ML Intern 一天做出 CPU 可跑的 0.8B 提示改写模型，算力仅 16 美元",
-   "summary_long": "作者想要 Qwen-Image 2.1 自带提示改写器的小型版本：官方版是 9B、约需 20GB 内存、写一段话前要先思考数千 token，Hub 上只有同一 9B 的压缩副本。他把需求描述给 ML Intern，第二天就得到 CPU 可跑的 0.8B 版本，有效输出率 99.7%，token 消耗约为教师模型的四分之一；含用 9B 标注 8,797 条示例请求在内，项目算力共 16 美元。随后几天他又以同样方式做了五个模型，每个都始于 HuggingChat 中开启 ML-intern 的一条消息，终于 Hub 上的公开模型及模型卡评测。ML-intern 会规划工作、花钱前先要预算、正式任务前跑小测试，再在 Hugging Face 硬件上训练、评测、发布。作者称首条提示词最花心思，关键写法是：训练前先要基线分数、加一个带检查的 smoke test、末尾写明交付物与花费上限；七个项目的提示词已公开在 GitHub。文中还举例：他用 Claude 整合三个来源做出含 3,017 张标注图、覆盖 21 类病虫害与营养缺乏的数据集，由 ML-intern 微调 Qwen3.5-2B。",
+   "published_at": "2026-10-09T15:20:29+00:00",
+   "summary_short": "Ai2 用 GPU 时间预算、分层公平分配与时间切片契约替换优先级调度器",
+   "summary_long": "Ai2 的 AI 基础设施团队负责提供大规模分布式训练所需的 GPU 算力，并把这项任务拆为四层递进的指标：可用性、占用率、影响力与利用率。本文聚焦如何提升调度决策的影响力。团队最近用包含 GPU 时间预算、分层公平分配和时间切片契约的系统，替换了原有的优先级调度器，从而把“每个研究项目应获得多少 GPU 时间”的讨论，从逐案处理的运维事务转变为透明的行政预算流程。Ai2 管理数千块 NVIDIA H100、B200、B300 GPU，集群规模从 88 到 1024 块不等，服务约 150 名内部研究人员，覆盖 LLM 与 VLM 训练、机器人强化学习仿真以及科研智能体用例的后训练等方向。GPU 需求远超供给，任一时刻未满足的请求量是可用 GPU 的 2-3 倍。旧调度器允许工作负载选择不被抢占，由此出现 GPU“占坑”、优先级膨胀（最终 100% 的已调度工作负载都使用 HIGH 优先级，低优先级被饿死），以及值班工程师把大部分工单响应时间用于协商关停不可抢占负载。原文把这一局面称为观察“公地悲剧”的实验室。",
    "key_points": [
-    "0.8B 提示改写模型可在 CPU 上运行，有效输出率 99.7%，token 用量约为 9B 教师模型的四分之一。",
-    "整个项目（含 9B 模型标注 8,797 条示例请求）算力花费 16 美元；随后几天以同样方式又做了五个模型。",
-    "提示词关键写法：训练前先要基线分数、加带检查的 smoke test、写明交付物与花费上限；七份提示词已公开在 GitHub。"
+    "Ai2 用 GPU 时间预算、分层公平分配和时间切片契约替换了基于优先级的调度器，把 GPU 时间分配从逐案运维任务变为行政预算流程",
+    "Ai2 管理数千块 NVIDIA H100、B200、B300 GPU，集群规模 88 至 1024 块，服务约 150 名研究人员；未满足的 GPU 请求是可用量的 2-3 倍",
+    "旧调度器允许工作负载选择不被抢占，导致 GPU 占坑、优先级膨胀（100% 已调度负载使用 HIGH 优先级、低优先级被饿死）以及值班工程师被迫协商关停不可抢占负载"
    ],
    "topics": [
-    "agent-loop",
-    "post-training",
-    "harness"
+    "gpu-scheduling",
+    "infrastructure"
    ],
    "category": "Agent 与开发",
    "categories": [
-    "Agent 与开发",
-    "模型"
+    "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 84.3,
+   "score": 83.1,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/building-with-ml-intern.md",
-      "https://huggingface.co/Qwen/Qwen-Image-2.1-PE-T2I",
-      "https://huggingface.co/chat/?mode=ml-intern",
-      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-PE-T2I-Pocket-0.8B",
-      "https://github.com/yvrjsharma/ml-intern-prompts",
-      "https://huggingface.co/ML-Intern-lab/citrus-disease-vlm#results",
-      "https://huggingface.co/Qwen/Qwen3.5-2B",
-      "https://huggingface.co/Project-AgML",
-      "https://huggingface.co/datasets/ML-Intern-lab/citrus-disease-vlm-instruct",
-      "https://huggingface.co/ML-Intern-lab/citrus-disease-vlm",
-      "https://huggingface.co/spaces/ML-Intern-lab/citrus-doctor",
-      "https://huggingface.co/black-forest-labs/FLUX.2-klein-base-4B",
-      "https://huggingface.co/datasets/Chunte/huggy_for_training",
-      "https://huggingface.co/ML-Intern-lab/huggy-flux2-klein-lora",
-      "https://huggingface.co/spaces/ML-Intern-lab/huggy-generator",
-      "https://huggingface.co/datasets/suvadityamuk/google-scanned-objects",
-      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-viewpoint-orbit-LoRA",
-      "https://huggingface.co/datasets/ML-Intern-lab/gso-orbit-rgba",
-      "https://huggingface.co/spaces/ML-Intern-lab/Qwen-Image-2.1-viewpoint-orbit-LoRA",
-      "https://huggingface.co/Viggle/Qwen-Image-2.1-viggle-turbo",
-      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-doodle-in-LoRA#main-comparison--160-test-pairs",
-      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-doodle-in-LoRA",
-      "https://huggingface.co/datasets/ML-Intern-lab/doodle-in-pairs",
-      "https://huggingface.co/spaces/ML-Intern-lab/Qwen-Image-2.1-doodle-in-LoRA",
-      "https://huggingface.co/ML-Intern-lab/Qwen-Image-2.1-PE-T2I-Pocket-2B",
-      "https://huggingface.co/datasets/ML-Intern-lab/Qwen-Image-2.1-rewriter-distill",
-      "https://huggingface.co/spaces/ML-Intern-lab/Qwen-Image-2.1-pocket-studio",
-      "https://huggingface.co/spaces/ML-Intern-lab/Qwen-Image-2.1-rewriter-arena",
-      "https://huggingface.co/Logolabs/agate-preview-002",
-      "https://huggingface.co/ML-Intern-lab/agate-preview-002-4step",
-      "https://huggingface.co/datasets/ML-Intern-lab/agate-preview-002-4step-latents",
-      "https://huggingface.co/spaces/ML-Intern-lab/agate-preview-002-4step-webgpu",
-      "https://huggingface.co/spaces/ML-Intern-lab/agate-preview-002-4step-live",
-      "https://huggingface.co/chat/",
-      "https://x.com/Gradio",
-      "https://x.com/huggingface"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "7a238471d7092596",
-   "url": "https://www.anthropic.com/news/2026-usage-policy-update",
-   "title": "2026 Usage Policy update",
-   "source": "Anthropic News",
-   "tier": "S",
-   "published_at": "2026-10-08T00:00:00+00:00",
-   "summary_short": "Anthropic发布2026版使用政策：整合欺骗活动规则，澄清选举、武器与监控禁令",
-   "summary_long": "Anthropic于2026年10月8日发布新版使用政策，11月12日生效。原文称，过去一年Claude承担了更长、更独立的工作，因此本次更新提供新示例，说明规则如何适用于这些新能力；更新还依据过去一年在影响力行动、武器开发、监控方面观察到的新滥用模式（见其最新威胁情报报告）。多数修改意在澄清既有规则，同时澄清了健康、金融等高风险用例的要求，新增对Claude被用于自主采取物理行动的控制，并处理针对模型的滥用行为。具体变化包括：将分散在选举、欺诈、隐私、虚假信息各处的规则整合为新章节“不得参与欺骗性活动或人为制造活动”，适用于任何政治或商业欺骗行为，涵盖掩盖信息幕后主体、借虚假账号放大内容、搭建影响力行动工具与基础设施；选举章节更名为“不得破坏民主进程”，聚焦禁止欺骗选民或破坏选举，并取消对个性化投票与竞选定向的一刀切禁令，因该禁令覆盖了合法公民工作（如为他语选民写信息、发送选票补救通知），原规则针对的行为仍被禁止；武器章节明确禁止范围含使武器运作的软件与部件及武装无人机等自主载具；监控与刑事司法章节被重写，禁止未经同意追踪他人。",
-   "key_points": [
-    "原文称多数更新意在澄清既有规则，并新增对Claude被用于自主采取物理行动的控制、澄清健康与金融等高风险用例要求、处理针对模型的滥用行为",
-    "新增“不得参与欺骗性活动或人为制造活动”章节，把原本分散在选举、欺诈、隐私、虚假信息部分的规则整合起来，适用于任何政治或商业欺骗活动",
-    "选举章节更名为“不得破坏民主进程”并取消个性化投票与竞选定向的一刀切禁令；武器禁令明确覆盖使武器运作的软件与部件；监控章节被重写，未经同意追踪他人（实时或分析既有数据）均被禁止"
-   ],
-   "topics": [
-    "usage-policy",
-    "abuse-prevention",
-    "autonomous-agents"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "long",
-   "score": 79.5,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Announcements"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.anthropic.com/threat-intelligence-report-september-2026",
-      "https://www.anthropic.com/legal/aup",
-      "https://www.anthropic.com/supported-countries",
-      "https://www.anthropic.com/news/model-hardware-standard-research-preview",
-      "https://www.anthropic.com/research/end-subset-conversations",
-      "https://www.anthropic.com/news/updating-restrictions-of-sales-to-unsupported-regions",
-      "https://twitter.com/intent/tweet?text=https://www.anthropic.com/news/2026-usage-policy-update",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://www.anthropic.com/news/2026-usage-policy-update"
+      "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/hZQv5zhQmQIHLt5_e9m_R.png",
+      "https://www.datocms-assets.com/64837/1791481674-impactful-scheduling-for-gpu-clusters-google-docs-image-2.png?fit=max&h=810&w=1550",
+      "https://www.semanticscholar.org/paper/Dominant-Resource-Fairness%3A-Fair-Allocation-of-Ghodsi-Zaharia/b1a47759dbcf87ed132838be39f8ab244e78e2d6",
+      "https://en.wikipedia.org/wiki/Knapsack_problem",
+      "https://www.datocms-assets.com/64837/1791481494-impactful-scheduling-for-gpu-clusters-google-docs-image-1.png?fit=max&h=810&w=1550",
+      "https://issues.apache.org/jira/browse/HADOOP-3746",
+      "https://slurm.schedmd.com/fair_tree.html",
+      "https://hadoop.apache.org/docs/stable/hadoop-yarn/hadoop-yarn-site/FairScheduler.html",
+      "https://www.datocms-assets.com/64837/1791481919-impactful-scheduling-for-gpu-clusters-google-docs-image-4.png?fit=max&h=810&w=1550",
+      "https://www.datocms-assets.com/64837/1791482152-impactful-scheduling-for-gpu-clusters-google-docs-image-5.png?fit=max&h=810&w=1550",
+      "https://allenai.org/careers"
      ]
     },
     "summary_mode": "full"
