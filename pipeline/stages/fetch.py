@@ -271,6 +271,24 @@ def _fetch_github(src: dict, since: datetime, ctx: Context) -> list:
     return items
 
 
+# arXiv 接口经常慢：09-30 到 10-11 的 12 次运行里有 5 次 30 秒读超时，论文闸门整段跳过。
+# 等久一点、退避重试两次；仍失败才抛出，由 run() 记进运行记录
+_ARXIV_TIMEOUT = 60
+_ARXIV_RETRY_WAITS = (10, 30)
+
+
+def _get_with_retry(url: str):
+    for wait in (*_ARXIV_RETRY_WAITS, None):
+        try:
+            resp = requests.get(url, headers=UA, timeout=_ARXIV_TIMEOUT)
+            resp.raise_for_status()
+            return resp
+        except (requests.Timeout, requests.ConnectionError):
+            if wait is None:
+                raise
+            time.sleep(wait)
+
+
 def fetch_arxiv_by_id(ids: list, src: dict) -> list:
     """按 ID 取论文。论文的入口从"按提交时间发现"改成"别处提到才抓"（D36）：
     错的不是 arXiv，是排序键——从每天几百篇里按时间取 15 篇等于随机抽样。
@@ -281,8 +299,7 @@ def fetch_arxiv_by_id(ids: list, src: dict) -> list:
         return []
     url = ("https://export.arxiv.org/api/query?id_list="
            f"{','.join(ids[:30])}&max_results={min(len(ids), 30)}")
-    resp = requests.get(url, headers=UA, timeout=30)
-    resp.raise_for_status()
+    resp = _get_with_retry(url)
     out = []
     for e in feedparser.parse(resp.content).entries:
         link = getattr(e, "link", "")
@@ -421,6 +438,8 @@ def run(items: list, ctx: Context) -> list:
             out += papers
         except Exception as ex:  # noqa: BLE001 论文入口失败不阻塞主流程
             ctx.note_error("fetch", f"arxiv_mentions: {ex}")
+            # 失败也要留统计：否则运行记录里分不清「这次没跑成」和「跑了但 0 篇」（D40）
+            ctx.stats.setdefault("fetch", {})["arxiv_mentions"] = {"error": type(ex).__name__}
 
     # 全局安全阀：防止某天信源集体放量把预算打穿
     if ctx.cfg.max_items_per_run and len(out) > ctx.cfg.max_items_per_run:

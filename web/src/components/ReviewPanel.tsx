@@ -9,7 +9,7 @@ const TIER_STYLE: Record<Tier, string> = {
   X: 'text-alert border-alert/40',
 }
 
-/** 下一个北京时间周一。审批单在那天北京时间 05:00 的定时运行里开出来 */
+/** 下一个北京时间周一。审批单在那天凌晨的定时运行里开出来（实际开跑时间会被 GitHub 延后，所以不写钟点） */
 function nextMondayCN(): string {
   const cn = new Date(Date.now() + 8 * 3600_000) // 按北京时间取星期
   const dow = cn.getUTCDay() // 0=周日
@@ -131,7 +131,7 @@ export function ReviewPanel({ data, error }: { data: ReviewFeed | null; error: s
             {data?.status === 'collected' ? '本周的审批单已经审完' : '目前没有开着的审批单'}
           </p>
           <p className="mt-2 font-mono text-[12px] text-ink-faint">
-            下一张 {nextMondayCN()}（周一）北京时间 05:00 开
+            下一张 {nextMondayCN()}（周一）早上开
           </p>
           {error && !data && (
             <p className="mt-3 font-mono text-[10px] text-ink-faint">（还没有开过三块清单的审批单）</p>

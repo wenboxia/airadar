@@ -243,6 +243,65 @@ class TestMentionGate(unittest.TestCase):
                          {"seen": 1, "fetched": 1, "kept": 0, "stale_reports": 0, "not_requested": 0})
         self.assertEqual(ctx.stats["fetch"]["total"], 1)
 
+    def test_run_records_gate_failure(self):
+        """arXiv 接口重试后仍失败：主流程照常，运行记录里要写明「没跑成」，不能和「0 篇」混在一起。"""
+        yml = ("sources:\n"
+               "  - {name: 甲, tier: B, type: fake}\n"
+               "  - {name: 论文（被提及）, tier: A, type: arxiv_mentions, max_results: 5}\n")
+        with tempfile.NamedTemporaryFile("w", suffix=".yaml", delete=False, encoding="utf-8") as fh:
+            fh.write(yml)
+        src_item = Item(title="t", source="甲", url="https://a.com/1")
+        src_item.extra["outbound"] = {"arxiv": ["2601.00001"], "links": []}
+        cfg = Mock(since_days=2, per_source_limit=0, max_items_per_run=0, short_ttl_days=14)
+        db = Mock(); db.existing_ids.return_value = set()
+        ctx = Context(cfg=cfg, llm=Mock(), db=db, run_id="t")
+        with unittest.mock.patch.object(fetch, "SOURCES_PATH", fh.name), \
+                unittest.mock.patch.dict(fetch._FETCHERS, {"fake": lambda s, since, c: [src_item]}), \
+                unittest.mock.patch.object(fetch.requests, "get",
+                                           side_effect=fetch.requests.ReadTimeout("slow")), \
+                unittest.mock.patch.object(fetch.time, "sleep"):
+            out = fetch.run([], ctx)
+        pathlib.Path(fh.name).unlink()
+        self.assertEqual([it.url for it in out], ["https://a.com/1"], "论文入口失败不能拖累其他信源")
+        self.assertEqual(ctx.stats["fetch"]["arxiv_mentions"], {"error": "ReadTimeout"})
+        self.assertTrue(any("arxiv_mentions" in e["error"] for e in ctx.errors))
+
+
+class TestArxivRetry(unittest.TestCase):
+    """arXiv 接口经常慢：12 次运行里 5 次 30 秒读超时，论文闸门整段跳过。现在等久一点、退避重试两次。"""
+
+    def _ok(self):
+        resp = Mock(content=b'<?xml version="1.0"?><feed xmlns="http://www.w3.org/2005/Atom"></feed>')
+        resp.raise_for_status = Mock()
+        return resp
+
+    def test_timeout_then_success(self):
+        get = Mock(side_effect=[fetch.requests.ReadTimeout("slow"), self._ok()])
+        with unittest.mock.patch.object(fetch.requests, "get", get), \
+                unittest.mock.patch.object(fetch.time, "sleep") as sleep:
+            self.assertEqual(fetch.fetch_arxiv_by_id(["2601.00001"], {"name": "论文（被提及）", "tier": "A"}), [])
+        self.assertEqual(get.call_count, 2)
+        sleep.assert_called_once_with(fetch._ARXIV_RETRY_WAITS[0])
+        self.assertEqual(get.call_args.kwargs["timeout"], fetch._ARXIV_TIMEOUT)
+
+    def test_gives_up_after_retries(self):
+        get = Mock(side_effect=fetch.requests.ConnectionError("down"))
+        with unittest.mock.patch.object(fetch.requests, "get", get), \
+                unittest.mock.patch.object(fetch.time, "sleep"):
+            with self.assertRaises(fetch.requests.ConnectionError):
+                fetch.fetch_arxiv_by_id(["2601.00001"], {"name": "论文（被提及）", "tier": "A"})
+        self.assertEqual(get.call_count, 1 + len(fetch._ARXIV_RETRY_WAITS))
+
+    def test_http_errors_are_not_retried(self):
+        """4xx/5xx 是接口明确拒绝，重试没用，直接交给上层记录"""
+        bad = Mock(); bad.raise_for_status.side_effect = fetch.requests.HTTPError("400")
+        get = Mock(return_value=bad)
+        with unittest.mock.patch.object(fetch.requests, "get", get), \
+                unittest.mock.patch.object(fetch.time, "sleep"):
+            with self.assertRaises(fetch.requests.HTTPError):
+                fetch.fetch_arxiv_by_id(["2601.00001"], {"name": "论文（被提及）", "tier": "A"})
+        self.assertEqual(get.call_count, 1)
+
 
 if __name__ == "__main__":
     unittest.main()
