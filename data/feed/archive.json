@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-13T23:19:45+00:00",
+ "generated_at": "2026-10-14T22:22:15+00:00",
  "items": [
   {
    "id": "49aae9e462bc00ae",
@@ -202,6 +202,52 @@
    }
   },
   {
+   "id": "1609f5d4ca7309cc",
+   "url": "https://developers.googleblog.com/gemini-4-argon-for-robotics/",
+   "title": "Gemini 4 Argon for Robotics",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-13T16:55:47+00:00",
+   "summary_short": "Gemini 4 Argon 发布：ERQA 物理推理得分 87%，覆盖机器人全生命周期用例",
+   "summary_long": "Google Developers Blog 于 2026 年 10 月 13 日发布 Gemini 4 Argon for Robotics，作者为首席软件工程师 Kanishka Rao。原文称其在物理理解、代码生成与视觉语义推理上实现跨越，可解锁机器人技术栈新工作流。在测试 3D 环境物理与空间问题求解的 Embodied Reasoning（ERQA）基准上，Argon 以纯推理取得 87%，超过其他所有前沿模型。原文称作为通用物理推理模型，它可应用于机器人全生命周期，并给出四个方向的代表性提示词：机器人控制（MuJoCo 练习的移动操作、零样本控制、视频世界模型闭环操控）、Real2Sim（从机器人相机、第一人称人类视频或手绘草图重建物理标定仿真孪生）、物理理解（多模态事后标注、密集价值函数与进度估计）、研究与自我改进（仿真改进行动、硬件上迭代自我改进）。示例包括控制 Boston Dynamics Spot 踩脚踏式垃圾桶丢易拉罐前先在 MuJoCo 建数字孪生练习，以及零样本控制机械臂扶正杯子并放入纸团。",
+   "key_points": [
+    "在 Embodied Reasoning（ERQA）基准上以纯推理得分 87%，原文称超过其他所有前沿模型",
+    "原文列出四个应用方向：机器人控制、Real2Sim、物理理解、研究与自我改进，并各给出代表性提示词",
+    "示例一：控制 Boston Dynamics Spot 踩脚踏式垃圾桶丢易拉罐，先用 MuJoCo 建可动数字孪生练习；示例二：用视觉坐标套件与动作原语零样本控制机械臂扶正杯子并放入纸团"
+   ],
+   "topics": [
+    "reasoning",
+    "embodied-reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 77.7,
+   "status": "published",
+   "extra": {
+    "hn_points": 228,
+    "hn_comments": 55,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.facebook.com/sharer/sharer.php?u={url}",
+      "https://twitter.com/intent/tweet?text={url}",
+      "https://www.linkedin.com/shareArticle?url={url}&mini=true",
+      "https://github.com/embodiedreasoning/ERQA",
+      "https://mujoco.org/",
+      "https://aistudio.google.com/",
+      "https://one.google.com/about/google-ai-plans/",
+      "https://ai.google.dev/gemini-api/docs",
+      "https://antigravity.google/"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "8b0463614a7b86fd",
    "url": "https://deepmind.google/blog/gemini-4-argon-for-robotics/",
    "title": "Gemini 4 Argon for Robotics",
@@ -320,6 +366,47 @@
       "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/guides/gemini-4-argon#long-decodes"
      ]
     },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "8c17f1f1ac30a4ed",
+   "url": "https://www.anthropic.com/engineering/redesigning-source-control",
+   "title": "Redesigning source control at Anthropic",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-13T15:49:56+00:00",
+   "summary_short": "Anthropic 自研源码控制系统 Scion，五个月内把 monorepo 完全迁出 git",
+   "summary_long": "原文指出，在 Anthropic 写代码已不再是瓶颈：Claude 能自主迭代研究循环、微优化程序、从零搭建服务，瓶颈转为为人类规模设计的开发者基础设施——源码控制、构建与 CI。合并量由 2026 年 5 月约 2,500 次/天升至 9 月逾 30,000 次/天，原文预期增速不会放缓。为此 Anthropic 自研版本控制系统 Scion，五个月内将 monorepo 完全迁出 git，同期还交付代码审查界面 Antique、代码搜索与源码控制 IAM 等。原文称动机来自规模压力：主分支历史近 100 GB、压缩工作副本超 25 GB、每天约 2,500 万次 CI 检出，朴素拉取即每天逾 600 PB 流量；峰值需运营数百个内部 git 镜像。因客户端几乎全是在线的 agent 与任务，git 面向分布式离线的特性反成扩展负担。原文在阐述 agent 规模源码控制原则处截断。",
+   "key_points": [
+    "Claude 让合并量从 2026 年 5 月约 2,500 次/天增至 9 月逾 30,000 次/天，瓶颈转移到源码控制、构建与 CI 等为人类规模设计的开发者基础设施。",
+    "Anthropic 自研内部版本控制系统 Scion，五个月内将 monorepo 从 git 完全迁移，同期还构建了代码审查界面 Antique、代码搜索、源码控制 IAM 系统以及落地大量已审查代码的新方式等。",
+    "原文称主分支历史近 100 GB、压缩工作副本超 25 GB、每天约 2,500 万次 CI 检出，峰值时运营数百个内部 git 镜像；因客户端几乎全是在线的 agent 与任务，git 面向分布式离线的优势反成扩展负担。"
+   ],
+   "topics": [
+    "coding-agent",
+    "harness"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 84.0,
+   "status": "published",
+   "extra": {
+    "hn_points": 861,
+    "hn_comments": 961,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://en.wikipedia.org/wiki/Piper_(source_control_system)",
+      "https://sapling-scm.com/",
+      "https://www.anthropic.com/claude/mythos",
+      "https://www.anthropic.com/news/introducing-claude-tag"
+     ]
+    },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -2672,114 +2759,6 @@
    }
   },
   {
-   "id": "80e4ef842b12917f",
-   "url": "https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities",
-   "title": "GLM-5.3 and the spread of advanced cyber capabilities",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-09-29T17:31:26+00:00",
-   "summary_short": "GLM-5.3可自主构建端到端网络攻击利用，且缺乏有效防滥用保障",
-   "summary_long": "五个月前，发布方推出Claude Mythos Preview，称其为首个能自主构建复杂端到端网络攻击利用的AI模型，因而通过Project Glasswing有限发布，让可信网络防御者在恶意行为者获得同类能力前，先期发现关键软件中逾万个漏洞。如今这类模型已经出现：本文分析智谱AI（境外称Z.ai）的最新模型GLM-5.3，认为它与Claude Mythos Preview一样具备自主构建端到端攻击利用的强能力，但不同之处在于发布时未设有效防滥用保障。模拟测试显示，攻击者用简单技术绕过其防护的成功率在64%至100%之间，而同类攻击在受防护的Claude模型上未成功。9月17日，NIST下属的CAISI发布了自己的评估，称GLM-5.3是迄今发布的网络能力最强的开放权重模型，在网络基准综合上落后美国前沿约四个月；本文的能力结论与CAISI大体吻合，并补充分析了其防护如何被绕过或移除。测试在隔离沙箱中针对预设离线目标进行，聚焦漏洞利用开发能力：在ExploitBench上，GLM-5.3在410次尝试中50次完成端到端利用，Claude Mythos Preview为56次。",
-   "key_points": [
-    "GLM-5.3由智谱AI（境外称Z.ai）开发，本文认为它同Claude Mythos Preview一样具备自主构建端到端网络攻击利用的强能力，但发布时未设有效防滥用保障",
-    "模拟测试中，攻击者用简单技术绕过GLM-5.3防护的成功率为64%至100%，同类攻击在受防护的Claude模型上未成功；本文评估其宽松防护显著增加了恶意行为者可用的网络能力，同时这些能力也可惠及防御者",
-    "NIST下属CAISI于9月17日评估称GLM-5.3是迄今网络能力最强的开放权重模型、落后美国前沿约四个月；CAISI比较中美国模型在适用时禁用网络防护，且美国前沿含仅向受审查用户发布的模型，而任何人都能下载GLM-5.3"
-   ],
-   "topics": [
-    "cybersecurity",
-    "jailbreak",
-    "eval"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全",
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 77.7,
-   "status": "published",
-   "extra": {
-    "hn_points": 244,
-    "hn_comments": 229,
-    "outbound": {
-     "arxiv": [
-      "2406.11717",
-      "2605.14153"
-     ],
-     "links": [
-      "https://www.anthropic.com/glasswing",
-      "https://www.anthropic.com/research/glasswing-initial-update",
-      "https://www.nist.gov/news-events/news/2026/09/caisis-assessment-zais-glm-53-cyber-capabilities",
-      "https://arxiv.org/abs/2605.14153",
-      "https://red.anthropic.com/2026/mythos-preview",
-      "https://www.anthropic.com/research/n-days",
-      "https://arxiv.org/abs/2406.11717",
-      "https://jailbreakbench.github.io/",
-      "https://www.harmbench.org/",
-      "https://strong-reject.readthedocs.io/en/latest/",
-      "https://www.anthropic.com/threat-intelligence-report-september-2026",
-      "https://cloud.google.com/blog/topics/threat-intelligence/from-prompting-to-autonomy-the-evolution-of-adversarial-ai",
-      "https://openai.com/index/patch-the-planet/",
-      "https://twitter.com/intent/tweet?text=https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://www.anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "493cf3fce1b87919",
-   "url": "https://huggingface.co/blog/nvidia/kumo-tabular",
-   "title": "NVIDIA Kumo Tabular Sets a New Accuracy-Efficiency Frontier for Tabular Prediction",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-09-29T15:30:38+00:00",
-   "summary_short": "NVIDIA发布Kumo Tabular表格基础模型，免训练调参，四大基准排名第一",
-   "summary_long": "NVIDIA Kumo Tabular 是 NVIDIA Kumo Structured 模型集合中的表格数据开源基础模型，已在 Hugging Face 发布。给定一张带标签行的表格，它能在单次前向传播中预测新行的标签，分类与回归皆可，无需训练、调参或特征工程。模型仅用人工数据预训练，提供 28M 至 215M 三档参数规模，通过开源库运行，以 OpenMDW-1.1 许可证发布、可商用，并在 TabArena、BeyondArena、TALENT、ScoringBench 四个基准上排名第一。原文指出，表格数据是企业机器学习的骨干，客户记录、交易、传感器日志、理赔与订单都以表格存在；过去二十年主流做法是梯度提升树，但每个新问题仍要收集标签、做特征工程、搜索超参数、验证与部署，模型对表格没有通用理解，每个任务都从零学起。原文以语言模型的上下文学习作类比：预训练模型在提示中看几个例子即可解题，无需更新权重，表格同样适用。架构上，它是围绕表格结构构建的 Transformer，采用 TabICL 与 TabPFN 提出的列注意力、行注意力与上下文注意力。",
-   "key_points": [
-    "单次前向传播即可预测新行标签，分类与回归均支持，无需训练、调参或特征工程",
-    "仅用人工数据预训练，提供 28M–215M 三种参数规模，通过开源库运行，以 OpenMDW-1.1 许可证发布并可商用，代码与权重已公开",
-    "在 TabArena、BeyondArena、TALENT、ScoringBench 四个基准上排名第一；模型采用 TabICL 与 TabPFN 的列注意力、行注意力与上下文注意力，缺失值无需插补、被特殊处理"
-   ],
-   "topics": [
-    "open-source",
-    "tabular-data",
-    "foundation-model"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 77.1,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://huggingface.co/nvidia/Kumo-Tabular",
-      "https://github.com/NVIDIA/structured-data-models",
-      "https://openmdw.ai/license/1-1/",
-      "https://github.com/autogluon/tabarena",
-      "https://github.com/LAMDA-Tabular/TALENT",
-      "https://github.com/jonaslandsgesell/ScoringBench",
-      "https://github.com/soda-inria/tabicl",
-      "https://github.com/PriorLabs/tabpfn",
-      "https://cdn-uploads.huggingface.co/production/uploads/684040a5de1ad7f4fcec9508/TkT695UAWJnUIyEydIYRv.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/684040a5de1ad7f4fcec9508/ipJNJTNO5ZH2zviIdR8eo.png",
-      "https://github.com/limix-ldm-ai/LimiX",
-      "https://cdn-uploads.huggingface.co/production/uploads/684040a5de1ad7f4fcec9508/CpOXm3g9du6Uw3zQDh2QC.png",
-      "https://github.com/NVIDIA/structured-data-models/issues",
-      "https://dholzmueller.github.io/",
-      "https://kvignesh1420.github.io/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "984223f109f3360b",
    "url": "https://huggingface.co/blog/MultiverseComputingCAI/getting-the-source-right-not-just-the-fact-source",
    "title": "Getting the Source Right, Not Just the Fact: Source-Aware Verification for MCP Agents",
@@ -2909,96 +2888,6 @@
       "https://substackcdn.com/image/fetch/$s_!Rh-F!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0be7e4aa-5436-46cf-8e85-809f776f39e1_4920x3189.png",
       "https://substackcdn.com/image/fetch/$s_!T3RZ!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9065aa90-305d-4373-bf45-73d82ec86768_1943x1931.png",
       "https://substackcdn.com/image/fetch/$s_!5cCi!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc6bc5509-085e-4b93-b557-566a5a05f0ff_2940x2021.png"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "dd66acaed2a04b44",
-   "url": "https://openai.com/index/introducing-gpt-6-1-sol",
-   "title": "Introducing GPT-6.1 Sol",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-29T10:00:00+00:00",
-   "summary_short": "GPT-6.1 Sol 发布：以 Astra 五分之一价格接近其智能水平",
-   "summary_long": "GPT-6.1 Sol 是 GPT-6 Sol 的升级版，在智能体编程、计算机使用和专业工作方面接近 GPT-6 Astra 的智能水平，标准输入输出 token 价格仅为 Astra 的五分之一。缓存输入每百万 token 0.10 美元，比标准输入价格低 95%，比 GPT-6 Sol 的缓存输入价格低 50%，便于开发者构建跨请求复用上下文的智能体。编码方面，在 DeepSWE v1.1 中以约五分之一成本匹配 Astra，并在更低推理投入与成本下比 GPT-6 Sol 最佳成绩高 6.4 个百分点。GDP.pdf 上得分高于含 fallback 的 Opus 5.5，每任务成本不到一半，并以约五分之一成本接近 Astra。AutomationBench 中等推理投入下比 Opus 5.5 高 2.2 个百分点、成本约三分之一，同设置下比 GPT-6 Sol 高 4.8 个百分点。OSWorld 2.0 离线集最大推理投入下比 GPT-6 Sol 高 7 个百分点、成本不到一半，距 Astra 2.1 个百分点、成本约七分之一。Terminal-Bench Science 0.1 上最大推理投入下分数翻倍以上，每任务平均 5.47 美元，低于 Opus 5.5 的 23.21 美元和 Astra 的 23.80 美元。",
-   "key_points": [
-    "GPT-6.1 Sol 在智能体编程、计算机使用与专业工作上接近 GPT-6 Astra，价格仅为 Astra 标准输入输出 token 价的五分之一",
-    "缓存输入每百万 token 0.10 美元，比标准输入价格低 95%，比 GPT-6 Sol 缓存输入价格低 50%",
-    "DeepSWE v1.1 中以约五分之一成本匹配 Astra，并在更低推理投入与成本下比 GPT-6 Sol 最佳分数高 6.4 个百分点"
-   ],
-   "topics": [
-    "coding-agent",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 81.0,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Product"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://deepswe.datacurve.ai/",
-      "https://surgehq.ai/benchmarks/gdp-pdf",
-      "https://zapier.com/benchmarks",
-      "https://osworld-v2.xlang.ai/",
-      "https://www.terminal-bench-science.ai/",
-      "https://deploymentsafety.openai.com/gpt-6-1-sol",
-      "https://openai.com/index/devday-2026-recap"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "884977ecb8004cb3",
-   "url": "https://openai.com/index/introducing-dots",
-   "title": "Introducing dots",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-09-29T00:00:00+00:00",
-   "summary_short": "dots 发布：由 GPT-6 Astra 驱动的常驻智能体，可 24/7 自主完成工作",
-   "summary_long": "原文介绍 dots：一种常驻智能体，由 GPT-6 Astra 驱动，拥有自己的云计算机，能随时间从反馈中学习，并 24/7 朝用户目标推进；通过插件生态可连接 4,000 多个应用，可从 ChatGPT、Slack 或 Teams 访问。合作越久，dot 越了解用户偏好与「好」的标准。原文举例：Slack 出现 bug 时 dot 立刻排查；新设计被做成可用应用；一位早期测试者的 dot 发现他忘记开具发票，起草并在其批准后发出。用户可先启用一个主 dot 并为它命名，未来设想由 dot 团队协同工作。dots 正面向 Pro、Business Premium 与 Enterprise 计划在符合资格的市场逐步推出，并预告了拥有独立身份、IT 配发硬件及与企业记录系统深度集成的专家型 dots。dot 可动用自有云计算机、浏览器与已连接应用，用户可随时查看其工作，也能授权它使用你的笔记本电脑。",
-   "key_points": [
-    "dots 是由 GPT-6 Astra 驱动的常驻智能体，拥有自己的云计算机，可从反馈中学习并 24/7 朝目标工作",
-    "通过插件生态可连接 4,000 多个应用，可从 ChatGPT、Slack 或 Teams 使用；正面向 Pro、Business Premium 与 Enterprise 计划在符合资格的市场逐步推出",
-    "原文给出 Slack 排查 bug、把新设计做成可用应用、测试者的 dot 自动起草并发出忘记开具的发票等场景，并预告了具备独立身份、IT 配发硬件与企业系统深度集成的专家型 dots"
-   ],
-   "topics": [
-    "product",
-    "agent-loop",
-    "memory"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 77.7,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Product"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://chatgpt.com/dots",
-      "https://help.openai.com/articles/7730893-data-controls-in-chatgpt",
-      "https://learn.chatgpt.com/docs/sandboxing/auto-review",
-      "http://help.openai.com/articles/20001529",
-      "https://deploymentsafety.openai.com/gpt-6-astra/change-log",
-      "https://help.openai.com/articles/20001530"
      ]
     },
     "summary_mode": "full"

@@ -1,72 +1,24 @@
 {
- "generated_at": "2026-10-13T23:19:45+00:00",
- "date": "2026-10-13",
- "run_id": "20261013-231648",
+ "generated_at": "2026-10-14T22:22:15+00:00",
+ "date": "2026-10-14",
+ "run_id": "20261014-221823",
  "top": [
   {
-   "id": "49fe8a3fc3d9ad0e",
-   "url": "https://github.blog/ai-and-ml/githubs-model-for-secret-detection-finding-more-secrets-with-less-noise/",
-   "title": "GitHub’s model for secret detection: Finding more secrets with less noise",
-   "source": "GitHub Blog (AI)",
-   "tier": "S",
-   "published_at": "2026-10-13T17:56:33+00:00",
-   "summary_short": "GitHub 密钥扫描新管线：误报更少，扫描快 86%、成本低 98%",
-   "summary_long": "GitHub 为密钥扫描训练了一个专用分类器，用于区分真实凭证与形似凭证的非敏感字符串。原文指出，结构化凭证常有独特前缀、长度、字母表或校验和，通用密钥则没有，其语法与构建 ID、校验和、资源哈希、示例值等重叠，因此上下文才是决定性信号——同一串口令式字符串，出现在生产数据库 URL 旁可能是真凭证，出现在测试夹具中则无害。为此 GitHub 采用两阶段管线：先用正则过滤以高召回率快速、确定性地筛出候选，再由微调后的 ModernBERT 分类器结合候选及其周边上下文（文件路径、密钥类型、变量名、邻近代码或文本）判断真假，识别占位符、示例、文档片段、生成内容与非敏感标识符。效果方面，原文给出接受率提升 11.5%，后推送扫描中位执行时间降低 86%，相比此前基于远程 LLM 调用的方案服务成本降低 98%。这一效率提升使得通用密钥检测得以扩展到 push protection，在推送被接受前返回结果。原文还提到另有一篇配套文章讨论密钥保护需跟上 AI 加速的开发节奏。",
-   "key_points": [
-    "采用两阶段管线：正则过滤实现高召回的候选生成，再由微调 ModernBERT 分类器结合上下文做判断",
-    "原文给出的效果数字：接受率提升 11.5%，后推送扫描中位执行时间降低 86%，相比远程 LLM 方案服务成本降低 98%",
-    "效率提升使通用密钥检测得以扩展到 push protection，即在推送被接受前完成扫描；使用的上下文信号包括文件路径、密钥类型、变量名和邻近代码或文本"
-   ],
-   "topics": [
-    "cybersecurity",
-    "post-training",
-    "privacy"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全",
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 84.0,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "AI & ML",
-     "Application security",
-     "Security",
-     "AI",
-     "Secret Scanning"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
-      "https://github.blog/ai-and-ml/githubs-model-for-secret-detection-finding-more-secrets-with-less-noise/",
-      "https://github.blog"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "49aae9e462bc00ae",
-   "url": "https://simonwillison.net/2026/Oct/13/redesigning-source-control-at-anthropic/",
+   "id": "8c17f1f1ac30a4ed",
+   "url": "https://www.anthropic.com/engineering/redesigning-source-control",
    "title": "Redesigning source control at Anthropic",
-   "source": "Simon Willison",
+   "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-13T23:00:06+00:00",
-   "summary_short": "Anthropic 因代码变更量半年激增，自研 Git 替代系统 Scion",
-   "summary_long": "原文介绍 Anthropic 为何以及如何自研 Git 的替代方案。起因是代码改动速度大幅上升：2026 年 5 月 Anthropic 日均合并约 2,500 次代码变更，到 9 月已超过 30,000 次。文中给出规模数据：仅主分支历史就接近 100 GB，压缩后的工作副本超过 25 GB；每天为 CI 执行约 2,500 万次代码检出，还未计入开发者环境、agent 沙箱和研究任务，若按传统方式抓取，每天 Git 流量将超过 600 PB。新系统名为 Scion，代码审查系统名为 Antique；由七人团队开发，从 Git 迁移在五个月内完成。原文还提到 Anthropic 大量使用对抗式审查，这种方式在很多方面非常有效，但也可能目光狭隘，需要资深工程师引导 Claude 避免为假想问题过度设计系统。文中用 Claude 修改了图表，为 2026 年各模型的公开发布日期加上标记（非内部可用日期），并猜测 Fable/Mythos 级模型是关键因素。",
+   "published_at": "2026-10-13T15:49:56+00:00",
+   "summary_short": "Anthropic 自研源码控制系统 Scion，五个月内把 monorepo 完全迁出 git",
+   "summary_long": "原文指出，在 Anthropic 写代码已不再是瓶颈：Claude 能自主迭代研究循环、微优化程序、从零搭建服务，瓶颈转为为人类规模设计的开发者基础设施——源码控制、构建与 CI。合并量由 2026 年 5 月约 2,500 次/天升至 9 月逾 30,000 次/天，原文预期增速不会放缓。为此 Anthropic 自研版本控制系统 Scion，五个月内将 monorepo 完全迁出 git，同期还交付代码审查界面 Antique、代码搜索与源码控制 IAM 等。原文称动机来自规模压力：主分支历史近 100 GB、压缩工作副本超 25 GB、每天约 2,500 万次 CI 检出，朴素拉取即每天逾 600 PB 流量；峰值需运营数百个内部 git 镜像。因客户端几乎全是在线的 agent 与任务，git 面向分布式离线的特性反成扩展负担。原文在阐述 agent 规模源码控制原则处截断。",
    "key_points": [
-    "2026 年 5 月 Anthropic 日均合并约 2,500 次代码变更，到 9 月超过 30,000 次，这是自研 Git 替代方案的动因。",
-    "新源码控制系统名为 Scion，代码审查系统名为 Antique，由七人团队开发，从 Git 的迁移在五个月内完成。",
-    "规模数据：主分支历史接近 100 GB，压缩工作副本超 25 GB，每天约 2,500 万次 CI 代码检出，按传统方式抓取每天 Git 流量将超 600 PB。"
+    "Claude 让合并量从 2026 年 5 月约 2,500 次/天增至 9 月逾 30,000 次/天，瓶颈转移到源码控制、构建与 CI 等为人类规模设计的开发者基础设施。",
+    "Anthropic 自研内部版本控制系统 Scion，五个月内将 monorepo 从 git 完全迁移，同期还构建了代码审查界面 Antique、代码搜索、源码控制 IAM 系统以及落地大量已审查代码的新方式等。",
+    "原文称主分支历史近 100 GB、压缩工作副本超 25 GB、每天约 2,500 万次 CI 检出，峰值时运营数百个内部 git 镜像；因客户端几乎全是在线的 agent 与任务，git 面向分布式离线的优势反成扩展负担。"
    ],
    "topics": [
-    "agent-loop",
-    "context-engineering",
+    "coding-agent",
     "harness"
    ],
    "category": "Agent 与开发",
@@ -74,164 +26,52 @@
     "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 82.2,
+   "score": 84.0,
    "status": "published",
    "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "git",
-     "migrations",
-     "version-control",
-     "ai",
-     "generative-ai"
-    ],
+    "hn_points": 861,
+    "hn_comments": 961,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.anthropic.com/engineering/redesigning-source-control",
-      "https://claude.ai/share/aefcdd4a-9364-40c1-927a-29bf445894fc",
-      "https://gist.github.com/simonw/4a16dff066fd9763faf8642f797905be",
-      "https://news.ycombinator.com/item?id=50073633",
-      "https://simonwillison.net/tags/git",
-      "https://simonwillison.net/tags/migrations",
-      "https://simonwillison.net/tags/version-control",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/anthropic",
-      "https://simonwillison.net/tags/agentic-engineering"
+      "https://en.wikipedia.org/wiki/Piper_(source_control_system)",
+      "https://sapling-scm.com/",
+      "https://www.anthropic.com/claude/mythos",
+      "https://www.anthropic.com/news/introducing-claude-tag"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "858ce7e14d9130e5",
-   "url": "https://simonwillison.net/2026/Oct/13/geoffrey-huntley/",
-   "title": "Quoting Geoffrey Huntley",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-13T13:32:00+00:00",
-   "summary_short": "用 pre-commit 钩子拦住绕过诊断库的调用，让提交失败并给 agent 注入提示",
-   "summary_long": "原文引述 Geoffrey Huntley 的做法：如果编码 agent 没有使用他的诊断库（diagnostics library），他可以去内省并更新 AGENTS.md，但两者之间仍然存在差距（delta），而且会漂移。于是他改用另一种方式——写一个 pre-commit 钩子，检查 git diff 里是否存在直接调用可观测性（observability）模块、从而绕过诊断模块的情况。一旦命中，就令提交失败，并注入一段提示，告诉 agent 要使用诊断库。他称这样一来「突然就是十分满分」。原文未详述钩子的具体实现、诊断库与可观测性模块之间的关系，也未说明这套做法的适用范围。这段内容值得关注之处在于：它把对 agent 行为的约束，从会漂移的提示文件转向提交环节的强制检查。",
-   "key_points": [
-    "Huntley 指出，即使内省并更新 AGENTS.md，与 agent 的实际行为之间仍有差距，并且会漂移。",
-    "他的替代做法是写一个 pre-commit 钩子，检查 git diff 中绕过诊断模块、直接调用可观测性模块的代码。",
-    "命中后让提交失败，并注入提示告知 agent 使用诊断库；他称效果「十分满分」。"
-   ],
-   "topics": [
-    "coding-agent",
-    "harness",
-    "context-engineering"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 81.9,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "coding-agents",
-     "generative-ai",
-     "git",
-     "agentic-engineering",
-     "ai"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://ghuntley.com/agency/",
-      "https://simonwillison.net/tags/coding-agents",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/git",
-      "https://simonwillison.net/tags/agentic-engineering",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/geoffrey-huntley",
-      "https://simonwillison.net/tags/llms"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "25432b6b093a311b",
-   "url": "https://deepmind.google/blog/developing-gemini-4-argon-responsibly-and-safely/",
-   "title": "Developing Gemini 4 Argon responsibly and safely",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-10-13T19:43:07+00:00",
-   "summary_short": "Gemini 4 Argon 详解安全防护，开始广泛推出并扩展 Fairwind 计划",
-   "summary_long": "谷歌 DeepMind 发布 Gemini 4 Argon 的安全与安保方案说明。该模型在编程、金融、法律、网络安全和科学等领域的复杂真实任务上更进一步，网络防御能力达前沿水平，目标是让防御方相对攻击方占据优势。上线前，模型先通过 Fairwind 计划交给网络防御方使用，谷歌自身安全团队也用它扫描谷歌内外的关键系统：Wiz 用它发现医院软件中此前模型漏掉的关键漏洞，保护数十万患者记录；谷歌团队则发现并修复内部及开源软件漏洞，包括影响全球系统的基础性漏洞，正走负责任披露流程。如今 Argon 开始广泛推出，Fairwind 计划也同步扩大。原文围绕两个问题展开：如何防止滥用，即阻止恶意者用其发起网络攻击或制造生物威胁；以及如何确保模型不越界、不做出错误的高风险决策，即失准与提示注入。原文称网络安全测试中 12 个端到端模拟攻击场景全部通过（上一代为 5 个），并设置三层实时防护。",
-   "key_points": [
-    "Argon 网络防御能力为前沿水平，先经 Fairwind 计划与谷歌内部安全团队有限试用：Wiz 用它发现医院软件中此前模型漏掉的关键漏洞，保护数十万患者记录；谷歌团队修复了内部及开源软件漏洞，含影响全球系统的基础性漏洞，正走负责任披露流程",
-    "网络安全测试中解决全部 12 个端到端模拟攻击场景，上一代为 5 个；生物学评估中未加防护版本显示出更强的逐步协助排查复杂实验流程的能力，因 Cyber 与生物领域能力提升，按 Frontier Safety Framework 部署新一代前沿防护",
-    "在对抗性测试集上违规减少近两倍，优于此前 Gemini 模型；并设三层实时保护——输入筛查、内部激活探针、持续监控，Argon 今日开始广泛推出，Fairwind 计划扩大至更多受信任的网络防御方"
-   ],
-   "topics": [
-    "cybersecurity",
-    "prompt-injection",
-    "alignment"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 80.7,
-   "status": "published",
-   "extra": {
     "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://twitter.com/intent/tweet?text=Developing%20Gemini%204%20Argon%20responsibly%20and%20safely%20%40google&url=https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security/",
-      "https://www.facebook.com/sharer/sharer.php?caption=Developing%20Gemini%204%20Argon%20responsibly%20and%20safely&u=https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security/",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security/&title=Developing%20Gemini%204%20Argon%20responsibly%20and%20safely",
-      "https://deepmind.google/fairwind-program/",
-      "https://www.wiz.io/scan-for-good",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
-      "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_safety_report.pdf",
-      "https://deepmind.google/blog/strengthening-our-frontier-safety-framework/",
-      "https://deepmind.google/blog/securing-the-future-of-ai-agents/",
-      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Argon-Model-Card.pdf",
-      "https://policies.google.com/privacy"
-     ]
-    },
     "summary_mode": "full"
    }
   },
   {
-   "id": "8b0463614a7b86fd",
-   "url": "https://deepmind.google/blog/gemini-4-argon-for-robotics/",
+   "id": "1609f5d4ca7309cc",
+   "url": "https://developers.googleblog.com/gemini-4-argon-for-robotics/",
    "title": "Gemini 4 Argon for Robotics",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-10-13T16:01:58+00:00",
-   "summary_short": "Gemini 4 Argon 亮相：ERQA 物理推理纯推理得 87%，超过所有前沿模型",
-   "summary_long": "Google Developers Blog 发布 Gemini 4 Argon for Robotics（2026 年 10 月 13 日，作者 Kanishka Rao，Principal Software Engineer）。原文称 Argon 在物理理解、代码生成和视觉语义推理上实现跨越式提升，为机器人栈解锁新工作流，并加速迈向物理 AGI。在测试模型理解与解决 3D 物理、空间问题能力的 Embodied Reasoning（ERQA）基准上，Argon 以纯推理取得 87%，超过所有其他前沿模型。作为通用物理推理模型，它可应用于机器人全生命周期。原文给出四个代表性方向：机器人控制（MuJoCo 练习中的移动操作、零样本机器人控制、视频世界模型的闭环引导）；Real2Sim（从机器人摄像头画面、第一人称人类视频或手绘纸面草图重建物理校准的仿真孪生体）；物理理解（智能体式多模态事后标注，包含对灵巧性的细致理解、稠密价值函数与进度估计）；研究与自我改进（通过仿真改进动作，并在硬件上迭代自我改进）。示例包括 Argon 控制 Boston Dynamics Spot（12 自由度腿 + 6 自由度臂）学会踩脚踏式垃圾桶投掷易拉罐，先在 MuJoCo 中建立关节化数字孪生体练习；以及通过视觉坐标夹具与动作原语，多轮完成扶正倒下的杯子并放入揉皱纸巾。",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-13T16:55:47+00:00",
+   "summary_short": "Gemini 4 Argon 发布：ERQA 物理推理得分 87%，覆盖机器人全生命周期用例",
+   "summary_long": "Google Developers Blog 于 2026 年 10 月 13 日发布 Gemini 4 Argon for Robotics，作者为首席软件工程师 Kanishka Rao。原文称其在物理理解、代码生成与视觉语义推理上实现跨越，可解锁机器人技术栈新工作流。在测试 3D 环境物理与空间问题求解的 Embodied Reasoning（ERQA）基准上，Argon 以纯推理取得 87%，超过其他所有前沿模型。原文称作为通用物理推理模型，它可应用于机器人全生命周期，并给出四个方向的代表性提示词：机器人控制（MuJoCo 练习的移动操作、零样本控制、视频世界模型闭环操控）、Real2Sim（从机器人相机、第一人称人类视频或手绘草图重建物理标定仿真孪生）、物理理解（多模态事后标注、密集价值函数与进度估计）、研究与自我改进（仿真改进行动、硬件上迭代自我改进）。示例包括控制 Boston Dynamics Spot 踩脚踏式垃圾桶丢易拉罐前先在 MuJoCo 建数字孪生练习，以及零样本控制机械臂扶正杯子并放入纸团。",
    "key_points": [
-    "在 Embodied Reasoning（ERQA）基准上以纯推理拿到 87%，原文称其超过所有其他前沿模型",
-    "作为通用物理推理模型覆盖机器人全生命周期，原文列出机器人控制、Real2Sim、物理理解、研究与自我改进四个方向",
-    "演示任务包括控制 Boston Dynamics Spot 在 MuJoCo 数字孪生体中练习踩脚踏垃圾桶丢易拉罐，以及零样本控制机械臂扶正杯子并放入纸团"
+    "在 Embodied Reasoning（ERQA）基准上以纯推理得分 87%，原文称超过其他所有前沿模型",
+    "原文列出四个应用方向：机器人控制、Real2Sim、物理理解、研究与自我改进，并各给出代表性提示词",
+    "示例一：控制 Boston Dynamics Spot 踩脚踏式垃圾桶丢易拉罐，先用 MuJoCo 建可动数字孪生练习；示例二：用视觉坐标套件与动作原语零样本控制机械臂扶正杯子并放入纸团"
    ],
    "topics": [
     "reasoning",
-    "tool-use",
-    "open-source"
+    "embodied-reasoning"
    ],
    "category": "模型",
    "categories": [
-    "模型",
-    "Agent 与开发"
+    "模型"
    ],
    "horizon": "short",
-   "score": 80.4,
+   "score": 77.7,
    "status": "published",
    "extra": {
-    "content_source": "direct",
+    "hn_points": 228,
+    "hn_comments": 55,
     "outbound": {
      "arxiv": [],
      "links": [
@@ -246,75 +86,28 @@
       "https://antigravity.google/"
      ]
     },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   }
  ],
  "items": [
   {
-   "id": "49fe8a3fc3d9ad0e",
-   "url": "https://github.blog/ai-and-ml/githubs-model-for-secret-detection-finding-more-secrets-with-less-noise/",
-   "title": "GitHub’s model for secret detection: Finding more secrets with less noise",
-   "source": "GitHub Blog (AI)",
-   "tier": "S",
-   "published_at": "2026-10-13T17:56:33+00:00",
-   "summary_short": "GitHub 密钥扫描新管线：误报更少，扫描快 86%、成本低 98%",
-   "summary_long": "GitHub 为密钥扫描训练了一个专用分类器，用于区分真实凭证与形似凭证的非敏感字符串。原文指出，结构化凭证常有独特前缀、长度、字母表或校验和，通用密钥则没有，其语法与构建 ID、校验和、资源哈希、示例值等重叠，因此上下文才是决定性信号——同一串口令式字符串，出现在生产数据库 URL 旁可能是真凭证，出现在测试夹具中则无害。为此 GitHub 采用两阶段管线：先用正则过滤以高召回率快速、确定性地筛出候选，再由微调后的 ModernBERT 分类器结合候选及其周边上下文（文件路径、密钥类型、变量名、邻近代码或文本）判断真假，识别占位符、示例、文档片段、生成内容与非敏感标识符。效果方面，原文给出接受率提升 11.5%，后推送扫描中位执行时间降低 86%，相比此前基于远程 LLM 调用的方案服务成本降低 98%。这一效率提升使得通用密钥检测得以扩展到 push protection，在推送被接受前返回结果。原文还提到另有一篇配套文章讨论密钥保护需跟上 AI 加速的开发节奏。",
-   "key_points": [
-    "采用两阶段管线：正则过滤实现高召回的候选生成，再由微调 ModernBERT 分类器结合上下文做判断",
-    "原文给出的效果数字：接受率提升 11.5%，后推送扫描中位执行时间降低 86%，相比远程 LLM 方案服务成本降低 98%",
-    "效率提升使通用密钥检测得以扩展到 push protection，即在推送被接受前完成扫描；使用的上下文信号包括文件路径、密钥类型、变量名和邻近代码或文本"
-   ],
-   "topics": [
-    "cybersecurity",
-    "post-training",
-    "privacy"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全",
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 84.0,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "AI & ML",
-     "Application security",
-     "Security",
-     "AI",
-     "Secret Scanning"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
-      "https://github.blog/ai-and-ml/githubs-model-for-secret-detection-finding-more-secrets-with-less-noise/",
-      "https://github.blog"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "49aae9e462bc00ae",
-   "url": "https://simonwillison.net/2026/Oct/13/redesigning-source-control-at-anthropic/",
+   "id": "8c17f1f1ac30a4ed",
+   "url": "https://www.anthropic.com/engineering/redesigning-source-control",
    "title": "Redesigning source control at Anthropic",
-   "source": "Simon Willison",
+   "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-13T23:00:06+00:00",
-   "summary_short": "Anthropic 因代码变更量半年激增，自研 Git 替代系统 Scion",
-   "summary_long": "原文介绍 Anthropic 为何以及如何自研 Git 的替代方案。起因是代码改动速度大幅上升：2026 年 5 月 Anthropic 日均合并约 2,500 次代码变更，到 9 月已超过 30,000 次。文中给出规模数据：仅主分支历史就接近 100 GB，压缩后的工作副本超过 25 GB；每天为 CI 执行约 2,500 万次代码检出，还未计入开发者环境、agent 沙箱和研究任务，若按传统方式抓取，每天 Git 流量将超过 600 PB。新系统名为 Scion，代码审查系统名为 Antique；由七人团队开发，从 Git 迁移在五个月内完成。原文还提到 Anthropic 大量使用对抗式审查，这种方式在很多方面非常有效，但也可能目光狭隘，需要资深工程师引导 Claude 避免为假想问题过度设计系统。文中用 Claude 修改了图表，为 2026 年各模型的公开发布日期加上标记（非内部可用日期），并猜测 Fable/Mythos 级模型是关键因素。",
+   "published_at": "2026-10-13T15:49:56+00:00",
+   "summary_short": "Anthropic 自研源码控制系统 Scion，五个月内把 monorepo 完全迁出 git",
+   "summary_long": "原文指出，在 Anthropic 写代码已不再是瓶颈：Claude 能自主迭代研究循环、微优化程序、从零搭建服务，瓶颈转为为人类规模设计的开发者基础设施——源码控制、构建与 CI。合并量由 2026 年 5 月约 2,500 次/天升至 9 月逾 30,000 次/天，原文预期增速不会放缓。为此 Anthropic 自研版本控制系统 Scion，五个月内将 monorepo 完全迁出 git，同期还交付代码审查界面 Antique、代码搜索与源码控制 IAM 等。原文称动机来自规模压力：主分支历史近 100 GB、压缩工作副本超 25 GB、每天约 2,500 万次 CI 检出，朴素拉取即每天逾 600 PB 流量；峰值需运营数百个内部 git 镜像。因客户端几乎全是在线的 agent 与任务，git 面向分布式离线的特性反成扩展负担。原文在阐述 agent 规模源码控制原则处截断。",
    "key_points": [
-    "2026 年 5 月 Anthropic 日均合并约 2,500 次代码变更，到 9 月超过 30,000 次，这是自研 Git 替代方案的动因。",
-    "新源码控制系统名为 Scion，代码审查系统名为 Antique，由七人团队开发，从 Git 的迁移在五个月内完成。",
-    "规模数据：主分支历史接近 100 GB，压缩工作副本超 25 GB，每天约 2,500 万次 CI 代码检出，按传统方式抓取每天 Git 流量将超 600 PB。"
+    "Claude 让合并量从 2026 年 5 月约 2,500 次/天增至 9 月逾 30,000 次/天，瓶颈转移到源码控制、构建与 CI 等为人类规模设计的开发者基础设施。",
+    "Anthropic 自研内部版本控制系统 Scion，五个月内将 monorepo 从 git 完全迁移，同期还构建了代码审查界面 Antique、代码搜索、源码控制 IAM 系统以及落地大量已审查代码的新方式等。",
+    "原文称主分支历史近 100 GB、压缩工作副本超 25 GB、每天约 2,500 万次 CI 检出，峰值时运营数百个内部 git 镜像；因客户端几乎全是在线的 agent 与任务，git 面向分布式离线的优势反成扩展负担。"
    ],
    "topics": [
-    "agent-loop",
-    "context-engineering",
+    "coding-agent",
     "harness"
    ],
    "category": "Agent 与开发",
@@ -322,164 +115,52 @@
     "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 82.2,
+   "score": 84.0,
    "status": "published",
    "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "git",
-     "migrations",
-     "version-control",
-     "ai",
-     "generative-ai"
-    ],
+    "hn_points": 861,
+    "hn_comments": 961,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.anthropic.com/engineering/redesigning-source-control",
-      "https://claude.ai/share/aefcdd4a-9364-40c1-927a-29bf445894fc",
-      "https://gist.github.com/simonw/4a16dff066fd9763faf8642f797905be",
-      "https://news.ycombinator.com/item?id=50073633",
-      "https://simonwillison.net/tags/git",
-      "https://simonwillison.net/tags/migrations",
-      "https://simonwillison.net/tags/version-control",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/anthropic",
-      "https://simonwillison.net/tags/agentic-engineering"
+      "https://en.wikipedia.org/wiki/Piper_(source_control_system)",
+      "https://sapling-scm.com/",
+      "https://www.anthropic.com/claude/mythos",
+      "https://www.anthropic.com/news/introducing-claude-tag"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "858ce7e14d9130e5",
-   "url": "https://simonwillison.net/2026/Oct/13/geoffrey-huntley/",
-   "title": "Quoting Geoffrey Huntley",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-13T13:32:00+00:00",
-   "summary_short": "用 pre-commit 钩子拦住绕过诊断库的调用，让提交失败并给 agent 注入提示",
-   "summary_long": "原文引述 Geoffrey Huntley 的做法：如果编码 agent 没有使用他的诊断库（diagnostics library），他可以去内省并更新 AGENTS.md，但两者之间仍然存在差距（delta），而且会漂移。于是他改用另一种方式——写一个 pre-commit 钩子，检查 git diff 里是否存在直接调用可观测性（observability）模块、从而绕过诊断模块的情况。一旦命中，就令提交失败，并注入一段提示，告诉 agent 要使用诊断库。他称这样一来「突然就是十分满分」。原文未详述钩子的具体实现、诊断库与可观测性模块之间的关系，也未说明这套做法的适用范围。这段内容值得关注之处在于：它把对 agent 行为的约束，从会漂移的提示文件转向提交环节的强制检查。",
-   "key_points": [
-    "Huntley 指出，即使内省并更新 AGENTS.md，与 agent 的实际行为之间仍有差距，并且会漂移。",
-    "他的替代做法是写一个 pre-commit 钩子，检查 git diff 中绕过诊断模块、直接调用可观测性模块的代码。",
-    "命中后让提交失败，并注入提示告知 agent 使用诊断库；他称效果「十分满分」。"
-   ],
-   "topics": [
-    "coding-agent",
-    "harness",
-    "context-engineering"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 81.9,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "coding-agents",
-     "generative-ai",
-     "git",
-     "agentic-engineering",
-     "ai"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://ghuntley.com/agency/",
-      "https://simonwillison.net/tags/coding-agents",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/git",
-      "https://simonwillison.net/tags/agentic-engineering",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/geoffrey-huntley",
-      "https://simonwillison.net/tags/llms"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "25432b6b093a311b",
-   "url": "https://deepmind.google/blog/developing-gemini-4-argon-responsibly-and-safely/",
-   "title": "Developing Gemini 4 Argon responsibly and safely",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-10-13T19:43:07+00:00",
-   "summary_short": "Gemini 4 Argon 详解安全防护，开始广泛推出并扩展 Fairwind 计划",
-   "summary_long": "谷歌 DeepMind 发布 Gemini 4 Argon 的安全与安保方案说明。该模型在编程、金融、法律、网络安全和科学等领域的复杂真实任务上更进一步，网络防御能力达前沿水平，目标是让防御方相对攻击方占据优势。上线前，模型先通过 Fairwind 计划交给网络防御方使用，谷歌自身安全团队也用它扫描谷歌内外的关键系统：Wiz 用它发现医院软件中此前模型漏掉的关键漏洞，保护数十万患者记录；谷歌团队则发现并修复内部及开源软件漏洞，包括影响全球系统的基础性漏洞，正走负责任披露流程。如今 Argon 开始广泛推出，Fairwind 计划也同步扩大。原文围绕两个问题展开：如何防止滥用，即阻止恶意者用其发起网络攻击或制造生物威胁；以及如何确保模型不越界、不做出错误的高风险决策，即失准与提示注入。原文称网络安全测试中 12 个端到端模拟攻击场景全部通过（上一代为 5 个），并设置三层实时防护。",
-   "key_points": [
-    "Argon 网络防御能力为前沿水平，先经 Fairwind 计划与谷歌内部安全团队有限试用：Wiz 用它发现医院软件中此前模型漏掉的关键漏洞，保护数十万患者记录；谷歌团队修复了内部及开源软件漏洞，含影响全球系统的基础性漏洞，正走负责任披露流程",
-    "网络安全测试中解决全部 12 个端到端模拟攻击场景，上一代为 5 个；生物学评估中未加防护版本显示出更强的逐步协助排查复杂实验流程的能力，因 Cyber 与生物领域能力提升，按 Frontier Safety Framework 部署新一代前沿防护",
-    "在对抗性测试集上违规减少近两倍，优于此前 Gemini 模型；并设三层实时保护——输入筛查、内部激活探针、持续监控，Argon 今日开始广泛推出，Fairwind 计划扩大至更多受信任的网络防御方"
-   ],
-   "topics": [
-    "cybersecurity",
-    "prompt-injection",
-    "alignment"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 80.7,
-   "status": "published",
-   "extra": {
     "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://twitter.com/intent/tweet?text=Developing%20Gemini%204%20Argon%20responsibly%20and%20safely%20%40google&url=https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security/",
-      "https://www.facebook.com/sharer/sharer.php?caption=Developing%20Gemini%204%20Argon%20responsibly%20and%20safely&u=https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security/",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security/&title=Developing%20Gemini%204%20Argon%20responsibly%20and%20safely",
-      "https://deepmind.google/fairwind-program/",
-      "https://www.wiz.io/scan-for-good",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
-      "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_safety_report.pdf",
-      "https://deepmind.google/blog/strengthening-our-frontier-safety-framework/",
-      "https://deepmind.google/blog/securing-the-future-of-ai-agents/",
-      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Argon-Model-Card.pdf",
-      "https://policies.google.com/privacy"
-     ]
-    },
     "summary_mode": "full"
    }
   },
   {
-   "id": "8b0463614a7b86fd",
-   "url": "https://deepmind.google/blog/gemini-4-argon-for-robotics/",
+   "id": "1609f5d4ca7309cc",
+   "url": "https://developers.googleblog.com/gemini-4-argon-for-robotics/",
    "title": "Gemini 4 Argon for Robotics",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-10-13T16:01:58+00:00",
-   "summary_short": "Gemini 4 Argon 亮相：ERQA 物理推理纯推理得 87%，超过所有前沿模型",
-   "summary_long": "Google Developers Blog 发布 Gemini 4 Argon for Robotics（2026 年 10 月 13 日，作者 Kanishka Rao，Principal Software Engineer）。原文称 Argon 在物理理解、代码生成和视觉语义推理上实现跨越式提升，为机器人栈解锁新工作流，并加速迈向物理 AGI。在测试模型理解与解决 3D 物理、空间问题能力的 Embodied Reasoning（ERQA）基准上，Argon 以纯推理取得 87%，超过所有其他前沿模型。作为通用物理推理模型，它可应用于机器人全生命周期。原文给出四个代表性方向：机器人控制（MuJoCo 练习中的移动操作、零样本机器人控制、视频世界模型的闭环引导）；Real2Sim（从机器人摄像头画面、第一人称人类视频或手绘纸面草图重建物理校准的仿真孪生体）；物理理解（智能体式多模态事后标注，包含对灵巧性的细致理解、稠密价值函数与进度估计）；研究与自我改进（通过仿真改进动作，并在硬件上迭代自我改进）。示例包括 Argon 控制 Boston Dynamics Spot（12 自由度腿 + 6 自由度臂）学会踩脚踏式垃圾桶投掷易拉罐，先在 MuJoCo 中建立关节化数字孪生体练习；以及通过视觉坐标夹具与动作原语，多轮完成扶正倒下的杯子并放入揉皱纸巾。",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-13T16:55:47+00:00",
+   "summary_short": "Gemini 4 Argon 发布：ERQA 物理推理得分 87%，覆盖机器人全生命周期用例",
+   "summary_long": "Google Developers Blog 于 2026 年 10 月 13 日发布 Gemini 4 Argon for Robotics，作者为首席软件工程师 Kanishka Rao。原文称其在物理理解、代码生成与视觉语义推理上实现跨越，可解锁机器人技术栈新工作流。在测试 3D 环境物理与空间问题求解的 Embodied Reasoning（ERQA）基准上，Argon 以纯推理取得 87%，超过其他所有前沿模型。原文称作为通用物理推理模型，它可应用于机器人全生命周期，并给出四个方向的代表性提示词：机器人控制（MuJoCo 练习的移动操作、零样本控制、视频世界模型闭环操控）、Real2Sim（从机器人相机、第一人称人类视频或手绘草图重建物理标定仿真孪生）、物理理解（多模态事后标注、密集价值函数与进度估计）、研究与自我改进（仿真改进行动、硬件上迭代自我改进）。示例包括控制 Boston Dynamics Spot 踩脚踏式垃圾桶丢易拉罐前先在 MuJoCo 建数字孪生练习，以及零样本控制机械臂扶正杯子并放入纸团。",
    "key_points": [
-    "在 Embodied Reasoning（ERQA）基准上以纯推理拿到 87%，原文称其超过所有其他前沿模型",
-    "作为通用物理推理模型覆盖机器人全生命周期，原文列出机器人控制、Real2Sim、物理理解、研究与自我改进四个方向",
-    "演示任务包括控制 Boston Dynamics Spot 在 MuJoCo 数字孪生体中练习踩脚踏垃圾桶丢易拉罐，以及零样本控制机械臂扶正杯子并放入纸团"
+    "在 Embodied Reasoning（ERQA）基准上以纯推理得分 87%，原文称超过其他所有前沿模型",
+    "原文列出四个应用方向：机器人控制、Real2Sim、物理理解、研究与自我改进，并各给出代表性提示词",
+    "示例一：控制 Boston Dynamics Spot 踩脚踏式垃圾桶丢易拉罐，先用 MuJoCo 建可动数字孪生练习；示例二：用视觉坐标套件与动作原语零样本控制机械臂扶正杯子并放入纸团"
    ],
    "topics": [
     "reasoning",
-    "tool-use",
-    "open-source"
+    "embodied-reasoning"
    ],
    "category": "模型",
    "categories": [
-    "模型",
-    "Agent 与开发"
+    "模型"
    ],
    "horizon": "short",
-   "score": 80.4,
+   "score": 77.7,
    "status": "published",
    "extra": {
-    "content_source": "direct",
+    "hn_points": 228,
+    "hn_comments": 55,
     "outbound": {
      "arxiv": [],
      "links": [
@@ -492,286 +173,6 @@
       "https://one.google.com/about/google-ai-plans/",
       "https://ai.google.dev/gemini-api/docs",
       "https://antigravity.google/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "316153953adff70c",
-   "url": "https://deepmind.google/blog/introducing-gemini-4-argon/",
-   "title": "Gemini 4 Argon: Built to solve your hardest problems",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-10-13T16:01:52+00:00",
-   "summary_short": "Google发布Gemini 4 Argon，主打复杂多步任务，Vals Index排名第一",
-   "summary_long": "Gemini 4 Argon 于10月13日全球上线：开发者与企业可通过 AI Studio 和 Gemini 平台的 API 使用，Google AI Ultra 订阅者可在 Google Antigravity 中使用，AI Ultra 与 Pro 订阅者可在 Gemini 应用和搜索的 AI Mode 中使用。据 Google DeepMind 高级副总裁兼 Google 首席 AI 架构师 Koray Kavukcuoglu 介绍，Argon 擅长编程、金融、法律、网络安全、科学等领域的复杂真实任务，其在多步任务上的深度与精度使其在多领域基准测试中优于其他前沿模型，并在衡量金融、编程、法律、税务等关键经济部门表现的 Vals Index 上排名第一。定价为每百万输入 token 2 美元、每百万输出 token 10 美元，缓存输入 token 减免 95%。原文列举的用例包括：Chrome 团队借此从 Chromium 4000 万行代码库中拆分出约 600 万行遗留浏览器功能代码，数百文件的架构重构由数月缩短至数周，并使实时网页可在标签页、侧边栏与浮动窗口间移动而无需重新加载；Google 开源 Agent Development Kit 内存会话准备时间减少 40%、冷导入加快 21%；量子化学包 xTB 分子结构预测最高快 2.3 倍；Gemma 4 E2B 经 v",
-   "key_points": [
-    "上线渠道覆盖 AI Studio 与 Gemini 平台 API、Antigravity、Gemini 应用及搜索 AI Mode；定价每百万输入 token 2 美元、输出 10 美元，缓存输入 token 减免 95%",
-    "擅长编程、金融、法律、网络安全、科学等复杂真实任务，在覆盖金融、编程、法律、税务的 Vals Index 上排名第一",
-    "原文用例：Chrome 约 600 万行遗留代码拆分与数百文件重构、Google ADK Python 性能优化、xTB 预测提速最高 2.3 倍、Gemma 4 E2B 推理提速 2.85 倍"
-   ],
-   "topics": [
-    "reasoning",
-    "coding-agent"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 80.4,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2610.07304"
-     ],
-     "links": [
-      "https://twitter.com/intent/tweet?text=Gemini%204%20Argon%3A%20Built%20to%20solve%20your%20hardest%20problems%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
-      "https://www.facebook.com/sharer/sharer.php?caption=Gemini%204%20Argon%3A%20Built%20to%20solve%20your%20hardest%20problems&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/&title=Gemini%204%20Argon%3A%20Built%20to%20solve%20your%20hardest%20problems",
-      "https://blog.google/authors/koray-kavukcuoglu/",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/",
-      "https://ai.google.dev/aistudio",
-      "https://console.cloud.google.com/agent-platform/studio/multimodal;mode=prompt?model=gemini-4-argon&region=global",
-      "https://one.google.com/about/google-ai-plans/",
-      "https://antigravity.google/",
-      "http://gemini.google/",
-      "http://aimode.google/",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/#workingharder",
-      "https://www.vals.ai/benchmarks/vals_index",
-      "https://aistudio.google.com/docs/pricing",
-      "https://issues.chromium.org/issues/540709814",
-      "https://github.com/google/adk-python",
-      "https://github.com/google/adk-python/tree/main/.agents/skills",
-      "https://github.com/google/adk-python/commit/1754b3eeb6cdb2c16e3b30619a12066623df132e",
-      "https://developers.googleblog.com/optimizing-a-200000-line-python-codebase-overnight-with-gemini-4-argon",
-      "https://github.com/grimme-lab/xtb/pulls?q=is%3Apr+author%3Ag8j39+%28created%3A%3E2026-10-05+created%3A%3C2026-10-10%29",
-      "https://github.com/vllm-project/vllm/pulls?q=is%3Apr+author%3Alucianommartins+%28created%3A%3E2026-10-05+created%3A%3C2026-10-10%29",
-      "https://aistudio.google.com/apps/bundled/desk-racer?showAssistant=true&showPreview=true&fullscreenApplet=true",
-      "https://aistudio.google.com/apps/bundled/wizard-chess-3d?showAssistant=true&showPreview=true&fullscreenApplet=true",
-      "https://github.com/google-gemini/gemini-4-demo-vanilla-3D",
-      "https://aistudio.google.com/apps/bundled/chaco-canyon-3d?showPreview=true&showAssistant=true&fullscreenApplet=true",
-      "https://deepmind.google/fairwind-program/",
-      "https://www.wiz.io/",
-      "https://www.wiz.io/blog/scan-for-good-critical-ai-exposures",
-      "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/alphaqubit-quantum-error-correction/",
-      "https://arxiv.org/abs/2610.07304",
-      "https://gamowlabs.com/benchmarks",
-      "https://gamowlabs.com/bringing-expert-genome-interpretation-to-every-nicu",
-      "https://forms.gle/WvmBbPvRbpKG1BPn9",
-      "https://github.com/embodiedreasoning/ERQA",
-      "https://apptronik.com/",
-      "https://developers.googleblog.com/gemini-4-argon-for-robotics",
-      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Argon-Model-Card.pdf",
-      "https://aistudio.google.com/docs/long-decode",
-      "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/guides/gemini-4-argon#long-decodes"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "224c102190be4dc2",
-   "url": "https://arxiv.org/abs/2610.13928",
-   "title": "AI models can provably hide arbitrary capabilities",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-13T02:07:08+00:00",
-   "summary_short": "AI模型可将任意加密能力藏入权重，仅秘密触发才执行，能力评估可靠性受挑战",
-   "summary_long": "该论文摘要指出，能力评估（capability evaluation）的目标是在部署前发现模型的危险行为，但其可靠性依赖一个假设：隐藏的能力可以被诱发出来。作者在对抗条件下证明该假设不成立：他们构造后门攻击，把加密的神经网络嵌入宿主模型权重中，仅在收到秘密触发时才解密并执行。借助 digital lockers，这些隐藏电路在密码学假设下被证明难以被诱发和解释，即使可以完全访问模型权重；这相较此前隐藏固定字符串的工作，扩展到了任意计算。作者用 PyTorch 实现了概念验证，并在一项小型化学反应预测任务（作为 CBRN 相关能力的代理）上，通过微调、权重加噪、基于梯度的触发搜索和潜空间对抗训练来评估诱发效果。结果显示模型对这些方法具有抵抗力，结合其密码学保证，作者认为这揭示了基于诱发的（elicitation-based）能力审计存在极限。作者发布其模型以支持防御的改进。论文共 22 页、6 图、3 表，已被 NeurIPS 2026 接收。",
-   "key_points": [
-    "构造后门攻击，将加密的神经网络嵌入宿主模型权重，仅在收到秘密触发时解密并执行",
-    "借助 digital lockers，隐藏电路在密码学假设下被证明难以被诱发和解释，即使拥有完整模型权重访问权",
-    "相较此前隐藏固定字符串的工作，本文扩展到任意计算"
-   ],
-   "topics": [
-    "alignment",
-    "eval",
-    "interpretability"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全",
-    "评测",
-    "研究论文"
-   ],
-   "horizon": "long",
-   "score": 79.8,
-   "status": "published",
-   "extra": {
-    "hn_points": 271,
-    "hn_comments": 136,
-    "outbound": {
-     "arxiv": [
-      "2610.13928"
-     ],
-     "links": [
-      "https://arxiv.org/search/cs?searchtype=author&query=Draguns,+A",
-      "https://arxiv.org/search/cs?searchtype=author&query=Motwani,+S+R",
-      "https://arxiv.org/search/cs?searchtype=author&query=Douglas,+R",
-      "https://arxiv.org/search/cs?searchtype=author&query=de+Witt,+C+S",
-      "https://arxiv.org/html/2610.13928v1",
-      "https://arxiv.org/abs/2610.13928",
-      "https://arxiv.org/abs/2610.13928v1",
-      "https://doi.org/10.48550/arXiv.2610.13928",
-      "http://creativecommons.org/licenses/by/4.0/",
-      "https://ui.adsabs.harvard.edu/abs/arXiv:2610.13928",
-      "https://scholar.google.com/scholar_lookup?arxiv_id=2610.13928",
-      "https://api.semanticscholar.org/arXiv:2610.13928",
-      "http://www.bibsonomy.org/BibtexHandler?requTask=upload&url=https://arxiv.org/abs/2610.13928&description=AI Models Can Provably Hide Arbitrary Capabilities",
-      "https://reddit.com/submit?url=https://arxiv.org/abs/2610.13928&title=AI Models Can Provably Hide Arbitrary Capabilities",
-      "https://info.arxiv.org/labs/showcase.html#arxiv-bibliographic-explorer",
-      "https://www.connectedpapers.com/about",
-      "https://www.litmaps.co/",
-      "https://www.scite.ai/",
-      "https://alphaxiv.org/",
-      "https://www.catalyzex.com",
-      "https://dagshub.com/",
-      "http://gotit.pub/faq",
-      "https://huggingface.co/huggingface",
-      "https://sciencecast.org/welcome",
-      "https://replicate.com/docs/arxiv/about",
-      "https://huggingface.co/docs/hub/spaces",
-      "https://txyz.ai",
-      "https://influencemap.cmlab.dev/",
-      "https://core.ac.uk/services/recommender",
-      "https://iarxiv.org/about",
-      "https://info.arxiv.org/labs/index.html",
-      "https://info.arxiv.org/help/mathjax.html"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "994797c2417fc3f8",
-   "url": "https://eg2.haku.sh/",
-   "title": "We turned EmbeddingGemma 2 into a speech-to-text model",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-13T11:27:14+00:00",
-   "summary_short": "把 EmbeddingGemma 2 改造成端侧语音转文字模型，1 小时音频约 13 秒",
-   "summary_long": "EmbeddingGemma 2 是多模态嵌入模型，文本、图像、音频和视频共享同一空间。作者据此把它改成语音转文字模型：音频编码器完全不动，另加一个小 reader 把每一小段音频映射进模型的文本空间，在约 22.9 万个英文单词中取最近的一个，片段连成转写；再由一个极小模型补上标点和大小写。训练只针对 reader，用的是开放许可英文语音，8×H100 上不到两小时；基础模型本身从未为语音转文字训练过。速度上，8GB 基础款 M3 MacBook Air 处理 1 小时音频约 12.6 秒（288× 实时），全程在设备端完成。文中也列出 IBM Granite Speech 5.0 TurboCTC、NVIDIA Parakeet TDT 0.6B v3 与 Phonon-2 的对照数字，但注明后几行来自 FluidAudio 在更大更新 Mac、不同音频上的已发布基准，只是粗略参考。当前词错误率约 5%，领先语音模型为 2–3%，作者认为训练更充分的 reader 可缩小差距，这是下一版方向。Mac 应用免费，macOS 14+，首次启动下载 715MB 模型；可拖入音频文件，或按住右 Option 说话、松开即在任意应用中听写，音频不离开本机。",
-   "key_points": [
-    "音频编码器保持不变，只训练一个小 reader 把音频片段映射进文本空间，取约 22.9 万英文词中最近者，另加极小模型补标点与大小写；训练不到两小时（8×H100），基础模型从未为语音转文字训练过",
-    "8GB 基础款 M3 MacBook Air 上 1 小时音频约 12.6 秒（288× 实时），全程设备端；对照的 Granite Speech、Parakeet、Phonon-2 数据来自 FluidAudio 已发布基准，非同类对比",
-    "当前词错误率约 5%，领先语音模型为 2–3%，作者称更充分训练的 reader 是下一次迭代方向"
-   ],
-   "topics": [
-    "post-training",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 78.5,
-   "status": "published",
-   "extra": {
-    "hn_points": 375,
-    "hn_comments": 84,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/FluidInference/FluidAudio/blob/main/Documentation/Benchmarks.md"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "550c4c02e9ff21a9",
-   "url": "https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b",
-   "title": "Run fast, private agents on-device with LFM2.5-24B-A2B",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-13T17:05:48+00:00",
-   "summary_short": "24B 参数仅 2B 激活的端侧推理智能体模型 LFM2.5-24B-A2B 发布",
-   "summary_long": "LiquidAI 发布 LFM2.5-24B-A2B：24B 参数、每 token 仅 2B 激活的推理模型，面向端侧快速、私密的智能体。它先思考再回答，可调用工具，并在常见智能体框架中完成多步任务；因每 token 仅 2B 参数激活，单次推理成本低，可在自有硬件上持续运行智能体。在智能体与工具调用任务上，它与总参数、激活参数均多约 50% 的 Qwen3.6-35B-A3B 相当，LiveClaw 得分 48.09 对 38.19。速度方面，Apple M5 Max 上 184 tok/s，单张 NVIDIA B300 GPU 上最高 21K 输出 tok/s。架构沿用 LFM2-24B-A2B（40 层、每 MoE 块 64 个专家、top-4 路由、门控短卷积与 GQA 混合），上下文从 32K 扩至 131K，词表从 65K 扩至 128K 以改善非拉丁语分词。预训练从约 17T 扩至约 33T token；中训练含 32K 上下文的 2T token 与 131K 上下文的 300B token。后训练分为 SFT、教师专门化、非智能体 MOPD、智能体 MOPD 以及智能体强化学习五个阶段。",
-   "key_points": [
-    "24B 总参数、每 token 仅 2B 激活，是只输出思维链的推理模型，可调用工具并在流行智能体框架内完成多步任务。",
-    "在智能体与工具调用任务上与参数规模约多 50% 的 Qwen3.6-35B-A3B 相当，LiveClaw 得分 48.09 对 38.19。",
-    "推理效率：Apple M5 Max 上 184 tok/s，单张 NVIDIA B300 GPU 上最高 21K 输出 tok/s。"
-   ],
-   "topics": [
-    "reasoning",
-    "tool-use",
-    "post-training"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 77.1,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B",
-      "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B/resolve/main/figures/LFM2.5-24B-A2B-benchmark.png",
-      "https://huggingface.co/LiquidAI/LFM2-24B-A2B",
-      "https://www.liquid.ai/blog/tokenizer-expansion",
-      "https://openclaw.ai",
-      "https://hermes-agent.nousresearch.com",
-      "https://pi.dev",
-      "https://opencode.ai",
-      "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B/resolve/main/figures/LFM2.5-24B-A2B-Training-Recipe.png",
-      "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B/resolve/main/figures/LFM2.5-24B-A2B-edge-inference.png",
-      "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B/resolve/main/figures/LFM2.5-24B-A2B-gpu-inference.png",
-      "https://docs.liquid.ai/examples/agent-harnesses",
-      "https://www.liquid.ai/blog/lfm2-5-24b-a2b",
-      "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B-Base",
-      "https://github.com/Liquid4All/cookbook/tree/main/finetuning/notebooks"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "61514929f532a5bf",
-   "url": "https://blog.character.ai/an-update-on-character-ai/",
-   "title": "Character.ai has initiated voluntary Chapter 11 bankruptcy",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-13T07:28:34+00:00",
-   "summary_short": "Character.ai 主动申请第11章破产，拟由法院监督出售公司",
-   "summary_long": "Character.ai 宣布已主动启动第11章破产程序，以推进由法院监督的公司出售。原文称，过去一年公司在法律、监管和运营方面面临重大不利因素（原文未详述具体内容），采取了措施以维持并改善业务；在对可选方案进行全面评估后，董事会认定法院监督下的出售流程是为所有利益相关方实现价值最大化的最佳机会。公司希望出售流程能产生可执行的提案，使 Character.ai 平台得以持续运营；若无人出价，平台将被逐步关停。公司表示，在此期间维持社区安全且有吸引力的体验仍是首要任务，平台目前仍正常运行，用户可继续使用全部服务，付费订阅仍然有效、计费暂不变更；用户数据继续受隐私政策保护，数据隐私与安全做法不变，用户仍可通过应用或网站删除账户或导出数据。公司预计法院监督的出售流程将于2026年11月底或12月初完成。相关新闻稿、法庭文件及案件信息可通过公司公布渠道及由索赔与通知代理人 Stretto, Inc. 管理的网站查询。",
-   "key_points": [
-    "Character.ai 已主动启动第11章破产程序，目的是推进法院监督下的全部或绝大部分资产出售，董事会称这是为利益相关方实现价值最大化的最佳路径。",
-    "公司希望出售能带来可执行提案以维持平台运营，若没有买家，平台将被关停；平台目前仍正常运行，付费订阅有效且计费暂不变更。",
-    "出售流程预计于2026年11月底或12月初完成；用户数据仍受隐私政策保护，用户可删除账户或导出数据，案件信息由 Stretto, Inc. 管理的网站提供。"
-   ],
-   "topics": [
-    "product"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 75.6,
-   "status": "published",
-   "extra": {
-    "hn_points": 265,
-    "hn_comments": 260,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://support.character.ai/hc/en-us/articles/42649759119003-Resources-You-Can-Turn-To?ref=blog.character.ai",
-      "https://character.ai/privacy?ref=blog.character.ai",
-      "https://support.character.ai/hc/en-us/articles/15063461160475-How-do-I-delete-my-account?ref=blog.character.ai",
-      "https://support.character.ai/hc/en-us/articles/56967715028891-How-do-I-download-my-data?ref=blog.character.ai",
-      "https://www.businesswire.com/news/home/20261012656385/en/Character.ai-Initiates-Voluntary-Chapter-11-Proceeding-to-Facilitate-Value-Maximizing-Sale-Process?ref=blog.character.ai",
-      "https://cases.stretto.com/chartech?ref=blog.character.ai"
      ]
     },
     "content_source": "direct",
