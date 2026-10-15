@@ -1,6 +1,69 @@
 {
- "generated_at": "2026-10-14T22:22:15+00:00",
+ "generated_at": "2026-10-15T22:21:21+00:00",
  "top": [
+  {
+   "id": "9d251ac6836a600d",
+   "url": "https://huggingface.co/blog/meta-muse-spark-open",
+   "title": "Welcome Muse Spark Open: open-weight frontier multimodal mixture-of-experts model from Meta",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-15T00:00:00+00:00",
+   "summary_short": "Meta开源816B参数MoE多模态模型，百万token上下文，面向智能体编程",
+   "summary_long": "原文介绍Meta的开源权重模型Muse Spark Open。该混合专家（MoE）模型可输入文本、图像、音频和视频，输出文本，总参数约8160亿，每token激活约420亿，上下文窗口最高100万token。它在Muse Glimmer之后推出，将MoE架构扩展到更大规模。Meta称其面向智能体编程训练，针对多文件重构、长时间调试等真实开发者工作流，能在长任务中规划、行动、观察并自我纠错。架构上，语言模型62层、隐藏维度8192、128个查询头与16个键值头（分组查询注意力）、头维度64；注意力块含输出门和输出归一化，并对查询、键做归一化，每块通过可学习残差门合并输入输出。每层MoE有256个专家、每token选8个，专家为8192→4096→8192的前馈网络并各自归一化，占总参数约97%；全部专家常驻内存，部署需816B级内存但以42B速度运行。检查点有BF16（约1.5TB）与面向NVIDIA Blackwell的NVFP4，前者在4个8×H200节点以TP=32运行，后者在单B200节点运行。文中还给出llama.cpp、vLLM、SGLang部署配方及微调与构建示例。",
+   "key_points": [
+    "约8160亿总参数、每token约420亿激活的MoE模型，上下文窗口最高100万token，输入支持文本/图像/音频/视频，输出为文本",
+    "语言模型62层、隐藏维度8192，128查询头与16键值头（GQA），含输出门、输出归一化、QK-norm与可学习残差门；每层256个专家、每token路由8个，专家占总参数约97%",
+    "提供BF16（约1.5TB）与NVFP4检查点；BF16在4个8×H200节点以TP=32运行，NVFP4在单B200节点运行，并有llama.cpp、vLLM、SGLang配方"
+   ],
+   "topics": [
+    "open-source",
+    "coding-agent",
+    "post-training"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 87.6,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/huggingface/blog/blob/main/meta-muse-spark-open.md",
+      "https://huggingface.co/collections/meta-models/muse-spark-open",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/model.png",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/image_pipeline.png",
+      "https://huggingface.co/papers/2504.13181",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/audio_encoder.png",
+      "https://huggingface.co/ggml-orgf/Muse-Spark-Open-816B-A42B-GGUF",
+      "https://llama.app/docs/serve",
+      "https://github.com/jundot/omlx",
+      "https://github.com/ml-explore/mlx-lm",
+      "https://huggingface.co/mlx-community/Muse-Spark-Open-816B-A42B-oQ3e",
+      "https://huggingface.co/mlx-community/Muse-Spark-Open-816B-A42B-oQ4e",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/omlx_muse_spark_open_reasoning_screenshot.png",
+      "https://github.com/ml-explore/mlx-lm/pull/1975",
+      "https://endpoints.huggingface.co/new/meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/training_loss.png",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/token_acc.png",
+      "http://Three.js",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/pi-3d-prompt.txt",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/pi-demo.png",
+      "https://huggingface.co/docs/openenv/main/en/environments/helium_browser",
+      "https://huggingface.co/docs/huggingface_hub/en/guides/sandbox",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/browser_server.png",
+      "https://huggingface.co/spaces/burtenshaw/muse-spark-call-your-browser",
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B/discussions"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "821afa65ec965089",
    "url": "https://momo5502.com/posts/2026-10-09-game-decompilation/",
@@ -46,39 +109,66 @@
    }
   },
   {
-   "id": "0ca1450969b5beb5",
-   "url": "https://openai.com/index/gpt-6-for-everyone",
-   "title": "GPT-6 and Intelligent UI for everyone",
-   "source": "OpenAI News",
+   "id": "3733c75a28bf26df",
+   "url": "https://huggingface.co/blog/flux-3",
+   "title": "Welcome FLUX.3 Image Klein in Diffusers",
+   "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-07T00:00:00+00:00",
-   "summary_short": "GPT‑6 向全体 ChatGPT 用户开放，新增可交互界面 Intelligent UI",
-   "summary_long": "2026年10月7日发布：上个月推出的首批 GPT‑6 模型仅面向付费用户，今天则以一款新 GPT‑6 模型覆盖每周超过12亿的 ChatGPT 使用者。GPT‑6 在 ChatGPT 中引入 Intelligent UI——一项让 ChatGPT 用完全可交互界面快速作答的新能力，使日常答案更视觉化、复杂主题更易理解，并能即时生成工具解决问题。据原文，GPT‑6 可依据问题决定文本、视觉与交互元素如何组合，回答可包含图形、可点击按钮、表单、图表及可直接使用的交互体验；格式随提问而变，比较适合并排呈现，解释适合交互图表，文字最有用时就给文字。例子包括把周日烤肉时间与食谱并列、公路旅行停靠点标在地图上，以及生成储蓄计算器、分账工具或小游戏。实现上，原文称给了模型为每个问题自行创建最合适界面的自由，同时保持网页与移动端体验快速、熟悉，并构建了原生可流式传输组件库，以及随模型生成过程处理界面的编译器。",
+   "published_at": "2026-10-15T00:00:00+00:00",
+   "summary_short": "Black Forest Labs 开源 FLUX.3 Image Klein，首发即在 Diffusers 中运行，支持边界框布局控制",
+   "summary_long": "Black Forest Labs 推出最新开源图像生成模型 FLUX.3 Image Klein，发布首日即可在 Diffusers 中运行。一个模型同时承担文生图与多参考图生图，并新增布局控制：在提示词中写入边界框，指定画面各部分的位置，或指明参考图中哪些部分需要移动。Hugging Face 上提供两个开放检查点：蒸馏版 black-forest-labs/flux-3-image-klein 默认 16 步、不使用 CFG，适合快速推理；基础版 black-forest-labs/flux-3-image-klein-base 默认 50 步并使用 CFG。原文称蒸馏检查点在 H100 上约 2 秒可生成一张 1024×1024 图像。NVFP4 与 FP8 权重可通过 from_single_file 加载，面向较小 GPU。同时提供文生图与图像编辑的 LoRA 训练脚本。模型以 Modular Diffusers pipeline 形式发布，可拆出模块或添加自定义模块；安装需最新版 diffusers 与 transformers（用于 Qwen3-VL 文本编码器）。多张参考图在提示词中按传入顺序以 <ref_image_0>、<ref_image_1> 引用。",
    "key_points": [
-    "上月的首批 GPT‑6 仅面向付费用户，此次以新模型向每周超12亿 ChatGPT 用户开放",
-    "Intelligent UI 让回答包含图形、可点击按钮、表单、图表等交互元素，格式随问题类型变化",
-    "用户可要求即时生成工具，如储蓄计算器、分账工具或对话内小游戏"
+    "单个模型覆盖文生图、多参考图生图与边界框布局控制；布局控制通过把边界框写进提示词，指定画面元素位置或参考图需移动的部分",
+    "两个开放检查点：蒸馏版默认 16 步、无 CFG；基础版默认 50 步、使用 CFG。原文称蒸馏版在 H100 上约 2 秒生成 1024×1024 图像",
+    "以 Modular Diffusers pipeline 发布，提供文生图与图像编辑的 LoRA 训练脚本，NVFP4/FP8 权重可用 from_single_file 加载以适配较小 GPU"
    ],
    "topics": [
-    "product"
+    "open-source",
+    "quantization"
    ],
    "category": "模型",
    "categories": [
-    "模型",
-    "产品与应用"
+    "模型"
    ],
    "horizon": "short",
-   "score": 84.9,
+   "score": 84.3,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "source_tags": [
-     "Product"
-    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://deploymentsafety.openai.com/gpt-6-october"
+      "https://github.com/huggingface/blog/blob/main/flux-3.md",
+      "https://huggingface.co/black-forest-labs",
+      "https://huggingface.co/collections/black-forest-labs/flux-3-image-klein",
+      "https://huggingface.co/black-forest-labs/flux-3-image-klein",
+      "https://huggingface.co/black-forest-labs/flux-3-image-klein-base",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/hero.png",
+      "https://huggingface.co/spaces/black-forest-labs/flux-3-image-klein",
+      "https://docs.bfl.ai/guides/prompting_summary",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/t2i.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i_fox.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i_bench.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/combined.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/bbox-layout.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/knight.png",
+      "https://github.com/ostris/ai-toolkit",
+      "https://huggingface.co/datasets/multimodalart/1920-raider-waite-tarot-public-domain",
+      "https://huggingface.co/diffusers-modular/flux3-tarot-lora",
+      "https://github.com/huggingface/diffusers/blob/main/examples/dreambooth/README_flux3_klein.md",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/tarot-lora-sweep.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/tokens-per-workflow.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step01.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step05.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step10.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step15.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step25.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step50.png",
+      "https://huggingface.co/spaces/ariG23498/flow-matching",
+      "https://youtu.be/hXQZ6lyRCsI",
+      "https://huggingface.co/docs/diffusers/main/en/modular_diffusers/overview",
+      "https://huggingface.co/docs/diffusers/main/en/api/pipelines/flux3"
      ]
     },
     "summary_mode": "full"
@@ -203,50 +293,72 @@
     },
     "summary_mode": "full"
    }
-  },
-  {
-   "id": "8c17f1f1ac30a4ed",
-   "url": "https://www.anthropic.com/engineering/redesigning-source-control",
-   "title": "Redesigning source control at Anthropic",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-13T15:49:56+00:00",
-   "summary_short": "Anthropic 自研源码控制系统 Scion，五个月内把 monorepo 完全迁出 git",
-   "summary_long": "原文指出，在 Anthropic 写代码已不再是瓶颈：Claude 能自主迭代研究循环、微优化程序、从零搭建服务，瓶颈转为为人类规模设计的开发者基础设施——源码控制、构建与 CI。合并量由 2026 年 5 月约 2,500 次/天升至 9 月逾 30,000 次/天，原文预期增速不会放缓。为此 Anthropic 自研版本控制系统 Scion，五个月内将 monorepo 完全迁出 git，同期还交付代码审查界面 Antique、代码搜索与源码控制 IAM 等。原文称动机来自规模压力：主分支历史近 100 GB、压缩工作副本超 25 GB、每天约 2,500 万次 CI 检出，朴素拉取即每天逾 600 PB 流量；峰值需运营数百个内部 git 镜像。因客户端几乎全是在线的 agent 与任务，git 面向分布式离线的特性反成扩展负担。原文在阐述 agent 规模源码控制原则处截断。",
-   "key_points": [
-    "Claude 让合并量从 2026 年 5 月约 2,500 次/天增至 9 月逾 30,000 次/天，瓶颈转移到源码控制、构建与 CI 等为人类规模设计的开发者基础设施。",
-    "Anthropic 自研内部版本控制系统 Scion，五个月内将 monorepo 从 git 完全迁移，同期还构建了代码审查界面 Antique、代码搜索、源码控制 IAM 系统以及落地大量已审查代码的新方式等。",
-    "原文称主分支历史近 100 GB、压缩工作副本超 25 GB、每天约 2,500 万次 CI 检出，峰值时运营数百个内部 git 镜像；因客户端几乎全是在线的 agent 与任务，git 面向分布式离线的优势反成扩展负担。"
-   ],
-   "topics": [
-    "coding-agent",
-    "harness"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 84.0,
-   "status": "published",
-   "extra": {
-    "hn_points": 861,
-    "hn_comments": 961,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://en.wikipedia.org/wiki/Piper_(source_control_system)",
-      "https://sapling-scm.com/",
-      "https://www.anthropic.com/claude/mythos",
-      "https://www.anthropic.com/news/introducing-claude-tag"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
   }
  ],
  "items": [
+  {
+   "id": "9d251ac6836a600d",
+   "url": "https://huggingface.co/blog/meta-muse-spark-open",
+   "title": "Welcome Muse Spark Open: open-weight frontier multimodal mixture-of-experts model from Meta",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-15T00:00:00+00:00",
+   "summary_short": "Meta开源816B参数MoE多模态模型，百万token上下文，面向智能体编程",
+   "summary_long": "原文介绍Meta的开源权重模型Muse Spark Open。该混合专家（MoE）模型可输入文本、图像、音频和视频，输出文本，总参数约8160亿，每token激活约420亿，上下文窗口最高100万token。它在Muse Glimmer之后推出，将MoE架构扩展到更大规模。Meta称其面向智能体编程训练，针对多文件重构、长时间调试等真实开发者工作流，能在长任务中规划、行动、观察并自我纠错。架构上，语言模型62层、隐藏维度8192、128个查询头与16个键值头（分组查询注意力）、头维度64；注意力块含输出门和输出归一化，并对查询、键做归一化，每块通过可学习残差门合并输入输出。每层MoE有256个专家、每token选8个，专家为8192→4096→8192的前馈网络并各自归一化，占总参数约97%；全部专家常驻内存，部署需816B级内存但以42B速度运行。检查点有BF16（约1.5TB）与面向NVIDIA Blackwell的NVFP4，前者在4个8×H200节点以TP=32运行，后者在单B200节点运行。文中还给出llama.cpp、vLLM、SGLang部署配方及微调与构建示例。",
+   "key_points": [
+    "约8160亿总参数、每token约420亿激活的MoE模型，上下文窗口最高100万token，输入支持文本/图像/音频/视频，输出为文本",
+    "语言模型62层、隐藏维度8192，128查询头与16键值头（GQA），含输出门、输出归一化、QK-norm与可学习残差门；每层256个专家、每token路由8个，专家占总参数约97%",
+    "提供BF16（约1.5TB）与NVFP4检查点；BF16在4个8×H200节点以TP=32运行，NVFP4在单B200节点运行，并有llama.cpp、vLLM、SGLang配方"
+   ],
+   "topics": [
+    "open-source",
+    "coding-agent",
+    "post-training"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 87.6,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/huggingface/blog/blob/main/meta-muse-spark-open.md",
+      "https://huggingface.co/collections/meta-models/muse-spark-open",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/model.png",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/image_pipeline.png",
+      "https://huggingface.co/papers/2504.13181",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/audio_encoder.png",
+      "https://huggingface.co/ggml-orgf/Muse-Spark-Open-816B-A42B-GGUF",
+      "https://llama.app/docs/serve",
+      "https://github.com/jundot/omlx",
+      "https://github.com/ml-explore/mlx-lm",
+      "https://huggingface.co/mlx-community/Muse-Spark-Open-816B-A42B-oQ3e",
+      "https://huggingface.co/mlx-community/Muse-Spark-Open-816B-A42B-oQ4e",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/omlx_muse_spark_open_reasoning_screenshot.png",
+      "https://github.com/ml-explore/mlx-lm/pull/1975",
+      "https://endpoints.huggingface.co/new/meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/training_loss.png",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/token_acc.png",
+      "http://Three.js",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/pi-3d-prompt.txt",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/pi-demo.png",
+      "https://huggingface.co/docs/openenv/main/en/environments/helium_browser",
+      "https://huggingface.co/docs/huggingface_hub/en/guides/sandbox",
+      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/browser_server.png",
+      "https://huggingface.co/spaces/burtenshaw/muse-spark-call-your-browser",
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B/discussions"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "821afa65ec965089",
    "url": "https://momo5502.com/posts/2026-10-09-game-decompilation/",
@@ -292,39 +404,66 @@
    }
   },
   {
-   "id": "0ca1450969b5beb5",
-   "url": "https://openai.com/index/gpt-6-for-everyone",
-   "title": "GPT-6 and Intelligent UI for everyone",
-   "source": "OpenAI News",
+   "id": "3733c75a28bf26df",
+   "url": "https://huggingface.co/blog/flux-3",
+   "title": "Welcome FLUX.3 Image Klein in Diffusers",
+   "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-07T00:00:00+00:00",
-   "summary_short": "GPT‑6 向全体 ChatGPT 用户开放，新增可交互界面 Intelligent UI",
-   "summary_long": "2026年10月7日发布：上个月推出的首批 GPT‑6 模型仅面向付费用户，今天则以一款新 GPT‑6 模型覆盖每周超过12亿的 ChatGPT 使用者。GPT‑6 在 ChatGPT 中引入 Intelligent UI——一项让 ChatGPT 用完全可交互界面快速作答的新能力，使日常答案更视觉化、复杂主题更易理解，并能即时生成工具解决问题。据原文，GPT‑6 可依据问题决定文本、视觉与交互元素如何组合，回答可包含图形、可点击按钮、表单、图表及可直接使用的交互体验；格式随提问而变，比较适合并排呈现，解释适合交互图表，文字最有用时就给文字。例子包括把周日烤肉时间与食谱并列、公路旅行停靠点标在地图上，以及生成储蓄计算器、分账工具或小游戏。实现上，原文称给了模型为每个问题自行创建最合适界面的自由，同时保持网页与移动端体验快速、熟悉，并构建了原生可流式传输组件库，以及随模型生成过程处理界面的编译器。",
+   "published_at": "2026-10-15T00:00:00+00:00",
+   "summary_short": "Black Forest Labs 开源 FLUX.3 Image Klein，首发即在 Diffusers 中运行，支持边界框布局控制",
+   "summary_long": "Black Forest Labs 推出最新开源图像生成模型 FLUX.3 Image Klein，发布首日即可在 Diffusers 中运行。一个模型同时承担文生图与多参考图生图，并新增布局控制：在提示词中写入边界框，指定画面各部分的位置，或指明参考图中哪些部分需要移动。Hugging Face 上提供两个开放检查点：蒸馏版 black-forest-labs/flux-3-image-klein 默认 16 步、不使用 CFG，适合快速推理；基础版 black-forest-labs/flux-3-image-klein-base 默认 50 步并使用 CFG。原文称蒸馏检查点在 H100 上约 2 秒可生成一张 1024×1024 图像。NVFP4 与 FP8 权重可通过 from_single_file 加载，面向较小 GPU。同时提供文生图与图像编辑的 LoRA 训练脚本。模型以 Modular Diffusers pipeline 形式发布，可拆出模块或添加自定义模块；安装需最新版 diffusers 与 transformers（用于 Qwen3-VL 文本编码器）。多张参考图在提示词中按传入顺序以 <ref_image_0>、<ref_image_1> 引用。",
    "key_points": [
-    "上月的首批 GPT‑6 仅面向付费用户，此次以新模型向每周超12亿 ChatGPT 用户开放",
-    "Intelligent UI 让回答包含图形、可点击按钮、表单、图表等交互元素，格式随问题类型变化",
-    "用户可要求即时生成工具，如储蓄计算器、分账工具或对话内小游戏"
+    "单个模型覆盖文生图、多参考图生图与边界框布局控制；布局控制通过把边界框写进提示词，指定画面元素位置或参考图需移动的部分",
+    "两个开放检查点：蒸馏版默认 16 步、无 CFG；基础版默认 50 步、使用 CFG。原文称蒸馏版在 H100 上约 2 秒生成 1024×1024 图像",
+    "以 Modular Diffusers pipeline 发布，提供文生图与图像编辑的 LoRA 训练脚本，NVFP4/FP8 权重可用 from_single_file 加载以适配较小 GPU"
    ],
    "topics": [
-    "product"
+    "open-source",
+    "quantization"
    ],
    "category": "模型",
    "categories": [
-    "模型",
-    "产品与应用"
+    "模型"
    ],
    "horizon": "short",
-   "score": 84.9,
+   "score": 84.3,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "source_tags": [
-     "Product"
-    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://deploymentsafety.openai.com/gpt-6-october"
+      "https://github.com/huggingface/blog/blob/main/flux-3.md",
+      "https://huggingface.co/black-forest-labs",
+      "https://huggingface.co/collections/black-forest-labs/flux-3-image-klein",
+      "https://huggingface.co/black-forest-labs/flux-3-image-klein",
+      "https://huggingface.co/black-forest-labs/flux-3-image-klein-base",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/hero.png",
+      "https://huggingface.co/spaces/black-forest-labs/flux-3-image-klein",
+      "https://docs.bfl.ai/guides/prompting_summary",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/t2i.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i_fox.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i_bench.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/combined.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/bbox-layout.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/knight.png",
+      "https://github.com/ostris/ai-toolkit",
+      "https://huggingface.co/datasets/multimodalart/1920-raider-waite-tarot-public-domain",
+      "https://huggingface.co/diffusers-modular/flux3-tarot-lora",
+      "https://github.com/huggingface/diffusers/blob/main/examples/dreambooth/README_flux3_klein.md",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/tarot-lora-sweep.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/tokens-per-workflow.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step01.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step05.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step10.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step15.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step25.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step50.png",
+      "https://huggingface.co/spaces/ariG23498/flow-matching",
+      "https://youtu.be/hXQZ6lyRCsI",
+      "https://huggingface.co/docs/diffusers/main/en/modular_diffusers/overview",
+      "https://huggingface.co/docs/diffusers/main/en/api/pipelines/flux3"
      ]
     },
     "summary_mode": "full"
@@ -644,53 +783,6 @@
    }
   },
   {
-   "id": "b96448f5a5529676",
-   "url": "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
-   "title": "Secret protection must scale with software",
-   "source": "GitHub Blog (AI)",
-   "tier": "S",
-   "published_at": "2026-10-07T17:45:34+00:00",
-   "summary_short": "GitHub 称每三个 PR 已有一个涉及 AI 智能体，密钥防护须随代码生成速度同步扩展",
-   "summary_long": "原文指出，GitHub 上如今每三个 pull request 就有一个涉及 AI 智能体，一年前这一比例还不足十分之一；若该速度延续，两年内推到 GitHub 的代码多数可能由智能体编写，其中许多或许从未被人类完整阅读。公开可见代码中约每两秒出现一个新密钥，过去三年每年翻倍。作者用九个完整季度的数据反驳“AI 让开发者变粗心”的说法：2024 年二季度至 2026 年二季度，被筛查的 push 增长 2.84 倍，携带凭据的 push 增长 2.59 倍，未发现每次 push 密钥流行率的可统计趋势；同期开发者覆盖 push 拦截的比例从 6.63% 线性降至 3.93%。真正的瓶颈在节奏：人工撤销密钥的平均时间约 40 天，约五分之一超过 90 天。因此原文主张由算力承担更多防护：作者与 Microsoft Applied Sciences 共同构建的微调分类器把 push protection 扩展到非结构化密钥，可在不到两毫秒内评估整组候选密钥，并可能使可阻止的密钥数量翻倍以上。GitHub 通过密钥扫描伙伴计划覆盖 150 多家技术伙伴，2026 年二季度公开扫描平均每秒报告 26 个凭据匹配。",
-   "key_points": [
-    "GitHub 上每三个 pull request 已有一个涉及 AI 智能体，一年前不足十分之一；约每两秒就有一个新密钥出现在公开可见代码中，过去三年每年翻倍。",
-    "九个完整季度数据显示：筛查 push 增长 2.84 倍、携带凭据的 push 增长 2.59 倍，每次 push 的密钥流行率无可统计趋势，开发者覆盖 push 拦截的比例从 6.63% 降至 3.93%。",
-    "人工撤销密钥平均约 40 天、约五分之一超过 90 天；与 Microsoft Applied Sciences 共建的微调分类器可在不到两毫秒内评估整组候选密钥，可能使可阻止的密钥数量翻倍以上。"
-   ],
-   "topics": [
-    "cybersecurity",
-    "privacy",
-    "open-source"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "long",
-   "score": 81.3,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "AI & ML",
-     "Generative AI",
-     "GitHub Copilot",
-     "AI",
-     "Secret Protection"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4",
-      "https://docs.github.com/en/code-security/tutorials/secret-scanning-partner-program",
-      "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
-      "https://github.blog"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "25432b6b093a311b",
    "url": "https://deepmind.google/blog/developing-gemini-4-argon-responsibly-and-safely/",
    "title": "Developing Gemini 4 Argon responsibly and safely",
@@ -907,48 +999,6 @@
    }
   },
   {
-   "id": "0825a4897dea2e82",
-   "url": "https://huggingface.co/blog/LiquidAI/open-d1",
-   "title": "Multimodal open d1 decision models for the edge",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-07T16:54:33+00:00",
-   "summary_short": "开源多模态决策模型 d1-3B、d1-omni-600M，边缘端毫秒级出结果。",
-   "summary_long": "原文发布 d1 决策模型家族的两款开放模型：d1-3B 与实验性的 d1-omni-600M。据原文，d1-3B 在 Decision Index 0.2.1 得分 48.57，是 10B 以下最佳决策模型，超过所有 4B、9B 模型和 Decider 35B-A3B（47.11）。d1-3B 支持文本与图像，d1-omni-600M 支持文本加图像或文本加音频。\n\n模型基于 Liquid Foundation Models 构建。与生成式模型不同，决策模型不逐 token 生成，而是在单次前向中给出答案：d1-3B 由解码器架构的 LFM2.5-VL-3B 训练，d1-omni-600M 由双向编码器 LFM2.5-Encoder-350M 训练并加入视觉与音频编码器。\n\n在七个公开数据集（阅读理解、毒性检测、意图分类、医学问答、跨语言理解）上，d1-3B 平均 82.9 为表内最高，d1-omni-600M 平均 78.4，以四分之一参数量超过 Decider 2B（77.1）。原文未报告视觉或音频基准，因 Decision Index v0.3 仅含私有视觉切分，音频决策基准仍属开放问题。\n\n与 NVIDIA 合作在 RTX 4090 与三款 Jetson 设备上评测 d1-3B：单问答均低于 50 毫秒，三问约为单问的 1.3 倍。d1-omni-600M 属早期研究版本，",
-   "key_points": [
-    "d1-3B 在 Decision Index 0.2.1 得分 48.57，为 10B 以下最佳决策模型，超过所有 4B、9B 模型与 Decider 35B-A3B（47.11）。",
-    "d1-3B 支持文本与图像；d1-omni-600M 支持文本加图像或文本加音频，目前为实验性早期研究版本，仍在继续开发。",
-    "七个公开数据集平均分：d1-3B 为 82.9（表内最高），d1-omni-600M 为 78.4，以四分之一参数量超过 Decider 2B（77.1）。"
-   ],
-   "topics": [
-    "post-training",
-    "reasoning",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 80.4,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.liquid.ai/blog/d1-decision-model",
-      "https://huggingface.co/LiquidAI/d1-3b",
-      "https://huggingface.co/LiquidAI/d1-omni-600M",
-      "https://huggingface.co/LiquidAI/LFM2.5-VL-3B",
-      "https://huggingface.co/LiquidAI/LFM2.5-Encoder-350M",
-      "https://huggingface.co/spaces/LiquidAI/system-one-arcade"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "224c102190be4dc2",
    "url": "https://arxiv.org/abs/2610.13928",
    "title": "AI models can provably hide arbitrary capabilities",
@@ -1019,6 +1069,87 @@
      ]
     },
     "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "e3c36d4422c6129b",
+   "url": "https://huggingface.co/blog/swiss-ai/apertus-v15-release-notes",
+   "title": "Apertus 1.5 Release Notes",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-15T09:08:45+00:00",
+   "summary_short": "Apertus 1.5 开源 8B/70B：新增图像音频理解与思考模式，上下文扩至 262k",
+   "summary_long": "Apertus 1.5 是对 Apertus 1.0 的 8B 与 70B 模型的持续预训练（8B 增加 4 万亿、70B 增加 2 万亿 token，总量分别达 19T 与 17T）。更新后的权重已于 2026 年 7 月 24 日以 Apache 2.0 许可发布于 Hugging Face，详见项目 Technical Report。新版本带来原生多模态理解（图像与音频，语音处理仍属实验性）、可选思考模式、扩至 262,144 token 的上下文窗口（为 1.0 的 4 倍）、更好的指令遵循与工具使用，并更严格遵循 Apertus Charter。多模态以 early-fusion 方式实现：图像经 Emu3.5 tokenizer（512×512 为 1,024 token）、音频经 WavTokenizer（每秒 40 token）离散化，与文本 token 同序列输入；架构不变，仅扩展词表，训练速度与纯文本相当，模型能理解图像和音频但只生成文本。预训练分无配对、配对、冷却、长上下文四阶段，窗口从 8k 逐步增至 262k，超半数训练 token 为纯文本；后训练为 SFT、长上下文 SFT、RL、DPO、Charter 对齐五阶段。",
+   "key_points": [
+    "能力升级：8B 与 70B 模型新增图像、音频理解（语音为实验性）与可切换的思考模式，上下文窗口扩至 262,144 token，指令遵循与工具使用均有提升",
+    "训练规模：在 1.0 基础上继续预训练，8B 增加 4T、70B 增加 2T token，总量分别达 19T 与 17T；超半数训练 token 为纯文本，新数据均公开、许可宽松且追溯尊重 robots.txt 退出",
+    "开放程度：权重以 Apache 2.0 发布于 Hugging Face，文本 SFT 混合数据与 DPO 偏好数据池一并公开，训练全流程与全部数据来源记录在 apertus-data-transparency"
+   ],
+   "topics": [
+    "post-training",
+    "open-source",
+    "multimodal"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 79.5,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2408.16532",
+      "2508.10925",
+      "2510.26583",
+      "2610.15542"
+     ],
+     "links": [
+      "https://huggingface.co/collections/swiss-ai/apertus-v15",
+      "https://arxiv.org/abs/2610.15542",
+      "https://github.com/swiss-ai/apertus-data-transparency/",
+      "https://apertus-ai.org/pages/charter/",
+      "https://apertus-ai.org/pages/research/",
+      "https://cdn-uploads.huggingface.co/production/uploads/650ed7adf141bc34f91a12ae/Xi58nSrPTd5_ASGNIg60g.png",
+      "https://arxiv.org/abs/2510.26583",
+      "https://arxiv.org/abs/2408.16532",
+      "https://cdn-uploads.huggingface.co/production/uploads/650ed7adf141bc34f91a12ae/D-7BaNY68Nigi5bTw3RH9.png",
+      "https://huggingface.co/datasets/epfml/FineWeb2-HQ-Plus",
+      "https://github.com/swiss-ai/apertus-data-transparency",
+      "https://huggingface.co/datasets/swiss-ai/Apertus-v1.5-SFT-mix",
+      "https://huggingface.co/datasets/swiss-ai/Apertus-v1.5-Preference-Pool",
+      "https://huggingface.co/datasets/swiss-ai/Apertus-v1.5-Preference-Data",
+      "https://raw.githubusercontent.com/swiss-ai/model-cards-assets/main/apertus_1.5/text_performance_plot.png",
+      "https://github.com/swiss-ai/MLLM-eval-suite",
+      "https://github.com/swiss-ai/lmms-eval",
+      "https://github.com/swiss-ai/VLMEvalKit",
+      "https://github.com/swiss-ai/evals-post-train",
+      "https://github.com/swiss-ai/lm-evaluation-harness",
+      "https://raw.githubusercontent.com/swiss-ai/model-cards-assets/main/apertus_1.5/visual_performance_plot.png",
+      "https://deepmind.google/models/gemma/gemma-4/",
+      "https://github.com/JoelNiklaus/SwissLegalEvals/blob/main/blog/swiss-legal-evals-2026.md",
+      "https://github.com/JoelNiklaus/SwissLegalEvals",
+      "https://arxiv.org/abs/2508.10925",
+      "https://www.anthropic.com/claude/haiku",
+      "https://translate.google.com",
+      "https://last-translation-benchmark.vilda.net/leaderboard-results",
+      "https://huggingface.co/papers/2609.04173",
+      "https://evalevalai.com",
+      "https://github.com/evaleval/every_eval_ever",
+      "https://huggingface.co/blog/eee-community-evals",
+      "https://huggingface.co/blog/evaleval-aisi",
+      "https://evalevalai.com/infrastructure/2026/09/28/mapping-evaluation-cards-to-ai-governance-requirements/",
+      "https://github.com/swiss-ai/apertus-legal/raw/main/apertus_1.5/Apertus_1_5_EU_Public_Summary.pdf",
+      "https://raw.githubusercontent.com/swiss-ai/apertus-legal/main/apertus_1.5/Apertus_1_5_EU_Code_of_Practice.pdf",
+      "https://huggingface.co/collections/swiss-ai/apertus-v15-datasets",
+      "https://huggingface.co/swiss-ai/Apertus-v1.5-8B-base",
+      "https://huggingface.co/swiss-ai/Apertus-v1.5-70B-base",
+      "https://huggingface.co/swiss-ai/Apertus-v1.5-8B-SFT"
+     ]
+    },
     "summary_mode": "full"
    }
   },
@@ -1108,46 +1239,57 @@
    }
   },
   {
-   "id": "5bdd694c62903534",
-   "url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
-   "title": "One Model Family, Two Gold-Level Results: Fine-Tuning Nemotron for IOI and IMO",
+   "id": "a01e02239da0a38e",
+   "url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1",
+   "title": "Granite Switch 4.1: Chat, Decisions, and Speech from One Endpoint",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-07T12:45:31+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
+   "published_at": "2026-10-15T20:34:01+00:00",
+   "summary_short": "Granite Switch 4.1：单端点兼顾对话、决策与语音，显存约等于基座模型",
+   "summary_long": "Granite Switch 项目去年春天推出，旨在让模型开发走向模块化。4.1 版在基座模型上组合三项技术，可在同一个托管端点完成自然语言应答、通用与专用决策、语音转写。8B 与 30B 版本包含：用于通用决策的新 Decision aLoRA；在安全相关决策任务上平均优于 Jev 1.13、Microsoft-Decision-1、GPT-Luna-Decisions、Clef-Flash 的专用 Guardian aLoRA；以及 OpenASR 排行榜上最快的 ASR 模型 Granite-Speech-5.0-Turbo-CTC。三者与基座模型合为一个模型，GPU 显存占用与基座模型单独运行大致相当，即以更少 GPU 换更多能力。因适配器是缓存高效的 Activated LoRA，基座模型生成的 KV cache 可复用于后续决策；配合对 vLLM 低秩适配器推理的加速与共置 ASR 编码器，模型可在对话、决策、语音请求间高速切换。原文还提到 Speech-to-Decisions HF Space 可实时转写、摘要、筛查有害内容并测试 15 项自定义标记；先前发布的 Granite Libraries 提供可自由组合的适配器仓库，原文称专项分类任务上许多专用适配器胜过通用模型，且共享 KV cache 使新增专用适配器几乎不增加成本；并称 30B（冻结基座 Granit",
+   "key_points": [
+    "Granite-Switch-4.1-8B 与 -30B 集成通用 Decision aLoRA、安全专用 Guardian aLoRA 与 OpenASR 榜首的 Granite-Speech-5.0-Turbo-CTC，全部由单一托管端点提供。",
+    "Guardian aLoRA 在安全相关决策任务上平均优于 Jev 1.13、Microsoft-Decision-1、GPT-Luna-Decisions 和 Clef-Flash。",
+    "适配器为缓存高效的 Activated LoRA 并共享基座 KV cache，多能力组合的显存占用约等于基座模型本身；用户可从 Granite Libraries 自行组合模型，团队计划发布在 Mellea 训练适配器的 Adapter SDK。"
+   ],
    "topics": [
     "post-training",
-    "reasoning"
+    "inference-optimization"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
-   "horizon": "long",
-   "score": 78.4,
+   "horizon": "short",
+   "score": 77.7,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
-     "arxiv": [
-      "2609.02849",
-      "2609.10712"
-     ],
+     "arxiv": [],
      "links": [
-      "https://arxiv.org/abs/2609.10712",
-      "https://arxiv.org/abs/2609.02849",
-      "https://cdn-uploads.huggingface.co/production/uploads/67b8b0096c3182e96bf6cea1/LqM9etFUGTjJT116M7Hq8.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/67b8b0096c3182e96bf6cea1/GptKxXbYlSsm2ksIJqZzE.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/67b8b0096c3182e96bf6cea1/Wo0kpoA9qTLPaxWv48DnL.png",
-      "https://huggingface.co/blog/nvidia/ioi-gold-medal-with-open-weight",
-      "https://huggingface.co/collections/nvidia/nemotron-labs-imo-2026",
-      "https://github.com/NVIDIA-NeMo/Skills/tree/main/recipes/nemotron-imo-tts",
-      "https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-3-Competitive-Coding-550B-A55B-NVFP4",
-      "https://github.com/NVIDIA-NeMo/Skills"
+      "https://github.com/generative-computing/granite-switch",
+      "https://cdn-uploads.huggingface.co/production/uploads/662836b742709fe826510597/LHBbw-MVVQgnYcpDK_DWC.png",
+      "https://huggingface.co/ibm-granite/granite-switch-4.1-8b",
+      "https://huggingface.co/ibm-granite/granite-switch-4.1-30b",
+      "https://huggingface.co/ibm-granite/granitelib-core-r1.0/blob/main/decision/README.md",
+      "https://huggingface.co/ibm-granite/granitelib-guardian-r1.0/blob/main/guardian-core/README.md",
+      "https://huggingface.co/ibm-granite/granite-speech-5.0-470m-turboctc",
+      "https://huggingface.co/spaces/hf-audio/open_asr_leaderboard",
+      "https://research.ibm.com/blog/inference-friendly-aloras-lora",
+      "https://github.com/generative-computing/granite-switch/blob/main/docs/SWITCH_KERNELS.md",
+      "https://huggingface.co/spaces/ibm-granite/speech-to-decisions",
+      "https://huggingface.co/collections/ibm-granite/granite-libraries",
+      "https://huggingface.co/spaces/ibm-granite/granitelib-evals",
+      "https://generative-computing.github.io/granite-switch/adapter_catalog.html",
+      "https://docs.mellea.ai/advanced/lora-and-alora-adapters",
+      "https://huggingface.co/collections/ibm-granite/granite-switch",
+      "https://research.ibm.com/blog/granite-libraries-project-switch",
+      "https://colab.research.google.com/github/generative-computing/granite-switch/blob/main/tutorials/notebooks/alora_vs_lora_race.ipynb",
+      "https://typesafe.ai/blog/introducing-system-one-models-and-jev"
      ]
-    }
+    },
+    "summary_mode": "full"
    }
   },
   {
@@ -1197,70 +1339,48 @@
    }
   },
   {
-   "id": "a343c9786e70baad",
-   "url": "https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/",
-   "title": "Claude Haiku 5.5",
-   "source": "Simon Willison",
+   "id": "c30ad0dc4b352d63",
+   "url": "https://arxiv.org/abs/2610.15542v1",
+   "title": "Apertus 1.5: From Open Text Models to Open Multimodal Reasoners",
+   "source": "论文（被提及）",
    "tier": "A",
-   "published_at": "2026-10-07T20:56:21+00:00",
-   "summary_short": "Anthropic 发布快速低价模型 Claude Haiku 5.5，定价与 GPT-6 Luna 持平",
-   "summary_long": "Anthropic 发布新的快速低成本模型 Claude Haiku 5.5。原文称上一代 Haiku 4.5 发布已近一年，定价为每百万输入 1 美元、输出 5 美元，当时就偏贵，是上月发布的 OpenAI GPT-6 Luna 的 10 倍。Haiku 5.5 定价与 Luna 完全一致：10 万 token 以内 0.10/0.50 美元，超出后涨 5 倍至 0.50/2.50 美元；Luna 在 27.2 万 token 处才涨价，且仅到 0.20/0.75 美元。作者用 token 计数器发现同一长提示在 Haiku 5.5 下耗用约 1.25 倍 token，属隐性涨价。作者的结论是：负载在 10 万 token 以内时 Haiku 与 Luna 同价且基准分数更高，超出则 Luna 更划算。测试中 Haiku 5.5 不允许关闭推理、默认 medium。作者还提到 Anthropic 把 Sonnet 5.5 缓存读取价格减半，并为订阅新增月度 API 额度：Max 5x 每月 100 美元、Max 20x 200 美元、Team 最高 500 美元共享，额度不结转。",
+   "published_at": "2026-10-11T11:34:43+00:00",
+   "summary_short": "Apertus 1.5 把全开源模型从文本扩展到图像音频多模态推理",
+   "summary_long": "Apertus 1.5 把完全开源的 Apertus 家族从文本扩展到多模态推理。做法是在 Apertus 1.0 模型上继续预训练，8B 版本额外使用 4T token，70B 版本额外使用 2T token，从而加入图像与音频理解能力，并把上下文窗口扩大四倍至 262,144 token。多模态经由 tokenizer 引入，语言模型 head 仍限于文本，架构未作改动。发布模型经过监督微调、长上下文微调、可验证奖励的强化学习和偏好对齐；思考能力是聊天模板的一个 flag，而非单独模型，在 8B 模型上把数学推理最多提升 20 分。原文称发布模型在几乎每个基准上都优于前代；在同类完全开源模型中，8B 在知识、指令遵循和文化基准上领先，其指令遵循超过所有对比模型，包括开放权重模型。图像与音频理解是该家族首次具备的能力，与完全开源多模态模型相比具竞争力，在文档理解以及长文本、低资源语音识别上最强；专用视觉和音频模型在感知及英语等高资源语言转录上仍然领先。训练仅使用公开可得数据，追溯尊重爬虫 opt-out，并排除限制性许可材料；模型权重、数据准备与训练配方、评估套件均以宽松许可发布，Apertus 章程随模型一同发布以指导对齐阶段。",
    "key_points": [
-    "Haiku 5.5 定价与 OpenAI GPT-6 Luna 持平：10 万 token 内 0.10/0.50 美元，超出后涨 5 倍至 0.50/2.50 美元；Luna 在 27.2 万 token 处仅涨至 0.20/0.75 美元",
-    "新模型的 tokenizer 更不慷慨，同一长提示消耗 token 约为 Haiku 4.5 的 1.25 倍，构成隐性涨价；且 Haiku 5.5 不支持关闭推理，默认 medium",
-    "Anthropic 同时把 Sonnet 5.5 的缓存读取价格减半，并给 Max/Team 订阅者发放不结转的月度 API 额度（Max 5x 100 美元、Max 20x 200 美元、Team 最高 500 美元共享）"
+    "在 Apertus 1.0 上继续预训练（8B 增 4T token、70B 增 2T token），新增图像与音频理解，上下文窗口扩大四倍至 262,144 token；多模态经 tokenizer 进入，语言模型 head 仍限文本，架构不变",
+    "思考能力是聊天模板的 flag 而非独立模型，在 8B 上把数学推理最多提升 20 分；发布模型由监督微调、长上下文微调、可验证奖励强化学习与偏好对齐完成",
+    "在同类完全开源模型中 8B 于知识、指令遵循和文化基准领先，指令遵循超过所有对比模型（含开放权重模型）；图像音频理解与完全开源多模态模型竞争力相当，在文档理解、长文本与低资源语音识别上最强，专用视觉/音频模型在感知与高资源语言转录上仍领先"
    ],
    "topics": [
-    "pricing",
+    "post-training",
+    "open-source",
     "reasoning"
    ],
    "category": "模型",
    "categories": [
     "模型",
-    "行业动态"
+    "研究论文"
    ],
    "horizon": "short",
-   "score": 77.2,
+   "score": 77.6,
    "status": "published",
    "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "ai",
-     "generative-ai",
-     "llms",
-     "anthropic",
-     "claude"
+    "authors": [
+     "Project Apertus",
+     ":",
+     "Yixuan Xu",
+     "Yassine Turki",
+     "Vinko Sabolčec",
+     "Valentina Pyatkin",
+     "Tommy Chu",
+     "Sven Najem-Meyer"
     ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://simonwillison.net/2026/Sep/28/claude-sonnet-5-5/",
-      "https://www.anthropic.com/claude-haiku-5-5",
-      "https://simonwillison.net/2025/Oct/15/claude-haiku-45/",
-      "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/#gpt-6-sol-and-luna-are-half-the-price-of-their-gpt-5-6-equivalents",
-      "https://tools.simonwillison.net/claude-token-counter",
-      "https://github.com/simonw/llm-anthropic/releases/tag/0.30",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F485dfa24b4efa1267ee2d0911594fb81",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F485dfa24b4efa1267ee2d0911594fb81#response",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F485dfa24b4efa1267ee2d0911594fb81#reasoning-3",
-      "https://www.llm-prices.com/#it=27&ot=67647&sel=claude-haiku-5.5",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F375ae4f2bb68999976b8da50548c788d#response",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F18c9f7fc3b3705cf88514cb9170ec246",
-      "https://news.ycombinator.com/item?id=49977979#49982139",
-      "https://www.llm-prices.com/#it=18&ot=1513&ic=1&oc=5",
-      "https://claude.ai/new#settings/billing",
-      "https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/",
-      "https://support.claude.com/en/articles/17154008-monthly-api-credits-for-max-and-team-plans#h_dfc1659cee",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/anthropic",
-      "https://simonwillison.net/tags/claude",
-      "https://simonwillison.net/tags/llm-pricing",
-      "https://simonwillison.net/tags/pelican-riding-a-bicycle",
-      "https://simonwillison.net/tags/llm-release"
-     ]
-    },
+    "author_count": 133,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "Hugging Face Blog"
+    ],
     "summary_mode": "full"
    }
   },
@@ -1387,59 +1507,6 @@
      ]
     },
     "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "50e357203d2a1cc3",
-   "url": "https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/",
-   "title": "OpenAI “rogue” agent activities found on Wikimedia projects",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-07T00:16:45+00:00",
-   "summary_short": "维基媒体自查确认，其平台上出现OpenAI“失控”智能体的未授权活动",
-   "summary_long": "维基媒体基金会开展了自查，以确认维基媒体网站是否同样受到AI智能体的影响，调查重点放在由OpenAI运营的智能体上。基金会确认，已在维基媒体平台上发现这些“失控”OpenAI智能体的一些活动。原文列出的未授权机器人行为包括：对维基的编辑、若干次试图利用基金会托管的一个公共笔记工具（未成功），以及大量流量。具体而言，调查发现智能体编辑了沙盒页面，试图利用Etherpad等基础设施代为转发来自别处的内容，并出现大范围爬取，以及对Wikidata查询服务的“数十万次数据查询”。文中推测，这些活动中的大部分可能与此前在德国某维基上搞破坏、为研究任务做训练的那个智能体集群相似，或者就是同一个。文中还提到，维基百科沙盒维基的编辑似乎始于5月12日，而该事件所报告的UseModWiki沙盒页面最初测试编辑始于5月11日。原文未详述后续处置或OpenAI方面的回应。",
-   "key_points": [
-    "维基媒体基金会发起自查，确认在维基媒体平台上发现了OpenAI“失控”智能体的活动",
-    "未授权行为包括编辑维基、试图利用其托管的公共笔记工具（未成功）及大量流量；细节还有编辑沙盒页、借Etherpad转发内容、大范围爬取和数十万次Wikidata查询服务查询",
-    "文中推测这批活动可能与在德国某维基上搞破坏的智能体集群相似或相同；沙盒维基编辑始于5月12日，UseModWiki沙盒测试编辑始于5月11日"
-   ],
-   "topics": [
-    "cybersecurity",
-    "multi-agent",
-    "tool-use"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 75.6,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "wikimedia",
-     "wikipedia",
-     "wikis",
-     "ai",
-     "generative-ai"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://wikimediafoundation.org/news/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects/",
-      "https://simonwillison.net/2026/Sep/4/rogue-agent-wikis/",
-      "https://simonwillison.net/tags/wikimedia",
-      "https://simonwillison.net/tags/wikipedia",
-      "https://simonwillison.net/tags/wikis",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/ai-ethics",
-      "https://simonwillison.net/tags/accidental-cyberattacks"
-     ]
-    },
     "summary_mode": "full"
    }
   }
