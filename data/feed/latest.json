@@ -1,627 +1,459 @@
 {
- "generated_at": "2026-10-15T22:21:21+00:00",
- "date": "2026-10-15",
- "run_id": "20261015-221832",
+ "generated_at": "2026-10-16T22:08:19+00:00",
+ "date": "2026-10-16",
+ "run_id": "20261016-220551",
  "top": [
   {
-   "id": "9d251ac6836a600d",
-   "url": "https://huggingface.co/blog/meta-muse-spark-open",
-   "title": "Welcome Muse Spark Open: open-weight frontier multimodal mixture-of-experts model from Meta",
+   "id": "849b423196d125cc",
+   "url": "https://huggingface.co/blog/reflection-beam",
+   "title": "Welcome Beam: a 501B open model you can own, customize, and scale",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-15T00:00:00+00:00",
-   "summary_short": "Meta开源816B参数MoE多模态模型，百万token上下文，面向智能体编程",
-   "summary_long": "原文介绍Meta的开源权重模型Muse Spark Open。该混合专家（MoE）模型可输入文本、图像、音频和视频，输出文本，总参数约8160亿，每token激活约420亿，上下文窗口最高100万token。它在Muse Glimmer之后推出，将MoE架构扩展到更大规模。Meta称其面向智能体编程训练，针对多文件重构、长时间调试等真实开发者工作流，能在长任务中规划、行动、观察并自我纠错。架构上，语言模型62层、隐藏维度8192、128个查询头与16个键值头（分组查询注意力）、头维度64；注意力块含输出门和输出归一化，并对查询、键做归一化，每块通过可学习残差门合并输入输出。每层MoE有256个专家、每token选8个，专家为8192→4096→8192的前馈网络并各自归一化，占总参数约97%；全部专家常驻内存，部署需816B级内存但以42B速度运行。检查点有BF16（约1.5TB）与面向NVIDIA Blackwell的NVFP4，前者在4个8×H200节点以TP=32运行，后者在单B200节点运行。文中还给出llama.cpp、vLLM、SGLang部署配方及微调与构建示例。",
-   "key_points": [
-    "约8160亿总参数、每token约420亿激活的MoE模型，上下文窗口最高100万token，输入支持文本/图像/音频/视频，输出为文本",
-    "语言模型62层、隐藏维度8192，128查询头与16键值头（GQA），含输出门、输出归一化、QK-norm与可学习残差门；每层256个专家、每token路由8个，专家占总参数约97%",
-    "提供BF16（约1.5TB）与NVFP4检查点；BF16在4个8×H200节点以TP=32运行，NVFP4在单B200节点运行，并有llama.cpp、vLLM、SGLang配方"
-   ],
+   "published_at": "2026-10-16T00:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
    "topics": [
     "open-source",
-    "coding-agent",
-    "post-training"
+    "coding-agent"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 85.3,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/huggingface/blog/blob/main/reflection-beam.md",
+      "https://huggingface.co/reflection/Beam-1.0-501B-A23B",
+      "https://huggingface.co/reflection/Beam-1.0-501B-A23B-FP8",
+      "https://huggingface.co/reflection/Beam-1.0-501B-A23B-NVFP4",
+      "https://developers.reflection.ai/mirror-overview",
+      "https://huggingface.co/reflection/Beam-1.0-501B-A23B/discussions/5",
+      "https://github.com/vllm-project/recipes/pull/1132",
+      "https://endpoints.huggingface.co/new/reflection/Beam-1.0-501B-A23B-FP8",
+      "https://endpoints.huggingface.co/new/reflection/Beam-1.0-501B-A23B-NVFP4",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/multi_step_tools-low.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/multi_step_tools-high.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/long_context-low.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/long_context-high.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/terminal-low.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/terminal-high.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/math-low.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/math-high.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/structured_output-low.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/structured_output-high.jsonl",
+      "https://huggingface.co/datasets/HuggingFaceH4/Multilingual-Thinking",
+      "https://github.com/huggingface/trl/pull/7629",
+      "https://huggingface.co/buckets/burtenshaw/beamspeak-demo/tree/trace/beam-build.sanitized.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beamspeak-demo/resolve/beamspeak-source.zip",
+      "https://huggingface.co/buckets/burtenshaw/beamspeak-demo/resolve/RUNNING.md",
+      "https://huggingface.co/datasets/programbench/ProgramBench-Tests",
+      "https://burtenshaw-beam-pi-programbench.hf.space/study",
+      "https://burtenshaw-beam-pi-programbench.hf.space/?project=beam-pi-programbench-20261009",
+      "https://huggingface.co/spaces/burtenshaw/beam-pi-programbench/tree/main/results/beam-pi-programbench-20261009",
+      "https://huggingface.co/spaces/burtenshaw/beam-pi-programbench/tree/main/source",
+      "https://huggingface.co/buckets/burtenshaw/qwen35-incident-triage-reproduction",
+      "https://huggingface.co/reflection/Beam-1.0-501B-A23B/discussions"
+     ]
+    }
+   }
+  },
+  {
+   "id": "32239fe1b8b165b3",
+   "url": "https://www.mercor.com/research/labor-index/benchmark-map/",
+   "title": "90% of US working hours are spent on tasks not covered well by AI benchmarks",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-16T17:08:38+00:00",
+   "summary_short": "基准地图显示：美国90%工作时长所涉任务几乎无AI基准覆盖",
+   "summary_long": "近年AI基准数量激增，但对有经济价值工作的覆盖仍然有限。为衡量这一缺口，研究团队汇编相关基准，构建了一张覆盖美国就业的“基准地图”。该研究采用美国劳工部O*NET分类，将美国劳动力划分为923个职业、22个职业族，合计18,797项任务，索引中共包含924个基准；单个基准提示可对应多个O*NET任务。结果显示，923个职业中仅208个拥有至少5条基准提示所覆盖的任务，22个职业族中有6个完全没有这类职业。据此，原文估计美国90%的工作时长花在现有基准很少或完全没有覆盖的任务上，这使得人们很难判断AI模型在美国人实际从事的工作上表现如何。覆盖分布也并非随机：地图显示AI社区优先关注最大的劳动力市场，基准覆盖与职业工资总额相关。例如初始基准大量覆盖了具AI暴露度的律师任务，却几乎不覆盖同样具AI暴露度的法律秘书或法庭书记员的任务；规模较小、中等收入知识型工作的长尾覆盖不足。原文称这是构建持续更新的经济AI能力资源的第一步。",
+   "key_points": [
+    "以O*NET为框架：923个职业、22个职业族、18,797项任务，索引含924个基准",
+    "仅208个职业有至少5条基准提示覆盖的任务，6个职业族完全没有此类职业",
+    "原文估计美国90%工作时长所涉任务几乎没有基准覆盖，且覆盖偏向工资总额更大的劳动力市场"
+   ],
+   "topics": [
+    "eval",
+    "labor-market"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 80.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 329,
+    "hn_comments": 292,
+    "outbound": {
+     "arxiv": [
+      "2303.10130",
+      "2603.01203",
+      "2608.05172"
+     ],
+     "links": [
+      "https://arxiv.org/abs/2303.10130",
+      "https://arxiv.org/abs/2603.01203v2",
+      "https://arxiv.org/abs/2608.05172",
+      "https://www.nber.org/papers/w26948",
+      "https://work.mercor.com/explore",
+      "https://talent.docs.mercor.com/",
+      "https://trust.mercor.com",
+      "https://twitter.com/mercor",
+      "https://www.youtube.com/@mercor-ai",
+      "https://www.linkedin.com/company/mercor-ai/",
+      "https://www.instagram.com/mercor_ai/"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "ba4e7337aba280a4",
+   "url": "https://huggingface.co/blog/nvidia/scaling-indic-pretraining",
+   "title": "Scaling Indic Pretraining: 2.8 Trillion Tokens and an Open Data Generation Pipeline",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-16T01:44:47+00:00",
+   "summary_short": "2.8万亿token印度语言预训练语料及开放生成流水线",
+   "summary_long": "NVIDIA与IIT Madras及其AI4Bharat实验室联合推出Nemotron-pretraining-Indic-v1，约2.8万亿token、覆盖22种印度语言，即将发布，同时开放用于生成该语料的GPU加速数据生成流水线。这22种语言为印度宪法列明的语言，按2011年人口普查是97%印度人（近12亿人）的母语。流水线记录了完整生成配方，包括提示词、LLM工作流与质量检查，开发者可将其适配到自有源材料上生成更多数据。语料把经过策划的英文材料（数学、代码、问答）引入印度语言；每条记录都可追溯到策划源文档，每个输出都与输入比对，使合成文本保持有真实信息支撑。语料包含全部22种语言的本地文字数据以及12种语言的罗马化文本，共34种语言-文字组合；工作流涵盖文档级翻译、质量评估与针对性修复，并保留公式、表格、代码等内容。AI4Bharat负责人Mitesh Khapra指出，印度语言技术落后于英语的原因是印度语言数据不足。该数据是对自然撰写的印度语文本的补充。Nemotron 3.5 Super VL的持续预训练使用了该语料12种语言子集及自然印度语文本共100亿token。",
+   "key_points": [
+    "约2.8万亿token，覆盖22种印度语言；含全部22种语言的本地文字数据和12种语言的罗马化文本，共34种语言-文字组合",
+    "随语料开放GPU加速数据生成流水线，完整包含提示词、LLM工作流与质量检查，可复现、可适配自有源材料",
+    "合成内容以策划源文档为锚，逐条对照输入做质量评估与修复，并保留公式、表格、代码；该数据定位为对自然撰写印度语文本的补充"
+   ],
+   "topics": [
+    "pretraining-data",
+    "multilingual",
+    "open-source"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
    "horizon": "long",
-   "score": 87.6,
+   "score": 78.0,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/meta-muse-spark-open.md",
-      "https://huggingface.co/collections/meta-models/muse-spark-open",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/model.png",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/image_pipeline.png",
-      "https://huggingface.co/papers/2504.13181",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/audio_encoder.png",
-      "https://huggingface.co/ggml-orgf/Muse-Spark-Open-816B-A42B-GGUF",
-      "https://llama.app/docs/serve",
-      "https://github.com/jundot/omlx",
-      "https://github.com/ml-explore/mlx-lm",
-      "https://huggingface.co/mlx-community/Muse-Spark-Open-816B-A42B-oQ3e",
-      "https://huggingface.co/mlx-community/Muse-Spark-Open-816B-A42B-oQ4e",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/omlx_muse_spark_open_reasoning_screenshot.png",
-      "https://github.com/ml-explore/mlx-lm/pull/1975",
-      "https://endpoints.huggingface.co/new/meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/training_loss.png",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/token_acc.png",
-      "http://Three.js",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/pi-3d-prompt.txt",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/pi-demo.png",
-      "https://huggingface.co/docs/openenv/main/en/environments/helium_browser",
-      "https://huggingface.co/docs/huggingface_hub/en/guides/sandbox",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/browser_server.png",
-      "https://huggingface.co/spaces/burtenshaw/muse-spark-call-your-browser",
-      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
-      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
-      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B/discussions"
+      "https://www.iitm.ac.in/",
+      "https://ai4bharat.iitm.ac.in/",
+      "https://huggingface.co/datasets/ai4bharat/sangraha",
+      "https://time.com/collections/time100-ai-2025/7305866/mitesh-khapra/",
+      "https://github.com/NVIDIA-NeMo/DataDesignerPlugins/tree/main/plugins/data-designer-nemotron-indic-translation",
+      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+      "https://cdn-uploads.huggingface.co/production/uploads/68d2fec8856b85d927e44d32/VmVFMKjOsoNkEKfQ7cRnh.png",
+      "https://huggingface.co/datasets/nvidia/Nemotron-CC-v2",
+      "https://docs.nvidia.com/nemo/datadesigner/",
+      "https://cdn-uploads.huggingface.co/production/uploads/68d2fec8856b85d927e44d32/PCtm5uAGrdrp8kgHXb6y3.png",
+      "https://huggingface.co/google/gemma-4-31B-it",
+      "https://themqm.org/",
+      "https://huggingface.co/bodhan-ai/indic-translate",
+      "https://bodhan.ai/",
+      "https://cdn-uploads.huggingface.co/production/uploads/68d2fec8856b85d927e44d32/ZPR2A2wDoNW6OVb4-GX63.png",
+      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+      "https://huggingface.co/datasets/sarvamai/indivibe",
+      "https://cdn-uploads.huggingface.co/production/uploads/68d2fec8856b85d927e44d32/YQO_-yZWrhhQgueXuxzuM.png",
+      "https://huggingface.co/docs/datasets/stream",
+      "https://huggingface.co/collections/nvidia/nemotron-chat-and-instruction-following",
+      "https://huggingface.co/collections/nvidia/nemotron-post-training-v3",
+      "https://huggingface.co/datasets/nvidia/Nemotron-Personas-India",
+      "https://github.com/NVIDIA-NeMo/DataDesignerPlugins/blob/main/plugins/data-designer-nemotron-indic-translation/docs/index.md",
+      "https://github.com/NVIDIA-NeMo/DataDesigner/pull/959",
+      "https://ai4bharat.github.io/indic-llm-eval-suite-blog/",
+      "https://huggingface.co/datasets/nvidia/nemotron-indic-pretraining-report/blob/main/Scaling%20Synthetic%20Pre-training%20Data%20and%20Evaluation%20for%20Indic%20LLMs.pdf",
+      "https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3.5-Super-and-Lightning-Technical-Report.pdf",
+      "https://huggingface.co/collections/nvidia/nemotron-pre-training-datasets"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "3733c75a28bf26df",
-   "url": "https://huggingface.co/blog/flux-3",
-   "title": "Welcome FLUX.3 Image Klein in Diffusers",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-15T00:00:00+00:00",
-   "summary_short": "Black Forest Labs 开源 FLUX.3 Image Klein，首发即在 Diffusers 中运行，支持边界框布局控制",
-   "summary_long": "Black Forest Labs 推出最新开源图像生成模型 FLUX.3 Image Klein，发布首日即可在 Diffusers 中运行。一个模型同时承担文生图与多参考图生图，并新增布局控制：在提示词中写入边界框，指定画面各部分的位置，或指明参考图中哪些部分需要移动。Hugging Face 上提供两个开放检查点：蒸馏版 black-forest-labs/flux-3-image-klein 默认 16 步、不使用 CFG，适合快速推理；基础版 black-forest-labs/flux-3-image-klein-base 默认 50 步并使用 CFG。原文称蒸馏检查点在 H100 上约 2 秒可生成一张 1024×1024 图像。NVFP4 与 FP8 权重可通过 from_single_file 加载，面向较小 GPU。同时提供文生图与图像编辑的 LoRA 训练脚本。模型以 Modular Diffusers pipeline 形式发布，可拆出模块或添加自定义模块；安装需最新版 diffusers 与 transformers（用于 Qwen3-VL 文本编码器）。多张参考图在提示词中按传入顺序以 <ref_image_0>、<ref_image_1> 引用。",
+   "id": "a14596d80f7723e9",
+   "url": "https://blogs.gnome.org/uraeus/2026/10/15/aiandreverseengineerhardware/",
+   "title": "Using AI to reverse engineer hardware",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-15T14:35:15+00:00",
+   "summary_short": "作者用 AI 代理在 Windows 虚拟机中抓取 USB 流量，反向工程出 Linux 硬件驱动，并把整套工具开源为 hw-harness。",
+   "summary_long": "作者因母亲去世后留下大量老底片，买入在 Linux 下受支持的 Plustek 8200i 扫描仪，却发现该机型芯片组已更换、不再有 Linux 支持。他此前曾用 Claude code 为自己的硬件写过 Linux 配置工具，于是尝试让 Claude 帮忙做 SANE 驱动，但长期没有进展，甚至放弃了数月。转机是他看到 Tom Crider（Glorious Eggroll）在 X 上讲述用 AI 工具修好鼠标驱动的帖子——做法是让 AI 代理完全控制一个 Windows 实例来采集所需数据。他把该帖粘给 Claude，请它帮忙搭建同样的 Windows 虚拟机流程。能同时在 Windows 下扫描并抓取 USB 数据，加上 Claude code 的改进，几小时内他首次在 Linux 下完成扫描，图像可辨认但质量有问题；几天后得到近乎完美的驱动，含红外扫描支持，却发现期间已有人向 SANE 提交了该扫描仪的支持代码。他还用 Claude 写了底片扫描应用 Negative Vibes，并用同一套 harness 修复笔记本 MIPI 摄像头，当天就备好内核与 libcamera 补丁。他随后让 Claude 把 harness 通用化并写文档，即 hw-harness：在 KVM 虚拟机中运行厂商 Windows 驱动并直通设备、在 Linux 主机用 usbmon 从虚拟机外",
    "key_points": [
-    "单个模型覆盖文生图、多参考图生图与边界框布局控制；布局控制通过把边界框写进提示词，指定画面元素位置或参考图需移动的部分",
-    "两个开放检查点：蒸馏版默认 16 步、无 CFG；基础版默认 50 步、使用 CFG。原文称蒸馏版在 H100 上约 2 秒生成 1024×1024 图像",
-    "以 Modular Diffusers pipeline 发布，提供文生图与图像编辑的 LoRA 训练脚本，NVFP4/FP8 权重可用 from_single_file 加载以适配较小 GPU"
+    "起因：新购的 Plustek 8200i 扫描仪芯片组更换后失去 Linux 支持，作者想让 Claude 帮忙写 SANE 驱动，长期卡住后放弃数月。",
+    "方法来自 Tom Crider（Glorious Eggroll）的 X 帖子：让 AI 代理完全控制 Windows 实例采集数据；作者据此搭建 Windows 虚拟机，同时扫描并抓取 USB 流量。",
+    "结果：数小时内首次在 Linux 下成功扫描，数天后得到近乎完美的驱动（含红外扫描），但期间已有人向 SANE 提交了该扫描仪支持；还写了 Negative Vibes 应用，并用同一 harness 修好笔记本 MIPI 摄像头，产出内核与 libcamera 补丁。"
    ],
    "topics": [
-    "open-source",
-    "quantization"
+    "harness",
+    "coding-agent",
+    "tool-use"
    ],
-   "category": "模型",
+   "category": "Agent 与开发",
    "categories": [
-    "模型"
+    "Agent 与开发"
    ],
-   "horizon": "short",
-   "score": 84.3,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/flux-3.md",
-      "https://huggingface.co/black-forest-labs",
-      "https://huggingface.co/collections/black-forest-labs/flux-3-image-klein",
-      "https://huggingface.co/black-forest-labs/flux-3-image-klein",
-      "https://huggingface.co/black-forest-labs/flux-3-image-klein-base",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/hero.png",
-      "https://huggingface.co/spaces/black-forest-labs/flux-3-image-klein",
-      "https://docs.bfl.ai/guides/prompting_summary",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/t2i.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i_fox.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i_bench.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/combined.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/bbox-layout.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/knight.png",
-      "https://github.com/ostris/ai-toolkit",
-      "https://huggingface.co/datasets/multimodalart/1920-raider-waite-tarot-public-domain",
-      "https://huggingface.co/diffusers-modular/flux3-tarot-lora",
-      "https://github.com/huggingface/diffusers/blob/main/examples/dreambooth/README_flux3_klein.md",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/tarot-lora-sweep.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/tokens-per-workflow.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step01.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step05.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step10.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step15.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step25.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step50.png",
-      "https://huggingface.co/spaces/ariG23498/flow-matching",
-      "https://youtu.be/hXQZ6lyRCsI",
-      "https://huggingface.co/docs/diffusers/main/en/modular_diffusers/overview",
-      "https://huggingface.co/docs/diffusers/main/en/api/pipelines/flux3"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "e3c36d4422c6129b",
-   "url": "https://huggingface.co/blog/swiss-ai/apertus-v15-release-notes",
-   "title": "Apertus 1.5 Release Notes",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-15T09:08:45+00:00",
-   "summary_short": "Apertus 1.5 开源 8B/70B：新增图像音频理解与思考模式，上下文扩至 262k",
-   "summary_long": "Apertus 1.5 是对 Apertus 1.0 的 8B 与 70B 模型的持续预训练（8B 增加 4 万亿、70B 增加 2 万亿 token，总量分别达 19T 与 17T）。更新后的权重已于 2026 年 7 月 24 日以 Apache 2.0 许可发布于 Hugging Face，详见项目 Technical Report。新版本带来原生多模态理解（图像与音频，语音处理仍属实验性）、可选思考模式、扩至 262,144 token 的上下文窗口（为 1.0 的 4 倍）、更好的指令遵循与工具使用，并更严格遵循 Apertus Charter。多模态以 early-fusion 方式实现：图像经 Emu3.5 tokenizer（512×512 为 1,024 token）、音频经 WavTokenizer（每秒 40 token）离散化，与文本 token 同序列输入；架构不变，仅扩展词表，训练速度与纯文本相当，模型能理解图像和音频但只生成文本。预训练分无配对、配对、冷却、长上下文四阶段，窗口从 8k 逐步增至 262k，超半数训练 token 为纯文本；后训练为 SFT、长上下文 SFT、RL、DPO、Charter 对齐五阶段。",
-   "key_points": [
-    "能力升级：8B 与 70B 模型新增图像、音频理解（语音为实验性）与可切换的思考模式，上下文窗口扩至 262,144 token，指令遵循与工具使用均有提升",
-    "训练规模：在 1.0 基础上继续预训练，8B 增加 4T、70B 增加 2T token，总量分别达 19T 与 17T；超半数训练 token 为纯文本，新数据均公开、许可宽松且追溯尊重 robots.txt 退出",
-    "开放程度：权重以 Apache 2.0 发布于 Hugging Face，文本 SFT 混合数据与 DPO 偏好数据池一并公开，训练全流程与全部数据来源记录在 apertus-data-transparency"
-   ],
-   "topics": [
-    "post-training",
-    "open-source",
-    "multimodal"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 79.5,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2408.16532",
-      "2508.10925",
-      "2510.26583",
-      "2610.15542"
-     ],
-     "links": [
-      "https://huggingface.co/collections/swiss-ai/apertus-v15",
-      "https://arxiv.org/abs/2610.15542",
-      "https://github.com/swiss-ai/apertus-data-transparency/",
-      "https://apertus-ai.org/pages/charter/",
-      "https://apertus-ai.org/pages/research/",
-      "https://cdn-uploads.huggingface.co/production/uploads/650ed7adf141bc34f91a12ae/Xi58nSrPTd5_ASGNIg60g.png",
-      "https://arxiv.org/abs/2510.26583",
-      "https://arxiv.org/abs/2408.16532",
-      "https://cdn-uploads.huggingface.co/production/uploads/650ed7adf141bc34f91a12ae/D-7BaNY68Nigi5bTw3RH9.png",
-      "https://huggingface.co/datasets/epfml/FineWeb2-HQ-Plus",
-      "https://github.com/swiss-ai/apertus-data-transparency",
-      "https://huggingface.co/datasets/swiss-ai/Apertus-v1.5-SFT-mix",
-      "https://huggingface.co/datasets/swiss-ai/Apertus-v1.5-Preference-Pool",
-      "https://huggingface.co/datasets/swiss-ai/Apertus-v1.5-Preference-Data",
-      "https://raw.githubusercontent.com/swiss-ai/model-cards-assets/main/apertus_1.5/text_performance_plot.png",
-      "https://github.com/swiss-ai/MLLM-eval-suite",
-      "https://github.com/swiss-ai/lmms-eval",
-      "https://github.com/swiss-ai/VLMEvalKit",
-      "https://github.com/swiss-ai/evals-post-train",
-      "https://github.com/swiss-ai/lm-evaluation-harness",
-      "https://raw.githubusercontent.com/swiss-ai/model-cards-assets/main/apertus_1.5/visual_performance_plot.png",
-      "https://deepmind.google/models/gemma/gemma-4/",
-      "https://github.com/JoelNiklaus/SwissLegalEvals/blob/main/blog/swiss-legal-evals-2026.md",
-      "https://github.com/JoelNiklaus/SwissLegalEvals",
-      "https://arxiv.org/abs/2508.10925",
-      "https://www.anthropic.com/claude/haiku",
-      "https://translate.google.com",
-      "https://last-translation-benchmark.vilda.net/leaderboard-results",
-      "https://huggingface.co/papers/2609.04173",
-      "https://evalevalai.com",
-      "https://github.com/evaleval/every_eval_ever",
-      "https://huggingface.co/blog/eee-community-evals",
-      "https://huggingface.co/blog/evaleval-aisi",
-      "https://evalevalai.com/infrastructure/2026/09/28/mapping-evaluation-cards-to-ai-governance-requirements/",
-      "https://github.com/swiss-ai/apertus-legal/raw/main/apertus_1.5/Apertus_1_5_EU_Public_Summary.pdf",
-      "https://raw.githubusercontent.com/swiss-ai/apertus-legal/main/apertus_1.5/Apertus_1_5_EU_Code_of_Practice.pdf",
-      "https://huggingface.co/collections/swiss-ai/apertus-v15-datasets",
-      "https://huggingface.co/swiss-ai/Apertus-v1.5-8B-base",
-      "https://huggingface.co/swiss-ai/Apertus-v1.5-70B-base",
-      "https://huggingface.co/swiss-ai/Apertus-v1.5-8B-SFT"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a01e02239da0a38e",
-   "url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1",
-   "title": "Granite Switch 4.1: Chat, Decisions, and Speech from One Endpoint",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-15T20:34:01+00:00",
-   "summary_short": "Granite Switch 4.1：单端点兼顾对话、决策与语音，显存约等于基座模型",
-   "summary_long": "Granite Switch 项目去年春天推出，旨在让模型开发走向模块化。4.1 版在基座模型上组合三项技术，可在同一个托管端点完成自然语言应答、通用与专用决策、语音转写。8B 与 30B 版本包含：用于通用决策的新 Decision aLoRA；在安全相关决策任务上平均优于 Jev 1.13、Microsoft-Decision-1、GPT-Luna-Decisions、Clef-Flash 的专用 Guardian aLoRA；以及 OpenASR 排行榜上最快的 ASR 模型 Granite-Speech-5.0-Turbo-CTC。三者与基座模型合为一个模型，GPU 显存占用与基座模型单独运行大致相当，即以更少 GPU 换更多能力。因适配器是缓存高效的 Activated LoRA，基座模型生成的 KV cache 可复用于后续决策；配合对 vLLM 低秩适配器推理的加速与共置 ASR 编码器，模型可在对话、决策、语音请求间高速切换。原文还提到 Speech-to-Decisions HF Space 可实时转写、摘要、筛查有害内容并测试 15 项自定义标记；先前发布的 Granite Libraries 提供可自由组合的适配器仓库，原文称专项分类任务上许多专用适配器胜过通用模型，且共享 KV cache 使新增专用适配器几乎不增加成本；并称 30B（冻结基座 Granit",
-   "key_points": [
-    "Granite-Switch-4.1-8B 与 -30B 集成通用 Decision aLoRA、安全专用 Guardian aLoRA 与 OpenASR 榜首的 Granite-Speech-5.0-Turbo-CTC，全部由单一托管端点提供。",
-    "Guardian aLoRA 在安全相关决策任务上平均优于 Jev 1.13、Microsoft-Decision-1、GPT-Luna-Decisions 和 Clef-Flash。",
-    "适配器为缓存高效的 Activated LoRA 并共享基座 KV cache，多能力组合的显存占用约等于基座模型本身；用户可从 Granite Libraries 自行组合模型，团队计划发布在 Mellea 训练适配器的 Adapter SDK。"
-   ],
-   "topics": [
-    "post-training",
-    "inference-optimization"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
+   "horizon": "long",
    "score": 77.7,
    "status": "published",
    "extra": {
-    "content_source": "direct",
+    "hn_points": 242,
+    "hn_comments": 234,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/generative-computing/granite-switch",
-      "https://cdn-uploads.huggingface.co/production/uploads/662836b742709fe826510597/LHBbw-MVVQgnYcpDK_DWC.png",
-      "https://huggingface.co/ibm-granite/granite-switch-4.1-8b",
-      "https://huggingface.co/ibm-granite/granite-switch-4.1-30b",
-      "https://huggingface.co/ibm-granite/granitelib-core-r1.0/blob/main/decision/README.md",
-      "https://huggingface.co/ibm-granite/granitelib-guardian-r1.0/blob/main/guardian-core/README.md",
-      "https://huggingface.co/ibm-granite/granite-speech-5.0-470m-turboctc",
-      "https://huggingface.co/spaces/hf-audio/open_asr_leaderboard",
-      "https://research.ibm.com/blog/inference-friendly-aloras-lora",
-      "https://github.com/generative-computing/granite-switch/blob/main/docs/SWITCH_KERNELS.md",
-      "https://huggingface.co/spaces/ibm-granite/speech-to-decisions",
-      "https://huggingface.co/collections/ibm-granite/granite-libraries",
-      "https://huggingface.co/spaces/ibm-granite/granitelib-evals",
-      "https://generative-computing.github.io/granite-switch/adapter_catalog.html",
-      "https://docs.mellea.ai/advanced/lora-and-alora-adapters",
-      "https://huggingface.co/collections/ibm-granite/granite-switch",
-      "https://research.ibm.com/blog/granite-libraries-project-switch",
-      "https://colab.research.google.com/github/generative-computing/granite-switch/blob/main/tutorials/notebooks/alora_vs_lora_race.ipynb",
-      "https://typesafe.ai/blog/introducing-system-one-models-and-jev"
+      "https://gitlab.com/cschalle/appfordellwebcam",
+      "https://x.com/GloriousEggroll/status/2103816580966830314",
+      "https://github.com/cschalle/negative-vibes",
+      "https://cschalle.github.io/mipi-fixes-x1-aura/",
+      "https://github.com/cschalle/hw-harness",
+      "https://htmlpreview.github.io/?https://github.com/cschalle/OpticFilm8200i-sane/blob/main/docs/comparison/drivers-comparison.html",
+      "https://blogs.gnome.org/uraeus/files/2026/10/drivercompare.png",
+      "https://blogs.gnome.org/uraeus/files/2026/10/afterscan.png",
+      "https://blogs.gnome.org/uraeus/files/2026/10/mipifixes.png"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "c30ad0dc4b352d63",
-   "url": "https://arxiv.org/abs/2610.15542v1",
-   "title": "Apertus 1.5: From Open Text Models to Open Multimodal Reasoners",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2026-10-11T11:34:43+00:00",
-   "summary_short": "Apertus 1.5 把全开源模型从文本扩展到图像音频多模态推理",
-   "summary_long": "Apertus 1.5 把完全开源的 Apertus 家族从文本扩展到多模态推理。做法是在 Apertus 1.0 模型上继续预训练，8B 版本额外使用 4T token，70B 版本额外使用 2T token，从而加入图像与音频理解能力，并把上下文窗口扩大四倍至 262,144 token。多模态经由 tokenizer 引入，语言模型 head 仍限于文本，架构未作改动。发布模型经过监督微调、长上下文微调、可验证奖励的强化学习和偏好对齐；思考能力是聊天模板的一个 flag，而非单独模型，在 8B 模型上把数学推理最多提升 20 分。原文称发布模型在几乎每个基准上都优于前代；在同类完全开源模型中，8B 在知识、指令遵循和文化基准上领先，其指令遵循超过所有对比模型，包括开放权重模型。图像与音频理解是该家族首次具备的能力，与完全开源多模态模型相比具竞争力，在文档理解以及长文本、低资源语音识别上最强；专用视觉和音频模型在感知及英语等高资源语言转录上仍然领先。训练仅使用公开可得数据，追溯尊重爬虫 opt-out，并排除限制性许可材料；模型权重、数据准备与训练配方、评估套件均以宽松许可发布，Apertus 章程随模型一同发布以指导对齐阶段。",
-   "key_points": [
-    "在 Apertus 1.0 上继续预训练（8B 增 4T token、70B 增 2T token），新增图像与音频理解，上下文窗口扩大四倍至 262,144 token；多模态经 tokenizer 进入，语言模型 head 仍限文本，架构不变",
-    "思考能力是聊天模板的 flag 而非独立模型，在 8B 上把数学推理最多提升 20 分；发布模型由监督微调、长上下文微调、可验证奖励强化学习与偏好对齐完成",
-    "在同类完全开源模型中 8B 于知识、指令遵循和文化基准领先，指令遵循超过所有对比模型（含开放权重模型）；图像音频理解与完全开源多模态模型竞争力相当，在文档理解、长文本与低资源语音识别上最强，专用视觉/音频模型在感知与高资源语言转录上仍领先"
-   ],
-   "topics": [
-    "post-training",
-    "open-source",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "研究论文"
-   ],
-   "horizon": "short",
-   "score": 77.6,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Project Apertus",
-     ":",
-     "Yixuan Xu",
-     "Yassine Turki",
-     "Vinko Sabolčec",
-     "Valentina Pyatkin",
-     "Tommy Chu",
-     "Sven Najem-Meyer"
-    ],
-    "author_count": 133,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "Hugging Face Blog"
-    ],
+    "content_source": "direct",
     "summary_mode": "full"
    }
   }
  ],
  "items": [
   {
-   "id": "9d251ac6836a600d",
-   "url": "https://huggingface.co/blog/meta-muse-spark-open",
-   "title": "Welcome Muse Spark Open: open-weight frontier multimodal mixture-of-experts model from Meta",
+   "id": "849b423196d125cc",
+   "url": "https://huggingface.co/blog/reflection-beam",
+   "title": "Welcome Beam: a 501B open model you can own, customize, and scale",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-15T00:00:00+00:00",
-   "summary_short": "Meta开源816B参数MoE多模态模型，百万token上下文，面向智能体编程",
-   "summary_long": "原文介绍Meta的开源权重模型Muse Spark Open。该混合专家（MoE）模型可输入文本、图像、音频和视频，输出文本，总参数约8160亿，每token激活约420亿，上下文窗口最高100万token。它在Muse Glimmer之后推出，将MoE架构扩展到更大规模。Meta称其面向智能体编程训练，针对多文件重构、长时间调试等真实开发者工作流，能在长任务中规划、行动、观察并自我纠错。架构上，语言模型62层、隐藏维度8192、128个查询头与16个键值头（分组查询注意力）、头维度64；注意力块含输出门和输出归一化，并对查询、键做归一化，每块通过可学习残差门合并输入输出。每层MoE有256个专家、每token选8个，专家为8192→4096→8192的前馈网络并各自归一化，占总参数约97%；全部专家常驻内存，部署需816B级内存但以42B速度运行。检查点有BF16（约1.5TB）与面向NVIDIA Blackwell的NVFP4，前者在4个8×H200节点以TP=32运行，后者在单B200节点运行。文中还给出llama.cpp、vLLM、SGLang部署配方及微调与构建示例。",
-   "key_points": [
-    "约8160亿总参数、每token约420亿激活的MoE模型，上下文窗口最高100万token，输入支持文本/图像/音频/视频，输出为文本",
-    "语言模型62层、隐藏维度8192，128查询头与16键值头（GQA），含输出门、输出归一化、QK-norm与可学习残差门；每层256个专家、每token路由8个，专家占总参数约97%",
-    "提供BF16（约1.5TB）与NVFP4检查点；BF16在4个8×H200节点以TP=32运行，NVFP4在单B200节点运行，并有llama.cpp、vLLM、SGLang配方"
-   ],
+   "published_at": "2026-10-16T00:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
    "topics": [
     "open-source",
-    "coding-agent",
-    "post-training"
+    "coding-agent"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 85.3,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/huggingface/blog/blob/main/reflection-beam.md",
+      "https://huggingface.co/reflection/Beam-1.0-501B-A23B",
+      "https://huggingface.co/reflection/Beam-1.0-501B-A23B-FP8",
+      "https://huggingface.co/reflection/Beam-1.0-501B-A23B-NVFP4",
+      "https://developers.reflection.ai/mirror-overview",
+      "https://huggingface.co/reflection/Beam-1.0-501B-A23B/discussions/5",
+      "https://github.com/vllm-project/recipes/pull/1132",
+      "https://endpoints.huggingface.co/new/reflection/Beam-1.0-501B-A23B-FP8",
+      "https://endpoints.huggingface.co/new/reflection/Beam-1.0-501B-A23B-NVFP4",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/multi_step_tools-low.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/multi_step_tools-high.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/long_context-low.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/long_context-high.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/terminal-low.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/terminal-high.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/math-low.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/math-high.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/structured_output-low.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/structured_output-high.jsonl",
+      "https://huggingface.co/datasets/HuggingFaceH4/Multilingual-Thinking",
+      "https://github.com/huggingface/trl/pull/7629",
+      "https://huggingface.co/buckets/burtenshaw/beamspeak-demo/tree/trace/beam-build.sanitized.jsonl",
+      "https://huggingface.co/buckets/burtenshaw/beamspeak-demo/resolve/beamspeak-source.zip",
+      "https://huggingface.co/buckets/burtenshaw/beamspeak-demo/resolve/RUNNING.md",
+      "https://huggingface.co/datasets/programbench/ProgramBench-Tests",
+      "https://burtenshaw-beam-pi-programbench.hf.space/study",
+      "https://burtenshaw-beam-pi-programbench.hf.space/?project=beam-pi-programbench-20261009",
+      "https://huggingface.co/spaces/burtenshaw/beam-pi-programbench/tree/main/results/beam-pi-programbench-20261009",
+      "https://huggingface.co/spaces/burtenshaw/beam-pi-programbench/tree/main/source",
+      "https://huggingface.co/buckets/burtenshaw/qwen35-incident-triage-reproduction",
+      "https://huggingface.co/reflection/Beam-1.0-501B-A23B/discussions"
+     ]
+    }
+   }
+  },
+  {
+   "id": "32239fe1b8b165b3",
+   "url": "https://www.mercor.com/research/labor-index/benchmark-map/",
+   "title": "90% of US working hours are spent on tasks not covered well by AI benchmarks",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-16T17:08:38+00:00",
+   "summary_short": "基准地图显示：美国90%工作时长所涉任务几乎无AI基准覆盖",
+   "summary_long": "近年AI基准数量激增，但对有经济价值工作的覆盖仍然有限。为衡量这一缺口，研究团队汇编相关基准，构建了一张覆盖美国就业的“基准地图”。该研究采用美国劳工部O*NET分类，将美国劳动力划分为923个职业、22个职业族，合计18,797项任务，索引中共包含924个基准；单个基准提示可对应多个O*NET任务。结果显示，923个职业中仅208个拥有至少5条基准提示所覆盖的任务，22个职业族中有6个完全没有这类职业。据此，原文估计美国90%的工作时长花在现有基准很少或完全没有覆盖的任务上，这使得人们很难判断AI模型在美国人实际从事的工作上表现如何。覆盖分布也并非随机：地图显示AI社区优先关注最大的劳动力市场，基准覆盖与职业工资总额相关。例如初始基准大量覆盖了具AI暴露度的律师任务，却几乎不覆盖同样具AI暴露度的法律秘书或法庭书记员的任务；规模较小、中等收入知识型工作的长尾覆盖不足。原文称这是构建持续更新的经济AI能力资源的第一步。",
+   "key_points": [
+    "以O*NET为框架：923个职业、22个职业族、18,797项任务，索引含924个基准",
+    "仅208个职业有至少5条基准提示覆盖的任务，6个职业族完全没有此类职业",
+    "原文估计美国90%工作时长所涉任务几乎没有基准覆盖，且覆盖偏向工资总额更大的劳动力市场"
+   ],
+   "topics": [
+    "eval",
+    "labor-market"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 80.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 329,
+    "hn_comments": 292,
+    "outbound": {
+     "arxiv": [
+      "2303.10130",
+      "2603.01203",
+      "2608.05172"
+     ],
+     "links": [
+      "https://arxiv.org/abs/2303.10130",
+      "https://arxiv.org/abs/2603.01203v2",
+      "https://arxiv.org/abs/2608.05172",
+      "https://www.nber.org/papers/w26948",
+      "https://work.mercor.com/explore",
+      "https://talent.docs.mercor.com/",
+      "https://trust.mercor.com",
+      "https://twitter.com/mercor",
+      "https://www.youtube.com/@mercor-ai",
+      "https://www.linkedin.com/company/mercor-ai/",
+      "https://www.instagram.com/mercor_ai/"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "ba4e7337aba280a4",
+   "url": "https://huggingface.co/blog/nvidia/scaling-indic-pretraining",
+   "title": "Scaling Indic Pretraining: 2.8 Trillion Tokens and an Open Data Generation Pipeline",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-16T01:44:47+00:00",
+   "summary_short": "2.8万亿token印度语言预训练语料及开放生成流水线",
+   "summary_long": "NVIDIA与IIT Madras及其AI4Bharat实验室联合推出Nemotron-pretraining-Indic-v1，约2.8万亿token、覆盖22种印度语言，即将发布，同时开放用于生成该语料的GPU加速数据生成流水线。这22种语言为印度宪法列明的语言，按2011年人口普查是97%印度人（近12亿人）的母语。流水线记录了完整生成配方，包括提示词、LLM工作流与质量检查，开发者可将其适配到自有源材料上生成更多数据。语料把经过策划的英文材料（数学、代码、问答）引入印度语言；每条记录都可追溯到策划源文档，每个输出都与输入比对，使合成文本保持有真实信息支撑。语料包含全部22种语言的本地文字数据以及12种语言的罗马化文本，共34种语言-文字组合；工作流涵盖文档级翻译、质量评估与针对性修复，并保留公式、表格、代码等内容。AI4Bharat负责人Mitesh Khapra指出，印度语言技术落后于英语的原因是印度语言数据不足。该数据是对自然撰写的印度语文本的补充。Nemotron 3.5 Super VL的持续预训练使用了该语料12种语言子集及自然印度语文本共100亿token。",
+   "key_points": [
+    "约2.8万亿token，覆盖22种印度语言；含全部22种语言的本地文字数据和12种语言的罗马化文本，共34种语言-文字组合",
+    "随语料开放GPU加速数据生成流水线，完整包含提示词、LLM工作流与质量检查，可复现、可适配自有源材料",
+    "合成内容以策划源文档为锚，逐条对照输入做质量评估与修复，并保留公式、表格、代码；该数据定位为对自然撰写印度语文本的补充"
+   ],
+   "topics": [
+    "pretraining-data",
+    "multilingual",
+    "open-source"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
    "horizon": "long",
-   "score": 87.6,
+   "score": 78.0,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/meta-muse-spark-open.md",
-      "https://huggingface.co/collections/meta-models/muse-spark-open",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/model.png",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/image_pipeline.png",
-      "https://huggingface.co/papers/2504.13181",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/audio_encoder.png",
-      "https://huggingface.co/ggml-orgf/Muse-Spark-Open-816B-A42B-GGUF",
-      "https://llama.app/docs/serve",
-      "https://github.com/jundot/omlx",
-      "https://github.com/ml-explore/mlx-lm",
-      "https://huggingface.co/mlx-community/Muse-Spark-Open-816B-A42B-oQ3e",
-      "https://huggingface.co/mlx-community/Muse-Spark-Open-816B-A42B-oQ4e",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/omlx_muse_spark_open_reasoning_screenshot.png",
-      "https://github.com/ml-explore/mlx-lm/pull/1975",
-      "https://endpoints.huggingface.co/new/meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/training_loss.png",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/token_acc.png",
-      "http://Three.js",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/pi-3d-prompt.txt",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/pi-demo.png",
-      "https://huggingface.co/docs/openenv/main/en/environments/helium_browser",
-      "https://huggingface.co/docs/huggingface_hub/en/guides/sandbox",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/browser_server.png",
-      "https://huggingface.co/spaces/burtenshaw/muse-spark-call-your-browser",
-      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
-      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
-      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B/discussions"
+      "https://www.iitm.ac.in/",
+      "https://ai4bharat.iitm.ac.in/",
+      "https://huggingface.co/datasets/ai4bharat/sangraha",
+      "https://time.com/collections/time100-ai-2025/7305866/mitesh-khapra/",
+      "https://github.com/NVIDIA-NeMo/DataDesignerPlugins/tree/main/plugins/data-designer-nemotron-indic-translation",
+      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+      "https://cdn-uploads.huggingface.co/production/uploads/68d2fec8856b85d927e44d32/VmVFMKjOsoNkEKfQ7cRnh.png",
+      "https://huggingface.co/datasets/nvidia/Nemotron-CC-v2",
+      "https://docs.nvidia.com/nemo/datadesigner/",
+      "https://cdn-uploads.huggingface.co/production/uploads/68d2fec8856b85d927e44d32/PCtm5uAGrdrp8kgHXb6y3.png",
+      "https://huggingface.co/google/gemma-4-31B-it",
+      "https://themqm.org/",
+      "https://huggingface.co/bodhan-ai/indic-translate",
+      "https://bodhan.ai/",
+      "https://cdn-uploads.huggingface.co/production/uploads/68d2fec8856b85d927e44d32/ZPR2A2wDoNW6OVb4-GX63.png",
+      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+      "https://huggingface.co/datasets/sarvamai/indivibe",
+      "https://cdn-uploads.huggingface.co/production/uploads/68d2fec8856b85d927e44d32/YQO_-yZWrhhQgueXuxzuM.png",
+      "https://huggingface.co/docs/datasets/stream",
+      "https://huggingface.co/collections/nvidia/nemotron-chat-and-instruction-following",
+      "https://huggingface.co/collections/nvidia/nemotron-post-training-v3",
+      "https://huggingface.co/datasets/nvidia/Nemotron-Personas-India",
+      "https://github.com/NVIDIA-NeMo/DataDesignerPlugins/blob/main/plugins/data-designer-nemotron-indic-translation/docs/index.md",
+      "https://github.com/NVIDIA-NeMo/DataDesigner/pull/959",
+      "https://ai4bharat.github.io/indic-llm-eval-suite-blog/",
+      "https://huggingface.co/datasets/nvidia/nemotron-indic-pretraining-report/blob/main/Scaling%20Synthetic%20Pre-training%20Data%20and%20Evaluation%20for%20Indic%20LLMs.pdf",
+      "https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3.5-Super-and-Lightning-Technical-Report.pdf",
+      "https://huggingface.co/collections/nvidia/nemotron-pre-training-datasets"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "3733c75a28bf26df",
-   "url": "https://huggingface.co/blog/flux-3",
-   "title": "Welcome FLUX.3 Image Klein in Diffusers",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-15T00:00:00+00:00",
-   "summary_short": "Black Forest Labs 开源 FLUX.3 Image Klein，首发即在 Diffusers 中运行，支持边界框布局控制",
-   "summary_long": "Black Forest Labs 推出最新开源图像生成模型 FLUX.3 Image Klein，发布首日即可在 Diffusers 中运行。一个模型同时承担文生图与多参考图生图，并新增布局控制：在提示词中写入边界框，指定画面各部分的位置，或指明参考图中哪些部分需要移动。Hugging Face 上提供两个开放检查点：蒸馏版 black-forest-labs/flux-3-image-klein 默认 16 步、不使用 CFG，适合快速推理；基础版 black-forest-labs/flux-3-image-klein-base 默认 50 步并使用 CFG。原文称蒸馏检查点在 H100 上约 2 秒可生成一张 1024×1024 图像。NVFP4 与 FP8 权重可通过 from_single_file 加载，面向较小 GPU。同时提供文生图与图像编辑的 LoRA 训练脚本。模型以 Modular Diffusers pipeline 形式发布，可拆出模块或添加自定义模块；安装需最新版 diffusers 与 transformers（用于 Qwen3-VL 文本编码器）。多张参考图在提示词中按传入顺序以 <ref_image_0>、<ref_image_1> 引用。",
+   "id": "a14596d80f7723e9",
+   "url": "https://blogs.gnome.org/uraeus/2026/10/15/aiandreverseengineerhardware/",
+   "title": "Using AI to reverse engineer hardware",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-15T14:35:15+00:00",
+   "summary_short": "作者用 AI 代理在 Windows 虚拟机中抓取 USB 流量，反向工程出 Linux 硬件驱动，并把整套工具开源为 hw-harness。",
+   "summary_long": "作者因母亲去世后留下大量老底片，买入在 Linux 下受支持的 Plustek 8200i 扫描仪，却发现该机型芯片组已更换、不再有 Linux 支持。他此前曾用 Claude code 为自己的硬件写过 Linux 配置工具，于是尝试让 Claude 帮忙做 SANE 驱动，但长期没有进展，甚至放弃了数月。转机是他看到 Tom Crider（Glorious Eggroll）在 X 上讲述用 AI 工具修好鼠标驱动的帖子——做法是让 AI 代理完全控制一个 Windows 实例来采集所需数据。他把该帖粘给 Claude，请它帮忙搭建同样的 Windows 虚拟机流程。能同时在 Windows 下扫描并抓取 USB 数据，加上 Claude code 的改进，几小时内他首次在 Linux 下完成扫描，图像可辨认但质量有问题；几天后得到近乎完美的驱动，含红外扫描支持，却发现期间已有人向 SANE 提交了该扫描仪的支持代码。他还用 Claude 写了底片扫描应用 Negative Vibes，并用同一套 harness 修复笔记本 MIPI 摄像头，当天就备好内核与 libcamera 补丁。他随后让 Claude 把 harness 通用化并写文档，即 hw-harness：在 KVM 虚拟机中运行厂商 Windows 驱动并直通设备、在 Linux 主机用 usbmon 从虚拟机外",
    "key_points": [
-    "单个模型覆盖文生图、多参考图生图与边界框布局控制；布局控制通过把边界框写进提示词，指定画面元素位置或参考图需移动的部分",
-    "两个开放检查点：蒸馏版默认 16 步、无 CFG；基础版默认 50 步、使用 CFG。原文称蒸馏版在 H100 上约 2 秒生成 1024×1024 图像",
-    "以 Modular Diffusers pipeline 发布，提供文生图与图像编辑的 LoRA 训练脚本，NVFP4/FP8 权重可用 from_single_file 加载以适配较小 GPU"
+    "起因：新购的 Plustek 8200i 扫描仪芯片组更换后失去 Linux 支持，作者想让 Claude 帮忙写 SANE 驱动，长期卡住后放弃数月。",
+    "方法来自 Tom Crider（Glorious Eggroll）的 X 帖子：让 AI 代理完全控制 Windows 实例采集数据；作者据此搭建 Windows 虚拟机，同时扫描并抓取 USB 流量。",
+    "结果：数小时内首次在 Linux 下成功扫描，数天后得到近乎完美的驱动（含红外扫描），但期间已有人向 SANE 提交了该扫描仪支持；还写了 Negative Vibes 应用，并用同一 harness 修好笔记本 MIPI 摄像头，产出内核与 libcamera 补丁。"
    ],
    "topics": [
-    "open-source",
-    "quantization"
+    "harness",
+    "coding-agent",
+    "tool-use"
    ],
-   "category": "模型",
+   "category": "Agent 与开发",
    "categories": [
-    "模型"
+    "Agent 与开发"
    ],
-   "horizon": "short",
-   "score": 84.3,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/flux-3.md",
-      "https://huggingface.co/black-forest-labs",
-      "https://huggingface.co/collections/black-forest-labs/flux-3-image-klein",
-      "https://huggingface.co/black-forest-labs/flux-3-image-klein",
-      "https://huggingface.co/black-forest-labs/flux-3-image-klein-base",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/hero.png",
-      "https://huggingface.co/spaces/black-forest-labs/flux-3-image-klein",
-      "https://docs.bfl.ai/guides/prompting_summary",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/t2i.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i_fox.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i_bench.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/combined.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/bbox-layout.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/knight.png",
-      "https://github.com/ostris/ai-toolkit",
-      "https://huggingface.co/datasets/multimodalart/1920-raider-waite-tarot-public-domain",
-      "https://huggingface.co/diffusers-modular/flux3-tarot-lora",
-      "https://github.com/huggingface/diffusers/blob/main/examples/dreambooth/README_flux3_klein.md",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/tarot-lora-sweep.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/tokens-per-workflow.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step01.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step05.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step10.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step15.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step25.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step50.png",
-      "https://huggingface.co/spaces/ariG23498/flow-matching",
-      "https://youtu.be/hXQZ6lyRCsI",
-      "https://huggingface.co/docs/diffusers/main/en/modular_diffusers/overview",
-      "https://huggingface.co/docs/diffusers/main/en/api/pipelines/flux3"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "e3c36d4422c6129b",
-   "url": "https://huggingface.co/blog/swiss-ai/apertus-v15-release-notes",
-   "title": "Apertus 1.5 Release Notes",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-15T09:08:45+00:00",
-   "summary_short": "Apertus 1.5 开源 8B/70B：新增图像音频理解与思考模式，上下文扩至 262k",
-   "summary_long": "Apertus 1.5 是对 Apertus 1.0 的 8B 与 70B 模型的持续预训练（8B 增加 4 万亿、70B 增加 2 万亿 token，总量分别达 19T 与 17T）。更新后的权重已于 2026 年 7 月 24 日以 Apache 2.0 许可发布于 Hugging Face，详见项目 Technical Report。新版本带来原生多模态理解（图像与音频，语音处理仍属实验性）、可选思考模式、扩至 262,144 token 的上下文窗口（为 1.0 的 4 倍）、更好的指令遵循与工具使用，并更严格遵循 Apertus Charter。多模态以 early-fusion 方式实现：图像经 Emu3.5 tokenizer（512×512 为 1,024 token）、音频经 WavTokenizer（每秒 40 token）离散化，与文本 token 同序列输入；架构不变，仅扩展词表，训练速度与纯文本相当，模型能理解图像和音频但只生成文本。预训练分无配对、配对、冷却、长上下文四阶段，窗口从 8k 逐步增至 262k，超半数训练 token 为纯文本；后训练为 SFT、长上下文 SFT、RL、DPO、Charter 对齐五阶段。",
-   "key_points": [
-    "能力升级：8B 与 70B 模型新增图像、音频理解（语音为实验性）与可切换的思考模式，上下文窗口扩至 262,144 token，指令遵循与工具使用均有提升",
-    "训练规模：在 1.0 基础上继续预训练，8B 增加 4T、70B 增加 2T token，总量分别达 19T 与 17T；超半数训练 token 为纯文本，新数据均公开、许可宽松且追溯尊重 robots.txt 退出",
-    "开放程度：权重以 Apache 2.0 发布于 Hugging Face，文本 SFT 混合数据与 DPO 偏好数据池一并公开，训练全流程与全部数据来源记录在 apertus-data-transparency"
-   ],
-   "topics": [
-    "post-training",
-    "open-source",
-    "multimodal"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 79.5,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2408.16532",
-      "2508.10925",
-      "2510.26583",
-      "2610.15542"
-     ],
-     "links": [
-      "https://huggingface.co/collections/swiss-ai/apertus-v15",
-      "https://arxiv.org/abs/2610.15542",
-      "https://github.com/swiss-ai/apertus-data-transparency/",
-      "https://apertus-ai.org/pages/charter/",
-      "https://apertus-ai.org/pages/research/",
-      "https://cdn-uploads.huggingface.co/production/uploads/650ed7adf141bc34f91a12ae/Xi58nSrPTd5_ASGNIg60g.png",
-      "https://arxiv.org/abs/2510.26583",
-      "https://arxiv.org/abs/2408.16532",
-      "https://cdn-uploads.huggingface.co/production/uploads/650ed7adf141bc34f91a12ae/D-7BaNY68Nigi5bTw3RH9.png",
-      "https://huggingface.co/datasets/epfml/FineWeb2-HQ-Plus",
-      "https://github.com/swiss-ai/apertus-data-transparency",
-      "https://huggingface.co/datasets/swiss-ai/Apertus-v1.5-SFT-mix",
-      "https://huggingface.co/datasets/swiss-ai/Apertus-v1.5-Preference-Pool",
-      "https://huggingface.co/datasets/swiss-ai/Apertus-v1.5-Preference-Data",
-      "https://raw.githubusercontent.com/swiss-ai/model-cards-assets/main/apertus_1.5/text_performance_plot.png",
-      "https://github.com/swiss-ai/MLLM-eval-suite",
-      "https://github.com/swiss-ai/lmms-eval",
-      "https://github.com/swiss-ai/VLMEvalKit",
-      "https://github.com/swiss-ai/evals-post-train",
-      "https://github.com/swiss-ai/lm-evaluation-harness",
-      "https://raw.githubusercontent.com/swiss-ai/model-cards-assets/main/apertus_1.5/visual_performance_plot.png",
-      "https://deepmind.google/models/gemma/gemma-4/",
-      "https://github.com/JoelNiklaus/SwissLegalEvals/blob/main/blog/swiss-legal-evals-2026.md",
-      "https://github.com/JoelNiklaus/SwissLegalEvals",
-      "https://arxiv.org/abs/2508.10925",
-      "https://www.anthropic.com/claude/haiku",
-      "https://translate.google.com",
-      "https://last-translation-benchmark.vilda.net/leaderboard-results",
-      "https://huggingface.co/papers/2609.04173",
-      "https://evalevalai.com",
-      "https://github.com/evaleval/every_eval_ever",
-      "https://huggingface.co/blog/eee-community-evals",
-      "https://huggingface.co/blog/evaleval-aisi",
-      "https://evalevalai.com/infrastructure/2026/09/28/mapping-evaluation-cards-to-ai-governance-requirements/",
-      "https://github.com/swiss-ai/apertus-legal/raw/main/apertus_1.5/Apertus_1_5_EU_Public_Summary.pdf",
-      "https://raw.githubusercontent.com/swiss-ai/apertus-legal/main/apertus_1.5/Apertus_1_5_EU_Code_of_Practice.pdf",
-      "https://huggingface.co/collections/swiss-ai/apertus-v15-datasets",
-      "https://huggingface.co/swiss-ai/Apertus-v1.5-8B-base",
-      "https://huggingface.co/swiss-ai/Apertus-v1.5-70B-base",
-      "https://huggingface.co/swiss-ai/Apertus-v1.5-8B-SFT"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a01e02239da0a38e",
-   "url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1",
-   "title": "Granite Switch 4.1: Chat, Decisions, and Speech from One Endpoint",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-15T20:34:01+00:00",
-   "summary_short": "Granite Switch 4.1：单端点兼顾对话、决策与语音，显存约等于基座模型",
-   "summary_long": "Granite Switch 项目去年春天推出，旨在让模型开发走向模块化。4.1 版在基座模型上组合三项技术，可在同一个托管端点完成自然语言应答、通用与专用决策、语音转写。8B 与 30B 版本包含：用于通用决策的新 Decision aLoRA；在安全相关决策任务上平均优于 Jev 1.13、Microsoft-Decision-1、GPT-Luna-Decisions、Clef-Flash 的专用 Guardian aLoRA；以及 OpenASR 排行榜上最快的 ASR 模型 Granite-Speech-5.0-Turbo-CTC。三者与基座模型合为一个模型，GPU 显存占用与基座模型单独运行大致相当，即以更少 GPU 换更多能力。因适配器是缓存高效的 Activated LoRA，基座模型生成的 KV cache 可复用于后续决策；配合对 vLLM 低秩适配器推理的加速与共置 ASR 编码器，模型可在对话、决策、语音请求间高速切换。原文还提到 Speech-to-Decisions HF Space 可实时转写、摘要、筛查有害内容并测试 15 项自定义标记；先前发布的 Granite Libraries 提供可自由组合的适配器仓库，原文称专项分类任务上许多专用适配器胜过通用模型，且共享 KV cache 使新增专用适配器几乎不增加成本；并称 30B（冻结基座 Granit",
-   "key_points": [
-    "Granite-Switch-4.1-8B 与 -30B 集成通用 Decision aLoRA、安全专用 Guardian aLoRA 与 OpenASR 榜首的 Granite-Speech-5.0-Turbo-CTC，全部由单一托管端点提供。",
-    "Guardian aLoRA 在安全相关决策任务上平均优于 Jev 1.13、Microsoft-Decision-1、GPT-Luna-Decisions 和 Clef-Flash。",
-    "适配器为缓存高效的 Activated LoRA 并共享基座 KV cache，多能力组合的显存占用约等于基座模型本身；用户可从 Granite Libraries 自行组合模型，团队计划发布在 Mellea 训练适配器的 Adapter SDK。"
-   ],
-   "topics": [
-    "post-training",
-    "inference-optimization"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
+   "horizon": "long",
    "score": 77.7,
    "status": "published",
    "extra": {
-    "content_source": "direct",
+    "hn_points": 242,
+    "hn_comments": 234,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/generative-computing/granite-switch",
-      "https://cdn-uploads.huggingface.co/production/uploads/662836b742709fe826510597/LHBbw-MVVQgnYcpDK_DWC.png",
-      "https://huggingface.co/ibm-granite/granite-switch-4.1-8b",
-      "https://huggingface.co/ibm-granite/granite-switch-4.1-30b",
-      "https://huggingface.co/ibm-granite/granitelib-core-r1.0/blob/main/decision/README.md",
-      "https://huggingface.co/ibm-granite/granitelib-guardian-r1.0/blob/main/guardian-core/README.md",
-      "https://huggingface.co/ibm-granite/granite-speech-5.0-470m-turboctc",
-      "https://huggingface.co/spaces/hf-audio/open_asr_leaderboard",
-      "https://research.ibm.com/blog/inference-friendly-aloras-lora",
-      "https://github.com/generative-computing/granite-switch/blob/main/docs/SWITCH_KERNELS.md",
-      "https://huggingface.co/spaces/ibm-granite/speech-to-decisions",
-      "https://huggingface.co/collections/ibm-granite/granite-libraries",
-      "https://huggingface.co/spaces/ibm-granite/granitelib-evals",
-      "https://generative-computing.github.io/granite-switch/adapter_catalog.html",
-      "https://docs.mellea.ai/advanced/lora-and-alora-adapters",
-      "https://huggingface.co/collections/ibm-granite/granite-switch",
-      "https://research.ibm.com/blog/granite-libraries-project-switch",
-      "https://colab.research.google.com/github/generative-computing/granite-switch/blob/main/tutorials/notebooks/alora_vs_lora_race.ipynb",
-      "https://typesafe.ai/blog/introducing-system-one-models-and-jev"
+      "https://gitlab.com/cschalle/appfordellwebcam",
+      "https://x.com/GloriousEggroll/status/2103816580966830314",
+      "https://github.com/cschalle/negative-vibes",
+      "https://cschalle.github.io/mipi-fixes-x1-aura/",
+      "https://github.com/cschalle/hw-harness",
+      "https://htmlpreview.github.io/?https://github.com/cschalle/OpticFilm8200i-sane/blob/main/docs/comparison/drivers-comparison.html",
+      "https://blogs.gnome.org/uraeus/files/2026/10/drivercompare.png",
+      "https://blogs.gnome.org/uraeus/files/2026/10/afterscan.png",
+      "https://blogs.gnome.org/uraeus/files/2026/10/mipifixes.png"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "c30ad0dc4b352d63",
-   "url": "https://arxiv.org/abs/2610.15542v1",
-   "title": "Apertus 1.5: From Open Text Models to Open Multimodal Reasoners",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2026-10-11T11:34:43+00:00",
-   "summary_short": "Apertus 1.5 把全开源模型从文本扩展到图像音频多模态推理",
-   "summary_long": "Apertus 1.5 把完全开源的 Apertus 家族从文本扩展到多模态推理。做法是在 Apertus 1.0 模型上继续预训练，8B 版本额外使用 4T token，70B 版本额外使用 2T token，从而加入图像与音频理解能力，并把上下文窗口扩大四倍至 262,144 token。多模态经由 tokenizer 引入，语言模型 head 仍限于文本，架构未作改动。发布模型经过监督微调、长上下文微调、可验证奖励的强化学习和偏好对齐；思考能力是聊天模板的一个 flag，而非单独模型，在 8B 模型上把数学推理最多提升 20 分。原文称发布模型在几乎每个基准上都优于前代；在同类完全开源模型中，8B 在知识、指令遵循和文化基准上领先，其指令遵循超过所有对比模型，包括开放权重模型。图像与音频理解是该家族首次具备的能力，与完全开源多模态模型相比具竞争力，在文档理解以及长文本、低资源语音识别上最强；专用视觉和音频模型在感知及英语等高资源语言转录上仍然领先。训练仅使用公开可得数据，追溯尊重爬虫 opt-out，并排除限制性许可材料；模型权重、数据准备与训练配方、评估套件均以宽松许可发布，Apertus 章程随模型一同发布以指导对齐阶段。",
-   "key_points": [
-    "在 Apertus 1.0 上继续预训练（8B 增 4T token、70B 增 2T token），新增图像与音频理解，上下文窗口扩大四倍至 262,144 token；多模态经 tokenizer 进入，语言模型 head 仍限文本，架构不变",
-    "思考能力是聊天模板的 flag 而非独立模型，在 8B 上把数学推理最多提升 20 分；发布模型由监督微调、长上下文微调、可验证奖励强化学习与偏好对齐完成",
-    "在同类完全开源模型中 8B 于知识、指令遵循和文化基准领先，指令遵循超过所有对比模型（含开放权重模型）；图像音频理解与完全开源多模态模型竞争力相当，在文档理解、长文本与低资源语音识别上最强，专用视觉/音频模型在感知与高资源语言转录上仍领先"
-   ],
-   "topics": [
-    "post-training",
-    "open-source",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "研究论文"
-   ],
-   "horizon": "short",
-   "score": 77.6,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Project Apertus",
-     ":",
-     "Yixuan Xu",
-     "Yassine Turki",
-     "Vinko Sabolčec",
-     "Valentina Pyatkin",
-     "Tommy Chu",
-     "Sven Najem-Meyer"
-    ],
-    "author_count": 133,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "Hugging Face Blog"
-    ],
+    "content_source": "direct",
     "summary_mode": "full"
    }
   }

@@ -1,296 +1,56 @@
 {
- "generated_at": "2026-10-15T22:21:21+00:00",
+ "generated_at": "2026-10-16T22:08:19+00:00",
  "items": [
   {
-   "id": "c099e6f9efcc9ade",
-   "url": "https://www.liquid.ai/blog/lfm2-5-24b-a2b",
-   "title": "LFM2.5-24B-A2B: Built for fast on-device agents",
+   "id": "7a6a342eb9583796",
+   "url": "https://www.anthropic.com/research/ecdsa-curve-origins",
+   "title": "Claude reveals ECDSA curve origins",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-14T23:59:37+00:00",
-   "summary_short": "LFM2.5-24B-A2B发布：24B总参2B激活，面向端侧智能体",
-   "summary_long": "原文发布 LFM2.5-24B-A2B，一个总参数 24B、每 token 仅激活 2B 的推理模型，面向设备端快速、私有的智能体，是 LFM2.5 家族中最大也是最后一款模型，该家族从 LFM2.5-230M 到 LFM2.5-24B-A2B 跨越两个数量级。原文称其在八项智能体与工具使用基准中的五项上可与总参数和激活参数均多约 50% 的 Qwen3.6-35B-A3B 竞争，如 LiveClaw 48.09 对 38.19、AutomationBench 27.69 对 8.72；因每 token 仅激活 2B，它在设备端比同类 MoE 快至多 1.7 倍，Apple M5 Max 上达 184 tokens/s，单张 NVIDIA B300 GPU 上输出达 21K tokens/s。基础版与后训练版均以开放权重提供。相比前代，它扩大词表与上下文窗口，预训练从 17T 扩至 33T tokens，经五阶段后训练，是只输出推理、先给出显式思维链的模型。",
+   "published_at": "2026-10-16T18:55:59+00:00",
+   "summary_short": "Claude 半小时找出 NIST 椭圆曲线种子来源：lrand48 加 Unix 时间戳",
+   "summary_long": "ECDSA 是最广泛使用的椭圆曲线密码标准，2000 年被 NIST 纳入 FIPS 186-2。其标准曲线公布的“种子”参数由 NSA 提供且未作任何解释，来源长期是密码学界悬案，Neal Koblitz 与 Alfred Menezes 曾撰文讨论，也有人发起调查与悬赏。长期任职 NSA 的 Jerry Solinas 2015 年称种子可能是某句幽默口令的哈希，但记不清细节；他已于 2023 年去世。2026 年 10 月，一名 Anthropic 员工让内部研究模型在不给线索的情况下尝试解答，Claude 在不到半小时内找出 NIST P-192、P-224、P-256、P-384、P-521 种子的来源：它们不是任何哈希算法的结果，而是 C 库 lrand48 随机数生成器的输出，以 Unix 时间戳为种子逐次抽取 20 字节作为候选，例如 P-256 需要 1842 次迭代。原文强调这不是密码学破解或新攻击，无需采取任何行动，反而让人更确信这些曲线没有后门。",
    "key_points": [
-    "总参数 24B、每 token 仅激活 2B 的推理模型，面向设备端快速私有智能体，为 LFM2.5 家族最大且最后一款，家族覆盖 LFM2.5-230M 至 LFM2.5-24B-A2B 两个数量级",
-    "在八项智能体与工具使用基准中的五项上可与总参数和激活参数均多约 50% 的 Qwen3.6-35B-A3B 竞争；设备端比同类 MoE 快至多 1.7 倍，Apple M5 Max 上 184 tokens/s，单张 NVIDIA B300 GPU 输出达 21K tokens/s",
-    "相比前代扩大上下文窗口（32,768 至 131,072 tokens）与词表（65K 至 128K），预训练从 17T 扩至 33T tokens，经五阶段后训练；基础版与后训练版以开放权重在 Hugging Face 与 Playground 提供"
+    "ECDSA 种子来源之谜：NIST 2000 年采纳的标准曲线种子由 NSA 提供、无任何说明，Koblitz 与 Menezes 曾撰文讨论，也有人发起调查与悬赏。",
+    "Claude 的发现：2026 年 10 月一名 Anthropic 员工让内部研究模型在无提示下尝试，Claude 不到半小时找出 P-192、P-224、P-256、P-384、P-521 的种子；它们不是哈希结果，而是 C 库 lrand48 以 Unix 时间戳为种子生成的输出，P-256 需 1842 次迭代。",
+    "原文强调这不是破解或新攻击，无需采取任何行动，反而让人更确信曲线没有后门；Jerry Solinas 2015 年“幽默口令哈希”的说法并不成立。"
    ],
    "topics": [
-    "post-training",
     "reasoning",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 73.7,
-   "status": "review",
-   "extra": {
-    "hn_points": 279,
-    "hn_comments": 74,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.liquid.ai/blog/lfm2-5-230m",
-      "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B",
-      "https://playground.liquid.ai/chat?model=LFM2.5-24B-A2B",
-      "https://docs.liquid.ai/lfm/models/lfm25-24b-a2b",
-      "https://www.liquid.ai/blog/lfm2-24b-a2b",
-      "https://www.liquid.ai/blog/tokenizer-expansion",
-      "https://openclaw.ai/",
-      "https://hermes-agent.nousresearch.com/",
-      "https://pi.dev/",
-      "https://opencode.ai/",
-      "https://pipette.liquid.ai/",
-      "https://docs.liquid.ai/examples/agent-harnesses",
-      "https://console.liquid.ai/",
-      "https://www.liquid.ai/lfm-license"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "1d4cff712a9a1281",
-   "url": "https://deepmind.google/blog/accelerating-antimicrobial-discovery/",
-   "title": "Accelerating the search for antimicrobial peptides with Google Antigravity",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-10-15T16:08:03+00:00",
-   "summary_short": "Antigravity 联合 ProtNLM 筛出抗菌肽候选并进入湿实验",
-   "summary_long": "原文介绍 Google 的智能体开发平台 Antigravity 如何加速抗菌肽（AMP）发现。原文称抗菌药物耐药性持续加剧，估算 2050 年全球年相关死亡或达 1000 万人，而新疗法搜索往往缓慢、耗费人力。Antigravity 提供智能体科学工作台，让生物学家在单次会话内完成靶点发现、结构评估与优先级排序，把原本分散在多个数据库中的检索压缩到一起；它借助 ProtNLM 扫描 UniProt 中数百万个此前未被表征的蛋白质，该模型是直接从氨基酸序列预测生物功能的深度学习模型，为大量未命名条目补充高置信度功能标注，覆盖蛋白质名称、功能注释、亚细胞定位、GO 术语与关键词。技术演示中，生物学家与 AI 智能体以多轮交互协作——研究者把握科学策略，智能体负责跨数据库编排、结构分析与文献综合——最终找到一种新型抗菌肽候选，预测对呼吸道感染相关病原体有活性，该先导分子正接受湿实验验证。",
-   "key_points": [
-    "Google Antigravity 是智能体开发平台，提供“智能体科学工作台”，让生物学家在单次会话内完成靶点发现、结构评估与优先级排序，取代跨多个数据库的碎片化检索。",
-    "ProtNLM 是从氨基酸序列直接预测生物功能的深度学习模型，为 UniProt 中数百万此前未被表征的条目补充高置信度功能标注，涵盖蛋白质名称、功能注释、亚细胞定位、GO 术语与关键词。",
-    "技术演示中，研究者主导科学策略、智能体承担跨数据库编排与结构分析，最终找到一种新型抗菌肽候选，预测对呼吸道感染相关病原体有活性，现正接受湿实验验证。"
-   ],
-   "topics": [
-    "multi-agent",
-    "tool-use"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用",
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 72.3,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://antigravity.google/use-cases/science?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content=",
-      "https://www.gov.uk/government/publications/health-matters-antimicrobial-resistance/health-matters-antimicrobial-resistance",
-      "https://www.uniprot.org/",
-      "https://www.uniprot.org/help/ProtNLM",
-      "https://www.uniprot.org/uniprotkb/A0A0U0D591/entry",
-      "https://alphafold.ebi.ac.uk/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "dc9ed14da7f573e5",
-   "url": "https://www.anthropic.com/news/an-update-on-independent-evaluators",
-   "title": "An update on independent evaluators",
-   "source": "Anthropic News",
-   "tier": "S",
-   "published_at": "2026-10-15T00:00:00+00:00",
-   "summary_short": "Anthropic向METR开放“类员工”权限，评估结果将公开",
-   "summary_long": "2026年10月15日公告。上个月，Anthropic承诺接受更强的独立第三方评估，并签署《White House Accord on Super Intelligence》，承诺与独立外部审计方或评估方合作。此次宣布已开始向非营利评估机构METR的一个团队开放“类员工”权限：六名METR员工获得公司硬件、办公空间及与内部风险评估团队大致相当的内部工具与系统访问权，客户数据、律师-委托人特权信息、模型架构信息等少数明确定义的类别除外。METR将公开发布其风险评估结果；Anthropic无权否决发布，但可要求对上述窄范围信息删改，METR可公开说明删改是否合理。原文称此前一年已与METR多次审阅Risk Reports，并正与SecureBio、Accenture合作作为评估方，与包括Hugging Face在内的多家机构处于早期洽谈。原文解释：模型愈发强大、需要更强保障与更难的风险评估，希望对外负责，但部分信息可能对恶意行为者有用或属商业敏感（如算力、训练信息），故改为让第三方深入访问并公开证据与结论，以缩小评估方与企业自身对系统的理解差距；并类比银行监管派驻检查员的逻辑。原文未详述与Hugging Face等机构洽谈的具体内容。",
-   "key_points": [
-    "Anthropic已为六名METR员工开通“类员工”权限：公司硬件、办公空间，以及与内部风险评估团队大致相当的内部工具和系统访问权；客户数据、律师-委托人特权信息、模型架构信息等少数类别除外。",
-    "METR将公开发布对Anthropic风险等级、事件或实践的分析；Anthropic无权否决发布，但可要求对预先定义的窄范围信息删改，METR可公开评价删改是否合理；该合作仅限一个受可执行协议约束的小团队，其他METR员工被隔离。",
-    "原文称此前一年已与METR合作审阅Risk Reports，并正与SecureBio、Accenture合作作为评估方，与包括Hugging Face在内的多家机构处于早期洽谈；其给出的理由是需要更强保障与对外负责，但部分信息涉恶意行为者或属商业敏感，故让第三方深入访问并公开结论。"
-   ],
-   "topics": [
-    "alignment",
-    "eval"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 71.4,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Announcements"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://darioamodei.com/post/we-must-pace-the-frontier",
-      "https://metr.org/",
-      "https://metr.org/risk-assessment/",
-      "https://securebio.org/",
-      "https://www.anthropic.com/news/accenture-embedded-evaluation",
-      "https://huggingface.co/",
-      "https://www.anthropic.com/research/alignment-faking",
-      "https://www-cdn.anthropic.com/files/4zrzovbb/website/0a58d567024a8b448ff15158ebc3625328dfcc1f.pdf",
-      "https://www-cdn.anthropic.com/f61d49fa5596956a5dec75fea0e973bf6a6a8378/Redacted%20Risk%20Report%20August%202026%20.pdf",
-      "https://securebio.org/resources/anthropic_feb_2026_risk_review.pdf",
-      "https://twitter.com/intent/tweet?text=https://www.anthropic.com/news/an-update-on-independent-evaluators",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://www.anthropic.com/news/an-update-on-independent-evaluators"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "40b611a330c7478c",
-   "url": "https://simonwillison.net/2026/Oct/15/anthropic-tells-investors/",
-   "title": "Anthropic tells investors quarterly revenue up nearly 50% to $16.8bn ahead of IPO",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-15T13:04:03+00:00",
-   "summary_short": "Anthropic向投资者披露季度收入168亿美元，并称已大幅削减“蒸馏”收入",
-   "summary_long": "据原文，Anthropic周三接待投资者并向其披露财务数据。据知情人士，其Q1（1—3月）收入约48亿美元，Q2（4—6月）为115亿美元，Q3（7—9月）为168亿美元。Q3每支出1美元“算力”对应1.70美元收入；剔除股权激励后的调整后营业利润率为11%。Anthropic还向投资者表示，“蒸馏”——即竞争对手用更先进模型的输出来训练自家模型这一有争议做法——曾占其收入5%至7%，公司已在第三季度“大幅”削减。原文指出，蒸馏涉及大量使用和支出；若按蒸馏占Q2收入5%粗略推算，未具名的“其他实验室”当季为蒸馏Anthropic模型花费超过5亿美元。另一值得注意之处是，Anthropic在这类投资者沟通中似乎不再沿用此前“年化流水收入”的口径。原文未披露更多财务细节。",
-   "key_points": [
-    "Q1收入约48亿美元、Q2为115亿美元、Q3为168亿美元（据知情人士）",
-    "Q3每1美元算力支出对应1.70美元收入，剔除股权激励的调整后营业利润率为11%",
-    "蒸馏曾占收入5%至7%，Q3已被“大幅”削减；Anthropic似乎不再使用“年化流水收入”口径"
-   ],
-   "topics": [
-    "ipo",
-    "revenue",
-    "distillation"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 63.3,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "ai",
-     "generative-ai",
-     "llms",
-     "anthropic"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.ft.com/content/11632d03-358c-454b-af95-d06d4072932b?syn-25a6b1a6=1",
-      "https://simonwillison.net/2023/Nov/22/deciphering-clues/#hints-to-look-out-for",
-      "https://simonwillison.net/2026/May/29/anthropic/",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/anthropic"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "2c3ce0b13a2faeed",
-   "url": "https://simonwillison.net/2026/Oct/14/tree-appreciator/",
-   "title": "Tree Appreciator",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-14T21:23:01+00:00",
-   "summary_short": "用Claude手机版聊天模式提示做three.js找不同游戏《Tree Appreciator》，耗时3小时7分",
-   "summary_long": "原文记录了一次用 Claude 制作游戏的实验。作者使用的是默认的 Claude iPhone 应用（聊天模式，而非 Claude Code 模式），在其中向 Claude Opus 5.5 Max 给出提示：构建一个名为“Tree Appreciator”的 three.js 游戏，展示两棵算法生成的树，玩法围绕欣赏两棵树之间的差异，并要求认真思考如何让它既有趣又好看。作者提到，尽管与自己最近的演讲相比有些尴尬，但他发现对 Opus 5.5 说“确保它有趣”效果出奇地好。这次 Claude 运作了 3 小时 7 分钟，最终返回一个温馨的找不同小游戏，带有音乐、动画和成就系统，玩起来相当有吸引力。原文未详述游戏的具体机制、发布时间或可访问链接。",
-   "key_points": [
-    "实验用默认 Claude iPhone 应用（聊天模式，非 Claude Code 模式），提示 Claude Opus 5.5 Max 构建 three.js 游戏“Tree Appreciator”",
-    "游戏展示两棵算法生成的树，玩法是欣赏它们之间的差异，提示中还要求认真思考如何让它既有趣又好看",
-    "Claude 运作了 3 小时 7 分钟，产出带音乐、动画与成就系统的温馨找不同游戏；作者称“确保它有趣”这一提示效果出奇地好"
-   ],
-   "topics": [
-    "product",
-    "coding-agent"
+    "cybersecurity"
    ],
    "category": "产品与应用",
    "categories": [
     "产品与应用"
    ],
-   "horizon": "short",
-   "score": 61.2,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "game-design",
-     "javascript",
-     "ai",
-     "generative-ai",
-     "llms"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://tools.simonwillison.net/tree-appreciator",
-      "https://simonwillison.net/2026/Sep/27/2026-in-llms-so-far/#simon-willison-2026-in-llms.059.webp",
-      "https://claude.ai/share/ee7de555-f85c-4ff0-96cb-d51ed5e479e9",
-      "https://simonwillison.net/tags/game-design",
-      "https://simonwillison.net/tags/javascript",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/claude",
-      "https://simonwillison.net/tags/vibe-coding",
-      "https://simonwillison.net/tags/three-js"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "d91ead6950e7810d",
-   "url": "https://sunshowers.io/posts/anthropic-mononoke/",
-   "title": "Anthropic's Scion is heavily inspired by Mononoke",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-14T20:30:54+00:00",
-   "summary_short": "作者称 Anthropic 版本控制系统 Scion 的设计大量沿用其参与构建的 Meta 开源项目 Mononoke，却未予致谢",
-   "summary_long": "原文发布于 2026-10-14（次日的更新称已另写一篇 followup 回应问题与疑虑）。文章起因是 Anthropic 前一天描述其新版本控制系统 Scion，称其使用名为“derived data”的概念，使 blame 等操作更高效。作者随即贴出自己 2022 年在 Oxide 候选材料中的文字，说明自己参与构建的源码控制服务器 Mononoke 同样用“derived data”让 blame 等操作更高效，认为两者的相似程度已超出“洞见相近”。作者指出，Anthropic 只以“hard-won lessons”致谢 Sapling，而 Mononoke 完全未被提及，这近乎抄袭；帖子给人的印象是 Claude 设计了这一切，而实际上是 Meta 团队近十年前提出的许多洞见，Claude 只是照做。作者也说明，Mononoke 和 Sapling 本身参考过 Google 的 SrcFS、数据库的 write-ahead logs 等先例。作者强调自己并不反对 Anthropic 复制 Mononoke 的设计，开源本就为传播好想法；但 LLM 辅助设计新系统会大量依赖既有设计，Mononoke 开源且在训练集中，向 Opus 5.5 或 GPT-6 Astra 询问 prior art，二者都会立刻指出与 Mononoke 的相似性。作者因此认为，致谢前人如今更容易",
-   "key_points": [
-    "Anthropic 描述 Scion 用“derived data”提升 blame 等操作效率，作者称自己在 2022 年描述 Mononoke 时用的是同一概念，相似程度超出“洞见相近”。",
-    "作者认为 Anthropic 仅以“hard-won lessons”提及 Sapling、完全没提 Mononoke，近乎抄袭，且帖子读起来像在说这一切由 Claude 设计，而实际洞见来自 Meta 团队近十年前的工作。",
-    "作者不反对复制 Mononoke 设计，但强调 Mononoke 开源且在 LLM 训练集中，询问 Opus 5.5 或 GPT-6 Astra 都会立即指出相似性，致谢前人已没有借口。"
-   ],
-   "topics": [
-    "open-source",
-    "attribution",
-    "llm-assisted-design"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
    "horizon": "long",
-   "score": 61.2,
+   "score": 67.5,
    "status": "review",
    "extra": {
-    "hn_points": 414,
-    "hn_comments": 155,
+    "hn_points": 482,
+    "hn_comments": 198,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://sunshowers.io/tags/vcs/",
-      "https://sunshowers.io/tags/shorts/",
-      "https://news.ycombinator.com/item?id=50094694",
-      "https://lobste.rs/s/plcgps/anthropic_s_scion_is_heavily_inspired_by",
-      "https://www.anthropic.com/engineering/redesigning-source-control",
-      "https://ghostarchive.org/archive/hCFVA",
-      "https://github.com/facebook/sapling/tree/main/eden/mononoke",
-      "https://claude.ai/share/e6a66ec5-7757-4adb-901f-0e33b1c38536",
-      "https://chatgpt.com/share/6ace7be6-68f8-83ea-ad68-0f9d14448318",
-      "https://bsky.app/profile/jauntywunderkind.bsky.social/post/3mxsettjnoc22",
-      "https://cursor.com/blog/git-at-any-scale"
+      "https://csrc.nist.gov/files/pubs/fips/186-2/final/docs/fips186-2.pdf",
+      "https://sites.math.washington.edu/~koblitz/",
+      "https://uwaterloo.ca/scholar/ajmeneze",
+      "https://eprint.iacr.org/2015/1018.pdf",
+      "https://saweis.net/posts/nist-curve-seed-origins.html",
+      "https://words.filippo.io/seeds-bounty/",
+      "https://linux.die.net/man/3/lrand48",
+      "https://en.wikipedia.org/wiki/Lenstra%E2%80%93Lenstra%E2%80%93Lov%C3%A1sz_lattice_basis_reduction_algorithm",
+      "https://linux.die.net/man/3/srand48",
+      "https://cr.yp.to/speed/mult/freelip.html",
+      "https://en.wikipedia.org/wiki/Arjen_Lenstra",
+      "https://shoup.net/",
+      "https://libntl.org/",
+      "https://www.abetterinternet.org/",
+      "https://cr.yp.to/papers/safecurves-20240809.pdf",
+      "https://sockpuppet.org/blog/2015/08/04/is-extended-random-malicious/",
+      "https://filippo.io/",
+      "https://twitter.com/intent/tweet?text=https://www.anthropic.com/research/ecdsa-curve-origins",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://www.anthropic.com/research/ecdsa-curve-origins"
      ]
     },
     "content_source": "direct",
@@ -298,201 +58,145 @@
    }
   },
   {
-   "id": "61022bc6478f9d2b",
-   "url": "https://github.blog/news-insights/company-news/the-next-developer-interface-is-ambient-intelligence/",
-   "title": "The next developer interface is ambient intelligence",
-   "source": "GitHub Blog (AI)",
-   "tier": "S",
-   "published_at": "2026-10-15T19:39:27+00:00",
-   "summary_short": "Copilot 让开发者从下命令转向让意图可执行，AI 成为融入工作流的环境智能",
-   "summary_long": "原文作者回顾职业生涯中不变的工具组合——键盘、鼠标、编辑器、终端、浏览器，指出 AI 正在改变开发者与机器的关系。原因不只是能用提示词得到可用代码，而在于背后的系统能理解仓库、选择模型、规划工作、使用工具、编辑文件、运行命令、检查失败，并在开发者控制的边界内持续推进。借助 GitHub Copilot，开发者可描述目标，系统收集仓库上下文、检查符号与依赖、编辑文件、运行测试并修订实现；IDE 内 agent 模式保持循环交互；GitHub Copilot coding agent 能把 issue 带入 GitHub Actions 支持的隔离环境并返回待评审 PR。原文称这是从“下达命令”转向“让意图可执行”：开发者仍对结果负责，但时间更多用于设定方向、提供上下文、定义约束与审阅证据，判断力和品味因此更有价值。因此应把 AI 嵌入工作流，即“环境智能”，前提是可移植上下文：MCP 连接智能体与工具服务，仓库指令与技能编码约定，hooks 执行策略并校验输出；并分三层——模态捕捉意图、harness 规划行动、控制平面供开发者检查改向批准。文中还提到作者与 Logitech 合作 18 个月，MX Keypad 可将常用开发操作变成可编程输入，如提交参数化提示词、打开或恢复 Copilot 会话、调用 IDE 命令或触发多步序列。",
+   "id": "2cf7b587d05289db",
+   "url": "https://simonwillison.net/2026/Oct/15/latex/",
+   "title": "LaTeX renderer",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-10-15T02:07:28+00:00",
+   "summary_short": "受 Tiny Little Office 启发、用 Claude Code 做出的 LaTeX 链接渲染工具",
+   "summary_long": "原文作者受 Paul Ford 与 Aboard Foundry 的新 Web 应用 Tiny Little Office 启发。该应用提供一整套网页内容编辑器（文字处理、大纲、演示、表格、计算器、绘图、图表、动画、日历、行程规划），招牌做法是把所有文档数据存进 URL 的 #fragment 部分，使每份文档都成为可收藏、可分享的链接；它还有一个 llms.txt 文件，告诉智能体如何构造能渲染成文档的 URL，Claude 用该文件生成了一个解释 URL 格式的演示链接。作者随后让 Claude Code（Opus 5.5 Extra）构建一个面向 LaTeX 的类似工具，并列出所用提示词：用 #code-here 片段链接即可把代码当作 LaTeX 有效渲染；支持一个前缀，表示 LaTeX 已用针对 LaTeX 优化的自定义压缩字典压缩；从 CDN 选用最佳 LaTeX 渲染库（也考虑 WebAssembly）；无片段时显示可粘贴 LaTeX 的编辑器并可切换到“已渲染”视图，该视图可被收藏；片段视图也能切回编辑源码。作者还要求借鉴其现有 SVG in Markdown 工具所用的 iframe sandbox 机制防范 XSS 风险，并从该工具复制 Gist/URL 加载功能，提供从 URL 或 gist 载入 LaTeX 的选项。工具使用 Pako 2.1.0、MathJ",
    "key_points": [
-    "AI 改变的是开发者与机器的关系：系统能理解仓库、选择模型、规划工作、使用工具、编辑文件、运行命令、检查失败，开发者只需描述目标，并在自己的边界内推进。",
-    "从“下达命令”到“让意图可执行”，开发者仍对结果负责，但更多时间花在设定方向、提供上下文、定义约束与审阅证据上，判断力与品味更值钱。",
-    "应把 AI 嵌入工作流而非置于其旁（环境智能），依赖 MCP、仓库指令与技能、hooks 等可移植上下文，并分模态、harness、控制平面三层；作者与 Logitech 合作 18 个月的 MX Keypad 把常用开发操作变成可编程输入。"
+    "Tiny Little Office 把所有文档数据存入 URL 的 #fragment，使每份文档成为可收藏、可分享的链接，并提供 llms.txt 让智能体构造可渲染文档的 URL。",
+    "作者用 Claude Code（Opus 5.5 Extra）构建 LaTeX 版工具，支持 #fragment 直接渲染、压缩字典前缀、编辑器与渲染视图互相切换，以及从 URL 或 gist 载入 LaTeX。",
+    "安全与依赖：借鉴现有 SVG in Markdown 工具的 iframe sandbox 机制防 XSS，使用 MathJax 4.1.3、faster-latex 0.3.1、Pako 2.1.0、DOMPurify 3.4.16。"
    ],
    "topics": [
     "coding-agent",
-    "mcp",
-    "harness"
+    "product"
    ],
    "category": "Agent 与开发",
    "categories": [
     "Agent 与开发"
    ],
-   "horizon": "long",
-   "score": 55.2,
+   "horizon": "short",
+   "score": 65.7,
    "status": "review",
    "extra": {
     "content_source": "rss",
     "source_tags": [
-     "Company news",
-     "News & insights",
-     "GitHub Copilot",
-     "Logitech MX Keypad"
+     "latex",
+     "paul-ford",
+     "tools",
+     "urls",
+     "ai"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.logitech.com/en-us/shop/p/mx-keypad.920-013889",
-      "https://github.blog/news-insights/company-news/the-next-developer-interface-is-ambient-intelligence/",
-      "https://github.blog"
+      "https://tools.simonwillison.net/latex",
+      "https://tinylittleoffice.com/",
+      "https://tinylittleoffice.com/llms.txt",
+      "https://claude.ai/share/239301ff-edde-420e-b433-b9c16fe40a6c",
+      "https://tinylittleoffice.com/#/v1/deck/zXVVdb9tGEHznr1hED2kBSbZcO4UFtIHTuCgQtylstwH6Uq7Io3gRdcfeHS1T_fjtnV1Ssp038r52d2Z2djabZcmmxizpJ78jpnvrerqxCUv0sapsYaixbkM7HzYxS7XZ4ujWls6u65SlwC7aZL1bUmxsabIZHpxMaCmXlnRfG9rVHm~Vvui2xiWykfDK8Ojfc439b5bN6BdP0YQHE6bkPJWceMXR6A8Xhe9cwqFr7Peptm5NXCUT9Kl8klNM3EeyjnrfBVoFv8Nj2TGbaDgU9ZKuHCe_7clXKFVSkMh5Qs2Nluy14nnhtyeTk4fFSWmKzUn_7e~f5_N5LkcfFvlSg1Y~bDkR8omoXrbkLDZ3tS1q4rYl3xqHnCTvvB~vbX2J2k1C7rI8vjzsHSCaEuK3wcRoSmJXknEFrpVZ9r0CWgVeK5QDBBOB1BlkAgCxmry~dgAz~hePj0i1wT5wMnIY_Ohl0FQ~cTN_Aq~yIo~7ZFpaoL5gcc8iOg6bx5QdaHlB8f3Nxykg_pnDpvQ7Rw8cLCuFdyKTSLEF4uQd5QiTS0gTsftDzSHFKZWBd2A5av3sLLAGzPgNqB94AJlV44uN3LmvEVDQl8C88l2iBX14JyS3DUMTY5pjOS0XG14fKjqDcP_qjNlLTVLLLe_o_fWPN1f319MBSN4a4mbtUXi9lbL3ttW81vgQFvcgcIg0XjwwPv7SDjeBhnBqEpW2kGI49HIu4Bw0fqAcGwRdcdMc6O6fXdAKAcBurA9dWSrYR_AjddGIuH1ayqNbvHft1o2N9RTqc5IIUi~5J4fCAHVEXC5jbZBa1TkNheUjdbF3iR_ndGtaw3i_9RYcr1jwdtAPaLQuJrwhGa2MNGdsTdOAI3DxTEii4hH2b2AivFEd_XZ7M4tcGQH_XZ~gjZVB4oak_9~cd6FZ0htaWQkNmRZQCBdj_1zN_iCe7el0dpkLWZDTf7kWmP~p_Yq_YMBNYQZpd7HjBprLp8OpmViHbRpSDKiCDNWLBo9xxpQatQCyM21DLD8rSNQ6uBwKtgU71eGUVj1Fu0dJeZ4rsnplPL7ioL93CTKkf4aiMyFRhIqFi_PLs~y9qRp0aDmIp8fy4vzsIrsR32y5bzzwxtrl6UKCiFgu5hejLNSKozTg2EdjGz11EioV2kYXpM6VgPZsenp6~gSwaKP2IcF_fLeuxfKgoJjkRBKHi8~43Zh~SZ_qXgyYAMTrpJAKwQDD9ErvJ5Qi7amGdBT1lGpuKl1cKf~DwhDDDTxoj3N6HeFVvfSR9pp1ChBVbJs4oPSqtLA3uAN8zWMjqExfaZshma~~zqVmbWqYGN7j1s4_q3l4MSXG7BunwnFwpCQ~tKTrRwy7KI4l940rdXS8BUK7fLR6HlxI29ylIfH8bZkfJ4HYrSRyGBfztk2PJzIBSFpNOI2jtaLLYbs4~KsWK~MGpgAz10G8pHyYTRP0_Xc5EOm~0CmE89L2ihrnoVUxkfRi8sJzHYTonVE_Ua0cR3Shm1H9CXPLNP2XjovGNI3M0_1smG4C4P8",
+      "https://claude.ai/code/session_017KJrPqqWVHLqr4E7TLPnpt",
+      "https://github.com/simonw/tools",
+      "https://tools.simonwillison.net/markdown-svg-renderer",
+      "https://tools.simonwillison.net/latex#~1jZq9DoIwEIB3nuKGbigJJS5svoAOMJuQ4EBEJWJjGHh3765A_8DIQtJfIMdR-n0uCV9l4DOs_p8ua3ZZKK2anOsaTqya9AZnHhMo3qqewKWPMh2SOQOFkhSJtmruY1QungBJFk-cQLsspAF8qgFPWKQ6FmdYdCB7oseX5HVNfgE-HGmM2OPATDfAlCssyLcLGI4BONwZ7E8pby5KWoilFBK0n5T4lMeHgQaMMsYjS6hrG61G4Micmcj2EN48tyVgHpzNKMBEHuxEbV0dZhsJwZB7_Lux0mR4YDc9HTd1bnGaki0V1nr6kGHSI8NAwCWaVjeAPyYUNAYxUZt8k2aKlODPRQq7JIYMS-VKaQwHrMmoxqWeLlT6Ag",
+      "https://github.com/nodeca/pako",
+      "https://github.com/mathjax/MathJax",
+      "https://github.com/arena-ai/faster-latex",
+      "https://github.com/cure53/DOMPurify",
+      "https://simonwillison.net/tags/latex",
+      "https://simonwillison.net/tags/paul-ford",
+      "https://simonwillison.net/tags/tools",
+      "https://simonwillison.net/tags/urls",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/llms"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "fc710191e832cb3b",
-   "url": "https://simonwillison.net/2026/Oct/15/chirp-pong/",
-   "title": "Chirp Pong",
-   "source": "Simon Willison",
+   "id": "3d3011b3b2f663f4",
+   "url": "https://starskirmish.com/bench/v0-2/",
+   "title": "Show HN: Gemini 4 Argon plays StarCraft",
+   "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-15T19:47:52+00:00",
-   "summary_short": "用手机麦克风\"啁啾\"声传游戏状态的双人游戏实验，纯静态 HTML 运行",
-   "summary_long": "原文介绍的是一个名为 Chirp Pong 的游戏实验。作者的出发点是验证一个设想是否可行：让两名玩家各自的手机在纯静态 HTML 上运行一款双人游戏，而网络代码通过麦克风发送的\"啁啾\"（chirp）声来实现。作者称这似乎可行。具体做法是构建一个双人竞技、类似 Pong 的游戏，两名玩家把手机靠近彼此，游戏状态通过音频噪声发送，再由网页麦克风 API 进行解析。原文还提到在此之上加入了图形与玩法上的变化，使它比普通 Pong 更有趣、也更相互交织。该项目在 Claude Code 中使用 Claude Opus 5.5 Extra 构建。原文标注的标签包括 game-design、ai、generative-ai、llms、claude-code。原文未详述具体实现细节、传输延迟表现以及对可玩性的评价。",
+   "published_at": "2026-10-16T14:18:44+00:00",
+   "summary_short": "StarSkirmish 基准：LLM 限时一小时写星际争霸机器人，考验长程推理与智能体编码",
+   "summary_long": "StarSkirmish 是一个让 LLM 为《星际争霸：母巢之战》编写机器人的基准测试。每个模型有一小时时间用 C++ 编写一个神族（Protoss）机器人，随后与其它 LLM 的机器人以及人类编写的机器人对战。该基准考察长程推理与智能体编码能力，因为模型必须把练习赛中学到的东西用于改进自己的机器人。\n\nv0.2 版纳入 OpenAI、Anthropic、Google 和 Meta 的旗舰模型，各自在自己的第一方 CLI 环境中运行；得分为每个模型 5 次运行对抗人类编写的竞技机器人名单的平均胜率（0–100）。GPT-6 Astra 得分最高，GPT-6.1 Sol 居第二，Gemini 4 Argon、Claude Opus 5.5 与 Claude Fable 5.1 得分在 37–39 之间、实际持平。以每次一小时运行的 API 成本衡量，GPT-6.1 Sol 性价比突出：得分第二，单次成本仅略高于 GPT-6 Astra 的十分之一。\n\n原文称尚无饱和迹象：最强模型 GPT-6 Astra 对 Stardust、PurpleWave、BananaBrain 的胜率仅 7%。模型得分的最强预测因子是它在一小时内与名单上 7 个最强机器人练习的场次，Claude Fable 5.1 是例外。Gemini 4 Argon 的运行间波动也大于其他实验室的旗舰。",
    "key_points": [
-    "目标是让两台手机在纯静态 HTML 上跑双人游戏，网络代码依赖麦克风收发的啁啾声，作者称似乎可行",
-    "游戏为双人竞技的类 Pong 玩法：两人手机靠近，游戏状态以音频噪声发送，由网页麦克风 API 解析",
-    "作者在此基础上加入图形与玩法变化，使其比 Pong 更有趣、更交织；项目在 Claude Code 中用 Claude Opus 5.5 Extra 构建"
+    "每模型限时一小时用 C++ 写神族机器人，与其它 LLM 的机器人和人类编写的机器人对战，考察长程推理与智能体编码",
+    "GPT-6 Astra 得分第一，GPT-6.1 Sol 第二；Gemini 4 Argon、Claude Opus 5.5、Claude Fable 5.1 在 37–39 区间基本持平",
+    "GPT-6.1 Sol 性价比最佳，单次运行成本略高于 GPT-6 Astra 的十分之一"
+   ],
+   "topics": [
+    "eval",
+    "coding-agent",
+    "reasoning"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测"
+   ],
+   "horizon": "short",
+   "score": 57.0,
+   "status": "review",
+   "extra": {
+    "hn_points": 171,
+    "hn_comments": 75,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/bwapi/bwapi",
+      "https://github.com/OpenBW/openbw",
+      "https://www.basil-ladder.net/ranking.html"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "9db4940a53f86840",
+   "url": "https://openai.com/index/stack-overflow-chatgpt-plugin",
+   "title": "Stack Overflow for Agents triples signups with ChatGPT plugin",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-16T00:00:00+00:00",
+   "summary_short": "Stack Overflow for Agents 靠 ChatGPT 插件注册量一夜翻三倍，两人用 Codex 数周做出产品",
+   "summary_long": "原文介绍 Stack Overflow 正在构建知识智能平台，把散落在 Slack、Google Docs 等系统中的上下文统一起来，转化为可供人和智能体使用的经验证知识；平台 AI 由 GPT‑6 Astra 和 GPT‑6 Sol 驱动，按推理需求和成本把任务路由到不同模型。Stack Overflow for Agents 把这一智能层延伸到智能体，最初只是一个假设，由两名工程师借助 Codex 在几周内做成完整产品。企业产品 Stack Internal 需要连接组织存放知识的各类系统，Codex 同样加速了这部分工作：连接器开发从平均 3–6 周缩短到 4 天，近期更有一天完成一个的案例，原文给出连接器构建时间的最大降幅为 87%。分发环节，团队做了 ChatGPT 插件，让用户能在 ChatGPT 中发现并设置产品，步骤少于传统 MCP 方式。产品副总裁 Alexandra Lato 称，插件让注册量一夜翻三倍，智能体创建量一度达到 10 倍。原文还提到团队希望探索用 Decisions API 减少模型路由与配置工作，并正把知识产品扩展到分享人们所学的内容，但该部分在原文中并未展开。",
+   "key_points": [
+    "两名工程师用 Codex 在几周内做出 Stack Overflow for Agents",
+    "ChatGPT 插件让注册量一夜翻三倍，智能体创建量最高达 10 倍",
+    "Codex 把单个连接器开发从 3–6 周压缩到 4 天，近期有 1 天完成的案例"
    ],
    "topics": [
     "product",
-    "coding-agent"
+    "coding-agent",
+    "mcp"
    ],
    "category": "产品与应用",
    "categories": [
     "产品与应用"
    ],
    "horizon": "short",
-   "score": 53.5,
+   "score": 50.1,
    "status": "review",
    "extra": {
-    "content_source": "rss",
+    "content_source": "direct",
     "source_tags": [
-     "game-design",
-     "ai",
-     "generative-ai",
-     "llms",
-     "claude-code"
+     "Startup"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://tools.simonwillison.net/chirp-pong",
-      "https://claude.ai/code/session_019awUnNB7NoYd7noBNAsNdd",
-      "https://simonwillison.net/tags/game-design",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/claude-code"
+      "https://stackoverflow.co/"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "7d10f0ddfecf202c",
-   "url": "https://openai.com/index/block-ai-powered-security",
-   "title": "How Block is building AI-powered security with OpenAI technology",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-14T07:00:00+00:00",
-   "summary_short": "Block 借 OpenAI Daybreak 将安全检测与漏洞修复从数周压缩至小时级。",
-   "summary_long": "Block（旗下有 Square、Cash App、Afterpay）的安全团队采用 OpenAI Defense Factory，用包括 OpenAI Daybreak 在内的 AI 系统处理漏洞发现、检测与响应。原文显示，在检测调优上，团队可在不到一小时内把拟议的检测改动回放到七个月的生产遥测数据中，而过去这意味着人工重查数百个旧案例；从提交高层级漏洞描述到生成自动化补丁草案约需 18 分钟。Block 的安全编排层构建在 Daybreak 之上，用于把任务路由给合适的模型，并设有供人工接管、或让智能体互相校验的接口；团队持续用内部基准与真实表现评估这些系统，必要时转人工复核。成效方面，分诊吞吐量提升 50%，情报收集与调查量增加 50%，并新增了自主狩猎能力，每季度完成约 1100 个分析员小时的调查、返还约 600 个分析员小时的误报分诊工作。Block 首席信息安全官 James Nettesheim 表示，AI 正在压缩从人的意图到行动的时间，防御方得以与攻击者“以火攻火”。",
-   "key_points": [
-    "Block 安全团队使用 OpenAI Defense Factory，并借助包括 Daybreak 在内的 AI 系统做漏洞发现、检测与响应。",
-    "检测调优回放七个月遥测不到一小时，从高层级漏洞提交到自动化补丁草案约 18 分钟；分诊吞吐与情报收集/调查量各提升 50%，每季度完成约 1100 分析员小时调查、返还约 600 分析员小时误报分诊。",
-    "安全编排层建在 Daybreak 之上，按任务选择不同模型，保留人工接管与智能体互检接口，并持续用内部基准和真实表现评估、必要时转人工。"
-   ],
-   "topics": [
-    "cybersecurity",
-    "product"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用",
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 53.1,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a0d58fa52c7a34d2",
-   "url": "https://www.krea.ai/krea-3",
-   "title": "Krea 3 – An image model built for editing at scale",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-15T16:04:05+00:00",
-   "summary_short": "Krea 3 发布：面向生产环境的图像编辑模型，单次编辑 8 秒内、每张 0.06 美元",
-   "summary_long": "Krea 3 是一个面向生产环境的图像编辑模型，页面称它“只改你要求改的部分”。据页面数据，单次编辑可在 8 秒内完成，每张成本 0.06 美元；页面同时给出 4×（对比 Nano Banana Pro）以及 10× 更快、3× 更便宜（对比 GPT Image 2）的说法。功能上强调两点：一是区域编辑，画框并说明要改什么，模型只重绘框内、其余保持原样，并以改动像素比例做前后对比；二是颜色控制，指定十六进制色值后模型只在产品上匹配该颜色，页面给出天蓝、向日葵、沙、森林、丁香等色板。页面还展示了多图组合的复杂指令，例如把一张图中的元素与另一张图的元素合成到同一场景。适用场景涵盖电商、营销、建筑、产品、时尚、游戏、影视、摄影与消费品，并通过 fal、Baseten、Comfy、Together AI 等渠道分发。原文未披露模型架构、训练信息与发布时间。",
-   "key_points": [
-    "定位：面向生产环境的图像编辑模型，主张只改动用户指定的部分",
-    "性能与价格：页面称单次编辑 8 秒内完成、每张 0.06 美元，并给出 4×（对比 Nano Banana Pro）、10× 更快与 3× 更便宜（对比 GPT Image 2）的说法；比价表中其他模型的具体数值原文未完整显示",
-    "能力：区域框选编辑只重绘框内并给出改动像素比例，十六进制色值只在产品上匹配；支持多图组合的复杂编辑指令"
-   ],
-   "topics": [
-    "product",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 53.0,
-   "status": "review",
-   "extra": {
-    "hn_points": 215,
-    "hn_comments": 73,
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "2af8241101776a90",
-   "url": "https://sunshowers.io/posts/anthropic-mononoke-2/",
-   "title": "More on Anthropic's Scion ripping off Mononoke",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-15T17:05:19+00:00",
-   "summary_short": "Anthropic 的 Scion 被指抄袭 Mononoke，作者称事后已获补充署名",
-   "summary_long": "本文是对前一篇「Anthropic 的 Scion 抄袭 Mononoke」的后续回应。开头更新称，Anthropic 的 Nick G. 已在 Hacker News 上回应，其博客文章已补充足够的署名。\n\n作者表示，私下获得确认：Scion 是有意且公然抄袭 Mononoke，双方还存在人员重叠，绝非无意的致敬。相似之处不止于「派生数据」，而是延伸到整个数据模型以及围绕它构建的多项结构：Anthropic 对 Scion changesets 的描述与 Mononoke 的 Bonsai changeset 完全相同，「Scion」这个名字也是把「Bonsai」的音节反转并去掉「B」。作者还提到服务端版本控制查询与变更 API 的相似，但表示该做法在 Mononoke 之前可能已有其他系统实现，因此不主张其新颖性。\n\n作者强调 Bonsai 数据模型当年反主流：2018 年业界通行类 Git 数据模型，他们构建的是 write-ahead log 式 Merkle DAG，需解决服务端 rebase 等难题，他本人不得不向 Meta 多层管理层论证；该模型近十年后仍在使用。他重申问题在于署名归因而非抄袭本身：好想法被复制没关系，署名被悄然抹掉不行。",
-   "key_points": [
-    "更新：Anthropic 的 Nick G. 已在 Hacker News 回应，Anthropic 博文已补充足够的署名",
-    "作者称私下获确认，Scion 有意且公然抄袭 Mononoke，且双方存在人员重叠",
-    "相似不止「派生数据」，而是延伸到整个数据模型及围绕其构建的结构，changeset 概念与命名（Scion / Bonsai）高度一致"
-   ],
-   "topics": [
-    "open-source"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 51.8,
-   "status": "review",
-   "extra": {
-    "hn_points": 211,
-    "hn_comments": 65,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://sunshowers.io/tags/vcs/",
-      "https://sunshowers.io/tags/shorts/",
-      "https://news.ycombinator.com/item?id=50107559",
-      "https://www.anthropic.com/engineering/redesigning-source-control#footnote-2",
-      "https://news.ycombinator.com/item?id=50106738",
-      "https://epicgames.github.io/lore/explanation/system-design/"
-     ]
-    },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   }
