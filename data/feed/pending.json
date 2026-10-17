@@ -1,56 +1,103 @@
 {
- "generated_at": "2026-10-16T22:08:19+00:00",
+ "generated_at": "2026-10-17T21:29:40+00:00",
  "items": [
   {
-   "id": "7a6a342eb9583796",
-   "url": "https://www.anthropic.com/research/ecdsa-curve-origins",
-   "title": "Claude reveals ECDSA curve origins",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "987754dece6755c3",
+   "url": "https://www.interconnects.ai/p/meta-shakes-up-the-frontiers-open",
+   "title": "Meta shakes up the frontiers, open and closed",
+   "source": "Interconnects",
    "tier": "A",
-   "published_at": "2026-10-16T18:55:59+00:00",
-   "summary_short": "Claude 半小时找出 NIST 椭圆曲线种子来源：lrand48 加 Unix 时间戳",
-   "summary_long": "ECDSA 是最广泛使用的椭圆曲线密码标准，2000 年被 NIST 纳入 FIPS 186-2。其标准曲线公布的“种子”参数由 NSA 提供且未作任何解释，来源长期是密码学界悬案，Neal Koblitz 与 Alfred Menezes 曾撰文讨论，也有人发起调查与悬赏。长期任职 NSA 的 Jerry Solinas 2015 年称种子可能是某句幽默口令的哈希，但记不清细节；他已于 2023 年去世。2026 年 10 月，一名 Anthropic 员工让内部研究模型在不给线索的情况下尝试解答，Claude 在不到半小时内找出 NIST P-192、P-224、P-256、P-384、P-521 种子的来源：它们不是任何哈希算法的结果，而是 C 库 lrand48 随机数生成器的输出，以 Unix 时间戳为种子逐次抽取 20 字节作为候选，例如 P-256 需要 1842 次迭代。原文强调这不是密码学破解或新攻击，无需采取任何行动，反而让人更确信这些曲线没有后门。",
+   "published_at": "2026-10-17T14:06:54+00:00",
+   "summary_short": "Meta开源Muse Spark Open，成最强美产开源模型，美中开源差距约减半",
+   "summary_long": "原文指出，本周美国开放权重模型向前沿水平明显回摆：Meta发布Muse Spark Open，原文称其以相当幅度成为最强美国开源模型；Reflection的首个模型Beam也具相关性。若无这两个模型，将有20多个中国公司构建并发布的开放权重模型优于最好的西方模型。Mistral也公布了Mistral Large 4，指数得分38，但权重尚未释出，并有传闻称还有更多美国开源模型将至。原文称美中最佳模型的差距大致缩小一半：最好的美国开源模型从对追求前沿性能的用户基本无关，变为落后但仍具相关性。Muse Spark Open为816B总参数/42B激活参数，上下文窗口1M token，面向编程与智能体任务，原生多模态，并做了额外安全后训练；原文建议将其作为更大AI系统的一部分并配额外防护栏部署。其性能高于GLM 5.2、接近DeepSeek V4.1 Flash、落后于GLM 5.3或Kimi K3。原文提到西方开源模型在同性能/参数规模下采用度远高于中国模型，且随开放式LLM智能体变为现实，开源生态需求加速。若有什么会拖累它，原文提到具体许可证（原文此处截断，未详述）。",
    "key_points": [
-    "ECDSA 种子来源之谜：NIST 2000 年采纳的标准曲线种子由 NSA 提供、无任何说明，Koblitz 与 Menezes 曾撰文讨论，也有人发起调查与悬赏。",
-    "Claude 的发现：2026 年 10 月一名 Anthropic 员工让内部研究模型在无提示下尝试，Claude 不到半小时找出 P-192、P-224、P-256、P-384、P-521 的种子；它们不是哈希结果，而是 C 库 lrand48 以 Unix 时间戳为种子生成的输出，P-256 需 1842 次迭代。",
-    "原文强调这不是破解或新攻击，无需采取任何行动，反而让人更确信曲线没有后门；Jerry Solinas 2015 年“幽默口令哈希”的说法并不成立。"
+    "Meta发布Muse Spark Open（816B总参数/42B激活，1M上下文，原生多模态，面向编程与智能体），原文称其为最强美国开源模型；Reflection的Beam同样相关",
+    "原文称美中最佳开源模型差距大致缩小一半，美国最佳开源模型从“基本无关”变为“落后但仍相关”；Mistral Large 4已公布得分38但权重未释出",
+    "Muse Spark Open性能高于GLM 5.2、接近DeepSeek V4.1 Flash、落后于GLM 5.3与Kimi K3；原文认为其额外安全后训练更可能基于Muse Spark 1.2，在Artificial Analysis上仅降1分"
    ],
    "topics": [
-    "reasoning",
-    "cybersecurity"
+    "open-source",
+    "post-training",
+    "coding-agent"
    ],
-   "category": "产品与应用",
+   "category": "模型",
    "categories": [
-    "产品与应用"
+    "模型",
+    "行业动态"
    ],
-   "horizon": "long",
-   "score": 67.5,
+   "horizon": "short",
+   "score": 72.0,
    "status": "review",
    "extra": {
-    "hn_points": 482,
-    "hn_comments": 198,
+    "content_source": "rss",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://csrc.nist.gov/files/pubs/fips/186-2/final/docs/fips186-2.pdf",
-      "https://sites.math.washington.edu/~koblitz/",
-      "https://uwaterloo.ca/scholar/ajmeneze",
-      "https://eprint.iacr.org/2015/1018.pdf",
-      "https://saweis.net/posts/nist-curve-seed-origins.html",
-      "https://words.filippo.io/seeds-bounty/",
-      "https://linux.die.net/man/3/lrand48",
-      "https://en.wikipedia.org/wiki/Lenstra%E2%80%93Lenstra%E2%80%93Lov%C3%A1sz_lattice_basis_reduction_algorithm",
-      "https://linux.die.net/man/3/srand48",
-      "https://cr.yp.to/speed/mult/freelip.html",
-      "https://en.wikipedia.org/wiki/Arjen_Lenstra",
-      "https://shoup.net/",
-      "https://libntl.org/",
-      "https://www.abetterinternet.org/",
-      "https://cr.yp.to/papers/safecurves-20240809.pdf",
-      "https://sockpuppet.org/blog/2015/08/04/is-extended-random-malicious/",
-      "https://filippo.io/",
-      "https://twitter.com/intent/tweet?text=https://www.anthropic.com/research/ecdsa-curve-origins",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://www.anthropic.com/research/ecdsa-curve-origins"
+      "https://research.meta.ai/blog/muse-spark-open",
+      "https://reflection.ai/blog/introducing-beam",
+      "https://mistral.ai/news/mistral-large-4/",
+      "https://substackcdn.com/image/fetch/$s_!eZYA!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F98319a15-087c-4f7f-acd3-d729927f0c16_2024x1952.png",
+      "https://www.interconnects.ai/p/meta-shakes-up-the-frontiers-open?utm_source=substack&utm_medium=email&utm_content=share&action=share",
+      "https://www.interconnects.ai/p/glm-52-is-the-step-change-for-open",
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+      "https://substackcdn.com/image/fetch/$s_!CFQC!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6dfa64c4-5907-4e2b-88db-a02ca1ddfd8b_2464x944.png",
+      "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+      "https://x.com/alexandr_wang/status/2086756152034066792",
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B/blob/main/LICENSE.md",
+      "https://interconnect.substack.com/p/kimis-tightrope-openness-and-revenue",
+      "https://research.meta.ai/blog/muse-wonder",
+      "https://www.meta.com/superintelligence/?srsltid=AU7gw4XKcgMv1WYya2PFc2kUjMo91dGE7wynRverFh7HmN5-rEmKYJag",
+      "https://www.youtube.com/watch?v=XfdIhd1g6EI&t=7752s&pp=ygUQY2hlZWt5IHBpbnQgenVjaw%3D%3D",
+      "https://www.interconnects.ai/p/meta-shakes-up-the-frontiers-open/comments",
+      "https://substackcdn.com/image/fetch/$s_!p7ID!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6ec13bec-5d2f-4a3f-b11f-64fe7fd78bcf_2464x944.png",
+      "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "e4018d8e9eb4c3e6",
+   "url": "https://www.theregister.com/databases/2026/10/16/postgres-19-delayed-after-ai-reviewers-find-more-bugs-than-humans-can-fix/5303471",
+   "title": "Postgres 19 delayed after AI reviewers find more bugs than humans can fix",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-16T15:55:40+00:00",
+   "summary_short": "PostgreSQL 19 因 LLM 代码审查发现大量缺陷而推迟发布，并回退了 8-10 个功能",
+   "summary_long": "PostgreSQL 19 原计划在 9 月底或 10 月初发布，现预计在 11 月 19 日前后正式可用；开发者还回退了 8 到 10 个重要功能，并推迟到明年的 PostgreSQL 20。EDB 副总裁、PostgreSQL 主要提交者 Peter Eisentraut 在博客中表示，部分被回退的功能存在重大架构缺陷，很难在 beta 阶段快速修复。另一方面，LLM 辅助代码审查暴露出一长串涉及各种边界情况的相对无害问题；如果是在过去，这些问题可能很久以后才会被发现，大概率在发布后的五年内以修复 bug 的方式处理。他说，面对四十份缺陷报告，即使每份平均只需改三行，处理每份报告都有固定开销，最后时间不够用。他还强调，这并非开发中的“vibe coding”，因为这些新功能大多写成时该技术尚不可用。Eisentraut 还指出，功能编写并提交之后，实际的质量门槛提高了；除非 LLM 辅助代码审查的能力保持当前速度继续提升，未来开发周期应会自行恢复常态。被撤下的功能包括 SQL/PGQ；当时贡献者 Tom Lane 曾警告，若在 v19 发布，将出现直到 v20 才能修复的发布后 bug。Eisentraut 仍称 v19 是“一个很棒的版本”，其中包含可避免表锁的 REPACK CONCURRENTLY。",
+   "key_points": [
+    "PostgreSQL 19 从原定 9 月底/10 月初推迟到约 11 月 19 日，另有 8-10 个重要功能被回退到 PostgreSQL 20",
+    "主要提交者 Peter Eisentraut 称，部分回退功能存在难以在 beta 期快速修复的重大架构缺陷，LLM 辅助审查则快速暴露了大量边界情况问题",
+    "他强调这并非“vibe coding”，因为多数新功能写成时该技术尚不可用；若 LLM 审查能力不持续提升，未来周期应会恢复正常"
+   ],
+   "topics": [
+    "ai-code-review",
+    "open-source"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 70.3,
+   "status": "review",
+   "extra": {
+    "hn_points": 205,
+    "hn_comments": 85,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.theregister.com/author/lindsay-clark",
+      "https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.theregister.com%2Fdatabases%2F2026%2F10%2F16%2Fpostgres-19-delayed-after-ai-reviewers-find-more-bugs-than-humans-can-fix%2F5303471",
+      "https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.theregister.com%2Fdatabases%2F2026%2F10%2F16%2Fpostgres-19-delayed-after-ai-reviewers-find-more-bugs-than-humans-can-fix%2F5303471",
+      "https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fwww.theregister.com%2Fdatabases%2F2026%2F10%2F16%2Fpostgres-19-delayed-after-ai-reviewers-find-more-bugs-than-humans-can-fix%2F5303471",
+      "https://bsky.app/intent/compose?text=Postgres%2019%20delayed%20after%20AI%20reviewers%20find%20more%20bugs%20than%20humans%20can%20fix%0Ahttps%3A%2F%2Fwww.theregister.com%2Fdatabases%2F2026%2F10%2F16%2Fpostgres-19-delayed-after-ai-reviewers-find-more-bugs-than-humans-can-fix%2F5303471",
+      "https://www.reddit.com/submit?url=https%3A%2F%2Fwww.theregister.com%2Fdatabases%2F2026%2F10%2F16%2Fpostgres-19-delayed-after-ai-reviewers-find-more-bugs-than-humans-can-fix%2F5303471&title=Postgres%2019%20delayed%20after%20AI%20reviewers%20find%20more%20bugs%20than%20humans%20can%20fix",
+      "https://api.whatsapp.com/send?text=Postgres%2019%20delayed%20after%20AI%20reviewers%20find%20more%20bugs%20than%20humans%20can%20fix%0Ahttps%3A%2F%2Fwww.theregister.com%2Fdatabases%2F2026%2F10%2F16%2Fpostgres-19-delayed-after-ai-reviewers-find-more-bugs-than-humans-can-fix%2F5303471",
+      "https://google.com/preferences/source?q=theregister.com",
+      "https://peter.eisentraut.org/blog/2026/10/09/the-reverts-will-continue-until-morale-improves",
+      "https://dsf.berkeley.edu/papers/ERL-M85-95.pdf",
+      "https://www.theregister.com/databases/2026/09/15/postgresql-19-graph-queries-fail-the-would-you-ship-this-test/5296343"
      ]
     },
     "content_source": "direct",
@@ -58,102 +105,78 @@
    }
   },
   {
-   "id": "2cf7b587d05289db",
-   "url": "https://simonwillison.net/2026/Oct/15/latex/",
-   "title": "LaTeX renderer",
-   "source": "Simon Willison",
+   "id": "dbca5928ae7c4860",
+   "url": "https://www.opendemocracy.net/amazon-ai-surveillance-monitor-union-activity-uk-warehouses-birmingham-coventry-atlas-sutton-coldfield/",
+   "title": "Amazon uses AI to monitor union risk in UK warehouses",
+   "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-15T02:07:28+00:00",
-   "summary_short": "受 Tiny Little Office 启发、用 Claude Code 做出的 LaTeX 链接渲染工具",
-   "summary_long": "原文作者受 Paul Ford 与 Aboard Foundry 的新 Web 应用 Tiny Little Office 启发。该应用提供一整套网页内容编辑器（文字处理、大纲、演示、表格、计算器、绘图、图表、动画、日历、行程规划），招牌做法是把所有文档数据存进 URL 的 #fragment 部分，使每份文档都成为可收藏、可分享的链接；它还有一个 llms.txt 文件，告诉智能体如何构造能渲染成文档的 URL，Claude 用该文件生成了一个解释 URL 格式的演示链接。作者随后让 Claude Code（Opus 5.5 Extra）构建一个面向 LaTeX 的类似工具，并列出所用提示词：用 #code-here 片段链接即可把代码当作 LaTeX 有效渲染；支持一个前缀，表示 LaTeX 已用针对 LaTeX 优化的自定义压缩字典压缩；从 CDN 选用最佳 LaTeX 渲染库（也考虑 WebAssembly）；无片段时显示可粘贴 LaTeX 的编辑器并可切换到“已渲染”视图，该视图可被收藏；片段视图也能切回编辑源码。作者还要求借鉴其现有 SVG in Markdown 工具所用的 iframe sandbox 机制防范 XSS 风险，并从该工具复制 Gist/URL 加载功能，提供从 URL 或 gist 载入 LaTeX 的选项。工具使用 Pako 2.1.0、MathJ",
-   "key_points": [
-    "Tiny Little Office 把所有文档数据存入 URL 的 #fragment，使每份文档成为可收藏、可分享的链接，并提供 llms.txt 让智能体构造可渲染文档的 URL。",
-    "作者用 Claude Code（Opus 5.5 Extra）构建 LaTeX 版工具，支持 #fragment 直接渲染、压缩字典前缀、编辑器与渲染视图互相切换，以及从 URL 或 gist 载入 LaTeX。",
-    "安全与依赖：借鉴现有 SVG in Markdown 工具的 iframe sandbox 机制防 XSS，使用 MathJax 4.1.3、faster-latex 0.3.1、Pako 2.1.0、DOMPurify 3.4.16。"
-   ],
+   "published_at": "2026-10-17T16:04:23+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
    "topics": [
-    "coding-agent",
-    "product"
+    "privacy",
+    "alignment"
    ],
-   "category": "Agent 与开发",
+   "category": "安全",
    "categories": [
-    "Agent 与开发"
+    "安全",
+    "行业动态"
    ],
    "horizon": "short",
-   "score": 65.7,
+   "score": 67.5,
    "status": "review",
    "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "latex",
-     "paul-ford",
-     "tools",
-     "urls",
-     "ai"
-    ],
+    "hn_points": 133,
+    "hn_comments": 54,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://tools.simonwillison.net/latex",
-      "https://tinylittleoffice.com/",
-      "https://tinylittleoffice.com/llms.txt",
-      "https://claude.ai/share/239301ff-edde-420e-b433-b9c16fe40a6c",
-      "https://tinylittleoffice.com/#/v1/deck/zXVVdb9tGEHznr1hED2kBSbZcO4UFtIHTuCgQtylstwH6Uq7Io3gRdcfeHS1T_fjtnV1Ssp038r52d2Z2djabZcmmxizpJ78jpnvrerqxCUv0sapsYaixbkM7HzYxS7XZ4ujWls6u65SlwC7aZL1bUmxsabIZHpxMaCmXlnRfG9rVHm~Vvui2xiWykfDK8Ojfc439b5bN6BdP0YQHE6bkPJWceMXR6A8Xhe9cwqFr7Peptm5NXCUT9Kl8klNM3EeyjnrfBVoFv8Nj2TGbaDgU9ZKuHCe_7clXKFVSkMh5Qs2Nluy14nnhtyeTk4fFSWmKzUn_7e~f5_N5LkcfFvlSg1Y~bDkR8omoXrbkLDZ3tS1q4rYl3xqHnCTvvB~vbX2J2k1C7rI8vjzsHSCaEuK3wcRoSmJXknEFrpVZ9r0CWgVeK5QDBBOB1BlkAgCxmry~dgAz~hePj0i1wT5wMnIY_Ohl0FQ~cTN_Aq~yIo~7ZFpaoL5gcc8iOg6bx5QdaHlB8f3Nxykg_pnDpvQ7Rw8cLCuFdyKTSLEF4uQd5QiTS0gTsftDzSHFKZWBd2A5av3sLLAGzPgNqB94AJlV44uN3LmvEVDQl8C88l2iBX14JyS3DUMTY5pjOS0XG14fKjqDcP_qjNlLTVLLLe_o_fWPN1f319MBSN4a4mbtUXi9lbL3ttW81vgQFvcgcIg0XjwwPv7SDjeBhnBqEpW2kGI49HIu4Bw0fqAcGwRdcdMc6O6fXdAKAcBurA9dWSrYR_AjddGIuH1ayqNbvHft1o2N9RTqc5IIUi~5J4fCAHVEXC5jbZBa1TkNheUjdbF3iR_ndGtaw3i_9RYcr1jwdtAPaLQuJrwhGa2MNGdsTdOAI3DxTEii4hH2b2AivFEd_XZ7M4tcGQH_XZ~gjZVB4oak_9~cd6FZ0htaWQkNmRZQCBdj_1zN_iCe7el0dpkLWZDTf7kWmP~p_Yq_YMBNYQZpd7HjBprLp8OpmViHbRpSDKiCDNWLBo9xxpQatQCyM21DLD8rSNQ6uBwKtgU71eGUVj1Fu0dJeZ4rsnplPL7ioL93CTKkf4aiMyFRhIqFi_PLs~y9qRp0aDmIp8fy4vzsIrsR32y5bzzwxtrl6UKCiFgu5hejLNSKozTg2EdjGz11EioV2kYXpM6VgPZsenp6~gSwaKP2IcF_fLeuxfKgoJjkRBKHi8~43Zh~SZ_qXgyYAMTrpJAKwQDD9ErvJ5Qi7amGdBT1lGpuKl1cKf~DwhDDDTxoj3N6HeFVvfSR9pp1ChBVbJs4oPSqtLA3uAN8zWMjqExfaZshma~~zqVmbWqYGN7j1s4_q3l4MSXG7BunwnFwpCQ~tKTrRwy7KI4l940rdXS8BUK7fLR6HlxI29ylIfH8bZkfJ4HYrSRyGBfztk2PJzIBSFpNOI2jtaLLYbs4~KsWK~MGpgAz10G8pHyYTRP0_Xc5EOm~0CmE89L2ihrnoVUxkfRi8sJzHYTonVE_Ua0cR3Shm1H9CXPLNP2XjovGNI3M0_1smG4C4P8",
-      "https://claude.ai/code/session_017KJrPqqWVHLqr4E7TLPnpt",
-      "https://github.com/simonw/tools",
-      "https://tools.simonwillison.net/markdown-svg-renderer",
-      "https://tools.simonwillison.net/latex#~1jZq9DoIwEIB3nuKGbigJJS5svoAOMJuQ4EBEJWJjGHh3765A_8DIQtJfIMdR-n0uCV9l4DOs_p8ua3ZZKK2anOsaTqya9AZnHhMo3qqewKWPMh2SOQOFkhSJtmruY1QungBJFk-cQLsspAF8qgFPWKQ6FmdYdCB7oseX5HVNfgE-HGmM2OPATDfAlCssyLcLGI4BONwZ7E8pby5KWoilFBK0n5T4lMeHgQaMMsYjS6hrG61G4Micmcj2EN48tyVgHpzNKMBEHuxEbV0dZhsJwZB7_Lux0mR4YDc9HTd1bnGaki0V1nr6kGHSI8NAwCWaVjeAPyYUNAYxUZt8k2aKlODPRQq7JIYMS-VKaQwHrMmoxqWeLlT6Ag",
-      "https://github.com/nodeca/pako",
-      "https://github.com/mathjax/MathJax",
-      "https://github.com/arena-ai/faster-latex",
-      "https://github.com/cure53/DOMPurify",
-      "https://simonwillison.net/tags/latex",
-      "https://simonwillison.net/tags/paul-ford",
-      "https://simonwillison.net/tags/tools",
-      "https://simonwillison.net/tags/urls",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms"
+      "https://drive.google.com/file/d/1nosR5ER-VFYiw52si_M5kM9ZBfDXmRxJ/view?pli=1&ref=opendemocracy.net",
+      "https://www.bigissue.com/news/employment/amazon-workers-stage-first-formal-uk-strike-calling-on-jeff-bezos-to-share-the-wealth/?ref=opendemocracy.net",
+      "https://www.gmb.org.uk/news/amazon-faces-legal-challenge-after-workers-rights-vote?ref=opendemocracy.net",
+      "https://novaramedia.com/2024/03/28/amazon-warehouse-in-chaos-due-to-union-busting-dirty-tricks/?ref=opendemocracy.net",
+      "https://truthout.org/articles/amazon-is-deploying-ai-to-spy-on-its-workers-and-bust-unions-before-they-form/?ref=opendemocracy.net",
+      "https://www.readthemaple.com/b-c-workers-just-defeated-amazon-in-court-again/?ref=opendemocracy.net",
+      "https://www.unifor.org/news/all-news/following-a-million-dollar-ruling-against-amazon-unifor-will-seek-mediation-expedite?ref=opendemocracy.net",
+      "https://www.bbc.co.uk/news/business-68067022?ref=opendemocracy.net"
      ]
     },
-    "summary_mode": "full"
+    "content_source": "direct"
    }
   },
   {
-   "id": "3d3011b3b2f663f4",
-   "url": "https://starskirmish.com/bench/v0-2/",
-   "title": "Show HN: Gemini 4 Argon plays StarCraft",
+   "id": "1557ed18b56735c6",
+   "url": "https://llmspeed.dev/",
+   "title": "Show HN: Llmspeed – feel how fast a local LLM runs before you buy the hardware",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-16T14:18:44+00:00",
-   "summary_short": "StarSkirmish 基准：LLM 限时一小时写星际争霸机器人，考验长程推理与智能体编码",
-   "summary_long": "StarSkirmish 是一个让 LLM 为《星际争霸：母巢之战》编写机器人的基准测试。每个模型有一小时时间用 C++ 编写一个神族（Protoss）机器人，随后与其它 LLM 的机器人以及人类编写的机器人对战。该基准考察长程推理与智能体编码能力，因为模型必须把练习赛中学到的东西用于改进自己的机器人。\n\nv0.2 版纳入 OpenAI、Anthropic、Google 和 Meta 的旗舰模型，各自在自己的第一方 CLI 环境中运行；得分为每个模型 5 次运行对抗人类编写的竞技机器人名单的平均胜率（0–100）。GPT-6 Astra 得分最高，GPT-6.1 Sol 居第二，Gemini 4 Argon、Claude Opus 5.5 与 Claude Fable 5.1 得分在 37–39 之间、实际持平。以每次一小时运行的 API 成本衡量，GPT-6.1 Sol 性价比突出：得分第二，单次成本仅略高于 GPT-6 Astra 的十分之一。\n\n原文称尚无饱和迹象：最强模型 GPT-6 Astra 对 Stardust、PurpleWave、BananaBrain 的胜率仅 7%。模型得分的最强预测因子是它在一小时内与名单上 7 个最强机器人练习的场次，Claude Fable 5.1 是例外。Gemini 4 Argon 的运行间波动也大于其他实验室的旗舰。",
+   "published_at": "2026-10-17T04:36:53+00:00",
+   "summary_short": "开源模拟器 llmspeed：买硬件前先感受本地 LLM 速度",
+   "summary_long": "llmspeed 是一个开源模拟器，让用户在购买硬件前先感受本地大模型运行起来有多快。页面可按硬件浏览：NVIDIA RTX 3090/4090/5090、RTX PRO 6000、DGX Spark、Tesla V100、AMD Strix Halo（Ryzen AI Max+ 395）、Radeon AI PRO R9700、RX 7900 XTX、Intel Arc Pro B70、Mac Studio M5 Ultra、MacBook Pro M5 Max、Mac mini M5 Pro、纯 CPU（Ryzen 9 9950X + 96GB DDR5）以及云端 H100/H200 等。也可按模型浏览：Qwen 3.5/3.6/3.8 系列、Gemma 4 各尺寸、GLM-5.3、GPT-OSS 20B/120B、DeepSeek V4/V4.1 Flash、Llama 3.1 8B、Nemotron 3.5 等。其中实测数值来自社区基准（r/LocalLLaMA、localscore.ai 等），其余由相似配置推导或按规格预测；这些估算都是针对单设备上的短提示词。代码与数据在 GitHub 开源。",
    "key_points": [
-    "每模型限时一小时用 C++ 写神族机器人，与其它 LLM 的机器人和人类编写的机器人对战，考察长程推理与智能体编码",
-    "GPT-6 Astra 得分第一，GPT-6.1 Sol 第二；Gemini 4 Argon、Claude Opus 5.5、Claude Fable 5.1 在 37–39 区间基本持平",
-    "GPT-6.1 Sol 性价比最佳，单次运行成本略高于 GPT-6 Astra 的十分之一"
+    "这是一个开源模拟器，目的是让用户在购买硬件前先了解本地大模型的速度体验",
+    "支持按硬件浏览，覆盖 NVIDIA、AMD、Intel、苹果 Mac、纯 CPU 及云端 H100/H200 等多类设备",
+    "支持按模型浏览，包含 Qwen、Gemma 4、GLM-5.3、GPT-OSS、DeepSeek Flash、Llama 3.1、Nemotron 等"
    ],
    "topics": [
-    "eval",
-    "coding-agent",
-    "reasoning"
+    "product",
+    "open-source"
    ],
-   "category": "评测",
+   "category": "产品与应用",
    "categories": [
-    "评测"
+    "产品与应用"
    ],
    "horizon": "short",
-   "score": 57.0,
+   "score": 60.6,
    "status": "review",
    "extra": {
-    "hn_points": 171,
+    "hn_points": 223,
     "hn_comments": 75,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/bwapi/bwapi",
-      "https://github.com/OpenBW/openbw",
-      "https://www.basil-ladder.net/ranking.html"
+      "https://github.com/nicorobinreal/llmspeed"
      ]
     },
     "content_source": "direct",
@@ -161,42 +184,346 @@
    }
   },
   {
-   "id": "9db4940a53f86840",
-   "url": "https://openai.com/index/stack-overflow-chatgpt-plugin",
-   "title": "Stack Overflow for Agents triples signups with ChatGPT plugin",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-16T00:00:00+00:00",
-   "summary_short": "Stack Overflow for Agents 靠 ChatGPT 插件注册量一夜翻三倍，两人用 Codex 数周做出产品",
-   "summary_long": "原文介绍 Stack Overflow 正在构建知识智能平台，把散落在 Slack、Google Docs 等系统中的上下文统一起来，转化为可供人和智能体使用的经验证知识；平台 AI 由 GPT‑6 Astra 和 GPT‑6 Sol 驱动，按推理需求和成本把任务路由到不同模型。Stack Overflow for Agents 把这一智能层延伸到智能体，最初只是一个假设，由两名工程师借助 Codex 在几周内做成完整产品。企业产品 Stack Internal 需要连接组织存放知识的各类系统，Codex 同样加速了这部分工作：连接器开发从平均 3–6 周缩短到 4 天，近期更有一天完成一个的案例，原文给出连接器构建时间的最大降幅为 87%。分发环节，团队做了 ChatGPT 插件，让用户能在 ChatGPT 中发现并设置产品，步骤少于传统 MCP 方式。产品副总裁 Alexandra Lato 称，插件让注册量一夜翻三倍，智能体创建量一度达到 10 倍。原文还提到团队希望探索用 Decisions API 减少模型路由与配置工作，并正把知识产品扩展到分享人们所学的内容，但该部分在原文中并未展开。",
+   "id": "0342f39befa10261",
+   "url": "https://github.com/cobanov/PS5LM",
+   "title": "Llama.cpp on a jailbroken PS5: run any GGUF model natively on the console",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-16T18:32:35+00:00",
+   "summary_short": "PS5LM：破解版 PS5 用 llama.cpp 在 GPU 上运行 GGUF，充当局域网内的模型服务器",
+   "summary_long": "PS5LM 面向拥有已破解 PS5、希望在家中自建私有模型服务器的用户：它把 GGUF 模型加载到主机的 GPU 上，运行时不需 PC、云服务或账号，可向局域网内的笔记本、手机和编程工具提供推理服务。实现上，它使用 llama.cpp 的 Vulkan 后端运行在主机的 RDNA 2 GPU 上，以 11.4 GB 共享内存承载模型与上下文，支持 llama.cpp 已知的架构与量化。网络接口包括 OpenAI 的 /v1/chat/completions、Anthropic 的 /v1/messages（Claude Code 可以对接）以及任意浏览器中的聊天页，客户端指向 http://<console>:8081。加载决策模型后，它还可响应 /v1/systemone，回答 choice 选择题、评分题与是/否问题，支持文本与图像。电视端会把每次请求以聊天形式流式显示，标明哪台设备提问、问了什么以及正在生成的回复；Console 页绘制最近两分钟或一小时内的温度、功耗、GPU 与 CPU 负载曲线；planner 依据空闲内存为每个 GGUF 分配最长上下文与最佳缓存；应用可从 Hugging Face 自行下载模型到内部存储、M.2 或 USB。原文实测：Qwen 3.5 0.8B Q4_K_M 为 207 tokens/s、9B 为 55 tokens/s、3.8 27B",
    "key_points": [
-    "两名工程师用 Codex 在几周内做出 Stack Overflow for Agents",
-    "ChatGPT 插件让注册量一夜翻三倍，智能体创建量最高达 10 倍",
-    "Codex 把单个连接器开发从 3–6 周压缩到 4 天，近期有 1 天完成的案例"
+    "基于 llama.cpp 的 Vulkan 后端运行在 PS5 的 RDNA 2 GPU 上，11.4 GB 共享内存供模型与上下文使用，运行时无需 PC、云服务或账号",
+    "对外提供 OpenAI /v1/chat/completions、Anthropic /v1/messages 与浏览器聊天页，客户端指向 http://<console>:8081；加载决策模型后还可响应 /v1/systemone",
+    "原文实测 Qwen 3.5 0.8B Q4_K_M 为 207 tokens/s、9B 为 55 tokens/s，d1 Omni 600M 处理 3 个问题耗时 0.3 秒；运行需固件 7.00 至 13.60、已破解并加载 kstuff-lite、etaHEN、ShadowMountPlus、elfldr、ftpsrv 等 payload"
    ],
    "topics": [
-    "product",
-    "coding-agent",
-    "mcp"
+    "open-source",
+    "local-inference",
+    "gguf"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "开源项目"
+   ],
+   "horizon": "long",
+   "score": 58.2,
+   "status": "review",
+   "extra": {
+    "hn_points": 364,
+    "hn_comments": 85,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/cobanov/PS5LM/releases/latest",
+      "https://ps5lm.cobanov.dev",
+      "https://github.com/cobanov/PS5LM/issues",
+      "https://ollaya.dev",
+      "https://github.com/ollaya-dev/ollaya",
+      "https://github.com/EchoStretch/kstuff-lite",
+      "https://github.com/etaHEN/etaHEN",
+      "https://github.com/drakmor/ShadowMountPlus",
+      "https://github.com/ps5-payload-dev/elfldr",
+      "https://github.com/ps5-payload-dev/ftpsrv",
+      "https://github.com/blackbearreloaded/ps5-homebrew-ui",
+      "https://github.com/mihawk-99/PS5_Vulkan",
+      "https://github.com/abhi245y",
+      "https://github.com/ggml-org/llama.cpp",
+      "https://github.com/mihawk-99",
+      "https://github.com/premohq/PS5CEMU-HAR",
+      "https://github.com/blackbearreloaded",
+      "https://github.com/ps5-payload-dev",
+      "https://github.com/Marice/ps5-exporter",
+      "https://github.com/sharanda/manrope",
+      "https://github.com/cobanov/pocketvibe"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "3d75c9ee093d9424",
+   "url": "https://www.qbitai.com/2026/10/503701.html",
+   "title": "刚刚，Gemini 4终于来了：谷歌重回御三家，API限时半价",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-10-16T05:04:59+00:00",
+   "summary_short": "Gemini 4 Argon 正式开放，主打长流程任务执行与多模态，API 首发半价",
+   "summary_long": "谷歌正式面向全球开发者、企业及付费订阅用户陆续开放 Gemini 4 Argon。按谷歌定位，这一代重点加强编程、专业知识工作与复杂任务的持续执行能力，并推进视觉理解、空间推理和工具调用。谷歌自家评测称其在办公、智能体编程、机器学习、科学推理等方向达到 GPT-6 Astra、Opus5.5 的水平，不少项目领先；第三方 Artificial Analysis 智能指数中，Argon High 与 GPT-6 Astra Max、Claude Fable5.1 Max 并列 53 分。成本方面，Argon High 平均每任务成本 1.99 美元，比 Astra 低约 39%；API 每百万输入 token 2 美元、输出 10 美元，约为 Opus5.5 的一半、Astra 的五分之一，优惠截至 11 月 30 日，12 月 1 日起恢复为 4 美元和 20 美元。原文还展示了多模态生成、把人形机器人动作视频转成仿真与真机方案的流程、在 ADK 与 Chromium 等真实工程任务中的表现，以及科研与安全评测结果。提前体验者 Ethan Mollick 认为这一代明显跃升，但复杂多智能体任务仍有差距。",
+   "key_points": [
+    "Gemini 4 Argon 已面向全球开发者、企业及付费订阅用户陆续开放，定位为加强编程、专业知识工作与复杂任务持续执行，并推进多模态、空间推理和工具调用能力",
+    "谷歌自家评测称其达到 GPT-6 Astra、Opus5.5 水平；第三方 Artificial Analysis 智能指数中 Argon High 与 GPT-6 Astra Max、Claude Fable5.1 Max 并列 53 分",
+    "API 首发价每百万输入 token 2 美元、输出 10 美元，Argon High 平均每任务成本 1.99 美元、比 Astra 低约 39%，优惠截至 11 月 30 日，12 月 1 日起恢复至 4 美元和 20 美元"
+   ],
+   "topics": [
+    "reasoning",
+    "tool-use",
+    "product"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 57.5,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "Gemini",
+     "谷歌"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/henry",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/gemini",
+      "https://www.qbitai.com/tag/%e8%b0%b7%e6%ad%8c",
+      "https://www.qbitai.com/2026/10/503685.html",
+      "https://www.qbitai.com/2026/10/502644.html",
+      "https://www.qbitai.com/2026/10/502628.html",
+      "https://www.qbitai.com/2026/10/501700.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/503701.html&title=刚刚，Gemini 4终于来了：谷歌重回御三家，API限时半价&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2024/08/174625.html",
+      "https://www.qbitai.com/tag/character-ai",
+      "https://www.qbitai.com/2023/08/74477.html",
+      "https://www.qbitai.com/tag/%e6%90%9c%e7%b4%a2%e7%ae%97%e6%b3%95",
+      "https://www.qbitai.com/tag/%e6%9c%ba%e5%99%a8%e4%ba%ba",
+      "https://www.qbitai.com/2024/04/138263.html",
+      "https://www.qbitai.com/2021/03/22595.html",
+      "https://www.qbitai.com/tag/ai%e6%95%99%e7%88%b6",
+      "https://www.qbitai.com/tag/dnn",
+      "https://www.qbitai.com/tag/hinton",
+      "https://www.qbitai.com/tag/%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0",
+      "https://www.qbitai.com/tag/%e7%99%be%e5%ba%a6",
+      "https://www.qbitai.com/tag/%e7%ab%9e%e6%8b%8dai%e6%95%99%e7%88%b6",
+      "https://www.qbitai.com/2020/05/14342.html",
+      "https://www.qbitai.com/tag/%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0%e8%ae%ad%e7%bb%83",
+      "https://www.qbitai.com/2026/02/376451.html",
+      "https://www.qbitai.com/2026/10/502649.html",
+      "https://www.qbitai.com/2026/10/503326.html",
+      "https://www.qbitai.com/2026/10/502544.html",
+      "https://www.qbitai.com/2026/10/502496.html",
+      "https://www.qbitai.com/2026/10/503109.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "6483f0dfe179ac4b",
+   "url": "https://www.qbitai.com/2026/10/503815.html",
+   "title": "68岁亚马逊CTO：别让恐惧，替企业做AI决策",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-10-16T07:01:31+00:00",
+   "summary_short": "亚马逊CTO：企业别因恐惧仓促上AI，先想清要解决什么问题",
+   "summary_long": "在深圳的一次交流中，亚马逊CTO Werner Vogels 表示，恐惧是一种非常糟糕的决策方式。企业担心错过AI转型窗口，但不会因为此刻没有用上AI就立即倒闭；作决定前，应先让工程师和管理者充分学习，想清企业究竟要解决什么问题、AI是否适合。他以2004年数据库故障为例：共享磁盘故障持续十二个多小时，亚马逊损失数百万美元；调查发现约70%的关系型数据库使用场景只需键值访问，团队由此构建Dynamo。放到AI上，他提醒不必追着榜单第一名跑，基准测试与真实业务仍有距离；企业还要算成本，更小的模型和开放权重模型可能已够用。对Agent，他强调提前限定权限、超出边界需人参与决策，开发者要对其负责，并提到AI生成代码带来的“验证债”。",
+   "key_points": [
+    "企业应先明确要解决的问题和AI是否适合，别因害怕错过而仓促采用；原文称企业不会因为此刻没用上AI就立即倒闭，应先让工程师和管理者学习技术能力。",
+    "Werner以2004年数据库故障和Dynamo的由来类比AI选型：不要把所有问题都交给大模型这把“锤子”，基准测试与真实业务有距离，小模型、开放权重模型可能成本更低。",
+    "Agent会代表用户采取行动，必须提前限定权限，例如每天花费超过100美元就需人参与决策；亚马逊设计了规则执行机制检查Agent操作，开发者要对其行为负责，团队还需留意“验证债”。"
+   ],
+   "topics": [
+    "enterprise-adoption",
+    "ai-strategy",
+    "verification-debt"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 57.3,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "Agent",
+     "Werner Vogels",
+     "云计算",
+     "亚马逊云科技"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/shisan",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/agent",
+      "https://www.qbitai.com/tag/werner-vogels",
+      "https://www.qbitai.com/tag/%e4%ba%91%e8%ae%a1%e7%ae%97",
+      "https://www.qbitai.com/tag/%e4%ba%9a%e9%a9%ac%e9%80%8a%e4%ba%91%e7%a7%91%e6%8a%80",
+      "https://www.qbitai.com/2026/10/503109.html",
+      "https://www.qbitai.com/2026/10/502426.html",
+      "https://www.qbitai.com/2026/10/502049.html",
+      "https://www.qbitai.com/2026/09/489724.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/503815.html&title=68岁亚马逊CTO：别让恐惧，替企业做AI决策&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2025/06/290771.html",
+      "https://www.qbitai.com/2019/10/8064.html",
+      "https://www.qbitai.com/tag/aws",
+      "https://www.qbitai.com/tag/%e4%ba%9a%e9%a9%ac%e9%80%8a",
+      "https://www.qbitai.com/2023/10/93599.html",
+      "https://www.qbitai.com/tag/ai%e5%b9%b3%e5%8f%b0",
+      "https://www.qbitai.com/tag/%e6%9c%ba%e5%99%a8%e5%ad%a6%e4%b9%a0",
+      "https://www.qbitai.com/2025/05/287784.html",
+      "https://www.qbitai.com/tag/ai%e5%ba%94%e7%94%a8",
+      "https://www.qbitai.com/tag/%e5%b0%8f%e7%99%bd%e7%a0%94%e6%8a%a5",
+      "https://www.qbitai.com/tag/%e9%97%ae%e5%b0%8f%e7%99%bd",
+      "https://www.qbitai.com/2020/06/15866.html",
+      "https://www.qbitai.com/tag/%e6%95%b0%e6%8d%ae%e5%ba%93",
+      "https://www.qbitai.com/tag/%e6%b5%aa%e6%bd%ae",
+      "https://www.qbitai.com/2026/05/417731.html",
+      "https://www.qbitai.com/tag/kimi-k2-6",
+      "https://www.qbitai.com/tag/tidb-cloud",
+      "https://www.qbitai.com/2026/10/502649.html",
+      "https://www.qbitai.com/2026/10/503326.html",
+      "https://www.qbitai.com/2026/10/502544.html",
+      "https://www.qbitai.com/2026/10/502496.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "1fd6dd971a81f8a5",
+   "url": "https://openrouter.ai/deepseek/deepseek-v4.1-flash-1017",
+   "title": "DeepSeek: DeepSeek v4.1 Flash 1017",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-17T08:37:46+00:00",
+   "summary_short": "DeepSeek V4.1 Flash 上架：1M 上下文，标价每百万 token 输入 0.08 美元",
+   "summary_long": "这是 DeepSeek V4.1 Flash 1017 的模型页面。原文标注发布日期为 2026 年 10 月 17 日，上下文长度 1.0M，标价输入 0.08 美元、输出 0.50 美元每百万 token；页面给出的加权实际均价为输入 0.01761 美元、输出 0.5778 美元每百万 token，并说明缓存与折扣会让实付价格常低于标价。请求可按 Balanced（价格+速度）、Nitro（最快）、Floor（最便宜）三种路由模式分发给不同托管方，另有 Priority、Flex 分级及折扣端点。性能方面，最佳吞吐 320 tok/s、延迟 0.35 秒；近 3 天可用性 99.92%，近 24 小时 99.93%，页面称该数值高于不启用路由时的 95.43%。基准上，Artificial Analysis 智能指数 39.5，HLE 39.2%，AA-LCR 84.0%，SciCode 51.9%，Terminal-Bench 4.0 为 26.8%，AA-Omniscience 准确率 46.4%、非幻觉率 3.5%，在 350 个对比模型中排名第 30。",
+   "key_points": [
+    "上下文 1.0M，标价输入 0.08 美元、输出 0.50 美元每百万 token；加权实付均价为输入 0.01761 美元、输出 0.5778 美元每百万 token",
+    "支持 Balanced、Nitro、Floor 三种路由模式，另有 Priority、Flex 等分级端点，各托管方价格与折扣不同（部分标注 51%、151% off）",
+    "性能与可靠性数据：最佳吞吐 320 tok/s、延迟 0.35 秒；3 天可用性 99.92% 对比不启用路由的 95.43%"
+   ],
+   "topics": [
+    "eval",
+    "inference-serving"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 53.1,
+   "status": "review",
+   "extra": {
+    "hn_points": 511,
+    "hn_comments": 5,
+    "content_source": "reader",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "9814af4b45d5f629",
+   "url": "https://www.qbitai.com/2026/10/503843.html",
+   "title": "霸榜三大基准！优必选 Thinker-WM：多模态统一表征，单模型实现六大能力",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-10-16T08:00:31+00:00",
+   "summary_short": "优必选 Thinker-WM 三大具身世界模型基准登顶，表征层统一视觉、几何与动作",
+   "summary_long": "优必选 Thinker-WM 在三大具身世界模型基准评测中均列第一：WorldOlympiad 综合得分 0.740，EWMBench 综合总分 4.66（超过 Qwen-RobotWorld、Sora2 等），WorldArena1.0 Track-1 在视觉画质、内容一致性、物理合理性、3D 几何精度、指令遵循等 12 项维度整体领先。技术上它不做“视频生成+策略网络+几何预测”的模块拼接，而是把 RGB 视频、深度与机器人动作编码进同一潜在空间，由共享的统一动态 Transformer（UDT）联合时序建模，再由各自解码器还原视频、深度图与可执行动作，深度被作为原生生成模态参与塑造共享表征。共享参数使其支持六种能力模式，包括视频-动作联合生成、世界预测、策略推理、视频转动作、逆动力学。训练语料约 3 万小时，含约 2 万小时第一人称人类视频、约 1 万小时真实机器人数据、约 1 千小时仿真数据；不同机器人动作统一用末端位姿表示并嵌入本体标签。RoboTwin 单任务消融中引入深度使成功率提升 15 个百分点；Motion Probe 实验显示冻结视觉表征即可恢复末端执行器位移。模型已完成在优必选机器人平台上的部署验证。",
+   "key_points": [
+    "WorldOlympiad 综合得分 0.740 居首，3D 一致性 0.531、交互保真度 0.765 两项单项指标居全部参评模型首位；EWMBench 综合总分 4.66，超过 Qwen-RobotWorld、Sora2 等主流模型",
+    "核心设计是在表征层而非接口层做多模态统一：RGB、深度、动作各经编码器进入统一潜在空间，由共享的统一动态 Transformer（UDT）联合演化，多模态 token 在同一注意力机制内交换信息",
+    "训练语料约 3 万小时异构数据（约 2 万小时第一人称人类视频、约 1 万小时真实机器人数据、约 1 千小时仿真数据），并配套 Data Factory 数据基础设施支撑统一训练"
+   ],
+   "topics": [
+    "post-training",
+    "reasoning",
+    "eval"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "评测"
+   ],
+   "horizon": "long",
+   "score": 50.6,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "优必选"
+    ],
+    "outbound": {
+     "arxiv": [
+      "2610.18447"
+     ],
+     "links": [
+      "https://www.qbitai.com/author/qbitai",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/%e4%bc%98%e5%bf%85%e9%80%89",
+      "https://www.qbitai.com/2026/10/503865.html",
+      "https://www.qbitai.com/2026/10/503861.html",
+      "https://www.qbitai.com/2026/10/503829.html",
+      "https://www.qbitai.com/2026/10/503779.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/503843.html&title=霸榜三大基准！优必选 Thinker-WM：多模态统一表征，单模型实现六大能力&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2021/06/25794.html",
+      "https://www.qbitai.com/2022/09/37468.html",
+      "https://www.qbitai.com/tag/%e6%9c%ba%e5%99%a8%e4%ba%ba",
+      "https://www.qbitai.com/tag/%e7%a7%91%e6%8a%80%e5%85%bb%e8%80%81",
+      "https://www.qbitai.com/2024/08/184448.html",
+      "https://www.qbitai.com/2025/08/320128.html",
+      "https://www.qbitai.com/tag/2025%e4%b8%96%e7%95%8c%e6%9c%ba%e5%99%a8%e4%ba%ba%e5%a4%a7%e4%bc%9a",
+      "https://www.qbitai.com/2026/02/375344.html",
+      "https://www.qbitai.com/2026/08/477016.html",
+      "https://www.qbitai.com/2026/10/502649.html",
+      "https://www.qbitai.com/2026/10/503326.html",
+      "https://www.qbitai.com/2026/10/502544.html",
+      "https://www.qbitai.com/2026/10/502496.html",
+      "https://www.qbitai.com/2026/10/503109.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "65442e708214c10b",
+   "url": "https://openai.com/index/itau-generative-ai",
+   "title": "How Itaú is building generative AI for its entire customer base",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-16T19:00:00+00:00",
+   "summary_short": "巴西伊塔乌银行用ia.i对话界面与IARA治理平台，把生成式AI推向全体客户",
+   "summary_long": "Itaú（巴西）在高度监管的金融行业推进“AI First”战略，面向客户与员工落地生成式AI。其CTO Carlos Eduardo Mazzei表示，目标是让技术“几乎不被察觉”：先解决真实日常问题，做到直接、简单、易记。Itaú与Grupo Consumoteca合作的研究显示，80%的巴西人希望更好地管理财务，65%希望有充当“财务副驾”的技术。2024年该行推出首批Inteligência Itaú能力，ia.i是下一阶段：由文本或语音激活的完整对话层，把支票账户、信贷、卡片、保险等交互集中到一处，必要时转接人工支持；底层是覆盖约7000万客户的Customer DNA财务上下文层，遵循互动性、多模态与个性化三原则。首批约30万客户，目标是2026年底覆盖100%客户群。支撑规模化的是治理与编排平台IARA，原文对其介绍在此处截断，未详述。",
+   "key_points": [
+    "ia.i 首批服务约30万客户，目标是2026年底覆盖全部客户群；底层 Customer DNA 财务上下文层覆盖约7000万客户，遵循互动性、多模态、个性化三原则。",
+    "该行选择多种模型而非单一模型（含 OpenAI 模型），以兼顾成本与延迟及需要推理和依据的复杂场景，从而在一个产品中交付完整体验。",
+    "IARA 是支撑银行级规模的AI治理与编排平台；原文列出的指标还包括法律方案库9000万+文档、部门流程效率提升20%至80%。"
+   ],
+   "topics": [
+    "product"
    ],
    "category": "产品与应用",
    "categories": [
     "产品与应用"
    ],
    "horizon": "short",
-   "score": 50.1,
+   "score": 50.5,
    "status": "review",
    "extra": {
     "content_source": "direct",
-    "source_tags": [
-     "Startup"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://stackoverflow.co/"
-     ]
-    },
     "summary_mode": "full"
    }
   }
