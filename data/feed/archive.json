@@ -1,6 +1,126 @@
 {
- "generated_at": "2026-10-18T21:32:08+00:00",
+ "generated_at": "2026-10-19T22:55:14+00:00",
  "items": [
+  {
+   "id": "7a364f356aab4946",
+   "url": "https://openai.com/index/low-resource-programming-languages",
+   "title": "Advancing Coding in Low-Resource Programming Languages",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-19T12:00:00+00:00",
+   "summary_short": "新模型在COBOL等低资源语言上能力大增，并配两项新评测",
+   "summary_long": "原文介绍面向低资源编程语言（COBOL、Fortran、Visual Basic、OCaml）的最新模型能力进展。这类语言可供模型学习的代码与文档远少于Python、JavaScript，却支撑着关键基础设施：COBOL支撑超过40%的在线银行系统、80%的线下信用卡交易和95%的ATM交易，Fortran用于天气预报与核反应堆安全分析。原文称该工作依据开发者与企业客户反馈——模型在这些语言上常表现不佳；而维护与现代化改造本身就困难：文档可能不完整、原开发者可能已离职、重要业务规则可能只存在于代码中，因此无论修bug还是迁移语言都需保持系统原有行为。为此原文提出两项评测：MultiLangBench要求模型从零构建兼容SQLite的数据库引擎，覆盖20种语言；COBOL迁移评测要求把现有程序迁移到另一语言并保持行为不变。结果显示最新模型在两项评测上准确率大幅提升、成本更低。",
+   "key_points": [
+    "MultiLangBench上GPT‑6 Astra在20种语言的平均测试通过率为87.4%，GPT‑5.6 Sol为26.8%，且每种被测语言均有提升",
+    "COBOL迁移评测中GPT‑6.1 Sol在低推理强度下准确率86.6%（GPT‑5.6 Sol为5.4%）且成本低39%，提高推理强度后达97.9%，接近饱和",
+    "分语言看COBOL由10.9%升至72.1%、OCaml 85.8%、Fortran 83.5%、Visual Basic 89.4%，COBOL仍最难；GPT‑6 Luna以约78%更低的估算API成本达到40.3%"
+   ],
+   "topics": [
+    "eval",
+    "coding-agent"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "评测"
+   ],
+   "horizon": "short",
+   "score": 78.6,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Publication"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.ibm.com/think/topics/cobol",
+      "https://repository.library.noaa.gov/view/noaa/71120",
+      "https://www.nrc.gov/education-regulatory-research/research/computer-codes",
+      "https://github.com/openai/MultiLangBench"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "a5bb32320853f4db",
+   "url": "https://arxiv.org/abs/2610.18861",
+   "title": "Hybrid Reasoning Agents: LLM agents that think in latent space, act through text",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-18T20:48:14+00:00",
+   "summary_short": "新型智能体在潜空间推理、用文本行动，性能提升10.4%且大幅减少token",
+   "summary_long": "当前LLM智能体仍通过文本进行推理与交互；潜空间推理虽内部高效，却缺乏原生工具调用能力与推理透明度。作者提出混合推理智能体（HybridAgents），在统一生成过程中于潜空间推理与文本交互之间动态切换。架构上，轻量级HybridLink实现文本与潜空间模式间的无缝切换，智能体的连续工作记忆在多轮中保持无损的混合上下文，从而在保留工具集成智能体能力的同时，使潜空间思考可直接被检查。作者还提出配套后训练算法：HybridSFT通过教会主干模型与HybridLink协同来稳定工具集成的混合生成，HybridRL则学习何时在潜空间思考、何时通过文本行动。在3个模型规模、覆盖数学、科学、医学、搜索与智能体推理的11个基准上，与文本式和潜空间式的前沿LLM智能体及智能体框架相比，性能提升10.4%，token减少35.5%-54.7%，推理快1.8-2.6倍，成本节省2.7-3.7倍。代码与数据已公开。",
+   "key_points": [
+    "提出HybridAgents，在统一生成过程中动态切换潜空间推理与文本交互，兼顾效率与工具调用能力",
+    "HybridLink负责文本与潜空间模式间的无缝转换，连续工作记忆在多轮中保持无损混合上下文，并使潜空间思考可直接检查",
+    "配套后训练算法HybridSFT稳定工具集成的混合生成，HybridRL学习何时潜空间思考、何时文本行动"
+   ],
+   "topics": [
+    "agent-loop",
+    "tool-use",
+    "post-training"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "模型",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 78.0,
+   "status": "published",
+   "extra": {
+    "hn_points": 501,
+    "hn_comments": 235,
+    "outbound": {
+     "arxiv": [
+      "2610.18861"
+     ],
+     "links": [
+      "https://arxiv.org/search/cs?searchtype=author&query=Zou,+J",
+      "https://arxiv.org/search/cs?searchtype=author&query=Qi,+Y",
+      "https://arxiv.org/search/cs?searchtype=author&query=Chen,+S",
+      "https://arxiv.org/search/cs?searchtype=author&query=Bianchi,+F",
+      "https://arxiv.org/search/cs?searchtype=author&query=Zhu,+S",
+      "https://arxiv.org/search/cs?searchtype=author&query=Lu,+P",
+      "https://arxiv.org/search/cs?searchtype=author&query=He,+J",
+      "https://arxiv.org/html/2610.18861v1",
+      "https://github.com/togethercomputer/HybridAgent",
+      "https://arxiv.org/abs/2610.18861",
+      "https://arxiv.org/abs/2610.18861v1",
+      "https://doi.org/10.48550/arXiv.2610.18861",
+      "http://creativecommons.org/licenses/by/4.0/",
+      "https://ui.adsabs.harvard.edu/abs/arXiv:2610.18861",
+      "https://scholar.google.com/scholar_lookup?arxiv_id=2610.18861",
+      "https://api.semanticscholar.org/arXiv:2610.18861",
+      "http://www.bibsonomy.org/BibtexHandler?requTask=upload&url=https://arxiv.org/abs/2610.18861&description=Hybrid Reasoning Agents",
+      "https://reddit.com/submit?url=https://arxiv.org/abs/2610.18861&title=Hybrid Reasoning Agents",
+      "https://info.arxiv.org/labs/showcase.html#arxiv-bibliographic-explorer",
+      "https://www.connectedpapers.com/about",
+      "https://www.litmaps.co/",
+      "https://www.scite.ai/",
+      "https://alphaxiv.org/",
+      "https://www.catalyzex.com",
+      "https://dagshub.com/",
+      "http://gotit.pub/faq",
+      "https://huggingface.co/huggingface",
+      "https://sciencecast.org/welcome",
+      "https://replicate.com/docs/arxiv/about",
+      "https://huggingface.co/docs/hub/spaces",
+      "https://txyz.ai",
+      "https://influencemap.cmlab.dev/",
+      "https://core.ac.uk/services/recommender",
+      "https://info.arxiv.org/labs/index.html",
+      "https://info.arxiv.org/help/mathjax.html"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "9b13d6a721a0c270",
    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",

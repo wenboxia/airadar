@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-18T21:32:08+00:00",
+ "generated_at": "2026-10-19T22:55:14+00:00",
  "top": [
   {
    "id": "9d251ac6836a600d",
@@ -127,50 +127,6 @@
    }
   },
   {
-   "id": "821afa65ec965089",
-   "url": "https://momo5502.com/posts/2026-10-09-game-decompilation/",
-   "title": "500B tokens later: Letting AI agents decompile a first-person shooter",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-11T02:02:38+00:00",
-   "summary_short": "三个月用AI智能体反编译一款FPS游戏，重点分享智能体编排与上下文优化经验",
-   "summary_long": "作者用三个月时间，借助AI智能体把一款流行第一人称射击游戏反编译为C++，目标不是概念验证，而是准确、稳定、功能完整的复刻；项目由作者与RektInator、Future、st0rm及社区其他成员共同完成。除语义正确外，还要求可读可编译的C++源码，并加入安全与缺陷修复及可移植性改进（Linux、macOS、浏览器），后把现代化与可移植性搁置，专注还原原始行为。文章重点不在游戏本身，而在AI编排与基础设施、配置和harness的优化。配置上同时使用Claude Max（20x）与Codex Pro两个订阅，主力是Sonnet 5，Opus 5.5、Luna、Sol、Terra也大量使用；Claude智能体跑在Claude Code CLI，Codex智能体跑在Codex CLI，其他框架试过后差别不大，沿用默认。进度用GitHub CLI管理，一个翻译单元（.cpp文件）对应一个issue，用标签分组与排优先级；智能体在Discord同一频道互读互发，CI失败经webhook推入频道；反汇编用Hex-Rays的ida-mcp。第一个月有4个智能体：3个反编译并提交，1个评审智能体被动协调、审查提交以标记缺陷，完成约80%，游戏可启动、主菜单可见、地图可加载。团队把压缩阈值从默认90%降到42%，并发现智能体随时间失焦、未完成上一函数就换下一个、盯着CI空转、未彻底核查就关闭issu",
-   "key_points": [
-    "目标是把一款流行FPS准确反编译为可读、可编译的C++，并加入安全与缺陷修复及可移植性改进，后搁置现代化与可移植性以专注还原原始行为；最终目的是学习如何长期有效编排自主AI智能体",
-    "基础设施：双订阅并用Claude Max（20x）与Codex Pro，主力模型Sonnet 5；GitHub issue按.cpp翻译单元跟踪进度并用标签分组；Discord单一频道供智能体之间及人机沟通，CI失败由GitHub webhook推入频道；反汇编使用Hex-Rays的ida-mcp",
-    "第一个月4个智能体（3个反编译并提交、1个评审）完成约80%，游戏可启动、主菜单可见、地图可加载；把上下文压缩阈值从默认90%降至42%以减少token消耗，并观察到智能体失焦、跳函数、空转和草率关闭issue等问题"
-   ],
-   "topics": [
-    "multi-agent",
-    "harness",
-    "context-engineering"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 85.2,
-   "status": "published",
-   "extra": {
-    "hn_points": 209,
-    "hn_comments": 149,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://x.com/RektInator",
-      "https://x.com/RisottoNeroHit",
-      "https://x.com/NamelessNoobs",
-      "https://www.datacamp.com/tutorial/claude-code-channels",
-      "https://github.com/HexRaysSA/ida-mcp",
-      "https://sogen.dev"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "3733c75a28bf26df",
    "url": "https://huggingface.co/blog/flux-3",
    "title": "Welcome FLUX.3 Image Klein in Diffusers",
@@ -278,6 +234,53 @@
      ]
     },
     "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "49fe8a3fc3d9ad0e",
+   "url": "https://github.blog/ai-and-ml/githubs-model-for-secret-detection-finding-more-secrets-with-less-noise/",
+   "title": "GitHub’s model for secret detection: Finding more secrets with less noise",
+   "source": "GitHub Blog (AI)",
+   "tier": "S",
+   "published_at": "2026-10-13T17:56:33+00:00",
+   "summary_short": "GitHub 密钥扫描新管线：误报更少，扫描快 86%、成本低 98%",
+   "summary_long": "GitHub 为密钥扫描训练了一个专用分类器，用于区分真实凭证与形似凭证的非敏感字符串。原文指出，结构化凭证常有独特前缀、长度、字母表或校验和，通用密钥则没有，其语法与构建 ID、校验和、资源哈希、示例值等重叠，因此上下文才是决定性信号——同一串口令式字符串，出现在生产数据库 URL 旁可能是真凭证，出现在测试夹具中则无害。为此 GitHub 采用两阶段管线：先用正则过滤以高召回率快速、确定性地筛出候选，再由微调后的 ModernBERT 分类器结合候选及其周边上下文（文件路径、密钥类型、变量名、邻近代码或文本）判断真假，识别占位符、示例、文档片段、生成内容与非敏感标识符。效果方面，原文给出接受率提升 11.5%，后推送扫描中位执行时间降低 86%，相比此前基于远程 LLM 调用的方案服务成本降低 98%。这一效率提升使得通用密钥检测得以扩展到 push protection，在推送被接受前返回结果。原文还提到另有一篇配套文章讨论密钥保护需跟上 AI 加速的开发节奏。",
+   "key_points": [
+    "采用两阶段管线：正则过滤实现高召回的候选生成，再由微调 ModernBERT 分类器结合上下文做判断",
+    "原文给出的效果数字：接受率提升 11.5%，后推送扫描中位执行时间降低 86%，相比远程 LLM 方案服务成本降低 98%",
+    "效率提升使通用密钥检测得以扩展到 push protection，即在推送被接受前完成扫描；使用的上下文信号包括文件路径、密钥类型、变量名和邻近代码或文本"
+   ],
+   "topics": [
+    "cybersecurity",
+    "post-training",
+    "privacy"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全",
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 84.0,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "AI & ML",
+     "Application security",
+     "Security",
+     "AI",
+     "Secret Scanning"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
+      "https://github.blog/ai-and-ml/githubs-model-for-secret-detection-finding-more-secrets-with-less-noise/",
+      "https://github.blog"
+     ]
+    },
     "summary_mode": "full"
    }
   }
@@ -406,50 +409,6 @@
       "https://huggingface.co/reflection/Beam-1.0-501B-A23B/discussions"
      ]
     }
-   }
-  },
-  {
-   "id": "821afa65ec965089",
-   "url": "https://momo5502.com/posts/2026-10-09-game-decompilation/",
-   "title": "500B tokens later: Letting AI agents decompile a first-person shooter",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-11T02:02:38+00:00",
-   "summary_short": "三个月用AI智能体反编译一款FPS游戏，重点分享智能体编排与上下文优化经验",
-   "summary_long": "作者用三个月时间，借助AI智能体把一款流行第一人称射击游戏反编译为C++，目标不是概念验证，而是准确、稳定、功能完整的复刻；项目由作者与RektInator、Future、st0rm及社区其他成员共同完成。除语义正确外，还要求可读可编译的C++源码，并加入安全与缺陷修复及可移植性改进（Linux、macOS、浏览器），后把现代化与可移植性搁置，专注还原原始行为。文章重点不在游戏本身，而在AI编排与基础设施、配置和harness的优化。配置上同时使用Claude Max（20x）与Codex Pro两个订阅，主力是Sonnet 5，Opus 5.5、Luna、Sol、Terra也大量使用；Claude智能体跑在Claude Code CLI，Codex智能体跑在Codex CLI，其他框架试过后差别不大，沿用默认。进度用GitHub CLI管理，一个翻译单元（.cpp文件）对应一个issue，用标签分组与排优先级；智能体在Discord同一频道互读互发，CI失败经webhook推入频道；反汇编用Hex-Rays的ida-mcp。第一个月有4个智能体：3个反编译并提交，1个评审智能体被动协调、审查提交以标记缺陷，完成约80%，游戏可启动、主菜单可见、地图可加载。团队把压缩阈值从默认90%降到42%，并发现智能体随时间失焦、未完成上一函数就换下一个、盯着CI空转、未彻底核查就关闭issu",
-   "key_points": [
-    "目标是把一款流行FPS准确反编译为可读、可编译的C++，并加入安全与缺陷修复及可移植性改进，后搁置现代化与可移植性以专注还原原始行为；最终目的是学习如何长期有效编排自主AI智能体",
-    "基础设施：双订阅并用Claude Max（20x）与Codex Pro，主力模型Sonnet 5；GitHub issue按.cpp翻译单元跟踪进度并用标签分组；Discord单一频道供智能体之间及人机沟通，CI失败由GitHub webhook推入频道；反汇编使用Hex-Rays的ida-mcp",
-    "第一个月4个智能体（3个反编译并提交、1个评审）完成约80%，游戏可启动、主菜单可见、地图可加载；把上下文压缩阈值从默认90%降至42%以减少token消耗，并观察到智能体失焦、跳函数、空转和草率关闭issue等问题"
-   ],
-   "topics": [
-    "multi-agent",
-    "harness",
-    "context-engineering"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 85.2,
-   "status": "published",
-   "extra": {
-    "hn_points": 209,
-    "hn_comments": 149,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://x.com/RektInator",
-      "https://x.com/RisottoNeroHit",
-      "https://x.com/NamelessNoobs",
-      "https://www.datacamp.com/tutorial/claude-code-channels",
-      "https://github.com/HexRaysSA/ida-mcp",
-      "https://sogen.dev"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
    }
   },
   {
@@ -1244,6 +1203,49 @@
    }
   },
   {
+   "id": "7a364f356aab4946",
+   "url": "https://openai.com/index/low-resource-programming-languages",
+   "title": "Advancing Coding in Low-Resource Programming Languages",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-19T12:00:00+00:00",
+   "summary_short": "新模型在COBOL等低资源语言上能力大增，并配两项新评测",
+   "summary_long": "原文介绍面向低资源编程语言（COBOL、Fortran、Visual Basic、OCaml）的最新模型能力进展。这类语言可供模型学习的代码与文档远少于Python、JavaScript，却支撑着关键基础设施：COBOL支撑超过40%的在线银行系统、80%的线下信用卡交易和95%的ATM交易，Fortran用于天气预报与核反应堆安全分析。原文称该工作依据开发者与企业客户反馈——模型在这些语言上常表现不佳；而维护与现代化改造本身就困难：文档可能不完整、原开发者可能已离职、重要业务规则可能只存在于代码中，因此无论修bug还是迁移语言都需保持系统原有行为。为此原文提出两项评测：MultiLangBench要求模型从零构建兼容SQLite的数据库引擎，覆盖20种语言；COBOL迁移评测要求把现有程序迁移到另一语言并保持行为不变。结果显示最新模型在两项评测上准确率大幅提升、成本更低。",
+   "key_points": [
+    "MultiLangBench上GPT‑6 Astra在20种语言的平均测试通过率为87.4%，GPT‑5.6 Sol为26.8%，且每种被测语言均有提升",
+    "COBOL迁移评测中GPT‑6.1 Sol在低推理强度下准确率86.6%（GPT‑5.6 Sol为5.4%）且成本低39%，提高推理强度后达97.9%，接近饱和",
+    "分语言看COBOL由10.9%升至72.1%、OCaml 85.8%、Fortran 83.5%、Visual Basic 89.4%，COBOL仍最难；GPT‑6 Luna以约78%更低的估算API成本达到40.3%"
+   ],
+   "topics": [
+    "eval",
+    "coding-agent"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "评测"
+   ],
+   "horizon": "short",
+   "score": 78.6,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Publication"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.ibm.com/think/topics/cobol",
+      "https://repository.library.noaa.gov/view/noaa/71120",
+      "https://www.nrc.gov/education-regulatory-research/research/computer-codes",
+      "https://github.com/openai/MultiLangBench"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "994797c2417fc3f8",
    "url": "https://eg2.haku.sh/",
    "title": "We turned EmbeddingGemma 2 into a speech-to-text model",
@@ -1275,6 +1277,83 @@
      "arxiv": [],
      "links": [
       "https://github.com/FluidInference/FluidAudio/blob/main/Documentation/Benchmarks.md"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "a5bb32320853f4db",
+   "url": "https://arxiv.org/abs/2610.18861",
+   "title": "Hybrid Reasoning Agents: LLM agents that think in latent space, act through text",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-18T20:48:14+00:00",
+   "summary_short": "新型智能体在潜空间推理、用文本行动，性能提升10.4%且大幅减少token",
+   "summary_long": "当前LLM智能体仍通过文本进行推理与交互；潜空间推理虽内部高效，却缺乏原生工具调用能力与推理透明度。作者提出混合推理智能体（HybridAgents），在统一生成过程中于潜空间推理与文本交互之间动态切换。架构上，轻量级HybridLink实现文本与潜空间模式间的无缝切换，智能体的连续工作记忆在多轮中保持无损的混合上下文，从而在保留工具集成智能体能力的同时，使潜空间思考可直接被检查。作者还提出配套后训练算法：HybridSFT通过教会主干模型与HybridLink协同来稳定工具集成的混合生成，HybridRL则学习何时在潜空间思考、何时通过文本行动。在3个模型规模、覆盖数学、科学、医学、搜索与智能体推理的11个基准上，与文本式和潜空间式的前沿LLM智能体及智能体框架相比，性能提升10.4%，token减少35.5%-54.7%，推理快1.8-2.6倍，成本节省2.7-3.7倍。代码与数据已公开。",
+   "key_points": [
+    "提出HybridAgents，在统一生成过程中动态切换潜空间推理与文本交互，兼顾效率与工具调用能力",
+    "HybridLink负责文本与潜空间模式间的无缝转换，连续工作记忆在多轮中保持无损混合上下文，并使潜空间思考可直接检查",
+    "配套后训练算法HybridSFT稳定工具集成的混合生成，HybridRL学习何时潜空间思考、何时文本行动"
+   ],
+   "topics": [
+    "agent-loop",
+    "tool-use",
+    "post-training"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "模型",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 78.0,
+   "status": "published",
+   "extra": {
+    "hn_points": 501,
+    "hn_comments": 235,
+    "outbound": {
+     "arxiv": [
+      "2610.18861"
+     ],
+     "links": [
+      "https://arxiv.org/search/cs?searchtype=author&query=Zou,+J",
+      "https://arxiv.org/search/cs?searchtype=author&query=Qi,+Y",
+      "https://arxiv.org/search/cs?searchtype=author&query=Chen,+S",
+      "https://arxiv.org/search/cs?searchtype=author&query=Bianchi,+F",
+      "https://arxiv.org/search/cs?searchtype=author&query=Zhu,+S",
+      "https://arxiv.org/search/cs?searchtype=author&query=Lu,+P",
+      "https://arxiv.org/search/cs?searchtype=author&query=He,+J",
+      "https://arxiv.org/html/2610.18861v1",
+      "https://github.com/togethercomputer/HybridAgent",
+      "https://arxiv.org/abs/2610.18861",
+      "https://arxiv.org/abs/2610.18861v1",
+      "https://doi.org/10.48550/arXiv.2610.18861",
+      "http://creativecommons.org/licenses/by/4.0/",
+      "https://ui.adsabs.harvard.edu/abs/arXiv:2610.18861",
+      "https://scholar.google.com/scholar_lookup?arxiv_id=2610.18861",
+      "https://api.semanticscholar.org/arXiv:2610.18861",
+      "http://www.bibsonomy.org/BibtexHandler?requTask=upload&url=https://arxiv.org/abs/2610.18861&description=Hybrid Reasoning Agents",
+      "https://reddit.com/submit?url=https://arxiv.org/abs/2610.18861&title=Hybrid Reasoning Agents",
+      "https://info.arxiv.org/labs/showcase.html#arxiv-bibliographic-explorer",
+      "https://www.connectedpapers.com/about",
+      "https://www.litmaps.co/",
+      "https://www.scite.ai/",
+      "https://alphaxiv.org/",
+      "https://www.catalyzex.com",
+      "https://dagshub.com/",
+      "http://gotit.pub/faq",
+      "https://huggingface.co/huggingface",
+      "https://sciencecast.org/welcome",
+      "https://replicate.com/docs/arxiv/about",
+      "https://huggingface.co/docs/hub/spaces",
+      "https://txyz.ai",
+      "https://influencemap.cmlab.dev/",
+      "https://core.ac.uk/services/recommender",
+      "https://info.arxiv.org/labs/index.html",
+      "https://info.arxiv.org/help/mathjax.html"
      ]
     },
     "content_source": "direct",
@@ -1493,52 +1572,6 @@
    }
   },
   {
-   "id": "c30ad0dc4b352d63",
-   "url": "https://arxiv.org/abs/2610.15542v1",
-   "title": "Apertus 1.5: From Open Text Models to Open Multimodal Reasoners",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2026-10-11T11:34:43+00:00",
-   "summary_short": "Apertus 1.5 把全开源模型从文本扩展到图像音频多模态推理",
-   "summary_long": "Apertus 1.5 把完全开源的 Apertus 家族从文本扩展到多模态推理。做法是在 Apertus 1.0 模型上继续预训练，8B 版本额外使用 4T token，70B 版本额外使用 2T token，从而加入图像与音频理解能力，并把上下文窗口扩大四倍至 262,144 token。多模态经由 tokenizer 引入，语言模型 head 仍限于文本，架构未作改动。发布模型经过监督微调、长上下文微调、可验证奖励的强化学习和偏好对齐；思考能力是聊天模板的一个 flag，而非单独模型，在 8B 模型上把数学推理最多提升 20 分。原文称发布模型在几乎每个基准上都优于前代；在同类完全开源模型中，8B 在知识、指令遵循和文化基准上领先，其指令遵循超过所有对比模型，包括开放权重模型。图像与音频理解是该家族首次具备的能力，与完全开源多模态模型相比具竞争力，在文档理解以及长文本、低资源语音识别上最强；专用视觉和音频模型在感知及英语等高资源语言转录上仍然领先。训练仅使用公开可得数据，追溯尊重爬虫 opt-out，并排除限制性许可材料；模型权重、数据准备与训练配方、评估套件均以宽松许可发布，Apertus 章程随模型一同发布以指导对齐阶段。",
-   "key_points": [
-    "在 Apertus 1.0 上继续预训练（8B 增 4T token、70B 增 2T token），新增图像与音频理解，上下文窗口扩大四倍至 262,144 token；多模态经 tokenizer 进入，语言模型 head 仍限文本，架构不变",
-    "思考能力是聊天模板的 flag 而非独立模型，在 8B 上把数学推理最多提升 20 分；发布模型由监督微调、长上下文微调、可验证奖励强化学习与偏好对齐完成",
-    "在同类完全开源模型中 8B 于知识、指令遵循和文化基准领先，指令遵循超过所有对比模型（含开放权重模型）；图像音频理解与完全开源多模态模型竞争力相当，在文档理解、长文本与低资源语音识别上最强，专用视觉/音频模型在感知与高资源语言转录上仍领先"
-   ],
-   "topics": [
-    "post-training",
-    "open-source",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "研究论文"
-   ],
-   "horizon": "short",
-   "score": 77.6,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Project Apertus",
-     ":",
-     "Yixuan Xu",
-     "Yassine Turki",
-     "Vinko Sabolčec",
-     "Valentina Pyatkin",
-     "Tommy Chu",
-     "Sven Najem-Meyer"
-    ],
-    "author_count": 133,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "Hugging Face Blog"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "9b13d6a721a0c270",
    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
    "title": "DeepSeek-v4.1-Flash-1017",
@@ -1620,39 +1653,6 @@
       "https://github.com/Liquid4All/cookbook/tree/main/finetuning/notebooks"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "44c65736f8dd5ac9",
-   "url": "https://twitter.com/karpathy/status/2109361546505966046",
-   "title": "The gap in shared understanding of LLM capability is widening",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-11T20:20:52+00:00",
-   "summary_short": "Karpathy：LLM 能力认知鸿沟正变成陡峭漏斗，多数人只见过免费版聊天机器人",
-   "summary_long": "Karpathy 重提今年4月的推文，认为人们对 LLM 能力的共同理解鸿沟正在扩大，已不再是两群人各说各话，而是一个陡峭的漏斗。他按接触程度分层：约60亿人（约75%人口）几乎没接触过 LLM；约10亿至20亿人（约20%）偶尔使用免费版 ChatGPT 类产品，把它当成更好的搜索或写作助手，其中不少是非数学与编程领域的专业人士；约2000万人（0.2%）在数学与代码中专业使用前沿模型，亲眼看到过去要花数周数月的复杂项目可由 agent 靠一句提示完成；约5000人（0.00006%）能在内部使用前沿系统，外界只见过预览，而人类的审查与理解开始落后。漏斗由三点驱动：影响随野心、问题规模与时间跨度放大；能力呈锯齿状，在数字化、可验证、有经济价值的领域达到峰值，因为它来自可验证奖励上的强化学习与受收入潜力驱动的环境组合；以及免费层、付费层与内部层的访问差异。",
-   "key_points": [
-    "漏斗分四层：约75%人口几乎没接触过 LLM，约20%偶尔使用免费版，约0.2%在数学与代码中专业使用前沿模型，约0.00006%（约5000人）能在内部使用前沿系统",
-    "Karpathy 称影响随野心、问题规模与时间跨度放大，需要真正在意的大而难的问题储备，这一因素驱动消费者/专业者维度",
-    "系统能力呈锯齿状，峰值出现在数字化、可验证且具经济价值的领域，源于可验证奖励上的强化学习与受收入潜力驱动的环境组合"
-   ],
-   "topics": [
-    "capability-gap",
-    "adoption",
-    "post-training"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "long",
-   "score": 76.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 679,
-    "hn_comments": 996,
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
