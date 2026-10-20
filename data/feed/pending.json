@@ -1,274 +1,414 @@
 {
- "generated_at": "2026-10-19T22:55:14+00:00",
+ "generated_at": "2026-10-20T22:20:40+00:00",
  "items": [
   {
-   "id": "9dbc0d55ff9123c6",
-   "url": "https://huggingface.co/blog/hf-torchneuron",
-   "title": "TorchNeuron: running HF models on AWS Trainium is easier than ever",
+   "id": "2596ff929aeef557",
+   "url": "https://huggingface.co/blog/anylanguagemodel-1-0",
+   "title": "AnyLanguageModel 1.0: One Year of Local Models on Apple Platforms",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-19T00:00:00+00:00",
-   "summary_short": "TorchNeuron 为 AWS Trainium 提供 PyTorch 原生后端，HF 各库可直接运行模型",
-   "summary_long": "TorchNeuron 是面向 AWS Trainium 的 PyTorch 新后端插件，支持 eager 模式、torch.compile 以及 FSDP、TP 等原生分布式 API，将于 2026 年 10 月 20 日起进入公开测试，可通过 pip install torch-neuronx 安装。此前 Hugging Face 在 Trainium/Inferentia 上的体验由 optimum-neuron 提供，它基于 PyTorch XLA 的 torch-neuronx，使用惰性张量和静态形状，每个 graph break 都要重新编译；Optimum Neuron 通过维护自定义建模类、训练器等代码来隐藏这些复杂度。TorchNeuron 将 neuron 作为原生设备直接集成进 PyTorch，对 HF 库而言 Trainium 成为普通设备，Transformers、Diffusers、Accelerate、PEFT 和 TRL 可用与其他加速器相同的类和脚本直接运行。原文表示今后推荐 Neuron 用户直接使用这些库而非经过 Optimum Neuron。在 Transformers 文本生成上，使用 TorchNeuron 时前 100 个最常用文本生成模型架构中 89% 开箱即支持，而 Optimum Neuron v0.4.5 为 46%；只需传入 ",
+   "published_at": "2026-10-20T00:00:00+00:00",
+   "summary_short": "AnyLanguageModel 1.0 发布：改一行 import，就能在本地与托管模型之间切换",
+   "summary_long": "AnyLanguageModel 是 Apple Foundation Models 框架的 drop-in 替代方案，源于开发者的反馈：他们想用本地模型却不知如何起步，也不愿为支持多家推理提供方而增加复杂度。经过一年、数十个版本后，1.0 发布，同时发布 swift-huggingface 1.0 与 swift-xet 1.0。用法是把 import FoundationModels 换成 import AnyLanguageModel，同一段 session 代码即可用于系统模型、经 llama.cpp、MLX、Core ML 的开源权重模型，以及托管提供方。过去一年新增：所有提供方都支持 tool calling 与 guided generation（含嵌套 @Generable 类型及数组）、图像输入；在 OS 27 上支持任何符合 Foundation Models 的 LanguageModel 协议的模型，包括 Core AI 模型。托管侧新增 OpenAI 的 Chat Completions 与 Responses API、Open Responses、Anthropic Messages API、Google Gemini、Ollama、Private Cloud Compute、Hugging Face Inference Providers，以及 Ope",
    "key_points": [
-    "TorchNeuron 是 PyTorch 插件，为 Trainium 提供原生后端，支持 eager 执行、torch.compile 及 FSDP、TP 等原生分布式 API，2026 年 10 月 20 日起公开测试，pip install torch-neuronx 安装。",
-    "对比旧的 optimum-neuron（基于 PyTorch XLA，惰性张量、静态形状、每次 graph break 重编译），TorchNeuron 让 neuron 成为原生设备，Transformers、Diffusers、Accelerate、PEFT、TRL 用相同类和脚本直接运行，官方建议不再经 Optimum Neuron。",
-    "Transformers 文本生成中，前 100 个最常用文本生成模型架构开箱支持率为 89%，Optimum Neuron v0.4.5 为 46%；传 device_map=neuron 即可，示例用张量并行并建议静态缓存以减少重编译。"
+    "改一行 import 即可用 Foundation Models API 切换系统模型、llama.cpp/MLX/Core ML 本地模型与托管提供方",
+    "tool calling、guided generation（含嵌套 @Generable 类型及数组）与图像输入在所有提供方可用；OS 27 上支持任意符合 LanguageModel 协议的模型",
+    "托管侧覆盖 OpenAI Chat Completions/Responses、Open Responses、Anthropic Messages、Gemini、Ollama、Private Cloud Compute、HF Inference Providers 与 OpenRouter 等端点"
    ],
    "topics": [
-    "inference-deployment",
+    "tool-use",
+    "coding-agent",
     "open-source"
    ],
    "category": "Agent 与开发",
    "categories": [
-    "Agent 与开发"
+    "Agent 与开发",
+    "模型"
    ],
-   "horizon": "short",
-   "score": 72.3,
+   "horizon": "long",
+   "score": 71.4,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/hf-torchneuron.md",
-      "https://awsdocs-neuron.readthedocs-hosted.com/en/latest/frameworks/torch/index.html",
-      "https://pytorch.org/blog/introducing-torchneuron-native-pytorch-backend-for-aws-trainium/",
-      "https://github.com/huggingface/optimum-neuron",
-      "https://huggingface.co/docs/diffusers/main/en/training/distributed_inference#writing-a-tensor-parallelism-plan",
-      "https://huggingface.co/aws-neuron/kernels",
-      "https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/index.html",
-      "https://huggingface.co/kernels/aws-neuron/vit-encoder-neuron-kernels",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/hf-torchneuron/kernel.png"
+      "https://github.com/huggingface/blog/blob/main/anylanguagemodel-1-0.md",
+      "https://huggingface.co/blog/anylanguagemodel",
+      "https://github.com/huggingface/AnyLanguageModel/releases/tag/1.0.0",
+      "https://github.com/huggingface/swift-huggingface/releases/tag/1.0.0",
+      "https://github.com/huggingface/swift-xet/releases/tag/1.0.0",
+      "https://github.com/apple/coreai-models",
+      "https://github.com/huggingface/swift-huggingface",
+      "https://github.com/huggingface/swift-xet",
+      "https://www.openresponses.org",
+      "https://huggingface.co/docs/inference-providers/index",
+      "https://github.com/huggingface/AnyLanguageModel#api-credentials-and-security",
+      "https://huggingface.co/google/gemma-4-E2B-it-qat-q4_0-gguf",
+      "https://huggingface.co/LiquidAI/LFM2.5-2.6B-GGUF",
+      "https://huggingface.co/mlx-community/Qwen3.8-27B-4bit",
+      "https://huggingface.co/zai-org/GLM-5.3",
+      "https://github.com/huggingface/AnyLanguageModel/graphs/contributors",
+      "https://github.com/huggingface/AnyLanguageModel",
+      "https://huggingface.co/blog/swift-huggingface"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "3a11e60ee8cf431d",
-   "url": "https://mistral.ai/news/timestral/",
-   "title": "Timestral: Mistral's time-series foundation models",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "4dc8a56e037376de",
+   "url": "https://simonwillison.net/2026/Oct/20/battledrones/",
+   "title": "Battle Drones - a vibe coded RTS with audio-based multiplayer",
+   "source": "Simon Willison",
    "tier": "A",
-   "published_at": "2026-10-19T09:59:32+00:00",
-   "summary_short": "Mistral 发布时序基础模型 Timestral，209M 参数在三项公开基准登顶",
-   "summary_long": "Mistral 发布首个时间序列基础模型系列 Timestral，包含 5M、28M、123M、209M 四档规模，共享同一架构与训练配方，每一档都位于准确率与模型规模权衡的帕累托前沿上。原文称，最大模型仅 209M 参数，却在 GIFT-Eval、TIME、fev-bench 三项领域主要公开基准上均排名第一，以约三分之二的参数量超过此前最优结果，成绩来自单个检查点、未使用集成；结果已提交至 GIFT-Eval 与 TIME 榜单。模型提供概率化、多变量预测，支持仅历史与已知未来协变量，推理不需要 GPU。原文对比了时序基础模型与传统方法：ARIMA、线性回归通常只拟合单条序列，PatchTST 等深度学习模型仍需在每个数据集上从头训练；时序基础模型在大规模多样语料上预训练，可对未见数据做零样本预测，包括数据稀缺领域。Timestral 结合合成数据预训练、协变量感知注意力与长上下文学习，并通过 Mistral Forge 提供领域适配微调。原文提到，28M 模型在 GIFT-Eval 与 TIME 上胜过约四倍大的 Chronos-2，209M 模型以更少参数胜过 TimesFM-3 与 Falcon-2.0。",
+   "published_at": "2026-10-20T19:34:19+00:00",
+   "summary_short": "12版迭代的浏览器RTS，靠声音同步实现近距离双人联机",
+   "summary_long": "作者介绍了自己最新的 vibe coding 游戏实验《Battle Drones》：一款模仿《命令与征服》风格的即时战略游戏，运行在浏览器中，手机和桌面端均可玩。项目自 7 月起步，经历 12 个大版本、321 次主要由 Claude Code 等编码代理完成的提交；作者几乎没审阅过代码，使用的 TypeScript 也不是自己熟悉的语言，但做了大量试玩。当前内容包括：9 种建筑、7 种地面载具、6 种空中载具、3 种步兵，均为 3D 模型；战争迷雾；对空和对地需要不同武器；五类生物群系共六张地图以及随机地图生成器；Skirmish 与 Last Stand 两种模式；范围效果武器、补给箱、随战况变化的游戏内音乐；多种 AI 性格与 AI 对战 AI 模式；巨型机甲 Goliath；修改规则用的 Mutators；每日挑战与成就系统；以及让两个 LLM 互相对战的 Agent 模式。其中最特别的是多人模式：两台彼此靠近的设备通过音频消息同步游戏状态，这是作者此前 Chirp Pong 实验的延伸。",
    "key_points": [
-    "四档规模 5M、28M、123M、209M，共享同一架构与训练配方，各规模均处于准确率与模型规模的帕累托前沿",
-    "最大 209M 模型在 GIFT-Eval、TIME、fev-bench 三项公开基准排名第一，参数量约为此前 SOTA 的三分之二，单检查点、无集成",
-    "提供概率化、多变量预测，支持仅历史与已知未来协变量，推理可在 8 线程标准服务器 CPU 上运行"
+    "项目经历 12 个大版本、321 次主要由 Claude Code 完成的提交，作者几乎未审阅代码，也不熟悉 TypeScript，但做了大量试玩",
+    "所谓“好玩更新”来自作者直接要求 Claude“让它好玩得多”",
+    "多人模式让两台处于麦克风接收范围内的设备通过音频消息同步游戏状态，延续了作者此前 Chirp Pong 的实验"
    ],
    "topics": [
-    "time-series",
-    "foundation-model"
+    "coding-agent",
+    "product"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 68.7,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "game-design",
+     "projects",
+     "ai",
+     "generative-ai",
+     "llms"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/simonw/battledrones#readme",
+      "https://simonw.github.io/battledrones/",
+      "https://simonwillison.net/2026/Aug/5/raccoon-heist/",
+      "https://simonwillison.net/2026/Oct/20/battledrones/#battle-drones",
+      "https://simonwillison.net/2026/Oct/20/battledrones/#how-i-built-this",
+      "https://simonwillison.net/2026/Oct/20/battledrones/#v1-the-initial-prototype",
+      "https://simonwillison.net/2026/Oct/20/battledrones/#v2-full-sprites",
+      "https://simonwillison.net/2026/Oct/20/battledrones/#v3-varied-terrain",
+      "https://simonwillison.net/2026/Oct/20/battledrones/#v4-the-fun-update",
+      "https://simonwillison.net/2026/Oct/20/battledrones/#v5-battle-drones-goes-3d",
+      "https://simonwillison.net/2026/Oct/20/battledrones/#v8-archipelago",
+      "https://simonwillison.net/2026/Oct/20/battledrones/#v10-goliath-and-agent-battles",
+      "https://simonwillison.net/2026/Oct/20/battledrones/#agent-battles",
+      "https://simonwillison.net/2026/Oct/20/battledrones/#v11-random-maps",
+      "https://simonwillison.net/2026/Oct/20/battledrones/#v12-multiplayer-via-sound",
+      "https://simonwillison.net/2026/Oct/20/battledrones/#some-thoughts",
+      "https://en.wikipedia.org/wiki/Command_&_Conquer_(1995_video_game)",
+      "https://github.com/simonw/battledrones/commits/main/",
+      "https://simonw.github.io/battledrones/models.html",
+      "https://simonwillison.net/2026/Oct/15/chirp-pong/",
+      "https://claude.ai/code/session_015RYeKm4ji4N16oqthyX1b1",
+      "https://developers.openai.com/api/docs/guides/image-generation",
+      "https://simonw.github.io/battledrones/v1/",
+      "https://github.com/phaserjs/phaser",
+      "https://simonw.github.io/battledrones/v2/",
+      "https://github.com/simonw/battledrones/tree/v2/public/assets/sprites",
+      "https://github.com/simonw/battledrones/commit/aa22f08a34347d7d9f94b33f44a73b4deb046aa1",
+      "https://simonw.github.io/battledrones/v3/",
+      "https://simonwillison.net/2026/Sep/27/2026-in-llms-so-far/#simon-willison-2026-in-llms.059.webp",
+      "https://code.claude.com/docs/en/workflows",
+      "https://code.claude.com/docs/en/sub-agents",
+      "https://simonw.github.io/battledrones/v4/",
+      "https://github.com/simonw/battledrones/blob/main/Battle%20Drones%20The%20Fun%20Update%20%E2%80%94%20Release%20Notes.md",
+      "https://simonw.github.io/battledrones/v5/",
+      "https://simonw.github.io/battledrones/v6/",
+      "https://simonw.github.io/battledrones/v7/",
+      "https://simonw.github.io/battledrones/v9/",
+      "https://en.wikipedia.org/wiki/Pacific_Rim_(film)#Plot",
+      "https://github.com/simonw/battledrones/blob/7001ed186c8b8aef4acb27f680ecf4c09b607e54/AGENT-BATTLES.md",
+      "https://simonw.github.io/battledrones/v11/?replay=battles/showcase/2026-10-14-frostbite-42-claude-haiku-5.5-vs-gpt-6-luna.json"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "dbaa902542534b3a",
+   "url": "https://openai.com/index/openai-to-acquire-orchestra-bio",
+   "title": "OpenAI acquires Orchestra Bio",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-20T00:00:00+00:00",
+   "summary_short": "OpenAI收购Orchestra Bio，把它并入生命科学AI产品Rosalind",
+   "summary_long": "OpenAI于2026年10月20日宣布收购Orchestra Bio。Orchestra Bio是一个帮助生物制药团队协调复杂药物开发流程的平台。OpenAI表示，把Orchestra的团队与技术同它面向生命科学研究的AI模型与工具Rosalind结合。原文指出，在美国，一款新药从靶点发现到获得监管批准平均约需10至15年；除科学问题外，团队还需跨内部部门和外部合作方协调项目，往往依赖彼此割裂的系统，OpenAI认为AI已到可承接这类专业任务与复杂工作流的拐点。Rosalind包含GPT-Rosalind（帮助科学家推理生物学与化学问题）与Rosalind Workbench（连接科学工具与数据，帮助分析结果、规划实验）。Orchestra的平台让人与AI代理协作推进药物项目，科学家可将研究监测与跟踪交给代理，例如某生产批次失败可能延误临床试验启动时，代理可找出受影响的活动与时间线、汇总信息并比较应对方案。OpenAI称此次整合是迈向该愿景的一步，原文未披露交易条款。",
+   "key_points": [
+    "OpenAI宣布收购Orchestra Bio，把其团队与技术同生命科学AI产品Rosalind结合，原文未披露交易条款。",
+    "Orchestra Bio的平台让人与AI代理协作推进药物开发，科学家可把研究与项目的监测跟踪交给代理；代理能识别受影响的活动与时间线、汇总信息并比较应对方案。",
+    "Rosalind包含GPT-Rosalind与Rosalind Workbench；原文还提到OpenAI与Novo Nordisk、Moderna在生命科学领域的合作。"
+   ],
+   "topics": [
+    "product",
+    "life-sciences"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 66.5,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Company"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://orchestra.bio/",
+      "https://openai.com/rosalind/#product",
+      "https://openai.com/rosalind/#novo-nordisk",
+      "https://openai.com/rosalind/#moderna"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "34b84ef907f5fd9b",
+   "url": "https://www.interconnects.ai/p/latest-open-artifacts-25-deepseek",
+   "title": "Latest open artifacts (#25): DeepSeek V4.1 Flash 1017, American-made models, and new regulatory controls in the US & China",
+   "source": "Interconnects",
+   "tier": "A",
+   "published_at": "2026-10-20T17:04:21+00:00",
+   "summary_short": "DeepSeek公开内部推理栈DeepInfer，中美同时收紧开放模型监管",
+   "summary_long": "本期聚焦监管与模型发布两条线。监管方面：中国商务部发布政策提案（尚未立法），要求前沿AI模型及部分其他技术在国际共享前获政府预审批；原文认为外界反应过度，因文件称开源技术将走自动审批，但有观点认为该框架未来可用于监管中国AI产业，或意在阻止类似中国初创公司Manus被出售给西方公司的情况。美国国土安全部对DeepSeek发布命令，限制该公司及其模型作为技术平台成为联邦民用采购供应商；原文称该命令对微调模型或基于DeepSeek输出训练的模型（如英伟达Nemotron）如何适用尚不清楚，并认为这强化了本土开放模型生态的必要性。发布方面：DeepSeek公开内部推理栈DeepInfer，原文称其对本家模型可能远高效于vLLM/SGLang，并援引估算称在该栈上售卖token毛利率可达90%，这是首次有领先实验室分享此类工具。小米MiMo发布V2.6-Pro-RL，复用V2.5基座、加大RL训练投入，并附技术报告与部分训练环境；DeepSeek-V4.1-Flash-1017为新尺寸552B-A16B、支持图像输入、采用MIT许可。",
+   "key_points": [
+    "中国商务部发布政策提案，要求前沿AI模型等在国际共享前获政府预审批；文件称开源技术将走自动审批，原文认为外界反应过度",
+    "美国国土安全部对DeepSeek发布命令，限制其公司及模型作为技术平台成为联邦民用采购供应商",
+    "DeepSeek公开内部推理栈DeepInfer，原文称其对本家模型可能远高效于vLLM/SGLang，并援引估算称售卖token毛利率可达90%"
+   ],
+   "topics": [
+    "open-source",
+    "post-training"
    ],
    "category": "模型",
    "categories": [
-    "模型"
+    "模型",
+    "行业动态"
    ],
    "horizon": "short",
-   "score": 67.8,
-   "status": "review",
-   "extra": {
-    "hn_points": 518,
-    "hn_comments": 97,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://mistral.ai/products/forge/",
-      "https://github.com/mistralai/timestral",
-      "https://docs.mistral.ai/models/timestral-1-0",
-      "https://huggingface.co/collections/mistralai/timestral"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "8accc0ca43725def",
-   "url": "https://www.normaltech.ai/p/new-paper-emerging-trends-in-ai-agent",
-   "title": "New paper: Emerging trends in AI agent evaluation",
-   "source": "AI Snake Oil",
-   "tier": "C",
-   "published_at": "2026-10-19T20:11:55+00:00",
-   "summary_short": "普林斯顿等团队梳理AI agent评估的33个新兴趋势，指出它远比模型评估复杂",
-   "summary_long": "原文介绍论文《Emerging Trends in AI Agent Evaluation》。作者称，对独立与内嵌式AI评估（尤其针对AI agent）的呼声渐长，但何为“好的”评估、该评估什么、如何协调涌入评估生态的新参与者仍不清楚。普林斯顿团队与斯坦福、英国AI安全研究所及布鲁金斯学会的评估研究者合作，从科学方法、研究议程、评估生态三个维度综合出33个新兴趋势，以帮助正在学习这一新范式的人，并为评估者、资助方和公众提供可提的问题与可操作建议。原文指出，agent评估远比模型评估复杂：须审视整条轨迹而非只看最终结果，判断agent是否走捷径，且更难把表现变化归因到具体组件；评估成本高，如ExploitBench上多个agent的评估花费数万美元额度，还未计入搭建维护评估基础设施的工程投入。面对海量trace，规模化监测工具本身也不可靠、需要被评估。评估结果未必跨层级迁移：METR的随机对照试验发现，使用agent工具做软件开发反而增加了任务总完成时间。",
-   "key_points": [
-    "论文从科学方法、研究议程、评估生态三个维度综合出33个AI agent评估的新兴趋势，目标读者包括评估者、资助方、公众和刚进入该领域的人",
-    "agent评估需审视整条执行轨迹而非只看最终结果，要判断是否走捷径，且更难把表现变化归因到具体组件；ExploitBench上多个agent的评估花费数万美元额度，另需大量工程投入搭建维护基础设施",
-    "评估结果不保证跨层级迁移：METR的随机对照试验发现，使用agent工具做软件开发反而增加了任务总完成时间，因此在真实情境中评估是必要的"
-   ],
-   "topics": [
-    "eval"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测"
-   ],
-   "horizon": "long",
-   "score": 66.8,
+   "score": 64.7,
    "status": "review",
    "extra": {
     "content_source": "rss",
     "outbound": {
-     "arxiv": [
-      "2407.01502",
-      "2507.09089"
-     ],
+     "arxiv": [],
      "links": [
-      "https://sage.cs.princeton.edu/trends/",
-      "https://aievaluatorforum.org/initiatives/embedded-evaluation-letter",
-      "https://arxiv.org/abs/2407.01502",
-      "https://sage.cs.princeton.edu/trends/emerging-trends-paper.pdf",
-      "https://substackcdn.com/image/fetch/$s_!B9sr!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdf3d3b4a-b29e-4214-9e4b-b1c17d8acbd9_3188x1830.png",
-      "https://exploitbench.ai/",
-      "https://substackcdn.com/image/fetch/$s_!_h3_!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F770ee50d-b62a-41be-8d69-07843214513d_3681x1515.png",
-      "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
-      "https://www.normaltech.ai/p/open-world-evaluations-for-measuring",
-      "https://substackcdn.com/image/fetch/$s_!BJOH!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9e0027ce-11bc-4ab9-9812-dfb26c5f4543_2204x1476.png",
-      "https://arxiv.org/abs/2507.09089",
-      "https://www.anthropic.com/claude-fable-and-mythos-5-1"
+      "https://x.com/zephyr_z9/status/2111071903469478291",
+      "https://x.com/ZilanQian/status/2111073916194013274",
+      "https://www.npr.org/2026/04/27/g-s1-118892/china-blocks-meta-from-acquiring-ai-startup-manus",
+      "https://public-inspection.federalregister.gov/2026-21447.pdf",
+      "https://github.com/deepseek-ai/DeepInfer",
+      "https://x.com/zephyr_z9/status/2112499092031185134?s=46",
+      "https://www.interconnects.ai/p/latest-open-artifacts-25-deepseek?utm_source=substack&utm_medium=email&utm_content=share&action=share",
+      "https://x.com/mylifcc/status/2112397528272695299",
+      "https://artifactshub.ai/",
+      "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL",
+      "https://huggingface.co/XiaomiMiMo",
+      "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/blob/main/MiMo_V2_6_technical_report.pdf",
+      "https://mimo.xiaomi.com/rl/",
+      "https://substackcdn.com/image/fetch/$s_!ZT8F!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4b349893-9ca4-441a-8f91-c47cb0ed746f_2908x1752.png",
+      "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "https://huggingface.co/deepseek-ai",
+      "https://substackcdn.com/image/fetch/$s_!_dJv!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Feafdaf3b-422d-42a3-800b-bf2a88fe62e8_2937x2531.jpeg",
+      "https://huggingface.co/Cloudflare/clef",
+      "https://huggingface.co/Cloudflare",
+      "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+      "https://huggingface.co/nvidia",
+      "https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3.5-Super-and-Lightning-Technical-Report.pdf",
+      "https://substackcdn.com/image/fetch/$s_!PsYX!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F62b03a7e-d894-49a1-a158-fced8869a5b6_11400x4500.png",
+      "https://huggingface.co/reflection/Beam-1.0-501B-A23B",
+      "https://huggingface.co/reflection",
+      "https://substackcdn.com/image/fetch/$s_!_p5J!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2afd5177-2bb3-4d1d-9eb6-f61c0791f5a6_2358x1276.png",
+      "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf",
+      "https://huggingface.co/prism-ml",
+      "https://huggingface.co/ornith-ai/Ornith-1.5-397B",
+      "https://huggingface.co/ornith-ai",
+      "https://substackcdn.com/image/fetch/$s_!saYK!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd676e721-6918-43a8-8724-5e5bcf224377_2787x1568.png",
+      "https://huggingface.co/inclusionAI/Ling-3.0-flash-VL-fp4",
+      "https://huggingface.co/inclusionAI",
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+      "https://huggingface.co/meta-models",
+      "https://www.interconnects.ai/p/meta-shakes-up-the-frontiers-open",
+      "https://www.interconnects.ai/p/latest-open-artifacts-25-deepseek"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "e7fd8cf2b3223b89",
-   "url": "https://news.ycombinator.com/item?id=50151036",
-   "title": "Ask HN: How to deal with shipping AI-written code you don't understand?",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-19T11:24:34+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
+   "id": "5ace29ffc12896e3",
+   "url": "https://www.qbitai.com/2026/10/504184.html",
+   "title": "谷歌开源RSI新成果！华人浓度爆表",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-10-19T03:11:58+00:00",
+   "summary_short": "谷歌开源Harness²：让模型运行中自改脚手架，办公基准最高涨11.5分",
+   "summary_long": "过去业内的递归自我改进（RSI）在真实开放场景中几乎全军覆没，卡在两处：真实任务没有标准答案可供打分，模型无法判断改完是变聪明还是瞎编；为单个任务魔改的脚手架过度拟合，换任务即成累赘，陷入噪声螺旋。谷歌团队提出的Harness²针对这两点搭了双层递归架构。任务级递归先跑一版参考轨迹暴露缺陷，再由编辑角色提出“通用缺陷修补”与“领域专属修补”两套方案，放回同一任务分别探测、与参考轨迹做行为对比，最后由合成器只合并被行为证据证明有效的改动，并支持k路并行探测。改进级递归则在任务结束后把调试记录交给反思模块，写成EXPERIENCE.md存入持续改进经验库，供后续任务的提议与合成环节检索，使执行端仍用干净的基础脚手架。实测在WorkBuddy-Bench上，单步改进让GLM-5从64.2升至75.7，反超原生Gemini 3.5 Flash的72.4。项目已开源，支持OpenCode与Codex。",
+   "key_points": [
+    "Harness²让大模型在运行中自己修改外挂代码、系统提示词、工具链和技能库，属于Harness层的RSI，目前已开源并支持OpenCode与Codex。",
+    "双层递归：任务级用Propose–Probe–Compose机制，在没有标准答案的情况下靠行为对比筛选有效改动；改进级由反思模块把调试记录写成EXPERIENCE.md存入持续改进经验库。",
+    "实测WorkBuddy-Bench上单步改进使GLM-5从64.2升至75.7（+11.5），Codex下从64.4升至75.3；JobBench上Gemini 3.5 Flash涨4.5分、GLM-5涨3.6分；LAB上GLM-5部分通过率提升11.8个百分点；k=5并行可进一步提升。"
+   ],
    "topics": [
-    "coding-agent"
+    "harness",
+    "agent-loop",
+    "context-engineering"
    ],
    "category": "Agent 与开发",
    "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 66.5,
-   "status": "review",
-   "extra": {
-    "hn_points": 194,
-    "hn_comments": 308,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://news.ycombinator.com",
-      "https://hn.algolia.com/?query=Ask%20HN%3A%20How%20to%20deal%20with%20shipping%20AI-written%20code%20you%20don%27t%20understand%3F&type=story&dateRange=all&sort=byDate&storyText=false&prefix&page=0",
-      "https://www.linkedin.com/posts/ali-hamie_im-an-engineer-at-meta-and-i-never-felt-share-7517317918666211328-7C8N",
-      "https://terriblesoftware.org/2026/10/02/the-brain-sandwich/",
-      "https://github.com/onion2k/guardrails/blob/main/GUARDRAILS.md#the-checks",
-      "https://github.com/mhalstrom/maximizepm",
-      "https://compile-xc.org/",
-      "https://alexgaynor.net/2026/sep/07/is-it-correct/",
-      "https://labs.scale.com/leaderboard/sweatlas-tw",
-      "https://dev.to/ayanozturk/dont-blame-the-developer-lessons-from-crowdstrike-1gfn",
-      "https://www.linkedin.com/pulse/blame-game-why-blaming-developers-can-undermine-sarah-choudhary",
-      "https://thedevopsdojo.substack.com/p/stop-blaming-developers-why-ops-fails",
-      "https://gavinray97.github.io/blog/design-by-contract-and-effects-for-llms",
-      "https://i.imgur.com/CNAUczi.png",
-      "https://t.me/djinni_official/2163",
-      "https://github.com/sshah03/perspica",
-      "https://smalldocs.org",
-      "https://github.com/gzurl/agent-squad",
-      "https://alexanderaghili.com/",
-      "https://getchronosphere.com",
-      "https://www.linkedin.com/pulse/ai-code-quality-jorge-varas-awsqc/",
-      "https://www.ycombinator.com/apply/",
-      "https://github.com/HackerNews/API",
-      "https://www.ycombinator.com/legal/"
-     ]
-    },
-    "content_source": "direct"
-   }
-  },
-  {
-   "id": "c875e80c9abbccf4",
-   "url": "https://artificialanalysis.ai/models/deepseek-v4-1-flash-1017",
-   "title": "DeepSeek V4.1 Flash 1017 (Max)",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-19T04:41:46+00:00",
-   "summary_short": "DeepSeek V4.1 Flash 测评：智能指数45位列121款模型第2，开源权重",
-   "summary_long": "这是 Artificial Analysis 对开源权重模型 DeepSeek V4.1 Flash 1017 (Max) 的测评页面，模型于 2026 年 10 月发布，采用 MIT 许可证，权重发布在 Hugging Face。它在 Artificial Analysis 智能指数（v4.3.2，含 AA-Briefcase、GDPval-AA、Terminal-Bench 4.0、SciCode、Humanity's Last Exam 等 10 项评测）上得分 45，在 121 个模型中排第 2，明显高于同类模型中位数 19。速度方面，输出 210.6 tokens/秒，在 78 个模型中排第 8；定价为每百万输入 tokens 0.30 美元、输出 1.20 美元，缓存折扣 98%，智能指数单任务平均成本 0.26 美元。规格上支持文本与图像输入、文本输出，上下文窗口 1M tokens，总参数 552B、推理时每 token 激活 16B，属于推理版本。原文同时指出其输出冗长：评测中共生成 210M tokens，高于中位数 140M，在 47 个模型中排第 39。",
-   "key_points": [
-    "智能指数 45 分，在 121 个模型中排第 2，同类中位数为 19",
-    "输出速度 210.6 tokens/秒，排第 8；定价输入 $0.30、输出 $1.20（每百万 tokens），缓存折扣 98%",
-    "总参数 552B、激活 16B，1M tokens 上下文，支持文本与图像输入，MIT 许可证，权重发布于 Hugging Face"
-   ],
-   "topics": [
-    "eval",
-    "reasoning"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测",
+    "Agent 与开发",
     "模型"
    ],
-   "horizon": "short",
-   "score": 66.2,
+   "horizon": "long",
+   "score": 62.0,
    "status": "review",
    "extra": {
-    "hn_points": 186,
-    "hn_comments": 90,
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "谷歌"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://opensource.org/license/mit",
-      "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017"
+      "https://www.qbitai.com/author/jay",
+      "https://www.qbitai.com"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "f73f11092849b85a",
-   "url": "https://github.blog/ai-and-ml/github-copilot/how-to-continue-a-github-copilot-app-session-in-vs-code/",
-   "title": "How to continue a GitHub Copilot app session in VS Code",
+   "id": "b88101e5b9e04737",
+   "url": "https://www.latent.space/p/sfcompute2",
+   "title": "The Programmable Data Center — Evan Conrad, SF Compute",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-10-20T19:31:57+00:00",
+   "summary_short": "SF Compute 谈如何把 GPU 算力做成可编程的交易市场",
+   "summary_long": "这期节目录制于 AIE NYC 的 Compute Trading 专场间隙。节目先回顾：早期云时代，软件定义网络把控制平面与数据平面分离，带来颠覆性变化；如今这类变革轮到 GPU。过去自建超算集群需 5000 万至 1 亿美元前期投入，还要自建从硬件、固件到内核的整栈；SF Compute 现在让用户买卖当下与未来的 GPU 小时，并能以程序化方式控制从网络到内存的一切。Evan Conrad 用酒店比喻描述公司扩张：客户先要一间房，随后要清洁、客房服务与安保，最终发现交付房间意味着要运营整座酒店；SF Compute 起初尝试转租一个集群，如今已自建相当一部分云运营能力，用于交付市场上交易的算力，即“物理交割”：买方得到的是可用算力，而不是按指数支付的现金。原文还谈到现货与远期定价、批式与实时推理，以及算力指数为何可能与实际购买算力的成本脱节，并强调市场运营方保持独立性的必要。",
+   "key_points": [
+    "物理交割意味着买方拿到可用算力，而非按指数结算的现金；工作负载能否被中断、从存储恢复有多快、需要哪代 GPU 与何种网络和软件配置，都会同时影响合约条款与价格。",
+    "SF Compute 不等待所有 GPU 集群变得完全可互换，而是按不同约束撮合订单，让技术在持续变化中也能交易，代价是流动性被分散到更多品类上。",
+    "Evan 认为独立性对市场运营方至关重要：拥有大型硬件或推理业务的公司，其激励使它们更难运营一个中立的交易所。"
+   ],
+   "topics": [
+    "product",
+    "reasoning"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 58.8,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.youtube.com/watch?v=jiUC6IUMdvc&t=1552s",
+      "https://aie.codes/",
+      "https://www.youtube.com/watch?v=p1k7TiAFqdE&pp=ygUTbGF0ZW50IHNwYWNlIG1hcnRpbg%3D%3D",
+      "https://www.reddit.com/r/networking/comments/3lctxk/comment/cv597dc/",
+      "https://www.latent.space/p/sfcompute",
+      "https://sfcompute.com",
+      "https://ai.engineer/nyc/2026/talks/sf-compute",
+      "https://www.eia.gov/todayinenergy/detail.php?id=43495",
+      "https://sfcompute.com/news/realized-discount",
+      "https://sfcompute.com/news/tcv-q3-2026",
+      "https://sfcompute.com/news/abel-ledger",
+      "https://www.cftc.gov/PressRoom/PressReleases/6289-12",
+      "https://sfcompute.com/news/elastic-infiniband-partitions",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=0s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=25s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=143s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=227s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=360s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=522s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=600s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=740s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=872s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=979s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=1078s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=1233s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=1410s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=1620s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=1743s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=1944s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=2006s",
+      "https://www.youtube.com/watch?v=EAtLq9_vrE0&t=2088s"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "eb477756520c8ff8",
+   "url": "https://github.blog/ai-and-ml/github-copilot/how-3-java-champions-are-using-github-copilot-for-increased-productivity/",
+   "title": "How 3 Java Champions are using GitHub Copilot for increased productivity",
    "source": "GitHub Blog (AI)",
    "tier": "S",
-   "published_at": "2026-10-19T18:47:22+00:00",
-   "summary_short": "Copilot 应用中的会话可一键在 VS Code 中继续",
-   "summary_long": "原文介绍如何把 GitHub Copilot 应用里的会话接到 VS Code 继续做。当 agent 完成大部分改动后，开发者通常需要在编辑器里逐行审查 diff、手改几行并本地跑项目。做法是：在会话中选择 Open in VS Code，VS Code 会用该会话关联的 worktree 打开项目，并在 Copilot 侧边栏显示原会话，从而保留三部分内容：会话上下文（任务、计划与对话）、diff，以及同一个隔离工作树；你是在继续已有会话，并非在新窗口里重建。随后在源代码管理视图逐行审查改动，检查代码是否解决所要求的问题、是否符合仓库约定、错误与边界情况是否处理、测试是否覆盖变更行为、有无无关文件或行为被改动；有疑问可在侧边栏继续追问，或让它再改一处。之后可直接在 VS Code 编辑文件，例如改文案或错误信息、重命名变量、调整布局样式、补测试、套用仓库约定；因为改的是会话现有工作树，手工改动直接叠加在 agent 成果上。最后用集成终端运行项目常规校验命令（如 npm install、npm test、npm run lint、npm run dev），并把更新推送到该会话关联的 pull request。原文在结尾处截断。",
+   "published_at": "2026-10-20T16:05:03+00:00",
+   "summary_short": "三位Java Champion讲述GitHub Copilot在生产与团队中的实战用法与边界",
+   "summary_long": "文章开篇指出，AI 编码工具能快速生成代码，但速度本身解决不了最难的软件工程问题，开发者仍需提供上下文、验证结果、维护可维护性，并对最终交付负责。为此文章采访了三位拥有十余年 Java 经验的 Java Champion，请他们分享在生产环境和开源项目中使用 GitHub Copilot 的具体做法。Vlad Mihalcea 用它开发 Hypersistence Optimizer 的事件历史 Web 应用，原本预计耗时数周的工作两天完成，将随下个版本发布；他在 IntelliJ IDEA 中使用，仍会审阅 AI 生成的方案与代码。他还基于自己 65 篇已发表文章创建了自定义 skill，让生成的文字读起来像自己写的博客，并按“最小惊讶原则”让 AI 模仿既有代码实践，同时按任务类型切换模型：深度思考用 Opus 配大上下文与高推理档位，简单任务用更轻的模型。Patrick Baumgartner 在团队辅导中强调不能停摆半年做“转型”，而是与团队一起从解决眼前问题入手，逐步引入 TDD、重构、持续交付等实践。",
    "key_points": [
-    "在会话中选择 Open in VS Code，VS Code 用该会话的 worktree 打开项目并显示原会话，会话上下文、diff、工作树三者保持连接",
-    "在源代码管理视图逐行审查 agent 改动，并按原文列出的检查项核对；有疑问可在侧边栏继续同一对话追问，无需从头描述任务",
-    "手改直接作用于会话现有工作树，用集成终端运行常规校验命令，再把更新推送到会话关联的 PR"
+    "Vlad Mihalcea 用 Copilot 开发 Hypersistence Optimizer 的事件历史 Web 应用，耗时从预计数周缩短到两天，将随下个版本发布",
+    "他仍在 IntelliJ IDEA 中审阅 AI 生成的方案与代码，认为 AI 是提升生产力而非取代自己，响应不理想时需人工介入",
+    "他基于 65 篇已发表文章创建自定义 skill 以贴合个人文风，并按任务复杂度在 Opus 等重模型与更省 token 的轻模型之间切换"
    ],
    "topics": [
     "coding-agent",
-    "harness"
+    "context-engineering",
+    "tool-use"
    ],
    "category": "Agent 与开发",
    "categories": [
     "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 63.6,
+   "score": 58.5,
    "status": "review",
    "extra": {
     "content_source": "rss",
     "source_tags": [
      "AI & ML",
      "GitHub Copilot",
-     "GitHub Copilot app",
-     "GitHub Copilot app for Beginners"
+     "java"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/features/ai/github-app",
-      "https://gh.io/app",
-      "https://github.blog/ai-and-ml/github-copilot/how-to-continue-a-github-copilot-app-session-in-vs-code/",
+      "https://github.com/vladmihalcea",
+      "https://github.com/patbaumgartner",
+      "https://github.com/FDelporte",
+      "https://www.pi4j.com/",
+      "https://github.com/Pi4J/pi4j/issues/622",
+      "https://github.com/Pi4J/pi4j/pull/623",
+      "https://github.com/features/copilot",
+      "https://github.blog/ai-and-ml/github-copilot/how-3-java-champions-are-using-github-copilot-for-increased-productivity/",
       "https://github.blog"
      ]
     },
@@ -276,36 +416,80 @@
    }
   },
   {
-   "id": "d2e2b582e2726ffa",
-   "url": "https://jrdsgl.com/if-you-dont-run-your-own-llm-proxy-how-the-fuck-do-you-even-know-whats-going-on/",
-   "title": "If you don't run your own LLM proxy, how do you know whats going on?",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "6c096b15e9b9bd77",
+   "url": "https://simonwillison.net/2026/Oct/19/my-obituary-for-programming/",
+   "title": "My obituary for programming",
+   "source": "Simon Willison",
    "tier": "A",
-   "published_at": "2026-10-18T21:09:12+00:00",
-   "summary_short": "主张自建 LLM 代理，才能拿到工程师可用的用量与调用可见性",
-   "summary_long": "原文从日常使用 LLM 的场景切入：用户把数据发给服务商，再拿回结果，但服务商展示的“工作量证明”和 Analytics 面板并不是面向工程师的 token 用量时间序列数据，作者直言无法据此做决策。原文提到 OTel 导出选项，但未展开。作者不建议指定某家代理服务商，而是主张在自己能控制的环境中自行运行 LLM proxy，并可按实际需求修改；他本人改造代理以获得更好洞察、自定义 MCP server 端点和其他功能。原文称，自行运行后可拿到类似截图中的数据；在编码会话中出现 cache miss 时，他能手动在 20 秒内定位原因，且代理带 API，可借此自动化。核心诉求是掌控基础设施、应用可见性、数据路径与存储，并在推理服务时做好 instrumentation。",
+   "published_at": "2026-10-19T23:58:25+00:00",
+   "summary_short": "编码智能体夺走程序员的解谜乐趣，原文悼念这种职业损失",
+   "summary_long": "原文以“编程的讣告”为引，讨论编码智能体给职业程序员带来的关键损失。作者回顾编程曾是最理想的工作之一：人们因解决棘手的逻辑谜题而获得报酬，谜题越难报酬越高；即使是简单谜题也很值钱，因为普通人做不了，需要程序员出面。程序员可以自行制定策略、安排时间线，并界定什么可行、什么不可行。原文指出，对热衷于构建可运行系统、并不太在意沿途解决了什么问题的程序员来说，LLM 是持续馈赠；但如果直接解决这些问题本身就是乐趣的重要部分，那么这种损失非常真实。原文把这种变化描述为职业体验层面的损失，并未详述编码智能体的具体能力或案例。",
    "key_points": [
-    "服务商展示的 token 统计和 Analytics 面板不足以支持工程决策；OTel 导出被提及但未展开。",
-    "作者主张自建并可控地运行 LLM proxy，可按需求修改，例如获得更好洞察、自定义 MCP server 端点和其他功能。",
-    "自建后可更快定位 cache miss，代理 API 使自动化成为可能；目标是掌控基础设施、应用可见性、数据路径和存储，并在推理时做好 instrumentation。"
+    "编程曾像高薪逻辑谜题：越难越赚钱，普通人做不了，程序员掌握策略、时间线和可行性定义。",
+    "编码智能体让喜欢构建可用系统、但不太在意所解决问题本身的程序员受益。",
+    "如果享受直接解决这些谜题，原文认为这种损失非常真实。"
    ],
    "topics": [
-    "harness",
-    "observability",
-    "mcp"
+    "coding-agent"
    ],
-   "category": "Agent 与开发",
+   "category": "行业动态",
    "categories": [
-    "Agent 与开发"
+    "行业动态"
    ],
    "horizon": "long",
-   "score": 60.9,
+   "score": 54.0,
    "status": "review",
    "extra": {
-    "hn_points": 292,
-    "hn_comments": 203,
-    "content_source": "reader",
+    "content_source": "rss",
+    "source_tags": [
+     "programming",
+     "careers",
+     "ai",
+     "generative-ai",
+     "llms"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://dumbmatter.com/2026/10/programming-obituary/",
+      "https://lobste.rs/s/wtobpt/my_obituary_for_programming",
+      "https://simonwillison.net/tags/programming",
+      "https://simonwillison.net/tags/careers",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/coding-agents",
+      "https://simonwillison.net/tags/deep-blue"
+     ]
+    },
     "summary_mode": "full"
+   }
+  },
+  {
+   "id": "203c0f23de8f44f0",
+   "url": "https://www.reuters.com/technology/us-banning-chinese-ai-deepseek-government-agency-it-systems-2026-10-19/",
+   "title": "DeepSeek banned from U.S. federal civilian agencies under new DHS order",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-19T16:16:46+00:00",
+   "summary_short": "原文未提供简介内容，无法概括",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "policy",
+    "regulation"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 52.2,
+   "status": "review",
+   "extra": {
+    "hn_points": 546,
+    "hn_comments": 492,
+    "summary_mode": "brief"
    }
   }
  ]
