@@ -1,6 +1,344 @@
 {
- "generated_at": "2026-10-20T22:20:40+00:00",
+ "generated_at": "2026-10-21T22:23:54+00:00",
  "items": [
+  {
+   "id": "7104bc51c29585cc",
+   "url": "https://huggingface.co/blog/nvidia/kumo-relational",
+   "title": "NVIDIA Kumo Relational Outperforms Supervised Machine Learning on Relational Data, No Training Required",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-21T18:26:30+00:00",
+   "summary_short": "NVIDIA 关系基础模型免训练预测企业数据库，基准超监督学习",
+   "summary_long": "关系数据库上的预测建模长期需要数周特征工程、任务特定训练与调参，原文将其类比为 LLM 出现之前的 NLP 流水线。NVIDIA Kumo Relational 是一个预训练关系基础模型，直接在企业数据库上做预测：给定一个预测查询，它收集最多 1 万条历史样本作为上下文，通过单次前向传播输出流失、需求或欺诈等结果，既不需要任务特定训练，也不需要特征工程，更不需要把多张表打平。原文称它是首个在常见关系基准上超过监督机器学习的小样本基础模型：在 15 个数据库的 41 个任务上，它优于监督关系深度学习模型和由专家做特征工程的梯度提升树流水线；在 SAP SALT 企业基准上，其平均倒数排名（MRR）比 AutoGluon 集成高 8%；在 RelBench V1 分类任务上，其 AUROC 平均高近 4 点。原文称它可扩展到 5000 亿行以上的数据库，并可通过 NVIDIA 开源的 GPU 原生 structured-data-models 库或 NVIDIA NIM 使用；其预测查询语言 PQL 供 agent 调用。",
+   "key_points": [
+    "Kumo Relational 是预训练关系基础模型：给定预测查询后收集最多 1 万条历史样本作为上下文，单次前向传播输出流失、需求、欺诈等预测，无需任务特定训练、无需特征工程、无需打平数据表。",
+    "原文称其为首个在常见关系基准上超过监督机器学习的小样本基础模型；在 15 个数据库的 41 个任务上，优于监督关系深度学习模型与由专家做特征工程的梯度提升树流水线。",
+    "SAP SALT 上 MRR 比 AutoGluon 集成高 8%；RelBench V1 分类任务平均高近 4 个 AUROC 点；SAP SALT 上开箱超 XGBoost 7 个 MRR 点、微调后 13 个。"
+   ],
+   "topics": [
+    "post-training",
+    "eval",
+    "product"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "评测"
+   ],
+   "horizon": "long",
+   "score": 82.5,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2602.04029",
+      "2602.09572",
+      "2604.12596",
+      "2608.16319"
+     ],
+     "links": [
+      "https://arxiv.org/abs/2604.12596",
+      "https://docs.nvidia.com/sdgm/rfm/overview",
+      "https://cdn-uploads.huggingface.co/production/uploads/6ad8e88370f69967fafc8703/FY-lkWrNmBYRFrosRD2Le.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6ad8e88370f69967fafc8703/OFX2a7xwBTfUEcbedTsfe.png",
+      "https://arxiv.org/abs/2602.09572",
+      "https://arxiv.org/abs/2602.04029",
+      "https://arxiv.org/abs/2608.16319",
+      "https://cdn-uploads.huggingface.co/production/uploads/6ad8e88370f69967fafc8703/9ITlubGvqGVnoy7j_NZDi.png",
+      "https://huggingface.co/blog/nvidia/kumo-tabular",
+      "https://github.com/NVIDIA/structured-data-models/tree/main/examples/relational",
+      "https://github.com/NVIDIA/structured-data-models-client",
+      "https://github.com/NVIDIA/structured-data-models-client/tree/main/examples",
+      "https://github.com/NVIDIA/structured-data-models-client/blob/main/examples/local/relational.ipynb",
+      "https://www.nvidia.com/en-us/product-security/",
+      "https://github.com/NVIDIA/structured-data-models",
+      "https://pypi.org/project/structured-data-models/",
+      "https://pypi.org/project/structured-data-models-client/",
+      "https://huggingface.co/nvidia/Kumo-Relational"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "354f89a6c7dbf10c",
+   "url": "https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization",
+   "title": "How Specializing the Vocabulary of SLMs Can Cut Inference Cost by 77% in Real Applications",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-21T17:35:36+00:00",
+   "summary_short": "用VocabX重构领域模型词表，实测推理成本降77%",
+   "summary_long": "在生产环境的葡萄牙语作文自动评分系统中，团队发现：基于Qwen3-4B微调的模型虽已针对任务训练，却仍沿用为多语言、多领域文本构建的原始分词器，词表含151,669个条目。这带来两种浪费：一是碎片化，评分器每次响应都以相同的JSON外壳、相同的评分项名称和评语开头，这些高频重复序列被切成多个token；二是冗余，每生成一个token都要对整个词表打分，其中大量条目该任务几乎不用。作者指出，tokenizer通常被视为基座模型的固定属性，但对单一领域模型而言，它可能是最大的成本杠杆之一，且在任何训练步骤之前就已确定。团队用名为VocabX的方法重建词表，保持基座模型、数据和训练配方不变，将实测推理成本降低77%。文中还区分推理的prefill与decode两阶段：前者一次处理整个输入，读取的权重可被复用，受限于算力。",
+   "key_points": [
+    "生产中的葡萄牙语作文评分器基于Qwen3-4B，接收作文、题目与支撑文本，返回含各评分项分数与评语的JSON，但仍沿用151,669条目的通用词表。",
+    "通用词表在单一领域造成两类浪费：碎片化（JSON外壳、评分项名称、评语等重复序列被切成多个token）与冗余（每生成一个token都要对全词表打分）。",
+    "VocabX按每个token的成本而非词频重构词表，基座模型、数据与训练配方不变，实测推理成本下降77%；论文仍在审稿中，数据可能变动。"
+   ],
+   "topics": [
+    "post-training",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 83.4,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2607.15232"
+     ],
+     "links": [
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/TYOhAFobnI4ss3UnNqMHc.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/K5De-hfTaOl9vUJItSijj.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/Inl5L1IDqWUBbD0Xlq-JB.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/q-GjdgYd6GgXnv3-wJQsY.png",
+      "https://www.liquid.ai/blog/tokenizer-expansion",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/B5Wig-4nTEutpFZlGQ6sk.gif",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/_EdPyU7R3xdomvFxuadPY.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/zxfdAxNxsvfBCBNeUThx5.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/PxGLMRrjTPVYDW8rlDuBd.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/7CKshmOEsUkemfgL9Mopn.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/bCCQQjpY6tU5ZAD3hXOeN.png",
+      "https://aclanthology.org/2022.emnlp-industry.41/",
+      "https://arxiv.org/abs/2607.15232",
+      "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
+      "https://huggingface.co/blog/Dharma-AI/gpu-management",
+      "https://huggingface.co/blog/Dharma-AI/why-specialization-is-inevitable",
+      "https://huggingface.co/blog/Dharma-AI/specialization-beats-scale",
+      "https://huggingface.co/blog/Dharma-AI/text-degeneration-a-production-failure-mode",
+      "https://huggingface.co/Dharma-AI"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "20a259028135abda",
+   "url": "https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure/",
+   "title": "The bridge to agent-scale Git infrastructure",
+   "source": "GitHub Blog (AI)",
+   "tier": "S",
+   "published_at": "2026-10-21T16:00:00+00:00",
+   "summary_short": "GitHub 调整 quorum 写入序列化，把最繁忙仓库迁入 Azure",
+   "summary_long": "过去一年 Git 流量指数增长，GitHub 99.99999% 的仓库已同时存放在自有数据中心和 Azure，剩余最繁忙仓库受跨区域约 25ms 网络往返限制。原文称迁移由 agentic shift 带来的流量增长、数据中心及周边地区电力容量硬上限和物理供应链约束推动。团队选择先迁数据、再演进架构：2025 年 8 月首个仓库副本落地 Azure Central US 区域；目前大多数仓库五个副本中有两个在 Azure，Azure 承载约一半 Git 流量。难点在于跨区域副本会拉低写吞吐：Spokes 的 quorum 虽只需多数提交，却要等所有健康副本响应（至超时），最慢健康副本决定每次写延迟；写又持有仓库级锁直到提交，因此也决定吞吐上限。原文提出按第一原则最小化协调，利用 Git 一致性按单个引用成立、不同引用更新通常相互独立的特点，改变 quorum 序列化写的范围；具体改动原文未详述。该步骤旨在把最繁忙仓库接入 Azure，并为不保留自身持久状态的副本打开门路。",
+   "key_points": [
+    "迁移由 agentic shift 带来的流量增长、电力容量硬上限和供应链约束推动；策略是先迁数据再演进架构。",
+    "2025 年 8 月首个副本落地 Azure Central US；目前大多数仓库五个副本中两个在 Azure，Azure 承载约一半 Git 流量。",
+    "剩余最繁忙仓库受跨区域 25ms 往返和 quorum 等待所有健康副本影响；原文拟按引用独立更新来缩小写入序列化范围，具体改动未详述。"
+   ],
+   "topics": [
+    "infrastructure",
+    "distributed-systems",
+    "coding-agent"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 76.9,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "Architecture & optimization",
+     "Engineering",
+     "Git",
+     "Infrastructure",
+     "technical deep dive"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/",
+      "https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure/",
+      "https://github.blog"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "d31a18ead424650d",
+   "url": "https://www.wiz.io/blog/php2shell-php-rce",
+   "title": "PHP2Shell: AI uncovers critical RCE in PHP",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-21T13:43:19+00:00",
+   "summary_short": "AI 助力 Wiz 发现 PHP 核心 RCE 漏洞，十年版本全受影响",
+   "summary_long": "Wiz Research 在 PHP 核心引擎中发现多个严重漏洞，可导致未经认证的远程代码执行与内存泄露，攻击者能接管服务器、窃取密码、令牌、API 密钥与证书，或篡改网站。PHP 支撑全球 70% 的网站，WordPress、Joomla、Drupal、MediaWiki 都构建于其上；漏洞位于语言本身，与应用层代码是否安全无关。过去十年发布的几乎所有 PHP 版本（可追溯至 5.4）至少受其中一个漏洞影响，攻击者可远程利用，部分利用难度较低，原文强烈建议立即打补丁。相关漏洞归入两个 CVE，最高 CVSS 9.2，PHP 于 2026 年 10 月 21 日发布修复。这些缺陷已存在数十年，但证明其可利用性需要极其复杂的链条，接近人工研究的极限；前沿 AI 模型显著降低了门槛，使团队能在数小时内为多个应用开发并调整出可用的利用代码。原文将其与 Heartbleed、Log4Shell 类比，认为它可能成为 AI 时代的转折点。",
+   "key_points": [
+    "漏洞是 PHP 核心的内存泄露与未认证远程代码执行，与应用层无关；近十年发布的几乎所有版本（回溯至 5.4）至少受其中一个影响",
+    "归入两个 CVE，最高 CVSS 9.2，PHP 于 2026 年 10 月 21 日发布补丁，原文建议立即修补",
+    "底层缺陷已存在数十年，前沿 AI 模型使原本接近人力极限的复杂利用链变得可行，数小时内可跨多个应用开发利用代码"
+   ],
+   "topics": [
+    "cybersecurity"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 79.7,
+   "status": "published",
+   "extra": {
+    "hn_points": 425,
+    "hn_comments": 167,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.php.net/archive/2026.php#2026-10-21-5",
+      "http://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities",
+      "https://calif.io/php2shell/",
+      "https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/",
+      "http://blog.cloudflare.com/php-vulnerabilities-waf-protection/",
+      "https://www.fastly.com/blog/fastlys-proactive-protection-critical-php-rce-cve-2026-109618",
+      "https://cloud.google.com/blog/products/identity-security/responding-to-core-php-vulnerabilities-cve-2026-109618-cve-2026-109619?e=48754805",
+      "https://app.wiz.io/boards/threat-center/",
+      "https://x.com/wiz_io",
+      "https://www.wiz.io/events/php2shell-emergency-threat-briefing?utm_source=blog&utm_medium=content&utm_campaign=FY27Q3_EV_WBNR_PHP2Shell-Emergency-Threat-Briefing_2026-10-21"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "d3f519557f32dd3d",
+   "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities",
+   "title": "Patch the Planet: global response coordination as agents uncover critical vulnerabilities",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-21T07:00:00+00:00",
+   "summary_short": "AI发现PHP关键漏洞，全球协同修复，抢在攻击者前留出防御窗口",
+   "summary_long": "原文发布于2026年10月21日。过去两个月，发布方牵头组织维护者、研究者与安全厂商联盟，处理开源语言PHP中的关键漏洞：Calif借助GPT‑5.6 Sol在Patch the Planet计划中发现其中一处关键缺陷，Wiz也独立发现并报告了这两个漏洞；PHP维护者主导修复与发布，Wiz、Cloudflare等伙伴提供研究、技术支持和协调，以便在披露前准备好防护。对使用PHP的组织而言，当务之急是应用修复；发布方以Codex skill形式提供PHP版本检查器，帮助运维识别可能受影响的版本并结合指导判断该装哪些更新。原文称，鉴于漏洞严重性与PHP的广泛使用，这是近期最具影响的安全问题之一：它既说明AI能发现具有互联网规模影响的安全缺陷，也说明同样能力可被攻击者用于快速开发攻击工具；据其所知，前沿AI先于攻击者发现这些漏洞，为维护者和安全厂商争取到“防御者窗口”。发布方承诺投入10亿美元补贴Daybreak访问，面向安全资源有限、保护关键服务的组织，并提出一套面向AI时代的响应框架，邀请安全界完善；原文仅详述五阶段中的第一阶段“验证并修复上游漏洞”。",
+   "key_points": [
+    "PHP关键漏洞分别由GPT‑5.6 Sol（Calif主导）与Wiz独立发现并报告，PHP维护者主导修复与发布，Wiz、Cloudflare等参与研究、技术支持与协调",
+    "原文称前沿AI先于攻击者发现漏洞，形成“防御者窗口”，同时警告同样能力可被攻击者用于快速开发攻击工具与利用代码",
+    "发布方提供Codex skill形式的PHP版本检查器，承诺10亿美元补贴Daybreak访问，并提出五阶段漏洞响应框架（原文仅详述第一阶段），预计未来数月类似发现将大幅增加"
+   ],
+   "topics": [
+    "cybersecurity",
+    "coding-agent"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 80.8,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Security"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://patchtheplanet.org",
+      "https://github.com/openai/php2shell-checker",
+      "https://patchtheplanet.org/",
+      "https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk",
+      "https://rustfoundation.org/media/rust-foundation-welcomes-openai-as-platinum-member-announces-donation-to-rust-project/",
+      "https://trailofbits.com/patch-the-planet/#apply",
+      "https://docs.google.com/forms/d/e/1FAIpQLSfcynrrWRWdj0PLAwtwVg2pfr0IvyAx5HfRBYf5tZin1AMLiQ/viewform"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "edef63b51aedc012",
+   "url": "https://openai.com/index/building-chatgpt-ad-stack",
+   "title": "How we built ChatGPT’s novel ad stack for user trust and relevance",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-21T07:00:00+00:00",
+   "summary_short": "ChatGPT 自建广告栈：后训练LLM跨会话理解意图，广告独立于回答",
+   "summary_long": "传统广告系统通常响应搜索或页面浏览等离散意图事件，而 ChatGPT 中的用户意图会跨多轮对话甚至多次会话逐步形成，且并非每轮都有合适的广告时机。为此，原文介绍了一套专门构建的广告投放系统：基于定制后训练的前沿 LLM，通过工具调用完成广告候选检索、排序、相关性与价值评估，以及拍卖和定价。其三项关键设计是：有状态的广告会话，跨轮次和跨会话记忆信息；用后训练 LLM 的工具调用架构理解对话上下文与潜在意图并选择、排序和投放广告；把广告选择放在独立服务中运行，与 ChatGPT 答案生成分离，避免广告影响答案并保持中立语气。原文称，ChatGPT Ads 上线不到200天达到10亿美元年度化收入运行率，已有超过10万名广告主投放。",
+   "key_points": [
+    "传统广告依赖离散意图事件，ChatGPT 的用户意图跨多轮对话和多次会话演化，需要从头构建新的广告栈。",
+    "系统基于定制后训练的前沿 LLM，通过工具调用完成广告检索、排序、相关性评估以及拍卖和定价。",
+    "三项关键设计包括有状态广告会话、用 LLM 理解上下文与潜在意图、广告选择独立于答案生成以保持 ChatGPT 中立语气。"
+   ],
+   "topics": [
+    "tool-use",
+    "context-engineering",
+    "memory"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "产品与应用"
+   ],
+   "horizon": "long",
+   "score": 79.2,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Engineering"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://openai.com/index/our-approach-to-advertising-and-expanding-access/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "1de8e62ff715d1f1",
+   "url": "https://openai.com/index/scaling-ai-research-for-complex-biological-data",
+   "title": "Using thousands of AI agents to uncover new leads in biological data",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-21T04:50:00+00:00",
+   "summary_short": "数千AI智能体32分钟分析数百万小鼠脑细胞数据，找出新的疾病研究线索",
+   "summary_long": "OpenAI、PerturbAI与Scripps Research合作，用数千个由GPT‑Rosalind驱动的AI智能体，在32分钟内分析并解读了来自数百万小鼠脑细胞的既有实验数据。原文指出，现代实验能改动数千个基因并测量其在数百万细胞中的效应，数据量远超科学家能彻底探究的范围，而理解结果对人类疾病的意义还需连接数十年零散的科研知识。团队将分析拆分给数千个智能体，称之为「分布式生物推理」：每个智能体负责一个基因扰动，分析细胞反应、检索科学文献并给出解释，报告汇总成一张连接基因、细胞效应、相关论文与可能机制「推理图谱」。研究团队估算，若由人逐项分析和查文献需数月到一年。智能体复现了人工分析结果，还发现额外线索，其新颖性与科学价值判断也与不知情的人类专家一致。它们发现两个疾病相关基因对脑细胞的影响存在意外差异，以及胆固醇调控与神经退行性变的潜在关联。该推理图谱已开放供研究者使用。",
+   "key_points": [
+    "方法为「分布式生物推理」：数千个GPT‑Rosalind智能体各自负责一个基因扰动，分析细胞反应、检索文献并提出机制解释，再汇总成推理图谱。",
+    "32分钟完成分析，团队估算同类人工分析与文献综述需数月到一年；智能体复现了人工结果并给出额外线索，其新颖性判断与盲评人类专家一致。",
+    "发现两个疾病相关基因对脑细胞影响的意外差异，以及胆固醇调控与神经退行性变的潜在关联；推理图谱已开放供研究者探索。"
+   ],
+   "topics": [
+    "multi-agent",
+    "ai-for-science"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 79.5,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Publication"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.biorxiv.org/content/10.64898/2026.10.15.759436v1",
+      "http://perturb.ai",
+      "http://scripps.edu",
+      "https://huggingface.co/datasets/perturbai/wholebrain_crispr_atlas",
+      "https://www.biorxiv.org/content/10.64898/2026.03.16.711480v1",
+      "https://github.com/jinlabneurogenomics/distributed_agent"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "4eb9f7080b11166e",
    "url": "https://huggingface.co/blog/nvidia/cosmos3-h-dreams",
@@ -463,6 +801,51 @@
      ]
     },
     "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "74d5169d802b5769",
+   "url": "https://arxiv.org/abs/2610.26825v2",
+   "title": "MemT-1.0: Towards Memory-Native Evolution",
+   "source": "论文（被提及）",
+   "tier": "A",
+   "published_at": "2026-10-19T17:54:35+00:00",
+   "summary_short": "MemT-1.0把记忆内化为模型计算的一部分，128K上下文下推理提速约1.86倍",
+   "summary_long": "原文提出MemT-1.0，一种将记忆作为模型计算内在组成部分的记忆基础模型架构，目标是让基础模型持续积累并利用信息。它基于Metis，在每一轮（turn）内采用带稳定token级记忆更新机制的Gated DeltaNet-2，并引入Mixture-of-Storage来扩展原生记忆容量。经过基座准备（backbone preparation）后，采用继续预训练与后训练两阶段流程，使用34B tokens训练数据和高效的训练推理基础设施。原文发布MemT-1.0-Nano与MemT-1.0-Flash两个模型，并对其记忆能力与通用能力做了综合评测：平均优于参数化记忆基线，与检索增强方法保持竞争力，同时大体保留通用能力。在128K token历史长度下，MemT-1.0-Nano端到端推理约1.86倍加速，持久化存储相对全上下文KV cache减少66倍。通过内化检索到的程序性经验，MemT-1.0提升了agentic任务的成功率。",
+   "key_points": [
+    "MemT-1.0把记忆内化为模型计算的一部分，基于Metis、采用Gated DeltaNet-2实现turn内稳定的token级记忆更新，并用Mixture-of-Storage扩展原生记忆容量。",
+    "训练为继续预训练加后训练两阶段，配34B tokens数据与高效训练推理基础设施，发布Nano与Flash两个型号。",
+    "评测显示平均优于参数化记忆基线、与检索增强方法相当且大体保留通用能力；128K历史长度下Nano端到端推理约1.86倍加速，持久化存储较全上下文KV cache减少66倍。"
+   ],
+   "topics": [
+    "memory",
+    "post-training"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 80.1,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Zhiyu Li",
+     "Zeyu Zhang",
+     "Linyun Liu",
+     "Yiwei Bu",
+     "Chenyang Xi",
+     "Xichong Zhang",
+     "Yi Yu",
+     "Yu Yu"
+    ],
+    "author_count": 74,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "量子位"
+    ],
     "summary_mode": "full"
    }
   },
@@ -2737,39 +3120,6 @@
    }
   },
   {
-   "id": "a91d48e8a913a842",
-   "url": "https://penguin-mail.com/",
-   "title": "Penguin Mail – open-source Rust email client for Linux with AI",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-06T21:59:43+00:00",
-   "summary_short": "Penguin Mail 1.0：Linux 开源邮件客户端，可选本地 AI 助手",
-   "summary_long": "Penguin Mail 发布 1.0.0 版本，是面向 x86_64 Linux 的自由软件，采用 GPL-3.0-or-later 许可。它可登录 Gmail、Outlook.com、Hotmail、Live、Microsoft 365，以及 Fastmail、iCloud、Yahoo 或任意 IMAP、POP3、SMTP 服务器，并按地址自动查找服务器设置。多账户可合并在一个收件箱；应用常驻系统托盘持续同步，显示未读数并提供可操作的提醒。日历有日、周、月和议程视图，覆盖 Google、Microsoft 及服务商支持的 CalDAV，可直接在收到邀请的邮件里回复。联系人来自 Google、Microsoft 或 CardDAV，输入收件人时给出建议。签名与加密走用户自己的 GnuPG，应用不保存密钥、也不索要口令。Gmail 过滤器、Microsoft 收件箱规则和支持的 Sieve 规则以白话列出，并有添加表单。AI 默认关闭，选定模型后才启用，可经 LM Studio 或 Ollama 在本地运行，发信或改设置前会先询问。应用无自建服务器、无跟踪、无广告。",
-   "key_points": [
-    "支持 Gmail、Outlook.com、Hotmail、Live、Microsoft 365、Fastmail、iCloud、Yahoo 及任意 IMAP、POP3、SMTP 账户，按地址自动查找服务器设置，多账户可合并为一个收件箱并常驻托盘同步、显示未读数",
-    "内置日历（日/周/月/议程，Google、Microsoft 及服务商支持的 CalDAV）、联系人（Google、Microsoft 或 CardDAV），并可通过用户自己的 GnuPG 签名加密，应用不保存密钥、不索要口令",
-    "AI 默认关闭，选定模型后可经 LM Studio 或 Ollama 在本地运行，按 Ctrl+J 提问并由应用自带工具读取邮箱、展示执行过的每一步，发信或改设置前会先询问"
-   ],
-   "topics": [
-    "product",
-    "open-source",
-    "privacy"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 78.0,
-   "status": "published",
-   "extra": {
-    "hn_points": 230,
-    "hn_comments": 175,
-    "content_source": "reader",
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "d12760993a9771e8",
    "url": "https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/",
    "title": "Building Git infrastructure for agent-scale development",
@@ -2864,65 +3214,6 @@
    }
   },
   {
-   "id": "2435ebd745855918",
-   "url": "https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model/",
-   "title": "EmbeddingGemma 2: an open, lightweight multimodal embedding model",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-10-06T19:57:04+00:00",
-   "summary_short": "谷歌发布 EmbeddingGemma 2：740M 参数端侧多模态嵌入模型",
-   "summary_long": "Google DeepMind 研究工程师 Sahil Dua 与 Henrique Schechter Vera 撰文介绍 EmbeddingGemma 2。去年推出的 EmbeddingGemma 提供轻量文本嵌入方案，下载量超过 2000 万。新模型不再限于文本，而是把代码、图像、视频、音频统一映射到同一嵌入空间：可从语音备忘录中找出某段视频，也能用文本查询检索数小时录音。它基于 Gemma 4 架构，以 Apache 2.0 许可发布，740M 参数，适合端侧推理，技术与 Gemini Embedding 模型同源。模块化设计下，纯文本负载只需 270M 参数，可选配 170M 视觉与 300M 音频编码器；借助 MRL，输出向量可从 768 维截断至 512、256 或 128 维，最多减少 6 倍存储。量化后在 Google Pixel 11 Pro 上，纯文本权重约占 191MB 内存，全多模态约 567MB。上下文窗口为 8K token（一代的 4 倍），可处理 5.5 分钟音频、29 张图片、58 个视频帧及其交错组合。原文称其在 sub-1B 多模态嵌入模型中领先，代码基准 MTEB Code 从 68.76 提升至 78.68。",
-   "key_points": [
-    "原生多模态：单模型将文本、代码、图像、视频、音频映射到统一嵌入空间，支持离线跨模态搜索与检索。",
-    "基于 Gemma 4 架构、Apache 2.0 许可、740M 参数；模块化设计，纯文本最低 270M，可选 170M 视觉与 300M 音频编码器。",
-    "端侧优化：MRL 支持 768 维截断至 128 维（最多省 6 倍存储），Pixel 11 Pro 量化后纯文本约 191MB、全模态约 567MB 内存；8K token 上下文可处理 5.5 分钟音频、29 张图片或 58 个视频帧。"
-   ],
-   "topics": [
-    "open-source",
-    "rag",
-    "multimodal"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 81.3,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://twitter.com/intent/tweet?text=EmbeddingGemma%202%3A%20an%20open%2C%20lightweight%20multimodal%20embedding%20model%20%40google&url=https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
-      "https://www.facebook.com/sharer/sharer.php?caption=EmbeddingGemma%202%3A%20an%20open%2C%20lightweight%20multimodal%20embedding%20model&u=https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/&title=EmbeddingGemma%202%3A%20an%20open%2C%20lightweight%20multimodal%20embedding%20model",
-      "https://developers.googleblog.com/en/introducing-embeddinggemma/",
-      "https://ai.google.dev/gemma/docs/embeddinggemma/model_card_2",
-      "https://developers.google.com/edge/gallery",
-      "https://developers.google.com/edge/foresight",
-      "https://developers.google.com/edge/mediapipe/solutions/decision/decision_maker",
-      "http://developers.googleblog.com/google-ai-edge-with-embeddinggemma-2",
-      "https://huggingface.co/google/embeddinggemma-2",
-      "https://www.kaggle.com/models/google/embeddinggemma-2",
-      "https://huggingface.co/litert-community",
-      "https://developers.google.com/edge/litert-lm",
-      "https://huggingface.co/spaces/webml-community/embeddinggemma-2-webgpu",
-      "https://github.com/Blaizzy/mlx-vlm",
-      "https://huggingface.co/ggml-org/embeddinggemma-2-GGUF",
-      "http://ollama.com/library/embeddinggemma-2",
-      "https://qdrant.tech/blog/embeddinggemma-2/",
-      "https://unsloth.ai/docs/models/embeddinggemma-2",
-      "https://developers.googleblog.com/en/embeddinggemma-2-the-developer-guide/",
-      "https://ai.google.dev/gemma/docs/embeddinggemma",
-      "https://ai.google.dev/gemma/docs/embeddinggemma/inference-embeddinggemma-with-sentence-transformers",
-      "https://ai.google.dev/gemma/docs/embeddinggemma/fine-tuning-embeddinggemma-with-sentence-transformers"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "dabfa79f68b85520",
    "url": "https://github.com/FeSens/openTPU",
    "title": "OpenTPU – An open-source AI accelerator, developed by AI",
@@ -2957,66 +3248,6 @@
      "arxiv": [],
      "links": [
       "https://github.com/FeSens/auto-arch-tournament"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "0a7d6e8e8b6e8899",
-   "url": "https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
-   "title": "EmbeddingGemma 2: An open, lightweight multimodal embedding model",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-06T16:03:49+00:00",
-   "summary_short": "EmbeddingGemma 2 开源：740M 参数原生多模态嵌入，主打端侧",
-   "summary_long": "谷歌 DeepMind 去年推出 EmbeddingGemma，为端侧提供轻量高质量文本嵌入，下载量超 2000 万次，被用于端侧搜索与隐私优先的 RAG 流程。现发布 EmbeddingGemma 2，从文本扩展到统一代码、图像、视频与音频的共享嵌入空间。模型基于 Gemma 4 架构，以 Apache 2.0 许可发布，740M 参数，面向端侧推理，可依文字查询检索语音备忘或数小时录音。它采用模块化设计，纯文本最低 270M 参数，视觉编码器 170M、音频编码器 300M 可选；借助 Matryoshka 表示学习，输出向量可从 768 维截断至 512/256/128 维，最高减少 6 倍存储。量化后在 Pixel 11 Pro 上纯文本权重约需 191MB 活动内存，全模态约 567MB。上下文窗口 8K token，约为一代 4 倍，可处理 5.5 分钟音频、29 张图像、58 个视频帧或交错组合。质量上，MTEB Code 提升 9.92 分（68.76 至 78.68）；在图像、视频、文档与音频上刷新 sub-1B 模型的质量/参数标准。原文称本地生成嵌入有助保障数据隐私、降低延迟，并可支持完全离线的跨模态检索，搭配 Gemma 4 可实现端侧 RAG。",
-   "key_points": [
-    "基于 Gemma 4 架构、Apache 2.0 许可、740M 参数，原生把文本、代码、图像、视频、音频映射到统一嵌入空间，面向端侧推理",
-    "模块化与高效：纯文本最低 270M 参数，视觉 170M、音频 300M 编码器可选；MRL 支持向量 768 维截断至 512/256/128 维，最高 6 倍存储缩减；8K token 上下文，可处理 5.5 分钟音频、29 张图像、58 个视频帧或交错组合",
-    "MTEB Code 从 68.76 提升至 78.68，在 MTEB Code、MAEB 等基准的 sub-1B 多模态嵌入模型中领先，并称在文本、视觉、音频任务上匹配或超越许多更大模型"
-   ],
-   "topics": [
-    "open-source",
-    "rag"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 78.2,
-   "status": "published",
-   "extra": {
-    "hn_points": 414,
-    "hn_comments": 46,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://twitter.com/intent/tweet?text=EmbeddingGemma%202%3A%20an%20open%2C%20lightweight%20multimodal%20embedding%20model%20%40google&url=https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
-      "https://www.facebook.com/sharer/sharer.php?caption=EmbeddingGemma%202%3A%20an%20open%2C%20lightweight%20multimodal%20embedding%20model&u=https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/&title=EmbeddingGemma%202%3A%20an%20open%2C%20lightweight%20multimodal%20embedding%20model",
-      "https://developers.googleblog.com/en/introducing-embeddinggemma/",
-      "https://ai.google.dev/gemma/docs/embeddinggemma/model_card_2",
-      "https://developers.google.com/edge/gallery",
-      "https://developers.google.com/edge/foresight",
-      "https://developers.google.com/edge/mediapipe/solutions/decision/decision_maker",
-      "http://developers.googleblog.com/google-ai-edge-with-embeddinggemma-2",
-      "https://huggingface.co/google/embeddinggemma-2",
-      "https://www.kaggle.com/models/google/embeddinggemma-2",
-      "https://huggingface.co/litert-community",
-      "https://developers.google.com/edge/litert-lm",
-      "https://huggingface.co/spaces/webml-community/embeddinggemma-2-webgpu",
-      "https://github.com/Blaizzy/mlx-vlm",
-      "https://huggingface.co/ggml-org/embeddinggemma-2-GGUF",
-      "http://ollama.com/library/embeddinggemma-2",
-      "https://qdrant.tech/blog/embeddinggemma-2/",
-      "https://unsloth.ai/docs/models/embeddinggemma-2",
-      "https://developers.googleblog.com/en/embeddinggemma-2-the-developer-guide/",
-      "https://ai.google.dev/gemma/docs/embeddinggemma",
-      "https://ai.google.dev/gemma/docs/embeddinggemma/inference-embeddinggemma-with-sentence-transformers",
-      "https://ai.google.dev/gemma/docs/embeddinggemma/fine-tuning-embeddinggemma-with-sentence-transformers"
      ]
     },
     "content_source": "direct",
