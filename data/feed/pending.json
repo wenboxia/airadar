@@ -1,245 +1,24 @@
 {
- "generated_at": "2026-10-21T22:23:54+00:00",
+ "generated_at": "2026-10-22T22:22:51+00:00",
  "items": [
   {
-   "id": "f9b499debdda31c0",
-   "url": "https://huggingface.co/blog/amazon/profiling-torchneuron-part-1",
-   "title": "Profiling TorchNeuron (Part 1): System-level profiling on AWS Trainium.",
+   "id": "5d118fadbe793ddd",
+   "url": "https://huggingface.co/blog/ibm-research/granite-timeseries-ensemble-r1",
+   "title": "Ensemble forecasting with IBM Granite time-series models",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-21T16:04:43+00:00",
-   "summary_short": "AWS Trainium 上 TorchNeuron 推理性能剖析入门：定位耗时算子",
-   "summary_long": "本文是 TorchNeuron 剖析系列第一部分，面向没有剖析经验的读者，讲如何系统分析推理性能、找出时间花在哪里。TorchNeuron 是 AWS Trainium（专为深度学习训练与推理设计的 AI 芯片）的开源原生 PyTorch 后端，支持 eager 执行、torch.compile 和标准 PyTorch API，改动代码很少，并可与 Neuron Kernel Interface（NKI）集成以实现自定义算子与性能优化。文中介绍：Neuron 后端借助 PyTorch 的 PrivateUse1 扩展点注册，无需像 cuda 那样新增专用 dispatch key；用 NeuronConfig 指定要采集的数据流与 NeuronCore、输出目录，并以 experimental_config 传给 torch.profiler.profile，NeuronProfiler 提供 export_trace 回调写出 trace.json 及 Neuron 系统 trace；modes 选择设备指令、运行时等数据流，correlate_device_time=True 把设备时间带入 key_averages() 表以对比 CPU 与设备时间。另介绍浏览器端 Neuron Explorer（可经 SSH 隧道或 VS Code 扩展访问），以及成对的 .neff/.nt",
+   "published_at": "2026-10-22T07:51:31+00:00",
+   "summary_short": "IBM Granite 时序集成：四个预训练模型组合，免训练即可输出点预测与分位数预测",
+   "summary_long": "预训练时间序列模型无需在自有数据上训练即可预测，但使用者仍需自行挑选模型：擅长平滑工业信号的模型，未必适合噪声较大的零售需求或长季节周期，最佳选择取决于序列与任务。IBM 研究者提出的 Granite Timeseries Ensemble 把这一选择简化为一个合理默认值：一个 recipe 组合四种互补的 Granite 架构（PatchTST-FM-r1 为 patched Transformer、PatchTST-FM-r2 为 patched Conformer、FlowState-r1.1 为状态空间模型、TTM-r3 为 Tiny Time Mixers），返回中位数与分位数预测，无需重训、也不拟合集成权重。原文以天气预报的集合预报（如北美多模式集合 NMME）作类比：互补模型给出不同视角，集成把视角合并为一个预测，并引用一篇 50 年预报组合综述指出组合可降低选错单一模型的风险，但成员质量与多样性仍然重要。使用上建议从均匀概率池化的 Probabilistic Ensemble 起步，再比较多采用四分位距的 IQR Ensemble，并可用兼容预测器扩展同一接口。recipe 与默认成员采用宽松许可。原文称各成员的组合细节部分未完整给出。",
    "key_points": [
-    "TorchNeuron 是 Trainium 的开源原生 PyTorch 后端，支持 eager、torch.compile 与标准 API，并可接 NKI 写自定义算子",
-    "剖析通过 NeuronConfig + NeuronProfiler 接入 torch.profiler，可选出要抓取的 NeuronCore，并把设备时间关联进 key_averages() 表",
-    "Neuron Explorer 用于查看系统 trace、设备时间线与各引擎分解，需上传完整输出目录或成对的 .neff/.ntff 文件"
+    "默认 recipe 组合四个预训练 Granite 模型：PatchTST-FM-r1、PatchTST-FM-r2、FlowState-r1.1 与 TTM-r3，架构各异，以不同方式捕捉趋势、季节性与局部变化，误差不一定重合",
+    "输出包含点预测（prediction_outputs）与分位数预测（quantile_outputs，默认 0.1 至 0.9），例如 0.1 与 0.9 分位构成名义 80% 覆盖的中心区间",
+    "无需重训、不拟合集成权重；recipe 只存集成配置而非合并权重，运行时下载四个成员检查点，首次运行需更长时间；提供 Probabilistic Ensemble 与自适应的 IQR Ensemble 两种组合方式，并可用兼容预测器扩展接口"
    ],
    "topics": [
-    "profiling",
-    "inference-optimization",
-    "torch-compile"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 74.1,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/aws-neuron/torch-neuronx",
-      "https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/index.html",
-      "https://awsdocs-neuron.readthedocs-hosted.com/en/latest/index.html",
-      "https://docs.pytorch.org/tutorials/advanced/privateuseone.html",
-      "http://awsdocs-neuron.readthedocs-hosted.com/en/latest/tools/neuron-explorer/how-to-profile-workload.html#neuronconfig-profile-modes",
-      "https://awsdocs-neuron.readthedocs-hosted.com/en/latest/tools/neuron-explorer/get-started.html#step-5-upload-your-profile",
-      "https://github.com/aws-neuron/torch-neuronx/tree/main/examples/hf_profiling_blog_pt1",
-      "https://cdn-uploads.huggingface.co/production/uploads/6ac67ea29579ea34f1f7e470/mlyyxfL6i5GfbOgUsyIuL.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6ac67ea29579ea34f1f7e470/GUGp8s5G4EV7rb09YBDbf.png",
-      "https://huggingface.co/datasets/jlongen-aws/blog-assets/resolve/main/hf_profiling_blog_pt1/dependency_chain.gif",
-      "https://cdn-uploads.huggingface.co/production/uploads/6ac67ea29579ea34f1f7e470/uYhQmUtuUp1LYPOu8f9bf.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6ac67ea29579ea34f1f7e470/OfM6vRT9iPBG42s8iWK1V.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6ac67ea29579ea34f1f7e470/TSJ2RWScmKPKmSroHCZaI.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6ac67ea29579ea34f1f7e470/yWIFqisMxCtJHLYb2Rcsh.png"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "0fff47054cc39cd5",
-   "url": "https://www.latent.space/p/claude-mods",
-   "title": "Claude Mods: Flipping the Harness Inside Out",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-10-21T13:04:19+00:00",
-   "summary_short": "Claude Mods：把 Claude Code 变成可自行编程的“注意力界面”",
-   "summary_long": "作者称过去几周用 Claude Mods 把 Claude Code 改造成贴合自己 AI 工程工作流的样子。Mod 是运行在 Claude Code 内部的 TypeScript 或 JavaScript 函数插件，本质上是一层中间件：它响应 prompt、工具调用、界面渲染等事件，可以观察事件、改变渲染方式，或替代默认行为，在运行时改变 CLI 与桌面端的执行和渲染流程。作者此前在一篇 Latent Space 文章中提出，随着模型把更多 harness 能力吸收进权重，剩下的部分会面向人，成为“注意力界面”，即决定何时打断你、给你看什么、要你做哪些决定的那一层；Claude Mods 是这一界面的早期版本，让人类层由使用者自己编程。作者还判断，harness 最终会像浏览器一样成为平台，模型是引擎。Claude Code 内置了教 Claude 写 mod 的 skill，可用自然语言提出需求让它生成。Anthropic 已内置六个 mod：agents-md、diff、plugin-authoring、sec-default、telemetry、you-should-know，其中 You Should Know 默认关闭。",
-   "key_points": [
-    "Mod 是运行在 Claude Code 内的 TypeScript/JavaScript 函数插件，作为 agent harness 的中间件响应事件、改写渲染或替代默认行为。",
-    "['作者把 harness 面向人的剩余部分称为“注意力界面”，认为 Claude Mods 是其早期形态，使人类层可被使用者编程。']",
-    "['Claude Code 内置六个 mod（agents-md、diff、plugin-authoring、sec-default、telemetry、you-should-know），后者默认关闭，用侧代理标记容易被忽略的信息。']"
-   ],
-   "topics": [
-    "harness",
-    "coding-agent",
-    "context-engineering"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 71.9,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://substackcdn.com/image/fetch/$s_!Kjjn!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc61f4d99-31a9-4e4c-aa02-65e5b5db1799_1280x720.png",
-      "https://code.claude.com/docs/en/plugins/mods/overview",
-      "https://www.latent.space/p/attention-interface",
-      "https://substackcdn.com/image/fetch/$s_!qzAy!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F00e9700e-b830-4845-ae84-bfc317d8f057_1600x960.png",
-      "https://substackcdn.com/image/fetch/$s_!xzEx!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3183f682-cc38-425b-9747-42aa40878b29_2000x1220.png",
-      "https://code.claude.com/docs/en/plugins/mods/create#ask-claude-for-a-mod",
-      "https://code.claude.com/docs/en/plugins/mods/overview#mods-built-into-claude-code",
-      "https://code.claude.com/docs/en/interactive-mode#you-should-know-suggestions",
-      "https://substackcdn.com/image/fetch/$s_!t5Pz!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F021b43c4-0ad5-4f18-8345-f655e711bc58_2048x1150.png",
-      "https://github.com/DannyMac180/skills/tree/main/modsmith",
-      "https://substackcdn.com/image/fetch/$s_!mm-W!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F514aa5de-64f1-4721-b596-24c528448bfa_2048x1308.png",
-      "https://openai.com/index/gpt-6-for-everyone/",
-      "https://substackcdn.com/image/fetch/$s_!8Ujt!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff31cc715-bd80-4f03-9f9c-604cf3f4c0d5_2048x1868.png",
-      "https://cursor.com/docs/approval-agents",
-      "https://code.claude.com/docs/en/plugins/mods/overview#what-a-mod-can-reach",
-      "https://substackcdn.com/image/fetch/$s_!ohR4!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7a0aad7b-8d44-4592-be72-aa8affe22d85_1906x1264.png",
-      "https://code.claude.com/docs/en/plugins/mods/create"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "7dadac6a05821def",
-   "url": "https://www.latent.space/p/ainews-deepseek-deepinfer-open-source",
-   "title": "[AINews] DeepSeek DeepInfer: Open Source SOTA Inference running 155T toks/day/cluster making $22m/day at ~80% margin for a 81 day payback",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-10-21T06:54:09+00:00",
-   "summary_short": "DeepSeek开源生产推理栈DeepInfer，单集群日处理155万亿token，KV缓存未开源",
-   "summary_long": "PyTorch Conf首日，DeepSeek开源了其生产推理栈DeepInfer，也就是支撑V4.1 Flash的推理引擎。它基于vLLM定制，致谢SGLang与TRT-LLM，支持最长72小时prompt缓存（OpenAI刚宣布的是12小时）、分布式推理、投机解码、SWA Bounded Replay与结构化输出，覆盖NVIDIA与华为昇腾平台；配套的deepseek-recipe实现生产级token编解码与兼容官方API的处理。不过原文技术说明指出，KV缓存管理与负载均衡组件尚未完全放出，仍与内部基础设施耦合，因此所谓“完全开源”并不等于可复现整套生产服务。原文引用的生产数据为：单集群每天155万亿token、96%输入缓存命中、平均首token 400ms、生成230 token/s（编码场景300 token/s）、低谷价下每加速器小时38美元收入；按约2400张卡、每卡每小时5至8美元全成本推算，推理利润率超80%。原文强调这些均为第一方生产声明，未经独立审计。",
-   "key_points": [
-    "DeepInfer开源的是推理引擎与API处理层，支持分布式推理、投机解码、SWA Bounded Replay、结构化输出，覆盖NVIDIA与华为昇腾，DeepSeek称后续推理实现与优化也会进入该仓库",
-    "KV缓存管理（紧凑、寿命超8小时）与负载均衡未完全开源，仍与内部基础设施耦合；原文据此指出“完全开源”不等于可复现整套生产服务",
-    "原文引用的生产数据：单集群155万亿token/日、96%缓存命中、TTFT 400ms、230 token/s、$38/加速器小时，推算>80%推理利润率与约81天回本；均为第一方声明、未经独立审计"
-   ],
-   "topics": [
-    "open-source",
-    "harness",
-    "product"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 70.4,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://serpapi.com/latentspace-ainews-featured",
-      "https://www.latent.space/p/ainews-the-inference-inflection?utm_source=publication-search",
-      "https://www.latent.space/p/ainews-new-ai-infra-decacorns-fireworks?utm_source=publication-search",
-      "https://www.latent.space/p/ainews-modals-1b-arr-16b-series-d",
-      "https://pytorch.org/event/pytorch-conference-2026/",
-      "https://x.com/basedjensen/status/2112585632543613151",
-      "https://deepwiki.com/deepseek-ai/DeepInfer",
-      "https://x.com/thsottiaux/status/2112712984644784534",
-      "https://x.com/vllm_project/status/2112480719952138301",
-      "https://x.com/zephyr_z9/status/2112510214109032829/photo/1",
-      "https://x.com/Halex623/status/2112691395400175753",
-      "https://github.com/deepseek-ai/3fs",
-      "https://inf.latent.space/",
-      "https://inf.latent.space/research",
-      "https://inf.latent.space/how",
-      "https://inf.latent.space/codemap",
-      "https://inf.latent.space/source",
-      "https://substackcdn.com/image/fetch/$s_!tu5N!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F07a949cd-f727-48e2-9bd4-c4d110bf94e9_1326x1362.png",
-      "https://x.com/swyx/status/2112587397380943953",
-      "https://api-docs.deepseek.com/quick_start/pricing/?tool=deepseek",
-      "https://x.com/latentspacepod/status/2112588380416647205",
-      "https://substackcdn.com/image/fetch/$s_!aEyK!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F32f1a4cb-f58f-4454-8a1b-96ffe57e72cb_680x640.png",
-      "https://x.com/zephyr_z9/status/2112499092031185134",
-      "https://substackcdn.com/image/fetch/$s_!rRsx!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff8f12827-b0ae-473f-94d0-416189d7c311_1142x622.png",
-      "https://twitter.com/i/lists/1585430245762441216",
-      "https://news.smol.ai/",
-      "https://www.latent.space/p/2026",
-      "https://support.substack.com/hc/en-us/articles/8914938285204-How-do-I-subscribe-to-or-unsubscribe-from-a-section-on-Substack",
-      "https://twitter.com/deepseek_ai/status/2112476496283775135",
-      "https://twitter.com/deepseek_ai/status/2112476501065286085",
-      "https://twitter.com/teortaxesTex/status/2112493775465443641",
-      "https://twitter.com/ZhihuFrontier/status/2112472782630187517",
-      "https://twitter.com/swyx/status/2112587397380943953",
-      "https://twitter.com/vllm_project/status/2112480719952138301",
-      "https://twitter.com/vllm_project/status/2112703311933747347",
-      "https://twitter.com/vllm_project/status/2112703321526133048",
-      "https://twitter.com/Tim_Dettmers/status/2112592787338408445",
-      "https://twitter.com/zephyr_z9/status/2112533683634942328",
-      "https://twitter.com/Yuchenj_UW/status/2112591074409742733",
-      "https://twitter.com/SuJinYan123/status/2112485918527590435"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "9b35c0bfb2f0e3cd",
-   "url": "https://huggingface.co/blog/ibm-granite/granite-speech-5",
-   "title": "Granite Speech 5.0: Transcribe, Translate, and Attribute more Accurately and Faster",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-21T14:58:18+00:00",
-   "summary_short": "IBM 更新 Granite Speech 系列三个模型，2B 新版语音识别更准、支持提示词偏置与长语音翻译",
-   "summary_long": "Granite Speech 系列发布三项更新：新模型 granite-speech-5.0-2b，以及两个已有模型 granite-speech-5.0-470m-turboctc 和 granite-speech-4.1-2b-plus 的修订版。三者分别面向高精度多语种转写与翻译、边缘端高吞吐转写、以及需要区分说话人和时间戳的多说话人录音场景。新模型 granite-speech-5.0-2b 参数规模与前代 granite-speech-4.1-2b 相同，支持英语、法语、德语、西班牙语、葡萄牙语、日语的转写，并在这些语言与英语之间互译，另支持英语译成意大利语和中文；训练数据为 39 万小时公开音频，外加为日语 ASR、关键词偏置和翻译构建的合成数据。相较 4.1 2B，新模型在英语短语音基准上更准，对噪声、混响和远场麦克风语音处理更好；支持在提示中指定输入语言；长语音与对话式翻译表现更稳；关键词列表最多 2000 条；可按提示输出带标点和大小写的格式化文本，测试集大小写 F1 为 89.7 至 99.5。模型以 Apache 2.0 发布，支持 Transformers、vLLM、llama.cpp 和 Apple Silicon 上的 mlx-audio；在公开英语短语音测试集上平均词错率 5.06%，在开源权重 ASR 模型中排第二。Turbo CTC 保持 470M",
-   "key_points": [
-    "发布 granite-speech-5.0-2b 新模型，并更新 granite-speech-5.0-470m-turboctc 与 granite-speech-4.1-2b-plus 两个已有模型",
-    "5.0-2b 与前代参数规模相同，支持六种语言转写及与英语互译，另支持英语译意大利语和中文，训练数据为 39 万小时公开音频加合成数据",
-    "5.0-2b 新增提示词指定输入语言、最多 2000 条关键词偏置、按需输出标点与大小写，长语音与对话式翻译更稳"
-   ],
-   "topics": [
-    "open-source",
-    "asr"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 69.4,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://huggingface.co/ibm-granite/granite-speech-5.0-2b",
-      "https://huggingface.co/ibm-granite/granite-speech-5.0-470m-turboctc",
-      "https://huggingface.co/ibm-granite/granite-speech-4.1-2b-plus",
-      "https://cdn-uploads.huggingface.co/production/uploads/653fb52cbfd890805461d691/87yRtLq4X2CwMZrDhv0L_.png",
-      "https://huggingface.co/blog/ibm-granite/granite-speech-5-0-470m-turboctc",
-      "https://huggingface.co/collections/ibm-granite/granite-guardian"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "8a2355503fe0598b",
-   "url": "https://www.qbitai.com/2026/10/504456.html",
-   "title": "RSI三块关键拼图，MemT 1.0从模型层补上「记忆」",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-10-20T12:50:34+00:00",
-   "summary_short": "MemT 1.0开源记忆原生模型，把经验写入模型内部状态，完成近300B参数验证",
-   "summary_long": "原文围绕RSI讨论中的“记忆”问题，介绍记忆张量开源的MemT 1.0系列：不把经验外接为文本库，而是将经验编码为模型内部动态状态，通过训练学习写入、更新和读取，并让记忆分支与原有注意力输出融合，参与后续生成。MemT 1.0称这是记忆原生模型首次实现近300B参数规模工程验证。它发布Nano（36B总参数、3B激活，基座Qwen3.6-35B-A3B）和Flash（288B总参数、17B激活，基座DeepSeek-V4-Flash），在选定Transformer模块增加与注意力并行的记忆计算通路。架构上主干权重冻结，超记忆负责读写投影与门控，局部记忆保存动态矩阵状态；更新采用基于Gated DeltaNet-2的逐Token生成，并用MoS扩展存储。训练使用340亿Token记忆语料。实验显示SWE-bench Verified上Nano关键断点平均成功率69.73%，高于无经验66.07%和文本经验69.13%；11项记忆基准中Flash、Nano平均50.6、47.0，位列参数化记忆方法前两名，但原文指出文本记忆系统在长历史细节召回上整体仍有优势。",
-   "key_points": [
-    "MemT 1.0主打“记忆原生”：把经验编码成内部动态状态，经专门记忆分支读取并与注意力输出融合；发布Nano和Flash两个型号，称首次完成近300B参数规模工程验证。",
-    "架构上保留基座计算流程，在选定Transformer模块加入记忆分支：主干权重冻结，超记忆负责读写投影与门控，局部记忆保存动态矩阵状态；更新基于Gated DeltaNet-2逐Token生成，并以MoS做稠密融合扩展存储。",
-    "评测中，SWE-bench Verified的Nano关键断点平均成功率为69.73%，无经验为66.07%、文本经验为69.13%；11项记忆基准中Flash、Nano平均50.6、47.0，列参数化记忆方法前两名，但原文指出文本记忆系统在长历史细节召回上整体仍有优势。"
-   ],
-   "topics": [
-    "memory",
     "post-training",
-    "context-engineering"
+    "reasoning",
+    "open-source"
    ],
    "category": "模型",
    "categories": [
@@ -247,417 +26,99 @@
     "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 66.2,
+   "score": 73.8,
    "status": "review",
    "extra": {
     "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "首页轮播",
-     "RSI",
-     "大模型",
-     "记忆"
-    ],
     "outbound": {
      "arxiv": [
-      "2610.26825"
+      "2205.04216",
+      "2401.03955",
+      "2508.05287",
+      "2602.06909"
      ],
      "links": [
-      "https://www.qbitai.com/author/luyu",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/rsi",
-      "https://www.qbitai.com/tag/%e5%a4%a7%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/tag/%e8%ae%b0%e5%bf%86",
-      "https://www.qbitai.com/2026/10/504067.html",
-      "https://www.qbitai.com/2026/10/503532.html",
-      "https://www.qbitai.com/2026/10/503910.html",
-      "https://www.qbitai.com/2026/10/502585.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/504456.html&title=RSI三块关键拼图，MemT 1.0从模型层补上「记忆」&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2022/09/37495.html",
-      "https://www.qbitai.com/tag/%e8%be%be%e6%91%a9%e9%99%a2",
-      "https://www.qbitai.com/tag/%e9%98%bf%e9%87%8c",
-      "https://www.qbitai.com/2023/05/54828.html",
-      "https://www.qbitai.com/tag/%e6%b8%85%e5%8d%8e%e5%a4%a7%e5%ad%a6",
-      "https://www.qbitai.com/2023/07/67259.html",
-      "https://www.qbitai.com/tag/%e6%95%b0%e6%8d%ae%e5%ba%93",
-      "https://www.qbitai.com/tag/%e9%99%88%e4%b8%b9%e7%90%a6",
-      "https://www.qbitai.com/2025/02/259041.html",
-      "https://www.qbitai.com/tag/gpt-4-5",
-      "https://www.qbitai.com/tag/openai",
-      "https://www.qbitai.com/2024/08/174979.html",
-      "https://www.qbitai.com/2023/10/91241.html",
-      "https://www.qbitai.com/tag/aigc",
-      "https://www.qbitai.com/tag/%e6%99%ba%e8%b0%b1ai",
-      "https://www.qbitai.com/2026/10/503326.html",
-      "https://www.qbitai.com/2026/10/503640.html",
-      "https://www.qbitai.com/2026/10/503965.html",
-      "https://www.qbitai.com/2026/10/503935.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
+      "https://www.ecmwf.int/en/about/media-centre/focus/2017/fact-sheet-ensemble-weather-forecasting",
+      "https://www.cpc.ncep.noaa.gov/products/NMME/NMME_description.html",
+      "https://huggingface.co/ibm-granite/granite-timeseries-ensemble-r1",
+      "https://huggingface.co/ibm-granite/granite-timeseries-patchtst-fm-r1",
+      "https://huggingface.co/ibm-granite/granite-timeseries-patchtst-fm-r2",
+      "https://huggingface.co/ibm-granite/granite-timeseries-flowstate-r1",
+      "https://huggingface.co/ibm-granite/granite-timeseries-ttm-r3",
+      "https://arxiv.org/abs/2602.06909",
+      "https://huggingface.co/blog/ibm-research/ibm-releases-sota-granite-time-series",
+      "https://arxiv.org/abs/2508.05287",
+      "https://arxiv.org/abs/2401.03955",
+      "https://arxiv.org/abs/2205.04216",
+      "https://huggingface.co/buckets/rry003/blogcomponents/resolve/ensemble_overview.svg?download=true",
+      "https://onlinelibrary.wiley.com/doi/10.1111/j.1468-0084.2008.00541.x",
+      "https://huggingface.co/buckets/rry003/blogcomponents/resolve/gift_eval_ranks_granite.png?download=true",
+      "https://github.com/ibm-granite/granite-tsfm/blob/main/notebooks/hfdemo/probabilistic_ensemble_getting_started.ipynb",
+      "https://github.com/ibm-granite/granite-tsfm",
+      "https://huggingface.co/spaces/Salesforce/GIFT-Eval",
+      "https://arxiv.org/html/2602.06909v1",
+      "https://doi.org/10.1111/j.1468-0084.2008.00541.x"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "a1097dcd46a9932f",
-   "url": "https://github.com/onehumanbeing/esp32-iphone-agent",
-   "title": "onehumanbeing/esp32-iphone-agent — Let an AI model use a real iPhone with a $7 ESP32: AirPlay eyes, USB HID hands, any OpenAI-compatible vision model. No Mac, no developer account, no jailbreak.",
-   "source": "GitHub Trending (AI)",
-   "tier": "B",
-   "published_at": "2026-10-11T19:10:25+00:00",
-   "summary_short": "用7美元ESP32让AI模型借助AirPlay画面与USB HID控制操作真实iPhone",
-   "summary_long": "",
-   "key_points": [
-    "用7美元的ESP32让AI模型使用一台真实iPhone",
-    "AirPlay充当视觉输入，USB HID充当操作输入",
-    "可接入任意OpenAI兼容的视觉模型"
-   ],
-   "topics": [
-    "tool-use",
-    "harness"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "开源项目"
-   ],
-   "horizon": "long",
-   "score": 65.0,
-   "status": "review",
-   "extra": {
-    "stars": 3477,
-    "language": "C",
-    "summary_mode": "brief"
-   }
-  },
-  {
-   "id": "b2deaf97c98cf0ff",
-   "url": "https://openai.com/index/empowering-cyber-defenders",
-   "title": "Democratic governance of frontier AI, part II: Empowering cyber defenders",
-   "source": "OpenAI News",
+   "id": "655df0fb22ace891",
+   "url": "https://deepmind.google/blog/beyond-tree-cover-mapping-the-worlds-forest-types/",
+   "title": "Beyond tree cover: mapping the world’s forest types",
+   "source": "Google DeepMind Blog",
    "tier": "S",
-   "published_at": "2026-10-21T00:00:00+00:00",
-   "summary_short": "前沿AI治理第二篇：发布赋能网络防御者蓝图，提出三方面治理建议",
-   "summary_long": "2026年10月21日发布的这篇文章围绕“前沿 AI 的民主治理”第二篇展开，主题是赋能网络防御者。原文指出，AI 正在改变网络安全的速度、规模与经济性：它可以帮助防御者发现并修复漏洞、检测入侵、响应攻击，但同样的能力也可能被恶意行为者利用，并且当 AI 系统超出预期边界运行时会产生新风险。原文称当前处于一个“防御者窗口”，也就是在先进网络攻击能力广泛可用之前，把先进 AI 交到防御者手中、强化防护的有限机会。文章称，其自身模型出现的错位与安全事件表明，全行业需要更强的保障与问责，并据此发布蓝图，承接此前的网络安全行动计划与前沿安全蓝图。蓝图面向政府和行业提出三方面具体建议：加强先进 AI 的安全保障，明确保护前沿模型与 agent、检测危险行为、维持可靠关停控制的责任；为情报时代现代化网络安全，为防御者提供工具、培训与技术支持，解决长期弱点，投资保护关键服务并替换过时系统；建设有韧性和适应性的公共机构，加强政府评估与独立技术评估、建立一致的事件报告要求、改进协调响应与恢复。文末称 AI 实验室有责任应对其系统产生的风险，政府也需具备相应专业知识、资源与权威，并鼓励政策制定者现在就采取行动。",
+   "published_at": "2026-10-22T14:30:24+00:00",
+   "summary_short": "10米分辨率全球森林类型图发布，区分六类森林并追踪年度变化，服务欧盟毁林法规。",
+   "summary_long": "原文介绍，Google DeepMind 与 Google Research 联合世界资源研究所（WRI）和国际应用系统分析研究所（IIASA）发布 Forest Typology（ForTy）2020：一张10米分辨率全球地图，把每块10×10米土地分为六类——原始林、自然再生林、人工种植林、种植园林、树木作物与农林复合、其他土地，分类依据联合国粮农组织定义。原文指出，仅看“树冠覆盖”不够：原始雨林、桉树种植园和油棕园从太空看可能同样是绿色，但碳储量和生物多样性差异很大。该地图还配有2017至2025年时间序列，追踪森林逐年变化，包括天然林被种植园或农田替代的位置，让用户首次以10米细节、逐年查看森林丢失后由什么替代。ForTy 2020被原文称为欧盟毁林法规的关键基线；EUDR要求咖啡、可可、棕榈油等产品不来自2020年后由森林转为农业的土地，木制品也须避免森林退化。此前 Natural Forests of the World 2020 只回答某地2020年是否为天然林，ForTy 进一步说明森林类型及年度变化。",
    "key_points": [
-    "原文认为 AI 同时放大攻防两端能力：既能帮防御者发现修复漏洞、检测入侵、响应攻击，也可能被恶意行为者利用，AI 系统越界还会带来新风险",
-    "文章提出“防御者窗口”概念，即在先进网络攻击能力广泛可用之前，把先进 AI 交到防御者手中的有限机会，并呼吁政策制定者立即行动",
-    "蓝图在三个方面提出建议：强化前沿模型与 agent 的安全责任、危险行为检测和可靠关停控制；为情报时代现代化网络安全，为防御者提供工具、培训、技术支持，并替换过时系统；建设有韧性的公共机构，加强政府与独立技术评估、统一事件报告要求、改进协调响应与恢复"
+    "ForTy 2020 是一张10米分辨率全球地图，按联合国粮农组织定义把土地分为原始林、自然再生林、人工种植林、种植园林、树木作物与农林复合、其他土地六类。",
+    "配套的2017至2025年时间序列追踪森林逐年变化，包括天然林被种植园或农田替代的位置，让用户首次以10米细节、逐年查看森林丢失后由什么替代。",
+    "原文称 ForTy 2020 是欧盟毁林法规的关键基线；EUDR 要求相关产品不来自2020年后由森林转为农业的土地，木制品也须避免森林退化。"
    ],
    "topics": [
-    "cybersecurity",
-    "alignment",
-    "governance"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全",
-    "行业动态"
-   ],
-   "horizon": "long",
-   "score": 60.6,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Global Affairs"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://cdn.openai.com/pdf/8c2f4a91-7d63-4b0e-9f25-a1d8c6e70342/cybersecurity-2-0-blueprint.pdf",
-      "https://cdn.openai.com/pdf/25752ecb-0e5c-47f9-b9e4-c0f4d76f8d3d/a-blueprint-for-a-federal-framework.pdf"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "61f4d0141ff303c0",
-   "url": "https://openai.com/index/openai-models-google-cloud",
-   "title": "OpenAI models are coming to Google Cloud",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-21T12:00:00+00:00",
-   "summary_short": "OpenAI 前沿模型与 Codex 将进入 Google Cloud 的模型库 Model Garden",
-   "summary_long": "OpenAI 与 Google Cloud 宣布合作，把 OpenAI 的前沿模型和 Codex 智能体工作流接入 Google Cloud 的 Model Garden，使客户可在该平台内原生调用这些模型，支撑大规模复杂智能体工作流，并由 Google Cloud 的数据治理与高性能基础设施提供支撑。客户可通过 Model Garden 购买 OpenAI 前沿模型，交易经 Google Cloud Marketplace 完成；已有 GCP 消费承诺的企业可用该承诺抵扣相关采购。OpenAI 模型随后还将上线 Google Antigravity 和 Gemini Agent，为客户提供模型选择灵活性。原文称正式可用计划在未来数周内推出，并明确 Microsoft 仍是 OpenAI 的主要云合作伙伴。文中引述 OpenAI 总裁兼联合创始人 Greg Brockman 与 Google Cloud CEO Thomas Kurian 的表态：前者称此举让客户在已有构建环境中用上其最强模型与 Codex，后者称目标是提供包括 OpenAI 在内的广泛模型选择，以兼顾质量与成本。",
-   "key_points": [
-    "OpenAI 前沿模型与 Codex 智能体工作流将进入 Google Cloud Model Garden，客户可原生访问",
-    "采购经 Google Cloud Marketplace 交易，持有 GCP 消费承诺的企业可用承诺额度抵扣",
-    "OpenAI 模型随后将上线 Google Antigravity 与 Gemini Agent；正式可用计划在未来数周内推出"
-   ],
-   "topics": [
-    "coding-agent",
-    "product"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 60.0,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Company"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://cloud.google.com/blog/products/ai-machine-learning/google-cloud-brings-openai-models-to-customers",
-      "http://chatgpt.com/codex/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "2ed22a61b2f19a0c",
-   "url": "https://openai.com/index/broad-access-through-consistent-standards",
-   "title": "Broad access through consistent standards",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-21T21:00:00+00:00",
-   "summary_short": "统一模型访问安全标准并更新使用政策，明确伙伴与网关审核要求",
-   "summary_long": "原文介绍，过去几个月其与客户和合作伙伴合作，统一提供模型的服务的安全政策，并更新使用政策以便开发者遵循。部署前，原文称会评估模型能力与风险、训练模型遵守安全要求，并测试防护措施能否抵御刻意绕过；部署后监测潜在滥用并调查问题。为减少网络滥用，模型被训练拒绝有害请求，系统会识别交互中的可疑模式。原文强调，无论用户直接通过 OpenAI、托管合作伙伴还是经销商访问模型，合作伙伴都须维持与自身一致的安全防护、调查潜在违规并协调执法。更新后的使用政策于2026年11月20日生效，要求模型路由器或 AI 网关等提供直接访问的服务先获得审查批准。原文还提到 Private Safety Processing 与 SafetyIDs，后者可在不获知用户身份的情况下区分终端用户，以便更精准应对潜在滥用。",
-   "key_points": [
-    "统一跨服务安全政策：无论直接、通过托管合作伙伴还是经销商访问模型，合作伙伴都须维持一致防护、调查潜在违规并协调执法。",
-    "部署前后均有措施：部署前评估能力与风险、训练并测试防护；部署后监测滥用，训练模型拒绝有害请求并识别可疑交互模式。",
-    "使用政策于2026年11月20日生效，要求模型路由器、AI 网关等直接访问服务先获审查批准；SafetyIDs 可在调查中区分终端用户而不暴露身份。"
-   ],
-   "topics": [
-    "alignment",
-    "privacy"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "long",
-   "score": 54.6,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Safety"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "e4060c1420df1876",
-   "url": "https://www.qbitai.com/2026/10/504517.html",
-   "title": "国模Agent第一！MiniMax爆改Flash战力，全时段大肥鱼谷价",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-10-20T13:29:54+00:00",
-   "summary_short": "MiniMax M3.1 Flash 发布：输入1元/百万Token，ALE 29.6% 居国模第一",
-   "summary_long": "原文介绍，国庆期间在 OpenRouter 匿名屠榜的神秘模型 Space Bunny（玉兔），被确认出自 MiniMax，正式代号为 M3.1 Flash。正式版跑分比匿名版更高：Agents' Last Exam（ALE）得分 29.6%，为国模第一；AA 榜单 43 分。Coding 方面，DeepSWE v1.1 拿到 73.7%，超过 GPT-6.1 Sol、Claude Opus 5、Claude Fable 5，仅次于 DeepSeek V4.1 Flash 1017 的 77 分；CyberGym 得 82.2 分，与 GLM-5.3（84.5）、GPT-5.6 Sol（83.6）同列第一梯队；Zapier 的 AutomationBench-AA 位居前列，单任务成本不到 0.05 美元；BankerToolBench 76.2 分，与 Claude Opus 5 并列全球第一；OSWorld V2 61.7 分，与 ALE 一起位列国产模型第一。速度与价格方面，原文称它采用较激进的稀疏注意力架构，推理速度提升近 3 倍，输出最快 200+ TPS、P50 170+ TPS；输入每百万 Token 1 元、输出 4 元、缓存读取 0.1 元，综合成本比 M3 降 70%。原文作者据此认为，Flash 小模型已能正面比拼更大参数、更高价格的旗舰，并提出“忙时 Min",
-   "key_points": [
-    "ALE 29.6% 位居民营第一，Coding、网络安全、Computer Use 均进入全球第一梯队，BankerToolBench 与 Claude Opus 5 并列第一",
-    "输入1元、输出4元、缓存读取0.1元每百万Token，综合成本较 M3 降 70%，价格与 DeepSeek V4.1 Flash 接近",
-    "稀疏注意力架构带来近 3 倍推理提速，输出最快 200+ TPS、P50 170+ TPS"
-   ],
-   "topics": [
-    "reasoning",
-    "coding-agent",
-    "post-training"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 53.5,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "MiniMax"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/jay",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/minimax",
-      "https://www.qbitai.com/2026/10/504184.html",
-      "https://www.qbitai.com/2026/10/503341.html",
-      "https://www.qbitai.com/2026/10/503244.html",
-      "https://www.qbitai.com/2026/10/502920.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/504517.html&title=国模Agent第一！MiniMax爆改Flash战力，全时段大肥鱼谷价&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2026/06/428092.html",
-      "https://www.qbitai.com/2025/11/348698.html",
-      "https://www.qbitai.com/tag/%e5%bc%80%e6%ba%90",
-      "https://www.qbitai.com/2026/02/382127.html",
-      "https://www.qbitai.com/2024/05/143896.html",
-      "https://www.qbitai.com/tag/%e6%b5%b7%e8%9e%baai",
-      "https://www.qbitai.com/2025/10/346476.html",
-      "https://www.qbitai.com/2026/01/369227.html",
-      "https://www.qbitai.com/2026/10/503326.html",
-      "https://www.qbitai.com/2026/10/504067.html",
-      "https://www.qbitai.com/2026/10/503640.html",
-      "https://www.qbitai.com/2026/10/503109.html",
-      "https://www.qbitai.com/2026/10/503935.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a6e1fb4e076b0df6",
-   "url": "https://www.latent.space/p/tenex",
-   "title": "AI for the Fortune 2000: How Tenex Builds an AI-Native SDLC — Alex Lieberman & CJ Hess",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-10-21T05:01:26+00:00",
-   "summary_short": "Tenex 谈按交付付费扩展到组织，及把决策写进 Git 的 MetaHarness",
-   "summary_long": "Tenex 此前提出，按 AI 工程师交付的成果而不是工时付费。在 AIE New York，Alex Lieberman 与 CJ Hess 讲述把这一思路扩展到工程组织后的情况：Tenex 仍将故事点作为工程薪酬的重要组成部分；Alex 称最担心的虚报估算、为刷分交付劣质代码并未成为最大问题，因为 AI 策略师对客户留存与增长负责，有动力拒绝无益于客户的工作。更难的是如何奖励写不进工单的工作，比如理解客户问题、设计架构、决定该建什么；CJ 表示随着模型变强，自己直接写代码的时间减少，更多时间用于把客户上下文转成模型可用的形式。Tenex 已有 75 人，客户包括财富 2000 公司与中型企业。CJ 还介绍了 MetaHarness：一套共享技能、项目文档与围绕工作的 CLI，计划与决策同代码一起提交到 Git，使 agent 能读到团队为何这样建；原文也指出，这种结构对单一项目的小团队可能过度。",
-   "key_points": [
-    "Tenex 仍以故事点作为工程薪酬的重要部分；Alex 称虚报估算、为刷分交付劣质代码并非最大问题，因为 AI 策略师对客户留存与增长负责",
-    "难定价的是写不进工单的工作：理解客户问题、设计架构、决定建什么；CJ 称直接写代码时间减少，更多用于把客户上下文转成模型可用的形式",
-    "MetaHarness 把计划、验收标准、决策与证据连同代码提交到 Git，让 agent 读到“为什么这么建”；原文指出这对小团队单一项目可能过度设计"
-   ],
-   "topics": [
-    "harness",
-    "context-engineering",
-    "coding-agent"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 53.3,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.latent.space/p/10x-ai-engineers-with-1m-salaries",
-      "https://www.youtube.com/watch?v=zlD-CkLVKtU",
-      "https://www.youtube.com/watch?v=Vki6cklFqxo&t=197s",
-      "https://www.tenex.co/blog/building-an-ai-native-sdlc",
-      "https://substackcdn.com/image/fetch/$s_!aHGG!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F576c0ba6-53e3-458f-bd88-6d524832b2ff_819x526.png",
-      "https://www.youtube.com/watch?v=Vki6cklFqxo&t=440s",
-      "https://www.youtube.com/watch?v=Vki6cklFqxo&t=1832s",
-      "https://www.youtube.com/watch?v=Vki6cklFqxo&t=1482s",
-      "https://www.tenex.co/",
-      "https://alexlieberman.com/tenex/",
-      "https://www.youtube.com/watch?v=Vki6cklFqxo&t=0s",
-      "https://www.youtube.com/watch?v=Vki6cklFqxo&t=26s",
-      "https://www.youtube.com/watch?v=Vki6cklFqxo&t=51s",
-      "https://www.youtube.com/watch?v=Vki6cklFqxo&t=92s",
-      "https://www.youtube.com/watch?v=Vki6cklFqxo&t=625s",
-      "https://www.youtube.com/watch?v=Vki6cklFqxo&t=911s",
-      "https://www.youtube.com/watch?v=Vki6cklFqxo&t=1169s",
-      "https://www.youtube.com/watch?v=Vki6cklFqxo&t=1402s",
-      "https://www.youtube.com/watch?v=Vki6cklFqxo&t=2123s",
-      "https://www.youtube.com/watch?v=Vki6cklFqxo&t=2298s",
-      "https://www.youtube.com/watch?v=Vki6cklFqxo&t=2548s"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "b73531141d99eb71",
-   "url": "https://www.qbitai.com/2026/10/504415.html",
-   "title": "Meshy推出Meshy Edit：基于全新自研AI模型，一句指令实现3D模型局部编辑",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-10-20T04:59:04+00:00",
-   "summary_short": "Meshy 发布 Meshy Edit：圈选区域加一句话，约一分钟完成 3D 模型局部编辑",
-   "summary_long": "AI 3D 模型公司 Meshy 发布局部编辑功能 Meshy Edit，该功能基于其全新自研 AI 模型，已向全部注册用户开放。原文称，模型生成后创作者常需调整局部，如移除配饰、补充细节；过去只能重新生成整个模型（想保留的部分也会一并改变），或用 Blender 等专业软件手动编辑（需长期积累建模技能）。Meshy Edit 将流程简化为两步：先用套索工具圈出整块部件，选区同时覆盖模型的正面、侧面和背面，也可用画笔涂抹可见表面微调边缘；再用一句话描述改动，如“去掉帽子”，并可附最多 5 张参考图。每次修改约一分钟生成新模型，原模型完整保留，新模型可继续编辑、下载或送入切片软件进入 3D 打印。功能面向 3D 打印用户与游戏开发者、角色创作者。每次编辑消耗 20 积分，支持 Meshy 6 和 Meshy 7.1 生成的高精度模型，带贴图模型会自动切换至未贴图版本编辑。",
-   "key_points": [
-    "圈出区域并用一句话描述改动，约一分钟生成新模型，未选中区域保持原样，原模型完整保留",
-    "选区方式有两种：套索可圈出整块部件并覆盖正面、侧面和背面；画笔可涂抹可见表面微调边缘；可附最多 5 张参考图",
-    "主要面向手办、战棋、潮玩、文创等 3D 打印用户，以及游戏开发者和角色创作者；修改后可继续编辑、下载或送切片打印"
-   ],
-   "topics": [
-    "product"
+    "product",
+    "open-source"
    ],
    "category": "产品与应用",
    "categories": [
     "产品与应用",
     "模型"
    ],
-   "horizon": "short",
-   "score": 51.6,
+   "horizon": "long",
+   "score": 72.8,
    "status": "review",
    "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "Meshy"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/qbitai",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/meshy",
-      "https://www.qbitai.com/2026/10/504608.html",
-      "https://www.qbitai.com/2026/10/504452.html",
-      "https://www.qbitai.com/2026/10/504266.html",
-      "https://www.qbitai.com/2026/10/504435.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/504415.html&title=Meshy推出Meshy Edit：基于全新自研AI模型，一句指令实现3D模型局部编辑&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2026/04/408049.html",
-      "https://www.qbitai.com/tag/3d%e6%89%93%e5%8d%b0",
-      "https://www.qbitai.com/tag/ai-3d%e7%94%9f%e6%88%90",
-      "https://www.qbitai.com/2026/09/491522.html",
-      "https://www.qbitai.com/tag/%e7%ab%a5%e6%ac%a3",
-      "https://www.qbitai.com/2026/10/501791.html",
-      "https://www.qbitai.com/2026/10/503326.html",
-      "https://www.qbitai.com/2026/10/504067.html",
-      "https://www.qbitai.com/2026/10/503640.html",
-      "https://www.qbitai.com/2026/10/503965.html",
-      "https://www.qbitai.com/2026/10/503935.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    },
+    "content_source": "reader",
     "summary_mode": "full"
    }
   },
   {
-   "id": "74fcf21eca7add4a",
-   "url": "https://openai.com/index/chatgpt-ads-expands-26-new-countries",
-   "title": "ChatGPT Ads expands to 26 new countries as over 100,000 advertisers have used the platform",
+   "id": "27825e3003584012",
+   "url": "https://openai.com/index/decisions-api",
+   "title": "Build more responsive apps with the Decisions API",
    "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-10-21T13:00:00+00:00",
-   "summary_short": "ChatGPT Ads 新增26国、覆盖89国，上线八个多月已有超10万广告主投放",
-   "summary_long": "OpenAI 宣布将 ChatGPT Ads 扩展至另外26个国家，全球覆盖增至89个国家。原文称，广告上线八个多月来已有超过10万名广告主投放；每周有超过12亿人使用 ChatGPT 探索想法、比较选项并做决定。此次扩张延续近期在欧洲、东南亚和台湾的上线：继墨西哥和巴西之后新增14个拉美国家（含阿根廷、智利、哥伦比亚、秘鲁），并进入尼日利亚、南非、塞尔维亚、乌克兰、柬埔寨、孟加拉国、巴基斯坦等市场，广告主可通过技术合作伙伴或 Ads Manager 自助接入。广告仅出现在 Free 与 Go 套餐，Plus、Pro、Enterprise 订阅保持无广告。OpenAI 称其遵循广告原则：对话对广告主私密、不出售客户数据、广告明确标注并与回答分离、广告不影响 ChatGPT 给出的回答。欧莱雅集团 CDMO Asmita Dubey 表示，早期测试有助从发现、评估到代理式商务开拓体验。原文称下一阶段将开发更多广告形式、目标、购买选项与衡量能力。",
+   "published_at": "2026-10-22T19:00:00+00:00",
+   "summary_short": "Decisions API 正式可用：基于 GPT-6 Luna，做有界答案决策最快提速 10 倍",
+   "summary_long": "原文于 2026 年 10 月 22 日宣布 Decisions API 正式可用（generally available）。文章指出，应用与智能体在工作流中要做大量小决策——如何分类输入、把请求路由到哪里、下一步采取什么动作；单个决策很简单，但规模化后其延迟与成本会叠加。该 API 基于 GPT-6 Luna，把模型能力聚焦在有界答案的问题上，可从文本、图像和结构化输入做出近实时决策，通过 Responses API 比 GPT-6 Luna 快最多 10 倍。自公开测试以来新增：原生 GPT-Live 集成、对重复上下文做提示缓存、美国与欧盟的推理驻留；开发者可传入原生 JSON 输入、在问题指令中包含图像、每次请求最多提 400 个问题（为原上限两倍）；并在亚洲多个区域扩容以继续改善延迟。使用方式是开发者定义问题与允许的答案，并提供上下文，API 返回概率、选项或评分三类答案之一。原文还列举 Box、Datadog、Ramp、Sierra、Speak 的提速与降本数据。",
    "key_points": [
-    "ChatGPT Ads 扩展至26个新国家，全球可用范围达89个国家",
-    "广告上线八个多月，已有超过10万名广告主在 ChatGPT 投放；ChatGPT 每周用户超12亿",
-    "广告仅出现在 Free 和 Go 套餐，Plus、Pro、Enterprise 订阅保持无广告"
+    "Decisions API 正式可用，基于 GPT-6 Luna，聚焦有界答案问题，通过 Responses API 比 GPT-6 Luna 快最多 10 倍",
+    "自公开测试以来新增原生 GPT-Live 集成、提示缓存、美国与欧盟推理驻留，支持原生 JSON 输入与图像，单次请求问题数上限提至 400",
+    "使方式是定义问题与允许答案并提供上下文，返回概率、选项或评分三类答案之一"
    ],
    "topics": [
-    "monetization",
-    "product",
-    "advertising"
+    "api",
+    "latency",
+    "product"
    ],
-   "category": "行业动态",
+   "category": "Agent 与开发",
    "categories": [
-    "行业动态",
-    "产品与应用"
+    "Agent 与开发"
    ],
    "horizon": "short",
-   "score": 51.0,
+   "score": 72.3,
    "status": "review",
    "extra": {
     "content_source": "direct",
@@ -667,47 +128,435 @@
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://ads.openai.com/"
+      "https://github.com/datadog/rshell",
+      "https://developers.openai.com/api/docs/guides/decisions-voice",
+      "https://developers.openai.com/api/docs/guides/decisions#pricing-and-availability",
+      "https://platform.openai.com/decisions",
+      "https://developers.openai.com/api/docs/guides/decisions",
+      "https://developers.openai.com/api/docs/pricing?utm_source=chatgpt.com",
+      "https://developers.openai.com/api/docs/guides/your-data"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "a84b6a7bee5c68a6",
-   "url": "https://openai.com/index/terminal-x",
-   "title": "Terminal X matches senior investor judgment 88.6% with GPT-6.1",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-20T07:00:00+00:00",
-   "summary_short": "Terminal X 用 GPT-6.1 Sol 打造 Eval Agent，按 54 项标准给投资智能体打分",
-   "summary_long": "Terminal X 是一家北美金融业创业公司，为投资机构搭建名为 Capital Memory 的操作系统。原文指出，资深投资人离开后，机构往往只留文档、失去推理过程，Terminal X 称之为“记忆债”。其前置部署工程师（曾任金融与投资岗位，来自摩根大通和黑石）驻场数周，逆向拆解机构信任的投资备忘与从未写下的流程，再编码为按资产类别和策略定制的数百个智能体，部署在客户本地或自有云。GPT-6.1 Sol 负责需要判断力和大上下文窗口的环节：综合投资论点、识别关键考量、评估是否符合机构投资准则（mandate）；GPT-6.1 Luna 负责看重 token 效率的高频步骤。Eval Agent 以 54 项标准为智能体输出评分：相比次优模型，使用 GPT-6.1 Sol 的 Eval Agent 多识别约 25% 偏离基金 mandate 的建议，单次查询成本低约 30%，与人类复核者的一致率高 220bps。原文还称，一家私募股权客户由此实现 240 万美元年化节省。原文在 54 项标准处截断，细节未完整呈现。",
+   "id": "5dbb54a005401fc7",
+   "url": "https://claude.com/product/claude-duet",
+   "title": "Claude Duet",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-21T19:14:01+00:00",
+   "summary_short": "Claude Duet：会主动关注任务、在后台执行、关键时刻等你确认的 agent",
+   "summary_long": "Claude Duet 以研究预览形式出现，定位为主动型 agent：它理解哪些事需要你注意，能承接大小任务，在你离开时继续工作，并在关键处等待你的确认。它由 Opus 5.5 驱动，在美国面向 Pro 和 Max 计划提供，可连接 6000 多个 connectors 和 plugins。原文展示它每天早上汇报进展、起草下一步，然后保持安静直到有事需要你；发消息可让它安排会议或搭建 dashboard，完成后分享。Claude app 中的 memory、skills 和 apps 从第一条消息起就在同一线程中可用。示例包括招聘截止、续约、芝加哥门店开业许可、Series A 材料准备、客户退款和 Marlo Pulse 每日看板，并在付款、发送邮件等环节请求批准。",
    "key_points": [
-    "Capital Memory 把机构投资流程编码成数百个智能体，每次生产查询可审计：步骤、检索来源、所用模型与推理过程全留痕",
-    "Eval Agent 按 54 项标准评分：GPT-6.1 Sol 相比次优模型多识别约 25% 偏离 mandate 的建议，单次查询成本低约 30%，与人类复核者一致率高 220bps",
-    "一家私募股权客户报告，尽调与投资备忘流程自动化带来 240 万美元年化节省；智能体可处理英、韩、日、中文文档，并将所学存为机构 Memory"
+    "定位为主动型 agent：每天早晨汇报进展并起草下一步，没有需要你处理的事时就不打扰你，只有关键事项才找你。",
+    "由 Opus 5.5 驱动，美国 Pro/Max 计划可用，支持 6000 多个 connectors 和 plugins；Claude app 的 memory、skills、apps 在首条消息就可在同一线程使用。",
+    "原文演示可承接会议安排、dashboard 搭建、开店清单、Series A 准备、退款与 Marlo Pulse 看板等任务，并在付款、发邮件等环节等待批准。"
    ],
    "topics": [
     "product",
-    "multi-agent",
-    "memory"
+    "agent-loop",
+    "tool-use"
    ],
    "category": "产品与应用",
    "categories": [
     "产品与应用"
    ],
    "horizon": "short",
-   "score": 50.4,
+   "score": 72.0,
+   "status": "review",
+   "extra": {
+    "hn_points": 544,
+    "hn_comments": 510,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "eaa0ebff7daf626e",
+   "url": "https://huggingface.co/blog/allenai/olmoearth-v1-3",
+   "title": "OlmoEarth v1.3: State-of-the-art embeddings for the whole planet",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-22T16:11:31+00:00",
+   "summary_short": "OlmoEarth v1.3 发布卫星嵌入模型，附全球预计算嵌入与免登录浏览器工具",
+   "summary_long": "OlmoEarth v1.3 是一个卫星嵌入模型：它读取一年的雷达（Sentinel-1）与多光谱（Sentinel-2、Landsat）时间序列，为地球上每个 10 米像素生成一个 128 维向量，前 64 维也可单独作为更小的嵌入。流程是视觉 Transformer 读取卫星数据、Attention Pooler 汇聚成每块土地一个向量、线性层压缩到 128 个数。发布方同时提供托管在 Source Cooperative 的全球逐年预计算嵌入（10m、64 与 128 维），以及无需登录、无需高级技术知识的浏览器工具 OlmoEarth Embeddings Explorer。此前使用 OlmoEarth 主要靠在 OlmoEarth Studio 中逐任务微调，需要 GPU 并下载存储影像；有了嵌入，在其上训练小型分类器并本地运行即可。评测对比 AlphaEarth Foundations 与 Tessera v2，覆盖六大洲 27 项评测，128 维版本在 20 项得分最高、总体排名第一，64 维在 18 项领先；并提出热带农业作物类型新基准 PLANTEUR。模型权重、预训练数据与代码全部开放；训练算力时间为 v1.2 的 53%、v1 的 18%，碳排放为其 50% 与 22%。",
+   "key_points": [
+    "全球 10 米分辨率的 64 与 128 维逐年嵌入已预计算并公开托管，可用浏览器工具免登录探索和定制地图",
+    "27 项评测（六大洲）中 128 维嵌入 20 项得分最高、总体第一，64 维在 18 项领先；同时提出热带作物新基准 PLANTEUR",
+    "模型权重、预训练数据与代码全部开放，训练算力为 v1.2 的 53%、v1 的 18%，最终一次预训练约需 2,720 美元的租用 H100 算力"
+   ],
+   "topics": [
+    "embeddings",
+    "open-source",
+    "remote-sensing"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "评测"
+   ],
+   "horizon": "short",
+   "score": 68.0,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://huggingface.co/allenai/OlmoEarth-v1_3-Base/",
+      "https://allenai.org/papers/olmoearth-v1-3",
+      "https://source.coop/olmoearth/olmoearth-v1-3-embeddings",
+      "https://github.com/allenai/olmoearth_pretrain",
+      "https://olmoearth.allenai.org/embeddings",
+      "https://narrative.allen.ai/olmoearth-embeddings",
+      "https://www.datocms-assets.com/64837/1792611867-olmoearth-v1-3-globe.png",
+      "https://allenai.org/blog/olmoearth-infrastructure",
+      "https://www.datocms-assets.com/64837/1792611867-olmoearth-v1-3-architecture.png",
+      "https://allenai.org/blog/planteur",
+      "https://allenai.org/papers/planteur",
+      "https://www.datocms-assets.com/64837/1792611867-olmoearth-v1-3-training-cost.png",
+      "https://www.datocms-assets.com/64837/1792611867-olmoearth-v1-3-la-pampa.png",
+      "https://olmoearth.allenai.org/embeddings#map=11.38/-12.9486/-69.9637&s=zdY7bCoJAFEX_ZT0fh3GycTy_Ij5MJnaxm4Ug4r9HJfRSb5vFXrAmBtQJd5R8uBX2gHBCqXfx3DYIW9RnwhhRK4yb970eUK5x3yMca9QLFzQVIjrRo2VZJrk11qdrSdKVsc77SsrEFya4LPxhzoQ8hBf7ur_Y4lbVJ7xv6gdCt8x4bruGeX4C",
+      "https://www.maapprogram.org/lapampa_opermercury/",
+      "https://www.maapprogram.org/gold-mining-peru/",
+      "https://apnews.com/article/illegal-mining-peru-military-operation-amazon-gold-mercury-navy-728d312a5687ecc6a1e6c6d6798965fe",
+      "https://storage.googleapis.com/ai2-olmoearth-embeddings-us-central1/explorer-global/index.html#s=zdY9BDoIwFETvMutv09_SAP8qTRe1EjRBRDAkSLi7sbhwobvJS-Ylb8UMYcIEQTvdu-EBwhWCdI5924BwgrCpCAni2VhVszN0MLWyheVAeEJYq5IJS4RownLMxjRDMMTLCMItkwhZMUK8z6LSOZtFhbEukGdTKK0r_susdjv7-v5i-RvCHjU26Z3UfWbs267Btr0A",
+      "https://github.com/allenai/rslearn/blob/master/docs/examples/OlmoEarthEmbeddings.md"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "63c31ca523f91ccf",
+   "url": "https://openai.com/index/forward-deployed-engineering-means",
+   "title": "What FDE means at OpenAI",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-22T06:00:00+00:00",
+   "summary_short": "OpenAI FDE 团队：弥合模型能力与企业可靠落地之间的“部署鸿沟”",
+   "summary_long": "OpenAI 前向部署工程（FDE）负责人 Colin Jarvis 介绍该团队。他于 2025 年初创立 FDE 团队，目的是弥合“部署鸿沟”，即模型展现出的能力与人们能可靠用于实际工作之间的差距：模型能力跑得比落地所需的系统和流程更快。缺口有时是产品，有时是模型在基准上表现好，却应付不了真实变量与约束。团队与客户一起解决最难的问题：模型今天能做的，就与 Product 及客户一起把方案做成可复制的；做不到的，就与客户和 Research 一起界定差距并推动改进。目标是每次合作都让下一个客户起点更高；把基础抬到客户下次不再需要 FDE，才算做好。案例：约翰迪尔用 OpenAI API 为农户提供个性化支持，配合其 See & Spray 精准除草技术（最多减少 70% 化学品使用），在客户全旅程中提供指导。团队准则是“从结果出发，不惜代价做成，再谈规模化”。2025 年中约 15 名 FDE 与一家大型半导体客户合作 10 多个用例，目标是让验证流程 AI 原生，涵盖定向测试生成、根因分析与调试、架构助手；该行业验证约占项目工作量的 70%。",
+   "key_points": [
+    "FDE 团队 2025 年初成立，目标是弥合“部署鸿沟”；Jarvis 称若每隔几个月就让自己被淘汰，团队才算尽责",
+    "工作方式：模型能做到的，就与 Product 和客户一起做成可复制方案；做不到的，就与 Research 一起界定差距并改进；准则是“从结果出发，不惜代价做成，再谈规模化”",
+    "案例：约翰迪尔用 OpenAI API 为农户提供个性化配置与使用指导；2025 年中约 15 名 FDE 服务一家大型半导体客户的 10 多个用例，聚焦验证流程 AI 原生（该环节约占项目工作量 70%）"
+   ],
+   "topics": [
+    "product",
+    "deployment"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 64.5,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
-     "Startup"
+     "Engineering"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.terminal-x.ai/"
+      "https://forum.openai.com/public/events/work-at-the-frontier-forward-deployed-engineering-at-openai-vmimj73oz5",
+      "https://github.com/openai/swarm"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "d636564ee5d912b3",
+   "url": "https://www.latent.space/p/modal-d",
+   "title": "Why AI Compute Comes in Rectangles — Erik Bernhardsson, Modal CEO",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-10-22T17:40:57+00:00",
+   "summary_short": "Modal CEO 谈 GPU 需求为何不是矩形：池化算力与意外走红的沙箱业务",
+   "summary_long": "Modal CEO Erik Bernhardsson 在公司 7.5 亿美元 D 轮（估值 160 亿美元）后接受访谈。他两年前提出的设想是：开发者无需预置集群、预测负载或为闲置资源付费。据其披露，Modal 年化收入已超 10 亿美元，累计启动近 30 亿个沙箱。他称 GPU 需求并非“矩形”——传统合约按固定时长锁定固定卡数，而真实负载会涨落：按峰值买则闲置，买少则可能错失需求。Modal 的做法是池化数千客户需求、在底层锁定容量，让客户按需取用弹性切片；但若锁价后 GPU 价格下跌，供应商会背上昂贵供给，他认为短期不太会崩，但建业务时须考虑。沙箱业务初期采用有限、团队曾讨论关停，后因编码 agent、后台 agent 与强化学习带来需求，现约占收入三分之一。快速启动依赖可用 GPU 缓冲池、自研文件系统、进程检查点与显存快照。访谈还涉及他从 Spotify 推荐系统到创业、算力采购、NVIDIA 替代方案等。",
+   "key_points": [
+    "GPU 需求并非固定矩形：按峰值购买会闲置，购买不足则可能错失需求；Modal 通过池化数千客户需求、在底层锁定容量来提供弹性切片。",
+    "若供应商按当前价格锁定容量而 GPU 价格随后下跌，供应商会持有昂贵供给；Erik 认为短期不会崩盘，但建业务时须考虑这一风险。",
+    "沙箱业务初期采用有限、团队曾讨论关停，后因编码 agent、后台 agent 与强化学习带来需求，现约占 Modal 收入三分之一。"
+   ],
+   "topics": [
+    "ai-compute",
+    "gpu",
+    "sandbox"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 63.8,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://x.com/realbasilchatha?lang=en",
+      "https://www.youtube.com/watch?v=MwNvowwcZOo",
+      "https://www.forwardeployed.com/about",
+      "https://www.latent.space/p/modal",
+      "https://www.youtube.com/watch?v=UwxxlTNPjWo&feature=youtu.be",
+      "https://modal.com/blog/1-billion-annualized-run-rate-series-d",
+      "https://www.latent.space/p/ainews-modals-1b-arr-16b-series-d",
+      "https://youtu.be/IiZ9yd2Do8I",
+      "https://www.latent.space/p/sfcompute2",
+      "https://youtu.be/IiZ9yd2Do8I?t=1185",
+      "https://www.latent.space/p/modal2026",
+      "https://youtu.be/IiZ9yd2Do8I?t=1989",
+      "https://modal.com/blog/truly-serverless-gpus",
+      "https://youtu.be/IiZ9yd2Do8I?t=3809",
+      "https://modal.com/",
+      "https://erikbern.com/",
+      "https://modal.com/blog/resource-solver",
+      "https://modal.com/blog/scaling-to-1-million-concurrent-sandboxes-in-seconds",
+      "https://youtu.be/IiZ9yd2Do8I?t=0",
+      "https://youtu.be/IiZ9yd2Do8I?t=85",
+      "https://youtu.be/IiZ9yd2Do8I?t=259",
+      "https://youtu.be/IiZ9yd2Do8I?t=463",
+      "https://youtu.be/IiZ9yd2Do8I?t=600",
+      "https://youtu.be/IiZ9yd2Do8I?t=801",
+      "https://youtu.be/IiZ9yd2Do8I?t=939",
+      "https://youtu.be/IiZ9yd2Do8I?t=1458",
+      "https://youtu.be/IiZ9yd2Do8I?t=1572",
+      "https://youtu.be/IiZ9yd2Do8I?t=1705",
+      "https://youtu.be/IiZ9yd2Do8I?t=1826",
+      "https://youtu.be/IiZ9yd2Do8I?t=1915",
+      "https://youtu.be/IiZ9yd2Do8I?t=2163",
+      "https://youtu.be/IiZ9yd2Do8I?t=2481",
+      "https://youtu.be/IiZ9yd2Do8I?t=2808",
+      "https://youtu.be/IiZ9yd2Do8I?t=2969",
+      "https://youtu.be/IiZ9yd2Do8I?t=3171",
+      "https://youtu.be/IiZ9yd2Do8I?t=3465",
+      "https://youtu.be/IiZ9yd2Do8I?t=3595",
+      "https://youtu.be/IiZ9yd2Do8I?t=3956",
+      "https://youtu.be/IiZ9yd2Do8I?t=4165",
+      "https://youtu.be/IiZ9yd2Do8I?t=4387"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "fff294f4b81d8d3d",
+   "url": "https://www.dwarkesh.com/p/intel-tour",
+   "title": "What will computer chips look like in 2045?",
+   "source": "Dwarkesh Podcast",
+   "tier": "C",
+   "published_at": "2026-10-22T15:02:21+00:00",
+   "summary_short": "探访英特尔先进晶圆厂，解析未来芯片技术与AI算力需求冲击",
+   "summary_long": "原文记录作者用两天参观英特尔最先进晶圆厂并采访其技术领导层，试图理解未来芯片会是什么样。内容涉及环绕栅极晶体管、背面供电、CFET、混合键合等较难理解的技术，原文还制作动画解释。作者也询问英特尔领导层，半导体行业如何应对AI带来的巨大需求冲击：过去十年AI算力每年增至3倍，而按英特尔CTO说法，以当今全球芯片制造工具存量，英特尔只能把先进制程晶圆产能翻倍。晶圆厂能用哪些办法延长需求远超供应的交叉点，是原文核心问题。节目还覆盖新制程节点导入、10nm经验、High-NA EUV、钌替代铜、堆叠晶体管、混合键合瓶颈、工具不足与Terafab等话题。",
+   "key_points": [
+    "原文作者用两天参观英特尔最先进晶圆厂并采访技术领导层，目的是了解未来芯片会是什么样。",
+    "原文用动画解释环绕栅极晶体管、背面供电、CFET、混合键合等技术，并讨论新制程导入、10nm经验、High-NA EUV、钌替代铜、堆叠晶体管与混合键合瓶颈等话题。",
+    "AI算力过去十年每年增至3倍；英特尔CTO称以当前全球芯片制造工具存量，英特尔只能将先进制程晶圆产能翻倍，原文追问晶圆厂如何延长需求远超供应的交叉点。"
+   ],
+   "topics": [
+    "semiconductor",
+    "compute-supply",
+    "hardware"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 62.7,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [
+      "1609.05510",
+      "2403.14123"
+     ],
+     "links": [
+      "http://flashcards.dwarkesh.com/intel",
+      "https://youtu.be/frYSOKvNiiE",
+      "https://podcasts.apple.com/us/podcast/what-will-computer-chips-look-like-in-2045/id1516093381?i=1000797633702",
+      "https://open.spotify.com/episode/1kycOQ4f8ZHsXMOvUujdq6?si=NVKBI5NCRqirns5WPXzepQ",
+      "https://workos.com",
+      "https://janestreet.com/dwarkesh",
+      "https://antithesis.com/dwarkesh",
+      "https://epoch.ai/blog/training-compute-of-frontier-ai-models-grows-by-4-to-5x-per-year",
+      "https://en.wikipedia.org/wiki/Foundry_model",
+      "https://en.wikipedia.org/wiki/ASML_Holding",
+      "https://en.wikipedia.org/wiki/Extreme_ultraviolet_lithography",
+      "https://en.wikipedia.org/wiki/Semiconductor_fabrication_plant",
+      "https://www.linkedin.com/in/chrisauth/",
+      "https://www.intel.com/content/www/us/en/foundry/process.html",
+      "https://en.wikipedia.org/wiki/Yield_(metric)",
+      "https://en.wikipedia.org/wiki/Telemetry",
+      "https://semiengineering.com/metrology-options-increase-as-device-needs-shift/",
+      "https://en.wikipedia.org/wiki/Wafer_testing",
+      "https://en.wikipedia.org/wiki/Transmission_electron_microscopy",
+      "https://en.wikipedia.org/wiki/10_nm_process",
+      "https://en.wikipedia.org/wiki/Moore%27s_law",
+      "https://www.fool.com/investing/2020/07/24/dow-jones-slumps-as-intel-stock-gutted-by-7nm-dela.aspx",
+      "https://www.cnbc.com/2020/07/27/tsmc-shares-jump-as-intel-faces-next-generation-chip-delays.html",
+      "https://en.wikipedia.org/wiki/Photolithography",
+      "https://www.asml.com/en/products/duv-lithography-systems",
+      "https://en.wikipedia.org/wiki/TSMC",
+      "https://pr.tsmc.com/english/news/2010",
+      "https://en.wikipedia.org/wiki/5_nm_process",
+      "https://intel.com/content/www/us/en/newsroom/resources/high-volume-euv-intel-4-europe.html",
+      "https://www.imec-int.com/en/articles/imec-puts-complementary-fet-cfet-logic-technology-roadmap",
+      "https://www.intel.com/content/www/us/en/newsroom/news/intel-foundry-unveils-technology-advancements-iedm-2024.html",
+      "https://en.wikipedia.org/wiki/Phase-gate_process",
+      "https://en.wikipedia.org/wiki/Transistor",
+      "https://en.wikipedia.org/wiki/MOSFET",
+      "https://en.wikipedia.org/wiki/Fin_field-effect_transistor",
+      "https://semiengineering.com/knowledge_centers/integrated-circuit/transistors/3d/gate-all-around-fet/",
+      "https://www.patsnap.com/resources/blog/articles/gate-first-vs-gate-last-high-k-metal-gate-integration/",
+      "https://en.wikipedia.org/wiki/High-%CE%BA_dielectric",
+      "https://hothardware.com/News/Intel-Announces-New-22nm-3D-Trigate-Transistors/",
+      "https://news.samsung.com/us/samsung-begins-chip-production-3nm-process-gaa-architecture/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "4e2ec0dca813afc7",
+   "url": "https://www.latent.space/p/ainews-openais-patch-the-planet-program",
+   "title": "[AINews] OpenAI’s Patch the Planet program is 1 of 2 parties to discover PHP2Shell vulnerabilities in core PHP affecting 70% of the web, using GPT-5.6 Sol; coordinated response over 2 months",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-10-22T07:42:44+00:00",
+   "summary_short": "PHP2Shell两个PHP内核漏洞由两方AI各自发现，历时两月协同修复",
+   "summary_long": "OpenAI此前推出Daybreak for Frontline Defenders，投入10亿美元补贴网络安全模型与产品的使用。原文提到，PHP中的重大漏洞被两方独立发现：安全公司Calif的研究员Ryan Austin在OpenAI“Patch the Planet”项目中，于2026年8月使用GPT-5.6 Sol发现；Wiz（已被并入Google Cloud）使用Gemini 4 Argon、GPT-5.6 Sol以及自研工具Wiz Atlas发现。漏洞被命名为PHP2Shell，编号CVE-2026-109618和CVE-2026-109619，缺陷位于PHP对内存耗尽与致命错误的内部处理，而非WordPress插件或应用认证逻辑。研究者演示了针对WordPress、Drupal、Joomla的未认证远程代码执行和“心脏滴血式”内存泄露；原文强调这些是研究者自报的利用结果。OpenAI称披露前进行了约两个月的协同修复，补丁需要对PHP引擎做重大改动，并涉及维护者、研究者、安全厂商与政府的协调。Cloudflare在补丁发布前部署WAF临时规则，其CTO称这是权宜之计；NSA相关账号建议准备立即更新、无法及时缓解则下线系统。",
+   "key_points": [
+    "漏洞PHP2Shell编号CVE-2026-109618与CVE-2026-109619，位于PHP对内存耗尽和致命错误的内部处理，研究者演示了针对WordPress、Drupal、Joomla的未认证RCE与内存泄露",
+    "两方独立发现：Calif研究员Ryan Austin在OpenAI“Patch the Planet”项目中使用GPT-5.6 Sol；Wiz使用Gemini 4 Argon、GPT-5.6 Sol及自研Wiz Atlas",
+    "披露前约两个月协同修复，补丁需重大PHP引擎改动；Cloudflare提前部署WAF临时规则并称其为权宜之计，NSA相关账号建议准备立即更新或下线系统"
+   ],
+   "topics": [
+    "cybersecurity"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 58.8,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [
+      "2608.20530"
+     ],
+     "links": [
+      "https://openai.com/index/daybreak-for-frontline-defenders/",
+      "https://patchtheplanet.org/",
+      "https://substackcdn.com/image/fetch/$s_!Ak4o!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f193200-5a32-4d16-8cef-d36ab44b0848_1440x1290.png",
+      "https://eliastaylor.com/noexploit/",
+      "https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/",
+      "https://twitter.com/i/lists/1585430245762441216",
+      "https://news.smol.ai/",
+      "https://www.latent.space/p/2026",
+      "https://support.substack.com/hc/en-us/articles/8914938285204-How-do-I-subscribe-to-or-unsubscribe-from-a-section-on-Substack",
+      "https://x.com/sagitz_/status/2112901383753986255",
+      "https://x.com/sagitz_/status/2112901380080058778",
+      "https://x.com/TheRundownAI/status/2112918214246044031",
+      "https://x.com/steipete/status/2112913060709228764",
+      "https://x.com/ralucaadapopa/status/2112956250908750175",
+      "https://x.com/OpenAI/status/2112907856018309586",
+      "https://x.com/itszn13/status/2112908489198903680",
+      "https://x.com/dok2001/status/2112811965735202970",
+      "https://x.com/NSACyber/status/2112903220209098897",
+      "https://x.com/Eric_Wallace_/status/2112923546792214558",
+      "https://x.com/gdb/status/2112921529650688312",
+      "https://x.com/S1r1u5_/status/2113018237332160882",
+      "https://x.com/ds_nakajima/status/2112779177489563922",
+      "https://x.com/expokun/status/2112795132374495687",
+      "https://x.com/fiveoutofnine/status/2113045722744717360",
+      "https://x.com/SemiAnalysis_/status/2113081719817380193",
+      "https://x.com/OpenAI/status/2112945805686604033",
+      "https://x.com/Google/status/2112914740058181739",
+      "https://x.com/migtissera/status/2113087531101405346",
+      "https://x.com/S1r1u5_/status/2113097003504923068",
+      "https://x.com/kimmonismus/status/2112807106780762563",
+      "https://x.com/emollick/status/2113063313810792916",
+      "https://x.com/john__allard/status/2113076795352490284",
+      "https://x.com/ostrisai/status/2113039842217254918",
+      "https://x.com/jd_pressman/status/2113046794741690656",
+      "https://x.com/threepointone/status/2113049683824185758",
+      "https://x.com/marckohlbrugge/status/2112863751632269736",
+      "https://x.com/jd_pressman/status/2112986323703509000",
+      "https://x.com/xeophon/status/2112909915580928325",
+      "https://x.com/jd_pressman/status/2112990663755317671",
+      "https://x.com/jd_pressman/status/2113045116743192612"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "40a420c5a611c5f5",
+   "url": "https://www.latent.space/p/moshi",
+   "title": "You are the Team  — Anekha Sokhal, Moshi",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-10-22T14:03:40+00:00",
+   "summary_short": "Moshi CEO Anekha Sokhal谈为交易员打造市场信息推荐引擎",
+   "summary_long": "这是AI Engineer New York的一期播客，由swyx与Moshi CEO Anekha Sokhal对谈。原文介绍，Anekha Sokhal原本从事能源衍生品交易，她认为盯住市场意味着要追踪超过任何人可阅读量的信息，于是创办Moshi，做一个把市场信息与交易员账簿真正相关的部分连接起来的推荐引擎。她把Moshi形容为“Bloomberg、Claude和Netflix生下的孩子”：市场数据、一个用来处理这些数据的界面，以及针对交易员定制的推荐。两人还谈到可信信源、文档提取、自建模型还是购买模型，以及AI工程师被要求“你就是整个团队”时所承受的压力。她并分享了在会议上与客户交流的收获，以及为何见用户要排在招聘之前。原文未详述她离开交易岗位创办公司的具体经过。",
+   "key_points": [
+    "Anekha Sokhal原从事能源衍生品交易，创办Moshi做面向交易员的市场信息推荐引擎",
+    "她把Moshi比作“Bloomberg、Claude和Netflix的孩子”：数据、界面加定制推荐",
+    "对谈涉及可信信源、文档提取、自建还是购买模型，以及AI工程师独自承担整支团队工作的压力"
+   ],
+   "topics": [
+    "product",
+    "rag"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用"
+   ],
+   "horizon": "long",
+   "score": 53.3,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [
+      "2506.08194"
+     ],
+     "links": [
+      "https://aie.codes/",
+      "https://ai.engineer/speakers/anekha-sokhal",
+      "https://www.youtube.com/watch?v=DWHyPWnzGAI",
+      "https://hellomoshi.ai/",
+      "https://anekha.github.io/resume/",
+      "https://arxiv.org/abs/2506.08194",
+      "https://reducto.ai/",
+      "https://ai.engineer/nyc/2026",
+      "https://www.youtube.com/watch?v=DWHyPWnzGAI&t=0s",
+      "https://www.youtube.com/watch?v=DWHyPWnzGAI&t=54s",
+      "https://www.youtube.com/watch?v=DWHyPWnzGAI&t=129s",
+      "https://www.youtube.com/watch?v=DWHyPWnzGAI&t=226s",
+      "https://www.youtube.com/watch?v=DWHyPWnzGAI&t=345s",
+      "https://www.youtube.com/watch?v=DWHyPWnzGAI&t=370s",
+      "https://www.youtube.com/watch?v=DWHyPWnzGAI&t=543s",
+      "https://www.youtube.com/watch?v=DWHyPWnzGAI&t=603s",
+      "https://www.youtube.com/watch?v=DWHyPWnzGAI&t=723s",
+      "https://www.youtube.com/watch?v=DWHyPWnzGAI&t=903s",
+      "https://www.youtube.com/watch?v=DWHyPWnzGAI&t=1033s",
+      "https://www.youtube.com/watch?v=DWHyPWnzGAI&t=1100s",
+      "https://www.youtube.com/watch?v=DWHyPWnzGAI&t=1232s",
+      "https://www.youtube.com/watch?v=DWHyPWnzGAI&t=1434s",
+      "https://www.youtube.com/watch?v=DWHyPWnzGAI&t=1555s"
      ]
     },
     "summary_mode": "full"

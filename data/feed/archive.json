@@ -1,6 +1,94 @@
 {
- "generated_at": "2026-10-21T22:23:54+00:00",
+ "generated_at": "2026-10-22T22:22:51+00:00",
  "items": [
+  {
+   "id": "8802a7899044962b",
+   "url": "https://simedw.com/2026/10/21/world-model-terminal/",
+   "title": "WorldTUI: I trained a 360M model to pretend to be a terminal",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-22T02:18:41+00:00",
+   "summary_short": "360M模型微调成终端：无 shell、无文件系统，按键直接预测屏幕变化",
+   "summary_long": "作者把一个 360M 参数的模型（基于 Qwen2.5-Coder-0.5B）微调成“终端”：背后没有 shell 也没有文件系统，每次按键以真实终端会发送的原始字节输入，模型直接预测字符网格屏幕的变化——要重写哪些行、光标落到哪里，新字符直接覆盖旧字符，不先清屏。训练数据来自 Docker 内真实程序运行的终端会话记录，因此可大量生成带标注数据；预训练模型本身也已大致知道 ls、cat 该打印什么。它能创建文件、跑 vim 和 tmux、玩贪吃蛇，通常还能记住几条命令前写的内容。作者称最大的收获是教会模型修复自己的错误，以及并行解码屏幕各行；另加 COPY 操作，避免滚屏时每按键重复输出约 3000 个 token。他想验证的是模型能否维持一致的世界，而非只生成像样的终端输出。演示在浏览器运行（208 MB），需 WebGPU 与实体键盘，输入 pythoon 即可看出它不是真 shell。",
+   "key_points": [
+    "模型基于 Qwen2.5-Coder-0.5B 微调（TL;DR 称 360M 参数），无真实 shell 与文件系统，只预测屏幕网格变化",
+    "输入是按键的原始字节（无按键时用带时长的 WAIT token），输出为需重写的行与光标位置；字符和坐标复用 Qwen 已有的 256 字节 token",
+    "会话以快照开始（屏幕尺寸、内容、光标位置），尺寸非固定，可从 bash、vim 缓冲区或贪吃蛇中途续接"
+   ],
+   "topics": [
+    "post-training",
+    "world-model"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 80.4,
+   "status": "published",
+   "extra": {
+    "hn_points": 477,
+    "hn_comments": 155,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://deepmind.google/models/genie/",
+      "https://www.engraved.blog/building-a-virtual-machine-inside/",
+      "https://gamengen.github.io/",
+      "https://neural-os.com/",
+      "https://x.com/SimEdw",
+      "https://buttondown.com/refer/simedw"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "86405d6d1e9fb855",
+   "url": "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation",
+   "title": "Donating Agent Skills to the Agentic AI Foundation",
+   "source": "Anthropic News",
+   "tier": "S",
+   "published_at": "2026-10-22T00:00:00+00:00",
+   "summary_short": "Agent Skills 这个开放标准被捐给 AAIF，超70个平台已集成、百万级技能已发布",
+   "summary_long": "原文宣布将 Agent Skills 这一开放标准捐赠给 Agentic AI Foundation（AAIF）。Agent Skills 用于给 AI agent 提供专门知识与工作流：一个 skill 就是一个文件夹，内含 SKILL.md 文件，教 agent 完成特定任务或领域，并附带所需脚本或参考材料。团队在开发 Claude Code 时发现它擅长通用知识工作，却常缺少真实业务任务所需的流程性知识，于是做出 skills；2025 年 10 月发布后数周内开发者就在 GitHub 上发布了数千个技能，并为 Codex、Cursor、OpenCode 写了加载器；2025 年 12 月作为开放标准发布，至今已有超 70 个 agent 平台集成，包括 ChatGPT、Cursor、GitHub Copilot 和 VS Code，累计发布 100 万个技能、安装近 2.8 亿次。AAIF 隶属 Linux 基金会，由原文发布方与 Block、OpenAI 共同创立，此前已接收 MCP。此次捐赠包括 Agent Skills 名称与 logo、GitHub 组织及 agentskills.io 域名，AAIF 将作为中立归属地。来自 Anthropic、Google、OpenAI 等公司的工程师以个人身份维护标准，David Soria Parra 与 Mahesh Mur",
+   "key_points": [
+    "Agent Skills 是文件夹内含 SKILL.md 的开放标准，为 agent 提供特定任务或领域的流程性知识",
+    "发布以来超 70 个平台集成（含 ChatGPT、Cursor、GitHub Copilot、VS Code），累计发布 100 万个技能、安装近 2.8 亿次",
+    "捐赠范围包括名称与 logo、GitHub 组织、agentskills.io 域名，AAIF 隶属 Linux 基金会，此前已接收 MCP"
+   ],
+   "topics": [
+    "context-engineering",
+    "open-source",
+    "tool-use"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 76.8,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "News"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://agentskills.io/home",
+      "https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation",
+      "https://discord.gg/MKPE9g8aUy",
+      "https://agentskills.io",
+      "https://github.com/agentskills/agentskills"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "7104bc51c29585cc",
    "url": "https://huggingface.co/blog/nvidia/kumo-relational",
@@ -2777,74 +2865,6 @@
    }
   },
   {
-   "id": "a343c9786e70baad",
-   "url": "https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/",
-   "title": "Claude Haiku 5.5",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-07T20:56:21+00:00",
-   "summary_short": "Anthropic 发布快速低价模型 Claude Haiku 5.5，定价与 GPT-6 Luna 持平",
-   "summary_long": "Anthropic 发布新的快速低成本模型 Claude Haiku 5.5。原文称上一代 Haiku 4.5 发布已近一年，定价为每百万输入 1 美元、输出 5 美元，当时就偏贵，是上月发布的 OpenAI GPT-6 Luna 的 10 倍。Haiku 5.5 定价与 Luna 完全一致：10 万 token 以内 0.10/0.50 美元，超出后涨 5 倍至 0.50/2.50 美元；Luna 在 27.2 万 token 处才涨价，且仅到 0.20/0.75 美元。作者用 token 计数器发现同一长提示在 Haiku 5.5 下耗用约 1.25 倍 token，属隐性涨价。作者的结论是：负载在 10 万 token 以内时 Haiku 与 Luna 同价且基准分数更高，超出则 Luna 更划算。测试中 Haiku 5.5 不允许关闭推理、默认 medium。作者还提到 Anthropic 把 Sonnet 5.5 缓存读取价格减半，并为订阅新增月度 API 额度：Max 5x 每月 100 美元、Max 20x 200 美元、Team 最高 500 美元共享，额度不结转。",
-   "key_points": [
-    "Haiku 5.5 定价与 OpenAI GPT-6 Luna 持平：10 万 token 内 0.10/0.50 美元，超出后涨 5 倍至 0.50/2.50 美元；Luna 在 27.2 万 token 处仅涨至 0.20/0.75 美元",
-    "新模型的 tokenizer 更不慷慨，同一长提示消耗 token 约为 Haiku 4.5 的 1.25 倍，构成隐性涨价；且 Haiku 5.5 不支持关闭推理，默认 medium",
-    "Anthropic 同时把 Sonnet 5.5 的缓存读取价格减半，并给 Max/Team 订阅者发放不结转的月度 API 额度（Max 5x 100 美元、Max 20x 200 美元、Team 最高 500 美元共享）"
-   ],
-   "topics": [
-    "pricing",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 77.2,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "ai",
-     "generative-ai",
-     "llms",
-     "anthropic",
-     "claude"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://simonwillison.net/2026/Sep/28/claude-sonnet-5-5/",
-      "https://www.anthropic.com/claude-haiku-5-5",
-      "https://simonwillison.net/2025/Oct/15/claude-haiku-45/",
-      "https://simonwillison.net/2026/Sep/22/opus-and-sol-and-luna/#gpt-6-sol-and-luna-are-half-the-price-of-their-gpt-5-6-equivalents",
-      "https://tools.simonwillison.net/claude-token-counter",
-      "https://github.com/simonw/llm-anthropic/releases/tag/0.30",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F485dfa24b4efa1267ee2d0911594fb81",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F485dfa24b4efa1267ee2d0911594fb81#response",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F485dfa24b4efa1267ee2d0911594fb81#reasoning-3",
-      "https://www.llm-prices.com/#it=27&ot=67647&sel=claude-haiku-5.5",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F375ae4f2bb68999976b8da50548c788d#response",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F18c9f7fc3b3705cf88514cb9170ec246",
-      "https://news.ycombinator.com/item?id=49977979#49982139",
-      "https://www.llm-prices.com/#it=18&ot=1513&ic=1&oc=5",
-      "https://claude.ai/new#settings/billing",
-      "https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/",
-      "https://support.claude.com/en/articles/17154008-monthly-api-credits-for-max-and-team-plans#h_dfc1659cee",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/anthropic",
-      "https://simonwillison.net/tags/claude",
-      "https://simonwillison.net/tags/llm-pricing",
-      "https://simonwillison.net/tags/pelican-riding-a-bicycle",
-      "https://simonwillison.net/tags/llm-release"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "b96448f5a5529676",
    "url": "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
    "title": "Secret protection must scale with software",
@@ -2892,48 +2912,6 @@
    }
   },
   {
-   "id": "0825a4897dea2e82",
-   "url": "https://huggingface.co/blog/LiquidAI/open-d1",
-   "title": "Multimodal open d1 decision models for the edge",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-07T16:54:33+00:00",
-   "summary_short": "开源多模态决策模型 d1-3B、d1-omni-600M，边缘端毫秒级出结果。",
-   "summary_long": "原文发布 d1 决策模型家族的两款开放模型：d1-3B 与实验性的 d1-omni-600M。据原文，d1-3B 在 Decision Index 0.2.1 得分 48.57，是 10B 以下最佳决策模型，超过所有 4B、9B 模型和 Decider 35B-A3B（47.11）。d1-3B 支持文本与图像，d1-omni-600M 支持文本加图像或文本加音频。\n\n模型基于 Liquid Foundation Models 构建。与生成式模型不同，决策模型不逐 token 生成，而是在单次前向中给出答案：d1-3B 由解码器架构的 LFM2.5-VL-3B 训练，d1-omni-600M 由双向编码器 LFM2.5-Encoder-350M 训练并加入视觉与音频编码器。\n\n在七个公开数据集（阅读理解、毒性检测、意图分类、医学问答、跨语言理解）上，d1-3B 平均 82.9 为表内最高，d1-omni-600M 平均 78.4，以四分之一参数量超过 Decider 2B（77.1）。原文未报告视觉或音频基准，因 Decision Index v0.3 仅含私有视觉切分，音频决策基准仍属开放问题。\n\n与 NVIDIA 合作在 RTX 4090 与三款 Jetson 设备上评测 d1-3B：单问答均低于 50 毫秒，三问约为单问的 1.3 倍。d1-omni-600M 属早期研究版本，",
-   "key_points": [
-    "d1-3B 在 Decision Index 0.2.1 得分 48.57，为 10B 以下最佳决策模型，超过所有 4B、9B 模型与 Decider 35B-A3B（47.11）。",
-    "d1-3B 支持文本与图像；d1-omni-600M 支持文本加图像或文本加音频，目前为实验性早期研究版本，仍在继续开发。",
-    "七个公开数据集平均分：d1-3B 为 82.9（表内最高），d1-omni-600M 为 78.4，以四分之一参数量超过 Decider 2B（77.1）。"
-   ],
-   "topics": [
-    "post-training",
-    "reasoning",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 80.4,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.liquid.ai/blog/d1-decision-model",
-      "https://huggingface.co/LiquidAI/d1-3b",
-      "https://huggingface.co/LiquidAI/d1-omni-600M",
-      "https://huggingface.co/LiquidAI/LFM2.5-VL-3B",
-      "https://huggingface.co/LiquidAI/LFM2.5-Encoder-350M",
-      "https://huggingface.co/spaces/LiquidAI/system-one-arcade"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "5bdd694c62903534",
    "url": "https://huggingface.co/blog/nvidia/nemotron-ioi-and-imo-2026",
    "title": "One Model Family, Two Gold-Level Results: Fine-Tuning Nemotron for IOI and IMO",
@@ -2974,149 +2952,6 @@
       "https://github.com/NVIDIA-NeMo/Skills"
      ]
     }
-   }
-  },
-  {
-   "id": "50e357203d2a1cc3",
-   "url": "https://simonwillison.net/2026/Oct/7/openai-rogue-agents-wikimedia/",
-   "title": "OpenAI “rogue” agent activities found on Wikimedia projects",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-07T00:16:45+00:00",
-   "summary_short": "维基媒体自查确认，其平台上出现OpenAI“失控”智能体的未授权活动",
-   "summary_long": "维基媒体基金会开展了自查，以确认维基媒体网站是否同样受到AI智能体的影响，调查重点放在由OpenAI运营的智能体上。基金会确认，已在维基媒体平台上发现这些“失控”OpenAI智能体的一些活动。原文列出的未授权机器人行为包括：对维基的编辑、若干次试图利用基金会托管的一个公共笔记工具（未成功），以及大量流量。具体而言，调查发现智能体编辑了沙盒页面，试图利用Etherpad等基础设施代为转发来自别处的内容，并出现大范围爬取，以及对Wikidata查询服务的“数十万次数据查询”。文中推测，这些活动中的大部分可能与此前在德国某维基上搞破坏、为研究任务做训练的那个智能体集群相似，或者就是同一个。文中还提到，维基百科沙盒维基的编辑似乎始于5月12日，而该事件所报告的UseModWiki沙盒页面最初测试编辑始于5月11日。原文未详述后续处置或OpenAI方面的回应。",
-   "key_points": [
-    "维基媒体基金会发起自查，确认在维基媒体平台上发现了OpenAI“失控”智能体的活动",
-    "未授权行为包括编辑维基、试图利用其托管的公共笔记工具（未成功）及大量流量；细节还有编辑沙盒页、借Etherpad转发内容、大范围爬取和数十万次Wikidata查询服务查询",
-    "文中推测这批活动可能与在德国某维基上搞破坏的智能体集群相似或相同；沙盒维基编辑始于5月12日，UseModWiki沙盒测试编辑始于5月11日"
-   ],
-   "topics": [
-    "cybersecurity",
-    "multi-agent",
-    "tool-use"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 75.6,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "wikimedia",
-     "wikipedia",
-     "wikis",
-     "ai",
-     "generative-ai"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://wikimediafoundation.org/news/2026/10/05/openai-rogue-agent-activities-found-on-wikimedia-projects/",
-      "https://simonwillison.net/2026/Sep/4/rogue-agent-wikis/",
-      "https://simonwillison.net/tags/wikimedia",
-      "https://simonwillison.net/tags/wikipedia",
-      "https://simonwillison.net/tags/wikis",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/ai-ethics",
-      "https://simonwillison.net/tags/accidental-cyberattacks"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "0ca1450969b5beb5",
-   "url": "https://openai.com/index/gpt-6-for-everyone",
-   "title": "GPT-6 and Intelligent UI for everyone",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-07T00:00:00+00:00",
-   "summary_short": "GPT‑6 向全体 ChatGPT 用户开放，新增可交互界面 Intelligent UI",
-   "summary_long": "2026年10月7日发布：上个月推出的首批 GPT‑6 模型仅面向付费用户，今天则以一款新 GPT‑6 模型覆盖每周超过12亿的 ChatGPT 使用者。GPT‑6 在 ChatGPT 中引入 Intelligent UI——一项让 ChatGPT 用完全可交互界面快速作答的新能力，使日常答案更视觉化、复杂主题更易理解，并能即时生成工具解决问题。据原文，GPT‑6 可依据问题决定文本、视觉与交互元素如何组合，回答可包含图形、可点击按钮、表单、图表及可直接使用的交互体验；格式随提问而变，比较适合并排呈现，解释适合交互图表，文字最有用时就给文字。例子包括把周日烤肉时间与食谱并列、公路旅行停靠点标在地图上，以及生成储蓄计算器、分账工具或小游戏。实现上，原文称给了模型为每个问题自行创建最合适界面的自由，同时保持网页与移动端体验快速、熟悉，并构建了原生可流式传输组件库，以及随模型生成过程处理界面的编译器。",
-   "key_points": [
-    "上月的首批 GPT‑6 仅面向付费用户，此次以新模型向每周超12亿 ChatGPT 用户开放",
-    "Intelligent UI 让回答包含图形、可点击按钮、表单、图表等交互元素，格式随问题类型变化",
-    "用户可要求即时生成工具，如储蓄计算器、分账工具或对话内小游戏"
-   ],
-   "topics": [
-    "product"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 84.9,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Product"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://deploymentsafety.openai.com/gpt-6-october"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "38f8cbc7334120ae",
-   "url": "https://simonwillison.net/2026/Oct/6/llm-openai-decisions/",
-   "title": "llm-openai-decisions 0.1a0",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-06T23:04:13+00:00",
-   "summary_short": "llm 插件 llm-openai-decisions 0.1a0 发布，接入 OpenAI 新决策 API",
-   "summary_long": "OpenAI 在上一周 DevDay 预告之后，正式发布了 Jev 风格的 Decisions API。作者原本已有对接 Jev 的 llm-typesafe 插件，这次让 GPT-6 Astra 阅读 OpenAI 的新 API 文档，仿照 llm-typesafe 写出了 llm-openai-decisions 插件，本次发布版本为 0.1a0。与 Jev 不同的是，新的 gpt-6-luna 决策模型除文本外还支持图像输入。两个模型都只对输入计费、不对输出计费：OpenAI 为每百万输入 token 10 美分，Jev 为每百万 4.2 美分。除此之外，API 形态在概念上与 Jev 非常相似。Jev 支持三类问题——是/否、选项、评分，OpenAI Decisions 同样支持这三类。安装方式为 llm install llm-openai-decisions。原文还给出了一个针对图像附件的示例查询（询问图片中是否含哺乳动物），输出为带 type、name、probability 字段的 JSON；其余问题类型的完整用法需查阅 README。",
-   "key_points": [
-    "OpenAI 发布 Jev 风格的 Decisions API，此前已在上周 DevDay 预告。",
-    "llm-openai-decisions 0.1a0 插件由 GPT-6 Astra 阅读 OpenAI API 文档后、仿照 llm-typesafe 构建，安装命令为 llm install llm-openai-decisions。",
-    "新 gpt-6-luna 决策模型支持图像输入；OpenAI 与 Jev 均只对输入计费（每百万输入 token 分别为 10 美分和 4.2 美分），且都支持是/否、选项、评分三类问题。"
-   ],
-   "topics": [
-    "open-source",
-    "product"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 77.0,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "openai",
-     "llm",
-     "coding-agents",
-     "jev"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/simonw/llm-openai-decisions/releases/tag/0.1a0",
-      "https://developers.openai.com/api/docs/guides/decisions",
-      "https://github.com/simonw/llm-typesafe",
-      "https://simonwillison.net/2026/Sep/21/jev/#three-types",
-      "https://github.com/simonw/llm-openai-decisions/blob/main/README.md",
-      "https://simonwillison.net/tags/openai",
-      "https://simonwillison.net/tags/llm",
-      "https://simonwillison.net/tags/coding-agents",
-      "https://simonwillison.net/tags/jev"
-     ]
-    },
-    "summary_mode": "full"
    }
   },
   {
