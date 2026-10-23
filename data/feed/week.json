@@ -1,24 +1,24 @@
 {
- "generated_at": "2026-10-22T22:22:51+00:00",
+ "generated_at": "2026-10-23T22:13:55+00:00",
  "top": [
   {
-   "id": "9d251ac6836a600d",
-   "url": "https://huggingface.co/blog/meta-muse-spark-open",
-   "title": "Welcome Muse Spark Open: open-weight frontier multimodal mixture-of-experts model from Meta",
+   "id": "95eb6975ad245049",
+   "url": "https://huggingface.co/blog/microsoft/thinkingbox-training",
+   "title": "Turning Database Grading into RL Rewards: Post-Training Agents with ThinkingBox",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-15T00:00:00+00:00",
-   "summary_short": "Meta开源816B参数MoE多模态模型，百万token上下文，面向智能体编程",
-   "summary_long": "原文介绍Meta的开源权重模型Muse Spark Open。该混合专家（MoE）模型可输入文本、图像、音频和视频，输出文本，总参数约8160亿，每token激活约420亿，上下文窗口最高100万token。它在Muse Glimmer之后推出，将MoE架构扩展到更大规模。Meta称其面向智能体编程训练，针对多文件重构、长时间调试等真实开发者工作流，能在长任务中规划、行动、观察并自我纠错。架构上，语言模型62层、隐藏维度8192、128个查询头与16个键值头（分组查询注意力）、头维度64；注意力块含输出门和输出归一化，并对查询、键做归一化，每块通过可学习残差门合并输入输出。每层MoE有256个专家、每token选8个，专家为8192→4096→8192的前馈网络并各自归一化，占总参数约97%；全部专家常驻内存，部署需816B级内存但以42B速度运行。检查点有BF16（约1.5TB）与面向NVIDIA Blackwell的NVFP4，前者在4个8×H200节点以TP=32运行，后者在单B200节点运行。文中还给出llama.cpp、vLLM、SGLang部署配方及微调与构建示例。",
+   "published_at": "2026-10-22T22:24:34+00:00",
+   "summary_short": "用数据库终态校验当RL奖励，Qwen3.8-27B成功率提升9.08点",
+   "summary_long": "ThinkingBox 通过比对智能体执行后的数据库最终状态与预期结果来评判其工作。本文是上一篇的续篇，作者注意到多数任务的可执行校验能直接从数据库终态返回 1 或 0，因此它不只是评分器，还可当作奖励函数。团队在 ThinkingBox-Bench（507 个任务）之外构造了同格式的训练任务池，用其可执行结果作为奖励，对 Qwen3.8-27B 做 50 步 GRPO 微调。挑选任务时提出“离线策略相对难度”：任务对当前模型要么已被解决、要么毫无希望，两者都教不会模型，故训练前用基座策略估计每个任务的成功概率，整个训练过程固定该任务池。结果显示 pass@1（在 10,140 次尝试上统计）从 51.70% 升至 60.78%，20 次全部通过的任务从 38 个增至 107 个，而 pass@20 从 453 降至 446。原文举例：一个酒店客房降级任务需经理审批，训练前 20 次中有 15 次未经审批即改单退款，训练后 20 次均保留预订与支付状态。ThinkingBox-Training 已在 GitHub 发布。",
    "key_points": [
-    "约8160亿总参数、每token约420亿激活的MoE模型，上下文窗口最高100万token，输入支持文本/图像/音频/视频，输出为文本",
-    "语言模型62层、隐藏维度8192，128查询头与16键值头（GQA），含输出门、输出归一化、QK-norm与可学习残差门；每层256个专家、每token路由8个，专家占总参数约97%",
-    "提供BF16（约1.5TB）与NVFP4检查点；BF16在4个8×H200节点以TP=32运行，NVFP4在单B200节点运行，并有llama.cpp、vLLM、SGLang配方"
+    "ThinkingBox 用数据库最终状态的可执行校验判分，这种 1/0 信号可直接作为后训练的奖励函数",
+    "训练池取自 ThinkingBox-Bench 之外的同格式任务，按“离线策略相对难度”在训练前估计一次成功概率并全程固定",
+    "Qwen3.8-27B 经 50 步 GRPO：pass@1 由 51.70% 升至 60.78%，20/20 全对任务由 38 增至 107，pass@20 由 453 降至 446（−7 个任务）"
    ],
    "topics": [
-    "open-source",
-    "coding-agent",
-    "post-training"
+    "post-training",
+    "agent-loop",
+    "harness"
    ],
    "category": "模型",
    "categories": [
@@ -30,35 +30,41 @@
    "extra": {
     "content_source": "direct",
     "outbound": {
-     "arxiv": [],
+     "arxiv": [
+      "2503.14476",
+      "2504.13837",
+      "2608.19741"
+     ],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/meta-muse-spark-open.md",
-      "https://huggingface.co/collections/meta-models/muse-spark-open",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/model.png",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/image_pipeline.png",
-      "https://huggingface.co/papers/2504.13181",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/audio_encoder.png",
-      "https://huggingface.co/ggml-orgf/Muse-Spark-Open-816B-A42B-GGUF",
-      "https://llama.app/docs/serve",
-      "https://github.com/jundot/omlx",
-      "https://github.com/ml-explore/mlx-lm",
-      "https://huggingface.co/mlx-community/Muse-Spark-Open-816B-A42B-oQ3e",
-      "https://huggingface.co/mlx-community/Muse-Spark-Open-816B-A42B-oQ4e",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/omlx_muse_spark_open_reasoning_screenshot.png",
-      "https://github.com/ml-explore/mlx-lm/pull/1975",
-      "https://endpoints.huggingface.co/new/meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/training_loss.png",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/token_acc.png",
-      "http://Three.js",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/pi-3d-prompt.txt",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/pi-demo.png",
-      "https://huggingface.co/docs/openenv/main/en/environments/helium_browser",
-      "https://huggingface.co/docs/huggingface_hub/en/guides/sandbox",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/browser_server.png",
-      "https://huggingface.co/spaces/burtenshaw/muse-spark-call-your-browser",
-      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
-      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
-      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B/discussions"
+      "https://huggingface.co/blog/microsoft/thinkingbox",
+      "https://github.com/microsoft/thinkingbox-training",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/KVaFjYjblWd15tC3M6S_0.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/iu-NFQl-J3EOMe_KiME_8.png",
+      "https://huggingface.co/datasets/microsoft/ThinkingBox-Bench",
+      "https://arxiv.org/abs/2504.13837",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/Bu7GFUdUiJgQjHV_cbvU4.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/HPq2TNCT8yskCAGtKe86l.png",
+      "https://arxiv.org/abs/2608.19741",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/ZaqyG8RtqCRsxGdxUQMfi.png",
+      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/trainer/core/tb_interpret.py",
+      "https://arxiv.org/abs/2503.14476",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/eR45y7Dl0VFFK3HinwDYg.png",
+      "https://arxiv.org/pdf/2608.19741",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/IBBkNpYKQRK6jBLSusMXw.png",
+      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/data-preparation.md",
+      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/reference-q38-run.md",
+      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/evaluation.md",
+      "https://docs.astral.sh/uv/",
+      "https://huggingface.co/blog/microsoft/thinkingbox#run-it-yourself",
+      "https://github.com/huggingface/OpenEnv/tree/main/envs/thinkingbox_env",
+      "https://huggingface.co/docs/openenv/environments/thinkingbox",
+      "https://github.com/microsoft/thinkingbox",
+      "https://github.com/microsoft/thinkingbox/blob/main/docs/tutorial.md",
+      "https://github.com/microsoft/thinkingbox-data",
+      "https://github.com/microsoft/thinkingbox-data/releases/tag/thinkingbox-bench-v1.0",
+      "https://huggingface.co/papers/2608.19741",
+      "https://cdla.dev/permissive-2-0/",
+      "https://github.com/microsoft/thinkingbox/discussions"
      ]
     },
     "summary_mode": "full"
@@ -170,72 +176,6 @@
       "https://huggingface.co/reflection/Beam-1.0-501B-A23B/discussions"
      ]
     }
-   }
-  },
-  {
-   "id": "3733c75a28bf26df",
-   "url": "https://huggingface.co/blog/flux-3",
-   "title": "Welcome FLUX.3 Image Klein in Diffusers",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-15T00:00:00+00:00",
-   "summary_short": "Black Forest Labs 开源 FLUX.3 Image Klein，首发即在 Diffusers 中运行，支持边界框布局控制",
-   "summary_long": "Black Forest Labs 推出最新开源图像生成模型 FLUX.3 Image Klein，发布首日即可在 Diffusers 中运行。一个模型同时承担文生图与多参考图生图，并新增布局控制：在提示词中写入边界框，指定画面各部分的位置，或指明参考图中哪些部分需要移动。Hugging Face 上提供两个开放检查点：蒸馏版 black-forest-labs/flux-3-image-klein 默认 16 步、不使用 CFG，适合快速推理；基础版 black-forest-labs/flux-3-image-klein-base 默认 50 步并使用 CFG。原文称蒸馏检查点在 H100 上约 2 秒可生成一张 1024×1024 图像。NVFP4 与 FP8 权重可通过 from_single_file 加载，面向较小 GPU。同时提供文生图与图像编辑的 LoRA 训练脚本。模型以 Modular Diffusers pipeline 形式发布，可拆出模块或添加自定义模块；安装需最新版 diffusers 与 transformers（用于 Qwen3-VL 文本编码器）。多张参考图在提示词中按传入顺序以 <ref_image_0>、<ref_image_1> 引用。",
-   "key_points": [
-    "单个模型覆盖文生图、多参考图生图与边界框布局控制；布局控制通过把边界框写进提示词，指定画面元素位置或参考图需移动的部分",
-    "两个开放检查点：蒸馏版默认 16 步、无 CFG；基础版默认 50 步、使用 CFG。原文称蒸馏版在 H100 上约 2 秒生成 1024×1024 图像",
-    "以 Modular Diffusers pipeline 发布，提供文生图与图像编辑的 LoRA 训练脚本，NVFP4/FP8 权重可用 from_single_file 加载以适配较小 GPU"
-   ],
-   "topics": [
-    "open-source",
-    "quantization"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 84.3,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/flux-3.md",
-      "https://huggingface.co/black-forest-labs",
-      "https://huggingface.co/collections/black-forest-labs/flux-3-image-klein",
-      "https://huggingface.co/black-forest-labs/flux-3-image-klein",
-      "https://huggingface.co/black-forest-labs/flux-3-image-klein-base",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/hero.png",
-      "https://huggingface.co/spaces/black-forest-labs/flux-3-image-klein",
-      "https://docs.bfl.ai/guides/prompting_summary",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/t2i.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i_fox.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i_bench.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/combined.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/bbox-layout.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/knight.png",
-      "https://github.com/ostris/ai-toolkit",
-      "https://huggingface.co/datasets/multimodalart/1920-raider-waite-tarot-public-domain",
-      "https://huggingface.co/diffusers-modular/flux3-tarot-lora",
-      "https://github.com/huggingface/diffusers/blob/main/examples/dreambooth/README_flux3_klein.md",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/tarot-lora-sweep.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/tokens-per-workflow.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step01.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step05.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step10.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step15.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step25.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step50.png",
-      "https://huggingface.co/spaces/ariG23498/flow-matching",
-      "https://youtu.be/hXQZ6lyRCsI",
-      "https://huggingface.co/docs/diffusers/main/en/modular_diffusers/overview",
-      "https://huggingface.co/docs/diffusers/main/en/api/pipelines/flux3"
-     ]
-    },
-    "summary_mode": "full"
    }
   },
   {
@@ -282,27 +222,83 @@
     "content_source": "direct",
     "summary_mode": "full"
    }
+  },
+  {
+   "id": "354f89a6c7dbf10c",
+   "url": "https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization",
+   "title": "How Specializing the Vocabulary of SLMs Can Cut Inference Cost by 77% in Real Applications",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-21T17:35:36+00:00",
+   "summary_short": "用VocabX重构领域模型词表，实测推理成本降77%",
+   "summary_long": "在生产环境的葡萄牙语作文自动评分系统中，团队发现：基于Qwen3-4B微调的模型虽已针对任务训练，却仍沿用为多语言、多领域文本构建的原始分词器，词表含151,669个条目。这带来两种浪费：一是碎片化，评分器每次响应都以相同的JSON外壳、相同的评分项名称和评语开头，这些高频重复序列被切成多个token；二是冗余，每生成一个token都要对整个词表打分，其中大量条目该任务几乎不用。作者指出，tokenizer通常被视为基座模型的固定属性，但对单一领域模型而言，它可能是最大的成本杠杆之一，且在任何训练步骤之前就已确定。团队用名为VocabX的方法重建词表，保持基座模型、数据和训练配方不变，将实测推理成本降低77%。文中还区分推理的prefill与decode两阶段：前者一次处理整个输入，读取的权重可被复用，受限于算力。",
+   "key_points": [
+    "生产中的葡萄牙语作文评分器基于Qwen3-4B，接收作文、题目与支撑文本，返回含各评分项分数与评语的JSON，但仍沿用151,669条目的通用词表。",
+    "通用词表在单一领域造成两类浪费：碎片化（JSON外壳、评分项名称、评语等重复序列被切成多个token）与冗余（每生成一个token都要对全词表打分）。",
+    "VocabX按每个token的成本而非词频重构词表，基座模型、数据与训练配方不变，实测推理成本下降77%；论文仍在审稿中，数据可能变动。"
+   ],
+   "topics": [
+    "post-training",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 83.4,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2607.15232"
+     ],
+     "links": [
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/TYOhAFobnI4ss3UnNqMHc.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/K5De-hfTaOl9vUJItSijj.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/Inl5L1IDqWUBbD0Xlq-JB.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/q-GjdgYd6GgXnv3-wJQsY.png",
+      "https://www.liquid.ai/blog/tokenizer-expansion",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/B5Wig-4nTEutpFZlGQ6sk.gif",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/_EdPyU7R3xdomvFxuadPY.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/zxfdAxNxsvfBCBNeUThx5.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/PxGLMRrjTPVYDW8rlDuBd.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/7CKshmOEsUkemfgL9Mopn.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/bCCQQjpY6tU5ZAD3hXOeN.png",
+      "https://aclanthology.org/2022.emnlp-industry.41/",
+      "https://arxiv.org/abs/2607.15232",
+      "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
+      "https://huggingface.co/blog/Dharma-AI/gpu-management",
+      "https://huggingface.co/blog/Dharma-AI/why-specialization-is-inevitable",
+      "https://huggingface.co/blog/Dharma-AI/specialization-beats-scale",
+      "https://huggingface.co/blog/Dharma-AI/text-degeneration-a-production-failure-mode",
+      "https://huggingface.co/Dharma-AI"
+     ]
+    },
+    "summary_mode": "full"
+   }
   }
  ],
  "items": [
   {
-   "id": "9d251ac6836a600d",
-   "url": "https://huggingface.co/blog/meta-muse-spark-open",
-   "title": "Welcome Muse Spark Open: open-weight frontier multimodal mixture-of-experts model from Meta",
+   "id": "95eb6975ad245049",
+   "url": "https://huggingface.co/blog/microsoft/thinkingbox-training",
+   "title": "Turning Database Grading into RL Rewards: Post-Training Agents with ThinkingBox",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-15T00:00:00+00:00",
-   "summary_short": "Meta开源816B参数MoE多模态模型，百万token上下文，面向智能体编程",
-   "summary_long": "原文介绍Meta的开源权重模型Muse Spark Open。该混合专家（MoE）模型可输入文本、图像、音频和视频，输出文本，总参数约8160亿，每token激活约420亿，上下文窗口最高100万token。它在Muse Glimmer之后推出，将MoE架构扩展到更大规模。Meta称其面向智能体编程训练，针对多文件重构、长时间调试等真实开发者工作流，能在长任务中规划、行动、观察并自我纠错。架构上，语言模型62层、隐藏维度8192、128个查询头与16个键值头（分组查询注意力）、头维度64；注意力块含输出门和输出归一化，并对查询、键做归一化，每块通过可学习残差门合并输入输出。每层MoE有256个专家、每token选8个，专家为8192→4096→8192的前馈网络并各自归一化，占总参数约97%；全部专家常驻内存，部署需816B级内存但以42B速度运行。检查点有BF16（约1.5TB）与面向NVIDIA Blackwell的NVFP4，前者在4个8×H200节点以TP=32运行，后者在单B200节点运行。文中还给出llama.cpp、vLLM、SGLang部署配方及微调与构建示例。",
+   "published_at": "2026-10-22T22:24:34+00:00",
+   "summary_short": "用数据库终态校验当RL奖励，Qwen3.8-27B成功率提升9.08点",
+   "summary_long": "ThinkingBox 通过比对智能体执行后的数据库最终状态与预期结果来评判其工作。本文是上一篇的续篇，作者注意到多数任务的可执行校验能直接从数据库终态返回 1 或 0，因此它不只是评分器，还可当作奖励函数。团队在 ThinkingBox-Bench（507 个任务）之外构造了同格式的训练任务池，用其可执行结果作为奖励，对 Qwen3.8-27B 做 50 步 GRPO 微调。挑选任务时提出“离线策略相对难度”：任务对当前模型要么已被解决、要么毫无希望，两者都教不会模型，故训练前用基座策略估计每个任务的成功概率，整个训练过程固定该任务池。结果显示 pass@1（在 10,140 次尝试上统计）从 51.70% 升至 60.78%，20 次全部通过的任务从 38 个增至 107 个，而 pass@20 从 453 降至 446。原文举例：一个酒店客房降级任务需经理审批，训练前 20 次中有 15 次未经审批即改单退款，训练后 20 次均保留预订与支付状态。ThinkingBox-Training 已在 GitHub 发布。",
    "key_points": [
-    "约8160亿总参数、每token约420亿激活的MoE模型，上下文窗口最高100万token，输入支持文本/图像/音频/视频，输出为文本",
-    "语言模型62层、隐藏维度8192，128查询头与16键值头（GQA），含输出门、输出归一化、QK-norm与可学习残差门；每层256个专家、每token路由8个，专家占总参数约97%",
-    "提供BF16（约1.5TB）与NVFP4检查点；BF16在4个8×H200节点以TP=32运行，NVFP4在单B200节点运行，并有llama.cpp、vLLM、SGLang配方"
+    "ThinkingBox 用数据库最终状态的可执行校验判分，这种 1/0 信号可直接作为后训练的奖励函数",
+    "训练池取自 ThinkingBox-Bench 之外的同格式任务，按“离线策略相对难度”在训练前估计一次成功概率并全程固定",
+    "Qwen3.8-27B 经 50 步 GRPO：pass@1 由 51.70% 升至 60.78%，20/20 全对任务由 38 增至 107，pass@20 由 453 降至 446（−7 个任务）"
    ],
    "topics": [
-    "open-source",
-    "coding-agent",
-    "post-training"
+    "post-training",
+    "agent-loop",
+    "harness"
    ],
    "category": "模型",
    "categories": [
@@ -314,35 +310,41 @@
    "extra": {
     "content_source": "direct",
     "outbound": {
-     "arxiv": [],
+     "arxiv": [
+      "2503.14476",
+      "2504.13837",
+      "2608.19741"
+     ],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/meta-muse-spark-open.md",
-      "https://huggingface.co/collections/meta-models/muse-spark-open",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/model.png",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/image_pipeline.png",
-      "https://huggingface.co/papers/2504.13181",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/audio_encoder.png",
-      "https://huggingface.co/ggml-orgf/Muse-Spark-Open-816B-A42B-GGUF",
-      "https://llama.app/docs/serve",
-      "https://github.com/jundot/omlx",
-      "https://github.com/ml-explore/mlx-lm",
-      "https://huggingface.co/mlx-community/Muse-Spark-Open-816B-A42B-oQ3e",
-      "https://huggingface.co/mlx-community/Muse-Spark-Open-816B-A42B-oQ4e",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/omlx_muse_spark_open_reasoning_screenshot.png",
-      "https://github.com/ml-explore/mlx-lm/pull/1975",
-      "https://endpoints.huggingface.co/new/meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/training_loss.png",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/token_acc.png",
-      "http://Three.js",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/pi-3d-prompt.txt",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/pi-demo.png",
-      "https://huggingface.co/docs/openenv/main/en/environments/helium_browser",
-      "https://huggingface.co/docs/huggingface_hub/en/guides/sandbox",
-      "https://huggingface.co/datasets/merve/meta-muse-spark-open-assets/resolve/main/browser_server.png",
-      "https://huggingface.co/spaces/burtenshaw/muse-spark-call-your-browser",
-      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
-      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
-      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B/discussions"
+      "https://huggingface.co/blog/microsoft/thinkingbox",
+      "https://github.com/microsoft/thinkingbox-training",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/KVaFjYjblWd15tC3M6S_0.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/iu-NFQl-J3EOMe_KiME_8.png",
+      "https://huggingface.co/datasets/microsoft/ThinkingBox-Bench",
+      "https://arxiv.org/abs/2504.13837",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/Bu7GFUdUiJgQjHV_cbvU4.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/HPq2TNCT8yskCAGtKe86l.png",
+      "https://arxiv.org/abs/2608.19741",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/ZaqyG8RtqCRsxGdxUQMfi.png",
+      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/trainer/core/tb_interpret.py",
+      "https://arxiv.org/abs/2503.14476",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/eR45y7Dl0VFFK3HinwDYg.png",
+      "https://arxiv.org/pdf/2608.19741",
+      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/IBBkNpYKQRK6jBLSusMXw.png",
+      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/data-preparation.md",
+      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/reference-q38-run.md",
+      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/evaluation.md",
+      "https://docs.astral.sh/uv/",
+      "https://huggingface.co/blog/microsoft/thinkingbox#run-it-yourself",
+      "https://github.com/huggingface/OpenEnv/tree/main/envs/thinkingbox_env",
+      "https://huggingface.co/docs/openenv/environments/thinkingbox",
+      "https://github.com/microsoft/thinkingbox",
+      "https://github.com/microsoft/thinkingbox/blob/main/docs/tutorial.md",
+      "https://github.com/microsoft/thinkingbox-data",
+      "https://github.com/microsoft/thinkingbox-data/releases/tag/thinkingbox-bench-v1.0",
+      "https://huggingface.co/papers/2608.19741",
+      "https://cdla.dev/permissive-2-0/",
+      "https://github.com/microsoft/thinkingbox/discussions"
      ]
     },
     "summary_mode": "full"
@@ -454,72 +456,6 @@
       "https://huggingface.co/reflection/Beam-1.0-501B-A23B/discussions"
      ]
     }
-   }
-  },
-  {
-   "id": "3733c75a28bf26df",
-   "url": "https://huggingface.co/blog/flux-3",
-   "title": "Welcome FLUX.3 Image Klein in Diffusers",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-15T00:00:00+00:00",
-   "summary_short": "Black Forest Labs 开源 FLUX.3 Image Klein，首发即在 Diffusers 中运行，支持边界框布局控制",
-   "summary_long": "Black Forest Labs 推出最新开源图像生成模型 FLUX.3 Image Klein，发布首日即可在 Diffusers 中运行。一个模型同时承担文生图与多参考图生图，并新增布局控制：在提示词中写入边界框，指定画面各部分的位置，或指明参考图中哪些部分需要移动。Hugging Face 上提供两个开放检查点：蒸馏版 black-forest-labs/flux-3-image-klein 默认 16 步、不使用 CFG，适合快速推理；基础版 black-forest-labs/flux-3-image-klein-base 默认 50 步并使用 CFG。原文称蒸馏检查点在 H100 上约 2 秒可生成一张 1024×1024 图像。NVFP4 与 FP8 权重可通过 from_single_file 加载，面向较小 GPU。同时提供文生图与图像编辑的 LoRA 训练脚本。模型以 Modular Diffusers pipeline 形式发布，可拆出模块或添加自定义模块；安装需最新版 diffusers 与 transformers（用于 Qwen3-VL 文本编码器）。多张参考图在提示词中按传入顺序以 <ref_image_0>、<ref_image_1> 引用。",
-   "key_points": [
-    "单个模型覆盖文生图、多参考图生图与边界框布局控制；布局控制通过把边界框写进提示词，指定画面元素位置或参考图需移动的部分",
-    "两个开放检查点：蒸馏版默认 16 步、无 CFG；基础版默认 50 步、使用 CFG。原文称蒸馏版在 H100 上约 2 秒生成 1024×1024 图像",
-    "以 Modular Diffusers pipeline 发布，提供文生图与图像编辑的 LoRA 训练脚本，NVFP4/FP8 权重可用 from_single_file 加载以适配较小 GPU"
-   ],
-   "topics": [
-    "open-source",
-    "quantization"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 84.3,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/flux-3.md",
-      "https://huggingface.co/black-forest-labs",
-      "https://huggingface.co/collections/black-forest-labs/flux-3-image-klein",
-      "https://huggingface.co/black-forest-labs/flux-3-image-klein",
-      "https://huggingface.co/black-forest-labs/flux-3-image-klein-base",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/hero.png",
-      "https://huggingface.co/spaces/black-forest-labs/flux-3-image-klein",
-      "https://docs.bfl.ai/guides/prompting_summary",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/t2i.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i_fox.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i_bench.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/combined.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/bbox-layout.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/knight.png",
-      "https://github.com/ostris/ai-toolkit",
-      "https://huggingface.co/datasets/multimodalart/1920-raider-waite-tarot-public-domain",
-      "https://huggingface.co/diffusers-modular/flux3-tarot-lora",
-      "https://github.com/huggingface/diffusers/blob/main/examples/dreambooth/README_flux3_klein.md",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/tarot-lora-sweep.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/tokens-per-workflow.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step01.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step05.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step10.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step15.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step25.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step50.png",
-      "https://huggingface.co/spaces/ariG23498/flow-matching",
-      "https://youtu.be/hXQZ6lyRCsI",
-      "https://huggingface.co/docs/diffusers/main/en/modular_diffusers/overview",
-      "https://huggingface.co/docs/diffusers/main/en/api/pipelines/flux3"
-     ]
-    },
-    "summary_mode": "full"
    }
   },
   {
@@ -666,6 +602,109 @@
       "https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/iOmv6o938CgNfFlULP-VV.png"
      ]
     },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "48e2274fdf2ba9fe",
+   "url": "https://openai.com/index/securing-our-frontier-model-training-environment",
+   "title": "Securing our frontier model training environment",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-23T10:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "cybersecurity"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 83.1,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Security"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://alignment.openai.com/misalignment-reports/",
+      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/",
+      "https://github.com/kata-containers/kata-containers/security/advisories/GHSA-wwj6-vghv-5p64",
+      "https://github.com/kata-containers/kata-containers/pull/13615",
+      "https://github.com/kata-containers/kata-containers/pull/13587",
+      "https://github.com/google/gvisor/pull/13816",
+      "https://github.com/moby/profiles/pull/39",
+      "https://github.com/torvalds/linux/commit/fa091f46c3833fb22384f10eade2b4e1e1d0b278",
+      "https://github.com/torvalds/linux/commit/594d905195024b228c962627ae5ae7c17bd582a4",
+      "https://github.com/torvalds/linux/commit/992cc9f94ca924089a506ba9b327caa9af797529",
+      "https://spectreattack.com/"
+     ]
+    }
+   }
+  },
+  {
+   "id": "1360bd8eb5a8e67e",
+   "url": "https://www.anthropic.com/research/formal-verification",
+   "title": "LLMs are making formal software verification feasible at a much larger scale",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-22T22:54:43+00:00",
+   "summary_short": "用Claude在123个开源库的RISC-V汇编层完成大规模形式化验证证明",
+   "summary_long": "原文指出，多数软件充满缺陷，而AI如今能轻易发现并利用它们；即便是Linux内核这样经过充分测试、部署在数十亿设备上的软件，近期也披露了1000多个漏洞。形式化验证可通过数学证明保证代码不违反既定安全规则，但历来成本极高——例如seL4内核实现用了2人年，形式化验证却用了20人年，因此此前只用于航空电子等关键领域。作者与Theorem合作，使用Claude对123个真实开源库在RISC-V汇编代码层面证明安全属性：在单线程静态二进制、固定内存预算、运行Linux等假设下，对小于64MB的任意输入以及所有建模的OS响应与内存布局，程序总能正常退出，不触发内存安全错误或断言失败。据其所知，这是首次在汇编层用AI对生产软件开展大规模形式化验证。Claude在写证明过程中还发现了历经数万亿次测试仍未检出的缺陷。团队公开了部分证明及RISC-V与OS语义，供他人验证和复用。",
+   "key_points": [
+    "使用Claude为123个真实开源库在RISC-V汇编层证明安全属性，据作者所知是首次在汇编层用AI对生产软件做大规模形式化验证",
+    "证明的安全属性为：在单线程静态二进制、固定内存预算、Linux等假设下，程序对小于64MB的任意输入均正常退出，不触发内存安全错误或断言失败",
+    "Claude在写证明过程中发现了此前经数万亿次测试仍未检出的缺陷；部分证明与RISC-V、OS语义已公开发布以供验证复用"
+   ],
+   "topics": [
+    "coding-agent",
+    "reasoning",
+    "open-source"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 83.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 437,
+    "hn_comments": 280,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://hacks.mozilla.org/2026/05/behind-the-scenes-hardening-firefox/",
+      "https://www.anthropic.com/research/exploit-evals",
+      "https://theorem.dev/",
+      "https://opensource.googleblog.com/2016/12/announcing-oss-fuzz-continuous-fuzzing.html",
+      "https://lwn.net/Articles/1097401/",
+      "https://sel4.systems/Research/pdfs/comprehensive-formal-verification-os-microkernel.pdf",
+      "https://www.astree.ens.fr/papers/astree_airbus_sas2007.pdf",
+      "https://github.com/theorem-labs/oss-verify-proofs",
+      "https://github.com/theorem-labs/rocq-linux-process-semantics",
+      "https://theorem.dev/oss-verify/",
+      "https://github.com/theorem-labs/oss-verify/blob/main/.claude/skills/add-project/SKILL.md",
+      "https://en.wikipedia.org/wiki/PNG",
+      "https://www.rfc-editor.org/info/rfc2083/",
+      "https://github.com/google/oss-fuzz",
+      "https://www.cisa.gov/news-events/news/cisa-nsa-fbi-and-international-cybersecurity-authorities-publish-guide-case-memory-safe-roadmaps",
+      "https://www-cdn.anthropic.com/files/4zrzovbb/website/6867eadf760258fa8b42a504600cd3c036d16358.pdf",
+      "https://github.com/AFLplusplus/AFLplusplus/blob/stable/include/config.h#L314",
+      "https://www.rfc-editor.org/info/rfc1950/",
+      "https://leanprover-community.github.io/",
+      "https://leanprover-community.github.io/mathlib_stats.html",
+      "https://theorem.dev/blog/verified-software-stack/"
+     ]
+    },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -1203,87 +1242,6 @@
    }
   },
   {
-   "id": "e3c36d4422c6129b",
-   "url": "https://huggingface.co/blog/swiss-ai/apertus-v15-release-notes",
-   "title": "Apertus 1.5 Release Notes",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-15T09:08:45+00:00",
-   "summary_short": "Apertus 1.5 开源 8B/70B：新增图像音频理解与思考模式，上下文扩至 262k",
-   "summary_long": "Apertus 1.5 是对 Apertus 1.0 的 8B 与 70B 模型的持续预训练（8B 增加 4 万亿、70B 增加 2 万亿 token，总量分别达 19T 与 17T）。更新后的权重已于 2026 年 7 月 24 日以 Apache 2.0 许可发布于 Hugging Face，详见项目 Technical Report。新版本带来原生多模态理解（图像与音频，语音处理仍属实验性）、可选思考模式、扩至 262,144 token 的上下文窗口（为 1.0 的 4 倍）、更好的指令遵循与工具使用，并更严格遵循 Apertus Charter。多模态以 early-fusion 方式实现：图像经 Emu3.5 tokenizer（512×512 为 1,024 token）、音频经 WavTokenizer（每秒 40 token）离散化，与文本 token 同序列输入；架构不变，仅扩展词表，训练速度与纯文本相当，模型能理解图像和音频但只生成文本。预训练分无配对、配对、冷却、长上下文四阶段，窗口从 8k 逐步增至 262k，超半数训练 token 为纯文本；后训练为 SFT、长上下文 SFT、RL、DPO、Charter 对齐五阶段。",
-   "key_points": [
-    "能力升级：8B 与 70B 模型新增图像、音频理解（语音为实验性）与可切换的思考模式，上下文窗口扩至 262,144 token，指令遵循与工具使用均有提升",
-    "训练规模：在 1.0 基础上继续预训练，8B 增加 4T、70B 增加 2T token，总量分别达 19T 与 17T；超半数训练 token 为纯文本，新数据均公开、许可宽松且追溯尊重 robots.txt 退出",
-    "开放程度：权重以 Apache 2.0 发布于 Hugging Face，文本 SFT 混合数据与 DPO 偏好数据池一并公开，训练全流程与全部数据来源记录在 apertus-data-transparency"
-   ],
-   "topics": [
-    "post-training",
-    "open-source",
-    "multimodal"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 79.5,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2408.16532",
-      "2508.10925",
-      "2510.26583",
-      "2610.15542"
-     ],
-     "links": [
-      "https://huggingface.co/collections/swiss-ai/apertus-v15",
-      "https://arxiv.org/abs/2610.15542",
-      "https://github.com/swiss-ai/apertus-data-transparency/",
-      "https://apertus-ai.org/pages/charter/",
-      "https://apertus-ai.org/pages/research/",
-      "https://cdn-uploads.huggingface.co/production/uploads/650ed7adf141bc34f91a12ae/Xi58nSrPTd5_ASGNIg60g.png",
-      "https://arxiv.org/abs/2510.26583",
-      "https://arxiv.org/abs/2408.16532",
-      "https://cdn-uploads.huggingface.co/production/uploads/650ed7adf141bc34f91a12ae/D-7BaNY68Nigi5bTw3RH9.png",
-      "https://huggingface.co/datasets/epfml/FineWeb2-HQ-Plus",
-      "https://github.com/swiss-ai/apertus-data-transparency",
-      "https://huggingface.co/datasets/swiss-ai/Apertus-v1.5-SFT-mix",
-      "https://huggingface.co/datasets/swiss-ai/Apertus-v1.5-Preference-Pool",
-      "https://huggingface.co/datasets/swiss-ai/Apertus-v1.5-Preference-Data",
-      "https://raw.githubusercontent.com/swiss-ai/model-cards-assets/main/apertus_1.5/text_performance_plot.png",
-      "https://github.com/swiss-ai/MLLM-eval-suite",
-      "https://github.com/swiss-ai/lmms-eval",
-      "https://github.com/swiss-ai/VLMEvalKit",
-      "https://github.com/swiss-ai/evals-post-train",
-      "https://github.com/swiss-ai/lm-evaluation-harness",
-      "https://raw.githubusercontent.com/swiss-ai/model-cards-assets/main/apertus_1.5/visual_performance_plot.png",
-      "https://deepmind.google/models/gemma/gemma-4/",
-      "https://github.com/JoelNiklaus/SwissLegalEvals/blob/main/blog/swiss-legal-evals-2026.md",
-      "https://github.com/JoelNiklaus/SwissLegalEvals",
-      "https://arxiv.org/abs/2508.10925",
-      "https://www.anthropic.com/claude/haiku",
-      "https://translate.google.com",
-      "https://last-translation-benchmark.vilda.net/leaderboard-results",
-      "https://huggingface.co/papers/2609.04173",
-      "https://evalevalai.com",
-      "https://github.com/evaleval/every_eval_ever",
-      "https://huggingface.co/blog/eee-community-evals",
-      "https://huggingface.co/blog/evaleval-aisi",
-      "https://evalevalai.com/infrastructure/2026/09/28/mapping-evaluation-cards-to-ai-governance-requirements/",
-      "https://github.com/swiss-ai/apertus-legal/raw/main/apertus_1.5/Apertus_1_5_EU_Public_Summary.pdf",
-      "https://raw.githubusercontent.com/swiss-ai/apertus-legal/main/apertus_1.5/Apertus_1_5_EU_Code_of_Practice.pdf",
-      "https://huggingface.co/collections/swiss-ai/apertus-v15-datasets",
-      "https://huggingface.co/swiss-ai/Apertus-v1.5-8B-base",
-      "https://huggingface.co/swiss-ai/Apertus-v1.5-70B-base",
-      "https://huggingface.co/swiss-ai/Apertus-v1.5-8B-SFT"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "edef63b51aedc012",
    "url": "https://openai.com/index/building-chatgpt-ad-stack",
    "title": "How we built ChatGPT’s novel ad stack for user trust and relevance",
@@ -1321,6 +1279,69 @@
       "https://openai.com/index/our-approach-to-advertising-and-expanding-access/"
      ]
     },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "4dcdb95578272074",
+   "url": "https://github.com/NVIDIA/OpenShell",
+   "title": "OpenShell – A safe, private runtime for fleets of autonomous AI agents",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-22T17:44:06+00:00",
+   "summary_short": "OpenShell：以内核级沙箱和形式化验证约束自主 AI 智能体的私有运行时",
+   "summary_long": "OpenShell 是面向成批自主 AI 智能体的安全私有运行时。原文说，智能体在能读文件、安装软件包、调用 API、使用凭证时最有用；OpenShell 让它们拥有这些能力，同时不让它们无限访问数据、密钥和网络。用户用策略声明每个智能体可以触及的内容，由 OpenShell 强制执行。实现机制有两层：每个智能体运行在独立沙箱中，内核控制限制其可访问的文件和可发起的系统调用，每条网络连接在离开沙箱前必须通过策略检查；智能体看不到真实凭证，凭证只在发往已批准端点的请求中注入。策略变更生效前还要经过形式化验证，标出这次变更将授予的高风险新访问（例如使用凭证访问新主机、调用新 API 方法），并交由人工审阅。0.1.x 带来稳定发布节奏、新隔离原语、扩展后的扩展面和新 API。运行需要 Linux、Apple Silicon 上的 macOS 或 WSL 2（实验性），加上 Docker/Podman 或主机虚拟化；安装脚本会配置 CLI 和本地网关，默认镜像是不安装智能体的最小 Ubuntu。",
+   "key_points": [
+    "内核级沙箱执行文件访问、系统调用与网络连接策略；策略变更在应用前经形式化验证，高风险新访问等待人工审阅",
+    "智能体不接触真实凭证，OpenShell 仅在发往已批准端点的请求中注入凭证",
+    "0.1.x 提供稳定发布节奏、新隔离原语、扩展的扩展面与新 API，并有 Python、TypeScript、Go、Rust SDK、Agent Skills 与 Helm 部署网关"
+   ],
+   "topics": [
+    "cybersecurity",
+    "privacy"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "安全",
+    "开源项目"
+   ],
+   "horizon": "short",
+   "score": 79.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 487,
+    "hn_comments": 212,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/NVIDIA/OpenShell/blob/main/LICENSE",
+      "https://pypi.org/project/openshell/",
+      "https://docs.nvidia.com/openshell/latest/index.html",
+      "https://docs.nvidia.com/openshell/latest/upgrade/0-1-0",
+      "https://docs.nvidia.com/openshell/latest/about/architecture",
+      "https://docs.nvidia.com/openshell/latest/about/support-matrix",
+      "https://docs.nvidia.com/openshell/latest/about/run-your-first-agent",
+      "https://docs.nvidia.com/openshell/latest/how-it-works/sandboxes/overview",
+      "https://docs.nvidia.com/openshell/latest/how-it-works/policies/overview",
+      "https://docs.nvidia.com/openshell/latest/how-it-works/policies/advisor",
+      "https://docs.nvidia.com/openshell/latest/how-it-works/policies/prover",
+      "https://docs.nvidia.com/openshell/latest/how-it-works/providers/overview",
+      "https://docs.nvidia.com/openshell/latest/how-it-works/inference",
+      "https://docs.nvidia.com/openshell/latest/how-it-works/gateways/overview",
+      "https://docs.nvidia.com/openshell/latest/kubernetes/setup",
+      "https://docs.nvidia.com/openshell/latest/extensibility/overview",
+      "https://docs.nvidia.com/openshell/latest/tutorials/first-network-policy",
+      "https://docs.nvidia.com/openshell/latest/about/installation#prerelease-and-development-builds",
+      "https://github.com/NVIDIA/OpenShell/discussions",
+      "https://github.com/NVIDIA/OpenShell/issues",
+      "https://github.com/orgs/NVIDIA/projects/233",
+      "https://github.com/orgs/NVIDIA/projects/233/views/6",
+      "https://brev.nvidia.com/launchable/deploy/now?launchableID=env-3Ap3tL55zq4a8kew1AuW0FpSLsg",
+      "https://docs.nvidia.com/openshell/latest/observability/telemetry"
+     ]
+    },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -1697,107 +1718,6 @@
    }
   },
   {
-   "id": "a01e02239da0a38e",
-   "url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1",
-   "title": "Granite Switch 4.1: Chat, Decisions, and Speech from One Endpoint",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-15T20:34:01+00:00",
-   "summary_short": "Granite Switch 4.1：单端点兼顾对话、决策与语音，显存约等于基座模型",
-   "summary_long": "Granite Switch 项目去年春天推出，旨在让模型开发走向模块化。4.1 版在基座模型上组合三项技术，可在同一个托管端点完成自然语言应答、通用与专用决策、语音转写。8B 与 30B 版本包含：用于通用决策的新 Decision aLoRA；在安全相关决策任务上平均优于 Jev 1.13、Microsoft-Decision-1、GPT-Luna-Decisions、Clef-Flash 的专用 Guardian aLoRA；以及 OpenASR 排行榜上最快的 ASR 模型 Granite-Speech-5.0-Turbo-CTC。三者与基座模型合为一个模型，GPU 显存占用与基座模型单独运行大致相当，即以更少 GPU 换更多能力。因适配器是缓存高效的 Activated LoRA，基座模型生成的 KV cache 可复用于后续决策；配合对 vLLM 低秩适配器推理的加速与共置 ASR 编码器，模型可在对话、决策、语音请求间高速切换。原文还提到 Speech-to-Decisions HF Space 可实时转写、摘要、筛查有害内容并测试 15 项自定义标记；先前发布的 Granite Libraries 提供可自由组合的适配器仓库，原文称专项分类任务上许多专用适配器胜过通用模型，且共享 KV cache 使新增专用适配器几乎不增加成本；并称 30B（冻结基座 Granit",
-   "key_points": [
-    "Granite-Switch-4.1-8B 与 -30B 集成通用 Decision aLoRA、安全专用 Guardian aLoRA 与 OpenASR 榜首的 Granite-Speech-5.0-Turbo-CTC，全部由单一托管端点提供。",
-    "Guardian aLoRA 在安全相关决策任务上平均优于 Jev 1.13、Microsoft-Decision-1、GPT-Luna-Decisions 和 Clef-Flash。",
-    "适配器为缓存高效的 Activated LoRA 并共享基座 KV cache，多能力组合的显存占用约等于基座模型本身；用户可从 Granite Libraries 自行组合模型，团队计划发布在 Mellea 训练适配器的 Adapter SDK。"
-   ],
-   "topics": [
-    "post-training",
-    "inference-optimization"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 77.7,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/generative-computing/granite-switch",
-      "https://cdn-uploads.huggingface.co/production/uploads/662836b742709fe826510597/LHBbw-MVVQgnYcpDK_DWC.png",
-      "https://huggingface.co/ibm-granite/granite-switch-4.1-8b",
-      "https://huggingface.co/ibm-granite/granite-switch-4.1-30b",
-      "https://huggingface.co/ibm-granite/granitelib-core-r1.0/blob/main/decision/README.md",
-      "https://huggingface.co/ibm-granite/granitelib-guardian-r1.0/blob/main/guardian-core/README.md",
-      "https://huggingface.co/ibm-granite/granite-speech-5.0-470m-turboctc",
-      "https://huggingface.co/spaces/hf-audio/open_asr_leaderboard",
-      "https://research.ibm.com/blog/inference-friendly-aloras-lora",
-      "https://github.com/generative-computing/granite-switch/blob/main/docs/SWITCH_KERNELS.md",
-      "https://huggingface.co/spaces/ibm-granite/speech-to-decisions",
-      "https://huggingface.co/collections/ibm-granite/granite-libraries",
-      "https://huggingface.co/spaces/ibm-granite/granitelib-evals",
-      "https://generative-computing.github.io/granite-switch/adapter_catalog.html",
-      "https://docs.mellea.ai/advanced/lora-and-alora-adapters",
-      "https://huggingface.co/collections/ibm-granite/granite-switch",
-      "https://research.ibm.com/blog/granite-libraries-project-switch",
-      "https://colab.research.google.com/github/generative-computing/granite-switch/blob/main/tutorials/notebooks/alora_vs_lora_race.ipynb",
-      "https://typesafe.ai/blog/introducing-system-one-models-and-jev"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a14596d80f7723e9",
-   "url": "https://blogs.gnome.org/uraeus/2026/10/15/aiandreverseengineerhardware/",
-   "title": "Using AI to reverse engineer hardware",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-15T14:35:15+00:00",
-   "summary_short": "作者用 AI 代理在 Windows 虚拟机中抓取 USB 流量，反向工程出 Linux 硬件驱动，并把整套工具开源为 hw-harness。",
-   "summary_long": "作者因母亲去世后留下大量老底片，买入在 Linux 下受支持的 Plustek 8200i 扫描仪，却发现该机型芯片组已更换、不再有 Linux 支持。他此前曾用 Claude code 为自己的硬件写过 Linux 配置工具，于是尝试让 Claude 帮忙做 SANE 驱动，但长期没有进展，甚至放弃了数月。转机是他看到 Tom Crider（Glorious Eggroll）在 X 上讲述用 AI 工具修好鼠标驱动的帖子——做法是让 AI 代理完全控制一个 Windows 实例来采集所需数据。他把该帖粘给 Claude，请它帮忙搭建同样的 Windows 虚拟机流程。能同时在 Windows 下扫描并抓取 USB 数据，加上 Claude code 的改进，几小时内他首次在 Linux 下完成扫描，图像可辨认但质量有问题；几天后得到近乎完美的驱动，含红外扫描支持，却发现期间已有人向 SANE 提交了该扫描仪的支持代码。他还用 Claude 写了底片扫描应用 Negative Vibes，并用同一套 harness 修复笔记本 MIPI 摄像头，当天就备好内核与 libcamera 补丁。他随后让 Claude 把 harness 通用化并写文档，即 hw-harness：在 KVM 虚拟机中运行厂商 Windows 驱动并直通设备、在 Linux 主机用 usbmon 从虚拟机外",
-   "key_points": [
-    "起因：新购的 Plustek 8200i 扫描仪芯片组更换后失去 Linux 支持，作者想让 Claude 帮忙写 SANE 驱动，长期卡住后放弃数月。",
-    "方法来自 Tom Crider（Glorious Eggroll）的 X 帖子：让 AI 代理完全控制 Windows 实例采集数据；作者据此搭建 Windows 虚拟机，同时扫描并抓取 USB 流量。",
-    "结果：数小时内首次在 Linux 下成功扫描，数天后得到近乎完美的驱动（含红外扫描），但期间已有人向 SANE 提交了该扫描仪支持；还写了 Negative Vibes 应用，并用同一 harness 修好笔记本 MIPI 摄像头，产出内核与 libcamera 补丁。"
-   ],
-   "topics": [
-    "harness",
-    "coding-agent",
-    "tool-use"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 77.7,
-   "status": "published",
-   "extra": {
-    "hn_points": 242,
-    "hn_comments": 234,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://gitlab.com/cschalle/appfordellwebcam",
-      "https://x.com/GloriousEggroll/status/2103816580966830314",
-      "https://github.com/cschalle/negative-vibes",
-      "https://cschalle.github.io/mipi-fixes-x1-aura/",
-      "https://github.com/cschalle/hw-harness",
-      "https://htmlpreview.github.io/?https://github.com/cschalle/OpticFilm8200i-sane/blob/main/docs/comparison/drivers-comparison.html",
-      "https://blogs.gnome.org/uraeus/files/2026/10/drivercompare.png",
-      "https://blogs.gnome.org/uraeus/files/2026/10/afterscan.png",
-      "https://blogs.gnome.org/uraeus/files/2026/10/mipifixes.png"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "9b13d6a721a0c270",
    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
    "title": "DeepSeek-v4.1-Flash-1017",
@@ -1919,6 +1839,104 @@
       "https://github.com/agentskills/agentskills"
      ]
     },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "298c8de07d18f423",
+   "url": "https://openai.com/index/scaling-storage-one-billion-users-part-two",
+   "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-23T17:00:00+00:00",
+   "summary_short": "OpenAI：Habitat用Cosmos DB多租户扛住10亿用户",
+   "summary_long": "OpenAI工程团队在本文（Part II）中讲述其在线存储平台Habitat如何扩展底层存储组件Azure Cosmos DB。Habitat为OpenAI各产品提供毫秒级数据访问，需服务40个地理区域的超过10亿用户，承载逾500PB数据。文章回顾了多租户设计的一段反复路径：先是所有产品共用一个Azure Cosmos DB多租户容器，随后改为为各租户单独供给容器，最终又默认回到多租户容器。文中对比了单租户与多租户的取舍：单租户缩小故障影响范围、所有权边界清晰、工作负载隔离好，但运维成本高，且各产品团队需自行做容量规划，常导致明显过度预留；多租户把资源供给交给更专业的集中数据库团队，却会产生“吵闹邻居”问题。通过与Azure团队紧密合作，他们采用共管容器（co-managed containers）的多租户方案，在全球大规模下取得良好读性能。原文称其多租户仍处早期，主要靠复用Cosmos DB内置能力来延后相关投入。",
+   "key_points": [
+    "Habitat需在40个地理区域为超10亿用户提供毫秒级访问，承载超过500PB数据",
+    "多租户路线走过一段反复：单一多租户容器→单租户容器→默认回归多租户容器",
+    "与Azure团队合作采用共管容器方案，在全球大规模下读性能良好"
+   ],
+   "topics": [
+    "infrastructure",
+    "multi-tenant",
+    "scaling"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 76.2,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Engineering"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://openai.com/careers/software-engineer-habitat-(online-data)-seattle/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "1fd8476b4493a52b",
+   "url": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+   "title": "Kimi K3.1 Pro and K3.1 Pro Highspeed",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-23T16:59:08+00:00",
+   "summary_short": "Kimi K3.1 Pro 发布：3T 级开源权重模型，100 万 token 上下文",
+   "summary_long": "Kimi K3.1 Pro 是 K3.1 系列首个模型，原文称其为迄今最强的 3T 级开源权重模型，上下文窗口为 100 万 token。它是 Kimi K3 的后训练版本，后训练算力大幅增加；为在数百个下游领域进行大规模联合强化学习，原文称优化了 RL 框架、长上下文推理、训练效率、沙箱基础设施、rollout 调度、环境质量检查共享平台等各层，使每单位 RL 算力带来稳定可预期的回报。原文称其在编程、智能体与知识基准上匹配或接近最强闭源模型：Terminal-Bench 4.0 得 65.7%，高于 GPT-6 Astra 的 58.2%，略低于 Claude Opus 5.5 的 66.4%；内部基准 Kimi Code Bench 3.0 Long-horizon 得 61.2%，高于 K3 的 55.95%；BenchCAD 带工具得 92.7%，接近 Claude Opus 5.5 的 96.2% 与 GPT-6 Astra 的 95.9%。同时发布的 Highspeed 版本速度为 2-3 倍。两者已在 Kimi.ai、Kimi Work、Kimi Code 和 Kimi API 上线，完整模型权重将于 11 月 4 日前发布。",
+   "key_points": [
+    "基准表现：Terminal-Bench 4.0 得 65.7%，高于 GPT-6 Astra（58.2%），略低于 Claude Opus 5.5（66.4%）；内部基准 Kimi Code Bench 3.0 Long-horizon 得 61.2%，K3 为 55.95%",
+    "3D 与空间推理：BenchCAD（多视图渲染经 CAD 代码生成做 3D 重建）带工具得 92.7%，接近 Claude Opus 5.5 的 96.2% 和 GPT-6 Astra 的 95.9%，擅长参数化建模",
+    "长程编程内部测试：在开源人体解剖模型 human-atlas（296 个骨骼组件、402 个肌肉组件）上搭建带训练与评估流程的行走动力学模拟器，经 167 项任务、420 次独立评审迭代控制器，并修正 36 处肩部肌肉力臂计算错误，使仿真人从数秒内倒地到交替步态连续行走 11.2 秒"
+   ],
+   "topics": [
+    "post-training",
+    "open-source"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 76.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 583,
+    "hn_comments": 352,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.kimi.ai/",
+      "https://www.kimi.ai/code",
+      "https://platform.kimi.ai/",
+      "https://github.com/ashemag/human-atlas",
+      "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "https://www.tbench.ai/",
+      "https://www.terminal-bench-science.ai/",
+      "https://openai.com/index/gpt-6-astra/",
+      "https://www.anthropic.com/claude-opus-5-5-system-card",
+      "https://www.anthropic.com/claude-fable-5-1-mythos-5-1-system-card",
+      "https://api-docs.deepseek.com/news/news261017/",
+      "https://z.ai/blog/glm-5.3",
+      "https://www.swe-marathon.org/",
+      "https://posttrainbench.com/",
+      "https://www.vals.ai/benchmarks/programbench",
+      "https://www-cdn.anthropic.com/fc1b44717c85dc068bc6ba5024219938094694bd/Claude%20Opus%205.5%20System%20Card.pdf",
+      "https://openai.com/zh-Hans-CN/index/gpt-6-astra/",
+      "https://huggingface.co/datasets/Anthropic/BioMysteryBench-full/commit/b5a889c",
+      "https://github.com/rdi-berkeley/agents-last-exam",
+      "https://artificialanalysis.ai/",
+      "https://www.mercor.com/apex/apex-agents-leaderboard/"
+     ]
+    },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
