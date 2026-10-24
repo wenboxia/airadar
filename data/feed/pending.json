@@ -1,577 +1,241 @@
 {
- "generated_at": "2026-10-23T22:13:55+00:00",
+ "generated_at": "2026-10-24T21:37:21+00:00",
  "items": [
   {
-   "id": "6c51129e93f61d6b",
-   "url": "https://simonwillison.net/2026/Oct/23/kimi-k31-pro/",
-   "title": "Introducing Kimi K3.1 Pro",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-23T19:40:54+00:00",
-   "summary_short": "Kimi K3.1 Pro 上线 API，AA 评分 55，超越多个前沿模型，价格为 Claude Opus 5.5 的一半",
-   "summary_long": "Kimi K3.1 Pro 今日上线 Kimi API，目前尚未开放权重，Moonshot 承诺“完整模型权重将于 2026 年 11 月 4 日前发布”。同时提供“Highspeed”版本，速度提升 2-3 倍、价格为两倍，但输入 token 缓存命中部分定价相同。美元定价为输入每百万 tokens 2.00 美元、输出每百万 tokens 10 美元，与 GPT-6.1 Sol 相同，为 Claude Opus 5.5 的一半。\n\nMoonshot 自家基准显示，Kimi 大致与 Opus 5.5、GPT-6 Astra 持平，部分基准超过、部分接近。Artificial Analysis 给出 55 分，高于 Claude Fable 5.1、GPT-6 Astra 和 Gemini 4 Argon（均为 53），仅次于 Claude Opus 5.5 的 58 分。原文称，这是首次有（即将）开放权重的模型在前沿对比中拿到如此高的分数。\n\n作者还通过 Moonshot API 调用该模型，在 low、medium、max 三档推理强度下生成“骑自行车的鹈鹕”SVG，并与 Kimi K3 在同样三档推理强度下生成的鹈鹕做了对比。",
-   "key_points": [
-    "Kimi K3.1 Pro 上线 Kimi API，暂未开放权重；Moonshot 承诺完整权重将在 2026 年 11 月 4 日前发布；另有速度快 2-3 倍、价格翻倍的 Highspeed 版本（输入 token 缓存命中部分价格相同）",
-    "定价为输入每百万 tokens 2.00 美元、输出每百万 tokens 10 美元，与 GPT-6.1 Sol 相同，为 Claude Opus 5.5 的一半",
-    "Artificial Analysis 评分 55，高于 Claude Fable 5.1、GPT-6 Astra、Gemini 4 Argon（均 53），仅次于 Claude Opus 5.5 的 58 分；原文称这是首次有即将开放权重的模型在前沿对比中得分如此之高"
-   ],
-   "topics": [
-    "reasoning",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 73.2,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "ai",
-     "generative-ai",
-     "llms",
-     "llm",
-     "llm-pricing"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.kimi.ai/blog/kimi-k3-1-pro",
-      "https://platform.kimi.ai/docs/pricing/chat",
-      "https://artificialanalysis.ai/models/kimi-k3-1-pro",
-      "https://platform.kimi.ai/docs/get-your-api-key",
-      "https://llm.datasette.io/en/stable/other-models.html#openai-endpoint",
-      "https://llm.datasette.io/en/stable/changelog.html#v0-32",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F9b7181492209387da1d4f53002f26663",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Feba9a4283c9e94cbbb5325902a3921a8",
-      "https://news.ycombinator.com/item?id=50212065",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/llm",
-      "https://simonwillison.net/tags/llm-pricing",
-      "https://simonwillison.net/tags/pelican-riding-a-bicycle",
-      "https://simonwillison.net/tags/llm-release",
-      "https://simonwillison.net/tags/ai-in-china",
-      "https://simonwillison.net/tags/moonshot",
-      "https://simonwillison.net/tags/kimi"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "619059630d1f6d6c",
-   "url": "https://latent.space/p/ai-is-getting-good-at-math/",
-   "title": "AI Is Getting Good at Math. Here’s Why.",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-10-23T15:19:48+00:00",
-   "summary_short": "OpenAI与Anthropic接连在数学开放问题上取得成果，作者追问LLM能解哪类问题。",
-   "summary_long": "5月至9月，OpenAI内部模型找到自1946年悬而未决的Erdős单位距离猜想的反例，随后发表环双覆盖（CDC）问题证明，7月前再解十个开放问题，9月给出Navier-Stokes证明；Anthropic则形式化了费马大定理并给出黎曼假设的改进界。作者由此追问：能否预测LLM会解决哪类问题、这些解法有何共性。他提出\"提示序列\"模型：解题需要一串洞见，洞见之间是工作。Gowers以\"模专家的Kolmogorov复杂度\"衡量难度，对单位距离问题给出三段提示——寻找反例、推广已知最佳构造、尝试度数递增的数域并用有界范数素理想——复杂度公式为2^k+t，k是最短提示序列长度，t是发展所需工作量，复杂度随洞见数指数增长。提示的价值取决于它事前多不可能、事后多明显，且提示有序、沿一棵树展开。人类解题呈广度优先：生成候选方向、浅层探索、放弃多数、只承诺少数，因为发展一个想法可能要数月。作者认为，若AI解题方式与人类不同，识别差异有助于决定把AI指向何处。",
-   "key_points": [
-    "OpenAI内部模型找到Erdős单位距离猜想反例，并接连发表CDC问题、十个开放问题及Navier-Stokes的证明；Anthropic形式化费马大定理并给出黎曼假设改进界。",
-    "作者用\"提示序列\"刻画解题难度：Gowers的\"模专家Kolmogorov复杂度\"以2^k+t表示，k为最短提示序列长度，t为发展所需工作，难度随洞见数指数增长。",
-    "提示的价值取决于事前多不可能、事后多明显，且提示有序、沿一棵树展开；人类解题是广度优先搜索，因发展想法耗时数月而需早期鼓励才继续投入。"
-   ],
-   "topics": [
-    "reasoning",
-    "eval"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "评测"
-   ],
-   "horizon": "long",
-   "score": 68.9,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://latent.space/p/ainews-openai-gpt-next-disproves/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.latent.space/p/ainews-not-much-happened-today-f5c?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.latent.space/p/ainews-openai-reports-navier-stokes?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.latent.space/p/ainews-collusionwiki-a-second-undisclosed?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.latent.space/p/ainews-quasi-riemann-hypothesis-openai?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://ankitmaloo.com/fable/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://cdn.openai.com/pdf/04d1d1e4-bc75-476a-97cf-49055cd98d31/cdc_prompt.pdf?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://gowers.wordpress.com/2026/08/12/what-sort-of-maths-are-llms-good-at/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://terrytao.wordpress.com/2026/09/11/a-severe-misalignment-of-ai-in-mathematics?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=JNyuX1zoOgU&t=2230s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=6rwIcNjRQU8&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.tomzahavy.com/files/llms-cant-jump.pdf?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/shorts/y9eGsI2C9iY?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://en.wikipedia.org/wiki/Goodhart%27s_law?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.anthropic.com/research/riemann-zeta?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "d5dfb55b012918e7",
-   "url": "https://huggingface.co/blog/allenai/litpivot",
-   "title": "LitPivot: Developing research ideas through dynamic contextualization within the literature landscape",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-23T16:15:50+00:00",
-   "summary_short": "LitPivot：把研究想法拆成问题、贡献、评估三面，用文献支撑的批评与改写建议",
-   "summary_long": "原文将“文献引发的转向”定义为：读到前人工作后研究方向的改变，它同时涉及发展想法与选择对标文献两件事。作者分析四个已完成的计算机科研项目的会议记录，识别出21次此类转向，分为两类：与已有工作区分以确立新颖性、与已有工作对齐以在其上继续推进；该项目本身在确定贡献前也经历过两次转向。 formative study 中五位研究者用文本编辑器和常规检索工具写提案，难以一边发展想法一边对照文献批判评估，且当论文冲击其新颖性时希望得到有文献支撑的具体修改建议。LitPivot 由此设计：研究者写短提案并开启 facet highlighting，将想法切分为问题、贡献、评估三部分；点击某一片段，侧栏按该分面分组并高亮最相关论文，论文经 Asta Paper Finder 检索；研究者选论文请求评估，系统给出附原文摘录的批评与建议修改，可接受、编辑或拒绝，随后按修改后的分面重排文献。17人研究中，领域专家认为用 LitPivot 发展的想法比用文本编辑器加 AI 聊天工具的更有文献根基；参与者自评修改后的想法更新颖有用、对周边文献理解更强。原文称其面向早期构思，未来或可扩展到更长写作任务，将于 UIST 2026 展示。",
-   "key_points": [
-    "分析四个已完成计算机科研项目的会议记录，识别出21次“文献引发的转向”，分为与已有工作区分（确立新颖性）和对齐（在其上构建）两类",
-    "LitPivot 将提案切分为问题、贡献、评估三个分面，各分面有独立的相关文献集合与排序，按正在编辑的分面分组论文",
-    "系统给出附文献摘录的批评与可接受/编辑/拒绝的修改建议，并据修改后的分面重新排序文献"
-   ],
-   "topics": [
-    "rag",
-    "product",
-    "context-engineering"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用",
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 68.5,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2410.04025",
-      "2510.00620",
-      "2604.02600",
-      "2610.02022"
-     ],
-     "links": [
-      "https://arxiv.org/abs/2604.02600",
-      "https://www.datocms-assets.com/64837/1792764970-litpivot-featured-staircase-1512x1080.png",
-      "https://asta.allen.ai/",
-      "https://www.datocms-assets.com/64837/1792764615-image2.png",
-      "https://www.datocms-assets.com/64837/1792764678-image4.png",
-      "https://allenai.org/asta",
-      "https://allenai.org/blog/theorizer",
-      "https://allenai.org/blog/autodiscovery",
-      "https://arxiv.org/abs/2510.00620",
-      "https://dl.acm.org/doi/10.1145/3786335.3813161",
-      "https://aclanthology.org/2025.sdp-1.9/",
-      "https://arxiv.org/abs/2410.04025",
-      "https://arxiv.org/abs/2610.02022"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "6430909168b58685",
-   "url": "https://huggingface.co/blog/torch-neuronx-model-support",
-   "title": "Does Your Model Run on AWS Trainium? Look It Up",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-23T00:00:00+00:00",
-   "summary_short": "新Space可查任意模型能否在AWS Trainium上原样运行，并给出复现脚本",
-   "summary_long": "文章回顾此前推出的TorchNeuron——AWS Trainium的原生PyTorch后端（torch-neuronx包），借助它Transformers可在Trainium上运行自身建模代码。但哪些Hub上的模型实际能跑？新发布的torch-neuronx model support Space回答了这个问题：它显示模型能否未经修改在Trainium上运行，并提供自行运行的脚本。Space的Selected视图给出按下载量和热度挑选的模型，每行包含测试结果、模型分片占用的Trainium核心数、运行的实际耗时（含编译）和峰值显存；切到Trending或Downloads视图可按名称查询，未被测试的模型会说明原因，还可选择neuronx-cc与Transformers版本。目前只测Transformers模型，且限于文本生成与图文转文本任务，计划扩展到diffusers、sentence transformers等。选中模型后，Space列出所用Neuron栈、需安装的包和run.py脚本；在trn2实例上安装后执行python3 run.py，无需torchrun，并可从公开NEFF缓存桶同步已编译图以跳过编译。测试在trn2上以能容纳权重的最少核心数分片，生成32 tokens并校验：单核与同checkpoint的CPU结果比对，分片时由小judge模型判断英文是否流畅；当前",
-   "key_points": [
-    "Space展示模型能否未修改跑在Trainium上，含结果、分片核心数、含编译的耗时与峰值显存，并可选择neuronx-cc和Transformers版本。",
-    "通过run.py复现：from_pretrained加载、按需分片、静态缓存加torch.compile(backend=\"neuron\")，在trn2上python3 run.py，无需torchrun；可从公开NEFF缓存桶同步编译图跳过编译。",
-    "测试口径有限：仅覆盖能放进4台Trainium2（至多16核）的Transformers文本生成与图文转文本模型，生成32 tokens校验，PASS不代表吞吐或更长生成表现；结果以Parquet数据集公开可查。"
-   ],
-   "topics": [
-    "inference-deployment",
-    "trainium",
-    "hardware"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 64.5,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/torch-neuronx-model-support.md",
-      "https://huggingface.co/blog/hf-torchneuron",
-      "https://huggingface.co/spaces/aws-neuron/torch-neuronx-model-support",
-      "https://github.com/aws-neuron/deep-learning-containers#torch-neuronx",
-      "https://huggingface.co/buckets/aws-neuron/torch-neuronx-neff-cache",
-      "https://huggingface.co/datasets/aws-neuron/torch-neuronx-model-support"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "f29afd1567254e52",
-   "url": "https://simonwillison.net/2026/Oct/22/donating-agent-skills/",
-   "title": "Donating Agent Skills to the Agentic AI Foundation",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-22T18:09:56+00:00",
-   "summary_short": "Anthropic 把 Agent Skills 标准捐给 AAIF，以保持其开放与厂商中立",
-   "summary_long": "原文报道 Anthropic 的一项声明：Anthropic 表示致力于让 Agent Skills 保持开放、由社区驱动且厂商中立，并于当天将该标准捐赠给 Agentic AI Foundation（AAIF）。AAIF 隶属于 Linux Foundation，由 Anthropic 与 Block、OpenAI 于去年共同创立，Anthropic 此前也把 Model Context Protocol（MCP）捐赠给了该基金会。原文作者称，自己在去年 12 月 Anthropic 首次宣布 skills 为“开放标准”时就预判过这一走向：当时他就表示，不意外它最终会进入 AAIF，而 AAIF 近期正是 MCP 规范的新归属地。文中还提到一个插曲：由于作者博客内容可通过 datasette-mcp 插件供 Claude 访问，他通过提示 Claude“用 simonwillison.net MCP 查找我是否谈过希望把 skills 捐给标准机构”，找到了那篇旧文。捐赠的具体条款、时间表及 AAIF 后续治理安排，原文未详述。",
-   "key_points": [
-    "Anthropic 将 Agent Skills 标准捐赠给 Linux Foundation 旗下的 Agentic AI Foundation（AAIF）",
-    "AAIF 由 Anthropic 与 Block、OpenAI 去年共同创立，Anthropic 此前已向其捐赠 MCP",
-    "作者称去年 12 月 Anthropic 宣布 skills 为开放标准时就预判它会进入 AAIF，并借助 Claude 通过 MCP 检索自己的旧文加以印证"
-   ],
-   "topics": [
-    "mcp",
-    "open-source",
-    "tool-use"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 62.9,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "standards",
-     "ai",
-     "generative-ai",
-     "llms",
-     "anthropic"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation",
-      "https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation",
-      "https://simonwillison.net/2025/Dec/19/agent-skills/",
-      "https://simonwillison.net/2025/Dec/9/agentic-ai-foundation/",
-      "https://github.com/datasette/datasette-mcp",
-      "https://claude.ai/share/80b341de-590b-4834-bca9-0d9c9a3a0298",
-      "https://simonwillison.net/tags/standards",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/anthropic",
-      "https://simonwillison.net/tags/model-context-protocol",
-      "https://simonwillison.net/tags/skills"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a4d3526d3b30867d",
-   "url": "https://latent.space/p/modal-d/",
-   "title": "Why AI Compute Comes in Rectangles — Erik Bernhardsson, Modal CEO",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-10-22T17:40:57+00:00",
-   "summary_short": "Modal CEO 谈 GPU 需求不是矩形，沙盒业务已占营收约三分之一",
-   "summary_long": "本期访谈中，Modal CEO Erik Bernhardsson 讲述公司增长背后的基础设施与经济账。原文称，Modal 在 50 亿美元 C 轮之后，年化收入已跨过 10 亿美元，并以 160 亿美元估值完成 7.5 亿美元 D 轮，累计启动近 30 亿个沙盒。他提出 GPU 需求“不是矩形”：典型容量合同是固定时长、固定卡数，画出来是一个矩形，而真实负载在一天内会增长、出现尖峰再回落；买够峰值就要为闲置硬件付费，买少了又可能接不住需求。Modal 的做法是把数千客户的需求池化，在底层锁定容量，让每个客户在需要时取用所需份额。反面风险是：若以今日价格锁定容量而 GPU 价格此后下跌，供应商可能握有昂贵供给；Erik 称并不预期价格即将崩盘，但认为建业务时必须考虑这一可能。沙盒产品上线初期采用有限，团队曾讨论关停，后因编码智能体、后台智能体与强化学习带来新需求，如今约占 Modal 营收三分之一，这一点他称 launch 时并未预料。启动速度依赖可用 GPU 缓冲、定制文件系统、进程检查点与 GPU 内存快照。",
-   "key_points": [
-    "GPU 需求并非矩形：固定时长固定卡数的容量合同与真实负载的波动不匹配，Modal 以池化数千客户需求、底层锁容量的方式做“时长变换”",
-    "沙盒业务曾差点被关停，后因编码智能体、后台智能体和强化学习带来需求，现约占 Modal 营收三分之一，超出其上线时的预期",
-    "快速启动属于基础设施能力：可用 GPU 缓冲、定制文件系统、进程检查点与 GPU 内存快照共同缩短模型副本上线所需工作"
-   ],
-   "topics": [
-    "coding-agent",
-    "open-source"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 62.0,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://x.com/realbasilchatha?lang=en",
-      "https://www.youtube.com/watch?v=MwNvowwcZOo",
-      "https://www.forwardeployed.com/about",
-      "https://www.latent.space/p/modal",
-      "https://www.youtube.com/watch?v=UwxxlTNPjWo&feature=youtu.be",
-      "https://modal.com/blog/1-billion-annualized-run-rate-series-d",
-      "https://www.latent.space/p/ainews-modals-1b-arr-16b-series-d",
-      "https://youtu.be/IiZ9yd2Do8I",
-      "https://www.latent.space/p/sfcompute2",
-      "https://youtu.be/IiZ9yd2Do8I?t=1185",
-      "https://www.latent.space/p/modal2026",
-      "https://youtu.be/IiZ9yd2Do8I?t=1989",
-      "https://modal.com/blog/truly-serverless-gpus",
-      "https://youtu.be/IiZ9yd2Do8I?t=3809",
-      "https://modal.com/",
-      "https://erikbern.com/",
-      "https://modal.com/blog/resource-solver",
-      "https://modal.com/blog/scaling-to-1-million-concurrent-sandboxes-in-seconds",
-      "https://youtu.be/IiZ9yd2Do8I?t=0",
-      "https://youtu.be/IiZ9yd2Do8I?t=85",
-      "https://youtu.be/IiZ9yd2Do8I?t=259",
-      "https://youtu.be/IiZ9yd2Do8I?t=463",
-      "https://youtu.be/IiZ9yd2Do8I?t=600",
-      "https://youtu.be/IiZ9yd2Do8I?t=801",
-      "https://youtu.be/IiZ9yd2Do8I?t=939",
-      "https://youtu.be/IiZ9yd2Do8I?t=1458",
-      "https://youtu.be/IiZ9yd2Do8I?t=1572",
-      "https://youtu.be/IiZ9yd2Do8I?t=1705",
-      "https://youtu.be/IiZ9yd2Do8I?t=1826",
-      "https://youtu.be/IiZ9yd2Do8I?t=1915",
-      "https://youtu.be/IiZ9yd2Do8I?t=2163",
-      "https://youtu.be/IiZ9yd2Do8I?t=2481",
-      "https://youtu.be/IiZ9yd2Do8I?t=2808",
-      "https://youtu.be/IiZ9yd2Do8I?t=2969",
-      "https://youtu.be/IiZ9yd2Do8I?t=3171",
-      "https://youtu.be/IiZ9yd2Do8I?t=3465",
-      "https://youtu.be/IiZ9yd2Do8I?t=3595",
-      "https://youtu.be/IiZ9yd2Do8I?t=3956",
-      "https://youtu.be/IiZ9yd2Do8I?t=4165",
-      "https://youtu.be/IiZ9yd2Do8I?t=4387"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "b3cb6b9ecffc7ba3",
-   "url": "https://github.com/openai/openai-cli",
-   "title": "OpenAI CLI",
+   "id": "af01d772051a4570",
+   "url": "https://www.lesswrong.com/posts/WHEQps5PK8LrrcTAb/how-does-fable-5-1-hide-messages-in-images",
+   "title": "How does Fable 5.1 hide messages in images?",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-22T05:23:11+00:00",
-   "summary_short": "OpenAI 官方 CLI：在终端直接调用 REST API，生成图像、上传文件、运行批处理",
-   "summary_long": "OpenAI 官方命令行工具 OpenAI CLI，用于在终端或 shell 脚本中调用 OpenAI REST API，无需编写应用程序即可生成图像、上传文件、提交批处理并查看 API 结果。原文区分两者：需要调用具体 API，或把 API 操作写进脚本时用 openai；需要编码智能体处理项目（读写代码、运行命令、实现或调试改动）时用 Codex CLI（codex）。文中给出生成图像、上传与下载文件、提交并等待批处理、以 json/jsonl 格式导出数据供脚本使用等示例，并说明默认输出为可读文本。安装方式包括 GitHub Releases 预编译二进制（macOS/Linux/Windows）、Homebrew 与 Go。认证方面，交互式用 openai help setup，脚本通过环境变量 OPENAI_API_KEY，管理端点使用独立的 OPENAI_ADMIN_KEY。",
+   "published_at": "2026-10-22T21:41:13+00:00",
+   "summary_short": "测试 Fable 5.1 如何在 SVG 图像中自创编码藏信息，并能否被另一实例解码",
+   "summary_long": "原文介绍一项测试：前沿 LLM 已能用 SVG 生成图像，Fable 5.1 可控制形状、高度、宽度、颜色、旋转等每个属性。作者让 Fable 5.1 以最高推理强度为 50 条短消息分别生成藏有信息的 SVG，再由新会话中的另一 Fable 实例仅凭图像、在没有 SVG 源码和预先约定方案的情况下，判断图像是否含密并还原内容。结果显示，Fable 自发收敛到五类编码方式，均把每个字母对应为单独视觉元素；50 张图中 33 张采用高度编码，其中“夜空城市天际线”场景出现 23 次，建筑高度对应字母序号、分组对应单词。解码模型会测量元素高度与间距，寻找能解释画面的规则。原文还给出星星高度编码示例，并称与 GPT-6 Astra 在同类任务上做了简要比较，但未详述比较结果。",
    "key_points": [
-    "命令结构为 openai <resource> [subresource...] <command> [flags...]，与 API 资源对应；示例包括图像生成（默认保存至 ~/Downloads/gpt-images/ 并打印路径）、文件上传/获取/下载、批次创建与等待、models/files 列表导出",
-    "与 Codex CLI 的分工：openai 用于调用具体 API 或把 API 操作写进脚本；codex 用于让编码智能体处理项目、读写代码、运行命令与实现或调试改动",
-    "--format 可选 json 或 jsonl 以便脚本处理（示例配合 jq），默认输出为可读文本"
-   ],
-   "topics": [
-    "devtools",
-    "sdk",
-    "coding-agent"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "开源项目"
-   ],
-   "horizon": "short",
-   "score": 60.9,
-   "status": "review",
-   "extra": {
-    "hn_points": 242,
-    "hn_comments": 111,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://developers.openai.com/codex/cli",
-      "https://jqlang.org/",
-      "https://github.com/openai/openai-cli/releases/latest",
-      "https://go.dev/doc/install",
-      "https://platform.openai.com/settings/organization/api-keys",
-      "https://platform.openai.com/settings/organization/admin-keys",
-      "https://github.com/tidwall/gjson/blob/master/SYNTAX.md",
-      "https://github.com/openai/terraform-provider-openai",
-      "https://github.com/openai/openai-cli/issues"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "36b89264973fd28e",
-   "url": "https://www.modelcompare.ai/blog/ai-models-controversial-take-on-humans",
-   "title": "Every AI model has the same \"controversial\" take on humans",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-22T16:08:00+00:00",
-   "summary_short": "问13款AI三次\"对人类最争议的看法\"，多数答：人忠于归属而非真相",
-   "summary_long": "原文记录了一次面向多家实验室模型的提问：要求每款模型给出对\"人类\"最尖锐、不加修饰的看法，每款各回答三次。这些模型来自三个国家的十家实验室。结果显示，每一款模型至少有一次给出同一种观点：人会先接受所在群体的信念，再为其编造理由；原文称\"13个中的8个\"三次都给出这一观点。刚在发布当天加入的Kimi K3.1 Pro也三次一致。文中列出GPT-6.1 Sol、Grok 4.7、DeepSeek V4 Pro、Kimi K3、Gemini 4 Argon等的具体回答，例如\"人宁可一起错，也不愿独自对\"\"人没有原则，只有忠诚\"\"人的意识在很大程度上是一个公关部门\"等。页面把回答归入\"把归属放在真相之前\"\"其他\"\"拒答\"三类，并可点开单个模型查看原话。原文未说明提问的具体时间、渠道与统计口径。",
-   "key_points": [
-    "提问方式：要求每款模型给出对\"人类\"最有争议、不设保留的看法，各问三次；参与模型来自三个国家的十家实验室。",
-    "共性结论：每款模型至少一次给出同一观点——人更忠于归属与群体立场，而非真相，理由多是事后编造；原文称13个中有8个三次一致。",
-    "原文按\"把归属放在真相之前／其他／拒答\"三类归类，并逐条列出GPT-6.1 Sol、Grok 4.7、DeepSeek V4 Pro、Kimi K3、Gemini 4 Argon等模型的原话。"
-   ],
-   "topics": [
-    "eval"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测"
-   ],
-   "horizon": "short",
-   "score": 51.0,
-   "status": "review",
-   "extra": {
-    "hn_points": 610,
-    "hn_comments": 590,
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "edee996b1fdcf4f8",
-   "url": "https://github.com/Folkbench/folkbench",
-   "title": "Folkbench/folkbench — AI API 中转站评测排行与切换工具：实测可用率、延迟与价格 · Open-source AI API relay benchmark, rankings & switcher for Claude Code / Codex",
-   "source": "GitHub Trending (AI)",
-   "tier": "B",
-   "published_at": "2026-10-02T09:50:45+00:00",
-   "summary_short": "开源AI API中转站评测排行与切换工具，实测可用率、延迟与价格",
-   "summary_long": "",
-   "key_points": [
-    "开源的AI API中转站评测与排行工具，同时提供切换功能",
-    "评测维度包括实测可用率、延迟与价格",
-    "面向 Claude Code / Codex 使用场景"
+    "Fable 5.1 通过编写 SVG 生成图像，并能控制形状、高度、宽度、颜色、旋转等属性。",
+    "在 50 条短消息测试中，Fable 自发使用五类编码，均以单个视觉元素表示单个字母；33/50 采用高度编码，夜空天际线场景出现 23 次。",
+    "新会话中的 Fable 可在没有 SVG 源码和事先约定方案的情况下，通过测量元素高度与间距寻找规则并解码；原文展示的 5 个示例中，UTF-8 填充色图像未被解码。"
    ],
    "topics": [
     "eval",
-    "coding-agent"
+    "steganography"
    ],
    "category": "评测",
    "categories": [
-    "评测",
-    "Agent 与开发",
-    "开源项目"
-   ],
-   "horizon": "short",
-   "score": 50.8,
-   "status": "review",
-   "extra": {
-    "stars": 3008,
-    "language": "Rust",
-    "summary_mode": "brief"
-   }
-  },
-  {
-   "id": "18216b018fb1ff4f",
-   "url": "https://simonwillison.net/2026/Oct/23/quick-study-painter/",
-   "title": "Quick Study",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-23T21:35:13+00:00",
-   "summary_short": "一条提示词让 Claude Opus 5.5 做出照片秒变模拟画笔绘画的 artifact",
-   "summary_long": "这是 Simon Willison 博客上一则标注为 Tool 的短帖（2026 年 10 月 23 日发布），正文只有一段发给 Claude Opus 5.5 High 的提示词：要求模型构建一个 artifact，用户在其中打开一张照片后，它能在几秒内用 canvas 元素和模拟画笔，把这张照片“画”出来。帖子还指向作者此前的一个实验——让 Claude Fable 用 P5.js 模拟水彩插画效果。原文未详述该工具的实际运行效果、代码实现、性能表现或使用限制，也没有给出可直接访问的演示链接，记录的核心就是这条提示词本身以及它与前次实验的关联。帖子归类在 tools 标签下，页面包含赞助信息（WorkOS Airlock，面向 AI agent 的基于意图的访问控制）以及作者月度 LLM 动态邮件简报的订阅推广。原文署名作者为 Simon Willison。",
-   "key_points": [
-    "核心内容是一段发给 Claude Opus 5.5 High 的提示词：构建一个 artifact，打开照片后几秒内用 canvas 元素和模拟画笔把照片“画”出来",
-    "帖子关联作者此前让 Claude Fable 用 P5.js 模拟水彩插画的实验",
-    "原文未详述实际效果、实现细节或演示链接，仅记录提示词本身"
-   ],
-   "topics": [
-    "coding-agent",
-    "tool-use",
-    "product"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "模型"
+    "评测"
    ],
    "horizon": "long",
-   "score": 50.4,
+   "score": 69.6,
    "status": "review",
    "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "tools"
-    ],
+    "hn_points": 211,
+    "hn_comments": 73,
     "outbound": {
-     "arxiv": [],
+     "arxiv": [
+      "2310.18512",
+      "2402.07510",
+      "2410.03768",
+      "2507.02737"
+     ],
      "links": [
-      "https://10xn.link/simon-workos",
-      "https://tools.simonwillison.net/quick-study-painter",
-      "https://claude.ai/share/71adda96-193f-4f2a-97c0-454e08066afb",
-      "https://simonwillison.net/2026/Aug/25/pelican-watercolor/",
-      "https://github.com/sponsors/simonw/"
+      "https://arxiv.org/pdf/2310.18512",
+      "https://arxiv.org/pdf/2402.07510v4",
+      "https://arxiv.org/pdf/2410.03768v2",
+      "https://arxiv.org/pdf/2507.02737",
+      "https://x.com/JeffLadish/status/2103584710115139784"
      ]
     },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "dc028fea27bbb478",
-   "url": "https://latent.space/p/ainews-openais-patch-the-planet-program/",
-   "title": "[AINews] OpenAI’s Patch the Planet program is 1 of 2 parties to discover PHP2Shell vulnerabilities in core PHP affecting 70% of the web, using GPT-5.6 Sol; coordinated response over 2 months",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-10-22T07:42:44+00:00",
-   "summary_short": "PHP2Shell两枚PHP引擎漏洞由OpenAI与Wiz两方独立发现，牵动全生态协同修复",
-   "summary_long": "原文记录：近两个月前OpenAI推出Daybreak for Frontline Defenders，为网络安全模型与产品访问提供10亿美元补贴。此后PHP被披露两个PHP引擎内存破坏漏洞，命名为PHP2Shell（CVE-2026-109618、CVE-2026-109619），缺陷位于PHP对内存耗尽与致命错误的内部处理，而非插件或应用认证逻辑。安全公司Calif研究员Ryan Austin作为OpenAI“Patch the Planet”项目的一部分，于2026年8月用GPT-5.6 Sol发现；Wiz（已被并入Google Cloud）独立发现同一批漏洞，使用Gemini 4 Argon、GPT-5.6 Sol及自研Wiz Atlas。研究者演示了完整远程代码执行与“心脏滴血式”内存泄露，并称可对WordPress、Drupal、Joomla实现未认证RCE。原文指出其严重性是否堪比log4shell、Heartbleed仍有争议，但PHP生态的协同响应被视为理想形态。披露前约两个月进行协同修复，补丁需重大引擎改动，涉及维护者、研究者、安全厂商与政府。Cloudflare提前部署WAF临时规则（含免费层），并强调须在14:00 UTC打补丁。",
+   "id": "074b7d5e1602db74",
+   "url": "https://www.apollo.com/wealth/insights-news/insights/daily-spark/no-signs-of-ai-payoff-outside-the-tech-sector",
+   "title": "No Signs of AI Payoff Outside the Tech Sector",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-24T19:47:19+00:00",
+   "summary_short": "阿波罗首席经济学家：AI在科技业外没带来财务回报",
+   "summary_long": "阿波罗首席经济学家 Torsten Slok 在文中指出，尽管人工智能领域投资规模巨大、市场热度很高，但这项技术在美国科技行业之外没有带来任何财务回报。数据显示，Mag 7 成分股公司的人均收入、利润率都在上升，而 S&P 493 成分股公司的这两项指标持平；同时，仍没有迹象表明 AI 提升了生产率增长。由于 AI 对利润没有实际影响，美国主流企业正在收缩相关投入，并开始把 token 支出视为拖累利润率的成本项，不再将其视为增长来源。风险投资支持的公司仍在增加 token 支出，但主流企业不需要最新模型，也不愿为此付费。文章认为，只要 agentic AI 与 token 支出仍局限于经济的一小部分，AI 的宏观影响就将非常有限。前瞻性问题是：即使模型走向商品化，主流企业能否把越来越便宜的智能转化为更高的收入增长与利润率。文章提出，AI 或许是出色的计算器，但在商业中，智能主要体现为判断力，而判断依赖具体情境；AI 不理解问责、信任、文化、不成文规则、伦理权衡与公平，这些因素塑造声誉风险，并最终驱动收入增长与利润率。结论是，AI 叙事将由 S&P 493 决定，而不是 Mag 7；迄今没有证据表明科技行业之外的收入增长或利润率在改善。",
    "key_points": [
-    "漏洞为PHP2Shell（CVE-2026-109618、CVE-2026-109619），根因是PHP内部对内存耗尽与致命错误的处理",
-    "Calif研究员Ryan Austin借OpenAI“Patch the Planet”项目与GPT-5.6 Sol发现；Wiz用Gemini 4 Argon、GPT-5.6 Sol及Wiz Atlas独立发现同一批漏洞",
-    "研究者演示对WordPress、Drupal、Joomla的未认证RCE与“心脏滴血式”内存泄露，但严重性是否堪比log4shell、Heartbleed原文称仍有争议"
+    "Mag 7 的人均收入与利润率在上升，S&P 493 持平；生产率增长仍未见 AI 提振迹象",
+    "主流企业正把 token 支出视作拖累利润率的成本项，而非增长来源；只有风投支持的公司仍在加大支出",
+    "只要 agentic AI 与 token 支出局限于经济的一小部分，AI 的宏观影响就很有限；文章称 AI 叙事将由 S&P 493 而非 Mag 7 决定"
    ],
    "topics": [
-    "cybersecurity"
+    "ai-adoption",
+    "market-trends",
+    "ai-economy"
    ],
-   "category": "安全",
+   "category": "行业动态",
    "categories": [
-    "安全"
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 68.2,
+   "status": "review",
+   "extra": {
+    "hn_points": 287,
+    "hn_comments": 251,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "c1ad71a16e1f5eab",
+   "url": "https://latent.space/p/ainews-kimi-31/",
+   "title": "[AINews] Kimi 3.1 Pro 104BA-2.8T: Fable-5.1-Class Open Weights narrows Closed-AI lead to 1 month... and Pro Highspeed API with 2-3× speed",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-10-24T07:18:29+00:00",
+   "summary_short": "Moonshot 发布 Kimi K3.1 Pro：2.8T 参数 MoE，权重承诺 11 月 4 日开放",
+   "summary_long": "原文提到，两个月前其曾报道 Z.ai CEO 唐杰预测年底会出现 Fable 级开放权重模型，两周前 Meta 以闭源形式做到，而 Kimi K3.1 Pro 在期限之前推出。Kimi K3.1 Pro 是 Kimi K3 的后训练版本，Moonshot 称投入了大幅增加的后训练算力，并优化了 RL 框架、长上下文推理、训练效率、沙箱基础设施、rollout 调度与环境质量校验共享平台，以支撑跨数百个下游领域的大规模联合 RL。模型为多模态“3T 级”MoE，总参数 2.8 万亿、激活参数 1040 亿、上下文 100 万 token，官方强调全项目编程、Blender/CAD、金融建模与长时 agent。标准版与 Highspeed 版已在网站/App、Kimi Work、Kimi Code 与 API 上线，官方称 Highspeed 保持智能水平、输出快 2–3 倍、价格翻倍；同时推出 Kimi Hosted Agents。独立评测方面，Artificial Analysis 智能指数列第四（55 分），Arena Code Arena WebDev 第八（1692 分），Cyber Index 得 64%。权重承诺 11 月 4 日发布，许可证等未明确。反应分化：既有对开放权重前沿模型的期待，也有对推理成本、部分交互任务表现、榜单呈现及未披露付费推广指控的质疑。",
+   "key_points": [
+    "Kimi K3.1 Pro 为多模态 3T 级 MoE，2.8 万亿总参数、1040 亿激活参数、100 万 token 上下文，是 K3 的后训练版本，官方称后训练算力大幅增加并优化了整条 RL 训练栈。",
+    "标准版与 Highspeed 版已上线网站/App、Kimi Work、Kimi Code 和 API，官方称 Highspeed 智能不变、速度 2–3 倍、价格翻倍；同时推出 Kimi Hosted Agents 托管执行环境。",
+    "独立评测：Artificial Analysis 智能指数第四（55 分），Arena Code Arena WebDev 第八（1692 分，较 K3 升 9 位、37 分），Cyber Index 64% 为公开可访问结果最高。"
+   ],
+   "topics": [
+    "post-training",
+    "open-source"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
    ],
    "horizon": "short",
-   "score": 50.0,
+   "score": 59.3,
    "status": "review",
    "extra": {
     "content_source": "rss",
     "outbound": {
-     "arxiv": [
-      "2608.20530"
-     ],
+     "arxiv": [],
      "links": [
-      "https://openai.com/index/daybreak-for-frontline-defenders/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://patchtheplanet.org/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/lcfr_hax/status/2085031675382071483?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://eliastaylor.com/noexploit/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "http://z.ai/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://latent.space/p/ainews-death-of-params-zai-ceo-jie/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://latent.space/p/ainews-meta-muse-wonder-and-wonder/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://x.com/ArtificialAnlys/status/2113688083145314416",
+      "https://x.com/Kimi_Moonshot/status/2113680705855373791",
+      "https://www.kimi.ai/blog/kimi-k3-1-pro?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
       "https://twitter.com/i/lists/1585430245762441216?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
       "https://news.smol.ai/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
       "https://www.latent.space/p/2026?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
       "https://support.substack.com/hc/en-us/articles/8914938285204-How-do-I-subscribe-to-or-unsubscribe-from-a-section-on-Substack?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/sagitz_/status/2112901383753986255?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/sagitz_/status/2112901380080058778?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/TheRundownAI/status/2112918214246044031?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/steipete/status/2112913060709228764?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/ralucaadapopa/status/2112956250908750175?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/OpenAI/status/2112907856018309586?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/itszn13/status/2112908489198903680?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/dok2001/status/2112811965735202970?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/NSACyber/status/2112903220209098897?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/Eric_Wallace_/status/2112923546792214558?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/gdb/status/2112921529650688312?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/S1r1u5_/status/2113018237332160882?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/ds_nakajima/status/2112779177489563922?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/expokun/status/2112795132374495687?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/fiveoutofnine/status/2113045722744717360?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/SemiAnalysis_/status/2113081719817380193?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/OpenAI/status/2112945805686604033?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/Google/status/2112914740058181739?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/migtissera/status/2113087531101405346?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/S1r1u5_/status/2113097003504923068?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/kimmonismus/status/2112807106780762563?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/emollick/status/2113063313810792916?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/john__allard/status/2113076795352490284?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/ostrisai/status/2113039842217254918?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/jd_pressman/status/2113046794741690656?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/threepointone/status/2113049683824185758?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/marckohlbrugge/status/2112863751632269736?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/jd_pressman/status/2112986323703509000?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/xeophon/status/2112909915580928325?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/jd_pressman/status/2112990663755317671?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/jd_pressman/status/2113045116743192612?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv"
+      "https://twitter.com/Kimi_Moonshot/status/2113680701770068067?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/ZhihuFrontier/status/2113852464470643029?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/ZhihuFrontier/status/2113852480505434555?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/ArtificialAnlys/status/2113688083145314416?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/arena/status/2113687344532320326?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/ArtificialAnlys/status/2113765233462481276?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/simonw/status/2113718487529267593?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/maxbittker/status/2113705821552980323?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/kimmonismus/status/2113872950214438955?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/kimmonismus/status/2113537155897151976?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/kimmonismus/status/2113626676852920422?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/scaling01/status/2113650056280613187?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/scaling01/status/2113667904252031025?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/bigeagle_xd/status/2113680660737200423?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://kimi.com/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://kimi.ai/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/teortaxesTex/status/2113669863633797270?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/teortaxesTex/status/2113675184804913488?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/teortaxesTex/status/2113537994615624110?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/teortaxesTex/status/2113636490228244840?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/teortaxesTex/status/2113645208696922226?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/kimmonismus/status/2113710339132940572?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/kimmonismus/status/2113710425581732229?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/giffmana/status/2113754734205309177?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/TheZachMueller/status/2113564732150145460?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/teortaxesTex/status/2113575226130960766?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/eliebakouch/status/2113710706097021157?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/natolambert/status/2113696375552512202?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/scaling01/status/2113686174065705061?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://twitter.com/scaling01/status/2113686819988553952?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "2ca67924f9fca88f",
+   "url": "https://block.xyz/dessa",
+   "title": "Dessa: Conversation Model trained only on speech",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-23T19:09:54+00:00",
+   "summary_short": "Dessa：只用人类语音、从零训练的全双工语音模型，能实时自然对话",
+   "summary_long": "原文介绍 Dessa，称其为全球首个仅用人类语音对话数据、从零训练的全双工语音模型，训练中不使用任何文本，也不使用任何预训练模型。原文认为，现有语音 AI 需要先把语音转成文本，这会丢掉大量文本无法承载的信息，模型因此听不出说话人的情绪。Dessa 采用音频输入、音频输出，边听边说，能判断何时插话、何时用“yeah”“got it”回应；推理速度（inference）快于实时，可在 MacBook Pro M4 Max 或更高配置上本地运行。原文称它能原生感知和表达情绪、讽刺、笑声、叹气与语调变化，会在话说一半遇到好笑的事时笑出声，被要求大声时会提高音量，而这些行为未经专门教导。它学语言所用词量比大模型少数百倍。原文还列出待研究问题：与文本模型相比，它学习语言和事实的效率如何、学新语言的效率如何、能完成何种上下文学习。文中演示音频均为真人与其对话的现场录音，其中一段为它与第三方模型 GPT-Live-1 对话。",
+   "key_points": [
+    "仅用人类对话语音从零训练，无文本、无预训练模型；原文称据其所知是全球首个可进行真实实时对话的此类模型",
+    "音频进音频出、全双工，可边听边说并自然插话、附和，推理快于实时，可在 MacBook Pro M4 Max 或更高配置本地运行",
+    "演示中展现对情绪、讽刺、笑声、叹气与语调的原生感知和表达，以及被要求大声就提高音量等未教行为；原文另提出语言与事实学习效率、新语言学习、上下文学习等研究问题"
+   ],
+   "topics": [
+    "reasoning",
+    "open-source"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 54.5,
+   "status": "review",
+   "extra": {
+    "hn_points": 495,
+    "hn_comments": 186,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://x.com/RagavanThurair"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "5699208333bf1755",
+   "url": "https://simonwillison.net/2026/Oct/24/battledrones/",
+   "title": "battledrones v14: Compass Rose, a four player map",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-10-24T03:59:57+00:00",
+   "summary_short": "Battledrones v14 推出四人地图 Compass Rose，在线对战从双人扩展到四人",
+   "summary_long": "Battledrones 发布 v14 版本，代号 Compass Rose，这是该项目首张四人地图，此前地图仅支持两人对战。作者给出了他使用的初始提示词：新增一张四人混战地图，具备四向旋转对称，最多四个 AI 玩家，并兼容基于 WebSocket 的非音频多人模式，使最多四名真人玩家可加入，空余位置由 AI 补足。据原文，Claude Opus 5.5 完成了这张名为“Compass Rose”的新地图，并修改 WebSocket 多人网络代码，使该地图支持最多四名玩家，可通过分享链接或二维码加入。新加入的两支队伍使用紫色与绿色主题的机器人，与此前已有的蓝色、红色设计并列，这些颜色可在更新后的模型浏览器中预览。原文还提供一个回放链接，用于观看开启“Goliath Armada”变异器的四方 AI 对战，该模式下每方开局即有四个巨型 Goliath 机甲单位。原文未详述其他改动内容。",
+   "key_points": [
+    "v14 版本新增名为 Compass Rose 的四人地图，此前地图仅限两人对战。",
+    "作者给出的初始提示词要求四向旋转对称、最多四个 AI 玩家、兼容 WebSocket 非音频多人模式，空位由 AI 补足。",
+    "据原文，Claude Opus 5.5 添加了新地图并修改 WebSocket 网络代码，使该地图支持最多四名玩家，可通过分享链接或二维码加入。"
+   ],
+   "topics": [
+    "product",
+    "coding-agent"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 53.1,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "game-design",
+     "projects",
+     "claude"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/simonw/battledrones/releases/tag/v14",
+      "https://simonwillison.net/2026/Oct/20/battledrones/",
+      "https://simonw.github.io/battledrones/models.html",
+      "https://simonw.github.io/battledrones/v14/?replay=https://gist.githubusercontent.com/simonw/faa550a002b25a78f1c88a64217786c1/raw/4ff9b03de71d757cd33eb5d1a0e388155b6c20e5/compass.json",
+      "https://simonwillison.net/tags/game-design",
+      "https://simonwillison.net/tags/projects",
+      "https://simonwillison.net/tags/claude"
      ]
     },
     "summary_mode": "full"

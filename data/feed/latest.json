@@ -1,278 +1,65 @@
 {
- "generated_at": "2026-10-23T22:13:55+00:00",
- "date": "2026-10-23",
- "run_id": "20261023-221114",
+ "generated_at": "2026-10-24T21:37:21+00:00",
+ "date": "2026-10-24",
+ "run_id": "20261024-213641",
  "top": [
   {
-   "id": "95eb6975ad245049",
-   "url": "https://huggingface.co/blog/microsoft/thinkingbox-training",
-   "title": "Turning Database Grading into RL Rewards: Post-Training Agents with ThinkingBox",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-22T22:24:34+00:00",
-   "summary_short": "用数据库终态校验当RL奖励，Qwen3.8-27B成功率提升9.08点",
-   "summary_long": "ThinkingBox 通过比对智能体执行后的数据库最终状态与预期结果来评判其工作。本文是上一篇的续篇，作者注意到多数任务的可执行校验能直接从数据库终态返回 1 或 0，因此它不只是评分器，还可当作奖励函数。团队在 ThinkingBox-Bench（507 个任务）之外构造了同格式的训练任务池，用其可执行结果作为奖励，对 Qwen3.8-27B 做 50 步 GRPO 微调。挑选任务时提出“离线策略相对难度”：任务对当前模型要么已被解决、要么毫无希望，两者都教不会模型，故训练前用基座策略估计每个任务的成功概率，整个训练过程固定该任务池。结果显示 pass@1（在 10,140 次尝试上统计）从 51.70% 升至 60.78%，20 次全部通过的任务从 38 个增至 107 个，而 pass@20 从 453 降至 446。原文举例：一个酒店客房降级任务需经理审批，训练前 20 次中有 15 次未经审批即改单退款，训练后 20 次均保留预订与支付状态。ThinkingBox-Training 已在 GitHub 发布。",
+   "id": "d1a3b4fa5d93fb49",
+   "url": "https://magazine.sebastianraschka.com/p/building-reasoning-models",
+   "title": "Build Your Own Reasoning Model: A Full Video Course",
+   "source": "Sebastian Raschka",
+   "tier": "A",
+   "published_at": "2026-10-24T11:14:32+00:00",
+   "summary_short": "8个视频、11小时，从预训练模型手写推理模型方法，理解其工作机制",
+   "summary_long": "原文介绍一套从零构建推理模型的视频课程，共8个视频、约11小时，配套此前以PyTorch从零实现推理模型的材料。课程从一个小型预训练Qwen3模型出发，在Python和PyTorch中实现评估、推理时扩展、强化学习和蒸馏等方法。原文指出，当前几乎所有当代LLM都是推理模型或提供推理模式，理解推理模型（含推理扩展、强化学习、蒸馏）仍有价值。原文还说明，推理模型可视为传统LLM的升级：通过带可验证奖励的强化学习进行更多后训练，并可选用推理扩展技术；它可作为agent harness中的引擎，harness负责任务的上下文管理并提供工具。课程建议具备Python和PyTorch基础；此前从零构建LLM内容为推荐但非必需。原文称该课程是此前Coding LLMs from the Ground Up课程的续集，但也可在先修课程之外单独观看。",
    "key_points": [
-    "ThinkingBox 用数据库最终状态的可执行校验判分，这种 1/0 信号可直接作为后训练的奖励函数",
-    "训练池取自 ThinkingBox-Bench 之外的同格式任务，按“离线策略相对难度”在训练前估计一次成功概率并全程固定",
-    "Qwen3.8-27B 经 50 步 GRPO：pass@1 由 51.70% 升至 60.78%，20/20 全对任务由 38 增至 107，pass@20 由 453 降至 446（−7 个任务）"
+    "课程共8个视频、约11小时，从一个小型预训练Qwen3模型出发，用Python和PyTorch实现评估、推理时扩展、强化学习和蒸馏。",
+    "原文将推理模型描述为传统LLM的升级：通过带可验证奖励的强化学习增加后训练，并可选用推理扩展技术；推理模型可作为agent harness中的引擎。",
+    "课程建议具备Python和PyTorch基础；此前从零构建LLM内容为推荐但非必需，该课程是Coding LLMs from the Ground Up的续集，也可不要求先修课程观看。"
    ],
    "topics": [
     "post-training",
-    "agent-loop",
-    "harness"
+    "reasoning"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
    "horizon": "long",
-   "score": 87.6,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2503.14476",
-      "2504.13837",
-      "2608.19741"
-     ],
-     "links": [
-      "https://huggingface.co/blog/microsoft/thinkingbox",
-      "https://github.com/microsoft/thinkingbox-training",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/KVaFjYjblWd15tC3M6S_0.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/iu-NFQl-J3EOMe_KiME_8.png",
-      "https://huggingface.co/datasets/microsoft/ThinkingBox-Bench",
-      "https://arxiv.org/abs/2504.13837",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/Bu7GFUdUiJgQjHV_cbvU4.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/HPq2TNCT8yskCAGtKe86l.png",
-      "https://arxiv.org/abs/2608.19741",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/ZaqyG8RtqCRsxGdxUQMfi.png",
-      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/trainer/core/tb_interpret.py",
-      "https://arxiv.org/abs/2503.14476",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/eR45y7Dl0VFFK3HinwDYg.png",
-      "https://arxiv.org/pdf/2608.19741",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/IBBkNpYKQRK6jBLSusMXw.png",
-      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/data-preparation.md",
-      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/reference-q38-run.md",
-      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/evaluation.md",
-      "https://docs.astral.sh/uv/",
-      "https://huggingface.co/blog/microsoft/thinkingbox#run-it-yourself",
-      "https://github.com/huggingface/OpenEnv/tree/main/envs/thinkingbox_env",
-      "https://huggingface.co/docs/openenv/environments/thinkingbox",
-      "https://github.com/microsoft/thinkingbox",
-      "https://github.com/microsoft/thinkingbox/blob/main/docs/tutorial.md",
-      "https://github.com/microsoft/thinkingbox-data",
-      "https://github.com/microsoft/thinkingbox-data/releases/tag/thinkingbox-bench-v1.0",
-      "https://huggingface.co/papers/2608.19741",
-      "https://cdla.dev/permissive-2-0/",
-      "https://github.com/microsoft/thinkingbox/discussions"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "48e2274fdf2ba9fe",
-   "url": "https://openai.com/index/securing-our-frontier-model-training-environment",
-   "title": "Securing our frontier model training environment",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-23T10:00:00+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "cybersecurity"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "long",
-   "score": 83.1,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Security"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://alignment.openai.com/misalignment-reports/",
-      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/",
-      "https://github.com/kata-containers/kata-containers/security/advisories/GHSA-wwj6-vghv-5p64",
-      "https://github.com/kata-containers/kata-containers/pull/13615",
-      "https://github.com/kata-containers/kata-containers/pull/13587",
-      "https://github.com/google/gvisor/pull/13816",
-      "https://github.com/moby/profiles/pull/39",
-      "https://github.com/torvalds/linux/commit/fa091f46c3833fb22384f10eade2b4e1e1d0b278",
-      "https://github.com/torvalds/linux/commit/594d905195024b228c962627ae5ae7c17bd582a4",
-      "https://github.com/torvalds/linux/commit/992cc9f94ca924089a506ba9b327caa9af797529",
-      "https://spectreattack.com/"
-     ]
-    }
-   }
-  },
-  {
-   "id": "1360bd8eb5a8e67e",
-   "url": "https://www.anthropic.com/research/formal-verification",
-   "title": "LLMs are making formal software verification feasible at a much larger scale",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-22T22:54:43+00:00",
-   "summary_short": "用Claude在123个开源库的RISC-V汇编层完成大规模形式化验证证明",
-   "summary_long": "原文指出，多数软件充满缺陷，而AI如今能轻易发现并利用它们；即便是Linux内核这样经过充分测试、部署在数十亿设备上的软件，近期也披露了1000多个漏洞。形式化验证可通过数学证明保证代码不违反既定安全规则，但历来成本极高——例如seL4内核实现用了2人年，形式化验证却用了20人年，因此此前只用于航空电子等关键领域。作者与Theorem合作，使用Claude对123个真实开源库在RISC-V汇编代码层面证明安全属性：在单线程静态二进制、固定内存预算、运行Linux等假设下，对小于64MB的任意输入以及所有建模的OS响应与内存布局，程序总能正常退出，不触发内存安全错误或断言失败。据其所知，这是首次在汇编层用AI对生产软件开展大规模形式化验证。Claude在写证明过程中还发现了历经数万亿次测试仍未检出的缺陷。团队公开了部分证明及RISC-V与OS语义，供他人验证和复用。",
-   "key_points": [
-    "使用Claude为123个真实开源库在RISC-V汇编层证明安全属性，据作者所知是首次在汇编层用AI对生产软件做大规模形式化验证",
-    "证明的安全属性为：在单线程静态二进制、固定内存预算、Linux等假设下，程序对小于64MB的任意输入均正常退出，不触发内存安全错误或断言失败",
-    "Claude在写证明过程中发现了此前经数万亿次测试仍未检出的缺陷；部分证明与RISC-V、OS语义已公开发布以供验证复用"
-   ],
-   "topics": [
-    "coding-agent",
-    "reasoning",
-    "open-source"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用",
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 83.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 437,
-    "hn_comments": 280,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://hacks.mozilla.org/2026/05/behind-the-scenes-hardening-firefox/",
-      "https://www.anthropic.com/research/exploit-evals",
-      "https://theorem.dev/",
-      "https://opensource.googleblog.com/2016/12/announcing-oss-fuzz-continuous-fuzzing.html",
-      "https://lwn.net/Articles/1097401/",
-      "https://sel4.systems/Research/pdfs/comprehensive-formal-verification-os-microkernel.pdf",
-      "https://www.astree.ens.fr/papers/astree_airbus_sas2007.pdf",
-      "https://github.com/theorem-labs/oss-verify-proofs",
-      "https://github.com/theorem-labs/rocq-linux-process-semantics",
-      "https://theorem.dev/oss-verify/",
-      "https://github.com/theorem-labs/oss-verify/blob/main/.claude/skills/add-project/SKILL.md",
-      "https://en.wikipedia.org/wiki/PNG",
-      "https://www.rfc-editor.org/info/rfc2083/",
-      "https://github.com/google/oss-fuzz",
-      "https://www.cisa.gov/news-events/news/cisa-nsa-fbi-and-international-cybersecurity-authorities-publish-guide-case-memory-safe-roadmaps",
-      "https://www-cdn.anthropic.com/files/4zrzovbb/website/6867eadf760258fa8b42a504600cd3c036d16358.pdf",
-      "https://github.com/AFLplusplus/AFLplusplus/blob/stable/include/config.h#L314",
-      "https://www.rfc-editor.org/info/rfc1950/",
-      "https://leanprover-community.github.io/",
-      "https://leanprover-community.github.io/mathlib_stats.html",
-      "https://theorem.dev/blog/verified-software-stack/"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "4dcdb95578272074",
-   "url": "https://github.com/NVIDIA/OpenShell",
-   "title": "OpenShell – A safe, private runtime for fleets of autonomous AI agents",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-22T17:44:06+00:00",
-   "summary_short": "OpenShell：以内核级沙箱和形式化验证约束自主 AI 智能体的私有运行时",
-   "summary_long": "OpenShell 是面向成批自主 AI 智能体的安全私有运行时。原文说，智能体在能读文件、安装软件包、调用 API、使用凭证时最有用；OpenShell 让它们拥有这些能力，同时不让它们无限访问数据、密钥和网络。用户用策略声明每个智能体可以触及的内容，由 OpenShell 强制执行。实现机制有两层：每个智能体运行在独立沙箱中，内核控制限制其可访问的文件和可发起的系统调用，每条网络连接在离开沙箱前必须通过策略检查；智能体看不到真实凭证，凭证只在发往已批准端点的请求中注入。策略变更生效前还要经过形式化验证，标出这次变更将授予的高风险新访问（例如使用凭证访问新主机、调用新 API 方法），并交由人工审阅。0.1.x 带来稳定发布节奏、新隔离原语、扩展后的扩展面和新 API。运行需要 Linux、Apple Silicon 上的 macOS 或 WSL 2（实验性），加上 Docker/Podman 或主机虚拟化；安装脚本会配置 CLI 和本地网关，默认镜像是不安装智能体的最小 Ubuntu。",
-   "key_points": [
-    "内核级沙箱执行文件访问、系统调用与网络连接策略；策略变更在应用前经形式化验证，高风险新访问等待人工审阅",
-    "智能体不接触真实凭证，OpenShell 仅在发往已批准端点的请求中注入凭证",
-    "0.1.x 提供稳定发布节奏、新隔离原语、扩展的扩展面与新 API，并有 Python、TypeScript、Go、Rust SDK、Agent Skills 与 Helm 部署网关"
-   ],
-   "topics": [
-    "cybersecurity",
-    "privacy"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "安全",
-    "开源项目"
-   ],
-   "horizon": "short",
-   "score": 79.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 487,
-    "hn_comments": 212,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/NVIDIA/OpenShell/blob/main/LICENSE",
-      "https://pypi.org/project/openshell/",
-      "https://docs.nvidia.com/openshell/latest/index.html",
-      "https://docs.nvidia.com/openshell/latest/upgrade/0-1-0",
-      "https://docs.nvidia.com/openshell/latest/about/architecture",
-      "https://docs.nvidia.com/openshell/latest/about/support-matrix",
-      "https://docs.nvidia.com/openshell/latest/about/run-your-first-agent",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/sandboxes/overview",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/policies/overview",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/policies/advisor",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/policies/prover",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/providers/overview",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/inference",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/gateways/overview",
-      "https://docs.nvidia.com/openshell/latest/kubernetes/setup",
-      "https://docs.nvidia.com/openshell/latest/extensibility/overview",
-      "https://docs.nvidia.com/openshell/latest/tutorials/first-network-policy",
-      "https://docs.nvidia.com/openshell/latest/about/installation#prerelease-and-development-builds",
-      "https://github.com/NVIDIA/OpenShell/discussions",
-      "https://github.com/NVIDIA/OpenShell/issues",
-      "https://github.com/orgs/NVIDIA/projects/233",
-      "https://github.com/orgs/NVIDIA/projects/233/views/6",
-      "https://brev.nvidia.com/launchable/deploy/now?launchableID=env-3Ap3tL55zq4a8kew1AuW0FpSLsg",
-      "https://docs.nvidia.com/openshell/latest/observability/telemetry"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "298c8de07d18f423",
-   "url": "https://openai.com/index/scaling-storage-one-billion-users-part-two",
-   "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-23T17:00:00+00:00",
-   "summary_short": "OpenAI：Habitat用Cosmos DB多租户扛住10亿用户",
-   "summary_long": "OpenAI工程团队在本文（Part II）中讲述其在线存储平台Habitat如何扩展底层存储组件Azure Cosmos DB。Habitat为OpenAI各产品提供毫秒级数据访问，需服务40个地理区域的超过10亿用户，承载逾500PB数据。文章回顾了多租户设计的一段反复路径：先是所有产品共用一个Azure Cosmos DB多租户容器，随后改为为各租户单独供给容器，最终又默认回到多租户容器。文中对比了单租户与多租户的取舍：单租户缩小故障影响范围、所有权边界清晰、工作负载隔离好，但运维成本高，且各产品团队需自行做容量规划，常导致明显过度预留；多租户把资源供给交给更专业的集中数据库团队，却会产生“吵闹邻居”问题。通过与Azure团队紧密合作，他们采用共管容器（co-managed containers）的多租户方案，在全球大规模下取得良好读性能。原文称其多租户仍处早期，主要靠复用Cosmos DB内置能力来延后相关投入。",
-   "key_points": [
-    "Habitat需在40个地理区域为超10亿用户提供毫秒级访问，承载超过500PB数据",
-    "多租户路线走过一段反复：单一多租户容器→单租户容器→默认回归多租户容器",
-    "与Azure团队合作采用共管容器方案，在全球大规模下读性能良好"
-   ],
-   "topics": [
-    "infrastructure",
-    "multi-tenant",
-    "scaling"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
    "score": 76.2,
    "status": "published",
    "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Engineering"
-    ],
+    "content_source": "rss",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://openai.com/careers/software-engineer-habitat-(online-data)-seattle/"
+      "https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms",
+      "https://mng.bz/Nwr7",
+      "https://magazine.sebastianraschka.com/p/coding-llms-from-the-ground-up",
+      "https://substackcdn.com/image/fetch/$s_!0A8p!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff0fa0f45-5efe-4937-a0e9-970b6f65ed8e_1868x986.png",
+      "https://magazine.sebastianraschka.com/p/components-of-a-coding-agent",
+      "https://amzn.to/4fqvn0D",
+      "https://amzn.to/4aAKiFY",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch02/02_setup-tips",
+      "https://substackcdn.com/image/fetch/$s_!xQp0!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F67d8d671-53cc-4111-a3df-80ed733af3b5_1868x622.png",
+      "https://substackcdn.com/image/fetch/$s_!GRkU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa32da890-2402-4704-a90b-b46b4f64b95c_1544x864.png",
+      "https://www.linkedin.com/learning/ai-reasoning-models-the-building-blocks-for-the-next-generation-of-ai-applications",
+      "https://www.youtube.com/watch?v=Kh9mqTzjuEQ",
+      "https://www.youtube.com/watch?v=BJua0yjO5dk",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch02",
+      "https://www.youtube.com/watch?v=JQJ_8_jSAoY",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch03",
+      "https://www.youtube.com/watch?v=t5y-kS9nNxU",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch04",
+      "https://www.youtube.com/watch?v=TVMyOJ_3Gxo",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch05",
+      "https://www.youtube.com/watch?v=237Hf7Q3lgg",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch06",
+      "https://www.youtube.com/watch?v=VxfUrUrrczs",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch07",
+      "https://www.youtube.com/watch?v=msp69FR5NZs",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch08",
+      "https://substackcdn.com/image/fetch/$s_!_ebf!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb9cbbdff-4cb9-47cd-9679-badef260e2f3_4284x3043.jpeg"
      ]
     },
     "summary_mode": "full"
@@ -281,335 +68,64 @@
  ],
  "items": [
   {
-   "id": "95eb6975ad245049",
-   "url": "https://huggingface.co/blog/microsoft/thinkingbox-training",
-   "title": "Turning Database Grading into RL Rewards: Post-Training Agents with ThinkingBox",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-22T22:24:34+00:00",
-   "summary_short": "用数据库终态校验当RL奖励，Qwen3.8-27B成功率提升9.08点",
-   "summary_long": "ThinkingBox 通过比对智能体执行后的数据库最终状态与预期结果来评判其工作。本文是上一篇的续篇，作者注意到多数任务的可执行校验能直接从数据库终态返回 1 或 0，因此它不只是评分器，还可当作奖励函数。团队在 ThinkingBox-Bench（507 个任务）之外构造了同格式的训练任务池，用其可执行结果作为奖励，对 Qwen3.8-27B 做 50 步 GRPO 微调。挑选任务时提出“离线策略相对难度”：任务对当前模型要么已被解决、要么毫无希望，两者都教不会模型，故训练前用基座策略估计每个任务的成功概率，整个训练过程固定该任务池。结果显示 pass@1（在 10,140 次尝试上统计）从 51.70% 升至 60.78%，20 次全部通过的任务从 38 个增至 107 个，而 pass@20 从 453 降至 446。原文举例：一个酒店客房降级任务需经理审批，训练前 20 次中有 15 次未经审批即改单退款，训练后 20 次均保留预订与支付状态。ThinkingBox-Training 已在 GitHub 发布。",
+   "id": "d1a3b4fa5d93fb49",
+   "url": "https://magazine.sebastianraschka.com/p/building-reasoning-models",
+   "title": "Build Your Own Reasoning Model: A Full Video Course",
+   "source": "Sebastian Raschka",
+   "tier": "A",
+   "published_at": "2026-10-24T11:14:32+00:00",
+   "summary_short": "8个视频、11小时，从预训练模型手写推理模型方法，理解其工作机制",
+   "summary_long": "原文介绍一套从零构建推理模型的视频课程，共8个视频、约11小时，配套此前以PyTorch从零实现推理模型的材料。课程从一个小型预训练Qwen3模型出发，在Python和PyTorch中实现评估、推理时扩展、强化学习和蒸馏等方法。原文指出，当前几乎所有当代LLM都是推理模型或提供推理模式，理解推理模型（含推理扩展、强化学习、蒸馏）仍有价值。原文还说明，推理模型可视为传统LLM的升级：通过带可验证奖励的强化学习进行更多后训练，并可选用推理扩展技术；它可作为agent harness中的引擎，harness负责任务的上下文管理并提供工具。课程建议具备Python和PyTorch基础；此前从零构建LLM内容为推荐但非必需。原文称该课程是此前Coding LLMs from the Ground Up课程的续集，但也可在先修课程之外单独观看。",
    "key_points": [
-    "ThinkingBox 用数据库最终状态的可执行校验判分，这种 1/0 信号可直接作为后训练的奖励函数",
-    "训练池取自 ThinkingBox-Bench 之外的同格式任务，按“离线策略相对难度”在训练前估计一次成功概率并全程固定",
-    "Qwen3.8-27B 经 50 步 GRPO：pass@1 由 51.70% 升至 60.78%，20/20 全对任务由 38 增至 107，pass@20 由 453 降至 446（−7 个任务）"
+    "课程共8个视频、约11小时，从一个小型预训练Qwen3模型出发，用Python和PyTorch实现评估、推理时扩展、强化学习和蒸馏。",
+    "原文将推理模型描述为传统LLM的升级：通过带可验证奖励的强化学习增加后训练，并可选用推理扩展技术；推理模型可作为agent harness中的引擎。",
+    "课程建议具备Python和PyTorch基础；此前从零构建LLM内容为推荐但非必需，该课程是Coding LLMs from the Ground Up的续集，也可不要求先修课程观看。"
    ],
    "topics": [
     "post-training",
-    "agent-loop",
-    "harness"
+    "reasoning"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
    "horizon": "long",
-   "score": 87.6,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2503.14476",
-      "2504.13837",
-      "2608.19741"
-     ],
-     "links": [
-      "https://huggingface.co/blog/microsoft/thinkingbox",
-      "https://github.com/microsoft/thinkingbox-training",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/KVaFjYjblWd15tC3M6S_0.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/iu-NFQl-J3EOMe_KiME_8.png",
-      "https://huggingface.co/datasets/microsoft/ThinkingBox-Bench",
-      "https://arxiv.org/abs/2504.13837",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/Bu7GFUdUiJgQjHV_cbvU4.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/HPq2TNCT8yskCAGtKe86l.png",
-      "https://arxiv.org/abs/2608.19741",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/ZaqyG8RtqCRsxGdxUQMfi.png",
-      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/trainer/core/tb_interpret.py",
-      "https://arxiv.org/abs/2503.14476",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/eR45y7Dl0VFFK3HinwDYg.png",
-      "https://arxiv.org/pdf/2608.19741",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/IBBkNpYKQRK6jBLSusMXw.png",
-      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/data-preparation.md",
-      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/reference-q38-run.md",
-      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/evaluation.md",
-      "https://docs.astral.sh/uv/",
-      "https://huggingface.co/blog/microsoft/thinkingbox#run-it-yourself",
-      "https://github.com/huggingface/OpenEnv/tree/main/envs/thinkingbox_env",
-      "https://huggingface.co/docs/openenv/environments/thinkingbox",
-      "https://github.com/microsoft/thinkingbox",
-      "https://github.com/microsoft/thinkingbox/blob/main/docs/tutorial.md",
-      "https://github.com/microsoft/thinkingbox-data",
-      "https://github.com/microsoft/thinkingbox-data/releases/tag/thinkingbox-bench-v1.0",
-      "https://huggingface.co/papers/2608.19741",
-      "https://cdla.dev/permissive-2-0/",
-      "https://github.com/microsoft/thinkingbox/discussions"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "48e2274fdf2ba9fe",
-   "url": "https://openai.com/index/securing-our-frontier-model-training-environment",
-   "title": "Securing our frontier model training environment",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-23T10:00:00+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "cybersecurity"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "long",
-   "score": 83.1,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Security"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://alignment.openai.com/misalignment-reports/",
-      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/",
-      "https://github.com/kata-containers/kata-containers/security/advisories/GHSA-wwj6-vghv-5p64",
-      "https://github.com/kata-containers/kata-containers/pull/13615",
-      "https://github.com/kata-containers/kata-containers/pull/13587",
-      "https://github.com/google/gvisor/pull/13816",
-      "https://github.com/moby/profiles/pull/39",
-      "https://github.com/torvalds/linux/commit/fa091f46c3833fb22384f10eade2b4e1e1d0b278",
-      "https://github.com/torvalds/linux/commit/594d905195024b228c962627ae5ae7c17bd582a4",
-      "https://github.com/torvalds/linux/commit/992cc9f94ca924089a506ba9b327caa9af797529",
-      "https://spectreattack.com/"
-     ]
-    }
-   }
-  },
-  {
-   "id": "1360bd8eb5a8e67e",
-   "url": "https://www.anthropic.com/research/formal-verification",
-   "title": "LLMs are making formal software verification feasible at a much larger scale",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-22T22:54:43+00:00",
-   "summary_short": "用Claude在123个开源库的RISC-V汇编层完成大规模形式化验证证明",
-   "summary_long": "原文指出，多数软件充满缺陷，而AI如今能轻易发现并利用它们；即便是Linux内核这样经过充分测试、部署在数十亿设备上的软件，近期也披露了1000多个漏洞。形式化验证可通过数学证明保证代码不违反既定安全规则，但历来成本极高——例如seL4内核实现用了2人年，形式化验证却用了20人年，因此此前只用于航空电子等关键领域。作者与Theorem合作，使用Claude对123个真实开源库在RISC-V汇编代码层面证明安全属性：在单线程静态二进制、固定内存预算、运行Linux等假设下，对小于64MB的任意输入以及所有建模的OS响应与内存布局，程序总能正常退出，不触发内存安全错误或断言失败。据其所知，这是首次在汇编层用AI对生产软件开展大规模形式化验证。Claude在写证明过程中还发现了历经数万亿次测试仍未检出的缺陷。团队公开了部分证明及RISC-V与OS语义，供他人验证和复用。",
-   "key_points": [
-    "使用Claude为123个真实开源库在RISC-V汇编层证明安全属性，据作者所知是首次在汇编层用AI对生产软件做大规模形式化验证",
-    "证明的安全属性为：在单线程静态二进制、固定内存预算、Linux等假设下，程序对小于64MB的任意输入均正常退出，不触发内存安全错误或断言失败",
-    "Claude在写证明过程中发现了此前经数万亿次测试仍未检出的缺陷；部分证明与RISC-V、OS语义已公开发布以供验证复用"
-   ],
-   "topics": [
-    "coding-agent",
-    "reasoning",
-    "open-source"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用",
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 83.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 437,
-    "hn_comments": 280,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://hacks.mozilla.org/2026/05/behind-the-scenes-hardening-firefox/",
-      "https://www.anthropic.com/research/exploit-evals",
-      "https://theorem.dev/",
-      "https://opensource.googleblog.com/2016/12/announcing-oss-fuzz-continuous-fuzzing.html",
-      "https://lwn.net/Articles/1097401/",
-      "https://sel4.systems/Research/pdfs/comprehensive-formal-verification-os-microkernel.pdf",
-      "https://www.astree.ens.fr/papers/astree_airbus_sas2007.pdf",
-      "https://github.com/theorem-labs/oss-verify-proofs",
-      "https://github.com/theorem-labs/rocq-linux-process-semantics",
-      "https://theorem.dev/oss-verify/",
-      "https://github.com/theorem-labs/oss-verify/blob/main/.claude/skills/add-project/SKILL.md",
-      "https://en.wikipedia.org/wiki/PNG",
-      "https://www.rfc-editor.org/info/rfc2083/",
-      "https://github.com/google/oss-fuzz",
-      "https://www.cisa.gov/news-events/news/cisa-nsa-fbi-and-international-cybersecurity-authorities-publish-guide-case-memory-safe-roadmaps",
-      "https://www-cdn.anthropic.com/files/4zrzovbb/website/6867eadf760258fa8b42a504600cd3c036d16358.pdf",
-      "https://github.com/AFLplusplus/AFLplusplus/blob/stable/include/config.h#L314",
-      "https://www.rfc-editor.org/info/rfc1950/",
-      "https://leanprover-community.github.io/",
-      "https://leanprover-community.github.io/mathlib_stats.html",
-      "https://theorem.dev/blog/verified-software-stack/"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "4dcdb95578272074",
-   "url": "https://github.com/NVIDIA/OpenShell",
-   "title": "OpenShell – A safe, private runtime for fleets of autonomous AI agents",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-22T17:44:06+00:00",
-   "summary_short": "OpenShell：以内核级沙箱和形式化验证约束自主 AI 智能体的私有运行时",
-   "summary_long": "OpenShell 是面向成批自主 AI 智能体的安全私有运行时。原文说，智能体在能读文件、安装软件包、调用 API、使用凭证时最有用；OpenShell 让它们拥有这些能力，同时不让它们无限访问数据、密钥和网络。用户用策略声明每个智能体可以触及的内容，由 OpenShell 强制执行。实现机制有两层：每个智能体运行在独立沙箱中，内核控制限制其可访问的文件和可发起的系统调用，每条网络连接在离开沙箱前必须通过策略检查；智能体看不到真实凭证，凭证只在发往已批准端点的请求中注入。策略变更生效前还要经过形式化验证，标出这次变更将授予的高风险新访问（例如使用凭证访问新主机、调用新 API 方法），并交由人工审阅。0.1.x 带来稳定发布节奏、新隔离原语、扩展后的扩展面和新 API。运行需要 Linux、Apple Silicon 上的 macOS 或 WSL 2（实验性），加上 Docker/Podman 或主机虚拟化；安装脚本会配置 CLI 和本地网关，默认镜像是不安装智能体的最小 Ubuntu。",
-   "key_points": [
-    "内核级沙箱执行文件访问、系统调用与网络连接策略；策略变更在应用前经形式化验证，高风险新访问等待人工审阅",
-    "智能体不接触真实凭证，OpenShell 仅在发往已批准端点的请求中注入凭证",
-    "0.1.x 提供稳定发布节奏、新隔离原语、扩展的扩展面与新 API，并有 Python、TypeScript、Go、Rust SDK、Agent Skills 与 Helm 部署网关"
-   ],
-   "topics": [
-    "cybersecurity",
-    "privacy"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "安全",
-    "开源项目"
-   ],
-   "horizon": "short",
-   "score": 79.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 487,
-    "hn_comments": 212,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/NVIDIA/OpenShell/blob/main/LICENSE",
-      "https://pypi.org/project/openshell/",
-      "https://docs.nvidia.com/openshell/latest/index.html",
-      "https://docs.nvidia.com/openshell/latest/upgrade/0-1-0",
-      "https://docs.nvidia.com/openshell/latest/about/architecture",
-      "https://docs.nvidia.com/openshell/latest/about/support-matrix",
-      "https://docs.nvidia.com/openshell/latest/about/run-your-first-agent",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/sandboxes/overview",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/policies/overview",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/policies/advisor",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/policies/prover",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/providers/overview",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/inference",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/gateways/overview",
-      "https://docs.nvidia.com/openshell/latest/kubernetes/setup",
-      "https://docs.nvidia.com/openshell/latest/extensibility/overview",
-      "https://docs.nvidia.com/openshell/latest/tutorials/first-network-policy",
-      "https://docs.nvidia.com/openshell/latest/about/installation#prerelease-and-development-builds",
-      "https://github.com/NVIDIA/OpenShell/discussions",
-      "https://github.com/NVIDIA/OpenShell/issues",
-      "https://github.com/orgs/NVIDIA/projects/233",
-      "https://github.com/orgs/NVIDIA/projects/233/views/6",
-      "https://brev.nvidia.com/launchable/deploy/now?launchableID=env-3Ap3tL55zq4a8kew1AuW0FpSLsg",
-      "https://docs.nvidia.com/openshell/latest/observability/telemetry"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "298c8de07d18f423",
-   "url": "https://openai.com/index/scaling-storage-one-billion-users-part-two",
-   "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-23T17:00:00+00:00",
-   "summary_short": "OpenAI：Habitat用Cosmos DB多租户扛住10亿用户",
-   "summary_long": "OpenAI工程团队在本文（Part II）中讲述其在线存储平台Habitat如何扩展底层存储组件Azure Cosmos DB。Habitat为OpenAI各产品提供毫秒级数据访问，需服务40个地理区域的超过10亿用户，承载逾500PB数据。文章回顾了多租户设计的一段反复路径：先是所有产品共用一个Azure Cosmos DB多租户容器，随后改为为各租户单独供给容器，最终又默认回到多租户容器。文中对比了单租户与多租户的取舍：单租户缩小故障影响范围、所有权边界清晰、工作负载隔离好，但运维成本高，且各产品团队需自行做容量规划，常导致明显过度预留；多租户把资源供给交给更专业的集中数据库团队，却会产生“吵闹邻居”问题。通过与Azure团队紧密合作，他们采用共管容器（co-managed containers）的多租户方案，在全球大规模下取得良好读性能。原文称其多租户仍处早期，主要靠复用Cosmos DB内置能力来延后相关投入。",
-   "key_points": [
-    "Habitat需在40个地理区域为超10亿用户提供毫秒级访问，承载超过500PB数据",
-    "多租户路线走过一段反复：单一多租户容器→单租户容器→默认回归多租户容器",
-    "与Azure团队合作采用共管容器方案，在全球大规模下读性能良好"
-   ],
-   "topics": [
-    "infrastructure",
-    "multi-tenant",
-    "scaling"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
    "score": 76.2,
    "status": "published",
    "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Engineering"
-    ],
+    "content_source": "rss",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://openai.com/careers/software-engineer-habitat-(online-data)-seattle/"
+      "https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms",
+      "https://mng.bz/Nwr7",
+      "https://magazine.sebastianraschka.com/p/coding-llms-from-the-ground-up",
+      "https://substackcdn.com/image/fetch/$s_!0A8p!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff0fa0f45-5efe-4937-a0e9-970b6f65ed8e_1868x986.png",
+      "https://magazine.sebastianraschka.com/p/components-of-a-coding-agent",
+      "https://amzn.to/4fqvn0D",
+      "https://amzn.to/4aAKiFY",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch02/02_setup-tips",
+      "https://substackcdn.com/image/fetch/$s_!xQp0!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F67d8d671-53cc-4111-a3df-80ed733af3b5_1868x622.png",
+      "https://substackcdn.com/image/fetch/$s_!GRkU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa32da890-2402-4704-a90b-b46b4f64b95c_1544x864.png",
+      "https://www.linkedin.com/learning/ai-reasoning-models-the-building-blocks-for-the-next-generation-of-ai-applications",
+      "https://www.youtube.com/watch?v=Kh9mqTzjuEQ",
+      "https://www.youtube.com/watch?v=BJua0yjO5dk",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch02",
+      "https://www.youtube.com/watch?v=JQJ_8_jSAoY",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch03",
+      "https://www.youtube.com/watch?v=t5y-kS9nNxU",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch04",
+      "https://www.youtube.com/watch?v=TVMyOJ_3Gxo",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch05",
+      "https://www.youtube.com/watch?v=237Hf7Q3lgg",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch06",
+      "https://www.youtube.com/watch?v=VxfUrUrrczs",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch07",
+      "https://www.youtube.com/watch?v=msp69FR5NZs",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch08",
+      "https://substackcdn.com/image/fetch/$s_!_ebf!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb9cbbdff-4cb9-47cd-9679-badef260e2f3_4284x3043.jpeg"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "1fd8476b4493a52b",
-   "url": "https://www.kimi.ai/blog/kimi-k3-1-pro",
-   "title": "Kimi K3.1 Pro and K3.1 Pro Highspeed",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-23T16:59:08+00:00",
-   "summary_short": "Kimi K3.1 Pro 发布：3T 级开源权重模型，100 万 token 上下文",
-   "summary_long": "Kimi K3.1 Pro 是 K3.1 系列首个模型，原文称其为迄今最强的 3T 级开源权重模型，上下文窗口为 100 万 token。它是 Kimi K3 的后训练版本，后训练算力大幅增加；为在数百个下游领域进行大规模联合强化学习，原文称优化了 RL 框架、长上下文推理、训练效率、沙箱基础设施、rollout 调度、环境质量检查共享平台等各层，使每单位 RL 算力带来稳定可预期的回报。原文称其在编程、智能体与知识基准上匹配或接近最强闭源模型：Terminal-Bench 4.0 得 65.7%，高于 GPT-6 Astra 的 58.2%，略低于 Claude Opus 5.5 的 66.4%；内部基准 Kimi Code Bench 3.0 Long-horizon 得 61.2%，高于 K3 的 55.95%；BenchCAD 带工具得 92.7%，接近 Claude Opus 5.5 的 96.2% 与 GPT-6 Astra 的 95.9%。同时发布的 Highspeed 版本速度为 2-3 倍。两者已在 Kimi.ai、Kimi Work、Kimi Code 和 Kimi API 上线，完整模型权重将于 11 月 4 日前发布。",
-   "key_points": [
-    "基准表现：Terminal-Bench 4.0 得 65.7%，高于 GPT-6 Astra（58.2%），略低于 Claude Opus 5.5（66.4%）；内部基准 Kimi Code Bench 3.0 Long-horizon 得 61.2%，K3 为 55.95%",
-    "3D 与空间推理：BenchCAD（多视图渲染经 CAD 代码生成做 3D 重建）带工具得 92.7%，接近 Claude Opus 5.5 的 96.2% 和 GPT-6 Astra 的 95.9%，擅长参数化建模",
-    "长程编程内部测试：在开源人体解剖模型 human-atlas（296 个骨骼组件、402 个肌肉组件）上搭建带训练与评估流程的行走动力学模拟器，经 167 项任务、420 次独立评审迭代控制器，并修正 36 处肩部肌肉力臂计算错误，使仿真人从数秒内倒地到交替步态连续行走 11.2 秒"
-   ],
-   "topics": [
-    "post-training",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 76.2,
-   "status": "published",
-   "extra": {
-    "hn_points": 583,
-    "hn_comments": 352,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.kimi.ai/",
-      "https://www.kimi.ai/code",
-      "https://platform.kimi.ai/",
-      "https://github.com/ashemag/human-atlas",
-      "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
-      "https://www.tbench.ai/",
-      "https://www.terminal-bench-science.ai/",
-      "https://openai.com/index/gpt-6-astra/",
-      "https://www.anthropic.com/claude-opus-5-5-system-card",
-      "https://www.anthropic.com/claude-fable-5-1-mythos-5-1-system-card",
-      "https://api-docs.deepseek.com/news/news261017/",
-      "https://z.ai/blog/glm-5.3",
-      "https://www.swe-marathon.org/",
-      "https://posttrainbench.com/",
-      "https://www.vals.ai/benchmarks/programbench",
-      "https://www-cdn.anthropic.com/fc1b44717c85dc068bc6ba5024219938094694bd/Claude%20Opus%205.5%20System%20Card.pdf",
-      "https://openai.com/zh-Hans-CN/index/gpt-6-astra/",
-      "https://huggingface.co/datasets/Anthropic/BioMysteryBench-full/commit/b5a889c",
-      "https://github.com/rdi-berkeley/agents-last-exam",
-      "https://artificialanalysis.ai/",
-      "https://www.mercor.com/apex/apex-agents-leaderboard/"
-     ]
-    },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   }

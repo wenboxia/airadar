@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-23T22:13:55+00:00",
+ "generated_at": "2026-10-24T21:37:21+00:00",
  "top": [
   {
    "id": "95eb6975ad245049",
@@ -117,113 +117,6 @@
    }
   },
   {
-   "id": "849b423196d125cc",
-   "url": "https://huggingface.co/blog/reflection-beam",
-   "title": "Welcome Beam: a 501B open model you can own, customize, and scale",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-16T00:00:00+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "open-source",
-    "coding-agent"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 85.3,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/reflection-beam.md",
-      "https://huggingface.co/reflection/Beam-1.0-501B-A23B",
-      "https://huggingface.co/reflection/Beam-1.0-501B-A23B-FP8",
-      "https://huggingface.co/reflection/Beam-1.0-501B-A23B-NVFP4",
-      "https://developers.reflection.ai/mirror-overview",
-      "https://huggingface.co/reflection/Beam-1.0-501B-A23B/discussions/5",
-      "https://github.com/vllm-project/recipes/pull/1132",
-      "https://endpoints.huggingface.co/new/reflection/Beam-1.0-501B-A23B-FP8",
-      "https://endpoints.huggingface.co/new/reflection/Beam-1.0-501B-A23B-NVFP4",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/multi_step_tools-low.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/multi_step_tools-high.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/long_context-low.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/long_context-high.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/terminal-low.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/terminal-high.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/math-low.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/math-high.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/structured_output-low.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/structured_output-high.jsonl",
-      "https://huggingface.co/datasets/HuggingFaceH4/Multilingual-Thinking",
-      "https://github.com/huggingface/trl/pull/7629",
-      "https://huggingface.co/buckets/burtenshaw/beamspeak-demo/tree/trace/beam-build.sanitized.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beamspeak-demo/resolve/beamspeak-source.zip",
-      "https://huggingface.co/buckets/burtenshaw/beamspeak-demo/resolve/RUNNING.md",
-      "https://huggingface.co/datasets/programbench/ProgramBench-Tests",
-      "https://burtenshaw-beam-pi-programbench.hf.space/study",
-      "https://burtenshaw-beam-pi-programbench.hf.space/?project=beam-pi-programbench-20261009",
-      "https://huggingface.co/spaces/burtenshaw/beam-pi-programbench/tree/main/results/beam-pi-programbench-20261009",
-      "https://huggingface.co/spaces/burtenshaw/beam-pi-programbench/tree/main/source",
-      "https://huggingface.co/buckets/burtenshaw/qwen35-incident-triage-reproduction",
-      "https://huggingface.co/reflection/Beam-1.0-501B-A23B/discussions"
-     ]
-    }
-   }
-  },
-  {
-   "id": "7fd7e06ab2f4b840",
-   "url": "https://claude.dev/blog/solving-code-review-at-anthropic/",
-   "title": "How the Claude Code team does code review",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-16T19:04:47+00:00",
-   "summary_short": "Claude Code 团队公开评审流程：机器读大部分代码，人只处理关键判断",
-   "summary_long": "Claude Code 团队撰文说明其代码评审流程。原文称 Claude 已写下 Claude Code 自身约 90% 的代码；Anthropic 单体仓库每日落地的变更从 5 月约 2500 次增至 9 月逾 3 万次，Claude Code 虽用独立仓库，压力同样明显。团队指出评审有两项职责：上线前发现问题，以及在团队中建立共享的代码理解；本文主要讲前者。他们认为“人是否读过代码”只是“这次改动可能出什么问题、该由哪道检查拦住”的不精确代理指标，于是评审从合并前的人工关卡变成持续运行、类似写作时的拼写检查：多数改动在被要求人看之前，已由 Claude 至少评审并修复过一次。目标是最多一位人类（可以是作者）在环即合并，且不推高回滚与事故率；用每 PR 的人类批准数（中位数与 95 分位）、人类评论数、等待人的时长衡量人类时间，把回滚与事故率当护栏。原文还列出 PR 前与每个 PR 上的多层检查。",
-   "key_points": [
-    "Claude 写下 Claude Code 自身约 90% 的代码；6 月至 9 月合并 PR 数翻倍以上，需回滚的比例下降逾 40%",
-    "评审从合并前的人工关卡改为持续运行，多数改动在人看之前已由 Claude 评审修复一次",
-    "目标是最多一位人类在环即合并，用人均批准数、评论数、等待时长衡量人类时间，以回滚与事故率作护栏"
-   ],
-   "topics": [
-    "coding-agent",
-    "harness"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 84.2,
-   "status": "published",
-   "extra": {
-    "hn_points": 451,
-    "hn_comments": 443,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.anthropic.com/engineering/redesigning-source-control",
-      "https://code.claude.com/docs/en/best-practices",
-      "https://x.com/bcherny/status/2007179861115511237",
-      "https://code.claude.com/docs/en/code-review",
-      "https://claude.com/resources/articles/code-review",
-      "https://support.claude.com/en/articles/11932705-automated-security-reviews-in-claude-code",
-      "https://claude.com/resources/articles/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
-      "https://claude.com/product/tag"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "354f89a6c7dbf10c",
    "url": "https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization",
    "title": "How Specializing the Vocabulary of SLMs Can Cut Inference Cost by 77% in Real Applications",
@@ -277,6 +170,95 @@
      ]
     },
     "summary_mode": "full"
+   }
+  },
+  {
+   "id": "94e7f4f5c0e52bb7",
+   "url": "https://huggingface.co/blog/ibm-research/altk-evolve-bc",
+   "title": "ALTK-Evolve: How learned memory tops the τ²-bench leaderboard on customer service tasks without a frontier model",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-20T15:19:48+00:00",
+   "summary_short": "不改模型权重，ALTK-Evolve 用 GPT-4.1 蒸馏行为准则，登顶 τ²-bench 零售榜",
+   "summary_long": "ALTK-Evolve 让智能体靠“学到的记忆”提升表现：用 GPT-4.1 分析智能体在训练任务上的尝试，把成功与失败蒸馏成简短的行为规则——比如如何验证客户身份、确认交易、处理退货——再把这些准则追加到系统提示中，用于后续对话。准则提取和执行智能体用的是同一个模型，既不需要更新权重，也不需要人工标注。实验在 Sierra 的 τ²-bench 客服基准上进行：每个任务配一个 LLM 模拟客户、一组领域工具和一份必须遵守的政策文档，只有最终数据库状态与预期一致才算解决，奖励是严格二元的。实验采用基准原版 ReAct 脚手架（THINK→ACT 两阶段），gpt-4.1 作智能体模型、gpt-5.5 作客户模拟模型，每题跑 4 次试验；唯一改动是在政策文档之后附加一段 markdown 格式的学习准则。结果在零售域达到 67.5% Pass^4，即在 67.5% 的任务上四次独立尝试全部成功，高于 2026 年 10 月 12 日排行榜快照中的所有零售条目。作者称此前已在编码智能体上演示过这一方法，此次转向客服场景。",
+   "key_points": [
+    "方法：用 GPT-4.1 从智能体的训练任务尝试中蒸馏出简短行为准则并追加到系统提示，提取与执行共用同一模型，无需权重更新或人工标注",
+    "结果：零售域 67.5% Pass^4，高于 2026 年 10 月 12 日排行榜快照中所有零售条目，所用的是较旧的非推理模型 GPT-4.1 与基准原版 ReAct 脚手架",
+    "基准：τ²-bench 每题含模拟客户、领域工具与政策文档，只有最终数据库状态匹配才算解决；实验用 gpt-4.1 作智能体、gpt-5.5 作客户模拟，每题 4 次试验"
+   ],
+   "topics": [
+    "memory",
+    "coding-agent",
+    "eval"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "评测"
+   ],
+   "horizon": "long",
+   "score": 83.4,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/AgentToolkit/altk-evolve",
+      "https://huggingface.co/blog/ibm-research/altk-evolve-sldd",
+      "https://github.com/sierra-research/tau2-bench",
+      "https://huggingface.co/blog/ibm-research/altk-evolve-hmm",
+      "https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/HtL2uTn98-xHkcTxKqkFY.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/MsqhICXsHtpJozVFZYEm7.png",
+      "https://github.com/sierra-research/tau2-bench/pull/542",
+      "https://github.com/sierra-research/tau2-bench/pull/551",
+      "https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/iOmv6o938CgNfFlULP-VV.png"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "48e2274fdf2ba9fe",
+   "url": "https://openai.com/index/securing-our-frontier-model-training-environment",
+   "title": "Securing our frontier model training environment",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-23T10:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "cybersecurity"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 83.1,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Security"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://alignment.openai.com/misalignment-reports/",
+      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/",
+      "https://github.com/kata-containers/kata-containers/security/advisories/GHSA-wwj6-vghv-5p64",
+      "https://github.com/kata-containers/kata-containers/pull/13615",
+      "https://github.com/kata-containers/kata-containers/pull/13587",
+      "https://github.com/google/gvisor/pull/13816",
+      "https://github.com/moby/profiles/pull/39",
+      "https://github.com/torvalds/linux/commit/fa091f46c3833fb22384f10eade2b4e1e1d0b278",
+      "https://github.com/torvalds/linux/commit/594d905195024b228c962627ae5ae7c17bd582a4",
+      "https://github.com/torvalds/linux/commit/992cc9f94ca924089a506ba9b327caa9af797529",
+      "https://spectreattack.com/"
+     ]
+    }
    }
   }
  ],
@@ -393,113 +375,6 @@
       "https://github.com/nvidia/cosmos"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "849b423196d125cc",
-   "url": "https://huggingface.co/blog/reflection-beam",
-   "title": "Welcome Beam: a 501B open model you can own, customize, and scale",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-16T00:00:00+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "open-source",
-    "coding-agent"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 85.3,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/reflection-beam.md",
-      "https://huggingface.co/reflection/Beam-1.0-501B-A23B",
-      "https://huggingface.co/reflection/Beam-1.0-501B-A23B-FP8",
-      "https://huggingface.co/reflection/Beam-1.0-501B-A23B-NVFP4",
-      "https://developers.reflection.ai/mirror-overview",
-      "https://huggingface.co/reflection/Beam-1.0-501B-A23B/discussions/5",
-      "https://github.com/vllm-project/recipes/pull/1132",
-      "https://endpoints.huggingface.co/new/reflection/Beam-1.0-501B-A23B-FP8",
-      "https://endpoints.huggingface.co/new/reflection/Beam-1.0-501B-A23B-NVFP4",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/multi_step_tools-low.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/multi_step_tools-high.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/long_context-low.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/long_context-high.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/terminal-low.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/terminal-high.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/math-low.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/math-high.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/structured_output-low.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/structured_output-high.jsonl",
-      "https://huggingface.co/datasets/HuggingFaceH4/Multilingual-Thinking",
-      "https://github.com/huggingface/trl/pull/7629",
-      "https://huggingface.co/buckets/burtenshaw/beamspeak-demo/tree/trace/beam-build.sanitized.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beamspeak-demo/resolve/beamspeak-source.zip",
-      "https://huggingface.co/buckets/burtenshaw/beamspeak-demo/resolve/RUNNING.md",
-      "https://huggingface.co/datasets/programbench/ProgramBench-Tests",
-      "https://burtenshaw-beam-pi-programbench.hf.space/study",
-      "https://burtenshaw-beam-pi-programbench.hf.space/?project=beam-pi-programbench-20261009",
-      "https://huggingface.co/spaces/burtenshaw/beam-pi-programbench/tree/main/results/beam-pi-programbench-20261009",
-      "https://huggingface.co/spaces/burtenshaw/beam-pi-programbench/tree/main/source",
-      "https://huggingface.co/buckets/burtenshaw/qwen35-incident-triage-reproduction",
-      "https://huggingface.co/reflection/Beam-1.0-501B-A23B/discussions"
-     ]
-    }
-   }
-  },
-  {
-   "id": "7fd7e06ab2f4b840",
-   "url": "https://claude.dev/blog/solving-code-review-at-anthropic/",
-   "title": "How the Claude Code team does code review",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-16T19:04:47+00:00",
-   "summary_short": "Claude Code 团队公开评审流程：机器读大部分代码，人只处理关键判断",
-   "summary_long": "Claude Code 团队撰文说明其代码评审流程。原文称 Claude 已写下 Claude Code 自身约 90% 的代码；Anthropic 单体仓库每日落地的变更从 5 月约 2500 次增至 9 月逾 3 万次，Claude Code 虽用独立仓库，压力同样明显。团队指出评审有两项职责：上线前发现问题，以及在团队中建立共享的代码理解；本文主要讲前者。他们认为“人是否读过代码”只是“这次改动可能出什么问题、该由哪道检查拦住”的不精确代理指标，于是评审从合并前的人工关卡变成持续运行、类似写作时的拼写检查：多数改动在被要求人看之前，已由 Claude 至少评审并修复过一次。目标是最多一位人类（可以是作者）在环即合并，且不推高回滚与事故率；用每 PR 的人类批准数（中位数与 95 分位）、人类评论数、等待人的时长衡量人类时间，把回滚与事故率当护栏。原文还列出 PR 前与每个 PR 上的多层检查。",
-   "key_points": [
-    "Claude 写下 Claude Code 自身约 90% 的代码；6 月至 9 月合并 PR 数翻倍以上，需回滚的比例下降逾 40%",
-    "评审从合并前的人工关卡改为持续运行，多数改动在人看之前已由 Claude 评审修复一次",
-    "目标是最多一位人类在环即合并，用人均批准数、评论数、等待时长衡量人类时间，以回滚与事故率作护栏"
-   ],
-   "topics": [
-    "coding-agent",
-    "harness"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 84.2,
-   "status": "published",
-   "extra": {
-    "hn_points": 451,
-    "hn_comments": 443,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.anthropic.com/engineering/redesigning-source-control",
-      "https://code.claude.com/docs/en/best-practices",
-      "https://x.com/bcherny/status/2007179861115511237",
-      "https://code.claude.com/docs/en/code-review",
-      "https://claude.com/resources/articles/code-review",
-      "https://support.claude.com/en/articles/11932705-automated-security-reviews-in-claude-code",
-      "https://claude.com/resources/articles/agentic-coding-is-straining-ci-heres-how-we-scaled-test-impact-analysis-at-anthropic",
-      "https://claude.com/product/tag"
-     ]
-    },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -1099,59 +974,6 @@
    }
   },
   {
-   "id": "32239fe1b8b165b3",
-   "url": "https://www.mercor.com/research/labor-index/benchmark-map/",
-   "title": "90% of US working hours are spent on tasks not covered well by AI benchmarks",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-16T17:08:38+00:00",
-   "summary_short": "基准地图显示：美国90%工作时长所涉任务几乎无AI基准覆盖",
-   "summary_long": "近年AI基准数量激增，但对有经济价值工作的覆盖仍然有限。为衡量这一缺口，研究团队汇编相关基准，构建了一张覆盖美国就业的“基准地图”。该研究采用美国劳工部O*NET分类，将美国劳动力划分为923个职业、22个职业族，合计18,797项任务，索引中共包含924个基准；单个基准提示可对应多个O*NET任务。结果显示，923个职业中仅208个拥有至少5条基准提示所覆盖的任务，22个职业族中有6个完全没有这类职业。据此，原文估计美国90%的工作时长花在现有基准很少或完全没有覆盖的任务上，这使得人们很难判断AI模型在美国人实际从事的工作上表现如何。覆盖分布也并非随机：地图显示AI社区优先关注最大的劳动力市场，基准覆盖与职业工资总额相关。例如初始基准大量覆盖了具AI暴露度的律师任务，却几乎不覆盖同样具AI暴露度的法律秘书或法庭书记员的任务；规模较小、中等收入知识型工作的长尾覆盖不足。原文称这是构建持续更新的经济AI能力资源的第一步。",
-   "key_points": [
-    "以O*NET为框架：923个职业、22个职业族、18,797项任务，索引含924个基准",
-    "仅208个职业有至少5条基准提示覆盖的任务，6个职业族完全没有此类职业",
-    "原文估计美国90%工作时长所涉任务几乎没有基准覆盖，且覆盖偏向工资总额更大的劳动力市场"
-   ],
-   "topics": [
-    "eval",
-    "labor-market"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测",
-    "行业动态"
-   ],
-   "horizon": "long",
-   "score": 80.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 329,
-    "hn_comments": 292,
-    "outbound": {
-     "arxiv": [
-      "2303.10130",
-      "2603.01203",
-      "2608.05172"
-     ],
-     "links": [
-      "https://arxiv.org/abs/2303.10130",
-      "https://arxiv.org/abs/2603.01203v2",
-      "https://arxiv.org/abs/2608.05172",
-      "https://www.nber.org/papers/w26948",
-      "https://work.mercor.com/explore",
-      "https://talent.docs.mercor.com/",
-      "https://trust.mercor.com",
-      "https://twitter.com/mercor",
-      "https://www.youtube.com/@mercor-ai",
-      "https://www.linkedin.com/company/mercor-ai/",
-      "https://www.instagram.com/mercor_ai/"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "d31a18ead424650d",
    "url": "https://www.wiz.io/blog/php2shell-php-rce",
    "title": "PHP2Shell: AI uncovers critical RCE in PHP",
@@ -1339,68 +1161,6 @@
       "https://github.com/orgs/NVIDIA/projects/233/views/6",
       "https://brev.nvidia.com/launchable/deploy/now?launchableID=env-3Ap3tL55zq4a8kew1AuW0FpSLsg",
       "https://docs.nvidia.com/openshell/latest/observability/telemetry"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "04b7640931c7c971",
-   "url": "https://www.anthropic.com/research/designing-efficient-quantum-circuits",
-   "title": "Designing more efficient quantum circuits with Claude",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-16T18:00:18+00:00",
-   "summary_short": "Claude按自然语言规格自主设计8类量子电路，部分优于已发表最佳设计一个数量级以上",
-   "summary_long": "量子计算机要在有限硬件上运行有用算法，需要精心设计的电路。研究团队给Claude八类电路的纯自然语言规格说明，涵盖化学、优化、物理模拟与数论，并配一个自动评估器检查并给每个设计打分。Claude基本独立工作，找到的设计优于已发表的最佳电路，部分提升达一个数量级甚至更多。原文称这类改进大幅减少有用应用所需的量子资源。原文以FeMoco（固氮酶中的铁硫簇）为例：2017年研究者估计需约50万亿个Toffoli门，经一系列算法改进已降至约3.4亿个，约15万倍缩减，对应未来约300万物理比特机器上数小时的计算；这些缩减主要来自重新设计执行计算的电路，而非改进硬件。原文称Claude擅长优化经典算法，因此想验证仅给自然语言描述时它能否同样优化量子算法；量子电路由门序列构成且可用代码描述，故可利用Claude的编码能力编写、运行和修改设计。该工作由Andi Gu主导，属Anthropic的STEM Fellows Program，由Alek Kemeny指导，与哈佛大学Susanne Yelin、哈佛大学及QuEra Computing的Mikhail Lukin合作，论文见arXiv。",
-   "key_points": [
-    "八类电路规格取自化学、优化、物理模拟与数论，另配有自动评估器逐项检查打分",
-    "Claude基本自主完成设计，部分结果优于已发表最佳电路一个数量级以上，原文称这可减少实用量子应用所需资源",
-    "原文举例：FeMoco基态能量计算的Toffoli门估计从约50万亿降至约3.4亿，缩减主要来自电路重设计而非硬件进步"
-   ],
-   "topics": [
-    "ai-for-science",
-    "quantum-computing",
-    "reasoning"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "long",
-   "score": 78.8,
-   "status": "published",
-   "extra": {
-    "hn_points": 169,
-    "hn_comments": 36,
-    "outbound": {
-     "arxiv": [
-      "2408.08292",
-      "2502.15882",
-      "2510.10967",
-      "2606.02235",
-      "2607.13816",
-      "2610.22367"
-     ],
-     "links": [
-      "https://arxiv.org/abs/2610.22367",
-      "https://www.anthropic.com/research/claude-uplifts-biomolecular-modeling",
-      "https://www.anthropic.com/engineering/AI-resistant-technical-evaluations",
-      "https://tches.iacr.org/index.php/TCHES/article/view/8298",
-      "https://arxiv.org/abs/2606.02235",
-      "https://arxiv.org/abs/2607.13816",
-      "https://arxiv.org/abs/2408.08292",
-      "https://arxiv.org/abs/2510.10967",
-      "https://www.olcf.ornl.gov/frontier/",
-      "https://arxiv.org/abs/2502.15882",
-      "https://doi.org/10.1073/pnas.1619152114",
-      "https://doi.org/10.22331/q-2019-12-02-208",
-      "https://doi.org/10.1103/PhysRevResearch.3.033055",
-      "https://doi.org/10.1103/PRXQuantum.2.030305",
-      "https://doi.org/10.1021/acs.jctc.4c00352",
-      "https://twitter.com/intent/tweet?text=https://www.anthropic.com/research/designing-efficient-quantum-circuits",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://www.anthropic.com/research/designing-efficient-quantum-circuits"
      ]
     },
     "content_source": "direct",
@@ -1654,70 +1414,6 @@
    }
   },
   {
-   "id": "ba4e7337aba280a4",
-   "url": "https://huggingface.co/blog/nvidia/scaling-indic-pretraining",
-   "title": "Scaling Indic Pretraining: 2.8 Trillion Tokens and an Open Data Generation Pipeline",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-16T01:44:47+00:00",
-   "summary_short": "2.8万亿token印度语言预训练语料及开放生成流水线",
-   "summary_long": "NVIDIA与IIT Madras及其AI4Bharat实验室联合推出Nemotron-pretraining-Indic-v1，约2.8万亿token、覆盖22种印度语言，即将发布，同时开放用于生成该语料的GPU加速数据生成流水线。这22种语言为印度宪法列明的语言，按2011年人口普查是97%印度人（近12亿人）的母语。流水线记录了完整生成配方，包括提示词、LLM工作流与质量检查，开发者可将其适配到自有源材料上生成更多数据。语料把经过策划的英文材料（数学、代码、问答）引入印度语言；每条记录都可追溯到策划源文档，每个输出都与输入比对，使合成文本保持有真实信息支撑。语料包含全部22种语言的本地文字数据以及12种语言的罗马化文本，共34种语言-文字组合；工作流涵盖文档级翻译、质量评估与针对性修复，并保留公式、表格、代码等内容。AI4Bharat负责人Mitesh Khapra指出，印度语言技术落后于英语的原因是印度语言数据不足。该数据是对自然撰写的印度语文本的补充。Nemotron 3.5 Super VL的持续预训练使用了该语料12种语言子集及自然印度语文本共100亿token。",
-   "key_points": [
-    "约2.8万亿token，覆盖22种印度语言；含全部22种语言的本地文字数据和12种语言的罗马化文本，共34种语言-文字组合",
-    "随语料开放GPU加速数据生成流水线，完整包含提示词、LLM工作流与质量检查，可复现、可适配自有源材料",
-    "合成内容以策划源文档为锚，逐条对照输入做质量评估与修复，并保留公式、表格、代码；该数据定位为对自然撰写印度语文本的补充"
-   ],
-   "topics": [
-    "pretraining-data",
-    "multilingual",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 78.0,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.iitm.ac.in/",
-      "https://ai4bharat.iitm.ac.in/",
-      "https://huggingface.co/datasets/ai4bharat/sangraha",
-      "https://time.com/collections/time100-ai-2025/7305866/mitesh-khapra/",
-      "https://github.com/NVIDIA-NeMo/DataDesignerPlugins/tree/main/plugins/data-designer-nemotron-indic-translation",
-      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
-      "https://cdn-uploads.huggingface.co/production/uploads/68d2fec8856b85d927e44d32/VmVFMKjOsoNkEKfQ7cRnh.png",
-      "https://huggingface.co/datasets/nvidia/Nemotron-CC-v2",
-      "https://docs.nvidia.com/nemo/datadesigner/",
-      "https://cdn-uploads.huggingface.co/production/uploads/68d2fec8856b85d927e44d32/PCtm5uAGrdrp8kgHXb6y3.png",
-      "https://huggingface.co/google/gemma-4-31B-it",
-      "https://themqm.org/",
-      "https://huggingface.co/bodhan-ai/indic-translate",
-      "https://bodhan.ai/",
-      "https://cdn-uploads.huggingface.co/production/uploads/68d2fec8856b85d927e44d32/ZPR2A2wDoNW6OVb4-GX63.png",
-      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
-      "https://huggingface.co/datasets/sarvamai/indivibe",
-      "https://cdn-uploads.huggingface.co/production/uploads/68d2fec8856b85d927e44d32/YQO_-yZWrhhQgueXuxzuM.png",
-      "https://huggingface.co/docs/datasets/stream",
-      "https://huggingface.co/collections/nvidia/nemotron-chat-and-instruction-following",
-      "https://huggingface.co/collections/nvidia/nemotron-post-training-v3",
-      "https://huggingface.co/datasets/nvidia/Nemotron-Personas-India",
-      "https://github.com/NVIDIA-NeMo/DataDesignerPlugins/blob/main/plugins/data-designer-nemotron-indic-translation/docs/index.md",
-      "https://github.com/NVIDIA-NeMo/DataDesigner/pull/959",
-      "https://ai4bharat.github.io/indic-llm-eval-suite-blog/",
-      "https://huggingface.co/datasets/nvidia/nemotron-indic-pretraining-report/blob/main/Scaling%20Synthetic%20Pre-training%20Data%20and%20Evaluation%20for%20Indic%20LLMs.pdf",
-      "https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3.5-Super-and-Lightning-Technical-Report.pdf",
-      "https://huggingface.co/collections/nvidia/nemotron-pre-training-datasets"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "9b13d6a721a0c270",
    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
    "title": "DeepSeek-v4.1-Flash-1017",
@@ -1843,6 +1539,68 @@
    }
   },
   {
+   "id": "d1a3b4fa5d93fb49",
+   "url": "https://magazine.sebastianraschka.com/p/building-reasoning-models",
+   "title": "Build Your Own Reasoning Model: A Full Video Course",
+   "source": "Sebastian Raschka",
+   "tier": "A",
+   "published_at": "2026-10-24T11:14:32+00:00",
+   "summary_short": "8个视频、11小时，从预训练模型手写推理模型方法，理解其工作机制",
+   "summary_long": "原文介绍一套从零构建推理模型的视频课程，共8个视频、约11小时，配套此前以PyTorch从零实现推理模型的材料。课程从一个小型预训练Qwen3模型出发，在Python和PyTorch中实现评估、推理时扩展、强化学习和蒸馏等方法。原文指出，当前几乎所有当代LLM都是推理模型或提供推理模式，理解推理模型（含推理扩展、强化学习、蒸馏）仍有价值。原文还说明，推理模型可视为传统LLM的升级：通过带可验证奖励的强化学习进行更多后训练，并可选用推理扩展技术；它可作为agent harness中的引擎，harness负责任务的上下文管理并提供工具。课程建议具备Python和PyTorch基础；此前从零构建LLM内容为推荐但非必需。原文称该课程是此前Coding LLMs from the Ground Up课程的续集，但也可在先修课程之外单独观看。",
+   "key_points": [
+    "课程共8个视频、约11小时，从一个小型预训练Qwen3模型出发，用Python和PyTorch实现评估、推理时扩展、强化学习和蒸馏。",
+    "原文将推理模型描述为传统LLM的升级：通过带可验证奖励的强化学习增加后训练，并可选用推理扩展技术；推理模型可作为agent harness中的引擎。",
+    "课程建议具备Python和PyTorch基础；此前从零构建LLM内容为推荐但非必需，该课程是Coding LLMs from the Ground Up的续集，也可不要求先修课程观看。"
+   ],
+   "topics": [
+    "post-training",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 76.2,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms",
+      "https://mng.bz/Nwr7",
+      "https://magazine.sebastianraschka.com/p/coding-llms-from-the-ground-up",
+      "https://substackcdn.com/image/fetch/$s_!0A8p!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff0fa0f45-5efe-4937-a0e9-970b6f65ed8e_1868x986.png",
+      "https://magazine.sebastianraschka.com/p/components-of-a-coding-agent",
+      "https://amzn.to/4fqvn0D",
+      "https://amzn.to/4aAKiFY",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch02/02_setup-tips",
+      "https://substackcdn.com/image/fetch/$s_!xQp0!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F67d8d671-53cc-4111-a3df-80ed733af3b5_1868x622.png",
+      "https://substackcdn.com/image/fetch/$s_!GRkU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa32da890-2402-4704-a90b-b46b4f64b95c_1544x864.png",
+      "https://www.linkedin.com/learning/ai-reasoning-models-the-building-blocks-for-the-next-generation-of-ai-applications",
+      "https://www.youtube.com/watch?v=Kh9mqTzjuEQ",
+      "https://www.youtube.com/watch?v=BJua0yjO5dk",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch02",
+      "https://www.youtube.com/watch?v=JQJ_8_jSAoY",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch03",
+      "https://www.youtube.com/watch?v=t5y-kS9nNxU",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch04",
+      "https://www.youtube.com/watch?v=TVMyOJ_3Gxo",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch05",
+      "https://www.youtube.com/watch?v=237Hf7Q3lgg",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch06",
+      "https://www.youtube.com/watch?v=VxfUrUrrczs",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch07",
+      "https://www.youtube.com/watch?v=msp69FR5NZs",
+      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch08",
+      "https://substackcdn.com/image/fetch/$s_!_ebf!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb9cbbdff-4cb9-47cd-9679-badef260e2f3_4284x3043.jpeg"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "298c8de07d18f423",
    "url": "https://openai.com/index/scaling-storage-one-billion-users-part-two",
    "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)",
@@ -1941,59 +1699,6 @@
    }
   },
   {
-   "id": "50e25bfb1e8370f9",
-   "url": "https://simonwillison.net/2026/Oct/16/code-review/",
-   "title": "Quoting Addy Osmani, Morgan Westlee Lunt, and Qing Wang",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-16T22:06:37+00:00",
-   "summary_short": "把\"人读过代码吗\"换成\"该用哪种检查\"，评审因此变成持续进行",
-   "summary_long": "原文认为，\"有没有人读过这段代码\"只是\"这次改动可能出什么问题、该由哪种检查（自动或人工）来抓\"的一个不精确的替代指标。提出这个问题也改变了评审发生的时机：过去评审是道路尽头的关卡——写完代码、开一个 PR、等同事来看；现在评审持续进行，更像写作时的拼写检查。大多数改动在被要求人来看之前，已经由 Claude 至少评审并修复过一次。原文称，这样做能抓到大多数常规错误，并把团队的注意力留给更高层次的问题与更细致的审查。以上内容出自 Addy Osmani、Morgan Westlee Lunt 与 Qing Wang 关于 Claude Code 团队如何做代码评审的文章。",
-   "key_points": [
-    "\"人是否读过代码\"被认为是不精确的替代指标，真正该问的是改动可能出什么问题、该用哪种检查来抓",
-    "评审的时机变了：从流程末端的关卡，变成贯穿写作过程的持续检查",
-    "大多数改动在被要求人看之前，已由 Claude 至少评审并修复过一次"
-   ],
-   "topics": [
-    "coding-agent",
-    "harness"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 75.9,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "anthropic",
-     "claude",
-     "ai",
-     "claude-code",
-     "llms"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://claude.dev/blog/solving-code-review-at-anthropic/",
-      "https://simonwillison.net/tags/anthropic",
-      "https://simonwillison.net/tags/claude",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/claude-code",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/addy-osmani",
-      "https://simonwillison.net/tags/coding-agents",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/agentic-engineering",
-      "https://simonwillison.net/tags/code-review"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "84cd8d44e9825e73",
    "url": "https://huggingface.co/blog/hf-torchtpu",
    "title": "Hugging Face ❤️ TorchTPU: TPUs, Natively",
@@ -2040,131 +1745,6 @@
       "https://docs.cloud.google.com/tpu/docs"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "c19e7ef010f7b535",
-   "url": "https://alexwang.ai/posts/associative-memory/",
-   "title": "You could have invented transformers from memory",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-16T19:01:17+00:00",
-   "summary_short": "把Transformer各层看作记忆库，用干扰信号比估算容量。",
-   "summary_long": "文章从“模型为何能记住大量信息、又能存多少”切入，提出一种直观视角：把线性映射、MLP和自注意力都视为不同类型的记忆存储。原文先定义记忆存储为持有M个键值对的函数，查询时按输入与键的相似度召回值，这类按相似度召回的结构称为关联记忆。最基础的是外积记忆存储：用W=Σv_i k_i^T累加键值对，查询f(x)=V^T K x，即把查询与各键的相似度作为权重来加权求和值。原文强调，存储很容易，难的是召回；存储的记忆越多，彼此干扰越大。因此全文聚焦“干扰-信号比”，并把干扰增长到与信号相当之前可存的记忆数量定义为容量。文章称将从线性层推进到MLP，再到自注意力；在64维键下，容量可从约64、约2700提升到超过一百万。原文还提到，梯度下降一步可视为写入一条以输入为键、以负学习率梯度为值的记忆，并称已有工作把线性层训练表达为对所有训练输入的注意力。",
-   "key_points": [
-    "原文把线性层、MLP、自注意力统一看作记忆存储，并用“干扰-信号比”和容量衡量召回能力。",
-    "外积记忆存储通过累加 vk^T 写入键值对，查询时按查询与键的相似度加权召回值；存储越多，召回干扰越大。",
-    "原文给出64维键下的容量对比：线性层约64条、MLP约2700条、自注意力超过一百万条，并称自注意力可存潜在无界数量的记忆。"
-   ],
-   "topics": [
-    "reasoning",
-    "interpretability"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 75.0,
-   "status": "published",
-   "extra": {
-    "hn_points": 460,
-    "hn_comments": 107,
-    "outbound": {
-     "arxiv": [
-      "1606.01164",
-      "1702.01929",
-      "1706.03762",
-      "1907.01470",
-      "1907.05242",
-      "1911.00172",
-      "2006.16236",
-      "2008.02217",
-      "2012.14913",
-      "2102.11174",
-      "2109.08668",
-      "2112.04426",
-      "2202.05262",
-      "2202.05798",
-      "2203.08913",
-      "2210.06313",
-      "2210.07229",
-      "2304.08467",
-      "2306.00802",
-      "2309.16609",
-      "2312.00752",
-      "2404.05405",
-      "2405.21060",
-      "2406.06484",
-      "2407.04153",
-      "2407.04620",
-      "2411.12364",
-      "2412.06464",
-      "2412.06538",
-      "2412.09764",
-      "2501.00663",
-      "2501.12352",
-      "2501.15383",
-      "2501.19399",
-      "2505.19488",
-      "2505.23416",
-      "2505.24832",
-      "2506.05233",
-      "2506.06266",
-      "2507.06211",
-      "2510.15103",
-      "2512.00207",
-      "2601.07372",
-      "2602.16284",
-      "2605.05189",
-      "2607.10034",
-      "2610.03858"
-     ],
-     "links": [
-      "https://github.com/KeAWang/associative-memory-blog",
-      "https://arxiv.org/abs/2202.05798",
-      "https://arxiv.org/abs/1907.01470",
-      "https://arxiv.org/abs/2012.14913",
-      "https://arxiv.org/abs/2109.08668",
-      "https://arxiv.org/abs/2607.10034",
-      "https://arxiv.org/abs/2210.06313",
-      "https://arxiv.org/abs/1706.03762v2",
-      "https://arxiv.org/abs/1706.03762v3",
-      "https://kexue.fm/archives/8823",
-      "https://arxiv.org/abs/2501.19399",
-      "https://arxiv.org/abs/2309.16609",
-      "https://arxiv.org/abs/2501.15383",
-      "https://arxiv.org/abs/2505.24832",
-      "https://arxiv.org/abs/2404.05405",
-      "https://arxiv.org/abs/2412.06538",
-      "https://arxiv.org/abs/2605.05189",
-      "https://arxiv.org/abs/2512.00207",
-      "https://arxiv.org/abs/2505.19488",
-      "https://arxiv.org/abs/1606.01164",
-      "https://arxiv.org/abs/1702.01929",
-      "https://arxiv.org/abs/2008.02217",
-      "https://arxiv.org/abs/2507.06211",
-      "https://arxiv.org/abs/2102.11174",
-      "https://arxiv.org/abs/2312.00752",
-      "https://arxiv.org/abs/2405.21060",
-      "https://arxiv.org/abs/2406.06484",
-      "https://arxiv.org/abs/2412.06464",
-      "https://arxiv.org/abs/2407.04620",
-      "https://arxiv.org/abs/2501.00663",
-      "https://arxiv.org/abs/2506.05233",
-      "https://arxiv.org/abs/2501.12352",
-      "https://arxiv.org/abs/1907.05242",
-      "https://arxiv.org/abs/2412.09764",
-      "https://arxiv.org/abs/2411.12364",
-      "https://arxiv.org/abs/2407.04153",
-      "https://arxiv.org/abs/2601.07372",
-      "https://arxiv.org/abs/1911.00172",
-      "https://arxiv.org/abs/2112.04426",
-      "https://arxiv.org/abs/2203.08913"
-     ]
-    },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   }
