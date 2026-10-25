@@ -1,47 +1,173 @@
 {
- "generated_at": "2026-10-24T21:37:21+00:00",
+ "generated_at": "2026-10-25T21:48:55+00:00",
  "items": [
   {
-   "id": "af01d772051a4570",
-   "url": "https://www.lesswrong.com/posts/WHEQps5PK8LrrcTAb/how-does-fable-5-1-hide-messages-in-images",
-   "title": "How does Fable 5.1 hide messages in images?",
+   "id": "5431bd7fa76bae5b",
+   "url": "https://twitter.com/mike64_t/status/2114150399406202896",
+   "title": "Samsung running a TensorFlow lite model on 960x540 image to track you",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-22T21:41:13+00:00",
-   "summary_short": "测试 Fable 5.1 如何在 SVG 图像中自创编码藏信息，并能否被另一实例解码",
-   "summary_long": "原文介绍一项测试：前沿 LLM 已能用 SVG 生成图像，Fable 5.1 可控制形状、高度、宽度、颜色、旋转等每个属性。作者让 Fable 5.1 以最高推理强度为 50 条短消息分别生成藏有信息的 SVG，再由新会话中的另一 Fable 实例仅凭图像、在没有 SVG 源码和预先约定方案的情况下，判断图像是否含密并还原内容。结果显示，Fable 自发收敛到五类编码方式，均把每个字母对应为单独视觉元素；50 张图中 33 张采用高度编码，其中“夜空城市天际线”场景出现 23 次，建筑高度对应字母序号、分组对应单词。解码模型会测量元素高度与间距，寻找能解释画面的规则。原文还给出星星高度编码示例，并称与 GPT-6 Astra 在同类任务上做了简要比较，但未详述比较结果。",
+   "published_at": "2026-10-25T10:42:01+00:00",
+   "summary_short": "三星Tizen设备被发现在每隔几秒用TFLite跑AlexNet识别你在玩什么游戏",
+   "summary_long": "用户 mike 表示自己检查后发现，该设备每隔几秒就在 960×540 图像上运行一个 TensorFlow Lite 模型，并采用 INT8 量化，目的是判断用户正在玩哪款游戏。模型文件名就是 \"alex.tflite\"，确实是 AlexNet，结构似乎沿用 torchvision.models.alexnet。据其观察，这个模型会对数据库做某种奇怪的最近邻特征比对，但 99% 的情况下并不奏效，只是每隔一两秒白白占用 CPU。此外，由于同意授权（consent gate）环节排在后面，模型结果似乎被直接丢弃、没人使用。推文附上了模型计算图和若干导出的截图。另一位用户 log4j 回应称，这轮关于三星发现的实时更新很有意思，并表示相关文档已是其在真实设备上见过的、对 Tizen 若干关键问题最全面的梳理，篇幅长到需要滚动很久才能看完。",
    "key_points": [
-    "Fable 5.1 通过编写 SVG 生成图像，并能控制形状、高度、宽度、颜色、旋转等属性。",
-    "在 50 条短消息测试中，Fable 自发使用五类编码，均以单个视觉元素表示单个字母；33/50 采用高度编码，夜空天际线场景出现 23 次。",
-    "新会话中的 Fable 可在没有 SVG 源码和事先约定方案的情况下，通过测量元素高度与间距寻找规则并解码；原文展示的 5 个示例中，UTF-8 填充色图像未被解码。"
+    "每隔几秒在 960×540 图像上运行 TensorFlow Lite 模型，使用 INT8 量化，目标是识别用户正在玩的游戏",
+    "模型文件名为 alex.tflite，即 AlexNet，结构似乎沿用 torchvision.models.alexnet",
+    "采用对数据库的最近邻特征比对，据称 99% 情况下不起作用，且仅空耗 CPU"
+   ],
+   "topics": [
+    "privacy"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 68.4,
+   "status": "review",
+   "extra": {
+    "hn_points": 285,
+    "hn_comments": 1,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "cb0e6541c41d00d8",
+   "url": "https://www.interconnects.ai/p/podcast-kimi-k31-pro-the-new-cyber",
+   "title": "Podcast: Kimi K3.1 Pro, the new cyber reality, and Muse musings",
+   "source": "Interconnects",
+   "tier": "A",
+   "published_at": "2026-10-25T11:49:00+00:00",
+   "summary_short": "播客讨论Kimi K3.1 Pro反响不一、开源权重模型的网络安全风险",
+   "summary_long": "Nathan Lambert与Florian Brand在Interconnects播客中回顾AI领域忙碌一周的各种取舍与紧迫问题。核心话题是Kimi K3.1 Pro：基准成绩亮眼，但反响不一，是否会获采用尚无定论；两人还追问此前对开源权重模型与网络安全风险的判断是否有误、为何网络安全专家与AI专家对近期事件看法如此不同、未来几个月会发生什么以及什么会改变他们的看法。节目另涉Kimi的开源权重网络安全原则、“什么都能被黑”的时代、PHP2Shell、LiteLLM与“新互联网”、abliterated API与防护措施、可信访问、Anthropic的初级员工招聘，并以Muse与初级技术人才招聘等轻松话题收尾。转录片段中两人讨论模型发布的“专业化”：Kimi此次社媒宣传规模更大，有人贴出截图称媒体指引要求“不要说这是付费推广”，Nathan称据他所知无人证实；Kimi在权重发布前约有两年？——原文为约两周的独家访问期。两人表示将就此写更多内容，并计划继续录制该播客、征集问题与话题。",
+   "key_points": [
+    "Kimi K3.1 Pro基准分数亮眼却反响不一，能否被采用仍是他们提出的问题之一",
+    "节目追问开源权重模型与网络安全风险的既有判断是否有误，以及网络安全专家与AI专家为何对近期事件看法分歧",
+    "转录片段讨论模型发布“专业化”与疑似未披露的付费推广，并提到Kimi权重发布前约有两年？两周独家访问期"
    ],
    "topics": [
     "eval",
-    "steganography"
+    "open-source",
+    "cybersecurity"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "评测"
+   ],
+   "horizon": "short",
+   "score": 68.4,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.interconnects.ai/p/podcast-kimi-k31-pro-the-new-cyber?utm_source=substack&utm_medium=email&utm_content=share&action=share",
+      "https://podcasts.apple.com/us/podcast/interconnects-audio/id1719552353",
+      "https://open.spotify.com/show/6XNzfJULeVxR7SneeesDUs",
+      "https://www.interconnects.ai/podcast",
+      "https://www.interconnects.ai/t/interviews",
+      "https://x.com/natolambert/status/2113592601395986671",
+      "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "https://x.com/ArtificialAnlys/status/2113688083145314416",
+      "https://x.com/ArtificialAnlys/status/2113765233462481276",
+      "https://programbench.com/",
+      "https://x.com/natolambert/status/2107840567040262624",
+      "https://x.com/johnhultquist/status/2113686799708991522",
+      "https://abliteration.ai/",
+      "https://x.com/morphllm/status/2113174908167712865",
+      "https://joshuasaxe181906.substack.com/",
+      "https://www.exponentialview.co/p/the-internets-wuhan-moment",
+      "https://www.anthropic.com/research/employment-at-anthropic",
+      "https://docs.litellm.ai/blog/security-incident-oct-21-2026",
+      "https://artificialanalysis.ai/articles/kimi-k3-1-pro-launch-benchmarks",
+      "https://github.com/vllm-project/vllm",
+      "https://www.tbench.ai/leaderboard/terminal-bench-science",
+      "https://api-docs.deepseek.com/news/news261017/",
+      "https://deploymentsafety.openai.com/gpt-5-6",
+      "https://patchtheplanet.org/",
+      "https://x.com/OpenAI/status/2112907856018309586",
+      "https://x.com/basedjensen/status/2113183079351382284",
+      "https://www.anthropic.com/news/cyber-verification-program",
+      "https://www.hacktron.ai/blog/hacking-openai",
+      "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+      "https://github.com/openclaw/openclaw",
+      "https://github.com/NousResearch/hermes-agent",
+      "https://openai.com/index/introducing-dots/",
+      "https://www.pangram.com/",
+      "https://porkbun.com/",
+      "https://a24films.com/films/you-can-see-everything"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "81c8fd74d5e2c7e1",
+   "url": "https://arxiv.org/abs/2610.29162",
+   "title": "Why is AI generated language so hard to understand?",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-24T18:04:57+00:00",
+   "summary_short": "九款前沿模型生成的文本更常使用人类难加工的语言特征",
+   "summary_long": "原文指出，近期存在一种普遍感受：AI 生成的文本变得更难理解。研究围绕一组已知与人类加工难度相关的心理语言学特征（如宾语关系从句、长句法依存、低频 n-gram）展开，使用一个覆盖多领域的新建 AI 生成文本语料。结果发现，相比往返翻译生成的改写文本，AI 模型更常使用这些困难特征；与人类写作相比，九个前沿及接近前沿的模型都更多使用“无生命主语+有生命动词”和更多低频 n-gram，多数模型还使用更长依存、更多名词堆叠，在对话中更多使用缩减的宾语关系从句，且不同模型家族间差异明显。作者提出并检验一种解释：人类语言为成功沟通而优化，AI 生成文本则日益为数学、代码、推理等目标优化，其中存在对信息密度的压力而非成功沟通。作者通过在长度惩罚下微调语言模型给出概念验证，模型由此偏离类人语言行为。原文称，这凸显了人类与 LLM 在语言加工需求上的错位维度，并指向可能的补救方向。",
+   "key_points": [
+    "研究考察与人类加工难度相关的心理语言学特征（宾语关系从句、长依存、低频 n-gram），使用覆盖多领域的新建 AI 生成文本语料",
+    "相比往返翻译的改写文本，AI 模型更常使用这些困难特征；与人类写作相比，九个前沿及接近前沿模型均更多使用无生命主语搭配有生命动词和更多低频 n-gram",
+    "多数模型还表现出更长依存、更多名词堆叠、对话中更多缩减宾语关系从句，模型家族之间差异明显"
+   ],
+   "topics": [
+    "eval"
    ],
    "category": "评测",
    "categories": [
-    "评测"
+    "评测",
+    "模型",
+    "研究论文"
    ],
    "horizon": "long",
-   "score": 69.6,
+   "score": 65.7,
    "status": "review",
    "extra": {
-    "hn_points": 211,
-    "hn_comments": 73,
+    "hn_points": 238,
+    "hn_comments": 196,
     "outbound": {
      "arxiv": [
-      "2310.18512",
-      "2402.07510",
-      "2410.03768",
-      "2507.02737"
+      "2610.29162"
      ],
      "links": [
-      "https://arxiv.org/pdf/2310.18512",
-      "https://arxiv.org/pdf/2402.07510v4",
-      "https://arxiv.org/pdf/2410.03768v2",
-      "https://arxiv.org/pdf/2507.02737",
-      "https://x.com/JeffLadish/status/2103584710115139784"
+      "https://arxiv.org/search/cs?searchtype=author&query=Clark,+T+H",
+      "https://arxiv.org/search/cs?searchtype=author&query=Martin,+M+B",
+      "https://arxiv.org/search/cs?searchtype=author&query=Mahowald,+K",
+      "https://arxiv.org/html/2610.29162v1",
+      "https://arxiv.org/abs/2610.29162",
+      "https://arxiv.org/abs/2610.29162v1",
+      "https://doi.org/10.48550/arXiv.2610.29162",
+      "http://creativecommons.org/licenses/by/4.0/",
+      "https://scixplorer.org/abs/arXiv:2610.29162",
+      "https://scholar.google.com/scholar_lookup?arxiv_id=2610.29162",
+      "https://api.semanticscholar.org/arXiv:2610.29162",
+      "http://www.bibsonomy.org/BibtexHandler?requTask=upload&url=https://arxiv.org/abs/2610.29162&description=Why is AI-generated language so hard to understand?",
+      "https://reddit.com/submit?url=https://arxiv.org/abs/2610.29162&title=Why is AI-generated language so hard to understand?",
+      "https://info.arxiv.org/labs/showcase.html#arxiv-bibliographic-explorer",
+      "https://www.connectedpapers.com/about",
+      "https://www.litmaps.co/",
+      "https://www.scite.ai/",
+      "https://alphaxiv.org/",
+      "https://www.catalyzex.com",
+      "https://dagshub.com/",
+      "http://gotit.pub/faq",
+      "https://huggingface.co/huggingface",
+      "https://sciencecast.org/welcome",
+      "https://replicate.com/docs/arxiv/about",
+      "https://huggingface.co/docs/hub/spaces",
+      "https://txyz.ai",
+      "https://influencemap.cmlab.dev/",
+      "https://core.ac.uk/services/recommender",
+      "https://info.arxiv.org/labs/index.html",
+      "https://info.arxiv.org/help/mathjax.html"
      ]
     },
     "content_source": "direct",
@@ -49,195 +175,98 @@
    }
   },
   {
-   "id": "074b7d5e1602db74",
-   "url": "https://www.apollo.com/wealth/insights-news/insights/daily-spark/no-signs-of-ai-payoff-outside-the-tech-sector",
-   "title": "No Signs of AI Payoff Outside the Tech Sector",
+   "id": "8f5707e9a13cb370",
+   "url": "https://www.apricitas.io/p/ai-and-the-fall-of-the-creative-class",
+   "title": "America has lost 200k of jobs in media, film and the arts. How much is AI?",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-24T19:47:19+00:00",
-   "summary_short": "阿波罗首席经济学家：AI在科技业外没带来财务回报",
-   "summary_long": "阿波罗首席经济学家 Torsten Slok 在文中指出，尽管人工智能领域投资规模巨大、市场热度很高，但这项技术在美国科技行业之外没有带来任何财务回报。数据显示，Mag 7 成分股公司的人均收入、利润率都在上升，而 S&P 493 成分股公司的这两项指标持平；同时，仍没有迹象表明 AI 提升了生产率增长。由于 AI 对利润没有实际影响，美国主流企业正在收缩相关投入，并开始把 token 支出视为拖累利润率的成本项，不再将其视为增长来源。风险投资支持的公司仍在增加 token 支出，但主流企业不需要最新模型，也不愿为此付费。文章认为，只要 agentic AI 与 token 支出仍局限于经济的一小部分，AI 的宏观影响就将非常有限。前瞻性问题是：即使模型走向商品化，主流企业能否把越来越便宜的智能转化为更高的收入增长与利润率。文章提出，AI 或许是出色的计算器，但在商业中，智能主要体现为判断力，而判断依赖具体情境；AI 不理解问责、信任、文化、不成文规则、伦理权衡与公平，这些因素塑造声誉风险，并最终驱动收入增长与利润率。结论是，AI 叙事将由 S&P 493 决定，而不是 Mag 7；迄今没有证据表明科技行业之外的收入增长或利润率在改善。",
+   "published_at": "2026-10-24T23:11:54+00:00",
+   "summary_short": "美国创意产业四年流失超20万岗位，AI是否主因难确证",
+   "summary_long": "原文指出，美国“创意”产业过去四年流失超过20万个岗位，其中最近一年约5万个，是媒体就业现代史上最差阶段之一，强度与持续时间仅类似2001和2008年经济衰退；但当前并无普遍衰退，这一时期恰逢能批量低成本生成小说、逼真图像、相似音乐等数字艺术的AI系统兴起。原文强调，精确证明AI造成的艺术岗位流失极难：媒体公司不愿披露AI使用，既怕公众反弹，也为保护版权；AI影响还难与好莱坞整合、内容生产离岸、社交媒体创作者替代传统媒体等因素区分。原文认为较清晰证据是数字艺术各子行业都在裁员，而线下娱乐仍健康增长。电影与录音受创最重，四年损失超10万岗位、近该行业三分之一，今年夏季就业降至2008年以来最低并接近30年低点；出版业减少超7万。近半流失集中于电影与录音，裁员遍及几乎所有子行业，每年约5万且近月加速。",
    "key_points": [
-    "Mag 7 的人均收入与利润率在上升，S&P 493 持平；生产率增长仍未见 AI 提振迹象",
-    "主流企业正把 token 支出视作拖累利润率的成本项，而非增长来源；只有风投支持的公司仍在加大支出",
-    "只要 agentic AI 与 token 支出局限于经济的一小部分，AI 的宏观影响就很有限；文章称 AI 叙事将由 S&P 493 而非 Mag 7 决定"
+    "过去四年美国创意产业流失超20万岗位，最近一年约5万；就业下滑强度与持续时间仅类似2001和2008年衰退期。",
+    "原文称精确量化AI影响很难：企业不愿披露AI使用，且影响难与好莱坞整合、内容生产离岸、社交媒体替代等区分。",
+    "电影与录音行业损失超10万、近三分之一，就业降至2008年以来最低并接近30年低点；出版业减超7万，数字艺术普遍裁员而线下娱乐增长。"
    ],
    "topics": [
-    "ai-adoption",
-    "market-trends",
-    "ai-economy"
+    "labor-market",
+    "ai-impact",
+    "creative-industry"
    ],
    "category": "行业动态",
    "categories": [
     "行业动态"
    ],
-   "horizon": "long",
-   "score": 68.2,
+   "horizon": "short",
+   "score": 61.2,
    "status": "review",
    "extra": {
-    "hn_points": 287,
-    "hn_comments": 251,
+    "hn_points": 492,
+    "hn_comments": 532,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://substack.com/@josephpolitano",
+      "https://substackcdn.com/image/fetch/$s_!oz9x!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F999e3450-1df3-457d-8715-5e2e46d5121c_2886x1843.png",
+      "https://substackcdn.com/image/fetch/$s_!4jWS!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F21e0c6b5-22e0-4e51-97b0-68bb9abe225a_2886x1843.png",
+      "https://substackcdn.com/image/fetch/$s_!Exun!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdecb86b5-a38f-46ea-bce2-c6d5d1a405d5_2886x1843.png",
+      "https://substackcdn.com/image/fetch/$s_!zm0D!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F80d207ac-eea2-417b-a381-f956e19ede9d_2886x1843.png",
+      "https://substackcdn.com/image/fetch/$s_!ItXZ!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa9937364-33e6-4ce6-a504-e91f8a02c625_2886x1843.png",
+      "https://substackcdn.com/image/fetch/$s_!iTEJ!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F11cbc8aa-b1c1-44c0-80b1-6ef5c763924d_2886x1843.png",
+      "https://substackcdn.com/image/fetch/$s_!dUVd!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6c82b577-3785-46e8-935e-246f08d65784_2886x1843.png",
+      "https://fred.stlouisfed.org/graph/?g=1Z2RG",
+      "https://fred.stlouisfed.org/graph/?g=1XQ3Q",
+      "https://substackcdn.com/image/fetch/$s_!Hsfq!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F9f5df059-4f98-46d1-8a74-e7f94c0aa52e_2886x1843.png",
+      "https://substackcdn.com/image/fetch/$s_!96J2!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6fa718d1-e7f0-422f-9a09-4606948e1ed4_2886x1843.png",
+      "https://fred.stlouisfed.org/graph/?g=1Ya2U",
+      "https://fred.stlouisfed.org/graph/?g=1Z2Re",
+      "https://fred.stlouisfed.org/graph/?g=1Z2QS",
+      "https://fred.stlouisfed.org/graph/?g=1Z2R3",
+      "https://www.apricitas.io/p/americas-1t-ai-gamble"
+     ]
+    },
     "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "c1ad71a16e1f5eab",
-   "url": "https://latent.space/p/ainews-kimi-31/",
-   "title": "[AINews] Kimi 3.1 Pro 104BA-2.8T: Fable-5.1-Class Open Weights narrows Closed-AI lead to 1 month... and Pro Highspeed API with 2-3× speed",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-10-24T07:18:29+00:00",
-   "summary_short": "Moonshot 发布 Kimi K3.1 Pro：2.8T 参数 MoE，权重承诺 11 月 4 日开放",
-   "summary_long": "原文提到，两个月前其曾报道 Z.ai CEO 唐杰预测年底会出现 Fable 级开放权重模型，两周前 Meta 以闭源形式做到，而 Kimi K3.1 Pro 在期限之前推出。Kimi K3.1 Pro 是 Kimi K3 的后训练版本，Moonshot 称投入了大幅增加的后训练算力，并优化了 RL 框架、长上下文推理、训练效率、沙箱基础设施、rollout 调度与环境质量校验共享平台，以支撑跨数百个下游领域的大规模联合 RL。模型为多模态“3T 级”MoE，总参数 2.8 万亿、激活参数 1040 亿、上下文 100 万 token，官方强调全项目编程、Blender/CAD、金融建模与长时 agent。标准版与 Highspeed 版已在网站/App、Kimi Work、Kimi Code 与 API 上线，官方称 Highspeed 保持智能水平、输出快 2–3 倍、价格翻倍；同时推出 Kimi Hosted Agents。独立评测方面，Artificial Analysis 智能指数列第四（55 分），Arena Code Arena WebDev 第八（1692 分），Cyber Index 得 64%。权重承诺 11 月 4 日发布，许可证等未明确。反应分化：既有对开放权重前沿模型的期待，也有对推理成本、部分交互任务表现、榜单呈现及未披露付费推广指控的质疑。",
-   "key_points": [
-    "Kimi K3.1 Pro 为多模态 3T 级 MoE，2.8 万亿总参数、1040 亿激活参数、100 万 token 上下文，是 K3 的后训练版本，官方称后训练算力大幅增加并优化了整条 RL 训练栈。",
-    "标准版与 Highspeed 版已上线网站/App、Kimi Work、Kimi Code 和 API，官方称 Highspeed 智能不变、速度 2–3 倍、价格翻倍；同时推出 Kimi Hosted Agents 托管执行环境。",
-    "独立评测：Artificial Analysis 智能指数第四（55 分），Arena Code Arena WebDev 第八（1692 分，较 K3 升 9 位、37 分），Cyber Index 64% 为公开可访问结果最高。"
-   ],
-   "topics": [
-    "post-training",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 59.3,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "http://z.ai/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://latent.space/p/ainews-death-of-params-zai-ceo-jie/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://latent.space/p/ainews-meta-muse-wonder-and-wonder/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/ArtificialAnlys/status/2113688083145314416",
-      "https://x.com/Kimi_Moonshot/status/2113680705855373791",
-      "https://www.kimi.ai/blog/kimi-k3-1-pro?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/i/lists/1585430245762441216?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://news.smol.ai/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.latent.space/p/2026?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://support.substack.com/hc/en-us/articles/8914938285204-How-do-I-subscribe-to-or-unsubscribe-from-a-section-on-Substack?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/Kimi_Moonshot/status/2113680701770068067?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/ZhihuFrontier/status/2113852464470643029?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/ZhihuFrontier/status/2113852480505434555?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/ArtificialAnlys/status/2113688083145314416?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/arena/status/2113687344532320326?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/ArtificialAnlys/status/2113765233462481276?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/simonw/status/2113718487529267593?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/maxbittker/status/2113705821552980323?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/kimmonismus/status/2113872950214438955?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/kimmonismus/status/2113537155897151976?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/kimmonismus/status/2113626676852920422?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/scaling01/status/2113650056280613187?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/scaling01/status/2113667904252031025?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/bigeagle_xd/status/2113680660737200423?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://kimi.com/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://kimi.ai/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/teortaxesTex/status/2113669863633797270?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/teortaxesTex/status/2113675184804913488?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/teortaxesTex/status/2113537994615624110?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/teortaxesTex/status/2113636490228244840?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/teortaxesTex/status/2113645208696922226?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/kimmonismus/status/2113710339132940572?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/kimmonismus/status/2113710425581732229?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/giffmana/status/2113754734205309177?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/TheZachMueller/status/2113564732150145460?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/teortaxesTex/status/2113575226130960766?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/eliebakouch/status/2113710706097021157?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/natolambert/status/2113696375552512202?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/scaling01/status/2113686174065705061?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://twitter.com/scaling01/status/2113686819988553952?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "2ca67924f9fca88f",
-   "url": "https://block.xyz/dessa",
-   "title": "Dessa: Conversation Model trained only on speech",
+   "id": "325a829b858da832",
+   "url": "https://github.com/slee-persis/GVS5H",
+   "title": "Five Qwen3.8-27B models match Fable 5 Using GVS5H Harness",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-23T19:09:54+00:00",
-   "summary_short": "Dessa：只用人类语音、从零训练的全双工语音模型，能实时自然对话",
-   "summary_long": "原文介绍 Dessa，称其为全球首个仅用人类语音对话数据、从零训练的全双工语音模型，训练中不使用任何文本，也不使用任何预训练模型。原文认为，现有语音 AI 需要先把语音转成文本，这会丢掉大量文本无法承载的信息，模型因此听不出说话人的情绪。Dessa 采用音频输入、音频输出，边听边说，能判断何时插话、何时用“yeah”“got it”回应；推理速度（inference）快于实时，可在 MacBook Pro M4 Max 或更高配置上本地运行。原文称它能原生感知和表达情绪、讽刺、笑声、叹气与语调变化，会在话说一半遇到好笑的事时笑出声，被要求大声时会提高音量，而这些行为未经专门教导。它学语言所用词量比大模型少数百倍。原文还列出待研究问题：与文本模型相比，它学习语言和事实的效率如何、学新语言的效率如何、能完成何种上下文学习。文中演示音频均为真人与其对话的现场录音，其中一段为它与第三方模型 GPT-Live-1 对话。",
+   "published_at": "2026-10-25T03:56:01+00:00",
+   "summary_short": "免训练自编排法让27B开源模型编程准确率大涨，逼近前沿闭源模型",
+   "summary_long": "原文提出名为 ledger-based zero-shot self-orchestration 的免训练方法：同一模型的新实例分解问题，并通过一个共享文件系统（存放计划、笔记与当前解）协同工作。作者在100道最新的 LiveCodeBench 难题上测试了十一个开放与闭源权重模型。结果显示，在固定后端上该方法最多带来25.6个百分点的提升，并提供两条达到前沿级准确率的路径：经编排的 Qwen3.8 Flash Next 达到93.0% pass@1，高于 Fable 5 的90.4%，成本仅为其9%；本地部署的开源权重 Qwen3.8-27B 从66.8%升至92.4%。原文同时指出提升并非普遍适用，部分模型表现不变甚至更差；对话记录分析将增益归因于问题分解与持久上下文。原文还给出复现所需的代码运行方式（需 uv 与相应模型 API key）、输出文件位置及许可说明：代码为 MIT，论文、图表与运行数据为 CC BY 4.0，LiveCodeBench 分支、题目与 LaTeX 模板沿用各自许可。",
    "key_points": [
-    "仅用人类对话语音从零训练，无文本、无预训练模型；原文称据其所知是全球首个可进行真实实时对话的此类模型",
-    "音频进音频出、全双工，可边听边说并自然插话、附和，推理快于实时，可在 MacBook Pro M4 Max 或更高配置本地运行",
-    "演示中展现对情绪、讽刺、笑声、叹气与语调的原生感知和表达，以及被要求大声就提高音量等未教行为；原文另提出语言与事实学习效率、新语言学习、上下文学习等研究问题"
+    "方法为免训练的 ledger-based zero-shot self-orchestration，靠共享文件系统中的计划、笔记与当前解实现多实例协同分解问题",
+    "在100道最新 LiveCodeBench 难题、十一个开放与闭源模型上测试，固定后端最多提升25.6个百分点",
+    "编排后的 Qwen3.8 Flash Next 达93.0% pass@1，超过 Fable 5 的90.4%且成本为9%；本地开源 Qwen3.8-27B 从66.8%升至92.4%"
    ],
    "topics": [
-    "reasoning",
-    "open-source"
+    "multi-agent",
+    "harness",
+    "context-engineering"
    ],
-   "category": "模型",
+   "category": "Agent 与开发",
    "categories": [
-    "模型"
+    "Agent 与开发",
+    "开源项目"
    ],
    "horizon": "long",
-   "score": 54.5,
+   "score": 57.2,
    "status": "review",
    "extra": {
-    "hn_points": 495,
-    "hn_comments": 186,
+    "hn_points": 180,
+    "hn_comments": 67,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://x.com/RagavanThurair"
+      "https://trendshift.io/repositories/225068?utm_source=trendshift-badge&utm_medium=badge&utm_campaign=badge-trendshift-225068",
+      "https://docs.astral.sh/uv/"
      ]
     },
     "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "5699208333bf1755",
-   "url": "https://simonwillison.net/2026/Oct/24/battledrones/",
-   "title": "battledrones v14: Compass Rose, a four player map",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-24T03:59:57+00:00",
-   "summary_short": "Battledrones v14 推出四人地图 Compass Rose，在线对战从双人扩展到四人",
-   "summary_long": "Battledrones 发布 v14 版本，代号 Compass Rose，这是该项目首张四人地图，此前地图仅支持两人对战。作者给出了他使用的初始提示词：新增一张四人混战地图，具备四向旋转对称，最多四个 AI 玩家，并兼容基于 WebSocket 的非音频多人模式，使最多四名真人玩家可加入，空余位置由 AI 补足。据原文，Claude Opus 5.5 完成了这张名为“Compass Rose”的新地图，并修改 WebSocket 多人网络代码，使该地图支持最多四名玩家，可通过分享链接或二维码加入。新加入的两支队伍使用紫色与绿色主题的机器人，与此前已有的蓝色、红色设计并列，这些颜色可在更新后的模型浏览器中预览。原文还提供一个回放链接，用于观看开启“Goliath Armada”变异器的四方 AI 对战，该模式下每方开局即有四个巨型 Goliath 机甲单位。原文未详述其他改动内容。",
-   "key_points": [
-    "v14 版本新增名为 Compass Rose 的四人地图，此前地图仅限两人对战。",
-    "作者给出的初始提示词要求四向旋转对称、最多四个 AI 玩家、兼容 WebSocket 非音频多人模式，空位由 AI 补足。",
-    "据原文，Claude Opus 5.5 添加了新地图并修改 WebSocket 网络代码，使该地图支持最多四名玩家，可通过分享链接或二维码加入。"
-   ],
-   "topics": [
-    "product",
-    "coding-agent"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 53.1,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "game-design",
-     "projects",
-     "claude"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/simonw/battledrones/releases/tag/v14",
-      "https://simonwillison.net/2026/Oct/20/battledrones/",
-      "https://simonw.github.io/battledrones/models.html",
-      "https://simonw.github.io/battledrones/v14/?replay=https://gist.githubusercontent.com/simonw/faa550a002b25a78f1c88a64217786c1/raw/4ff9b03de71d757cd33eb5d1a0e388155b6c20e5/compass.json",
-      "https://simonwillison.net/tags/game-design",
-      "https://simonwillison.net/tags/projects",
-      "https://simonwillison.net/tags/claude"
-     ]
-    },
     "summary_mode": "full"
    }
   }

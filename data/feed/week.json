@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-24T21:37:21+00:00",
+ "generated_at": "2026-10-25T21:48:55+00:00",
  "top": [
   {
    "id": "95eb6975ad245049",
@@ -1064,6 +1064,50 @@
    }
   },
   {
+   "id": "2325af3360e06716",
+   "url": "https://www.cerebras.ai/blog/how-we-deploy-trillion-parameter-frontier-models-on-cerebras",
+   "title": "Cerebras Deploys Trillion-Parameter AI Models",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-25T01:33:49+00:00",
+   "summary_short": "Cerebras 拆解如何用 59 片晶圆部署 3 万亿参数大模型",
+   "summary_long": "Cerebras 发文说明如何在晶圆级芯片上部署万亿参数级前沿模型。单片 WSE-3T 晶圆仅有 44 GB 片上内存，而万亿参数模型的权重本身就需要数 TB，因此必须把模型拆分到多片晶圆上。文章以开源模型 Kimi K3（约 3 万亿参数、69 个线性注意力层、24 个稠密层）为例，假设平均请求长度 256k、权重 4 bit 量化、KV cache 8 bit。按此计算，3T 参数共约 1.5 TB 原始载荷，除 93 层后每层约 16 GB。稠密层需为 KV cache 留出空间，故每片晶圆放一层，用 24 片；线性注意力层只需固定的每请求状态，每片可放两层，用 35 片，合计 59 片。晶圆之间以流水线方式连接，只传递激活值，经以太网 RDMA 每跳约 2 微秒；由于单层即可完全放在片内，模型权重基本不需移动。文章还描述了单请求如何像流水线一样逐级流过各晶圆，但关于如何同时服务大量并发请求的部分在原文中截断，未给出完整说明。",
+   "key_points": [
+    "单片 WSE-3T 片上内存 44 GB，而万亿参数模型权重需数 TB，因此按层切分到多片晶圆",
+    "以 Kimi K3（约 3T 参数、69 个线性注意力层 + 24 个稠密层）为例，在 4 bit 权重、8 bit KV cache、256k 请求长度假设下，每层约 16 GB，共需 59 片晶圆（35 + 24）",
+    "晶圆间以流水线方式连接，仅激活值跨片传输，走 RDMA over Ethernet 每跳约 2 微秒；权重通常留在片内不动"
+   ],
+   "topics": [
+    "inference-deployment",
+    "quantization",
+    "kv-cache"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 79.3,
+   "status": "published",
+   "extra": {
+    "hn_points": 341,
+    "hn_comments": 123,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.cerebras.ai/chip",
+      "https://www.kimi.com/en/blog/kimi-k3",
+      "https://modal.com/blog/trillion-tokens-trillion-parameters",
+      "https://huggingface.co/moonshotai/Kimi-K3",
+      "https://huggingface.co/moonshotai/Kimi-K3#2-model-summary",
+      "http://cloud.cerebras.ai"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "edef63b51aedc012",
    "url": "https://openai.com/index/building-chatgpt-ad-stack",
    "title": "How we built ChatGPT’s novel ad stack for user trust and relevance",
@@ -1287,6 +1331,45 @@
    }
   },
   {
+   "id": "1dc75a32fc6a65d3",
+   "url": "https://lynchlab.net/llm-skin-cancer",
+   "title": "A 10-year-old CNN outperforms frontier LLMs for skin cancer diagnosis",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-25T17:15:38+00:00",
+   "summary_short": "10年前CNN微调20分钟，皮肤癌6分类准确率62%，胜过两大前沿LLM的42%",
+   "summary_long": "原文作者从MILK10k（ISIC 2025年发布的公开数据集）随机抽取200个经组织病理确诊的皮肤病变，每例含临床照片与皮肤镜图像，用于对比两个前沿LLM（GPT-6 Astra、Claude Fable 5.1）与一个微调的Inception v3卷积网络。样本中100例不应让患者离院，100例可安全离院，且全部经活检，因此判读难度更高。LLM在默认设置下拿到两张图与同一提示，需从6种诊断中给出最可能项（或“不确定”）、置信度、次选与是否可无需治疗、活检或随访直接离院。CNN使用日常照片预训练的权重，在单张H100上以ISIC Archive的68,011张图像微调全部层约20分钟，测试病变及同一病变或患者的其他照片在训练前已剔除。结果CNN在6分类中答对125/200（62%），两个LLM为84与85（42%）。作者举例，一例耳部厚度不足0.8mm的浸润性黑色素瘤被两个LLM判为脂溢性角化病并称可离院，CNN判为黑色素瘤。该模型小到可在手机浏览器经WebGPU本地运行。",
+   "key_points": [
+    "200例经活检确诊病变的6分类诊断中，微调Inception v3正确125例（62%），GPT-6 Astra 84例、Claude Fable 5.1 85例（均42%）",
+    "文中举例：耳部不足0.8mm的浸润性黑色素瘤被两个LLM判为脂溢性角化病并称可离院，CNN判对；另一例脂溢性角化病三者全错，但都不会将其放离院",
+    "CNN仅在单张H100上用68,011张ISIC Archive图像微调约20分钟，测试病变及同病变或患者图像训练前已剔除，模型小到可在手机浏览器用WebGPU本地运行、无需上传数据"
+   ],
+   "topics": [
+    "eval"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测"
+   ],
+   "horizon": "long",
+   "score": 78.3,
+   "status": "published",
+   "extra": {
+    "hn_points": 312,
+    "hn_comments": 164,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://doi.org/10.34970/648456",
+      "https://www.isic-archive.com",
+      "https://d2gaqzonlm544h.cloudfront.net/skin-ai/data/llm-skin-cancer-test.zip"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "ca293d8533a3487d",
    "url": "https://huggingface.co/blog/allenai/fairstress",
    "title": "FairStress: A deeper evaluation of fairness in LLM decision-making",
@@ -1410,40 +1493,6 @@
      ]
     },
     "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "9b13d6a721a0c270",
-   "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
-   "title": "DeepSeek-v4.1-Flash-1017",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-17T08:21:25+00:00",
-   "summary_short": "DeepSeek-V4.1-Flash 小版本更新：多项基准提升，任务更快更省",
-   "summary_long": "DeepSeek-V4.1-Flash-1017 是 DeepSeek-V4.1-Flash 的小版本更新。原文称其在推理、编码、智能体任务与视觉基准上均有明显提升，同时缩短任务执行时间与输出长度，让用户更快、更低成本地完成任务，并在多个 agent harness 上推进性能—成本帕累托前沿。原文给出与该系列前版及 K3、GLM-5.3、GPT-5.6 Sol、Opus 5 的对比数据，例如 HLE 无工具 42.6（前版 36.8）、Terminal-Bench 4.0 42.3（31.2）、DeepSWE v1.1 77.0（74.2）、BabyVision 带工具 92.5（89.6）。该版本不含 Jinja 格式 chat template，encoding 文件夹提供自包含 Python 参考实现 encoding.py 及多轮对话、工具调用、思考模式等测试用例，另发布带 Python 绑定的 Rust 库 deepseek-recipe 用于请求转换与输出解析；本地推理需参考 inference 文件夹做权重转换，推荐 temperature 与 top_p 均为 1.0、上下文 1M tokens、max_tokens≥256K，权重以 MIT 许可发布。",
-   "key_points": [
-    "定位为 DeepSeek-V4.1-Flash 的小版本更新，原文称推理、编码、智能体与视觉基准均提升，并缩短执行时间与输出长度",
-    "基准对比覆盖 DS-V4.1-Flash-1017、前版 DS-V4.1-Flash 及 K3、GLM-5.3、GPT-5.6 Sol、Opus 5，Terminal-Bench 4.0 使用 Claude Code harness、DeepSWE v1.1 使用 Mini-SWE-V2 harness",
-    "交付方式变化：不含 Jinja chat template，改为 encoding.py 参考实现与 Rust 库 deepseek-recipe；推荐 temperature 1.0、top_p 1.0、上下文 1M tokens、max_tokens≥256K，MIT 许可"
-   ],
-   "topics": [
-    "post-training",
-    "coding-agent",
-    "tool-use"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 77.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 591,
-    "hn_comments": 526,
-    "content_source": "reader",
     "summary_mode": "full"
    }
   },
