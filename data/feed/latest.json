@@ -1,173 +1,227 @@
 {
- "generated_at": "2026-10-25T21:48:55+00:00",
- "date": "2026-10-25",
- "run_id": "20261025-214747",
+ "generated_at": "2026-10-26T23:09:36+00:00",
+ "date": "2026-10-26",
+ "run_id": "20261026-230726",
  "top": [
   {
-   "id": "2325af3360e06716",
-   "url": "https://www.cerebras.ai/blog/how-we-deploy-trillion-parameter-frontier-models-on-cerebras",
-   "title": "Cerebras Deploys Trillion-Parameter AI Models",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-25T01:33:49+00:00",
-   "summary_short": "Cerebras 拆解如何用 59 片晶圆部署 3 万亿参数大模型",
-   "summary_long": "Cerebras 发文说明如何在晶圆级芯片上部署万亿参数级前沿模型。单片 WSE-3T 晶圆仅有 44 GB 片上内存，而万亿参数模型的权重本身就需要数 TB，因此必须把模型拆分到多片晶圆上。文章以开源模型 Kimi K3（约 3 万亿参数、69 个线性注意力层、24 个稠密层）为例，假设平均请求长度 256k、权重 4 bit 量化、KV cache 8 bit。按此计算，3T 参数共约 1.5 TB 原始载荷，除 93 层后每层约 16 GB。稠密层需为 KV cache 留出空间，故每片晶圆放一层，用 24 片；线性注意力层只需固定的每请求状态，每片可放两层，用 35 片，合计 59 片。晶圆之间以流水线方式连接，只传递激活值，经以太网 RDMA 每跳约 2 微秒；由于单层即可完全放在片内，模型权重基本不需移动。文章还描述了单请求如何像流水线一样逐级流过各晶圆，但关于如何同时服务大量并发请求的部分在原文中截断，未给出完整说明。",
+   "id": "1758535ac6be3e6b",
+   "url": "https://openai.com/index/introducing-gpt-6-1-terra",
+   "title": "Introducing GPT-6.1 Terra",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-26T00:00:00+00:00",
+   "summary_short": "GPT-6.1 Terra：电脑操作更快更准，API 价格降 50%",
+   "summary_long": "原文介绍 GPT-6.1 Terra，定位为快速高效的模型，结合细致的视觉推理、精确的电脑操作，以及更清晰自然的写作；它相对 GPT-5.6 Terra 有显著升级，适用于撰写提案、解读技术图纸、填表、剪辑视频等日常工作。其标准 API 价格比 GPT-5.6 Terra 和 GPT-6.1 Sol 低 50%，便于开发者自动化发票读取、录入等高频任务；在 ChatGPT Work 和 Codex 中，同等用量额度可完成比 GPT-5.6 Terra 更多的任务。基准方面，在 Agents' Last Exam 的中等推理投入下，它比 GPT-5.6 Terra 高 15 个百分点，成本约为后者三分之一；在最大投入下，token 效率为 Claude Opus 5.5 的三倍以上，每 token 价格为其四分之一，每任务成本约低 9 倍；速度比 GPT-6 Astra 与 GPT-6.1 Sol 快三倍以上。事实性上，内部错误诱导基准的低推理投入错误率从 53.6% 降至 16.7%。原文未署名发布方。",
    "key_points": [
-    "单片 WSE-3T 片上内存 44 GB，而万亿参数模型权重需数 TB，因此按层切分到多片晶圆",
-    "以 Kimi K3（约 3T 参数、69 个线性注意力层 + 24 个稠密层）为例，在 4 bit 权重、8 bit KV cache、256k 请求长度假设下，每层约 16 GB，共需 59 片晶圆（35 + 24）",
-    "晶圆间以流水线方式连接，仅激活值跨片传输，走 RDMA over Ethernet 每跳约 2 微秒；权重通常留在片内不动"
+    "标准 API 价格比 GPT-5.6 Terra 与 GPT-6.1 Sol 低 50%；在 ChatGPT Work 和 Codex 中，同样用量额度可完成更多任务",
+    "在 Agents' Last Exam 的中等推理投入下，比 GPT-5.6 Terra 高 15 个百分点，成本约为其三分之一；在最大投入下，token 效率为 Claude Opus 5.5 的三倍以上，每任务成本约低 9 倍，速度比 GPT-6 Astra 与 GPT-6.1 Sol 快三倍以上",
+    "事实性内部基准的低推理投入错误率从 53.6% 降至 16.7%，最大投入下降 18 个百分点至 4.3%；在 Terminal-Bench 4.0 最大投入下解出 50.3%，超过 GPT-5.6 Terra 公布的 21.5%，但最复杂编码任务仍建议用 GPT-6.1 Sol 与 GPT-6 Astra"
    ],
    "topics": [
-    "inference-deployment",
-    "quantization",
-    "kv-cache"
+    "reasoning",
+    "hallucination"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
-   "horizon": "long",
-   "score": 79.3,
+   "horizon": "short",
+   "score": 79.9,
    "status": "published",
    "extra": {
-    "hn_points": 341,
-    "hn_comments": 123,
+    "content_source": "direct",
+    "source_tags": [
+     "Product"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.cerebras.ai/chip",
-      "https://www.kimi.com/en/blog/kimi-k3",
-      "https://modal.com/blog/trillion-tokens-trillion-parameters",
-      "https://huggingface.co/moonshotai/Kimi-K3",
-      "https://huggingface.co/moonshotai/Kimi-K3#2-model-summary",
-      "http://cloud.cerebras.ai"
+      "https://deploymentsafety.openai.com/gpt-6-1-terra"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "1dc75a32fc6a65d3",
-   "url": "https://lynchlab.net/llm-skin-cancer",
-   "title": "A 10-year-old CNN outperforms frontier LLMs for skin cancer diagnosis",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-25T17:15:38+00:00",
-   "summary_short": "10年前CNN微调20分钟，皮肤癌6分类准确率62%，胜过两大前沿LLM的42%",
-   "summary_long": "原文作者从MILK10k（ISIC 2025年发布的公开数据集）随机抽取200个经组织病理确诊的皮肤病变，每例含临床照片与皮肤镜图像，用于对比两个前沿LLM（GPT-6 Astra、Claude Fable 5.1）与一个微调的Inception v3卷积网络。样本中100例不应让患者离院，100例可安全离院，且全部经活检，因此判读难度更高。LLM在默认设置下拿到两张图与同一提示，需从6种诊断中给出最可能项（或“不确定”）、置信度、次选与是否可无需治疗、活检或随访直接离院。CNN使用日常照片预训练的权重，在单张H100上以ISIC Archive的68,011张图像微调全部层约20分钟，测试病变及同一病变或患者的其他照片在训练前已剔除。结果CNN在6分类中答对125/200（62%），两个LLM为84与85（42%）。作者举例，一例耳部厚度不足0.8mm的浸润性黑色素瘤被两个LLM判为脂溢性角化病并称可离院，CNN判为黑色素瘤。该模型小到可在手机浏览器经WebGPU本地运行。",
+   "id": "64d59b55a8fb8666",
+   "url": "https://openai.com/index/chatgpt-expanding-world-of-work",
+   "title": "ChatGPT’s expanding world of work",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-26T10:00:00+00:00",
+   "summary_short": "OpenAI 公开 ChatGPT 工作用途数据集，覆盖 165 类工作活动与近百个国家",
+   "summary_long": "OpenAI Economic Research 发布 OpenAI Signals 数据，揭示消费者如何在工作中使用 ChatGPT。数据覆盖近 100 个国家、165 类工作活动，时间跨度从 2025 年第一季度到 2026 年第三季度，按季度呈现。这些活动类别称为 Intermediate Work Activities（IWAs），基于 O*NET 标准化框架，将职业特定任务归入跨职业共享的工作活动类别；采用统一框架有助于研究者把 ChatGPT 使用情况与其他职业和就业数据比较。原文指出，各国在工作用途上差异很大；把数据与 IWAs 关联后发现，工作相关使用变得不那么集中于最常见的活动，即各国随时间趋于专业化，且专业化方向不同，这可能反映各国工作类型差异或 AI 工具获取程度不同。在每季度均可观测的 74 个国家中，十大最常见活动在 2026 年第三季度平均占各国已分类工作消息的 51.1%，低于 2025 年第一季度的 56.0%。数据覆盖个人 ChatGPT 套餐的工作相关消息，不含企业消息或 Codex 使用；为保护隐私，研究者不阅读个人对话，由自动化系统在识别信息后对消息分类。",
    "key_points": [
-    "200例经活检确诊病变的6分类诊断中，微调Inception v3正确125例（62%），GPT-6 Astra 84例、Claude Fable 5.1 85例（均42%）",
-    "文中举例：耳部不足0.8mm的浸润性黑色素瘤被两个LLM判为脂溢性角化病并称可离院，CNN判对；另一例脂溢性角化病三者全错，但都不会将其放离院",
-    "CNN仅在单张H100上用68,011张ISIC Archive图像微调约20分钟，测试病变及同病变或患者图像训练前已剔除，模型小到可在手机浏览器用WebGPU本地运行、无需上传数据"
+    "数据覆盖近 100 个国家、165 类工作活动，按季度呈现，时间从 2025 年第一季度到 2026 年第三季度。",
+    "活动分类基于 O*NET 的 Intermediate Work Activities 框架，便于与其他职业和就业数据比较。",
+    "74 国中十大最常见活动占比从 2025 年第一季度的 56.0% 降至 2026 年第三季度的 51.1%，显示使用趋于分散、各国专业化方向不同。"
    ],
    "topics": [
-    "eval"
+    "ai-adoption",
+    "labor-market",
+    "usage-data"
    ],
-   "category": "评测",
+   "category": "行业动态",
    "categories": [
-    "评测"
+    "行业动态"
    ],
-   "horizon": "long",
-   "score": 78.3,
+   "horizon": "short",
+   "score": 77.1,
    "status": "published",
    "extra": {
-    "hn_points": 312,
-    "hn_comments": 164,
+    "content_source": "direct",
+    "source_tags": [
+     "Research"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://doi.org/10.34970/648456",
-      "https://www.isic-archive.com",
-      "https://d2gaqzonlm544h.cloudfront.net/skin-ai/data/llm-skin-cancer-test.zip"
+      "https://openai.com/signals/data-download/"
      ]
     },
-    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "d7b6b5fce56b21ea",
+   "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+   "title": "Anthropic S-1",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-26T13:04:50+00:00",
+   "summary_short": "Anthropic向SEC提交S-1注册声明，拟公开发行证券",
+   "summary_long": "原文是Anthropic, PBC于2026年10月26日向美国证券交易委员会（SEC）提交的S-1注册声明封面页。文件显示，公司注册地为特拉华州，主要行政办公地址位于加州旧金山Market Street，电话为(415)326-6303，标准行业分类代码为7372；首席执行官兼联合创始人为Dario Amodei，总裁兼联合创始人为Daniela Amodei。文件将公司勾选为非加速申报人（non-accelerated filer），并注明拟公开发售将在注册声明生效后尽快开始。封面页还列出法律顾问Wilson Sonsini Goodrich & Rosati, P.C.与Freshfields US LLP，以及双方的服务代理人联系人。原文仅限于封面页及一张封面图片，并声明初步招股说明书信息尚不完整、可能变更，在注册声明生效前不得出售相关证券。发行规模、估值、财务数据、募资用途等，原文均未详述。",
+   "key_points": [
+    "Anthropic, PBC于2026年10月26日向SEC提交S-1注册声明，注册号为333-（编号未完整显示）",
+    "注册地为特拉华州，总部位于加州旧金山；Dario Amodei任CEO兼联合创始人，Daniela Amodei任总裁兼联合创始人",
+    "文件自列为非加速申报人，并称公开发售将在注册声明生效后尽快进行"
+   ],
+   "topics": [
+    "product"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 75.6,
+   "status": "published",
+   "extra": {
+    "hn_points": 1416,
+    "hn_comments": 1383,
+    "content_source": "reader",
     "summary_mode": "full"
    }
   }
  ],
  "items": [
   {
-   "id": "2325af3360e06716",
-   "url": "https://www.cerebras.ai/blog/how-we-deploy-trillion-parameter-frontier-models-on-cerebras",
-   "title": "Cerebras Deploys Trillion-Parameter AI Models",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-25T01:33:49+00:00",
-   "summary_short": "Cerebras 拆解如何用 59 片晶圆部署 3 万亿参数大模型",
-   "summary_long": "Cerebras 发文说明如何在晶圆级芯片上部署万亿参数级前沿模型。单片 WSE-3T 晶圆仅有 44 GB 片上内存，而万亿参数模型的权重本身就需要数 TB，因此必须把模型拆分到多片晶圆上。文章以开源模型 Kimi K3（约 3 万亿参数、69 个线性注意力层、24 个稠密层）为例，假设平均请求长度 256k、权重 4 bit 量化、KV cache 8 bit。按此计算，3T 参数共约 1.5 TB 原始载荷，除 93 层后每层约 16 GB。稠密层需为 KV cache 留出空间，故每片晶圆放一层，用 24 片；线性注意力层只需固定的每请求状态，每片可放两层，用 35 片，合计 59 片。晶圆之间以流水线方式连接，只传递激活值，经以太网 RDMA 每跳约 2 微秒；由于单层即可完全放在片内，模型权重基本不需移动。文章还描述了单请求如何像流水线一样逐级流过各晶圆，但关于如何同时服务大量并发请求的部分在原文中截断，未给出完整说明。",
+   "id": "1758535ac6be3e6b",
+   "url": "https://openai.com/index/introducing-gpt-6-1-terra",
+   "title": "Introducing GPT-6.1 Terra",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-26T00:00:00+00:00",
+   "summary_short": "GPT-6.1 Terra：电脑操作更快更准，API 价格降 50%",
+   "summary_long": "原文介绍 GPT-6.1 Terra，定位为快速高效的模型，结合细致的视觉推理、精确的电脑操作，以及更清晰自然的写作；它相对 GPT-5.6 Terra 有显著升级，适用于撰写提案、解读技术图纸、填表、剪辑视频等日常工作。其标准 API 价格比 GPT-5.6 Terra 和 GPT-6.1 Sol 低 50%，便于开发者自动化发票读取、录入等高频任务；在 ChatGPT Work 和 Codex 中，同等用量额度可完成比 GPT-5.6 Terra 更多的任务。基准方面，在 Agents' Last Exam 的中等推理投入下，它比 GPT-5.6 Terra 高 15 个百分点，成本约为后者三分之一；在最大投入下，token 效率为 Claude Opus 5.5 的三倍以上，每 token 价格为其四分之一，每任务成本约低 9 倍；速度比 GPT-6 Astra 与 GPT-6.1 Sol 快三倍以上。事实性上，内部错误诱导基准的低推理投入错误率从 53.6% 降至 16.7%。原文未署名发布方。",
    "key_points": [
-    "单片 WSE-3T 片上内存 44 GB，而万亿参数模型权重需数 TB，因此按层切分到多片晶圆",
-    "以 Kimi K3（约 3T 参数、69 个线性注意力层 + 24 个稠密层）为例，在 4 bit 权重、8 bit KV cache、256k 请求长度假设下，每层约 16 GB，共需 59 片晶圆（35 + 24）",
-    "晶圆间以流水线方式连接，仅激活值跨片传输，走 RDMA over Ethernet 每跳约 2 微秒；权重通常留在片内不动"
+    "标准 API 价格比 GPT-5.6 Terra 与 GPT-6.1 Sol 低 50%；在 ChatGPT Work 和 Codex 中，同样用量额度可完成更多任务",
+    "在 Agents' Last Exam 的中等推理投入下，比 GPT-5.6 Terra 高 15 个百分点，成本约为其三分之一；在最大投入下，token 效率为 Claude Opus 5.5 的三倍以上，每任务成本约低 9 倍，速度比 GPT-6 Astra 与 GPT-6.1 Sol 快三倍以上",
+    "事实性内部基准的低推理投入错误率从 53.6% 降至 16.7%，最大投入下降 18 个百分点至 4.3%；在 Terminal-Bench 4.0 最大投入下解出 50.3%，超过 GPT-5.6 Terra 公布的 21.5%，但最复杂编码任务仍建议用 GPT-6.1 Sol 与 GPT-6 Astra"
    ],
    "topics": [
-    "inference-deployment",
-    "quantization",
-    "kv-cache"
+    "reasoning",
+    "hallucination"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
-   "horizon": "long",
-   "score": 79.3,
+   "horizon": "short",
+   "score": 79.9,
    "status": "published",
    "extra": {
-    "hn_points": 341,
-    "hn_comments": 123,
+    "content_source": "direct",
+    "source_tags": [
+     "Product"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.cerebras.ai/chip",
-      "https://www.kimi.com/en/blog/kimi-k3",
-      "https://modal.com/blog/trillion-tokens-trillion-parameters",
-      "https://huggingface.co/moonshotai/Kimi-K3",
-      "https://huggingface.co/moonshotai/Kimi-K3#2-model-summary",
-      "http://cloud.cerebras.ai"
+      "https://deploymentsafety.openai.com/gpt-6-1-terra"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "1dc75a32fc6a65d3",
-   "url": "https://lynchlab.net/llm-skin-cancer",
-   "title": "A 10-year-old CNN outperforms frontier LLMs for skin cancer diagnosis",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-25T17:15:38+00:00",
-   "summary_short": "10年前CNN微调20分钟，皮肤癌6分类准确率62%，胜过两大前沿LLM的42%",
-   "summary_long": "原文作者从MILK10k（ISIC 2025年发布的公开数据集）随机抽取200个经组织病理确诊的皮肤病变，每例含临床照片与皮肤镜图像，用于对比两个前沿LLM（GPT-6 Astra、Claude Fable 5.1）与一个微调的Inception v3卷积网络。样本中100例不应让患者离院，100例可安全离院，且全部经活检，因此判读难度更高。LLM在默认设置下拿到两张图与同一提示，需从6种诊断中给出最可能项（或“不确定”）、置信度、次选与是否可无需治疗、活检或随访直接离院。CNN使用日常照片预训练的权重，在单张H100上以ISIC Archive的68,011张图像微调全部层约20分钟，测试病变及同一病变或患者的其他照片在训练前已剔除。结果CNN在6分类中答对125/200（62%），两个LLM为84与85（42%）。作者举例，一例耳部厚度不足0.8mm的浸润性黑色素瘤被两个LLM判为脂溢性角化病并称可离院，CNN判为黑色素瘤。该模型小到可在手机浏览器经WebGPU本地运行。",
+   "id": "64d59b55a8fb8666",
+   "url": "https://openai.com/index/chatgpt-expanding-world-of-work",
+   "title": "ChatGPT’s expanding world of work",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-26T10:00:00+00:00",
+   "summary_short": "OpenAI 公开 ChatGPT 工作用途数据集，覆盖 165 类工作活动与近百个国家",
+   "summary_long": "OpenAI Economic Research 发布 OpenAI Signals 数据，揭示消费者如何在工作中使用 ChatGPT。数据覆盖近 100 个国家、165 类工作活动，时间跨度从 2025 年第一季度到 2026 年第三季度，按季度呈现。这些活动类别称为 Intermediate Work Activities（IWAs），基于 O*NET 标准化框架，将职业特定任务归入跨职业共享的工作活动类别；采用统一框架有助于研究者把 ChatGPT 使用情况与其他职业和就业数据比较。原文指出，各国在工作用途上差异很大；把数据与 IWAs 关联后发现，工作相关使用变得不那么集中于最常见的活动，即各国随时间趋于专业化，且专业化方向不同，这可能反映各国工作类型差异或 AI 工具获取程度不同。在每季度均可观测的 74 个国家中，十大最常见活动在 2026 年第三季度平均占各国已分类工作消息的 51.1%，低于 2025 年第一季度的 56.0%。数据覆盖个人 ChatGPT 套餐的工作相关消息，不含企业消息或 Codex 使用；为保护隐私，研究者不阅读个人对话，由自动化系统在识别信息后对消息分类。",
    "key_points": [
-    "200例经活检确诊病变的6分类诊断中，微调Inception v3正确125例（62%），GPT-6 Astra 84例、Claude Fable 5.1 85例（均42%）",
-    "文中举例：耳部不足0.8mm的浸润性黑色素瘤被两个LLM判为脂溢性角化病并称可离院，CNN判对；另一例脂溢性角化病三者全错，但都不会将其放离院",
-    "CNN仅在单张H100上用68,011张ISIC Archive图像微调约20分钟，测试病变及同病变或患者图像训练前已剔除，模型小到可在手机浏览器用WebGPU本地运行、无需上传数据"
+    "数据覆盖近 100 个国家、165 类工作活动，按季度呈现，时间从 2025 年第一季度到 2026 年第三季度。",
+    "活动分类基于 O*NET 的 Intermediate Work Activities 框架，便于与其他职业和就业数据比较。",
+    "74 国中十大最常见活动占比从 2025 年第一季度的 56.0% 降至 2026 年第三季度的 51.1%，显示使用趋于分散、各国专业化方向不同。"
    ],
    "topics": [
-    "eval"
+    "ai-adoption",
+    "labor-market",
+    "usage-data"
    ],
-   "category": "评测",
+   "category": "行业动态",
    "categories": [
-    "评测"
+    "行业动态"
    ],
-   "horizon": "long",
-   "score": 78.3,
+   "horizon": "short",
+   "score": 77.1,
    "status": "published",
    "extra": {
-    "hn_points": 312,
-    "hn_comments": 164,
+    "content_source": "direct",
+    "source_tags": [
+     "Research"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://doi.org/10.34970/648456",
-      "https://www.isic-archive.com",
-      "https://d2gaqzonlm544h.cloudfront.net/skin-ai/data/llm-skin-cancer-test.zip"
+      "https://openai.com/signals/data-download/"
      ]
     },
-    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "d7b6b5fce56b21ea",
+   "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
+   "title": "Anthropic S-1",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-26T13:04:50+00:00",
+   "summary_short": "Anthropic向SEC提交S-1注册声明，拟公开发行证券",
+   "summary_long": "原文是Anthropic, PBC于2026年10月26日向美国证券交易委员会（SEC）提交的S-1注册声明封面页。文件显示，公司注册地为特拉华州，主要行政办公地址位于加州旧金山Market Street，电话为(415)326-6303，标准行业分类代码为7372；首席执行官兼联合创始人为Dario Amodei，总裁兼联合创始人为Daniela Amodei。文件将公司勾选为非加速申报人（non-accelerated filer），并注明拟公开发售将在注册声明生效后尽快开始。封面页还列出法律顾问Wilson Sonsini Goodrich & Rosati, P.C.与Freshfields US LLP，以及双方的服务代理人联系人。原文仅限于封面页及一张封面图片，并声明初步招股说明书信息尚不完整、可能变更，在注册声明生效前不得出售相关证券。发行规模、估值、财务数据、募资用途等，原文均未详述。",
+   "key_points": [
+    "Anthropic, PBC于2026年10月26日向SEC提交S-1注册声明，注册号为333-（编号未完整显示）",
+    "注册地为特拉华州，总部位于加州旧金山；Dario Amodei任CEO兼联合创始人，Daniela Amodei任总裁兼联合创始人",
+    "文件自列为非加速申报人，并称公开发售将在注册声明生效后尽快进行"
+   ],
+   "topics": [
+    "product"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 75.6,
+   "status": "published",
+   "extra": {
+    "hn_points": 1416,
+    "hn_comments": 1383,
+    "content_source": "reader",
     "summary_mode": "full"
    }
   }
