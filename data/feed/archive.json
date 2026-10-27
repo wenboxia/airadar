@@ -1,6 +1,171 @@
 {
- "generated_at": "2026-10-26T23:09:36+00:00",
+ "generated_at": "2026-10-27T22:59:06+00:00",
  "items": [
+  {
+   "id": "db98bf59a6c7e420",
+   "url": "https://huggingface.co/blog/LiquidAI/lfm3",
+   "title": "Build specialized multimodal models with LFM3",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-27T17:16:52+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "post-training",
+    "multimodal"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 84.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://huggingface.co/collections/LiquidAI/lfm3",
+      "https://cdn-uploads.huggingface.co/production/uploads/644249b08443bce4c9890a0f/iZQBqXVZfrcUNCklF4eAs.png",
+      "https://huggingface.co/LiquidAI/LFM2.5-8B-A1B",
+      "https://cdn-uploads.huggingface.co/production/uploads/644249b08443bce4c9890a0f/6RfJINOKr6Ay2kHCPR-mz.png",
+      "https://huggingface.co/LiquidAI/LFM3-1.7B",
+      "https://huggingface.co/LiquidAI/LFM3-VL-2B",
+      "https://huggingface.co/LiquidAI/LFM3-Audio-2B",
+      "https://huggingface.co/LiquidAI/LFM3-Omni-2B",
+      "https://huggingface.co/LiquidAI/d1-2B",
+      "https://huggingface.co/LiquidAI/d1-omni-2B",
+      "https://docs.liquid.ai/examples/agent-harnesses",
+      "https://huggingface.co/LiquidAI/d1-3B",
+      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_sft_with_trl.ipynb",
+      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_dpo_with_trl.ipynb",
+      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_grpo_with_trl.ipynb",
+      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_cpt_with_trl.ipynb",
+      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_vl_sft_with_trl.ipynb",
+      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_vl_grpo_with_trl.ipynb",
+      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_audio_sft_with_transformers.ipynb",
+      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_audio_tts_sft_with_transformers.ipynb",
+      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_omni_sft_with_transformers.ipynb",
+      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_omni_vqa_sft_with_transformers.ipynb",
+      "https://www.youtube.com/watch?v=ZARw2VY6Dlk",
+      "https://huggingface.co/LiquidAI/LFM3-1.7B-Base",
+      "https://github.com/Liquid4All/cookbook/tree/main/finetuning/notebooks"
+     ]
+    }
+   }
+  },
+  {
+   "id": "34370e88c88d0cd4",
+   "url": "https://huggingface.co/blog/allenai/novelty-bench",
+   "title": "Can we trust LLMs to judge whether a research idea is novel?",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-27T16:12:42+00:00",
+   "summary_short": "Ai2 发布基准测试 LLM 新颖性评判：微小改动即致结论大变",
+   "summary_long": "Ai2 发布研究《Old Ideas, Novel Problems》，考察大语言模型评估科研想法新颖性的可靠性，并公开测试“新颖性评判器”的基准、数据与代码，以及可自动构建新评测集的流水线。原文称，AI 系统除生成想法外还需判断其是否真正新颖，这一任务常交给另一个 LLM；此类评判器没有标准构建方式，模型、提示词、评估格式、推理预算乃至文献检索的选择都会实质影响结论，且往往只在人类论文而非其真正要评估的 AI 生成想法上验证。基准从 ICLR 2026 评审中明确讨论原创性的段落取材：高新颖性池 154 条来自所在领域评分前 10% 的录用论文，评审肯定新颖性且无人质疑；低新颖性池 145 条来自后 10% 的被拒论文，评审提出原创性疑虑且无人肯定。测试六个模型发现，仅改动提示词中的几个词，判断两个想法哪个更新颖的准确率变动可超 50 个百分点；检索与额外推理未稳定提升表现；两个专门构建的新颖性评估系统不如简单提示的 Claude Opus 4.6 基线。",
+   "key_points": [
+    "六款模型（GPT-5.1、GPT-5.2、GPT-5.4、Claude Sonnet 4.5、Claude Opus 4.5、Claude Opus 4.6）在评估设置的细微变化下，对同一批想法给出差异巨大的新颖性判断",
+    "仅改动提示词中的几个词，模型判断两个想法哪个更新颖的准确率变化超过 50 个百分点；检索与额外推理并未稳定改善判断",
+    "基准基于 ICLR 2026 同行评审原文而非录用结果构建，含 154 条高新颖性想法与 145 条低新颖性想法；两个专门构建的新颖性评估系统表现不如简单提示的 Claude Opus 4.6 基线"
+   ],
+   "topics": [
+    "eval",
+    "llm-as-judge",
+    "reasoning"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测"
+   ],
+   "horizon": "long",
+   "score": 79.2,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2610.02022"
+     ],
+     "links": [
+      "https://arxiv.org/abs/2610.02022",
+      "https://huggingface.co/datasets/allenai/novelty-judge-bench",
+      "https://github.com/allenai/novelty-eval",
+      "https://www.datocms-assets.com/64837/1793023853-novelty-bench-header.png",
+      "https://allenai.org/blog/asta-datavoyager",
+      "https://allenai.org/blog/autodiscovery",
+      "https://allenai.org/blog/theorizer",
+      "https://allenai.org/asta",
+      "https://www.datocms-assets.com/64837/1793023853-novelty-bench-prompt-wording-chart.png"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "5ef94984dce414f6",
+   "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/",
+   "title": "Genie 4: A new generation of world simulation",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-10-27T16:01:38+00:00",
+   "summary_short": "官网列表出现 Genie 4，仅一句描述，原文无实质内容",
+   "summary_long": "这篇原文实际抓到的是 DeepMind 官网的一组栏目导航与模型列表，并不是一篇介绍文章。与标题相关的全部信息只有两处：在“Specialized models”列表中，“Genie 4”的说明是“Generate and explore interactive worlds”（生成并探索交互式世界）；在“Breakthroughs”栏目下，同一句描述再次出现，链接指向 Genie 模型页面。列表中还有 Genie 3，它使用的是完全相同的描述，此外还有 SIMA 2（“在虚拟 3D 世界中与你一起游玩、推理和学习的智能体”）、Gemini、Veo、Lyria、Gemma、Gemini Robotics 等条目。页面其余部分是 Evals、Publications、Responsibility、Frontier safety，以及 AlphaFold、WeatherNext 等栏目链接和配图。原文没有给出 Genie 4 的技术细节、能力边界、发布时间、演示效果或任何结论性评价，也没有署名作者，因此无法判断它与 Genie 3 的具体差异，也无法确认这次发布包含哪些内容。以上为原文全部可用信息，其余内容原文未详述。",
+   "key_points": [
+    "原文实际上是官网导航和模型列表，涉及 Genie 4 的描述只有“Generate and explore interactive worlds”这一句",
+    "Genie 3 在列表中使用与 Genie 4 完全相同的描述，原文未说明两者的区别",
+    "原文未提供 Genie 4 的技术细节、发布时间、演示内容或作者署名"
+   ],
+   "topics": [
+    "world-model"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 81.9,
+   "status": "published",
+   "extra": {
+    "content_source": "reader",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "c61ee1a62651ca79",
+   "url": "https://oioannou.com/blog/ai-promised-less-work/",
+   "title": "AI promised less work. I've never worked more",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-27T11:08:14+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "coding-agent",
+    "social-impact"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 78.9,
+   "status": "published",
+   "extra": {
+    "hn_points": 610,
+    "hn_comments": 601,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://bold.org/"
+     ]
+    },
+    "content_source": "direct"
+   }
+  },
   {
    "id": "d7b6b5fce56b21ea",
    "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
