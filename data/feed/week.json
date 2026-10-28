@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-27T22:59:06+00:00",
+ "generated_at": "2026-10-28T23:16:32+00:00",
  "top": [
   {
    "id": "95eb6975ad245049",
@@ -65,52 +65,6 @@
       "https://huggingface.co/papers/2608.19741",
       "https://cdla.dev/permissive-2-0/",
       "https://github.com/microsoft/thinkingbox/discussions"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "4eb9f7080b11166e",
-   "url": "https://huggingface.co/blog/nvidia/cosmos3-h-dreams",
-   "title": "NVIDIA Cosmos3-H-Dreams: Bringing Clinical Surgery to Life Through Generative Simulation",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-20T18:17:47+00:00",
-   "summary_short": "NVIDIA 推出 Cosmos3-H-Dreams，可实时生成由器械动作驱动的临床胆囊切除手术画面",
-   "summary_long": "此前 Cosmos-H-Dreams 基于 Cosmos-Predict2.5，把交互式生成模拟用于 dVRK 桌面缝合；作为世界基础模型，它不显式建模场景几何、组织形变与物理交互，而是从同步视频与机器人运动学中直接学习视觉动态。此次的 Cosmos3-H-Dreams 把这一能力推进到临床手术：它从 CMR Surgical Versius 平台临床操作录制的视频与运动学数据中学习，原文称据其所知这是首个基于临床胆囊切除录像训练、支持实时运动学控制的实时生成式手术模拟器，由 Cosmos 3 驱动、经 NVIDIA 的流式推理库 FlashDreams 加速，可在单张 NVIDIA RTX PRO 6000 GPU 上交互运行。模型基于 160 亿参数、在 Open-H-Embodiment 上预训练的 Cosmos3-H-Embodied-Nano，用精选胆囊切除视频与运动学特化双向教师模型，并蒸馏为学生模型；动作空间为 28 维，含双臂位姿与夹爪、能量控制、摇杆轴与按键。原文强调体内组织牵拉、反光、遮挡与烟雾令误差易累积，视觉真实只是验证起点，生成画面还须服从控制指令。",
-   "key_points": [
-    "从 dVRK 桌面缝合扩展到体内胆囊切除场景：模型从临床视频和机器人运动学中学习视觉动态，而非显式建模几何、形变与物理交互",
-    "原文称据其所知为首个基于临床胆囊切除录像训练、支持实时运动学控制的实时生成式手术模拟器，由 Cosmos 3 驱动、FlashDreams 加速，单张 NVIDIA RTX PRO 6000 GPU 上交互运行",
-    "使用 28 维动作空间（双臂位姿与夹爪、能量控制、摇杆轴与按键），训练视频 832×480、动作对齐 10 Hz"
-   ],
-   "topics": [
-    "post-training",
-    "reasoning",
-    "product"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "产品与应用"
-   ],
-   "horizon": "long",
-   "score": 85.5,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://huggingface.co/blog/nvidia/cosmos-h-dreams",
-      "https://github.com/isaac-for-healthcare/cosmos3-h-dreams",
-      "https://huggingface.co/nvidia/Cosmos3-H-Embodied-Nano",
-      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Open-H-Embodiment",
-      "https://github.com/NVIDIA/flashdreams",
-      "https://github.com/NVIDIA-Medtech/Cosmos3-H-Embodied-Nano/blob/main/cosmos3_h_embodied/tutorial_teacher_training_and_self_forcing.md",
-      "https://huggingface.co/nvidia/Cosmos3-H-Dreams",
-      "https://github.com/NVIDIA-Medtech/Cosmos3-H-Embodied-Nano",
-      "https://github.com/nvidia/cosmos"
      ]
     },
     "summary_mode": "full"
@@ -228,48 +182,105 @@
    }
   },
   {
-   "id": "94e7f4f5c0e52bb7",
-   "url": "https://huggingface.co/blog/ibm-research/altk-evolve-bc",
-   "title": "ALTK-Evolve: How learned memory tops the τ²-bench leaderboard on customer service tasks without a frontier model",
-   "source": "Hugging Face Blog",
+   "id": "48e2274fdf2ba9fe",
+   "url": "https://openai.com/index/securing-our-frontier-model-training-environment",
+   "title": "Securing our frontier model training environment",
+   "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-10-20T15:19:48+00:00",
-   "summary_short": "不改模型权重，ALTK-Evolve 用 GPT-4.1 蒸馏行为准则，登顶 τ²-bench 零售榜",
-   "summary_long": "ALTK-Evolve 让智能体靠“学到的记忆”提升表现：用 GPT-4.1 分析智能体在训练任务上的尝试，把成功与失败蒸馏成简短的行为规则——比如如何验证客户身份、确认交易、处理退货——再把这些准则追加到系统提示中，用于后续对话。准则提取和执行智能体用的是同一个模型，既不需要更新权重，也不需要人工标注。实验在 Sierra 的 τ²-bench 客服基准上进行：每个任务配一个 LLM 模拟客户、一组领域工具和一份必须遵守的政策文档，只有最终数据库状态与预期一致才算解决，奖励是严格二元的。实验采用基准原版 ReAct 脚手架（THINK→ACT 两阶段），gpt-4.1 作智能体模型、gpt-5.5 作客户模拟模型，每题跑 4 次试验；唯一改动是在政策文档之后附加一段 markdown 格式的学习准则。结果在零售域达到 67.5% Pass^4，即在 67.5% 的任务上四次独立尝试全部成功，高于 2026 年 10 月 12 日排行榜快照中的所有零售条目。作者称此前已在编码智能体上演示过这一方法，此次转向客服场景。",
-   "key_points": [
-    "方法：用 GPT-4.1 从智能体的训练任务尝试中蒸馏出简短行为准则并追加到系统提示，提取与执行共用同一模型，无需权重更新或人工标注",
-    "结果：零售域 67.5% Pass^4，高于 2026 年 10 月 12 日排行榜快照中所有零售条目，所用的是较旧的非推理模型 GPT-4.1 与基准原版 ReAct 脚手架",
-    "基准：τ²-bench 每题含模拟客户、领域工具与政策文档，只有最终数据库状态匹配才算解决；实验用 gpt-4.1 作智能体、gpt-5.5 作客户模拟，每题 4 次试验"
-   ],
+   "published_at": "2026-10-23T10:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
    "topics": [
-    "memory",
-    "coding-agent",
-    "eval"
+    "cybersecurity"
    ],
-   "category": "Agent 与开发",
+   "category": "安全",
    "categories": [
-    "Agent 与开发",
-    "评测"
+    "安全"
    ],
    "horizon": "long",
-   "score": 83.4,
+   "score": 83.1,
    "status": "published",
    "extra": {
     "content_source": "direct",
+    "source_tags": [
+     "Security"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/AgentToolkit/altk-evolve",
-      "https://huggingface.co/blog/ibm-research/altk-evolve-sldd",
-      "https://github.com/sierra-research/tau2-bench",
-      "https://huggingface.co/blog/ibm-research/altk-evolve-hmm",
-      "https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/HtL2uTn98-xHkcTxKqkFY.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/MsqhICXsHtpJozVFZYEm7.png",
-      "https://github.com/sierra-research/tau2-bench/pull/542",
-      "https://github.com/sierra-research/tau2-bench/pull/551",
-      "https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/iOmv6o938CgNfFlULP-VV.png"
+      "https://alignment.openai.com/misalignment-reports/",
+      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/",
+      "https://github.com/kata-containers/kata-containers/security/advisories/GHSA-wwj6-vghv-5p64",
+      "https://github.com/kata-containers/kata-containers/pull/13615",
+      "https://github.com/kata-containers/kata-containers/pull/13587",
+      "https://github.com/google/gvisor/pull/13816",
+      "https://github.com/moby/profiles/pull/39",
+      "https://github.com/torvalds/linux/commit/fa091f46c3833fb22384f10eade2b4e1e1d0b278",
+      "https://github.com/torvalds/linux/commit/594d905195024b228c962627ae5ae7c17bd582a4",
+      "https://github.com/torvalds/linux/commit/992cc9f94ca924089a506ba9b327caa9af797529",
+      "https://spectreattack.com/"
+     ]
+    }
+   }
+  },
+  {
+   "id": "1360bd8eb5a8e67e",
+   "url": "https://www.anthropic.com/research/formal-verification",
+   "title": "LLMs are making formal software verification feasible at a much larger scale",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-22T22:54:43+00:00",
+   "summary_short": "用Claude在123个开源库的RISC-V汇编层完成大规模形式化验证证明",
+   "summary_long": "原文指出，多数软件充满缺陷，而AI如今能轻易发现并利用它们；即便是Linux内核这样经过充分测试、部署在数十亿设备上的软件，近期也披露了1000多个漏洞。形式化验证可通过数学证明保证代码不违反既定安全规则，但历来成本极高——例如seL4内核实现用了2人年，形式化验证却用了20人年，因此此前只用于航空电子等关键领域。作者与Theorem合作，使用Claude对123个真实开源库在RISC-V汇编代码层面证明安全属性：在单线程静态二进制、固定内存预算、运行Linux等假设下，对小于64MB的任意输入以及所有建模的OS响应与内存布局，程序总能正常退出，不触发内存安全错误或断言失败。据其所知，这是首次在汇编层用AI对生产软件开展大规模形式化验证。Claude在写证明过程中还发现了历经数万亿次测试仍未检出的缺陷。团队公开了部分证明及RISC-V与OS语义，供他人验证和复用。",
+   "key_points": [
+    "使用Claude为123个真实开源库在RISC-V汇编层证明安全属性，据作者所知是首次在汇编层用AI对生产软件做大规模形式化验证",
+    "证明的安全属性为：在单线程静态二进制、固定内存预算、Linux等假设下，程序对小于64MB的任意输入均正常退出，不触发内存安全错误或断言失败",
+    "Claude在写证明过程中发现了此前经数万亿次测试仍未检出的缺陷；部分证明与RISC-V、OS语义已公开发布以供验证复用"
+   ],
+   "topics": [
+    "coding-agent",
+    "reasoning",
+    "open-source"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 83.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 437,
+    "hn_comments": 280,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://hacks.mozilla.org/2026/05/behind-the-scenes-hardening-firefox/",
+      "https://www.anthropic.com/research/exploit-evals",
+      "https://theorem.dev/",
+      "https://opensource.googleblog.com/2016/12/announcing-oss-fuzz-continuous-fuzzing.html",
+      "https://lwn.net/Articles/1097401/",
+      "https://sel4.systems/Research/pdfs/comprehensive-formal-verification-os-microkernel.pdf",
+      "https://www.astree.ens.fr/papers/astree_airbus_sas2007.pdf",
+      "https://github.com/theorem-labs/oss-verify-proofs",
+      "https://github.com/theorem-labs/rocq-linux-process-semantics",
+      "https://theorem.dev/oss-verify/",
+      "https://github.com/theorem-labs/oss-verify/blob/main/.claude/skills/add-project/SKILL.md",
+      "https://en.wikipedia.org/wiki/PNG",
+      "https://www.rfc-editor.org/info/rfc2083/",
+      "https://github.com/google/oss-fuzz",
+      "https://www.cisa.gov/news-events/news/cisa-nsa-fbi-and-international-cybersecurity-authorities-publish-guide-case-memory-safe-roadmaps",
+      "https://www-cdn.anthropic.com/files/4zrzovbb/website/6867eadf760258fa8b42a504600cd3c036d16358.pdf",
+      "https://github.com/AFLplusplus/AFLplusplus/blob/stable/include/config.h#L314",
+      "https://www.rfc-editor.org/info/rfc1950/",
+      "https://leanprover-community.github.io/",
+      "https://leanprover-community.github.io/mathlib_stats.html",
+      "https://theorem.dev/blog/verified-software-stack/"
      ]
     },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   }
@@ -345,52 +356,6 @@
    }
   },
   {
-   "id": "4eb9f7080b11166e",
-   "url": "https://huggingface.co/blog/nvidia/cosmos3-h-dreams",
-   "title": "NVIDIA Cosmos3-H-Dreams: Bringing Clinical Surgery to Life Through Generative Simulation",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-20T18:17:47+00:00",
-   "summary_short": "NVIDIA 推出 Cosmos3-H-Dreams，可实时生成由器械动作驱动的临床胆囊切除手术画面",
-   "summary_long": "此前 Cosmos-H-Dreams 基于 Cosmos-Predict2.5，把交互式生成模拟用于 dVRK 桌面缝合；作为世界基础模型，它不显式建模场景几何、组织形变与物理交互，而是从同步视频与机器人运动学中直接学习视觉动态。此次的 Cosmos3-H-Dreams 把这一能力推进到临床手术：它从 CMR Surgical Versius 平台临床操作录制的视频与运动学数据中学习，原文称据其所知这是首个基于临床胆囊切除录像训练、支持实时运动学控制的实时生成式手术模拟器，由 Cosmos 3 驱动、经 NVIDIA 的流式推理库 FlashDreams 加速，可在单张 NVIDIA RTX PRO 6000 GPU 上交互运行。模型基于 160 亿参数、在 Open-H-Embodiment 上预训练的 Cosmos3-H-Embodied-Nano，用精选胆囊切除视频与运动学特化双向教师模型，并蒸馏为学生模型；动作空间为 28 维，含双臂位姿与夹爪、能量控制、摇杆轴与按键。原文强调体内组织牵拉、反光、遮挡与烟雾令误差易累积，视觉真实只是验证起点，生成画面还须服从控制指令。",
-   "key_points": [
-    "从 dVRK 桌面缝合扩展到体内胆囊切除场景：模型从临床视频和机器人运动学中学习视觉动态，而非显式建模几何、形变与物理交互",
-    "原文称据其所知为首个基于临床胆囊切除录像训练、支持实时运动学控制的实时生成式手术模拟器，由 Cosmos 3 驱动、FlashDreams 加速，单张 NVIDIA RTX PRO 6000 GPU 上交互运行",
-    "使用 28 维动作空间（双臂位姿与夹爪、能量控制、摇杆轴与按键），训练视频 832×480、动作对齐 10 Hz"
-   ],
-   "topics": [
-    "post-training",
-    "reasoning",
-    "product"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "产品与应用"
-   ],
-   "horizon": "long",
-   "score": 85.5,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://huggingface.co/blog/nvidia/cosmos-h-dreams",
-      "https://github.com/isaac-for-healthcare/cosmos3-h-dreams",
-      "https://huggingface.co/nvidia/Cosmos3-H-Embodied-Nano",
-      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-Open-H-Embodiment",
-      "https://github.com/NVIDIA/flashdreams",
-      "https://github.com/NVIDIA-Medtech/Cosmos3-H-Embodied-Nano/blob/main/cosmos3_h_embodied/tutorial_teacher_training_and_self_forcing.md",
-      "https://huggingface.co/nvidia/Cosmos3-H-Dreams",
-      "https://github.com/NVIDIA-Medtech/Cosmos3-H-Embodied-Nano",
-      "https://github.com/nvidia/cosmos"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "db98bf59a6c7e420",
    "url": "https://huggingface.co/blog/LiquidAI/lfm3",
    "title": "Build specialized multimodal models with LFM3",
@@ -496,52 +461,6 @@
       "https://huggingface.co/blog/Dharma-AI/specialization-beats-scale",
       "https://huggingface.co/blog/Dharma-AI/text-degeneration-a-production-failure-mode",
       "https://huggingface.co/Dharma-AI"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "94e7f4f5c0e52bb7",
-   "url": "https://huggingface.co/blog/ibm-research/altk-evolve-bc",
-   "title": "ALTK-Evolve: How learned memory tops the τ²-bench leaderboard on customer service tasks without a frontier model",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-20T15:19:48+00:00",
-   "summary_short": "不改模型权重，ALTK-Evolve 用 GPT-4.1 蒸馏行为准则，登顶 τ²-bench 零售榜",
-   "summary_long": "ALTK-Evolve 让智能体靠“学到的记忆”提升表现：用 GPT-4.1 分析智能体在训练任务上的尝试，把成功与失败蒸馏成简短的行为规则——比如如何验证客户身份、确认交易、处理退货——再把这些准则追加到系统提示中，用于后续对话。准则提取和执行智能体用的是同一个模型，既不需要更新权重，也不需要人工标注。实验在 Sierra 的 τ²-bench 客服基准上进行：每个任务配一个 LLM 模拟客户、一组领域工具和一份必须遵守的政策文档，只有最终数据库状态与预期一致才算解决，奖励是严格二元的。实验采用基准原版 ReAct 脚手架（THINK→ACT 两阶段），gpt-4.1 作智能体模型、gpt-5.5 作客户模拟模型，每题跑 4 次试验；唯一改动是在政策文档之后附加一段 markdown 格式的学习准则。结果在零售域达到 67.5% Pass^4，即在 67.5% 的任务上四次独立尝试全部成功，高于 2026 年 10 月 12 日排行榜快照中的所有零售条目。作者称此前已在编码智能体上演示过这一方法，此次转向客服场景。",
-   "key_points": [
-    "方法：用 GPT-4.1 从智能体的训练任务尝试中蒸馏出简短行为准则并追加到系统提示，提取与执行共用同一模型，无需权重更新或人工标注",
-    "结果：零售域 67.5% Pass^4，高于 2026 年 10 月 12 日排行榜快照中所有零售条目，所用的是较旧的非推理模型 GPT-4.1 与基准原版 ReAct 脚手架",
-    "基准：τ²-bench 每题含模拟客户、领域工具与政策文档，只有最终数据库状态匹配才算解决；实验用 gpt-4.1 作智能体、gpt-5.5 作客户模拟，每题 4 次试验"
-   ],
-   "topics": [
-    "memory",
-    "coding-agent",
-    "eval"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "评测"
-   ],
-   "horizon": "long",
-   "score": 83.4,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/AgentToolkit/altk-evolve",
-      "https://huggingface.co/blog/ibm-research/altk-evolve-sldd",
-      "https://github.com/sierra-research/tau2-bench",
-      "https://huggingface.co/blog/ibm-research/altk-evolve-hmm",
-      "https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/HtL2uTn98-xHkcTxKqkFY.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/MsqhICXsHtpJozVFZYEm7.png",
-      "https://github.com/sierra-research/tau2-bench/pull/542",
-      "https://github.com/sierra-research/tau2-bench/pull/551",
-      "https://cdn-uploads.huggingface.co/production/uploads/6435a1131860001f144239ea/iOmv6o938CgNfFlULP-VV.png"
      ]
     },
     "summary_mode": "full"
@@ -711,6 +630,79 @@
    }
   },
   {
+   "id": "85daa6a854746cd3",
+   "url": "https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/",
+   "title": "Octoverse: Commits, pushes, reach new highs in 2026 as developers build with agents",
+   "source": "GitHub Blog (AI)",
+   "tier": "S",
+   "published_at": "2026-10-28T16:07:40+00:00",
+   "summary_short": "GitHub Octoverse：过去12个月推送179亿次，AI智能体成日常开发主力",
+   "summary_long": "GitHub 的 Octoverse 年度回顾显示：过去 12 个月，开发者向 GitHub 推送代码 179 亿次，超过 2024 与 2025 两年之和；全部仓库（公开与私有）提交达 343 亿次，为两年前的三倍多；合并 PR 超 13 亿个，日均 350 万。今年新建仓库中，带 agent 配置文件的仓库平均提交量是无该配置新仓库的 8 倍；截至 9 月，超 40% 的 PR 由 agent 发起（3 月为 17%），61% 的 Copilot 用户使用不止一个模型。GitHub Actions 每秒运行 1440 个任务（日均 1.24 亿次），为去年三倍多；开发者合并 3000 万个 Dependabot PR。报告首次按行业披露公共仓库情况，采矿、建筑、医疗、农业相关仓库自 2022 年均增长数倍。原文还举了尼泊尔洪水信息项目 Gati、NASA JPL 航天器软件、开源电子阅读器固件等案例。",
+   "key_points": [
+    "过去 12 个月代码推送 179 亿次，超过 2024、2025 两年总和；总提交 343 亿次，合并 PR 超 13 亿个。",
+    "带 agent 配置的新仓库平均提交量是其他新仓库的 8 倍；9 月超 40% 的 PR 由 agent 发起，3 月仅 17%。",
+    "GitHub Actions 每秒运行 1440 个任务，合并 3000 万个 Dependabot PR；报告首次按行业统计公共仓库。"
+   ],
+   "topics": [
+    "coding-agent",
+    "open-source"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 82.2,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "News & insights",
+     "Octoverse"
+    ],
+    "outbound": {
+     "arxiv": [
+      "1706.03762",
+      "1906.11241"
+     ],
+     "links": [
+      "https://github.com/nirajbhusal/rasuwa-flood-bulletin",
+      "https://github.com/nirajbhusal/gati-alerts",
+      "https://github.com/nasa/spacewasm",
+      "https://github.com/crosspoint-reader/crosspoint-reader",
+      "https://github.com/kinlane",
+      "https://github.com/kim-em",
+      "https://github.com/andig",
+      "https://github.com/evcc-io/evcc",
+      "https://github.com/tracefinity/tracefinity",
+      "https://github.com/rendeirolab/wsidata",
+      "https://github.com/sbhattlab/PlayClass",
+      "https://github.com/waikato-ahuora-smart-energy-systems/OpenPinch",
+      "https://github.com/midt-bg/sigma",
+      "https://github.com/hughhowey/neo",
+      "https://github.com/google-deepmind/alphafold",
+      "https://github.com/tensorflow/tensor2tensor",
+      "https://arxiv.org/abs/1706.03762",
+      "https://github.com/dylanhmorris/sars-cov-2-stability",
+      "https://github.com/achael/eht-imaging",
+      "https://arxiv.org/abs/1906.11241",
+      "https://docs.github.com/pull-requests/how-tos/stacked-pull-requests?utm_source=octoverse-pr-stacks-docs&utm_medium=blog&utm_campaign=universe-2026",
+      "https://docs.github.com/copilot/concepts/models/auto-model-selection?utm_source=octoverse-auto-model-selection-docs&utm_medium=blog&utm_campaign=universe-2026",
+      "https://github.blog/changelog/2026-09-14-configure-cost-and-quality-in-copilot-auto-model-selection/",
+      "https://github.blog/ai-and-ml/github-copilot/project-hydrafusion-frontier-quality-via-multi-model-orchestration/",
+      "https://docs.github.com/copilot/concepts/models/copilot-fusion?utm_source=octoverse-fusion-docs&utm_medium=blog&utm_campaign=universe-2026",
+      "https://github.com/gem/oq-engine",
+      "https://github.com/opentermsarchive/engine",
+      "https://github.com/JuliusBrussee/caveman",
+      "https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/",
+      "https://github.blog"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "5ef94984dce414f6",
    "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/",
    "title": "Genie 4: A new generation of world simulation",
@@ -736,55 +728,6 @@
    "status": "published",
    "extra": {
     "content_source": "reader",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "6a01ce2d8f264031",
-   "url": "https://peec.ai/blog/publish-stats-get-cited-the-tactic-that-put-my-data-all-over-the-web",
-   "title": "Publish fake stats, get cited in LLMs",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-20T13:06:22+00:00",
-   "summary_short": "一天生成5万条假统计数据，7个月内获超1万次AI会话、330多个外链域名",
-   "summary_long": "作者Metehan Yesilyurt在约7个月前做了个实验：买下全新域名stateglobe.com，用GPT-4.1在一天内生成5万条统计数据页面，覆盖200个国家的SEO、内容营销、社交媒体、电商和网络技术数据，所有数字全为虚构，从未核实，成本约30美元；后来又加了1.5万篇列表文章，再花约20美元，总成本约50美元。他称网站上线以来带来超过1万次AI会话，超过330个引荐域名（包括Shopify、Bluehost、DHL）链接到该站，编造的数字还进入了一篇学术论文和一家银行的投资研究报告。该实验源于他对LLM、相关性工程与grounding的研究：当越来越多的团队用LLM写时效性强的内容时，模型需要看似可靠的数据填补知识空白，统计数据正是它们要找的。多数GEO建议只关注让品牌进入AI答案，而该实验关注答案之后人们如何使用输出。谷歌方面，网站上线后虽一周内几乎全站被索引，但随后两次谷歌更新令其可见度崩塌，索引页面曝光量在5到20次之间波动，ChatGPT却仍在引用。原文未详述学术论文与银行报告的具体情况。",
-   "key_points": [
-    "用GPT-4.1一天生成5万条虚构统计数据页面，总成本约50美元，作者称获超1万次AI会话、330多个引荐域名，数字还进入学术论文和银行投资研究",
-    "作者认为LLM写时效内容时需看似可靠的数据填补知识空白，统计数据正契合这一需求，而多数GEO建议只关注进入AI答案这一步",
-    "谷歌在两次更新后基本埋没该站，索引页面曝光量仅5到20次，但ChatGPT仍在引用，原文未详述后续处置"
-   ],
-   "topics": [
-    "hallucination",
-    "misinformation",
-    "rag"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "long",
-   "score": 81.6,
-   "status": "published",
-   "extra": {
-    "hn_points": 302,
-    "hn_comments": 175,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.seerinteractive.com/insights/ai-optimization-test-footers-are-back-like-2003",
-      "https://www.growth-memo.com/p/growth-intelligence-brief-15",
-      "http://stateglobe.com/",
-      "https://metehan.ai/blog/i-found-it-in-the-code-science-proved-it-in-the-lab-the-recency-bias-thats-reshaping-ai-search/",
-      "https://docs.peec.ai/intro-to-peec-ai",
-      "https://peec.ai/comparison/peec-ai-vs-ahrefs-brand-radar",
-      "https://peec.ai/comparison/peec-vs-profound",
-      "https://peec.ai/comparison/peec-vs-semrush",
-      "https://x.com/peec_ai",
-      "https://www.linkedin.com/company/peec-ai/",
-      "https://www.youtube.com/@Peec-AI"
-     ]
-    },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -834,51 +777,78 @@
    }
   },
   {
-   "id": "79e072c528493212",
-   "url": "https://github.com/deepseek-ai/DeepInfer",
-   "title": "DeepInfer: High-performance inference framework for DeepSeek models",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-20T09:08:54+00:00",
-   "summary_short": "DeepSeek开源推理框架DeepInfer，支持V4.1-Flash与内核、调度优化",
-   "summary_long": "DeepInfer 是支撑 DeepSeek 大规模生产服务的高性能推理框架，本次开源发布提供离线推理，并包含规模化服务所需的核心功能，当前支持的模型为 DeepSeek-V4.1-Flash。功能方面，框架包含优化内核（FlashMLA、DeepGEMM、DeepEP、TileKernels、DeepSelect 及自定义 TileLang 内核）、模型与采样器运行时、并行策略（Attention DP、均衡 CP、MoE EP + EPLB）、DSpark 与置信度调度验证（用草稿 token 加速解码）、解码器 SWA 有界重放（只重放有限后缀以减少 prefill 计算）、异步调度（零开销批调度器，默认开启）、批量不变推理（使模型结果不随批组成变化）、确定性采样以及结构化输出（约束为正则、JSON schema 或 EBNF 语法）。硬件支持 NVIDIA SM100 GPU 与华为昇腾 950 NPU。原文明确指出，要构成完整推理服务还需 KV cache 系统、VE/Prefill/Decode 分离以及数据并行副本间的负载均衡，这些未包含在本版本中。项目采用 Apache License 2.0，构建需 Linux、GCC 13.0 及以上、Python 3.12 等环境，并提供离线推理示例与性能、评测基准脚本。",
+   "id": "7ae8eb20550eee76",
+   "url": "https://huggingface.co/blog/nvidia/nemotron-transcribe-granary",
+   "title": "NVIDIA Nemotron 3.5 Transcribe and Granary v2: Intelligent Multilingual Transcription You Can Prompt and Adapt",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-28T14:58:17+00:00",
+   "summary_short": "NVIDIA 开源 Nemotron 3.5 Transcribe：一个模型同时完成语音转写、说话人分离、翻译和音频问答",
+   "summary_long": "原文介绍，NVIDIA Nemotron 3.5 Transcribe 是一个开放权重、可用自然语言提示的语音模型，已上线 Hugging Face 与 ModelScope。它把转写、说话人分离、翻译和音频问答整合进同一个 checkpoint：可转写 40 种语言，其中 31 种可与英语互译，13 种语言支持说话人标注；可处理最长一小时的录音，最多标注 8 位说话人，并支持词级时间戳。原文称，它在 Hugging Face Open ASR 英文榜上位列开放权重模型第一，并位于 Artificial Analysis 的准确率—活跃参数前沿；在 David AI 的 21 语言说话人分离榜上错误率最低，在 VoiceArena 的 14 系统比较中排名第一。配套发布的还有 Granary v2 多语言数据与可复用数据整理流程，以及 NeMo Speech 微调工具；原文给出的医疗案例中，微调使留出说话人上的词错误率相比最佳提示相对下降 45.8%。量化版本即将推出，可在 RTX Spark、DGX Spark、Jetson AGX Thor 本地运行，或在 Blackwell 数据中心 GPU 上扩展。",
    "key_points": [
-    "开源版本支持 DeepSeek-V4.1-Flash，提供离线推理；首次运行会自动下载 deepseek-ai/DeepSeek-V4.1-Flash-1017，也可以通过 DEEPINFER_HF_MODEL_DIR 指定本地路径",
-    "集成 FlashMLA、DeepGEMM、DeepEP、TileKernels、DeepSelect 与自定义 TileLang 内核，并行方案包括 Attention DP、均衡 CP、MoE EP + EPLB",
-    "提供 DSpark 与置信度调度验证、解码器 SWA 有界重放、异步调度、批量不变推理、确定性采样、结构化输出等特性，各自配有对应的环境变量开关"
+    "单个 checkpoint 集成转写（40 语言）、说话人分离（13 语言、最多 8 人）、31 种语言与英语互译及音频问答，支持最长一小时录音与词级时间戳",
+    "原文称其在 Hugging Face Open ASR 英文榜开放权重模型中排名第一，在 David AI 21 语言说话人分离榜错误率最低，在 VoiceArena 14 系统比较中排名第一",
+    "配套开放 Granary v2 多语言数据与可复用数据整理流程、NeMo Speech 微调工具，医疗案例微调使词错误率相对最佳提示下降 45.8%"
    ],
    "topics": [
+    "open-source",
     "post-training",
-    "reasoning",
-    "open-source"
+    "eval"
    ],
    "category": "模型",
    "categories": [
-    "模型",
-    "Agent 与开发",
-    "开源项目"
+    "模型"
    ],
-   "horizon": "long",
+   "horizon": "short",
    "score": 80.7,
    "status": "published",
    "extra": {
-    "hn_points": 2056,
-    "hn_comments": 805,
+    "content_source": "direct",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/deepseek-ai/FlashMLA",
-      "https://github.com/deepseek-ai/DeepGEMM",
-      "https://github.com/deepseek-ai/DeepEP",
-      "https://github.com/deepseek-ai/TileKernels",
-      "https://github.com/deepseek-ai/DeepSelect",
-      "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
-      "https://github.com/vllm-project/vllm",
-      "https://github.com/sgl-project/sglang",
-      "https://github.com/NVIDIA/TensorRT-LLM"
+      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B",
+      "https://modelscope.ai/collections/nv-community/Nemotron-35-Transcribe",
+      "https://huggingface.co/spaces/hf-audio/open_asr_leaderboard",
+      "https://artificialanalysis.ai/speech-to-text/non-streaming?error-rate=word-error-rate-vs-active-size",
+      "https://research.withdavid.ai/blog/dai-asr-i18n#leaderboard",
+      "https://voicearena.com/diarization-bench/methodology",
+      "https://huggingface.co/datasets/nvidia/Granary-v2",
+      "https://modelscope.ai/datasets/nv-community/Granary-v2",
+      "https://github.com/NVIDIA-NeMo/Speech/blob/main/tutorials/speechlm2/finetuning/README.md",
+      "https://github.com/NVIDIA-NeMo/Speech/blob/main/examples/speechlm2/finetuning/docs/medical-asr-synthetic-data.md",
+      "https://www.agora.io/en/blog/how-live-teaching-can-become-a-lasting-learning-resource/",
+      "https://cdn-uploads.huggingface.co/production/uploads/68127936de624fb6f57d9989/vGIg17AxweCAnacvnPOet.png",
+      "https://artificialanalysis.ai/speech-to-text/non-streaming",
+      "https://cdn-uploads.huggingface.co/production/uploads/68127936de624fb6f57d9989/a7N1ycYypBeM7WKuUphE7.png",
+      "https://huggingface.co/nvidia/Nemotron-3-Diarization",
+      "https://cdn-uploads.huggingface.co/production/uploads/68127936de624fb6f57d9989/zwwsN64zfjYDvTOhQapp5.png",
+      "https://voicearena.com/diarization-bench",
+      "https://cdn-uploads.huggingface.co/production/uploads/68127936de624fb6f57d9989/kU1uIXD-hl4ikaalIYFfI.png",
+      "https://voiceofindia.ai",
+      "https://github.com/NVIDIA-NeMo/Speech/blob/main/docs/source/speechlm2/vllm_serving.rst",
+      "https://github.com/NVIDIA/NeMo-Speech.cpp",
+      "https://huggingface.co/collections/nvidia/nemotron-speech",
+      "https://modelscope.ai/collections/nv-community/Nemotron-Speech",
+      "https://github.com/NVIDIA-NeMo/Curator",
+      "https://huggingface.co/datasets/nvidia/Granary",
+      "https://cdn-uploads.huggingface.co/production/uploads/68127936de624fb6f57d9989/yORas7atvTqY3x-4BGaCb.png",
+      "https://github.com/NVIDIA-NeMo/Curator/tree/main/tutorials/audio/granary_v2",
+      "https://github.com/ai-dynamo/dynamo",
+      "https://huggingface.co/datasets/ekacare/eka-medical-asr-evaluation-dataset",
+      "https://cdn-uploads.huggingface.co/production/uploads/68127936de624fb6f57d9989/Dq54q2P9bYJwWZ7prznAT.png",
+      "https://github.com/eka-care/KARMA-OpenMedEvalKit",
+      "https://github.com/NVIDIA-NeMo/Speech/blob/main/.claude/skills/finetune-speech-llm/SKILL.md",
+      "https://github.com/modelscope/ms-swift",
+      "https://huggingface.co/spaces/nvidia/nemotron-transcribe",
+      "https://modelscope.ai/studios/nv-community/Nemotron-3.5-Transcribe",
+      "https://sgl-project.github.io/sglang-omni/cookbook/nemotron_transcribe.html",
+      "https://www.baseten.co/library/nvidia-nemotron-35-transcribe/",
+      "https://deepinfra.com/nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B",
+      "https://huggingface.co/datasets/nvidia/Granary-HiFi",
+      "https://modelscope.ai/datasets/nv-community/Granary-HiFi"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -1284,82 +1254,6 @@
    }
   },
   {
-   "id": "3eb18e5ff7f2a0ef",
-   "url": "https://huggingface.co/blog/mps-pytorch-2-15",
-   "title": "MPS in PyTorch 2.15",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-20T00:00:00+00:00",
-   "summary_short": "PyTorch 2.15 为 Mac MPS 带来 FP8，MoE 解码快 5–6.5 倍",
-   "summary_long": "原文介绍，PyTorch 2.15 为 MPS 后端带来多项改进。作者表示，其目标是让 Mac 成为运行和训练 PyTorch 模型的一流平台；2026 年初在小模型上跑 MPS 仍需绕开不支持的算子、性能突然下降和内存异常增长，因此他们用 Hugging Face Hub 上的真实语言、图像、视频模型定位不足，并在上游修复，越来越多地用专用 Metal kernel 替代 MPSGraph。此次更新包括：FP8 支持 MPS，float8_e4m3fn 只需 BF16 一半空间，并支持 scaled matmul；MoE 模型解码比 2.14 快 5–6.5 倍（M3 Ultra 上 Qwen3.6-35B-A3B 从 9.4 升至 61.3 tokens/s）；单行线性层改用专用矩阵向量 kernel，词表 softmax 约快 8 倍；复数 LU、三角求解、小矩阵求逆、QR 分解更快；Wan2.2 视频 VAE 解码峰值内存从 270 GiB 降至约 8 GiB；新增公开 MPS streams 与更可靠的事件计时。使用要求为 macOS 15 及以上、Python 3.11 及以上。",
-   "key_points": [
-    "FP8 支持 MPS：float8_e4m3fn 占 BF16 一半内存，F.scaled_mm 直接在 GPU 上做缩放矩阵乘",
-    "MoE 解码比 2.14 快 5–6.5 倍：M3 Ultra 加 torch.compile 下 Qwen3.6-35B-A3B 从 9.4 升至 61.3 tokens/s，LFM2.5-8B-A1B 从 23.6 升至 123.6 tokens/s，源于原生 grouped matmul 解码路径、更少 GPU-CPU 同步和更快 top-k 路由",
-    "Wan2.2 tiled VAE 视频解码峰值驱动内存从 270 GiB 降至约 8 GiB；padding 改动修复了 Qwen-Image-2.1 VAE 编码器在 MPS 上静默损坏图像的问题，往返 PSNR 从 10.06 dB 升至 29.95 dB"
-   ],
-   "topics": [
-    "mps-backend",
-    "inference-acceleration",
-    "fp8"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 78.6,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/mps-pytorch-2-15.md",
-      "https://github.com/Comfy-Org/ComfyUI/issues/16433",
-      "https://github.com/pytorch/pytorch/pull/195368",
-      "https://github.com/pytorch/pytorch/blob/release/2.15/RELEASE.md#release-compatibility-matrix",
-      "https://github.com/pytorch/pytorch/pull/194074",
-      "https://github.com/pytorch/pytorch/pull/196916",
-      "https://github.com/pytorch/pytorch/pull/198721",
-      "https://github.com/pytorch/pytorch/pull/194933",
-      "https://github.com/pytorch/pytorch/pull/198725",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/mps-pytorch-2-15/moe-decode-throughput.png",
-      "https://github.com/pytorch/pytorch/pull/188473",
-      "https://github.com/pytorch/pytorch/pull/195369",
-      "https://github.com/pytorch/pytorch/pull/195861",
-      "https://github.com/pytorch/pytorch/pull/195944",
-      "https://github.com/pytorch/pytorch/pull/198732",
-      "https://github.com/pytorch/pytorch/pull/196241",
-      "https://github.com/pytorch/pytorch/pull/196900",
-      "https://github.com/pytorch/pytorch/pull/200920",
-      "https://github.com/pytorch/pytorch/pull/201037",
-      "https://github.com/pytorch/pytorch/pull/201198",
-      "https://github.com/pytorch/pytorch/pull/198878",
-      "https://github.com/pytorch/pytorch/pull/196985",
-      "https://github.com/pytorch/pytorch/pull/195011",
-      "https://github.com/pytorch/pytorch/pull/199687",
-      "https://github.com/pytorch/pytorch/pull/193623",
-      "https://github.com/pytorch/pytorch/pull/196071",
-      "https://github.com/pytorch/pytorch/pull/195441",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/mps-pytorch-2-15/softmax-sampling.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/mps-pytorch-2-15/wan-vae-memory.png",
-      "https://github.com/pytorch/pytorch/pull/191415",
-      "https://github.com/pytorch/pytorch/pull/193464",
-      "https://github.com/pytorch/pytorch/pull/194110",
-      "https://github.com/pytorch/pytorch/pull/190495",
-      "https://github.com/pytorch/pytorch/pull/192980",
-      "https://github.com/pytorch/pytorch/pull/195265",
-      "https://github.com/pytorch/pytorch/pull/195225",
-      "https://github.com/pytorch/pytorch/pull/198860",
-      "https://github.com/pytorch/pytorch/pull/189631",
-      "https://github.com/pytorch/pytorch/pull/200181",
-      "https://github.com/pytorch/pytorch/pull/201526"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "1dc75a32fc6a65d3",
    "url": "https://lynchlab.net/llm-skin-cancer",
    "title": "A 10-year-old CNN outperforms frontier LLMs for skin cancer diagnosis",
@@ -1399,50 +1293,82 @@
    }
   },
   {
-   "id": "ca293d8533a3487d",
-   "url": "https://huggingface.co/blog/allenai/fairstress",
-   "title": "FairStress: A deeper evaluation of fairness in LLM decision-making",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-20T16:09:19+00:00",
-   "summary_short": "FairStress：不只测模型最终选谁，还测它在说服压力下改不改主意的公平性",
-   "summary_long": "大模型正被用于招聘筛选、贷款审批、患者排序、招生等高风险场景。原文指出，标准的人口统计公平性基准通常只测一件事：候选人身份互换、其他条件相同时，模型是否仍选同一人。但两次答案相同，可能掩盖模型在被说服性论证质疑时改变决定的难易差异。FairStress 即为测量这类隐藏不对称而设计：含 300 个两候选人决策场景，覆盖招聘、医疗、贷款、教育、住房、刑事司法等 29 个领域，部分场景设定了明确更优的候选人。研究覆盖 Olmo、Llama、Qwen、Gemma、Claude 与 GPT 系列及多个训练阶段，发现同一段「对抗性前缀」论证会因所偏向的人口群体不同，使模型更易或更不易改变决定；模型在决策解释和内部激活模式上也存在跨领域差异。FairStress 可下载，并正集成进 Olmo-eval。其目标是「对称公平」，原文明确它不涵盖所有公平观，例如基于 equity 的思路可能把历史歧视纳入决策。",
+   "id": "d631652614601664",
+   "url": "https://simonwillison.net/2026/Oct/28/vibe-game-development/",
+   "title": "The October inflection point for vibe game development",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-10-28T13:55:15+00:00",
+   "summary_short": "原文称2026年10月是vibe游戏开发拐点，Opus 5.5能做出好玩的游戏",
+   "summary_long": "原文回顾，2025年11月Opus 4.5和GPT-5.1让编程智能体成为工程师可靠的日常工具；如今原文认为2026年10月出现了面向vibe coding游戏的新拐点。Claude Opus 5.5在3D建模、音乐生成和游戏设计上有明显提升，其中游戏设计最关键。原文指出，模型早就能做出看起来像游戏的东西，难的是做出真正好玩的游戏；而让Opus 5.5“Make it a LOT more fun”后，它确实做到了。过去几周，原文作者完全不看代码地vibe coding了四款自己真正喜欢玩的游戏，并在Foo Camp遇到有类似体验的人。原文认为，做出玩得好的游戏现在容易得惊人，新挑战是构思新颖、令人愉悦且离不开AI辅助的游戏概念。原文对GPT-6 Astra的印象是能构建游戏，但“趣味感”还不及Opus 5.5，预计OpenAI年底会达到。",
    "key_points": [
-    "FairStress 含 300 个真实感的两候选人决策场景，覆盖招聘、医疗、贷款、教育、住房、刑事司法等 29 个领域，部分场景有明确更优的候选人，用于检验人口信息是否改变模型选中证据更支持者的频率。",
-    "除最终选择外，它还测模型在被「对抗性前缀」式说服论证挑战时改变决定的可能是否因受益群体不同而不同，并比较模型的决策解释与内部激活模式。",
-    "在 Olmo、Llama、Qwen、Gemma、Claude、GPT 系列等开放权重与前沿模型及多个训练阶段上均发现这类不对称；基准已开放下载，并正在集成进 Olmo-eval。"
+    "原文认为2026年10月是vibe游戏开发拐点，Claude Opus 5.5在3D建模、音乐生成、游戏设计上有明显进步。",
+    "原文称模型过去只能做出像游戏的东西，难点是真正好玩；要求Opus 5.5“Make it a LOT more fun”后确有改善。",
+    "原文作者过去几周完全不看代码做出四款喜欢的游戏；新挑战是新颖且离不开AI的游戏概念；GPT-6 Astra趣味感未及Opus 5.5。"
    ],
    "topics": [
-    "eval",
-    "alignment",
-    "reasoning"
+    "coding-agent",
+    "game-development"
    ],
-   "category": "评测",
+   "category": "模型",
    "categories": [
-    "评测",
-    "安全"
+    "模型"
    ],
-   "horizon": "long",
-   "score": 78.0,
+   "horizon": "short",
+   "score": 77.2,
    "status": "published",
    "extra": {
-    "content_source": "direct",
+    "content_source": "rss",
+    "source_tags": [
+     "game-design",
+     "games",
+     "ai",
+     "generative-ai",
+     "chatgpt"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://allenai.org/papers/fairstress",
-      "https://huggingface.co/datasets/allenai/fairstress",
-      "https://github.com/pardissz/fairstress",
-      "https://www.datocms-assets.com/64837/1791813343-fairstress-blog-draft-google-docs-image-1-1.png",
-      "https://github.com/allenai/olmo-eval",
-      "https://allenai.org/blog/fluid-benchmarking",
-      "https://www.datocms-assets.com/64837/1791813418-fairstress-blog-draft-google-docs-image-2.png?fit=max&h=810&w=1550",
-      "https://www.datocms-assets.com/64837/1791813453-fairstress-blog-draft-google-docs-image-3.png?fit=max&h=810&w=1550",
-      "https://www.datocms-assets.com/64837/1791814138-fairstress-blog-draft-google-docs-image-4.png?fit=max&h=810&w=1550",
-      "https://www.datocms-assets.com/64837/1791814175-fairstress-blog-draft-google-docs-image-5.png?fit=max&h=810&w=1550",
-      "https://www.datocms-assets.com/64837/1791814242-fairstress-blog-draft-google-docs-image-6.png?fit=max&h=810&w=1550",
-      "https://www.anthropic.com/research/reasoning-models-dont-say-think?trk=article-ssr-frontend-pulse_little-text-block&utm_source=chatgpt.com",
-      "https://www.datocms-assets.com/64837/1791814305-fairstress-blog-draft-google-docs-image-7.png?fit=max&h=810&w=1550"
+      "https://simonwillison.net/tags/november-2025-inflection/",
+      "https://simonwillison.net/2026/Oct/28/vibe-game-development/#tree-appreciator",
+      "https://simonwillison.net/2026/Oct/28/vibe-game-development/#emberwick",
+      "https://simonwillison.net/2026/Oct/28/vibe-game-development/#battle-drones",
+      "https://simonwillison.net/2026/Oct/28/vibe-game-development/#pumpkin-farmer-aka-quarter-sun-cove",
+      "https://simonwillison.net/2026/Oct/28/vibe-game-development/#four-times-as-insulting",
+      "https://simonwillison.net/2026/Oct/28/vibe-game-development/#what-happens-if-someone-actually-puts-the-work-in-",
+      "https://simonwillison.net/2026/Oct/28/vibe-game-development/#you-should-build-a-game-",
+      "https://simonwillison.net/2026/Oct/6/scrimshaw-jukebox/",
+      "https://simonwillison.net/2026/Aug/7/moonlight-mayhem/",
+      "https://simonwillison.net/2026/Oct/20/battledrones/#v4-the-fun-update",
+      "https://simonwillison.net/2025/Mar/19/vibe-coding/",
+      "https://en.wikipedia.org/wiki/Foo_Camp",
+      "https://tools.simonwillison.net/tree-appreciator",
+      "https://en.wikipedia.org/wiki/California_State_Route_35",
+      "https://threejs.org/",
+      "https://claude.ai/share/ee7de555-f85c-4ff0-96cb-d51ed5e479e9",
+      "https://simonw.github.io/emberwick/v01/emberwick.html",
+      "https://simonw.github.io/emberwick/v02/emberwick.html",
+      "https://simonw.github.io/emberwick/v11/emberwick.html",
+      "https://claude.ai/share/840e0bc0-a68e-4894-8eec-8f83bd6ade26",
+      "https://chatgpt.com/share/6ae176eb-1eac-83e8-ae54-729281fbdb70",
+      "https://lantern-hollow-rpg.simonw.chatgpt.site",
+      "https://simonwillison.net/2026/Oct/20/battledrones/",
+      "https://simonwillison.net/2026/Oct/24/battledrones/",
+      "https://simonw.github.io/battledrones/v11/?replay=battles/showcase/2026-10-14-frostbite-42-claude-haiku-5.5-vs-gpt-6-luna.json",
+      "https://simonw.github.io/battledrones/models.html",
+      "https://github.com/menufactory43/panache/",
+      "https://simonwillison.net/2026/Oct/21/panache/",
+      "https://en.wikipedia.org/wiki/Half_Moon_Bay,_California",
+      "https://en.wikipedia.org/wiki/Half_Moon_Bay_Art_and_Pumpkin_Festival",
+      "https://simonw.github.io/pumpkin-farmer/",
+      "https://claude.ai/code/cshk_01V63sUyETi6UNbGUyjSYbHd13Mq93U6ty824Ha4eAxF4i",
+      "https://github.com/simonw/pumpkin-farmer/blob/cdcf12083f403946b5c2a9e04312bbb42359bf58/SPEC.md",
+      "https://www.ign.com/articles/steam-fans-are-begging-for-a-no-ai-filter-as-steam-next-fest-is-filled-with-slop",
+      "https://simonwillison.net/2026/Oct/20/battledrones/#update-online-multiplayer-support",
+      "https://threejs.org",
+      "https://github.com/phaserjs/phaser",
+      "https://chatgpt.com/",
+      "https://claude.ai"
      ]
     },
     "summary_mode": "full"
@@ -1771,52 +1697,45 @@
    }
   },
   {
-   "id": "84cd8d44e9825e73",
-   "url": "https://huggingface.co/blog/hf-torchtpu",
-   "title": "Hugging Face ❤️ TorchTPU: TPUs, Natively",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-20T00:00:00+00:00",
-   "summary_short": "Hugging Face 介绍 TorchTPU：让 TPU 成为 PyTorch 的原生设备",
-   "summary_long": "TorchTPU 是 PyTorch 的原生 TPU 后端，让 TPU 成为代码里可直接指定的又一个普通设备。原文介绍，TPU 是 Google 自研的 AI 加速芯片，在 Google Cloud 上可从单芯片扩展到数千芯片的 pod。此前在 TPU 上跑 PyTorch 需改用 torch_xla 或转向 JAX；torch_xla 的 tensor 是惰性的，小改动可能触发图重编译，调试困难，Hugging Face 因此推出 Optimum TPU 提供 TPU 上的推理与训练支持，原生支持到位后它已不再必需。TorchTPU 带来自 TPU 调优的 Pallas kernel、分布式训练支持和 torch.compile 集成，一条 pip 命令即可安装（原文提醒加 extra index 获取 CPU 版 torch，避免拉取用不上的 CUDA 版）。生态方面：Transformers v5 传 device_map=\"tpu\" 即可加载模型，默认 eager 模式，可选 torch.compile 或分布式；Diffusers 中 eager 模式只需 pipe.to(\"tpu\")，部署时加一次 compile 调用，代码无需分叉。原文在“超出单芯片的大模型”处截断，未详述。",
+   "id": "97373eedda74b8cd",
+   "url": "https://surgehq.ai/blog/dayjob-tax",
+   "title": "Dayjob: Tax – evaluating AI agents on 50 professional tax assignments",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-28T15:46:30+00:00",
+   "summary_short": "Surge AI 推出 DAYJOB: Tax，用 50 个专业税务任务评测 AI 代理",
+   "summary_long": "Surge AI 在 DAYJOB 基准系列中新增 DAYJOB: Tax，专门评测 AI 代理完成专业税务工作。该基准覆盖 8 个税务领域：个人与家庭税、小企业税、合伙企业、财产与投资、遗产赠与与信托、国际税、公司交易、税务复核与争议，共设 50 个环境；代理会收到客户请求与支撑记录，并需产出税表、工作底稿、技术复核或客户建议。任务共含 1,789 个文件，每个任务的文件数量中位数为 30 个，最多 123 个，其中包括 1,487 份 PDF、117 个 Excel 工作簿、38 个 Word 文档，以及邮件、图片、CSV、JSON 记录和文本文件；原文还提到，其中一个任务包含一张手写收据照片。榜单按 95% 评分标准阈值统计 pass@1：Claude Sonnet 5.5 以 10.8% 通过率居首，Claude Fable 5.1 为 9.6%，Claude Opus 5.5 为 9.2%；原文另给出性能与单次平均成本的帕累托前沿对比。开头案例中，代理在评估 Anna 卖房时正确判断了两个拟售日期，但 Astra 五次尝试均未指出 2027 年 8 月后的资格期限，Opus 五次均识别出该期限。",
    "key_points": [
-    "TorchTPU 为 PyTorch 增加原生 TPU 后端，写普通 PyTorch 代码即可，TPU 成为普通设备",
-    "旧方案 torch_xla 存在惰性 tensor、易触发重编译、调试困难等问题；Hugging Face 的 Optimum TPU 在原生支持后不再必需",
-    "安装为 pip install torch-tpu --extra-index-url，加 extra index 是为避免拉取用不上的 CUDA 版 torch"
+    "基准含 50 个环境、覆盖 8 个税务领域，要求代理产出税表、工作底稿、技术复核或客户建议，评测专业判断以及税务知识、计算、检索与指令遵循",
+    "工作区共 1,789 个文件，每个任务的文件数量中位数为 30 个、最多 123 个，类型含 PDF、Excel、Word、邮件、图片、CSV、JSON 与文本",
+    "采用 95% 评分标准阈值的 pass@1：Claude Sonnet 5.5 为 10.8% 居首，Claude Fable 5.1 为 9.6%，Claude Opus 5.5 为 9.2%"
    ],
    "topics": [
-    "post-training",
-    "open-source"
+    "eval"
    ],
-   "category": "Agent 与开发",
+   "category": "评测",
    "categories": [
-    "Agent 与开发",
-    "模型"
+    "评测"
    ],
-   "horizon": "long",
-   "score": 75.6,
+   "horizon": "short",
+   "score": 75.0,
    "status": "published",
    "extra": {
-    "content_source": "direct",
+    "hn_points": 177,
+    "hn_comments": 107,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/hf-torchtpu.md",
-      "https://github.com/google-pytorch/torch_tpu",
-      "https://cloud.google.com/tpu",
-      "https://docs.cloud.google.com/tpu/docs/intro-to-tpu",
-      "https://huggingface.co/docs/diffusers/main/optimization/tpu",
-      "https://huggingface.co/MiniMaxAI/MiniMax-H3",
-      "https://huggingface.co/Qwen/Qwen-Image-2.1",
-      "https://huggingface.co/kernels?sort=trending&search=tpu",
-      "https://docs.jax.dev/en/latest/pallas/tpu/",
-      "https://github.com/openxla/tokamax",
-      "https://huggingface.co/buckets/huggingface/hf-torchtpu-blog-assets/resolve/images/kernel-ragged-dot-speedup.png",
-      "https://huggingface.co/spaces/transformers-community/transformers-ci-dashboard%5D",
-      "https://huggingface.co/buckets/huggingface/hf-torchtpu-blog-assets/resolve/images/tpu-ci-dashboard.png",
-      "https://docs.cloud.google.com/tpu/docs"
+      "https://surgehq.ai/blog/dayjob",
+      "https://huggingface.co/datasets/intelligenceconsortium/TaxBench",
+      "https://github.com/column-tax/tax-calc-bench",
+      "https://daplab.cs.columbia.edu/benchmarks/taxlab/",
+      "https://huggingface.co/datasets/surgeai/DAYJOB-tax",
+      "https://www.linkedin.com/company/surge-ai/",
+      "https://x.com/HelloSurgeAI"
      ]
     },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   }
