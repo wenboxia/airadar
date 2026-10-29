@@ -1,6 +1,269 @@
 {
- "generated_at": "2026-10-28T23:16:32+00:00",
+ "generated_at": "2026-10-29T23:20:11+00:00",
  "items": [
+  {
+   "id": "a80dd20eaec84f5f",
+   "url": "https://simonwillison.net/2026/Oct/29/how-i-built-the-most-ai-pilled-company-in-the-world/",
+   "title": "Building a multiplayer game world with autonomous Fable-class models",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-10-29T17:00:26+00:00",
+   "summary_short": "Spawn 用 Fable 智能体集群自主开发多人游戏世界，月耗超300万美元 token",
+   "summary_long": "原文介绍 Jacob Sansbury 构建的 Spawn：一个大型多人在线游戏环境，玩家用提示词让游戏内智能体 Savi 修改世界——作者在手机上凭空造出城堡和龙，并骑龙绕城堡飞行。据 Jacob 描述，Spawn 现由一群 Fable 驱动的智能体自主开发，每月 token 花费超 300 万美元（约为人力成本的 30 倍）。智能体直接改动线上代码并每小时发布到生产，自行读取错误、bug 报告与指标；约 60% 的工作源自生产错误、Savi 的 bug 报告、日志异常或功能请求。Savi 会自己提 bug，由智能体判定是需修、不修，还是需决策的设计问题，通常一小时内变成改动交付用户并在同一聊天中告知。一小时未发布被视为最严重的 SEV-0；故障可 30 秒内回滚且只限出错位置，告警会唤醒负责该事故的智能体，团队还故意制造故障测试恢复路径。Jacob 称是 Fable 5（及 5.1）让这种自主性可行，Opus 5.5 不太够用；用 GPT-6 Astra 落实安全审查修复时一切停摆，因为它把每个功能都关停并标记待修复后再开启。作者对更高风险软件是否适用存疑。",
+   "key_points": [
+    "Spawn 是多人游戏环境，玩家通过提示词指挥游戏内智能体 Savi 修改游戏世界",
+    "据 Jacob 描述，开发由 Fable 驱动的智能体集群自主完成：直接改线上代码、每小时发布，一小时不发版即视为 SEV-0，月耗 token 超 300 万美元",
+    "Jacob 称 Fable 5/5.1 才让这种自主程度可行，Opus 5.5 不够用；GPT-6 Astra 在执行安全修复时把全部功能关停，导致一切停摆"
+   ],
+   "topics": [
+    "coding-agent",
+    "multi-agent",
+    "agent-loop"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 75.8,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "game-design",
+     "ai",
+     "generative-ai",
+     "llms",
+     "claude"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://twitter.com/jsnnsa/status/2115623382721126826",
+      "https://spawn.co",
+      "https://en.wikipedia.org/wiki/Continuous_deployment",
+      "https://simonwillison.net/2026/Oct/28/vibe-game-development/",
+      "https://simonwillison.net/tags/game-design",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/claude",
+      "https://simonwillison.net/tags/coding-agents",
+      "https://simonwillison.net/tags/agentic-engineering",
+      "https://simonwillison.net/tags/claude-mythos-fable"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "7bf0065ceb1646f5",
+   "url": "https://openai.com/index/updated-model-spec",
+   "title": "An updated Model Spec for more capable and beneficial AI",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-29T17:00:00+00:00",
+   "summary_short": "模型规范更新：围绕五项价值重组行为指导，强调理解人类意图与未明示情境中的判断。",
+   "summary_long": "原文介绍，随着模型更聪明并在现实中采取更具后果性的行动，仅解释具体指令已不够，模型还需理解人类意图与价值，以便在指令未明确覆盖的情境中作出良好判断，同时保持对人类意图与监督的忠实。此次更新将 Model Spec 的指导围绕五项底层价值重组：忠实于人类意图、最小化伤害、诚实与透明、人类能动性、关怀，目标是让模型在陌生情境中理解并应用人类价值。修订除更清晰解释既有原则外，还增加关于上下文、监督和能动性的指导，调整部分行为默认设置，并退役大量详细风格指导。原文说明，忠实于人类意图意味着不止字面执行指令，而要深入理解相关方意图与价值，并在理解不完整时明智行动；也要认识到人的信念和价值会变化，帮助其反思成长而不暗中引导或覆盖选择。规范通过研究、部署经验、公众反馈及与用户和外部专家讨论不断完善。",
+   "key_points": [
+    "更新围绕五项价值重组：忠实于人类意图、最小化伤害、诚实与透明、人类能动性、关怀。",
+    "新增关于上下文、监督和能动性的指导，调整部分行为默认设置，并退役大量详细风格指导。",
+    "忠实于人类意图要求超越字面执行指令，深入理解意图与价值，在理解不完整时明智行动，并避免暗中引导或覆盖选择。"
+   ],
+   "topics": [
+    "alignment",
+    "interpretability"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 81.6,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Safety"
+    ],
+    "outbound": {
+     "arxiv": [
+      "1606.03137"
+     ],
+     "links": [
+      "https://model-spec.openai.com/2026-10-29.html",
+      "https://alignment.openai.com/beneficial-rl/",
+      "https://arxiv.org/abs/1606.03137",
+      "https://www.amacad.org/publication/daedalus/if-we-succeed",
+      "https://model-spec.openai.com/2026-10-29.html#chain_of_command",
+      "https://model-spec.openai.com/2026-10-29.html#consider_context_carefully",
+      "https://model-spec.openai.com/2026-10-29.html#support_human_agency",
+      "https://model-spec.openai.com/2026-10-29.html#follow_social_norms",
+      "https://model-spec.openai.com/2026-10-29.html#control_side_effects",
+      "https://model-spec.openai.com/2026-10-29.html#assume_objective_pov",
+      "https://model-spec-feedback-2026.openai.chatgpt.site"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "8ccea7e89b703086",
+   "url": "https://mistral.ai/news/mistral-large-4-oss/",
+   "title": "We're releasing the weights of Mistral Large 4",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-29T14:13:21+00:00",
+   "summary_short": "Mistral 开源 1 万亿参数多模态模型权重，编程能力居开源首位",
+   "summary_long": "Mistral 本月初以公开预览形式发布旗舰模型 Mistral Large 4（Le Chonk），该模型有 1 万亿参数，原生支持多模态。预览反响超出预期；团队结合开发者与早期客户反馈，继续扩大强化学习规模，在编程与防御性网络安全上大幅提升，且未见饱和迹象。今天 Mistral 放出这一改进版本的权重。原文称该模型在推理效率上同样有显著提升，使开发者能以更低推理成本获得更强性能，并提供三种推理模式来平衡成本与性能。基准方面，它在 FrontierCode、Terminal-Bench 上领先开源模型；在 Cognition 的私有 FrontierCode 2.0 上以 19.7% 居首；在 Artificial Analysis Coding Agent Index 上得分 48%，与领先开源模型 GLM-5.3 基本持平，但每任务平均少用 47% token；在 Terminal-Bench 4.0 上，它较预览版提升 13 个百分点至 41%，输出 token 减少 30%。该模型从零开始在欧洲基础设施上训练，训练来源清晰可追溯，面向主权 AI。",
+   "key_points": [
+    "发布 Mistral Large 4（Le Chonk）权重：1 万亿参数、原生多模态，本月初刚以公开预览形式发布",
+    "官方称经额外强化学习，编程与防御性网络安全大幅提升，且提升仍在加速、未见饱和；推理效率提升带来更低推理成本，并提供三种推理模式",
+    "Cognition 私有 FrontierCode 2.0 得分 19.7% 居首；Artificial Analysis Coding Agent Index 得分 48%，与 GLM-5.3 基本持平但每任务平均少用 47% token"
+   ],
+   "topics": [
+    "open-source",
+    "post-training",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 76.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 1103,
+    "hn_comments": 319,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://mistral.ai/products/forge/",
+      "https://mistral.ai/products/studio/",
+      "https://console.mistral.ai/home",
+      "https://docs.mistral.ai/models/mistral-large-4-0#use-mistral-large-4-0",
+      "https://openrouter.ai/mistralai/mistral-large-4-0",
+      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
+      "https://docs.mistral.ai/models/mistral-large-4-0",
+      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B/blob/main/LICENSE",
+      "https://chat.mistral.ai/code?model=mistral-large-4-0",
+      "https://build.nvidia.com/mistralai/mistral-large-4-1t-a52b",
+      "https://catalog.ngc.nvidia.com/orgs/nim/nvidia/containers/vllm-model-free-nim-experimental/-",
+      "https://github.com/NVIDIA-NeMo/Automodel/blob/main/docs/model-coverage/vlm/mistralai/mistral-large-4.mdx",
+      "https://github.com/NVIDIA/TensorRT-LLM/tree/feat/mistral-large-4",
+      "https://mistral.ai/contact/",
+      "https://x.com/MistralAI?lang=en",
+      "https://discord.com/invite/mistralai",
+      "https://github.com/mistralai",
+      "https://mistral.ai/news/voxtral-3/",
+      "https://mistral.ai/news/timestral/"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "d28967fce9c692cd",
+   "url": "https://openai.com/index/how-we-detect-frontier-model-misalignment",
+   "title": "How we detect frontier model misalignment",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-29T09:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "alignment",
+    "cybersecurity",
+    "agent-loop"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 87.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Security"
+    ],
+    "outbound": {
+     "arxiv": [
+      "2503.11926"
+     ],
+     "links": [
+      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/",
+      "https://alignment.openai.com/misalignment-reports/",
+      "https://alignment.openai.com/misalignment-reports/command-injecting-a-reference-tool-to-copy-a-source-file/",
+      "https://alignment.openai.com/misalignment-reports/unauthorized-artifactory-writes-and-cross-sample-communication/",
+      "https://deploymentsafety.openai.com/gpt-6-astra/monitor-evasion",
+      "https://deploymentsafety.openai.com/gpt-6-astra/sneaky-sandbox-escape",
+      "https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/",
+      "https://arxiv.org/abs/2503.11926",
+      "https://developers.openai.com/api/docs/guides/safety-checks/misalignment-monitoring",
+      "https://help.openai.com/articles/20001509-why-was-my-chat-paused-or-ended-as-a-precaution"
+     ]
+    }
+   }
+  },
+  {
+   "id": "a1765f446c5b64b5",
+   "url": "https://huggingface.co/blog/mistral-large4",
+   "title": "Welcome Le Chonk: Mistral Large 4 on Hugging Face",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-29T00:00:00+00:00",
+   "summary_short": "Mistral Large 4 开放权重发布：1T 总参数、1M 上下文，主打网络安全与多模态",
+   "summary_long": "Hugging Face 博客介绍 Mistral 的 Mistral Large 4（又称 Le Chonk）：多模态、多语言 MoE 模型，输入文本与图像、输出文本，约 1T 总参数、49B 激活参数，上下文窗口 1M token。官方提供 FP8 与 NVFP4 两个版本，Unsloth 与 llama.cpp 团队另做了 GGUF，按 Mistral Ecosystem Open-Weight License（MIT 衍生、对模型即服务设限）分发。架构上结合大规模专家池、稀疏注意力与 Pixtral 视觉编码器：每个 token 只选少量专家，注意力索引器挑选要关注的历史位置。原文称其强于网络安全、编码智能体与多模态：在 Artificial Analysis Cyber Index（复现开源软件漏洞再打补丁）得 82%，Mistral 称部分闭源前沿模型因拒答而接近零分；在 JailbreakBench、StrongREJECT、AgentHarm 的 cyber 提示上平均拒答率高于其他开放权重模型。开放权重让使用政策与部署由用户掌控，并可用 TRL 基于其轨迹微调小模型。基准结果等章节原文未详述。",
+   "key_points": [
+    "约 1T 总参数、49B 激活参数，1M token 上下文；官方 FP8 与 NVFP4 两个版本，另有 Unsloth 与 llama.cpp 团队的 GGUF",
+    "在 Artificial Analysis Cyber Index 得 82%，Mistral 称若干闭源前沿模型在该测试上因拒绝尝试而接近零分；在 JailbreakBench、StrongREJECT、AgentHarm 的 cyber 提示上平均拒答率高于其他开放权重模型",
+    "架构为大规模专家池 + 稀疏注意力 + Pixtral 视觉编码器，许可为 MIT 衍生的 Mistral Ecosystem Open-Weight License"
+   ],
+   "topics": [
+    "open-source",
+    "reasoning",
+    "post-training"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 83.1,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/huggingface/blog/blob/main/mistral-large4.md",
+      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
+      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B-NVFP4",
+      "https://huggingface.co/ggml-org",
+      "https://huggingface.co/unsloth/Mistral-Large-4-1T-A52B-GGUF",
+      "https://huggingface.co/collections/mistralai/mistral-large-4",
+      "https://huggingface.co/docs/transformers/en/model_doc/pixtral",
+      "https://www.youtube.com/embed/FczbSauVvjw",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/ml4.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/attention.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/experts.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/img_encoder.png",
+      "https://huggingface.co/ggml-org/Mistral-Large-4-1T-A52B-GGUF",
+      "https://llama.app/",
+      "https://huggingface.co/ggml-org/Mistral-Large-4-1T-A52B-NVFP4-GGUF",
+      "https://llama.app/docs/serve",
+      "https://github.com/huggingface/trl/tree/main/examples/sft_mistral_large_4",
+      "https://dell.huggingface.co/updates/mistral-large-4"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "85daa6a854746cd3",
    "url": "https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/",

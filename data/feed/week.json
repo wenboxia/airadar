@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-28T23:16:32+00:00",
+ "generated_at": "2026-10-29T23:20:11+00:00",
  "top": [
   {
    "id": "95eb6975ad245049",
@@ -71,6 +71,52 @@
    }
   },
   {
+   "id": "d28967fce9c692cd",
+   "url": "https://openai.com/index/how-we-detect-frontier-model-misalignment",
+   "title": "How we detect frontier model misalignment",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-29T09:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "alignment",
+    "cybersecurity",
+    "agent-loop"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 87.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Security"
+    ],
+    "outbound": {
+     "arxiv": [
+      "2503.11926"
+     ],
+     "links": [
+      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/",
+      "https://alignment.openai.com/misalignment-reports/",
+      "https://alignment.openai.com/misalignment-reports/command-injecting-a-reference-tool-to-copy-a-source-file/",
+      "https://alignment.openai.com/misalignment-reports/unauthorized-artifactory-writes-and-cross-sample-communication/",
+      "https://deploymentsafety.openai.com/gpt-6-astra/monitor-evasion",
+      "https://deploymentsafety.openai.com/gpt-6-astra/sneaky-sandbox-escape",
+      "https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/",
+      "https://arxiv.org/abs/2503.11926",
+      "https://developers.openai.com/api/docs/guides/safety-checks/misalignment-monitoring",
+      "https://help.openai.com/articles/20001509-why-was-my-chat-paused-or-ended-as-a-precaution"
+     ]
+    }
+   }
+  },
+  {
    "id": "db98bf59a6c7e420",
    "url": "https://huggingface.co/blog/LiquidAI/lfm3",
    "title": "Build specialized multimodal models with LFM3",
@@ -126,56 +172,54 @@
    }
   },
   {
-   "id": "354f89a6c7dbf10c",
-   "url": "https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization",
-   "title": "How Specializing the Vocabulary of SLMs Can Cut Inference Cost by 77% in Real Applications",
+   "id": "a1765f446c5b64b5",
+   "url": "https://huggingface.co/blog/mistral-large4",
+   "title": "Welcome Le Chonk: Mistral Large 4 on Hugging Face",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-21T17:35:36+00:00",
-   "summary_short": "用VocabX重构领域模型词表，实测推理成本降77%",
-   "summary_long": "在生产环境的葡萄牙语作文自动评分系统中，团队发现：基于Qwen3-4B微调的模型虽已针对任务训练，却仍沿用为多语言、多领域文本构建的原始分词器，词表含151,669个条目。这带来两种浪费：一是碎片化，评分器每次响应都以相同的JSON外壳、相同的评分项名称和评语开头，这些高频重复序列被切成多个token；二是冗余，每生成一个token都要对整个词表打分，其中大量条目该任务几乎不用。作者指出，tokenizer通常被视为基座模型的固定属性，但对单一领域模型而言，它可能是最大的成本杠杆之一，且在任何训练步骤之前就已确定。团队用名为VocabX的方法重建词表，保持基座模型、数据和训练配方不变，将实测推理成本降低77%。文中还区分推理的prefill与decode两阶段：前者一次处理整个输入，读取的权重可被复用，受限于算力。",
+   "published_at": "2026-10-29T00:00:00+00:00",
+   "summary_short": "Mistral Large 4 开放权重发布：1T 总参数、1M 上下文，主打网络安全与多模态",
+   "summary_long": "Hugging Face 博客介绍 Mistral 的 Mistral Large 4（又称 Le Chonk）：多模态、多语言 MoE 模型，输入文本与图像、输出文本，约 1T 总参数、49B 激活参数，上下文窗口 1M token。官方提供 FP8 与 NVFP4 两个版本，Unsloth 与 llama.cpp 团队另做了 GGUF，按 Mistral Ecosystem Open-Weight License（MIT 衍生、对模型即服务设限）分发。架构上结合大规模专家池、稀疏注意力与 Pixtral 视觉编码器：每个 token 只选少量专家，注意力索引器挑选要关注的历史位置。原文称其强于网络安全、编码智能体与多模态：在 Artificial Analysis Cyber Index（复现开源软件漏洞再打补丁）得 82%，Mistral 称部分闭源前沿模型因拒答而接近零分；在 JailbreakBench、StrongREJECT、AgentHarm 的 cyber 提示上平均拒答率高于其他开放权重模型。开放权重让使用政策与部署由用户掌控，并可用 TRL 基于其轨迹微调小模型。基准结果等章节原文未详述。",
    "key_points": [
-    "生产中的葡萄牙语作文评分器基于Qwen3-4B，接收作文、题目与支撑文本，返回含各评分项分数与评语的JSON，但仍沿用151,669条目的通用词表。",
-    "通用词表在单一领域造成两类浪费：碎片化（JSON外壳、评分项名称、评语等重复序列被切成多个token）与冗余（每生成一个token都要对全词表打分）。",
-    "VocabX按每个token的成本而非词频重构词表，基座模型、数据与训练配方不变，实测推理成本下降77%；论文仍在审稿中，数据可能变动。"
+    "约 1T 总参数、49B 激活参数，1M token 上下文；官方 FP8 与 NVFP4 两个版本，另有 Unsloth 与 llama.cpp 团队的 GGUF",
+    "在 Artificial Analysis Cyber Index 得 82%，Mistral 称若干闭源前沿模型在该测试上因拒绝尝试而接近零分；在 JailbreakBench、StrongREJECT、AgentHarm 的 cyber 提示上平均拒答率高于其他开放权重模型",
+    "架构为大规模专家池 + 稀疏注意力 + Pixtral 视觉编码器，许可为 MIT 衍生的 Mistral Ecosystem Open-Weight License"
    ],
    "topics": [
-    "post-training",
-    "reasoning"
+    "open-source",
+    "reasoning",
+    "post-training"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
-   "horizon": "long",
-   "score": 83.4,
+   "horizon": "short",
+   "score": 83.1,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
-     "arxiv": [
-      "2607.15232"
-     ],
+     "arxiv": [],
      "links": [
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/TYOhAFobnI4ss3UnNqMHc.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/K5De-hfTaOl9vUJItSijj.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/Inl5L1IDqWUBbD0Xlq-JB.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/q-GjdgYd6GgXnv3-wJQsY.png",
-      "https://www.liquid.ai/blog/tokenizer-expansion",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/B5Wig-4nTEutpFZlGQ6sk.gif",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/_EdPyU7R3xdomvFxuadPY.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/zxfdAxNxsvfBCBNeUThx5.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/PxGLMRrjTPVYDW8rlDuBd.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/7CKshmOEsUkemfgL9Mopn.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/bCCQQjpY6tU5ZAD3hXOeN.png",
-      "https://aclanthology.org/2022.emnlp-industry.41/",
-      "https://arxiv.org/abs/2607.15232",
-      "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
-      "https://huggingface.co/blog/Dharma-AI/gpu-management",
-      "https://huggingface.co/blog/Dharma-AI/why-specialization-is-inevitable",
-      "https://huggingface.co/blog/Dharma-AI/specialization-beats-scale",
-      "https://huggingface.co/blog/Dharma-AI/text-degeneration-a-production-failure-mode",
-      "https://huggingface.co/Dharma-AI"
+      "https://github.com/huggingface/blog/blob/main/mistral-large4.md",
+      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
+      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B-NVFP4",
+      "https://huggingface.co/ggml-org",
+      "https://huggingface.co/unsloth/Mistral-Large-4-1T-A52B-GGUF",
+      "https://huggingface.co/collections/mistralai/mistral-large-4",
+      "https://huggingface.co/docs/transformers/en/model_doc/pixtral",
+      "https://www.youtube.com/embed/FczbSauVvjw",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/ml4.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/attention.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/experts.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/img_encoder.png",
+      "https://huggingface.co/ggml-org/Mistral-Large-4-1T-A52B-GGUF",
+      "https://llama.app/",
+      "https://huggingface.co/ggml-org/Mistral-Large-4-1T-A52B-NVFP4-GGUF",
+      "https://llama.app/docs/serve",
+      "https://github.com/huggingface/trl/tree/main/examples/sft_mistral_large_4",
+      "https://dell.huggingface.co/updates/mistral-large-4"
      ]
     },
     "summary_mode": "full"
@@ -222,66 +266,6 @@
       "https://spectreattack.com/"
      ]
     }
-   }
-  },
-  {
-   "id": "1360bd8eb5a8e67e",
-   "url": "https://www.anthropic.com/research/formal-verification",
-   "title": "LLMs are making formal software verification feasible at a much larger scale",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-22T22:54:43+00:00",
-   "summary_short": "用Claude在123个开源库的RISC-V汇编层完成大规模形式化验证证明",
-   "summary_long": "原文指出，多数软件充满缺陷，而AI如今能轻易发现并利用它们；即便是Linux内核这样经过充分测试、部署在数十亿设备上的软件，近期也披露了1000多个漏洞。形式化验证可通过数学证明保证代码不违反既定安全规则，但历来成本极高——例如seL4内核实现用了2人年，形式化验证却用了20人年，因此此前只用于航空电子等关键领域。作者与Theorem合作，使用Claude对123个真实开源库在RISC-V汇编代码层面证明安全属性：在单线程静态二进制、固定内存预算、运行Linux等假设下，对小于64MB的任意输入以及所有建模的OS响应与内存布局，程序总能正常退出，不触发内存安全错误或断言失败。据其所知，这是首次在汇编层用AI对生产软件开展大规模形式化验证。Claude在写证明过程中还发现了历经数万亿次测试仍未检出的缺陷。团队公开了部分证明及RISC-V与OS语义，供他人验证和复用。",
-   "key_points": [
-    "使用Claude为123个真实开源库在RISC-V汇编层证明安全属性，据作者所知是首次在汇编层用AI对生产软件做大规模形式化验证",
-    "证明的安全属性为：在单线程静态二进制、固定内存预算、Linux等假设下，程序对小于64MB的任意输入均正常退出，不触发内存安全错误或断言失败",
-    "Claude在写证明过程中发现了此前经数万亿次测试仍未检出的缺陷；部分证明与RISC-V、OS语义已公开发布以供验证复用"
-   ],
-   "topics": [
-    "coding-agent",
-    "reasoning",
-    "open-source"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用",
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 83.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 437,
-    "hn_comments": 280,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://hacks.mozilla.org/2026/05/behind-the-scenes-hardening-firefox/",
-      "https://www.anthropic.com/research/exploit-evals",
-      "https://theorem.dev/",
-      "https://opensource.googleblog.com/2016/12/announcing-oss-fuzz-continuous-fuzzing.html",
-      "https://lwn.net/Articles/1097401/",
-      "https://sel4.systems/Research/pdfs/comprehensive-formal-verification-os-microkernel.pdf",
-      "https://www.astree.ens.fr/papers/astree_airbus_sas2007.pdf",
-      "https://github.com/theorem-labs/oss-verify-proofs",
-      "https://github.com/theorem-labs/rocq-linux-process-semantics",
-      "https://theorem.dev/oss-verify/",
-      "https://github.com/theorem-labs/oss-verify/blob/main/.claude/skills/add-project/SKILL.md",
-      "https://en.wikipedia.org/wiki/PNG",
-      "https://www.rfc-editor.org/info/rfc2083/",
-      "https://github.com/google/oss-fuzz",
-      "https://www.cisa.gov/news-events/news/cisa-nsa-fbi-and-international-cybersecurity-authorities-publish-guide-case-memory-safe-roadmaps",
-      "https://www-cdn.anthropic.com/files/4zrzovbb/website/6867eadf760258fa8b42a504600cd3c036d16358.pdf",
-      "https://github.com/AFLplusplus/AFLplusplus/blob/stable/include/config.h#L314",
-      "https://www.rfc-editor.org/info/rfc1950/",
-      "https://leanprover-community.github.io/",
-      "https://leanprover-community.github.io/mathlib_stats.html",
-      "https://theorem.dev/blog/verified-software-stack/"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
    }
   }
  ],
@@ -356,6 +340,52 @@
    }
   },
   {
+   "id": "d28967fce9c692cd",
+   "url": "https://openai.com/index/how-we-detect-frontier-model-misalignment",
+   "title": "How we detect frontier model misalignment",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-29T09:00:00+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "alignment",
+    "cybersecurity",
+    "agent-loop"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 87.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Security"
+    ],
+    "outbound": {
+     "arxiv": [
+      "2503.11926"
+     ],
+     "links": [
+      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/",
+      "https://alignment.openai.com/misalignment-reports/",
+      "https://alignment.openai.com/misalignment-reports/command-injecting-a-reference-tool-to-copy-a-source-file/",
+      "https://alignment.openai.com/misalignment-reports/unauthorized-artifactory-writes-and-cross-sample-communication/",
+      "https://deploymentsafety.openai.com/gpt-6-astra/monitor-evasion",
+      "https://deploymentsafety.openai.com/gpt-6-astra/sneaky-sandbox-escape",
+      "https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/",
+      "https://arxiv.org/abs/2503.11926",
+      "https://developers.openai.com/api/docs/guides/safety-checks/misalignment-monitoring",
+      "https://help.openai.com/articles/20001509-why-was-my-chat-paused-or-ended-as-a-precaution"
+     ]
+    }
+   }
+  },
+  {
    "id": "db98bf59a6c7e420",
    "url": "https://huggingface.co/blog/LiquidAI/lfm3",
    "title": "Build specialized multimodal models with LFM3",
@@ -411,56 +441,54 @@
    }
   },
   {
-   "id": "354f89a6c7dbf10c",
-   "url": "https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization",
-   "title": "How Specializing the Vocabulary of SLMs Can Cut Inference Cost by 77% in Real Applications",
+   "id": "a1765f446c5b64b5",
+   "url": "https://huggingface.co/blog/mistral-large4",
+   "title": "Welcome Le Chonk: Mistral Large 4 on Hugging Face",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-21T17:35:36+00:00",
-   "summary_short": "用VocabX重构领域模型词表，实测推理成本降77%",
-   "summary_long": "在生产环境的葡萄牙语作文自动评分系统中，团队发现：基于Qwen3-4B微调的模型虽已针对任务训练，却仍沿用为多语言、多领域文本构建的原始分词器，词表含151,669个条目。这带来两种浪费：一是碎片化，评分器每次响应都以相同的JSON外壳、相同的评分项名称和评语开头，这些高频重复序列被切成多个token；二是冗余，每生成一个token都要对整个词表打分，其中大量条目该任务几乎不用。作者指出，tokenizer通常被视为基座模型的固定属性，但对单一领域模型而言，它可能是最大的成本杠杆之一，且在任何训练步骤之前就已确定。团队用名为VocabX的方法重建词表，保持基座模型、数据和训练配方不变，将实测推理成本降低77%。文中还区分推理的prefill与decode两阶段：前者一次处理整个输入，读取的权重可被复用，受限于算力。",
+   "published_at": "2026-10-29T00:00:00+00:00",
+   "summary_short": "Mistral Large 4 开放权重发布：1T 总参数、1M 上下文，主打网络安全与多模态",
+   "summary_long": "Hugging Face 博客介绍 Mistral 的 Mistral Large 4（又称 Le Chonk）：多模态、多语言 MoE 模型，输入文本与图像、输出文本，约 1T 总参数、49B 激活参数，上下文窗口 1M token。官方提供 FP8 与 NVFP4 两个版本，Unsloth 与 llama.cpp 团队另做了 GGUF，按 Mistral Ecosystem Open-Weight License（MIT 衍生、对模型即服务设限）分发。架构上结合大规模专家池、稀疏注意力与 Pixtral 视觉编码器：每个 token 只选少量专家，注意力索引器挑选要关注的历史位置。原文称其强于网络安全、编码智能体与多模态：在 Artificial Analysis Cyber Index（复现开源软件漏洞再打补丁）得 82%，Mistral 称部分闭源前沿模型因拒答而接近零分；在 JailbreakBench、StrongREJECT、AgentHarm 的 cyber 提示上平均拒答率高于其他开放权重模型。开放权重让使用政策与部署由用户掌控，并可用 TRL 基于其轨迹微调小模型。基准结果等章节原文未详述。",
    "key_points": [
-    "生产中的葡萄牙语作文评分器基于Qwen3-4B，接收作文、题目与支撑文本，返回含各评分项分数与评语的JSON，但仍沿用151,669条目的通用词表。",
-    "通用词表在单一领域造成两类浪费：碎片化（JSON外壳、评分项名称、评语等重复序列被切成多个token）与冗余（每生成一个token都要对全词表打分）。",
-    "VocabX按每个token的成本而非词频重构词表，基座模型、数据与训练配方不变，实测推理成本下降77%；论文仍在审稿中，数据可能变动。"
+    "约 1T 总参数、49B 激活参数，1M token 上下文；官方 FP8 与 NVFP4 两个版本，另有 Unsloth 与 llama.cpp 团队的 GGUF",
+    "在 Artificial Analysis Cyber Index 得 82%，Mistral 称若干闭源前沿模型在该测试上因拒绝尝试而接近零分；在 JailbreakBench、StrongREJECT、AgentHarm 的 cyber 提示上平均拒答率高于其他开放权重模型",
+    "架构为大规模专家池 + 稀疏注意力 + Pixtral 视觉编码器，许可为 MIT 衍生的 Mistral Ecosystem Open-Weight License"
    ],
    "topics": [
-    "post-training",
-    "reasoning"
+    "open-source",
+    "reasoning",
+    "post-training"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
-   "horizon": "long",
-   "score": 83.4,
+   "horizon": "short",
+   "score": 83.1,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
-     "arxiv": [
-      "2607.15232"
-     ],
+     "arxiv": [],
      "links": [
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/TYOhAFobnI4ss3UnNqMHc.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/K5De-hfTaOl9vUJItSijj.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/Inl5L1IDqWUBbD0Xlq-JB.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/q-GjdgYd6GgXnv3-wJQsY.png",
-      "https://www.liquid.ai/blog/tokenizer-expansion",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/B5Wig-4nTEutpFZlGQ6sk.gif",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/_EdPyU7R3xdomvFxuadPY.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/zxfdAxNxsvfBCBNeUThx5.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/PxGLMRrjTPVYDW8rlDuBd.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/7CKshmOEsUkemfgL9Mopn.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/bCCQQjpY6tU5ZAD3hXOeN.png",
-      "https://aclanthology.org/2022.emnlp-industry.41/",
-      "https://arxiv.org/abs/2607.15232",
-      "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
-      "https://huggingface.co/blog/Dharma-AI/gpu-management",
-      "https://huggingface.co/blog/Dharma-AI/why-specialization-is-inevitable",
-      "https://huggingface.co/blog/Dharma-AI/specialization-beats-scale",
-      "https://huggingface.co/blog/Dharma-AI/text-degeneration-a-production-failure-mode",
-      "https://huggingface.co/Dharma-AI"
+      "https://github.com/huggingface/blog/blob/main/mistral-large4.md",
+      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
+      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B-NVFP4",
+      "https://huggingface.co/ggml-org",
+      "https://huggingface.co/unsloth/Mistral-Large-4-1T-A52B-GGUF",
+      "https://huggingface.co/collections/mistralai/mistral-large-4",
+      "https://huggingface.co/docs/transformers/en/model_doc/pixtral",
+      "https://www.youtube.com/embed/FczbSauVvjw",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/ml4.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/attention.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/experts.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/img_encoder.png",
+      "https://huggingface.co/ggml-org/Mistral-Large-4-1T-A52B-GGUF",
+      "https://llama.app/",
+      "https://huggingface.co/ggml-org/Mistral-Large-4-1T-A52B-NVFP4-GGUF",
+      "https://llama.app/docs/serve",
+      "https://github.com/huggingface/trl/tree/main/examples/sft_mistral_large_4",
+      "https://dell.huggingface.co/updates/mistral-large-4"
      ]
     },
     "summary_mode": "full"
@@ -566,66 +594,6 @@
      ]
     },
     "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "7104bc51c29585cc",
-   "url": "https://huggingface.co/blog/nvidia/kumo-relational",
-   "title": "NVIDIA Kumo Relational Outperforms Supervised Machine Learning on Relational Data, No Training Required",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-21T18:26:30+00:00",
-   "summary_short": "NVIDIA 关系基础模型免训练预测企业数据库，基准超监督学习",
-   "summary_long": "关系数据库上的预测建模长期需要数周特征工程、任务特定训练与调参，原文将其类比为 LLM 出现之前的 NLP 流水线。NVIDIA Kumo Relational 是一个预训练关系基础模型，直接在企业数据库上做预测：给定一个预测查询，它收集最多 1 万条历史样本作为上下文，通过单次前向传播输出流失、需求或欺诈等结果，既不需要任务特定训练，也不需要特征工程，更不需要把多张表打平。原文称它是首个在常见关系基准上超过监督机器学习的小样本基础模型：在 15 个数据库的 41 个任务上，它优于监督关系深度学习模型和由专家做特征工程的梯度提升树流水线；在 SAP SALT 企业基准上，其平均倒数排名（MRR）比 AutoGluon 集成高 8%；在 RelBench V1 分类任务上，其 AUROC 平均高近 4 点。原文称它可扩展到 5000 亿行以上的数据库，并可通过 NVIDIA 开源的 GPU 原生 structured-data-models 库或 NVIDIA NIM 使用；其预测查询语言 PQL 供 agent 调用。",
-   "key_points": [
-    "Kumo Relational 是预训练关系基础模型：给定预测查询后收集最多 1 万条历史样本作为上下文，单次前向传播输出流失、需求、欺诈等预测，无需任务特定训练、无需特征工程、无需打平数据表。",
-    "原文称其为首个在常见关系基准上超过监督机器学习的小样本基础模型；在 15 个数据库的 41 个任务上，优于监督关系深度学习模型与由专家做特征工程的梯度提升树流水线。",
-    "SAP SALT 上 MRR 比 AutoGluon 集成高 8%；RelBench V1 分类任务平均高近 4 个 AUROC 点；SAP SALT 上开箱超 XGBoost 7 个 MRR 点、微调后 13 个。"
-   ],
-   "topics": [
-    "post-training",
-    "eval",
-    "product"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "评测"
-   ],
-   "horizon": "long",
-   "score": 82.5,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2602.04029",
-      "2602.09572",
-      "2604.12596",
-      "2608.16319"
-     ],
-     "links": [
-      "https://arxiv.org/abs/2604.12596",
-      "https://docs.nvidia.com/sdgm/rfm/overview",
-      "https://cdn-uploads.huggingface.co/production/uploads/6ad8e88370f69967fafc8703/FY-lkWrNmBYRFrosRD2Le.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6ad8e88370f69967fafc8703/OFX2a7xwBTfUEcbedTsfe.png",
-      "https://arxiv.org/abs/2602.09572",
-      "https://arxiv.org/abs/2602.04029",
-      "https://arxiv.org/abs/2608.16319",
-      "https://cdn-uploads.huggingface.co/production/uploads/6ad8e88370f69967fafc8703/9ITlubGvqGVnoy7j_NZDi.png",
-      "https://huggingface.co/blog/nvidia/kumo-tabular",
-      "https://github.com/NVIDIA/structured-data-models/tree/main/examples/relational",
-      "https://github.com/NVIDIA/structured-data-models-client",
-      "https://github.com/NVIDIA/structured-data-models-client/tree/main/examples",
-      "https://github.com/NVIDIA/structured-data-models-client/blob/main/examples/local/relational.ipynb",
-      "https://www.nvidia.com/en-us/product-security/",
-      "https://github.com/NVIDIA/structured-data-models",
-      "https://pypi.org/project/structured-data-models/",
-      "https://pypi.org/project/structured-data-models-client/",
-      "https://huggingface.co/nvidia/Kumo-Relational"
-     ]
-    },
     "summary_mode": "full"
    }
   },
@@ -732,45 +700,51 @@
    }
   },
   {
-   "id": "d3f519557f32dd3d",
-   "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities",
-   "title": "Patch the Planet: global response coordination as agents uncover critical vulnerabilities",
+   "id": "7bf0065ceb1646f5",
+   "url": "https://openai.com/index/updated-model-spec",
+   "title": "An updated Model Spec for more capable and beneficial AI",
    "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-10-21T07:00:00+00:00",
-   "summary_short": "AI发现PHP关键漏洞，全球协同修复，抢在攻击者前留出防御窗口",
-   "summary_long": "原文发布于2026年10月21日。过去两个月，发布方牵头组织维护者、研究者与安全厂商联盟，处理开源语言PHP中的关键漏洞：Calif借助GPT‑5.6 Sol在Patch the Planet计划中发现其中一处关键缺陷，Wiz也独立发现并报告了这两个漏洞；PHP维护者主导修复与发布，Wiz、Cloudflare等伙伴提供研究、技术支持和协调，以便在披露前准备好防护。对使用PHP的组织而言，当务之急是应用修复；发布方以Codex skill形式提供PHP版本检查器，帮助运维识别可能受影响的版本并结合指导判断该装哪些更新。原文称，鉴于漏洞严重性与PHP的广泛使用，这是近期最具影响的安全问题之一：它既说明AI能发现具有互联网规模影响的安全缺陷，也说明同样能力可被攻击者用于快速开发攻击工具；据其所知，前沿AI先于攻击者发现这些漏洞，为维护者和安全厂商争取到“防御者窗口”。发布方承诺投入10亿美元补贴Daybreak访问，面向安全资源有限、保护关键服务的组织，并提出一套面向AI时代的响应框架，邀请安全界完善；原文仅详述五阶段中的第一阶段“验证并修复上游漏洞”。",
+   "published_at": "2026-10-29T17:00:00+00:00",
+   "summary_short": "模型规范更新：围绕五项价值重组行为指导，强调理解人类意图与未明示情境中的判断。",
+   "summary_long": "原文介绍，随着模型更聪明并在现实中采取更具后果性的行动，仅解释具体指令已不够，模型还需理解人类意图与价值，以便在指令未明确覆盖的情境中作出良好判断，同时保持对人类意图与监督的忠实。此次更新将 Model Spec 的指导围绕五项底层价值重组：忠实于人类意图、最小化伤害、诚实与透明、人类能动性、关怀，目标是让模型在陌生情境中理解并应用人类价值。修订除更清晰解释既有原则外，还增加关于上下文、监督和能动性的指导，调整部分行为默认设置，并退役大量详细风格指导。原文说明，忠实于人类意图意味着不止字面执行指令，而要深入理解相关方意图与价值，并在理解不完整时明智行动；也要认识到人的信念和价值会变化，帮助其反思成长而不暗中引导或覆盖选择。规范通过研究、部署经验、公众反馈及与用户和外部专家讨论不断完善。",
    "key_points": [
-    "PHP关键漏洞分别由GPT‑5.6 Sol（Calif主导）与Wiz独立发现并报告，PHP维护者主导修复与发布，Wiz、Cloudflare等参与研究、技术支持与协调",
-    "原文称前沿AI先于攻击者发现漏洞，形成“防御者窗口”，同时警告同样能力可被攻击者用于快速开发攻击工具与利用代码",
-    "发布方提供Codex skill形式的PHP版本检查器，承诺10亿美元补贴Daybreak访问，并提出五阶段漏洞响应框架（原文仅详述第一阶段），预计未来数月类似发现将大幅增加"
+    "更新围绕五项价值重组：忠实于人类意图、最小化伤害、诚实与透明、人类能动性、关怀。",
+    "新增关于上下文、监督和能动性的指导，调整部分行为默认设置，并退役大量详细风格指导。",
+    "忠实于人类意图要求超越字面执行指令，深入理解意图与价值，在理解不完整时明智行动，并避免暗中引导或覆盖选择。"
    ],
    "topics": [
-    "cybersecurity",
-    "coding-agent"
+    "alignment",
+    "interpretability"
    ],
    "category": "安全",
    "categories": [
     "安全"
    ],
-   "horizon": "short",
-   "score": 80.8,
+   "horizon": "long",
+   "score": 81.6,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "source_tags": [
-     "Security"
+     "Safety"
     ],
     "outbound": {
-     "arxiv": [],
+     "arxiv": [
+      "1606.03137"
+     ],
      "links": [
-      "https://patchtheplanet.org",
-      "https://github.com/openai/php2shell-checker",
-      "https://patchtheplanet.org/",
-      "https://www.cisa.gov/news-events/directives/bod-26-04-prioritizing-security-updates-based-risk",
-      "https://rustfoundation.org/media/rust-foundation-welcomes-openai-as-platinum-member-announces-donation-to-rust-project/",
-      "https://trailofbits.com/patch-the-planet/#apply",
-      "https://docs.google.com/forms/d/e/1FAIpQLSfcynrrWRWdj0PLAwtwVg2pfr0IvyAx5HfRBYf5tZin1AMLiQ/viewform"
+      "https://model-spec.openai.com/2026-10-29.html",
+      "https://alignment.openai.com/beneficial-rl/",
+      "https://arxiv.org/abs/1606.03137",
+      "https://www.amacad.org/publication/daedalus/if-we-succeed",
+      "https://model-spec.openai.com/2026-10-29.html#chain_of_command",
+      "https://model-spec.openai.com/2026-10-29.html#consider_context_carefully",
+      "https://model-spec.openai.com/2026-10-29.html#support_human_agency",
+      "https://model-spec.openai.com/2026-10-29.html#follow_social_norms",
+      "https://model-spec.openai.com/2026-10-29.html#control_side_effects",
+      "https://model-spec.openai.com/2026-10-29.html#assume_objective_pov",
+      "https://model-spec-feedback-2026.openai.chatgpt.site"
      ]
     },
     "summary_mode": "full"
@@ -935,96 +909,6 @@
    }
   },
   {
-   "id": "d31a18ead424650d",
-   "url": "https://www.wiz.io/blog/php2shell-php-rce",
-   "title": "PHP2Shell: AI uncovers critical RCE in PHP",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-21T13:43:19+00:00",
-   "summary_short": "AI 助力 Wiz 发现 PHP 核心 RCE 漏洞，十年版本全受影响",
-   "summary_long": "Wiz Research 在 PHP 核心引擎中发现多个严重漏洞，可导致未经认证的远程代码执行与内存泄露，攻击者能接管服务器、窃取密码、令牌、API 密钥与证书，或篡改网站。PHP 支撑全球 70% 的网站，WordPress、Joomla、Drupal、MediaWiki 都构建于其上；漏洞位于语言本身，与应用层代码是否安全无关。过去十年发布的几乎所有 PHP 版本（可追溯至 5.4）至少受其中一个漏洞影响，攻击者可远程利用，部分利用难度较低，原文强烈建议立即打补丁。相关漏洞归入两个 CVE，最高 CVSS 9.2，PHP 于 2026 年 10 月 21 日发布修复。这些缺陷已存在数十年，但证明其可利用性需要极其复杂的链条，接近人工研究的极限；前沿 AI 模型显著降低了门槛，使团队能在数小时内为多个应用开发并调整出可用的利用代码。原文将其与 Heartbleed、Log4Shell 类比，认为它可能成为 AI 时代的转折点。",
-   "key_points": [
-    "漏洞是 PHP 核心的内存泄露与未认证远程代码执行，与应用层无关；近十年发布的几乎所有版本（回溯至 5.4）至少受其中一个影响",
-    "归入两个 CVE，最高 CVSS 9.2，PHP 于 2026 年 10 月 21 日发布补丁，原文建议立即修补",
-    "底层缺陷已存在数十年，前沿 AI 模型使原本接近人力极限的复杂利用链变得可行，数小时内可跨多个应用开发利用代码"
-   ],
-   "topics": [
-    "cybersecurity"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 79.7,
-   "status": "published",
-   "extra": {
-    "hn_points": 425,
-    "hn_comments": 167,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.php.net/archive/2026.php#2026-10-21-5",
-      "http://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities",
-      "https://calif.io/php2shell/",
-      "https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/",
-      "http://blog.cloudflare.com/php-vulnerabilities-waf-protection/",
-      "https://www.fastly.com/blog/fastlys-proactive-protection-critical-php-rce-cve-2026-109618",
-      "https://cloud.google.com/blog/products/identity-security/responding-to-core-php-vulnerabilities-cve-2026-109618-cve-2026-109619?e=48754805",
-      "https://app.wiz.io/boards/threat-center/",
-      "https://x.com/wiz_io",
-      "https://www.wiz.io/events/php2shell-emergency-threat-briefing?utm_source=blog&utm_medium=content&utm_campaign=FY27Q3_EV_WBNR_PHP2Shell-Emergency-Threat-Briefing_2026-10-21"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "1de8e62ff715d1f1",
-   "url": "https://openai.com/index/scaling-ai-research-for-complex-biological-data",
-   "title": "Using thousands of AI agents to uncover new leads in biological data",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-21T04:50:00+00:00",
-   "summary_short": "数千AI智能体32分钟分析数百万小鼠脑细胞数据，找出新的疾病研究线索",
-   "summary_long": "OpenAI、PerturbAI与Scripps Research合作，用数千个由GPT‑Rosalind驱动的AI智能体，在32分钟内分析并解读了来自数百万小鼠脑细胞的既有实验数据。原文指出，现代实验能改动数千个基因并测量其在数百万细胞中的效应，数据量远超科学家能彻底探究的范围，而理解结果对人类疾病的意义还需连接数十年零散的科研知识。团队将分析拆分给数千个智能体，称之为「分布式生物推理」：每个智能体负责一个基因扰动，分析细胞反应、检索科学文献并给出解释，报告汇总成一张连接基因、细胞效应、相关论文与可能机制「推理图谱」。研究团队估算，若由人逐项分析和查文献需数月到一年。智能体复现了人工分析结果，还发现额外线索，其新颖性与科学价值判断也与不知情的人类专家一致。它们发现两个疾病相关基因对脑细胞的影响存在意外差异，以及胆固醇调控与神经退行性变的潜在关联。该推理图谱已开放供研究者使用。",
-   "key_points": [
-    "方法为「分布式生物推理」：数千个GPT‑Rosalind智能体各自负责一个基因扰动，分析细胞反应、检索文献并提出机制解释，再汇总成推理图谱。",
-    "32分钟完成分析，团队估算同类人工分析与文献综述需数月到一年；智能体复现了人工结果并给出额外线索，其新颖性判断与盲评人类专家一致。",
-    "发现两个疾病相关基因对脑细胞影响的意外差异，以及胆固醇调控与神经退行性变的潜在关联；推理图谱已开放供研究者探索。"
-   ],
-   "topics": [
-    "multi-agent",
-    "ai-for-science"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 79.5,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Publication"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.biorxiv.org/content/10.64898/2026.10.15.759436v1",
-      "http://perturb.ai",
-      "http://scripps.edu",
-      "https://huggingface.co/datasets/perturbai/wholebrain_crispr_atlas",
-      "https://www.biorxiv.org/content/10.64898/2026.03.16.711480v1",
-      "https://github.com/jinlabneurogenomics/distributed_agent"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "2325af3360e06716",
    "url": "https://www.cerebras.ai/blog/how-we-deploy-trillion-parameter-frontier-models-on-cerebras",
    "title": "Cerebras Deploys Trillion-Parameter AI Models",
@@ -1110,47 +994,6 @@
       "https://allenai.org/blog/theorizer",
       "https://allenai.org/asta",
       "https://www.datocms-assets.com/64837/1793023853-novelty-bench-prompt-wording-chart.png"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "edef63b51aedc012",
-   "url": "https://openai.com/index/building-chatgpt-ad-stack",
-   "title": "How we built ChatGPT’s novel ad stack for user trust and relevance",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-21T07:00:00+00:00",
-   "summary_short": "ChatGPT 自建广告栈：后训练LLM跨会话理解意图，广告独立于回答",
-   "summary_long": "传统广告系统通常响应搜索或页面浏览等离散意图事件，而 ChatGPT 中的用户意图会跨多轮对话甚至多次会话逐步形成，且并非每轮都有合适的广告时机。为此，原文介绍了一套专门构建的广告投放系统：基于定制后训练的前沿 LLM，通过工具调用完成广告候选检索、排序、相关性与价值评估，以及拍卖和定价。其三项关键设计是：有状态的广告会话，跨轮次和跨会话记忆信息；用后训练 LLM 的工具调用架构理解对话上下文与潜在意图并选择、排序和投放广告；把广告选择放在独立服务中运行，与 ChatGPT 答案生成分离，避免广告影响答案并保持中立语气。原文称，ChatGPT Ads 上线不到200天达到10亿美元年度化收入运行率，已有超过10万名广告主投放。",
-   "key_points": [
-    "传统广告依赖离散意图事件，ChatGPT 的用户意图跨多轮对话和多次会话演化，需要从头构建新的广告栈。",
-    "系统基于定制后训练的前沿 LLM，通过工具调用完成广告检索、排序、相关性评估以及拍卖和定价。",
-    "三项关键设计包括有状态广告会话、用 LLM 理解上下文与潜在意图、广告选择独立于答案生成以保持 ChatGPT 中立语气。"
-   ],
-   "topics": [
-    "tool-use",
-    "context-engineering",
-    "memory"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "产品与应用"
-   ],
-   "horizon": "long",
-   "score": 79.2,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Engineering"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://openai.com/index/our-approach-to-advertising-and-expanding-access/"
      ]
     },
     "summary_mode": "full"
@@ -1415,52 +1258,6 @@
    }
   },
   {
-   "id": "20a259028135abda",
-   "url": "https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure/",
-   "title": "The bridge to agent-scale Git infrastructure",
-   "source": "GitHub Blog (AI)",
-   "tier": "S",
-   "published_at": "2026-10-21T16:00:00+00:00",
-   "summary_short": "GitHub 调整 quorum 写入序列化，把最繁忙仓库迁入 Azure",
-   "summary_long": "过去一年 Git 流量指数增长，GitHub 99.99999% 的仓库已同时存放在自有数据中心和 Azure，剩余最繁忙仓库受跨区域约 25ms 网络往返限制。原文称迁移由 agentic shift 带来的流量增长、数据中心及周边地区电力容量硬上限和物理供应链约束推动。团队选择先迁数据、再演进架构：2025 年 8 月首个仓库副本落地 Azure Central US 区域；目前大多数仓库五个副本中有两个在 Azure，Azure 承载约一半 Git 流量。难点在于跨区域副本会拉低写吞吐：Spokes 的 quorum 虽只需多数提交，却要等所有健康副本响应（至超时），最慢健康副本决定每次写延迟；写又持有仓库级锁直到提交，因此也决定吞吐上限。原文提出按第一原则最小化协调，利用 Git 一致性按单个引用成立、不同引用更新通常相互独立的特点，改变 quorum 序列化写的范围；具体改动原文未详述。该步骤旨在把最繁忙仓库接入 Azure，并为不保留自身持久状态的副本打开门路。",
-   "key_points": [
-    "迁移由 agentic shift 带来的流量增长、电力容量硬上限和供应链约束推动；策略是先迁数据再演进架构。",
-    "2025 年 8 月首个副本落地 Azure Central US；目前大多数仓库五个副本中两个在 Azure，Azure 承载约一半 Git 流量。",
-    "剩余最繁忙仓库受跨区域 25ms 往返和 quorum 等待所有健康副本影响；原文拟按引用独立更新来缩小写入序列化范围，具体改动未详述。"
-   ],
-   "topics": [
-    "infrastructure",
-    "distributed-systems",
-    "coding-agent"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 76.9,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "Architecture & optimization",
-     "Engineering",
-     "Git",
-     "Infrastructure",
-     "technical deep dive"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/",
-      "https://github.blog/engineering/architecture-optimization/the-bridge-to-agent-scale-git-infrastructure/",
-      "https://github.blog"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "86405d6d1e9fb855",
    "url": "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation",
    "title": "Donating Agent Skills to the Agentic AI Foundation",
@@ -1502,6 +1299,63 @@
       "https://github.com/agentskills/agentskills"
      ]
     },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "8ccea7e89b703086",
+   "url": "https://mistral.ai/news/mistral-large-4-oss/",
+   "title": "We're releasing the weights of Mistral Large 4",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-29T14:13:21+00:00",
+   "summary_short": "Mistral 开源 1 万亿参数多模态模型权重，编程能力居开源首位",
+   "summary_long": "Mistral 本月初以公开预览形式发布旗舰模型 Mistral Large 4（Le Chonk），该模型有 1 万亿参数，原生支持多模态。预览反响超出预期；团队结合开发者与早期客户反馈，继续扩大强化学习规模，在编程与防御性网络安全上大幅提升，且未见饱和迹象。今天 Mistral 放出这一改进版本的权重。原文称该模型在推理效率上同样有显著提升，使开发者能以更低推理成本获得更强性能，并提供三种推理模式来平衡成本与性能。基准方面，它在 FrontierCode、Terminal-Bench 上领先开源模型；在 Cognition 的私有 FrontierCode 2.0 上以 19.7% 居首；在 Artificial Analysis Coding Agent Index 上得分 48%，与领先开源模型 GLM-5.3 基本持平，但每任务平均少用 47% token；在 Terminal-Bench 4.0 上，它较预览版提升 13 个百分点至 41%，输出 token 减少 30%。该模型从零开始在欧洲基础设施上训练，训练来源清晰可追溯，面向主权 AI。",
+   "key_points": [
+    "发布 Mistral Large 4（Le Chonk）权重：1 万亿参数、原生多模态，本月初刚以公开预览形式发布",
+    "官方称经额外强化学习，编程与防御性网络安全大幅提升，且提升仍在加速、未见饱和；推理效率提升带来更低推理成本，并提供三种推理模式",
+    "Cognition 私有 FrontierCode 2.0 得分 19.7% 居首；Artificial Analysis Coding Agent Index 得分 48%，与 GLM-5.3 基本持平但每任务平均少用 47% token"
+   ],
+   "topics": [
+    "open-source",
+    "post-training",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 76.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 1103,
+    "hn_comments": 319,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://mistral.ai/products/forge/",
+      "https://mistral.ai/products/studio/",
+      "https://console.mistral.ai/home",
+      "https://docs.mistral.ai/models/mistral-large-4-0#use-mistral-large-4-0",
+      "https://openrouter.ai/mistralai/mistral-large-4-0",
+      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
+      "https://docs.mistral.ai/models/mistral-large-4-0",
+      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B/blob/main/LICENSE",
+      "https://chat.mistral.ai/code?model=mistral-large-4-0",
+      "https://build.nvidia.com/mistralai/mistral-large-4-1t-a52b",
+      "https://catalog.ngc.nvidia.com/orgs/nim/nvidia/containers/vllm-model-free-nim-experimental/-",
+      "https://github.com/NVIDIA-NeMo/Automodel/blob/main/docs/model-coverage/vlm/mistralai/mistral-large-4.mdx",
+      "https://github.com/NVIDIA/TensorRT-LLM/tree/feat/mistral-large-4",
+      "https://mistral.ai/contact/",
+      "https://x.com/MistralAI?lang=en",
+      "https://discord.com/invite/mistralai",
+      "https://github.com/mistralai",
+      "https://mistral.ai/news/voxtral-3/",
+      "https://mistral.ai/news/timestral/"
+     ]
+    },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -1662,6 +1516,61 @@
      ]
     },
     "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "a80dd20eaec84f5f",
+   "url": "https://simonwillison.net/2026/Oct/29/how-i-built-the-most-ai-pilled-company-in-the-world/",
+   "title": "Building a multiplayer game world with autonomous Fable-class models",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-10-29T17:00:26+00:00",
+   "summary_short": "Spawn 用 Fable 智能体集群自主开发多人游戏世界，月耗超300万美元 token",
+   "summary_long": "原文介绍 Jacob Sansbury 构建的 Spawn：一个大型多人在线游戏环境，玩家用提示词让游戏内智能体 Savi 修改世界——作者在手机上凭空造出城堡和龙，并骑龙绕城堡飞行。据 Jacob 描述，Spawn 现由一群 Fable 驱动的智能体自主开发，每月 token 花费超 300 万美元（约为人力成本的 30 倍）。智能体直接改动线上代码并每小时发布到生产，自行读取错误、bug 报告与指标；约 60% 的工作源自生产错误、Savi 的 bug 报告、日志异常或功能请求。Savi 会自己提 bug，由智能体判定是需修、不修，还是需决策的设计问题，通常一小时内变成改动交付用户并在同一聊天中告知。一小时未发布被视为最严重的 SEV-0；故障可 30 秒内回滚且只限出错位置，告警会唤醒负责该事故的智能体，团队还故意制造故障测试恢复路径。Jacob 称是 Fable 5（及 5.1）让这种自主性可行，Opus 5.5 不太够用；用 GPT-6 Astra 落实安全审查修复时一切停摆，因为它把每个功能都关停并标记待修复后再开启。作者对更高风险软件是否适用存疑。",
+   "key_points": [
+    "Spawn 是多人游戏环境，玩家通过提示词指挥游戏内智能体 Savi 修改游戏世界",
+    "据 Jacob 描述，开发由 Fable 驱动的智能体集群自主完成：直接改线上代码、每小时发布，一小时不发版即视为 SEV-0，月耗 token 超 300 万美元",
+    "Jacob 称 Fable 5/5.1 才让这种自主程度可行，Opus 5.5 不够用；GPT-6 Astra 在执行安全修复时把全部功能关停，导致一切停摆"
+   ],
+   "topics": [
+    "coding-agent",
+    "multi-agent",
+    "agent-loop"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 75.8,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "game-design",
+     "ai",
+     "generative-ai",
+     "llms",
+     "claude"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://twitter.com/jsnnsa/status/2115623382721126826",
+      "https://spawn.co",
+      "https://en.wikipedia.org/wiki/Continuous_deployment",
+      "https://simonwillison.net/2026/Oct/28/vibe-game-development/",
+      "https://simonwillison.net/tags/game-design",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/claude",
+      "https://simonwillison.net/tags/coding-agents",
+      "https://simonwillison.net/tags/agentic-engineering",
+      "https://simonwillison.net/tags/claude-mythos-fable"
+     ]
+    },
     "summary_mode": "full"
    }
   },
