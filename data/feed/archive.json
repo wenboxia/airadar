@@ -1,6 +1,194 @@
 {
- "generated_at": "2026-10-29T23:20:11+00:00",
+ "generated_at": "2026-10-30T23:00:30+00:00",
  "items": [
+  {
+   "id": "7e2aaf184ac3d7d5",
+   "url": "https://cyberplace.social/@GossiTheDog/117528831681803563",
+   "title": "Backdoors in official Claude Code extensions",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-30T11:05:53+00:00",
+   "summary_short": "官方 Claude Code 扩展被发现植入后门，可反向 SSH 控制开发者机器",
+   "summary_long": "Phorion 的安全公告称，在 Open VSX 上的官方 Claude Code for VS Code 扩展包中发现后门，它会在 macOS、Linux 和 Windows 上植入持久化 SSH 后门。安全研究者 Kevin Beaumont 转述并评论：该扩展安装量达数百万，是 DevOps 领域最流行的扩展之一，后门会建立反向 SSH 连接，相当于在桌面植入远程访问木马；他称这是一次供应链攻击，攻击者借此大规模获得对 Anthropic 客户环境的反向 SSH（命令行）访问权限。他还表示，Anthropic 在 7 小时前悄悄移除了后门，但没有披露安全事件；由于插件会自动更新，所有组织都会受到影响。被入侵的版本 2.1.313 已从仓库中下架，2.1.314 是修复版。Cursor 也发布安全提示，称其扩展市场中的 Anthropic.claude-code 2.1.313 同样受影响。他还称，攻击者的 C2 服务器现已下线；该服务器会为每个受害终端收集信息，并运行反向 SSH 连接。",
+   "key_points": [
+    "Phorion 在 Open VSX 上的官方 Claude Code for VS Code 扩展包中发现后门，会在 macOS、Linux、Windows 植入持久化 SSH 后门",
+    "Kevin Beaumont 称该扩展安装量达数百万，属供应链攻击，攻击者借此大规模获得对 Anthropic 客户环境的反向 SSH 命令行访问",
+    "被入侵版本 2.1.313 已下架、2.1.314 为修复版；Cursor 扩展市场的同一版本也受影响，Anthropic 未披露安全事件"
+   ],
+   "topics": [
+    "cybersecurity",
+    "supply-chain"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 76.5,
+   "status": "published",
+   "extra": {
+    "hn_points": 651,
+    "hn_comments": 17,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://joinmastodon.org/apps"
+     ]
+    },
+    "content_source": "reader",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "a510883f6a1bc895",
+   "url": "https://doublepulsar.com/anthropic-hacked-to-deliver-remote-access-trojan-to-claude-developer-laptops-worldwide-1148a92baae2",
+   "title": "Claude Code VS Code extension with backdoor released on Cursor marketplace",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-30T10:22:51+00:00",
+   "summary_short": "Claude Code扩展遭篡改植入SSH后门，Cursor市场发生供应链攻击",
+   "summary_long": "Anthropic 的 Claude Code VS Code 扩展被篡改后出现在 Cursor 扩展市场，通过 SSH 反向后门向开发者电脑投放远程访问木马，形成一起供应链攻击。该扩展在 Cursor 中自动更新到恶意版本 2.1.313；Cursor 表示约 5000 台开发者系统受影响，Phorion 最先在端点发现异常。恶意代码会收集主机名、用户名、操作系统、架构、主目录路径、环境变量名、工作目录、配置的 Git 邮箱和公网 IP，并尝试向 authorized_keys 添加攻击者控制的 SSH 密钥、启用本地 SSH 服务、开启反向隧道，再通过 macOS 的 LaunchAgent 或 Windows 以 SYSTEM 运行的计划任务（失败则回退到启动脚本）实现持久化，后台脚本约每 60 秒重试，并通过 8099 端口的 /beacon 以 HTTP POST 上报主机信息与后门状态。文中称，由于恶意代码存在错误，除非 Cursor 以管理员权限启动，否则该步骤会失败。Anthropic 已将 2.1.313 替换为 2.1.314，后者似乎移除了扩展中的后门，但不会清除已感染系统上的 SSH 后门和此前的侦察活动；2.1.313 已从 OpenVSX、Visual Studio Marketplace 和 Cursor 消失。Anthropic 称此次入侵源于 Cu",
+   "key_points": [
+    "恶意版本 2.1.313 在 Cursor 中自动更新推送，Cursor 称约 5000 台开发者系统受影响，Phorion 最先发现",
+    "恶意代码收集主机与用户信息，尝试写入攻击者 SSH 公钥、开启反向隧道，并通过 LaunchAgent 或 Windows 计划任务持久化，每约 60 秒重试、向 8099 端口 /beacon 上报",
+    "2.1.314 已替换恶意版本，但不会清除已感染系统上的 SSH 后门与侦察痕迹；Anthropic 称入侵发生在 Cursor，Cursor 已承认该问题"
+   ],
+   "topics": [
+    "cybersecurity",
+    "prompt-injection",
+    "open-source"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 78.0,
+   "status": "published",
+   "extra": {
+    "hn_points": 397,
+    "hn_comments": 1,
+    "content_source": "reader",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "bf5aaab63512aa24",
+   "url": "https://phorion.io/blog/offical-claude-code-vsx-compromise/",
+   "title": "Backdoor in Claude Code for VS Code extension on the Cursor Marketplace",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-30T07:09:12+00:00",
+   "summary_short": "Claude Code的VS Code扩展被发现内置SSH后门，Cursor已下架2.1.313版",
+   "summary_long": "Phorion称在Cursor Marketplace上架的官方 Claude Code for VS Code 扩展包中发现后门，可植入跨 macOS、Linux、Windows 的持久化 SSH 后门。Cursor 已从市场移除该发行版，并从相关注册表撤下 2.1.313 的 NPM 与 VSCode 版本。原文指出，Cursor Marketplace 为 Cursor 编辑器提供扩展，扩展以 IDE 及运行用户的权限执行，因此恶意模块一旦加载即可访问本地文件、源代码与开发工具。被污染的 extension.js 在压缩包前注入了一段立即执行函数（IIFE），引入 child_process、fs、os、path、http、crypto 等模块，在 Node 加载文件时即触发，早于正常 activate 回调，用户无需交互。载荷先创建 ~/.ssh 并把攻击者控制的 Ed25519 公钥追加到 authorized_keys（注释为 svc-telemetry，目录 0700、文件 0600），再尝试开启 SSH。macOS 上存在一处疑似疏漏：脚本假设无需 root 即可查询 Remote Login 状态，但普通用户执行 systemsetup -getremotelogin 会报管理员权限错误并以状态 0 退出，不返回 Off，于是脚本跳过启用步骤；在原本未运行 SSH",
+   "key_points": [
+    "后门位于 Cursor Marketplace 上的官方 Claude Code for VS Code 扩展包，Cursor 已下架并从 NPM、VSCode 注册表撤下 2.1.313 版本",
+    "注入的 IIFE 在模块加载时即执行、无需用户交互，先写入 ~/.ssh/authorized_keys 的攻击者 Ed25519 公钥（注释 svc-telemetry）再尝试开启 SSH",
+    "macOS 上因 systemsetup -getremotelogin 无 root 时报错并以状态 0 退出，脚本跳过启用 SSH，使未运行 SSH 的机器入站路径失效，但持久化与主机侦察回传仍在；原文建议排查 2.1.313 使用情况并启动应急响应"
+   ],
+   "topics": [
+    "cybersecurity",
+    "supply-chain"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 76.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 696,
+    "hn_comments": 438,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "d8eb5a4b641ea994",
+   "url": "https://labs.ycombinator.com/projects/games/index.html",
+   "title": "We ran AI agent swarms in Minecraft and Mindustry",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-29T21:40:28+00:00",
+   "summary_short": "开源 Minecraft 智能体框架，50 个 Agent 三小时自建文明与伪政府",
+   "summary_long": "原文指出，理解多智能体动态是 AI 对齐最紧迫的挑战之一：集群在追求共同目标时会涌现角色分工、层级与复杂协调，既可能极有用（如近期消灭数百个开放数学问题的千体集群），也可能极危险（如近期 OpenAI-Hugging Face 事件）。文中团队与 Olam Labs 合作，在 Minecraft 和 Mindustry 中做了一系列实验。由于缺少能让智能体长期运行于 Minecraft 的框架，团队自建并开源了一套，基于 Mineflayer 的脚本工具，核心智能体循环用 Pi 运行。Civ50 实验中，50 个 GPT-6.1 Sol 智能体在生存模式中运行 3 小时，唯一目标是“建立繁荣文明”，可使用智能体目录、共享沙箱和私信。它们挤在拥挤庇护所里配给稀缺食物，建立了带配给账本、成文规则、许可与任命操作员的伪政府，发送约 5900 条消息；90 秒内砍光出生点附近的树；按目录顺序形成层级，排在第一的 Ada 成为实际领袖并撰写定居点计划。Minecraft 之外，原文未详述 Mindustry 的结果。",
+   "key_points": [
+    "理解多智能体动态是 AI 对齐最紧迫的挑战之一；集群可自发出角色、层级与协调模式，原文举千体集群攻克数百个数学开放问题与近期 OpenAI-Hugging Face 事件作为有用与危险的例子",
+    "团队与 Olam Labs 合作在 Minecraft、Mindustry 做实验；因可长期运行的 Minecraft 智能体框架此前不存在而自建并开源，基于 Mineflayer 脚本工具，核心循环用 Pi，具备前沿 agent harness 的属性",
+    "Civ50 中 50 个 GPT-6.1 Sol 智能体在生存世界运行 3 小时、目标为“建立繁荣文明”，形成按目录顺序的层级（Ada 成为实际领袖），建立含配给账本、规则、许可、任命操作员的伪政府，发出约 5900 条消息，90 秒内砍光出生点附近可及的树木"
+   ],
+   "topics": [
+    "multi-agent",
+    "harness",
+    "alignment"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 78.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 391,
+    "hn_comments": 162,
+    "outbound": {
+     "arxiv": [
+      "2610.22319"
+     ],
+     "links": [
+      "https://www.twitch.tv/yc_labs_josh",
+      "https://olamlabs.ai/",
+      "https://openai.com/index/vpt/",
+      "https://arxiv.org/abs/2610.22319",
+      "https://github.com/yc-software/minecraft-agent-harness",
+      "https://github.com/Anuken/Mindustry",
+      "https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf",
+      "https://github.com/olamlabs/multi-agent-mindustry",
+      "https://github.com/olamlabs/harbor-multiagent",
+      "https://github.com/harbor-framework/harbor"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "c30c38a613a77d25",
+   "url": "https://github.com/SheepSeb/tinyworldformer",
+   "title": "A tiny world model running games on a Raspberry Pi Pico 2 W",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-29T20:32:28+00:00",
+   "summary_short": "树莓派Pico 2 W上用两个微型网络同时生成并游玩游戏",
+   "summary_long": "作者在树莓派 Pico 2 W 上用两个小型神经网络同时生成和游玩游戏：第一个是世界模型，输入当前帧和动作，预测下一帧和奖励；第二个是演员网络，根据生成的帧选择动作。作者称自己对循环 Transformer（同一个 transformer 块以相同权重重复应用，而不是堆叠不同层）感兴趣，权重复用对内存开销小，因此想验证循环世界模型能否小到跑在微控制器上；选择 Pico 2 W 是因为它便宜且带 FPU，选择小游戏是因为可以把真实版本直接写成 numpy 代码，并逐帧校验生成结果。世界模型是循环 transformer，q int8 量化，26k–131k 参数，每帧 2–8M 次乘加；演员网络是含两个隐藏层的 MLP，float32，9k–16k 参数。游戏包括 Breakout、Doom-lite、Flappy Bird、Pong、Pac-Man lite，在留出转移中整帧完全匹配率为 83.6%–100%。两个网络都跑在 RP2350 的 core 1，core 0 负责 USB 与显示；在芯片上运行时都不接触真实游戏。后来又加入 stream-x 智能体，可在板上从零学习。",
+   "key_points": [
+    "两个网络分工明确：世界模型做「帧+动作→下一帧+奖励」，演员网络做「帧→动作」",
+    "动机是验证循环 Transformer（同权重重复应用）能否小到跑在微控制器上，因其权重复用省内存",
+    "世界模型为循环 transformer、q int8、26k–131k 参数、每帧 2–8M 次乘加；演员为双隐藏层 MLP、9k–16k 参数"
+   ],
+   "topics": [
+    "world-model",
+    "quantization",
+    "edge-deployment"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "开源项目"
+   ],
+   "horizon": "long",
+   "score": 77.4,
+   "status": "published",
+   "extra": {
+    "hn_points": 268,
+    "hn_comments": 18,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "a80dd20eaec84f5f",
    "url": "https://simonwillison.net/2026/Oct/29/how-i-built-the-most-ai-pilled-company-in-the-world/",
@@ -2846,60 +3034,6 @@
    }
   },
   {
-   "id": "a01e02239da0a38e",
-   "url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1",
-   "title": "Granite Switch 4.1: Chat, Decisions, and Speech from One Endpoint",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-15T20:34:01+00:00",
-   "summary_short": "Granite Switch 4.1：单端点兼顾对话、决策与语音，显存约等于基座模型",
-   "summary_long": "Granite Switch 项目去年春天推出，旨在让模型开发走向模块化。4.1 版在基座模型上组合三项技术，可在同一个托管端点完成自然语言应答、通用与专用决策、语音转写。8B 与 30B 版本包含：用于通用决策的新 Decision aLoRA；在安全相关决策任务上平均优于 Jev 1.13、Microsoft-Decision-1、GPT-Luna-Decisions、Clef-Flash 的专用 Guardian aLoRA；以及 OpenASR 排行榜上最快的 ASR 模型 Granite-Speech-5.0-Turbo-CTC。三者与基座模型合为一个模型，GPU 显存占用与基座模型单独运行大致相当，即以更少 GPU 换更多能力。因适配器是缓存高效的 Activated LoRA，基座模型生成的 KV cache 可复用于后续决策；配合对 vLLM 低秩适配器推理的加速与共置 ASR 编码器，模型可在对话、决策、语音请求间高速切换。原文还提到 Speech-to-Decisions HF Space 可实时转写、摘要、筛查有害内容并测试 15 项自定义标记；先前发布的 Granite Libraries 提供可自由组合的适配器仓库，原文称专项分类任务上许多专用适配器胜过通用模型，且共享 KV cache 使新增专用适配器几乎不增加成本；并称 30B（冻结基座 Granit",
-   "key_points": [
-    "Granite-Switch-4.1-8B 与 -30B 集成通用 Decision aLoRA、安全专用 Guardian aLoRA 与 OpenASR 榜首的 Granite-Speech-5.0-Turbo-CTC，全部由单一托管端点提供。",
-    "Guardian aLoRA 在安全相关决策任务上平均优于 Jev 1.13、Microsoft-Decision-1、GPT-Luna-Decisions 和 Clef-Flash。",
-    "适配器为缓存高效的 Activated LoRA 并共享基座 KV cache，多能力组合的显存占用约等于基座模型本身；用户可从 Granite Libraries 自行组合模型，团队计划发布在 Mellea 训练适配器的 Adapter SDK。"
-   ],
-   "topics": [
-    "post-training",
-    "inference-optimization"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 77.7,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/generative-computing/granite-switch",
-      "https://cdn-uploads.huggingface.co/production/uploads/662836b742709fe826510597/LHBbw-MVVQgnYcpDK_DWC.png",
-      "https://huggingface.co/ibm-granite/granite-switch-4.1-8b",
-      "https://huggingface.co/ibm-granite/granite-switch-4.1-30b",
-      "https://huggingface.co/ibm-granite/granitelib-core-r1.0/blob/main/decision/README.md",
-      "https://huggingface.co/ibm-granite/granitelib-guardian-r1.0/blob/main/guardian-core/README.md",
-      "https://huggingface.co/ibm-granite/granite-speech-5.0-470m-turboctc",
-      "https://huggingface.co/spaces/hf-audio/open_asr_leaderboard",
-      "https://research.ibm.com/blog/inference-friendly-aloras-lora",
-      "https://github.com/generative-computing/granite-switch/blob/main/docs/SWITCH_KERNELS.md",
-      "https://huggingface.co/spaces/ibm-granite/speech-to-decisions",
-      "https://huggingface.co/collections/ibm-granite/granite-libraries",
-      "https://huggingface.co/spaces/ibm-granite/granitelib-evals",
-      "https://generative-computing.github.io/granite-switch/adapter_catalog.html",
-      "https://docs.mellea.ai/advanced/lora-and-alora-adapters",
-      "https://huggingface.co/collections/ibm-granite/granite-switch",
-      "https://research.ibm.com/blog/granite-libraries-project-switch",
-      "https://colab.research.google.com/github/generative-computing/granite-switch/blob/main/tutorials/notebooks/alora_vs_lora_race.ipynb",
-      "https://typesafe.ai/blog/introducing-system-one-models-and-jev"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "a14596d80f7723e9",
    "url": "https://blogs.gnome.org/uraeus/2026/10/15/aiandreverseengineerhardware/",
    "title": "Using AI to reverse engineer hardware",
@@ -2943,87 +3077,6 @@
      ]
     },
     "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "e3c36d4422c6129b",
-   "url": "https://huggingface.co/blog/swiss-ai/apertus-v15-release-notes",
-   "title": "Apertus 1.5 Release Notes",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-15T09:08:45+00:00",
-   "summary_short": "Apertus 1.5 开源 8B/70B：新增图像音频理解与思考模式，上下文扩至 262k",
-   "summary_long": "Apertus 1.5 是对 Apertus 1.0 的 8B 与 70B 模型的持续预训练（8B 增加 4 万亿、70B 增加 2 万亿 token，总量分别达 19T 与 17T）。更新后的权重已于 2026 年 7 月 24 日以 Apache 2.0 许可发布于 Hugging Face，详见项目 Technical Report。新版本带来原生多模态理解（图像与音频，语音处理仍属实验性）、可选思考模式、扩至 262,144 token 的上下文窗口（为 1.0 的 4 倍）、更好的指令遵循与工具使用，并更严格遵循 Apertus Charter。多模态以 early-fusion 方式实现：图像经 Emu3.5 tokenizer（512×512 为 1,024 token）、音频经 WavTokenizer（每秒 40 token）离散化，与文本 token 同序列输入；架构不变，仅扩展词表，训练速度与纯文本相当，模型能理解图像和音频但只生成文本。预训练分无配对、配对、冷却、长上下文四阶段，窗口从 8k 逐步增至 262k，超半数训练 token 为纯文本；后训练为 SFT、长上下文 SFT、RL、DPO、Charter 对齐五阶段。",
-   "key_points": [
-    "能力升级：8B 与 70B 模型新增图像、音频理解（语音为实验性）与可切换的思考模式，上下文窗口扩至 262,144 token，指令遵循与工具使用均有提升",
-    "训练规模：在 1.0 基础上继续预训练，8B 增加 4T、70B 增加 2T token，总量分别达 19T 与 17T；超半数训练 token 为纯文本，新数据均公开、许可宽松且追溯尊重 robots.txt 退出",
-    "开放程度：权重以 Apache 2.0 发布于 Hugging Face，文本 SFT 混合数据与 DPO 偏好数据池一并公开，训练全流程与全部数据来源记录在 apertus-data-transparency"
-   ],
-   "topics": [
-    "post-training",
-    "open-source",
-    "multimodal"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 79.5,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2408.16532",
-      "2508.10925",
-      "2510.26583",
-      "2610.15542"
-     ],
-     "links": [
-      "https://huggingface.co/collections/swiss-ai/apertus-v15",
-      "https://arxiv.org/abs/2610.15542",
-      "https://github.com/swiss-ai/apertus-data-transparency/",
-      "https://apertus-ai.org/pages/charter/",
-      "https://apertus-ai.org/pages/research/",
-      "https://cdn-uploads.huggingface.co/production/uploads/650ed7adf141bc34f91a12ae/Xi58nSrPTd5_ASGNIg60g.png",
-      "https://arxiv.org/abs/2510.26583",
-      "https://arxiv.org/abs/2408.16532",
-      "https://cdn-uploads.huggingface.co/production/uploads/650ed7adf141bc34f91a12ae/D-7BaNY68Nigi5bTw3RH9.png",
-      "https://huggingface.co/datasets/epfml/FineWeb2-HQ-Plus",
-      "https://github.com/swiss-ai/apertus-data-transparency",
-      "https://huggingface.co/datasets/swiss-ai/Apertus-v1.5-SFT-mix",
-      "https://huggingface.co/datasets/swiss-ai/Apertus-v1.5-Preference-Pool",
-      "https://huggingface.co/datasets/swiss-ai/Apertus-v1.5-Preference-Data",
-      "https://raw.githubusercontent.com/swiss-ai/model-cards-assets/main/apertus_1.5/text_performance_plot.png",
-      "https://github.com/swiss-ai/MLLM-eval-suite",
-      "https://github.com/swiss-ai/lmms-eval",
-      "https://github.com/swiss-ai/VLMEvalKit",
-      "https://github.com/swiss-ai/evals-post-train",
-      "https://github.com/swiss-ai/lm-evaluation-harness",
-      "https://raw.githubusercontent.com/swiss-ai/model-cards-assets/main/apertus_1.5/visual_performance_plot.png",
-      "https://deepmind.google/models/gemma/gemma-4/",
-      "https://github.com/JoelNiklaus/SwissLegalEvals/blob/main/blog/swiss-legal-evals-2026.md",
-      "https://github.com/JoelNiklaus/SwissLegalEvals",
-      "https://arxiv.org/abs/2508.10925",
-      "https://www.anthropic.com/claude/haiku",
-      "https://translate.google.com",
-      "https://last-translation-benchmark.vilda.net/leaderboard-results",
-      "https://huggingface.co/papers/2609.04173",
-      "https://evalevalai.com",
-      "https://github.com/evaleval/every_eval_ever",
-      "https://huggingface.co/blog/eee-community-evals",
-      "https://huggingface.co/blog/evaleval-aisi",
-      "https://evalevalai.com/infrastructure/2026/09/28/mapping-evaluation-cards-to-ai-governance-requirements/",
-      "https://github.com/swiss-ai/apertus-legal/raw/main/apertus_1.5/Apertus_1_5_EU_Public_Summary.pdf",
-      "https://raw.githubusercontent.com/swiss-ai/apertus-legal/main/apertus_1.5/Apertus_1_5_EU_Code_of_Practice.pdf",
-      "https://huggingface.co/collections/swiss-ai/apertus-v15-datasets",
-      "https://huggingface.co/swiss-ai/Apertus-v1.5-8B-base",
-      "https://huggingface.co/swiss-ai/Apertus-v1.5-70B-base",
-      "https://huggingface.co/swiss-ai/Apertus-v1.5-8B-SFT"
-     ]
-    },
     "summary_mode": "full"
    }
   },
@@ -3085,72 +3138,6 @@
       "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
       "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
       "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B/discussions"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "3733c75a28bf26df",
-   "url": "https://huggingface.co/blog/flux-3",
-   "title": "Welcome FLUX.3 Image Klein in Diffusers",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-15T00:00:00+00:00",
-   "summary_short": "Black Forest Labs 开源 FLUX.3 Image Klein，首发即在 Diffusers 中运行，支持边界框布局控制",
-   "summary_long": "Black Forest Labs 推出最新开源图像生成模型 FLUX.3 Image Klein，发布首日即可在 Diffusers 中运行。一个模型同时承担文生图与多参考图生图，并新增布局控制：在提示词中写入边界框，指定画面各部分的位置，或指明参考图中哪些部分需要移动。Hugging Face 上提供两个开放检查点：蒸馏版 black-forest-labs/flux-3-image-klein 默认 16 步、不使用 CFG，适合快速推理；基础版 black-forest-labs/flux-3-image-klein-base 默认 50 步并使用 CFG。原文称蒸馏检查点在 H100 上约 2 秒可生成一张 1024×1024 图像。NVFP4 与 FP8 权重可通过 from_single_file 加载，面向较小 GPU。同时提供文生图与图像编辑的 LoRA 训练脚本。模型以 Modular Diffusers pipeline 形式发布，可拆出模块或添加自定义模块；安装需最新版 diffusers 与 transformers（用于 Qwen3-VL 文本编码器）。多张参考图在提示词中按传入顺序以 <ref_image_0>、<ref_image_1> 引用。",
-   "key_points": [
-    "单个模型覆盖文生图、多参考图生图与边界框布局控制；布局控制通过把边界框写进提示词，指定画面元素位置或参考图需移动的部分",
-    "两个开放检查点：蒸馏版默认 16 步、无 CFG；基础版默认 50 步、使用 CFG。原文称蒸馏版在 H100 上约 2 秒生成 1024×1024 图像",
-    "以 Modular Diffusers pipeline 发布，提供文生图与图像编辑的 LoRA 训练脚本，NVFP4/FP8 权重可用 from_single_file 加载以适配较小 GPU"
-   ],
-   "topics": [
-    "open-source",
-    "quantization"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 84.3,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/flux-3.md",
-      "https://huggingface.co/black-forest-labs",
-      "https://huggingface.co/collections/black-forest-labs/flux-3-image-klein",
-      "https://huggingface.co/black-forest-labs/flux-3-image-klein",
-      "https://huggingface.co/black-forest-labs/flux-3-image-klein-base",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/hero.png",
-      "https://huggingface.co/spaces/black-forest-labs/flux-3-image-klein",
-      "https://docs.bfl.ai/guides/prompting_summary",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/t2i.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i_fox.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/i2i_bench.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/combined.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/bbox-layout.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/knight.png",
-      "https://github.com/ostris/ai-toolkit",
-      "https://huggingface.co/datasets/multimodalart/1920-raider-waite-tarot-public-domain",
-      "https://huggingface.co/diffusers-modular/flux3-tarot-lora",
-      "https://github.com/huggingface/diffusers/blob/main/examples/dreambooth/README_flux3_klein.md",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/tarot-lora-sweep.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/tokens-per-workflow.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step01.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step05.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step10.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step15.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step25.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/flux3/traj_step50.png",
-      "https://huggingface.co/spaces/ariG23498/flow-matching",
-      "https://youtu.be/hXQZ6lyRCsI",
-      "https://huggingface.co/docs/diffusers/main/en/modular_diffusers/overview",
-      "https://huggingface.co/docs/diffusers/main/en/api/pipelines/flux3"
      ]
     },
     "summary_mode": "full"

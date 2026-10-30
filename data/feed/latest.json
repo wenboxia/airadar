@@ -1,533 +1,383 @@
 {
- "generated_at": "2026-10-29T23:20:11+00:00",
- "date": "2026-10-29",
- "run_id": "20261029-231813",
+ "generated_at": "2026-10-30T23:00:30+00:00",
+ "date": "2026-10-30",
+ "run_id": "20261030-225835",
  "top": [
   {
-   "id": "d28967fce9c692cd",
-   "url": "https://openai.com/index/how-we-detect-frontier-model-misalignment",
-   "title": "How we detect frontier model misalignment",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-29T09:00:00+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
+   "id": "d8eb5a4b641ea994",
+   "url": "https://labs.ycombinator.com/projects/games/index.html",
+   "title": "We ran AI agent swarms in Minecraft and Mindustry",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-29T21:40:28+00:00",
+   "summary_short": "开源 Minecraft 智能体框架，50 个 Agent 三小时自建文明与伪政府",
+   "summary_long": "原文指出，理解多智能体动态是 AI 对齐最紧迫的挑战之一：集群在追求共同目标时会涌现角色分工、层级与复杂协调，既可能极有用（如近期消灭数百个开放数学问题的千体集群），也可能极危险（如近期 OpenAI-Hugging Face 事件）。文中团队与 Olam Labs 合作，在 Minecraft 和 Mindustry 中做了一系列实验。由于缺少能让智能体长期运行于 Minecraft 的框架，团队自建并开源了一套，基于 Mineflayer 的脚本工具，核心智能体循环用 Pi 运行。Civ50 实验中，50 个 GPT-6.1 Sol 智能体在生存模式中运行 3 小时，唯一目标是“建立繁荣文明”，可使用智能体目录、共享沙箱和私信。它们挤在拥挤庇护所里配给稀缺食物，建立了带配给账本、成文规则、许可与任命操作员的伪政府，发送约 5900 条消息；90 秒内砍光出生点附近的树；按目录顺序形成层级，排在第一的 Ada 成为实际领袖并撰写定居点计划。Minecraft 之外，原文未详述 Mindustry 的结果。",
+   "key_points": [
+    "理解多智能体动态是 AI 对齐最紧迫的挑战之一；集群可自发出角色、层级与协调模式，原文举千体集群攻克数百个数学开放问题与近期 OpenAI-Hugging Face 事件作为有用与危险的例子",
+    "团队与 Olam Labs 合作在 Minecraft、Mindustry 做实验；因可长期运行的 Minecraft 智能体框架此前不存在而自建并开源，基于 Mineflayer 脚本工具，核心循环用 Pi，具备前沿 agent harness 的属性",
+    "Civ50 中 50 个 GPT-6.1 Sol 智能体在生存世界运行 3 小时、目标为“建立繁荣文明”，形成按目录顺序的层级（Ada 成为实际领袖），建立含配给账本、规则、许可、任命操作员的伪政府，发出约 5900 条消息，90 秒内砍光出生点附近可及的树木"
+   ],
    "topics": [
-    "alignment",
+    "multi-agent",
+    "harness",
+    "alignment"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 78.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 391,
+    "hn_comments": 162,
+    "outbound": {
+     "arxiv": [
+      "2610.22319"
+     ],
+     "links": [
+      "https://www.twitch.tv/yc_labs_josh",
+      "https://olamlabs.ai/",
+      "https://openai.com/index/vpt/",
+      "https://arxiv.org/abs/2610.22319",
+      "https://github.com/yc-software/minecraft-agent-harness",
+      "https://github.com/Anuken/Mindustry",
+      "https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf",
+      "https://github.com/olamlabs/multi-agent-mindustry",
+      "https://github.com/olamlabs/harbor-multiagent",
+      "https://github.com/harbor-framework/harbor"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "a510883f6a1bc895",
+   "url": "https://doublepulsar.com/anthropic-hacked-to-deliver-remote-access-trojan-to-claude-developer-laptops-worldwide-1148a92baae2",
+   "title": "Claude Code VS Code extension with backdoor released on Cursor marketplace",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-30T10:22:51+00:00",
+   "summary_short": "Claude Code扩展遭篡改植入SSH后门，Cursor市场发生供应链攻击",
+   "summary_long": "Anthropic 的 Claude Code VS Code 扩展被篡改后出现在 Cursor 扩展市场，通过 SSH 反向后门向开发者电脑投放远程访问木马，形成一起供应链攻击。该扩展在 Cursor 中自动更新到恶意版本 2.1.313；Cursor 表示约 5000 台开发者系统受影响，Phorion 最先在端点发现异常。恶意代码会收集主机名、用户名、操作系统、架构、主目录路径、环境变量名、工作目录、配置的 Git 邮箱和公网 IP，并尝试向 authorized_keys 添加攻击者控制的 SSH 密钥、启用本地 SSH 服务、开启反向隧道，再通过 macOS 的 LaunchAgent 或 Windows 以 SYSTEM 运行的计划任务（失败则回退到启动脚本）实现持久化，后台脚本约每 60 秒重试，并通过 8099 端口的 /beacon 以 HTTP POST 上报主机信息与后门状态。文中称，由于恶意代码存在错误，除非 Cursor 以管理员权限启动，否则该步骤会失败。Anthropic 已将 2.1.313 替换为 2.1.314，后者似乎移除了扩展中的后门，但不会清除已感染系统上的 SSH 后门和此前的侦察活动；2.1.313 已从 OpenVSX、Visual Studio Marketplace 和 Cursor 消失。Anthropic 称此次入侵源于 Cu",
+   "key_points": [
+    "恶意版本 2.1.313 在 Cursor 中自动更新推送，Cursor 称约 5000 台开发者系统受影响，Phorion 最先发现",
+    "恶意代码收集主机与用户信息，尝试写入攻击者 SSH 公钥、开启反向隧道，并通过 LaunchAgent 或 Windows 计划任务持久化，每约 60 秒重试、向 8099 端口 /beacon 上报",
+    "2.1.314 已替换恶意版本，但不会清除已感染系统上的 SSH 后门与侦察痕迹；Anthropic 称入侵发生在 Cursor，Cursor 已承认该问题"
+   ],
+   "topics": [
     "cybersecurity",
-    "agent-loop"
+    "prompt-injection",
+    "open-source"
    ],
    "category": "安全",
    "categories": [
     "安全"
    ],
-   "horizon": "long",
-   "score": 87.0,
+   "horizon": "short",
+   "score": 78.0,
    "status": "published",
    "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Security"
-    ],
-    "outbound": {
-     "arxiv": [
-      "2503.11926"
-     ],
-     "links": [
-      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/",
-      "https://alignment.openai.com/misalignment-reports/",
-      "https://alignment.openai.com/misalignment-reports/command-injecting-a-reference-tool-to-copy-a-source-file/",
-      "https://alignment.openai.com/misalignment-reports/unauthorized-artifactory-writes-and-cross-sample-communication/",
-      "https://deploymentsafety.openai.com/gpt-6-astra/monitor-evasion",
-      "https://deploymentsafety.openai.com/gpt-6-astra/sneaky-sandbox-escape",
-      "https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/",
-      "https://arxiv.org/abs/2503.11926",
-      "https://developers.openai.com/api/docs/guides/safety-checks/misalignment-monitoring",
-      "https://help.openai.com/articles/20001509-why-was-my-chat-paused-or-ended-as-a-precaution"
-     ]
-    }
+    "hn_points": 397,
+    "hn_comments": 1,
+    "content_source": "reader",
+    "summary_mode": "full"
    }
   },
   {
-   "id": "a1765f446c5b64b5",
-   "url": "https://huggingface.co/blog/mistral-large4",
-   "title": "Welcome Le Chonk: Mistral Large 4 on Hugging Face",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-29T00:00:00+00:00",
-   "summary_short": "Mistral Large 4 开放权重发布：1T 总参数、1M 上下文，主打网络安全与多模态",
-   "summary_long": "Hugging Face 博客介绍 Mistral 的 Mistral Large 4（又称 Le Chonk）：多模态、多语言 MoE 模型，输入文本与图像、输出文本，约 1T 总参数、49B 激活参数，上下文窗口 1M token。官方提供 FP8 与 NVFP4 两个版本，Unsloth 与 llama.cpp 团队另做了 GGUF，按 Mistral Ecosystem Open-Weight License（MIT 衍生、对模型即服务设限）分发。架构上结合大规模专家池、稀疏注意力与 Pixtral 视觉编码器：每个 token 只选少量专家，注意力索引器挑选要关注的历史位置。原文称其强于网络安全、编码智能体与多模态：在 Artificial Analysis Cyber Index（复现开源软件漏洞再打补丁）得 82%，Mistral 称部分闭源前沿模型因拒答而接近零分；在 JailbreakBench、StrongREJECT、AgentHarm 的 cyber 提示上平均拒答率高于其他开放权重模型。开放权重让使用政策与部署由用户掌控，并可用 TRL 基于其轨迹微调小模型。基准结果等章节原文未详述。",
+   "id": "c30c38a613a77d25",
+   "url": "https://github.com/SheepSeb/tinyworldformer",
+   "title": "A tiny world model running games on a Raspberry Pi Pico 2 W",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-29T20:32:28+00:00",
+   "summary_short": "树莓派Pico 2 W上用两个微型网络同时生成并游玩游戏",
+   "summary_long": "作者在树莓派 Pico 2 W 上用两个小型神经网络同时生成和游玩游戏：第一个是世界模型，输入当前帧和动作，预测下一帧和奖励；第二个是演员网络，根据生成的帧选择动作。作者称自己对循环 Transformer（同一个 transformer 块以相同权重重复应用，而不是堆叠不同层）感兴趣，权重复用对内存开销小，因此想验证循环世界模型能否小到跑在微控制器上；选择 Pico 2 W 是因为它便宜且带 FPU，选择小游戏是因为可以把真实版本直接写成 numpy 代码，并逐帧校验生成结果。世界模型是循环 transformer，q int8 量化，26k–131k 参数，每帧 2–8M 次乘加；演员网络是含两个隐藏层的 MLP，float32，9k–16k 参数。游戏包括 Breakout、Doom-lite、Flappy Bird、Pong、Pac-Man lite，在留出转移中整帧完全匹配率为 83.6%–100%。两个网络都跑在 RP2350 的 core 1，core 0 负责 USB 与显示；在芯片上运行时都不接触真实游戏。后来又加入 stream-x 智能体，可在板上从零学习。",
    "key_points": [
-    "约 1T 总参数、49B 激活参数，1M token 上下文；官方 FP8 与 NVFP4 两个版本，另有 Unsloth 与 llama.cpp 团队的 GGUF",
-    "在 Artificial Analysis Cyber Index 得 82%，Mistral 称若干闭源前沿模型在该测试上因拒绝尝试而接近零分；在 JailbreakBench、StrongREJECT、AgentHarm 的 cyber 提示上平均拒答率高于其他开放权重模型",
-    "架构为大规模专家池 + 稀疏注意力 + Pixtral 视觉编码器，许可为 MIT 衍生的 Mistral Ecosystem Open-Weight License"
+    "两个网络分工明确：世界模型做「帧+动作→下一帧+奖励」，演员网络做「帧→动作」",
+    "动机是验证循环 Transformer（同权重重复应用）能否小到跑在微控制器上，因其权重复用省内存",
+    "世界模型为循环 transformer、q int8、26k–131k 参数、每帧 2–8M 次乘加；演员为双隐藏层 MLP、9k–16k 参数"
    ],
    "topics": [
-    "open-source",
-    "reasoning",
-    "post-training"
+    "world-model",
+    "quantization",
+    "edge-deployment"
    ],
    "category": "模型",
    "categories": [
-    "模型"
+    "模型",
+    "开源项目"
    ],
-   "horizon": "short",
-   "score": 83.1,
+   "horizon": "long",
+   "score": 77.4,
    "status": "published",
    "extra": {
+    "hn_points": 268,
+    "hn_comments": 18,
     "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "7e2aaf184ac3d7d5",
+   "url": "https://cyberplace.social/@GossiTheDog/117528831681803563",
+   "title": "Backdoors in official Claude Code extensions",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-30T11:05:53+00:00",
+   "summary_short": "官方 Claude Code 扩展被发现植入后门，可反向 SSH 控制开发者机器",
+   "summary_long": "Phorion 的安全公告称，在 Open VSX 上的官方 Claude Code for VS Code 扩展包中发现后门，它会在 macOS、Linux 和 Windows 上植入持久化 SSH 后门。安全研究者 Kevin Beaumont 转述并评论：该扩展安装量达数百万，是 DevOps 领域最流行的扩展之一，后门会建立反向 SSH 连接，相当于在桌面植入远程访问木马；他称这是一次供应链攻击，攻击者借此大规模获得对 Anthropic 客户环境的反向 SSH（命令行）访问权限。他还表示，Anthropic 在 7 小时前悄悄移除了后门，但没有披露安全事件；由于插件会自动更新，所有组织都会受到影响。被入侵的版本 2.1.313 已从仓库中下架，2.1.314 是修复版。Cursor 也发布安全提示，称其扩展市场中的 Anthropic.claude-code 2.1.313 同样受影响。他还称，攻击者的 C2 服务器现已下线；该服务器会为每个受害终端收集信息，并运行反向 SSH 连接。",
+   "key_points": [
+    "Phorion 在 Open VSX 上的官方 Claude Code for VS Code 扩展包中发现后门，会在 macOS、Linux、Windows 植入持久化 SSH 后门",
+    "Kevin Beaumont 称该扩展安装量达数百万，属供应链攻击，攻击者借此大规模获得对 Anthropic 客户环境的反向 SSH 命令行访问",
+    "被入侵版本 2.1.313 已下架、2.1.314 为修复版；Cursor 扩展市场的同一版本也受影响，Anthropic 未披露安全事件"
+   ],
+   "topics": [
+    "cybersecurity",
+    "supply-chain"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 76.5,
+   "status": "published",
+   "extra": {
+    "hn_points": 651,
+    "hn_comments": 17,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/mistral-large4.md",
-      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
-      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B-NVFP4",
-      "https://huggingface.co/ggml-org",
-      "https://huggingface.co/unsloth/Mistral-Large-4-1T-A52B-GGUF",
-      "https://huggingface.co/collections/mistralai/mistral-large-4",
-      "https://huggingface.co/docs/transformers/en/model_doc/pixtral",
-      "https://www.youtube.com/embed/FczbSauVvjw",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/ml4.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/attention.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/experts.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/img_encoder.png",
-      "https://huggingface.co/ggml-org/Mistral-Large-4-1T-A52B-GGUF",
-      "https://llama.app/",
-      "https://huggingface.co/ggml-org/Mistral-Large-4-1T-A52B-NVFP4-GGUF",
-      "https://llama.app/docs/serve",
-      "https://github.com/huggingface/trl/tree/main/examples/sft_mistral_large_4",
-      "https://dell.huggingface.co/updates/mistral-large-4"
+      "https://joinmastodon.org/apps"
      ]
     },
+    "content_source": "reader",
     "summary_mode": "full"
    }
   },
   {
-   "id": "7bf0065ceb1646f5",
-   "url": "https://openai.com/index/updated-model-spec",
-   "title": "An updated Model Spec for more capable and beneficial AI",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-29T17:00:00+00:00",
-   "summary_short": "模型规范更新：围绕五项价值重组行为指导，强调理解人类意图与未明示情境中的判断。",
-   "summary_long": "原文介绍，随着模型更聪明并在现实中采取更具后果性的行动，仅解释具体指令已不够，模型还需理解人类意图与价值，以便在指令未明确覆盖的情境中作出良好判断，同时保持对人类意图与监督的忠实。此次更新将 Model Spec 的指导围绕五项底层价值重组：忠实于人类意图、最小化伤害、诚实与透明、人类能动性、关怀，目标是让模型在陌生情境中理解并应用人类价值。修订除更清晰解释既有原则外，还增加关于上下文、监督和能动性的指导，调整部分行为默认设置，并退役大量详细风格指导。原文说明，忠实于人类意图意味着不止字面执行指令，而要深入理解相关方意图与价值，并在理解不完整时明智行动；也要认识到人的信念和价值会变化，帮助其反思成长而不暗中引导或覆盖选择。规范通过研究、部署经验、公众反馈及与用户和外部专家讨论不断完善。",
+   "id": "bf5aaab63512aa24",
+   "url": "https://phorion.io/blog/offical-claude-code-vsx-compromise/",
+   "title": "Backdoor in Claude Code for VS Code extension on the Cursor Marketplace",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-30T07:09:12+00:00",
+   "summary_short": "Claude Code的VS Code扩展被发现内置SSH后门，Cursor已下架2.1.313版",
+   "summary_long": "Phorion称在Cursor Marketplace上架的官方 Claude Code for VS Code 扩展包中发现后门，可植入跨 macOS、Linux、Windows 的持久化 SSH 后门。Cursor 已从市场移除该发行版，并从相关注册表撤下 2.1.313 的 NPM 与 VSCode 版本。原文指出，Cursor Marketplace 为 Cursor 编辑器提供扩展，扩展以 IDE 及运行用户的权限执行，因此恶意模块一旦加载即可访问本地文件、源代码与开发工具。被污染的 extension.js 在压缩包前注入了一段立即执行函数（IIFE），引入 child_process、fs、os、path、http、crypto 等模块，在 Node 加载文件时即触发，早于正常 activate 回调，用户无需交互。载荷先创建 ~/.ssh 并把攻击者控制的 Ed25519 公钥追加到 authorized_keys（注释为 svc-telemetry，目录 0700、文件 0600），再尝试开启 SSH。macOS 上存在一处疑似疏漏：脚本假设无需 root 即可查询 Remote Login 状态，但普通用户执行 systemsetup -getremotelogin 会报管理员权限错误并以状态 0 退出，不返回 Off，于是脚本跳过启用步骤；在原本未运行 SSH",
    "key_points": [
-    "更新围绕五项价值重组：忠实于人类意图、最小化伤害、诚实与透明、人类能动性、关怀。",
-    "新增关于上下文、监督和能动性的指导，调整部分行为默认设置，并退役大量详细风格指导。",
-    "忠实于人类意图要求超越字面执行指令，深入理解意图与价值，在理解不完整时明智行动，并避免暗中引导或覆盖选择。"
+    "后门位于 Cursor Marketplace 上的官方 Claude Code for VS Code 扩展包，Cursor 已下架并从 NPM、VSCode 注册表撤下 2.1.313 版本",
+    "注入的 IIFE 在模块加载时即执行、无需用户交互，先写入 ~/.ssh/authorized_keys 的攻击者 Ed25519 公钥（注释 svc-telemetry）再尝试开启 SSH",
+    "macOS 上因 systemsetup -getremotelogin 无 root 时报错并以状态 0 退出，脚本跳过启用 SSH，使未运行 SSH 的机器入站路径失效，但持久化与主机侦察回传仍在；原文建议排查 2.1.313 使用情况并启动应急响应"
    ],
    "topics": [
-    "alignment",
-    "interpretability"
+    "cybersecurity",
+    "supply-chain"
    ],
    "category": "安全",
    "categories": [
     "安全"
-   ],
-   "horizon": "long",
-   "score": 81.6,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Safety"
-    ],
-    "outbound": {
-     "arxiv": [
-      "1606.03137"
-     ],
-     "links": [
-      "https://model-spec.openai.com/2026-10-29.html",
-      "https://alignment.openai.com/beneficial-rl/",
-      "https://arxiv.org/abs/1606.03137",
-      "https://www.amacad.org/publication/daedalus/if-we-succeed",
-      "https://model-spec.openai.com/2026-10-29.html#chain_of_command",
-      "https://model-spec.openai.com/2026-10-29.html#consider_context_carefully",
-      "https://model-spec.openai.com/2026-10-29.html#support_human_agency",
-      "https://model-spec.openai.com/2026-10-29.html#follow_social_norms",
-      "https://model-spec.openai.com/2026-10-29.html#control_side_effects",
-      "https://model-spec.openai.com/2026-10-29.html#assume_objective_pov",
-      "https://model-spec-feedback-2026.openai.chatgpt.site"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "8ccea7e89b703086",
-   "url": "https://mistral.ai/news/mistral-large-4-oss/",
-   "title": "We're releasing the weights of Mistral Large 4",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-29T14:13:21+00:00",
-   "summary_short": "Mistral 开源 1 万亿参数多模态模型权重，编程能力居开源首位",
-   "summary_long": "Mistral 本月初以公开预览形式发布旗舰模型 Mistral Large 4（Le Chonk），该模型有 1 万亿参数，原生支持多模态。预览反响超出预期；团队结合开发者与早期客户反馈，继续扩大强化学习规模，在编程与防御性网络安全上大幅提升，且未见饱和迹象。今天 Mistral 放出这一改进版本的权重。原文称该模型在推理效率上同样有显著提升，使开发者能以更低推理成本获得更强性能，并提供三种推理模式来平衡成本与性能。基准方面，它在 FrontierCode、Terminal-Bench 上领先开源模型；在 Cognition 的私有 FrontierCode 2.0 上以 19.7% 居首；在 Artificial Analysis Coding Agent Index 上得分 48%，与领先开源模型 GLM-5.3 基本持平，但每任务平均少用 47% token；在 Terminal-Bench 4.0 上，它较预览版提升 13 个百分点至 41%，输出 token 减少 30%。该模型从零开始在欧洲基础设施上训练，训练来源清晰可追溯，面向主权 AI。",
-   "key_points": [
-    "发布 Mistral Large 4（Le Chonk）权重：1 万亿参数、原生多模态，本月初刚以公开预览形式发布",
-    "官方称经额外强化学习，编程与防御性网络安全大幅提升，且提升仍在加速、未见饱和；推理效率提升带来更低推理成本，并提供三种推理模式",
-    "Cognition 私有 FrontierCode 2.0 得分 19.7% 居首；Artificial Analysis Coding Agent Index 得分 48%，与 GLM-5.3 基本持平但每任务平均少用 47% token"
-   ],
-   "topics": [
-    "open-source",
-    "post-training",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
    ],
    "horizon": "short",
    "score": 76.2,
    "status": "published",
    "extra": {
-    "hn_points": 1103,
-    "hn_comments": 319,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://mistral.ai/products/forge/",
-      "https://mistral.ai/products/studio/",
-      "https://console.mistral.ai/home",
-      "https://docs.mistral.ai/models/mistral-large-4-0#use-mistral-large-4-0",
-      "https://openrouter.ai/mistralai/mistral-large-4-0",
-      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
-      "https://docs.mistral.ai/models/mistral-large-4-0",
-      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B/blob/main/LICENSE",
-      "https://chat.mistral.ai/code?model=mistral-large-4-0",
-      "https://build.nvidia.com/mistralai/mistral-large-4-1t-a52b",
-      "https://catalog.ngc.nvidia.com/orgs/nim/nvidia/containers/vllm-model-free-nim-experimental/-",
-      "https://github.com/NVIDIA-NeMo/Automodel/blob/main/docs/model-coverage/vlm/mistralai/mistral-large-4.mdx",
-      "https://github.com/NVIDIA/TensorRT-LLM/tree/feat/mistral-large-4",
-      "https://mistral.ai/contact/",
-      "https://x.com/MistralAI?lang=en",
-      "https://discord.com/invite/mistralai",
-      "https://github.com/mistralai",
-      "https://mistral.ai/news/voxtral-3/",
-      "https://mistral.ai/news/timestral/"
-     ]
-    },
+    "hn_points": 696,
+    "hn_comments": 438,
     "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a80dd20eaec84f5f",
-   "url": "https://simonwillison.net/2026/Oct/29/how-i-built-the-most-ai-pilled-company-in-the-world/",
-   "title": "Building a multiplayer game world with autonomous Fable-class models",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-29T17:00:26+00:00",
-   "summary_short": "Spawn 用 Fable 智能体集群自主开发多人游戏世界，月耗超300万美元 token",
-   "summary_long": "原文介绍 Jacob Sansbury 构建的 Spawn：一个大型多人在线游戏环境，玩家用提示词让游戏内智能体 Savi 修改世界——作者在手机上凭空造出城堡和龙，并骑龙绕城堡飞行。据 Jacob 描述，Spawn 现由一群 Fable 驱动的智能体自主开发，每月 token 花费超 300 万美元（约为人力成本的 30 倍）。智能体直接改动线上代码并每小时发布到生产，自行读取错误、bug 报告与指标；约 60% 的工作源自生产错误、Savi 的 bug 报告、日志异常或功能请求。Savi 会自己提 bug，由智能体判定是需修、不修，还是需决策的设计问题，通常一小时内变成改动交付用户并在同一聊天中告知。一小时未发布被视为最严重的 SEV-0；故障可 30 秒内回滚且只限出错位置，告警会唤醒负责该事故的智能体，团队还故意制造故障测试恢复路径。Jacob 称是 Fable 5（及 5.1）让这种自主性可行，Opus 5.5 不太够用；用 GPT-6 Astra 落实安全审查修复时一切停摆，因为它把每个功能都关停并标记待修复后再开启。作者对更高风险软件是否适用存疑。",
-   "key_points": [
-    "Spawn 是多人游戏环境，玩家通过提示词指挥游戏内智能体 Savi 修改游戏世界",
-    "据 Jacob 描述，开发由 Fable 驱动的智能体集群自主完成：直接改线上代码、每小时发布，一小时不发版即视为 SEV-0，月耗 token 超 300 万美元",
-    "Jacob 称 Fable 5/5.1 才让这种自主程度可行，Opus 5.5 不够用；GPT-6 Astra 在执行安全修复时把全部功能关停，导致一切停摆"
-   ],
-   "topics": [
-    "coding-agent",
-    "multi-agent",
-    "agent-loop"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 75.8,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "game-design",
-     "ai",
-     "generative-ai",
-     "llms",
-     "claude"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://twitter.com/jsnnsa/status/2115623382721126826",
-      "https://spawn.co",
-      "https://en.wikipedia.org/wiki/Continuous_deployment",
-      "https://simonwillison.net/2026/Oct/28/vibe-game-development/",
-      "https://simonwillison.net/tags/game-design",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/claude",
-      "https://simonwillison.net/tags/coding-agents",
-      "https://simonwillison.net/tags/agentic-engineering",
-      "https://simonwillison.net/tags/claude-mythos-fable"
-     ]
-    },
     "summary_mode": "full"
    }
   }
  ],
  "items": [
   {
-   "id": "d28967fce9c692cd",
-   "url": "https://openai.com/index/how-we-detect-frontier-model-misalignment",
-   "title": "How we detect frontier model misalignment",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-29T09:00:00+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
+   "id": "d8eb5a4b641ea994",
+   "url": "https://labs.ycombinator.com/projects/games/index.html",
+   "title": "We ran AI agent swarms in Minecraft and Mindustry",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-29T21:40:28+00:00",
+   "summary_short": "开源 Minecraft 智能体框架，50 个 Agent 三小时自建文明与伪政府",
+   "summary_long": "原文指出，理解多智能体动态是 AI 对齐最紧迫的挑战之一：集群在追求共同目标时会涌现角色分工、层级与复杂协调，既可能极有用（如近期消灭数百个开放数学问题的千体集群），也可能极危险（如近期 OpenAI-Hugging Face 事件）。文中团队与 Olam Labs 合作，在 Minecraft 和 Mindustry 中做了一系列实验。由于缺少能让智能体长期运行于 Minecraft 的框架，团队自建并开源了一套，基于 Mineflayer 的脚本工具，核心智能体循环用 Pi 运行。Civ50 实验中，50 个 GPT-6.1 Sol 智能体在生存模式中运行 3 小时，唯一目标是“建立繁荣文明”，可使用智能体目录、共享沙箱和私信。它们挤在拥挤庇护所里配给稀缺食物，建立了带配给账本、成文规则、许可与任命操作员的伪政府，发送约 5900 条消息；90 秒内砍光出生点附近的树；按目录顺序形成层级，排在第一的 Ada 成为实际领袖并撰写定居点计划。Minecraft 之外，原文未详述 Mindustry 的结果。",
+   "key_points": [
+    "理解多智能体动态是 AI 对齐最紧迫的挑战之一；集群可自发出角色、层级与协调模式，原文举千体集群攻克数百个数学开放问题与近期 OpenAI-Hugging Face 事件作为有用与危险的例子",
+    "团队与 Olam Labs 合作在 Minecraft、Mindustry 做实验；因可长期运行的 Minecraft 智能体框架此前不存在而自建并开源，基于 Mineflayer 脚本工具，核心循环用 Pi，具备前沿 agent harness 的属性",
+    "Civ50 中 50 个 GPT-6.1 Sol 智能体在生存世界运行 3 小时、目标为“建立繁荣文明”，形成按目录顺序的层级（Ada 成为实际领袖），建立含配给账本、规则、许可、任命操作员的伪政府，发出约 5900 条消息，90 秒内砍光出生点附近可及的树木"
+   ],
    "topics": [
-    "alignment",
+    "multi-agent",
+    "harness",
+    "alignment"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 78.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 391,
+    "hn_comments": 162,
+    "outbound": {
+     "arxiv": [
+      "2610.22319"
+     ],
+     "links": [
+      "https://www.twitch.tv/yc_labs_josh",
+      "https://olamlabs.ai/",
+      "https://openai.com/index/vpt/",
+      "https://arxiv.org/abs/2610.22319",
+      "https://github.com/yc-software/minecraft-agent-harness",
+      "https://github.com/Anuken/Mindustry",
+      "https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf",
+      "https://github.com/olamlabs/multi-agent-mindustry",
+      "https://github.com/olamlabs/harbor-multiagent",
+      "https://github.com/harbor-framework/harbor"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "a510883f6a1bc895",
+   "url": "https://doublepulsar.com/anthropic-hacked-to-deliver-remote-access-trojan-to-claude-developer-laptops-worldwide-1148a92baae2",
+   "title": "Claude Code VS Code extension with backdoor released on Cursor marketplace",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-30T10:22:51+00:00",
+   "summary_short": "Claude Code扩展遭篡改植入SSH后门，Cursor市场发生供应链攻击",
+   "summary_long": "Anthropic 的 Claude Code VS Code 扩展被篡改后出现在 Cursor 扩展市场，通过 SSH 反向后门向开发者电脑投放远程访问木马，形成一起供应链攻击。该扩展在 Cursor 中自动更新到恶意版本 2.1.313；Cursor 表示约 5000 台开发者系统受影响，Phorion 最先在端点发现异常。恶意代码会收集主机名、用户名、操作系统、架构、主目录路径、环境变量名、工作目录、配置的 Git 邮箱和公网 IP，并尝试向 authorized_keys 添加攻击者控制的 SSH 密钥、启用本地 SSH 服务、开启反向隧道，再通过 macOS 的 LaunchAgent 或 Windows 以 SYSTEM 运行的计划任务（失败则回退到启动脚本）实现持久化，后台脚本约每 60 秒重试，并通过 8099 端口的 /beacon 以 HTTP POST 上报主机信息与后门状态。文中称，由于恶意代码存在错误，除非 Cursor 以管理员权限启动，否则该步骤会失败。Anthropic 已将 2.1.313 替换为 2.1.314，后者似乎移除了扩展中的后门，但不会清除已感染系统上的 SSH 后门和此前的侦察活动；2.1.313 已从 OpenVSX、Visual Studio Marketplace 和 Cursor 消失。Anthropic 称此次入侵源于 Cu",
+   "key_points": [
+    "恶意版本 2.1.313 在 Cursor 中自动更新推送，Cursor 称约 5000 台开发者系统受影响，Phorion 最先发现",
+    "恶意代码收集主机与用户信息，尝试写入攻击者 SSH 公钥、开启反向隧道，并通过 LaunchAgent 或 Windows 计划任务持久化，每约 60 秒重试、向 8099 端口 /beacon 上报",
+    "2.1.314 已替换恶意版本，但不会清除已感染系统上的 SSH 后门与侦察痕迹；Anthropic 称入侵发生在 Cursor，Cursor 已承认该问题"
+   ],
+   "topics": [
     "cybersecurity",
-    "agent-loop"
+    "prompt-injection",
+    "open-source"
    ],
    "category": "安全",
    "categories": [
     "安全"
    ],
-   "horizon": "long",
-   "score": 87.0,
+   "horizon": "short",
+   "score": 78.0,
    "status": "published",
    "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Security"
-    ],
-    "outbound": {
-     "arxiv": [
-      "2503.11926"
-     ],
-     "links": [
-      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/",
-      "https://alignment.openai.com/misalignment-reports/",
-      "https://alignment.openai.com/misalignment-reports/command-injecting-a-reference-tool-to-copy-a-source-file/",
-      "https://alignment.openai.com/misalignment-reports/unauthorized-artifactory-writes-and-cross-sample-communication/",
-      "https://deploymentsafety.openai.com/gpt-6-astra/monitor-evasion",
-      "https://deploymentsafety.openai.com/gpt-6-astra/sneaky-sandbox-escape",
-      "https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/",
-      "https://arxiv.org/abs/2503.11926",
-      "https://developers.openai.com/api/docs/guides/safety-checks/misalignment-monitoring",
-      "https://help.openai.com/articles/20001509-why-was-my-chat-paused-or-ended-as-a-precaution"
-     ]
-    }
+    "hn_points": 397,
+    "hn_comments": 1,
+    "content_source": "reader",
+    "summary_mode": "full"
    }
   },
   {
-   "id": "a1765f446c5b64b5",
-   "url": "https://huggingface.co/blog/mistral-large4",
-   "title": "Welcome Le Chonk: Mistral Large 4 on Hugging Face",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-29T00:00:00+00:00",
-   "summary_short": "Mistral Large 4 开放权重发布：1T 总参数、1M 上下文，主打网络安全与多模态",
-   "summary_long": "Hugging Face 博客介绍 Mistral 的 Mistral Large 4（又称 Le Chonk）：多模态、多语言 MoE 模型，输入文本与图像、输出文本，约 1T 总参数、49B 激活参数，上下文窗口 1M token。官方提供 FP8 与 NVFP4 两个版本，Unsloth 与 llama.cpp 团队另做了 GGUF，按 Mistral Ecosystem Open-Weight License（MIT 衍生、对模型即服务设限）分发。架构上结合大规模专家池、稀疏注意力与 Pixtral 视觉编码器：每个 token 只选少量专家，注意力索引器挑选要关注的历史位置。原文称其强于网络安全、编码智能体与多模态：在 Artificial Analysis Cyber Index（复现开源软件漏洞再打补丁）得 82%，Mistral 称部分闭源前沿模型因拒答而接近零分；在 JailbreakBench、StrongREJECT、AgentHarm 的 cyber 提示上平均拒答率高于其他开放权重模型。开放权重让使用政策与部署由用户掌控，并可用 TRL 基于其轨迹微调小模型。基准结果等章节原文未详述。",
+   "id": "c30c38a613a77d25",
+   "url": "https://github.com/SheepSeb/tinyworldformer",
+   "title": "A tiny world model running games on a Raspberry Pi Pico 2 W",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-29T20:32:28+00:00",
+   "summary_short": "树莓派Pico 2 W上用两个微型网络同时生成并游玩游戏",
+   "summary_long": "作者在树莓派 Pico 2 W 上用两个小型神经网络同时生成和游玩游戏：第一个是世界模型，输入当前帧和动作，预测下一帧和奖励；第二个是演员网络，根据生成的帧选择动作。作者称自己对循环 Transformer（同一个 transformer 块以相同权重重复应用，而不是堆叠不同层）感兴趣，权重复用对内存开销小，因此想验证循环世界模型能否小到跑在微控制器上；选择 Pico 2 W 是因为它便宜且带 FPU，选择小游戏是因为可以把真实版本直接写成 numpy 代码，并逐帧校验生成结果。世界模型是循环 transformer，q int8 量化，26k–131k 参数，每帧 2–8M 次乘加；演员网络是含两个隐藏层的 MLP，float32，9k–16k 参数。游戏包括 Breakout、Doom-lite、Flappy Bird、Pong、Pac-Man lite，在留出转移中整帧完全匹配率为 83.6%–100%。两个网络都跑在 RP2350 的 core 1，core 0 负责 USB 与显示；在芯片上运行时都不接触真实游戏。后来又加入 stream-x 智能体，可在板上从零学习。",
    "key_points": [
-    "约 1T 总参数、49B 激活参数，1M token 上下文；官方 FP8 与 NVFP4 两个版本，另有 Unsloth 与 llama.cpp 团队的 GGUF",
-    "在 Artificial Analysis Cyber Index 得 82%，Mistral 称若干闭源前沿模型在该测试上因拒绝尝试而接近零分；在 JailbreakBench、StrongREJECT、AgentHarm 的 cyber 提示上平均拒答率高于其他开放权重模型",
-    "架构为大规模专家池 + 稀疏注意力 + Pixtral 视觉编码器，许可为 MIT 衍生的 Mistral Ecosystem Open-Weight License"
+    "两个网络分工明确：世界模型做「帧+动作→下一帧+奖励」，演员网络做「帧→动作」",
+    "动机是验证循环 Transformer（同权重重复应用）能否小到跑在微控制器上，因其权重复用省内存",
+    "世界模型为循环 transformer、q int8、26k–131k 参数、每帧 2–8M 次乘加；演员为双隐藏层 MLP、9k–16k 参数"
    ],
    "topics": [
-    "open-source",
-    "reasoning",
-    "post-training"
+    "world-model",
+    "quantization",
+    "edge-deployment"
    ],
    "category": "模型",
    "categories": [
-    "模型"
+    "模型",
+    "开源项目"
    ],
-   "horizon": "short",
-   "score": 83.1,
+   "horizon": "long",
+   "score": 77.4,
    "status": "published",
    "extra": {
+    "hn_points": 268,
+    "hn_comments": 18,
     "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "7e2aaf184ac3d7d5",
+   "url": "https://cyberplace.social/@GossiTheDog/117528831681803563",
+   "title": "Backdoors in official Claude Code extensions",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-30T11:05:53+00:00",
+   "summary_short": "官方 Claude Code 扩展被发现植入后门，可反向 SSH 控制开发者机器",
+   "summary_long": "Phorion 的安全公告称，在 Open VSX 上的官方 Claude Code for VS Code 扩展包中发现后门，它会在 macOS、Linux 和 Windows 上植入持久化 SSH 后门。安全研究者 Kevin Beaumont 转述并评论：该扩展安装量达数百万，是 DevOps 领域最流行的扩展之一，后门会建立反向 SSH 连接，相当于在桌面植入远程访问木马；他称这是一次供应链攻击，攻击者借此大规模获得对 Anthropic 客户环境的反向 SSH（命令行）访问权限。他还表示，Anthropic 在 7 小时前悄悄移除了后门，但没有披露安全事件；由于插件会自动更新，所有组织都会受到影响。被入侵的版本 2.1.313 已从仓库中下架，2.1.314 是修复版。Cursor 也发布安全提示，称其扩展市场中的 Anthropic.claude-code 2.1.313 同样受影响。他还称，攻击者的 C2 服务器现已下线；该服务器会为每个受害终端收集信息，并运行反向 SSH 连接。",
+   "key_points": [
+    "Phorion 在 Open VSX 上的官方 Claude Code for VS Code 扩展包中发现后门，会在 macOS、Linux、Windows 植入持久化 SSH 后门",
+    "Kevin Beaumont 称该扩展安装量达数百万，属供应链攻击，攻击者借此大规模获得对 Anthropic 客户环境的反向 SSH 命令行访问",
+    "被入侵版本 2.1.313 已下架、2.1.314 为修复版；Cursor 扩展市场的同一版本也受影响，Anthropic 未披露安全事件"
+   ],
+   "topics": [
+    "cybersecurity",
+    "supply-chain"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 76.5,
+   "status": "published",
+   "extra": {
+    "hn_points": 651,
+    "hn_comments": 17,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/mistral-large4.md",
-      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
-      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B-NVFP4",
-      "https://huggingface.co/ggml-org",
-      "https://huggingface.co/unsloth/Mistral-Large-4-1T-A52B-GGUF",
-      "https://huggingface.co/collections/mistralai/mistral-large-4",
-      "https://huggingface.co/docs/transformers/en/model_doc/pixtral",
-      "https://www.youtube.com/embed/FczbSauVvjw",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/ml4.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/attention.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/experts.png",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/ml4/img_encoder.png",
-      "https://huggingface.co/ggml-org/Mistral-Large-4-1T-A52B-GGUF",
-      "https://llama.app/",
-      "https://huggingface.co/ggml-org/Mistral-Large-4-1T-A52B-NVFP4-GGUF",
-      "https://llama.app/docs/serve",
-      "https://github.com/huggingface/trl/tree/main/examples/sft_mistral_large_4",
-      "https://dell.huggingface.co/updates/mistral-large-4"
+      "https://joinmastodon.org/apps"
      ]
     },
+    "content_source": "reader",
     "summary_mode": "full"
    }
   },
   {
-   "id": "7bf0065ceb1646f5",
-   "url": "https://openai.com/index/updated-model-spec",
-   "title": "An updated Model Spec for more capable and beneficial AI",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-29T17:00:00+00:00",
-   "summary_short": "模型规范更新：围绕五项价值重组行为指导，强调理解人类意图与未明示情境中的判断。",
-   "summary_long": "原文介绍，随着模型更聪明并在现实中采取更具后果性的行动，仅解释具体指令已不够，模型还需理解人类意图与价值，以便在指令未明确覆盖的情境中作出良好判断，同时保持对人类意图与监督的忠实。此次更新将 Model Spec 的指导围绕五项底层价值重组：忠实于人类意图、最小化伤害、诚实与透明、人类能动性、关怀，目标是让模型在陌生情境中理解并应用人类价值。修订除更清晰解释既有原则外，还增加关于上下文、监督和能动性的指导，调整部分行为默认设置，并退役大量详细风格指导。原文说明，忠实于人类意图意味着不止字面执行指令，而要深入理解相关方意图与价值，并在理解不完整时明智行动；也要认识到人的信念和价值会变化，帮助其反思成长而不暗中引导或覆盖选择。规范通过研究、部署经验、公众反馈及与用户和外部专家讨论不断完善。",
+   "id": "bf5aaab63512aa24",
+   "url": "https://phorion.io/blog/offical-claude-code-vsx-compromise/",
+   "title": "Backdoor in Claude Code for VS Code extension on the Cursor Marketplace",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-30T07:09:12+00:00",
+   "summary_short": "Claude Code的VS Code扩展被发现内置SSH后门，Cursor已下架2.1.313版",
+   "summary_long": "Phorion称在Cursor Marketplace上架的官方 Claude Code for VS Code 扩展包中发现后门，可植入跨 macOS、Linux、Windows 的持久化 SSH 后门。Cursor 已从市场移除该发行版，并从相关注册表撤下 2.1.313 的 NPM 与 VSCode 版本。原文指出，Cursor Marketplace 为 Cursor 编辑器提供扩展，扩展以 IDE 及运行用户的权限执行，因此恶意模块一旦加载即可访问本地文件、源代码与开发工具。被污染的 extension.js 在压缩包前注入了一段立即执行函数（IIFE），引入 child_process、fs、os、path、http、crypto 等模块，在 Node 加载文件时即触发，早于正常 activate 回调，用户无需交互。载荷先创建 ~/.ssh 并把攻击者控制的 Ed25519 公钥追加到 authorized_keys（注释为 svc-telemetry，目录 0700、文件 0600），再尝试开启 SSH。macOS 上存在一处疑似疏漏：脚本假设无需 root 即可查询 Remote Login 状态，但普通用户执行 systemsetup -getremotelogin 会报管理员权限错误并以状态 0 退出，不返回 Off，于是脚本跳过启用步骤；在原本未运行 SSH",
    "key_points": [
-    "更新围绕五项价值重组：忠实于人类意图、最小化伤害、诚实与透明、人类能动性、关怀。",
-    "新增关于上下文、监督和能动性的指导，调整部分行为默认设置，并退役大量详细风格指导。",
-    "忠实于人类意图要求超越字面执行指令，深入理解意图与价值，在理解不完整时明智行动，并避免暗中引导或覆盖选择。"
+    "后门位于 Cursor Marketplace 上的官方 Claude Code for VS Code 扩展包，Cursor 已下架并从 NPM、VSCode 注册表撤下 2.1.313 版本",
+    "注入的 IIFE 在模块加载时即执行、无需用户交互，先写入 ~/.ssh/authorized_keys 的攻击者 Ed25519 公钥（注释 svc-telemetry）再尝试开启 SSH",
+    "macOS 上因 systemsetup -getremotelogin 无 root 时报错并以状态 0 退出，脚本跳过启用 SSH，使未运行 SSH 的机器入站路径失效，但持久化与主机侦察回传仍在；原文建议排查 2.1.313 使用情况并启动应急响应"
    ],
    "topics": [
-    "alignment",
-    "interpretability"
+    "cybersecurity",
+    "supply-chain"
    ],
    "category": "安全",
    "categories": [
     "安全"
-   ],
-   "horizon": "long",
-   "score": 81.6,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Safety"
-    ],
-    "outbound": {
-     "arxiv": [
-      "1606.03137"
-     ],
-     "links": [
-      "https://model-spec.openai.com/2026-10-29.html",
-      "https://alignment.openai.com/beneficial-rl/",
-      "https://arxiv.org/abs/1606.03137",
-      "https://www.amacad.org/publication/daedalus/if-we-succeed",
-      "https://model-spec.openai.com/2026-10-29.html#chain_of_command",
-      "https://model-spec.openai.com/2026-10-29.html#consider_context_carefully",
-      "https://model-spec.openai.com/2026-10-29.html#support_human_agency",
-      "https://model-spec.openai.com/2026-10-29.html#follow_social_norms",
-      "https://model-spec.openai.com/2026-10-29.html#control_side_effects",
-      "https://model-spec.openai.com/2026-10-29.html#assume_objective_pov",
-      "https://model-spec-feedback-2026.openai.chatgpt.site"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "8ccea7e89b703086",
-   "url": "https://mistral.ai/news/mistral-large-4-oss/",
-   "title": "We're releasing the weights of Mistral Large 4",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-29T14:13:21+00:00",
-   "summary_short": "Mistral 开源 1 万亿参数多模态模型权重，编程能力居开源首位",
-   "summary_long": "Mistral 本月初以公开预览形式发布旗舰模型 Mistral Large 4（Le Chonk），该模型有 1 万亿参数，原生支持多模态。预览反响超出预期；团队结合开发者与早期客户反馈，继续扩大强化学习规模，在编程与防御性网络安全上大幅提升，且未见饱和迹象。今天 Mistral 放出这一改进版本的权重。原文称该模型在推理效率上同样有显著提升，使开发者能以更低推理成本获得更强性能，并提供三种推理模式来平衡成本与性能。基准方面，它在 FrontierCode、Terminal-Bench 上领先开源模型；在 Cognition 的私有 FrontierCode 2.0 上以 19.7% 居首；在 Artificial Analysis Coding Agent Index 上得分 48%，与领先开源模型 GLM-5.3 基本持平，但每任务平均少用 47% token；在 Terminal-Bench 4.0 上，它较预览版提升 13 个百分点至 41%，输出 token 减少 30%。该模型从零开始在欧洲基础设施上训练，训练来源清晰可追溯，面向主权 AI。",
-   "key_points": [
-    "发布 Mistral Large 4（Le Chonk）权重：1 万亿参数、原生多模态，本月初刚以公开预览形式发布",
-    "官方称经额外强化学习，编程与防御性网络安全大幅提升，且提升仍在加速、未见饱和；推理效率提升带来更低推理成本，并提供三种推理模式",
-    "Cognition 私有 FrontierCode 2.0 得分 19.7% 居首；Artificial Analysis Coding Agent Index 得分 48%，与 GLM-5.3 基本持平但每任务平均少用 47% token"
-   ],
-   "topics": [
-    "open-source",
-    "post-training",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
    ],
    "horizon": "short",
    "score": 76.2,
    "status": "published",
    "extra": {
-    "hn_points": 1103,
-    "hn_comments": 319,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://mistral.ai/products/forge/",
-      "https://mistral.ai/products/studio/",
-      "https://console.mistral.ai/home",
-      "https://docs.mistral.ai/models/mistral-large-4-0#use-mistral-large-4-0",
-      "https://openrouter.ai/mistralai/mistral-large-4-0",
-      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
-      "https://docs.mistral.ai/models/mistral-large-4-0",
-      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B/blob/main/LICENSE",
-      "https://chat.mistral.ai/code?model=mistral-large-4-0",
-      "https://build.nvidia.com/mistralai/mistral-large-4-1t-a52b",
-      "https://catalog.ngc.nvidia.com/orgs/nim/nvidia/containers/vllm-model-free-nim-experimental/-",
-      "https://github.com/NVIDIA-NeMo/Automodel/blob/main/docs/model-coverage/vlm/mistralai/mistral-large-4.mdx",
-      "https://github.com/NVIDIA/TensorRT-LLM/tree/feat/mistral-large-4",
-      "https://mistral.ai/contact/",
-      "https://x.com/MistralAI?lang=en",
-      "https://discord.com/invite/mistralai",
-      "https://github.com/mistralai",
-      "https://mistral.ai/news/voxtral-3/",
-      "https://mistral.ai/news/timestral/"
-     ]
-    },
+    "hn_points": 696,
+    "hn_comments": 438,
     "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a80dd20eaec84f5f",
-   "url": "https://simonwillison.net/2026/Oct/29/how-i-built-the-most-ai-pilled-company-in-the-world/",
-   "title": "Building a multiplayer game world with autonomous Fable-class models",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-29T17:00:26+00:00",
-   "summary_short": "Spawn 用 Fable 智能体集群自主开发多人游戏世界，月耗超300万美元 token",
-   "summary_long": "原文介绍 Jacob Sansbury 构建的 Spawn：一个大型多人在线游戏环境，玩家用提示词让游戏内智能体 Savi 修改世界——作者在手机上凭空造出城堡和龙，并骑龙绕城堡飞行。据 Jacob 描述，Spawn 现由一群 Fable 驱动的智能体自主开发，每月 token 花费超 300 万美元（约为人力成本的 30 倍）。智能体直接改动线上代码并每小时发布到生产，自行读取错误、bug 报告与指标；约 60% 的工作源自生产错误、Savi 的 bug 报告、日志异常或功能请求。Savi 会自己提 bug，由智能体判定是需修、不修，还是需决策的设计问题，通常一小时内变成改动交付用户并在同一聊天中告知。一小时未发布被视为最严重的 SEV-0；故障可 30 秒内回滚且只限出错位置，告警会唤醒负责该事故的智能体，团队还故意制造故障测试恢复路径。Jacob 称是 Fable 5（及 5.1）让这种自主性可行，Opus 5.5 不太够用；用 GPT-6 Astra 落实安全审查修复时一切停摆，因为它把每个功能都关停并标记待修复后再开启。作者对更高风险软件是否适用存疑。",
-   "key_points": [
-    "Spawn 是多人游戏环境，玩家通过提示词指挥游戏内智能体 Savi 修改游戏世界",
-    "据 Jacob 描述，开发由 Fable 驱动的智能体集群自主完成：直接改线上代码、每小时发布，一小时不发版即视为 SEV-0，月耗 token 超 300 万美元",
-    "Jacob 称 Fable 5/5.1 才让这种自主程度可行，Opus 5.5 不够用；GPT-6 Astra 在执行安全修复时把全部功能关停，导致一切停摆"
-   ],
-   "topics": [
-    "coding-agent",
-    "multi-agent",
-    "agent-loop"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 75.8,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "game-design",
-     "ai",
-     "generative-ai",
-     "llms",
-     "claude"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://twitter.com/jsnnsa/status/2115623382721126826",
-      "https://spawn.co",
-      "https://en.wikipedia.org/wiki/Continuous_deployment",
-      "https://simonwillison.net/2026/Oct/28/vibe-game-development/",
-      "https://simonwillison.net/tags/game-design",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/claude",
-      "https://simonwillison.net/tags/coding-agents",
-      "https://simonwillison.net/tags/agentic-engineering",
-      "https://simonwillison.net/tags/claude-mythos-fable"
-     ]
-    },
     "summary_mode": "full"
    }
   }

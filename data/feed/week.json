@@ -1,75 +1,6 @@
 {
- "generated_at": "2026-10-29T23:20:11+00:00",
+ "generated_at": "2026-10-30T23:00:30+00:00",
  "top": [
-  {
-   "id": "95eb6975ad245049",
-   "url": "https://huggingface.co/blog/microsoft/thinkingbox-training",
-   "title": "Turning Database Grading into RL Rewards: Post-Training Agents with ThinkingBox",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-22T22:24:34+00:00",
-   "summary_short": "用数据库终态校验当RL奖励，Qwen3.8-27B成功率提升9.08点",
-   "summary_long": "ThinkingBox 通过比对智能体执行后的数据库最终状态与预期结果来评判其工作。本文是上一篇的续篇，作者注意到多数任务的可执行校验能直接从数据库终态返回 1 或 0，因此它不只是评分器，还可当作奖励函数。团队在 ThinkingBox-Bench（507 个任务）之外构造了同格式的训练任务池，用其可执行结果作为奖励，对 Qwen3.8-27B 做 50 步 GRPO 微调。挑选任务时提出“离线策略相对难度”：任务对当前模型要么已被解决、要么毫无希望，两者都教不会模型，故训练前用基座策略估计每个任务的成功概率，整个训练过程固定该任务池。结果显示 pass@1（在 10,140 次尝试上统计）从 51.70% 升至 60.78%，20 次全部通过的任务从 38 个增至 107 个，而 pass@20 从 453 降至 446。原文举例：一个酒店客房降级任务需经理审批，训练前 20 次中有 15 次未经审批即改单退款，训练后 20 次均保留预订与支付状态。ThinkingBox-Training 已在 GitHub 发布。",
-   "key_points": [
-    "ThinkingBox 用数据库最终状态的可执行校验判分，这种 1/0 信号可直接作为后训练的奖励函数",
-    "训练池取自 ThinkingBox-Bench 之外的同格式任务，按“离线策略相对难度”在训练前估计一次成功概率并全程固定",
-    "Qwen3.8-27B 经 50 步 GRPO：pass@1 由 51.70% 升至 60.78%，20/20 全对任务由 38 增至 107，pass@20 由 453 降至 446（−7 个任务）"
-   ],
-   "topics": [
-    "post-training",
-    "agent-loop",
-    "harness"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 87.6,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2503.14476",
-      "2504.13837",
-      "2608.19741"
-     ],
-     "links": [
-      "https://huggingface.co/blog/microsoft/thinkingbox",
-      "https://github.com/microsoft/thinkingbox-training",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/KVaFjYjblWd15tC3M6S_0.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/iu-NFQl-J3EOMe_KiME_8.png",
-      "https://huggingface.co/datasets/microsoft/ThinkingBox-Bench",
-      "https://arxiv.org/abs/2504.13837",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/Bu7GFUdUiJgQjHV_cbvU4.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/HPq2TNCT8yskCAGtKe86l.png",
-      "https://arxiv.org/abs/2608.19741",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/ZaqyG8RtqCRsxGdxUQMfi.png",
-      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/trainer/core/tb_interpret.py",
-      "https://arxiv.org/abs/2503.14476",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/eR45y7Dl0VFFK3HinwDYg.png",
-      "https://arxiv.org/pdf/2608.19741",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/IBBkNpYKQRK6jBLSusMXw.png",
-      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/data-preparation.md",
-      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/reference-q38-run.md",
-      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/evaluation.md",
-      "https://docs.astral.sh/uv/",
-      "https://huggingface.co/blog/microsoft/thinkingbox#run-it-yourself",
-      "https://github.com/huggingface/OpenEnv/tree/main/envs/thinkingbox_env",
-      "https://huggingface.co/docs/openenv/environments/thinkingbox",
-      "https://github.com/microsoft/thinkingbox",
-      "https://github.com/microsoft/thinkingbox/blob/main/docs/tutorial.md",
-      "https://github.com/microsoft/thinkingbox-data",
-      "https://github.com/microsoft/thinkingbox-data/releases/tag/thinkingbox-bench-v1.0",
-      "https://huggingface.co/papers/2608.19741",
-      "https://cdla.dev/permissive-2-0/",
-      "https://github.com/microsoft/thinkingbox/discussions"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
   {
    "id": "d28967fce9c692cd",
    "url": "https://openai.com/index/how-we-detect-frontier-model-misalignment",
@@ -266,80 +197,84 @@
       "https://spectreattack.com/"
      ]
     }
+   }
+  },
+  {
+   "id": "85daa6a854746cd3",
+   "url": "https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/",
+   "title": "Octoverse: Commits, pushes, reach new highs in 2026 as developers build with agents",
+   "source": "GitHub Blog (AI)",
+   "tier": "S",
+   "published_at": "2026-10-28T16:07:40+00:00",
+   "summary_short": "GitHub Octoverse：过去12个月推送179亿次，AI智能体成日常开发主力",
+   "summary_long": "GitHub 的 Octoverse 年度回顾显示：过去 12 个月，开发者向 GitHub 推送代码 179 亿次，超过 2024 与 2025 两年之和；全部仓库（公开与私有）提交达 343 亿次，为两年前的三倍多；合并 PR 超 13 亿个，日均 350 万。今年新建仓库中，带 agent 配置文件的仓库平均提交量是无该配置新仓库的 8 倍；截至 9 月，超 40% 的 PR 由 agent 发起（3 月为 17%），61% 的 Copilot 用户使用不止一个模型。GitHub Actions 每秒运行 1440 个任务（日均 1.24 亿次），为去年三倍多；开发者合并 3000 万个 Dependabot PR。报告首次按行业披露公共仓库情况，采矿、建筑、医疗、农业相关仓库自 2022 年均增长数倍。原文还举了尼泊尔洪水信息项目 Gati、NASA JPL 航天器软件、开源电子阅读器固件等案例。",
+   "key_points": [
+    "过去 12 个月代码推送 179 亿次，超过 2024、2025 两年总和；总提交 343 亿次，合并 PR 超 13 亿个。",
+    "带 agent 配置的新仓库平均提交量是其他新仓库的 8 倍；9 月超 40% 的 PR 由 agent 发起，3 月仅 17%。",
+    "GitHub Actions 每秒运行 1440 个任务，合并 3000 万个 Dependabot PR；报告首次按行业统计公共仓库。"
+   ],
+   "topics": [
+    "coding-agent",
+    "open-source"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 82.2,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "News & insights",
+     "Octoverse"
+    ],
+    "outbound": {
+     "arxiv": [
+      "1706.03762",
+      "1906.11241"
+     ],
+     "links": [
+      "https://github.com/nirajbhusal/rasuwa-flood-bulletin",
+      "https://github.com/nirajbhusal/gati-alerts",
+      "https://github.com/nasa/spacewasm",
+      "https://github.com/crosspoint-reader/crosspoint-reader",
+      "https://github.com/kinlane",
+      "https://github.com/kim-em",
+      "https://github.com/andig",
+      "https://github.com/evcc-io/evcc",
+      "https://github.com/tracefinity/tracefinity",
+      "https://github.com/rendeirolab/wsidata",
+      "https://github.com/sbhattlab/PlayClass",
+      "https://github.com/waikato-ahuora-smart-energy-systems/OpenPinch",
+      "https://github.com/midt-bg/sigma",
+      "https://github.com/hughhowey/neo",
+      "https://github.com/google-deepmind/alphafold",
+      "https://github.com/tensorflow/tensor2tensor",
+      "https://arxiv.org/abs/1706.03762",
+      "https://github.com/dylanhmorris/sars-cov-2-stability",
+      "https://github.com/achael/eht-imaging",
+      "https://arxiv.org/abs/1906.11241",
+      "https://docs.github.com/pull-requests/how-tos/stacked-pull-requests?utm_source=octoverse-pr-stacks-docs&utm_medium=blog&utm_campaign=universe-2026",
+      "https://docs.github.com/copilot/concepts/models/auto-model-selection?utm_source=octoverse-auto-model-selection-docs&utm_medium=blog&utm_campaign=universe-2026",
+      "https://github.blog/changelog/2026-09-14-configure-cost-and-quality-in-copilot-auto-model-selection/",
+      "https://github.blog/ai-and-ml/github-copilot/project-hydrafusion-frontier-quality-via-multi-model-orchestration/",
+      "https://docs.github.com/copilot/concepts/models/copilot-fusion?utm_source=octoverse-fusion-docs&utm_medium=blog&utm_campaign=universe-2026",
+      "https://github.com/gem/oq-engine",
+      "https://github.com/opentermsarchive/engine",
+      "https://github.com/JuliusBrussee/caveman",
+      "https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/",
+      "https://github.blog"
+     ]
+    },
+    "summary_mode": "full"
    }
   }
  ],
  "items": [
   {
-   "id": "95eb6975ad245049",
-   "url": "https://huggingface.co/blog/microsoft/thinkingbox-training",
-   "title": "Turning Database Grading into RL Rewards: Post-Training Agents with ThinkingBox",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-22T22:24:34+00:00",
-   "summary_short": "用数据库终态校验当RL奖励，Qwen3.8-27B成功率提升9.08点",
-   "summary_long": "ThinkingBox 通过比对智能体执行后的数据库最终状态与预期结果来评判其工作。本文是上一篇的续篇，作者注意到多数任务的可执行校验能直接从数据库终态返回 1 或 0，因此它不只是评分器，还可当作奖励函数。团队在 ThinkingBox-Bench（507 个任务）之外构造了同格式的训练任务池，用其可执行结果作为奖励，对 Qwen3.8-27B 做 50 步 GRPO 微调。挑选任务时提出“离线策略相对难度”：任务对当前模型要么已被解决、要么毫无希望，两者都教不会模型，故训练前用基座策略估计每个任务的成功概率，整个训练过程固定该任务池。结果显示 pass@1（在 10,140 次尝试上统计）从 51.70% 升至 60.78%，20 次全部通过的任务从 38 个增至 107 个，而 pass@20 从 453 降至 446。原文举例：一个酒店客房降级任务需经理审批，训练前 20 次中有 15 次未经审批即改单退款，训练后 20 次均保留预订与支付状态。ThinkingBox-Training 已在 GitHub 发布。",
-   "key_points": [
-    "ThinkingBox 用数据库最终状态的可执行校验判分，这种 1/0 信号可直接作为后训练的奖励函数",
-    "训练池取自 ThinkingBox-Bench 之外的同格式任务，按“离线策略相对难度”在训练前估计一次成功概率并全程固定",
-    "Qwen3.8-27B 经 50 步 GRPO：pass@1 由 51.70% 升至 60.78%，20/20 全对任务由 38 增至 107，pass@20 由 453 降至 446（−7 个任务）"
-   ],
-   "topics": [
-    "post-training",
-    "agent-loop",
-    "harness"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 87.6,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2503.14476",
-      "2504.13837",
-      "2608.19741"
-     ],
-     "links": [
-      "https://huggingface.co/blog/microsoft/thinkingbox",
-      "https://github.com/microsoft/thinkingbox-training",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/KVaFjYjblWd15tC3M6S_0.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/iu-NFQl-J3EOMe_KiME_8.png",
-      "https://huggingface.co/datasets/microsoft/ThinkingBox-Bench",
-      "https://arxiv.org/abs/2504.13837",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/Bu7GFUdUiJgQjHV_cbvU4.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/HPq2TNCT8yskCAGtKe86l.png",
-      "https://arxiv.org/abs/2608.19741",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/ZaqyG8RtqCRsxGdxUQMfi.png",
-      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/trainer/core/tb_interpret.py",
-      "https://arxiv.org/abs/2503.14476",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/eR45y7Dl0VFFK3HinwDYg.png",
-      "https://arxiv.org/pdf/2608.19741",
-      "https://cdn-uploads.huggingface.co/production/uploads/64b8491203124195cd795cad/IBBkNpYKQRK6jBLSusMXw.png",
-      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/data-preparation.md",
-      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/reference-q38-run.md",
-      "https://github.com/microsoft/thinkingbox-training/blob/8c04db18da362357dc8a2d4ab187f44a8d63e20a/docs/evaluation.md",
-      "https://docs.astral.sh/uv/",
-      "https://huggingface.co/blog/microsoft/thinkingbox#run-it-yourself",
-      "https://github.com/huggingface/OpenEnv/tree/main/envs/thinkingbox_env",
-      "https://huggingface.co/docs/openenv/environments/thinkingbox",
-      "https://github.com/microsoft/thinkingbox",
-      "https://github.com/microsoft/thinkingbox/blob/main/docs/tutorial.md",
-      "https://github.com/microsoft/thinkingbox-data",
-      "https://github.com/microsoft/thinkingbox-data/releases/tag/thinkingbox-bench-v1.0",
-      "https://huggingface.co/papers/2608.19741",
-      "https://cdla.dev/permissive-2-0/",
-      "https://github.com/microsoft/thinkingbox/discussions"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "d28967fce9c692cd",
    "url": "https://openai.com/index/how-we-detect-frontier-model-misalignment",
    "title": "How we detect frontier model misalignment",
@@ -535,66 +470,6 @@
       "https://spectreattack.com/"
      ]
     }
-   }
-  },
-  {
-   "id": "1360bd8eb5a8e67e",
-   "url": "https://www.anthropic.com/research/formal-verification",
-   "title": "LLMs are making formal software verification feasible at a much larger scale",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-22T22:54:43+00:00",
-   "summary_short": "用Claude在123个开源库的RISC-V汇编层完成大规模形式化验证证明",
-   "summary_long": "原文指出，多数软件充满缺陷，而AI如今能轻易发现并利用它们；即便是Linux内核这样经过充分测试、部署在数十亿设备上的软件，近期也披露了1000多个漏洞。形式化验证可通过数学证明保证代码不违反既定安全规则，但历来成本极高——例如seL4内核实现用了2人年，形式化验证却用了20人年，因此此前只用于航空电子等关键领域。作者与Theorem合作，使用Claude对123个真实开源库在RISC-V汇编代码层面证明安全属性：在单线程静态二进制、固定内存预算、运行Linux等假设下，对小于64MB的任意输入以及所有建模的OS响应与内存布局，程序总能正常退出，不触发内存安全错误或断言失败。据其所知，这是首次在汇编层用AI对生产软件开展大规模形式化验证。Claude在写证明过程中还发现了历经数万亿次测试仍未检出的缺陷。团队公开了部分证明及RISC-V与OS语义，供他人验证和复用。",
-   "key_points": [
-    "使用Claude为123个真实开源库在RISC-V汇编层证明安全属性，据作者所知是首次在汇编层用AI对生产软件做大规模形式化验证",
-    "证明的安全属性为：在单线程静态二进制、固定内存预算、Linux等假设下，程序对小于64MB的任意输入均正常退出，不触发内存安全错误或断言失败",
-    "Claude在写证明过程中发现了此前经数万亿次测试仍未检出的缺陷；部分证明与RISC-V、OS语义已公开发布以供验证复用"
-   ],
-   "topics": [
-    "coding-agent",
-    "reasoning",
-    "open-source"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用",
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 83.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 437,
-    "hn_comments": 280,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://hacks.mozilla.org/2026/05/behind-the-scenes-hardening-firefox/",
-      "https://www.anthropic.com/research/exploit-evals",
-      "https://theorem.dev/",
-      "https://opensource.googleblog.com/2016/12/announcing-oss-fuzz-continuous-fuzzing.html",
-      "https://lwn.net/Articles/1097401/",
-      "https://sel4.systems/Research/pdfs/comprehensive-formal-verification-os-microkernel.pdf",
-      "https://www.astree.ens.fr/papers/astree_airbus_sas2007.pdf",
-      "https://github.com/theorem-labs/oss-verify-proofs",
-      "https://github.com/theorem-labs/rocq-linux-process-semantics",
-      "https://theorem.dev/oss-verify/",
-      "https://github.com/theorem-labs/oss-verify/blob/main/.claude/skills/add-project/SKILL.md",
-      "https://en.wikipedia.org/wiki/PNG",
-      "https://www.rfc-editor.org/info/rfc2083/",
-      "https://github.com/google/oss-fuzz",
-      "https://www.cisa.gov/news-events/news/cisa-nsa-fbi-and-international-cybersecurity-authorities-publish-guide-case-memory-safe-roadmaps",
-      "https://www-cdn.anthropic.com/files/4zrzovbb/website/6867eadf760258fa8b42a504600cd3c036d16358.pdf",
-      "https://github.com/AFLplusplus/AFLplusplus/blob/stable/include/config.h#L314",
-      "https://www.rfc-editor.org/info/rfc1950/",
-      "https://leanprover-community.github.io/",
-      "https://leanprover-community.github.io/mathlib_stats.html",
-      "https://theorem.dev/blog/verified-software-stack/"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
    }
   },
   {
@@ -827,49 +702,6 @@
    }
   },
   {
-   "id": "8802a7899044962b",
-   "url": "https://simedw.com/2026/10/21/world-model-terminal/",
-   "title": "WorldTUI: I trained a 360M model to pretend to be a terminal",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-22T02:18:41+00:00",
-   "summary_short": "360M模型微调成终端：无 shell、无文件系统，按键直接预测屏幕变化",
-   "summary_long": "作者把一个 360M 参数的模型（基于 Qwen2.5-Coder-0.5B）微调成“终端”：背后没有 shell 也没有文件系统，每次按键以真实终端会发送的原始字节输入，模型直接预测字符网格屏幕的变化——要重写哪些行、光标落到哪里，新字符直接覆盖旧字符，不先清屏。训练数据来自 Docker 内真实程序运行的终端会话记录，因此可大量生成带标注数据；预训练模型本身也已大致知道 ls、cat 该打印什么。它能创建文件、跑 vim 和 tmux、玩贪吃蛇，通常还能记住几条命令前写的内容。作者称最大的收获是教会模型修复自己的错误，以及并行解码屏幕各行；另加 COPY 操作，避免滚屏时每按键重复输出约 3000 个 token。他想验证的是模型能否维持一致的世界，而非只生成像样的终端输出。演示在浏览器运行（208 MB），需 WebGPU 与实体键盘，输入 pythoon 即可看出它不是真 shell。",
-   "key_points": [
-    "模型基于 Qwen2.5-Coder-0.5B 微调（TL;DR 称 360M 参数），无真实 shell 与文件系统，只预测屏幕网格变化",
-    "输入是按键的原始字节（无按键时用带时长的 WAIT token），输出为需重写的行与光标位置；字符和坐标复用 Qwen 已有的 256 字节 token",
-    "会话以快照开始（屏幕尺寸、内容、光标位置），尺寸非固定，可从 bash、vim 缓冲区或贪吃蛇中途续接"
-   ],
-   "topics": [
-    "post-training",
-    "world-model"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 80.4,
-   "status": "published",
-   "extra": {
-    "hn_points": 477,
-    "hn_comments": 155,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://deepmind.google/models/genie/",
-      "https://www.engraved.blog/building-a-virtual-machine-inside/",
-      "https://gamengen.github.io/",
-      "https://neural-os.com/",
-      "https://x.com/SimEdw",
-      "https://buttondown.com/refer/simedw"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "1758535ac6be3e6b",
    "url": "https://openai.com/index/introducing-gpt-6-1-terra",
    "title": "Introducing GPT-6.1 Terra",
@@ -1000,69 +832,6 @@
    }
   },
   {
-   "id": "4dcdb95578272074",
-   "url": "https://github.com/NVIDIA/OpenShell",
-   "title": "OpenShell – A safe, private runtime for fleets of autonomous AI agents",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-22T17:44:06+00:00",
-   "summary_short": "OpenShell：以内核级沙箱和形式化验证约束自主 AI 智能体的私有运行时",
-   "summary_long": "OpenShell 是面向成批自主 AI 智能体的安全私有运行时。原文说，智能体在能读文件、安装软件包、调用 API、使用凭证时最有用；OpenShell 让它们拥有这些能力，同时不让它们无限访问数据、密钥和网络。用户用策略声明每个智能体可以触及的内容，由 OpenShell 强制执行。实现机制有两层：每个智能体运行在独立沙箱中，内核控制限制其可访问的文件和可发起的系统调用，每条网络连接在离开沙箱前必须通过策略检查；智能体看不到真实凭证，凭证只在发往已批准端点的请求中注入。策略变更生效前还要经过形式化验证，标出这次变更将授予的高风险新访问（例如使用凭证访问新主机、调用新 API 方法），并交由人工审阅。0.1.x 带来稳定发布节奏、新隔离原语、扩展后的扩展面和新 API。运行需要 Linux、Apple Silicon 上的 macOS 或 WSL 2（实验性），加上 Docker/Podman 或主机虚拟化；安装脚本会配置 CLI 和本地网关，默认镜像是不安装智能体的最小 Ubuntu。",
-   "key_points": [
-    "内核级沙箱执行文件访问、系统调用与网络连接策略；策略变更在应用前经形式化验证，高风险新访问等待人工审阅",
-    "智能体不接触真实凭证，OpenShell 仅在发往已批准端点的请求中注入凭证",
-    "0.1.x 提供稳定发布节奏、新隔离原语、扩展的扩展面与新 API，并有 Python、TypeScript、Go、Rust SDK、Agent Skills 与 Helm 部署网关"
-   ],
-   "topics": [
-    "cybersecurity",
-    "privacy"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "安全",
-    "开源项目"
-   ],
-   "horizon": "short",
-   "score": 79.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 487,
-    "hn_comments": 212,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/NVIDIA/OpenShell/blob/main/LICENSE",
-      "https://pypi.org/project/openshell/",
-      "https://docs.nvidia.com/openshell/latest/index.html",
-      "https://docs.nvidia.com/openshell/latest/upgrade/0-1-0",
-      "https://docs.nvidia.com/openshell/latest/about/architecture",
-      "https://docs.nvidia.com/openshell/latest/about/support-matrix",
-      "https://docs.nvidia.com/openshell/latest/about/run-your-first-agent",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/sandboxes/overview",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/policies/overview",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/policies/advisor",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/policies/prover",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/providers/overview",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/inference",
-      "https://docs.nvidia.com/openshell/latest/how-it-works/gateways/overview",
-      "https://docs.nvidia.com/openshell/latest/kubernetes/setup",
-      "https://docs.nvidia.com/openshell/latest/extensibility/overview",
-      "https://docs.nvidia.com/openshell/latest/tutorials/first-network-policy",
-      "https://docs.nvidia.com/openshell/latest/about/installation#prerelease-and-development-builds",
-      "https://github.com/NVIDIA/OpenShell/discussions",
-      "https://github.com/NVIDIA/OpenShell/issues",
-      "https://github.com/orgs/NVIDIA/projects/233",
-      "https://github.com/orgs/NVIDIA/projects/233/views/6",
-      "https://brev.nvidia.com/launchable/deploy/now?launchableID=env-3Ap3tL55zq4a8kew1AuW0FpSLsg",
-      "https://docs.nvidia.com/openshell/latest/observability/telemetry"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "c61ee1a62651ca79",
    "url": "https://oioannou.com/blog/ai-promised-less-work/",
    "title": "AI promised less work. I've never worked more",
@@ -1131,6 +900,124 @@
       "https://d2gaqzonlm544h.cloudfront.net/skin-ai/data/llm-skin-cancer-test.zip"
      ]
     },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "d8eb5a4b641ea994",
+   "url": "https://labs.ycombinator.com/projects/games/index.html",
+   "title": "We ran AI agent swarms in Minecraft and Mindustry",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-29T21:40:28+00:00",
+   "summary_short": "开源 Minecraft 智能体框架，50 个 Agent 三小时自建文明与伪政府",
+   "summary_long": "原文指出，理解多智能体动态是 AI 对齐最紧迫的挑战之一：集群在追求共同目标时会涌现角色分工、层级与复杂协调，既可能极有用（如近期消灭数百个开放数学问题的千体集群），也可能极危险（如近期 OpenAI-Hugging Face 事件）。文中团队与 Olam Labs 合作，在 Minecraft 和 Mindustry 中做了一系列实验。由于缺少能让智能体长期运行于 Minecraft 的框架，团队自建并开源了一套，基于 Mineflayer 的脚本工具，核心智能体循环用 Pi 运行。Civ50 实验中，50 个 GPT-6.1 Sol 智能体在生存模式中运行 3 小时，唯一目标是“建立繁荣文明”，可使用智能体目录、共享沙箱和私信。它们挤在拥挤庇护所里配给稀缺食物，建立了带配给账本、成文规则、许可与任命操作员的伪政府，发送约 5900 条消息；90 秒内砍光出生点附近的树；按目录顺序形成层级，排在第一的 Ada 成为实际领袖并撰写定居点计划。Minecraft 之外，原文未详述 Mindustry 的结果。",
+   "key_points": [
+    "理解多智能体动态是 AI 对齐最紧迫的挑战之一；集群可自发出角色、层级与协调模式，原文举千体集群攻克数百个数学开放问题与近期 OpenAI-Hugging Face 事件作为有用与危险的例子",
+    "团队与 Olam Labs 合作在 Minecraft、Mindustry 做实验；因可长期运行的 Minecraft 智能体框架此前不存在而自建并开源，基于 Mineflayer 脚本工具，核心循环用 Pi，具备前沿 agent harness 的属性",
+    "Civ50 中 50 个 GPT-6.1 Sol 智能体在生存世界运行 3 小时、目标为“建立繁荣文明”，形成按目录顺序的层级（Ada 成为实际领袖），建立含配给账本、规则、许可、任命操作员的伪政府，发出约 5900 条消息，90 秒内砍光出生点附近可及的树木"
+   ],
+   "topics": [
+    "multi-agent",
+    "harness",
+    "alignment"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 78.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 391,
+    "hn_comments": 162,
+    "outbound": {
+     "arxiv": [
+      "2610.22319"
+     ],
+     "links": [
+      "https://www.twitch.tv/yc_labs_josh",
+      "https://olamlabs.ai/",
+      "https://openai.com/index/vpt/",
+      "https://arxiv.org/abs/2610.22319",
+      "https://github.com/yc-software/minecraft-agent-harness",
+      "https://github.com/Anuken/Mindustry",
+      "https://cdn.openai.com/pdf/67869394-cb91-4c12-888c-5cbd85c7814c/OpenAI-Hugging-Face%20Incident-Technical-Report.pdf",
+      "https://github.com/olamlabs/multi-agent-mindustry",
+      "https://github.com/olamlabs/harbor-multiagent",
+      "https://github.com/harbor-framework/harbor"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "a510883f6a1bc895",
+   "url": "https://doublepulsar.com/anthropic-hacked-to-deliver-remote-access-trojan-to-claude-developer-laptops-worldwide-1148a92baae2",
+   "title": "Claude Code VS Code extension with backdoor released on Cursor marketplace",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-30T10:22:51+00:00",
+   "summary_short": "Claude Code扩展遭篡改植入SSH后门，Cursor市场发生供应链攻击",
+   "summary_long": "Anthropic 的 Claude Code VS Code 扩展被篡改后出现在 Cursor 扩展市场，通过 SSH 反向后门向开发者电脑投放远程访问木马，形成一起供应链攻击。该扩展在 Cursor 中自动更新到恶意版本 2.1.313；Cursor 表示约 5000 台开发者系统受影响，Phorion 最先在端点发现异常。恶意代码会收集主机名、用户名、操作系统、架构、主目录路径、环境变量名、工作目录、配置的 Git 邮箱和公网 IP，并尝试向 authorized_keys 添加攻击者控制的 SSH 密钥、启用本地 SSH 服务、开启反向隧道，再通过 macOS 的 LaunchAgent 或 Windows 以 SYSTEM 运行的计划任务（失败则回退到启动脚本）实现持久化，后台脚本约每 60 秒重试，并通过 8099 端口的 /beacon 以 HTTP POST 上报主机信息与后门状态。文中称，由于恶意代码存在错误，除非 Cursor 以管理员权限启动，否则该步骤会失败。Anthropic 已将 2.1.313 替换为 2.1.314，后者似乎移除了扩展中的后门，但不会清除已感染系统上的 SSH 后门和此前的侦察活动；2.1.313 已从 OpenVSX、Visual Studio Marketplace 和 Cursor 消失。Anthropic 称此次入侵源于 Cu",
+   "key_points": [
+    "恶意版本 2.1.313 在 Cursor 中自动更新推送，Cursor 称约 5000 台开发者系统受影响，Phorion 最先发现",
+    "恶意代码收集主机与用户信息，尝试写入攻击者 SSH 公钥、开启反向隧道，并通过 LaunchAgent 或 Windows 计划任务持久化，每约 60 秒重试、向 8099 端口 /beacon 上报",
+    "2.1.314 已替换恶意版本，但不会清除已感染系统上的 SSH 后门与侦察痕迹；Anthropic 称入侵发生在 Cursor，Cursor 已承认该问题"
+   ],
+   "topics": [
+    "cybersecurity",
+    "prompt-injection",
+    "open-source"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 78.0,
+   "status": "published",
+   "extra": {
+    "hn_points": 397,
+    "hn_comments": 1,
+    "content_source": "reader",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "c30c38a613a77d25",
+   "url": "https://github.com/SheepSeb/tinyworldformer",
+   "title": "A tiny world model running games on a Raspberry Pi Pico 2 W",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-29T20:32:28+00:00",
+   "summary_short": "树莓派Pico 2 W上用两个微型网络同时生成并游玩游戏",
+   "summary_long": "作者在树莓派 Pico 2 W 上用两个小型神经网络同时生成和游玩游戏：第一个是世界模型，输入当前帧和动作，预测下一帧和奖励；第二个是演员网络，根据生成的帧选择动作。作者称自己对循环 Transformer（同一个 transformer 块以相同权重重复应用，而不是堆叠不同层）感兴趣，权重复用对内存开销小，因此想验证循环世界模型能否小到跑在微控制器上；选择 Pico 2 W 是因为它便宜且带 FPU，选择小游戏是因为可以把真实版本直接写成 numpy 代码，并逐帧校验生成结果。世界模型是循环 transformer，q int8 量化，26k–131k 参数，每帧 2–8M 次乘加；演员网络是含两个隐藏层的 MLP，float32，9k–16k 参数。游戏包括 Breakout、Doom-lite、Flappy Bird、Pong、Pac-Man lite，在留出转移中整帧完全匹配率为 83.6%–100%。两个网络都跑在 RP2350 的 core 1，core 0 负责 USB 与显示；在芯片上运行时都不接触真实游戏。后来又加入 stream-x 智能体，可在板上从零学习。",
+   "key_points": [
+    "两个网络分工明确：世界模型做「帧+动作→下一帧+奖励」，演员网络做「帧→动作」",
+    "动机是验证循环 Transformer（同权重重复应用）能否小到跑在微控制器上，因其权重复用省内存",
+    "世界模型为循环 transformer、q int8、26k–131k 参数、每帧 2–8M 次乘加；演员为双隐藏层 MLP、9k–16k 参数"
+   ],
+   "topics": [
+    "world-model",
+    "quantization",
+    "edge-deployment"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "开源项目"
+   ],
+   "horizon": "long",
+   "score": 77.4,
+   "status": "published",
+   "extra": {
+    "hn_points": 268,
+    "hn_comments": 18,
     "content_source": "direct",
     "summary_mode": "full"
    }
@@ -1258,47 +1145,72 @@
    }
   },
   {
-   "id": "86405d6d1e9fb855",
-   "url": "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation",
-   "title": "Donating Agent Skills to the Agentic AI Foundation",
-   "source": "Anthropic News",
-   "tier": "S",
-   "published_at": "2026-10-22T00:00:00+00:00",
-   "summary_short": "Agent Skills 这个开放标准被捐给 AAIF，超70个平台已集成、百万级技能已发布",
-   "summary_long": "原文宣布将 Agent Skills 这一开放标准捐赠给 Agentic AI Foundation（AAIF）。Agent Skills 用于给 AI agent 提供专门知识与工作流：一个 skill 就是一个文件夹，内含 SKILL.md 文件，教 agent 完成特定任务或领域，并附带所需脚本或参考材料。团队在开发 Claude Code 时发现它擅长通用知识工作，却常缺少真实业务任务所需的流程性知识，于是做出 skills；2025 年 10 月发布后数周内开发者就在 GitHub 上发布了数千个技能，并为 Codex、Cursor、OpenCode 写了加载器；2025 年 12 月作为开放标准发布，至今已有超 70 个 agent 平台集成，包括 ChatGPT、Cursor、GitHub Copilot 和 VS Code，累计发布 100 万个技能、安装近 2.8 亿次。AAIF 隶属 Linux 基金会，由原文发布方与 Block、OpenAI 共同创立，此前已接收 MCP。此次捐赠包括 Agent Skills 名称与 logo、GitHub 组织及 agentskills.io 域名，AAIF 将作为中立归属地。来自 Anthropic、Google、OpenAI 等公司的工程师以个人身份维护标准，David Soria Parra 与 Mahesh Mur",
+   "id": "7e2aaf184ac3d7d5",
+   "url": "https://cyberplace.social/@GossiTheDog/117528831681803563",
+   "title": "Backdoors in official Claude Code extensions",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-30T11:05:53+00:00",
+   "summary_short": "官方 Claude Code 扩展被发现植入后门，可反向 SSH 控制开发者机器",
+   "summary_long": "Phorion 的安全公告称，在 Open VSX 上的官方 Claude Code for VS Code 扩展包中发现后门，它会在 macOS、Linux 和 Windows 上植入持久化 SSH 后门。安全研究者 Kevin Beaumont 转述并评论：该扩展安装量达数百万，是 DevOps 领域最流行的扩展之一，后门会建立反向 SSH 连接，相当于在桌面植入远程访问木马；他称这是一次供应链攻击，攻击者借此大规模获得对 Anthropic 客户环境的反向 SSH（命令行）访问权限。他还表示，Anthropic 在 7 小时前悄悄移除了后门，但没有披露安全事件；由于插件会自动更新，所有组织都会受到影响。被入侵的版本 2.1.313 已从仓库中下架，2.1.314 是修复版。Cursor 也发布安全提示，称其扩展市场中的 Anthropic.claude-code 2.1.313 同样受影响。他还称，攻击者的 C2 服务器现已下线；该服务器会为每个受害终端收集信息，并运行反向 SSH 连接。",
    "key_points": [
-    "Agent Skills 是文件夹内含 SKILL.md 的开放标准，为 agent 提供特定任务或领域的流程性知识",
-    "发布以来超 70 个平台集成（含 ChatGPT、Cursor、GitHub Copilot、VS Code），累计发布 100 万个技能、安装近 2.8 亿次",
-    "捐赠范围包括名称与 logo、GitHub 组织、agentskills.io 域名，AAIF 隶属 Linux 基金会，此前已接收 MCP"
+    "Phorion 在 Open VSX 上的官方 Claude Code for VS Code 扩展包中发现后门，会在 macOS、Linux、Windows 植入持久化 SSH 后门",
+    "Kevin Beaumont 称该扩展安装量达数百万，属供应链攻击，攻击者借此大规模获得对 Anthropic 客户环境的反向 SSH 命令行访问",
+    "被入侵版本 2.1.313 已下架、2.1.314 为修复版；Cursor 扩展市场的同一版本也受影响，Anthropic 未披露安全事件"
    ],
    "topics": [
-    "context-engineering",
-    "open-source",
-    "tool-use"
+    "cybersecurity",
+    "supply-chain"
    ],
-   "category": "Agent 与开发",
+   "category": "安全",
    "categories": [
-    "Agent 与开发",
-    "行业动态"
+    "安全"
    ],
-   "horizon": "long",
-   "score": 76.8,
+   "horizon": "short",
+   "score": 76.5,
    "status": "published",
    "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "News"
-    ],
+    "hn_points": 651,
+    "hn_comments": 17,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://agentskills.io/home",
-      "https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation",
-      "https://discord.gg/MKPE9g8aUy",
-      "https://agentskills.io",
-      "https://github.com/agentskills/agentskills"
+      "https://joinmastodon.org/apps"
      ]
     },
+    "content_source": "reader",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "bf5aaab63512aa24",
+   "url": "https://phorion.io/blog/offical-claude-code-vsx-compromise/",
+   "title": "Backdoor in Claude Code for VS Code extension on the Cursor Marketplace",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-30T07:09:12+00:00",
+   "summary_short": "Claude Code的VS Code扩展被发现内置SSH后门，Cursor已下架2.1.313版",
+   "summary_long": "Phorion称在Cursor Marketplace上架的官方 Claude Code for VS Code 扩展包中发现后门，可植入跨 macOS、Linux、Windows 的持久化 SSH 后门。Cursor 已从市场移除该发行版，并从相关注册表撤下 2.1.313 的 NPM 与 VSCode 版本。原文指出，Cursor Marketplace 为 Cursor 编辑器提供扩展，扩展以 IDE 及运行用户的权限执行，因此恶意模块一旦加载即可访问本地文件、源代码与开发工具。被污染的 extension.js 在压缩包前注入了一段立即执行函数（IIFE），引入 child_process、fs、os、path、http、crypto 等模块，在 Node 加载文件时即触发，早于正常 activate 回调，用户无需交互。载荷先创建 ~/.ssh 并把攻击者控制的 Ed25519 公钥追加到 authorized_keys（注释为 svc-telemetry，目录 0700、文件 0600），再尝试开启 SSH。macOS 上存在一处疑似疏漏：脚本假设无需 root 即可查询 Remote Login 状态，但普通用户执行 systemsetup -getremotelogin 会报管理员权限错误并以状态 0 退出，不返回 Off，于是脚本跳过启用步骤；在原本未运行 SSH",
+   "key_points": [
+    "后门位于 Cursor Marketplace 上的官方 Claude Code for VS Code 扩展包，Cursor 已下架并从 NPM、VSCode 注册表撤下 2.1.313 版本",
+    "注入的 IIFE 在模块加载时即执行、无需用户交互，先写入 ~/.ssh/authorized_keys 的攻击者 Ed25519 公钥（注释 svc-telemetry）再尝试开启 SSH",
+    "macOS 上因 systemsetup -getremotelogin 无 root 时报错并以状态 0 退出，脚本跳过启用 SSH，使未运行 SSH 的机器入站路径失效，但持久化与主机侦察回传仍在；原文建议排查 2.1.313 使用情况并启动应急响应"
+   ],
+   "topics": [
+    "cybersecurity",
+    "supply-chain"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 76.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 696,
+    "hn_comments": 438,
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },

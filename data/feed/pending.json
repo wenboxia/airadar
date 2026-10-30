@@ -1,338 +1,112 @@
 {
- "generated_at": "2026-10-29T23:20:11+00:00",
+ "generated_at": "2026-10-30T23:00:30+00:00",
  "items": [
   {
-   "id": "271134257c4af766",
-   "url": "https://gist.github.com/flamerix-ai/c3905705cc4205e5de3011fa2e74efce",
-   "title": "Claude Code regularly sends each background agent’s transcript to its model",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-29T03:33:42+00:00",
-   "summary_short": "Claude Code 每30秒把后台代理完整记录重发给模型生成状态行，文中给出关闭脚本",
-   "summary_long": "原文指出：Claude Code 每隔约30秒，会为每个后台代理把该代理的完整对话记录发送给该代理自己的模型（通常是 Opus），要求它“用3-5个词描述最近一次动作”；回答只用于更新 agents 面板里的状态行，不会进入模型上下文或用户对话。该行为没有开关，自 2.1.232（2026年8月）起默认开启。DRIM 通过 Claude Code 的 OpenTelemetry 导出发现异常：按 query_source 分组后，agent_summary 占总花费 16.4%（主对话为 15.7%），占总 API 请求 19.7%（约五分之一），其中 96% 的花费落在 Opus 上，输入与输出 token 比约为 9000:1；原文说明“花费”是 Claude Code 自身的单请求估算（cost_usd），订阅用户损失的是速率限制额度。文中还提到 #86879 汇总了四项独立测量，结果为 18–26%。修复方案 no-agent-summary.js 是一段约70行的 Bun preload，只包裹全局 setTimeout：当回调源码文本含摘要器锚点（如 [AgentSummary] Timer fired 日志行）时，返回惰性句柄而不启动定时器，其他定时器不受影响；惰性句柄用 2³¹−1 毫秒，因为 Node 与 Bun 会把更大的延迟当作 1 毫秒。该钩子仅在 Clau",
-   "key_points": [
-    "每约30秒对每个后台代理重发完整记录，只为生成3-5词状态行，且无设置可关，2.1.232 起默认开启",
-    "DRIM 用 OpenTelemetry 测得 agent_summary 占总花费16.4%、占总请求19.7%，96%花在 Opus，#86879 另收四项测量为18–26%",
-    "修复是不改二进制的 Bun preload，只拦截特定 setTimeout 回调，靠 BUN_OPTIONS=--preload 加载，更新后可能失效需复核"
-   ],
-   "topics": [
-    "coding-agent",
-    "harness",
-    "agent-loop"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 73.5,
-   "status": "review",
-   "extra": {
-    "hn_points": 558,
-    "hn_comments": 224,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://flamerix.ai",
-      "https://github.com/anthropics/claude-code/issues/86879",
-      "https://news.ycombinator.com/user?id=lostsock",
-      "https://github.com/anthropics/claude-code/issues/104358",
-      "https://gist.github.com/Bedz01"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "eebb63f2228b3e37",
-   "url": "https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1",
-   "title": "Gemini 4 Carbon is the new #1 on the Artificial Analysis Intelligence Index v5",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-29T12:41:56+00:00",
-   "summary_short": "Gemini 4 Carbon 以59分登顶 AA 智能指数 v5，单任务成本低于 Claude Opus 5.5",
-   "summary_long": "Artificial Analysis 公布，Google 的 Gemini 4 Carbon 在 Intelligence Index v5 上以 59 分登顶，并在 9 项评测中的 4 项（HLE-Diamond、Terminal-Bench-Science、AA-Omniscience、AutomationBench-AA）排名第一，主要得益于复杂推理、知识与科学任务的表现。在 Coding Agent Index 上，Gemini 4 Carbon 配合 Antigravity CLI 得 59 分，仅次于 Claude Code 搭配 Claude Opus 5.5（max，62 分），相差 3 分；Terminal-Bench 4.0 为 64%、FrontierCode v1.1 为 51%，均列第二。该模型在编程与知识工作上进步明显，但尚未领先。在 AA-Briefcase 上得 1609 Elo，比 Gemini 4 Argon（high，1483）高 126 分，仍落后于 Grok 4.7、Muse Wonder 与 Kimi K3.1 Pro；其中 Presentation 提升 293 Elo 至 1598。成本方面，按标准定价每个 Intelligence Index 任务花费 7.76 美元，比 Claude Opus 5.5（max，10.04 美元）",
-   "key_points": [
-    "Gemini 4 Carbon 以 59 分登顶 Intelligence Index v5，在 9 项评测中的 4 项排名第一",
-    "Coding Agent Index 上得 59 分，仅次于 Claude Opus 5.5（max，62），编程与知识工作有提升但未领先",
-    "标准定价下每任务 7.76 美元，比 Claude Opus 5.5（max）低约 23%，但高于 GPT-6 Astra（max，6.25 美元）"
-   ],
-   "topics": [
-    "eval"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测"
-   ],
-   "horizon": "short",
-   "score": 72.0,
-   "status": "review",
-   "extra": {
-    "hn_points": 324,
-    "hn_comments": 240,
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "85d975255b4f9d00",
-   "url": "https://huggingface.co/blog/anydecisionmodel",
-   "title": "Introducing AnySpeechRecognizer and AnyDecisionModel: Open Models for Speech and Decisions on Apple Platforms",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-29T00:00:00+00:00",
-   "summary_short": "Apple 平台两个 Swift 开源包：语音识别可换引擎，决策模型直接给出概率",
-   "summary_long": "原文介绍两个 Swift 包。AnySpeechRecognizer 沿用 Apple 在 macOS 26 与 iOS 26 引入的 SpeechAnalyzer 语音转文字 API，并镜像 SpeechTranscriber、DictationTranscriber、SpeechDetector、AssetInventory，但允许换识别引擎：默认 Apple Speech 框架，也可选在本地 Core ML 运行的 NVIDIA Parakeet（v3 支持 25 种欧洲语言并自动判断语种；Ultra 是 Moondream 后训练版本；Unified 为英语专用），以及阿里巴巴 Qwen3-ASR（0.6B 与 1.7B，覆盖 30 种语言和 22 种中文方言，含普通话、粤语、日语、韩语）。此外还加入了说话人分离。Parakeet 走包内自研 Core ML 运行时，支持文件与实时输入、volatile 结果、词级时间与置信度；Qwen3-ASR 在 GPU 上运行，每段最长 40 秒仅给一个最终结果，无 volatile 结果、词级时间与置信度。AnyDecisionModel 处理是非题、多选与评分题，返回带类型的答案与概率，答案由模型概率推导而非生成文本，可用 MLX、Core AI 或 llama.cpp 在设备上运行，也可接入 Jev 或 Ollama 的决策模型",
-   "key_points": [
-    "AnySpeechRecognizer 保持 Apple SpeechAnalyzer 的 API 不变，只把引擎换成可选，改 import 与创建 transcriber 的方式即可切换。",
-    "可选引擎包括 Core ML 上本地运行的 NVIDIA Parakeet 三个版本与阿里巴巴 Qwen3-ASR（0.6B/1.7B），并新增说话人分离。",
-    "AnyDecisionModel 用模型概率而非文本生成来回答是非、多选、评分题，返回带类型的结果与概率，支持 MLX、Core AI、llama.cpp 或 Jev、Ollama。"
-   ],
-   "topics": [
-    "open-source"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 71.5,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/anydecisionmodel.md",
-      "https://huggingface.co/blog/anylanguagemodel-1-0",
-      "https://github.com/mattt/AnySpeechRecognizer",
-      "https://github.com/mattt/AnyDecisionModel",
-      "https://github.com/mattt/AnySpeechRecognizer#transcribe-a-file",
-      "https://github.com/mattt/AnySpeechRecognizer#differences-from-apples-speech-framework",
-      "https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3",
-      "https://huggingface.co/moondream/parakeet-ultra",
-      "https://huggingface.co/nvidia/parakeet-unified-en-0.6b",
-      "https://huggingface.co/Qwen/Qwen3-ASR-0.6B-hf",
-      "https://huggingface.co/Qwen/Qwen3-ASR-1.7B-hf",
-      "https://github.com/mattt/AnySpeechRecognizer#custom-providers",
-      "https://huggingface.co/mattt/parakeet-tdt-0.6b-v3-coreml",
-      "https://huggingface.co/mattt/parakeet-ultra-coreml",
-      "https://huggingface.co/mattt/parakeet-unified-en-0.6b-coreml",
-      "https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-open-model-license/",
-      "https://huggingface.co/mattt/qwen3-asr-0.6b-coreml",
-      "https://huggingface.co/mattt/qwen3-asr-1.7b-coreml",
-      "https://huggingface.co/mattt/diar-streaming-sortformer-4spk-v2-coreml",
-      "https://huggingface.co/nvidia/diar_streaming_sortformer_4spk-v2",
-      "https://huggingface.co/mattt/diar-streaming-sortformer-4spk-v2.1-coreml",
-      "https://huggingface.co/nvidia/diar_streaming_sortformer_4spk-v2.1",
-      "https://github.com/FluidInference/mobius",
-      "https://github.com/mattt/AnySpeechRecognizer#accuracy-and-performance",
-      "https://github.com/mattt/AnyDecisionModel-Examples",
-      "https://huggingface.co/Cloudflare/clef",
-      "https://huggingface.co/Cloudflare/clef-flash",
-      "https://huggingface.co/mlx-community/clef-flash-4bit",
-      "https://github.com/ml-explore/mlx-swift-lm",
-      "https://github.com/mattt/llama.swift",
-      "https://docs.typesafe.ai/api/system-one",
-      "https://github.com/jaredpalmer/kev",
-      "https://github.com/huggingface/AnyLanguageModel",
-      "https://github.com/huggingface/swift-huggingface"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "52ced88a57d97548",
-   "url": "https://simonwillison.net/2026/Oct/28/ted-sanders/",
-   "title": "Quoting Ted Sanders",
+   "id": "4e2c9c66b20a8391",
+   "url": "https://simonwillison.net/2026/Oct/30/nesformer/",
+   "title": "dbreunig/nesformer",
    "source": "Simon Willison",
    "tier": "A",
-   "published_at": "2026-10-28T23:23:21+00:00",
-   "summary_short": "OpenAI 模型命名逻辑：版本号同时编码发布顺序、与其他版本的关系和改进幅度",
-   "summary_long": "Ted Sanders 在解释 OpenAI 的模型命名规则时指出，LLM 的性能是多维度的：并不存在固定排序，能保证数学最好的模型也是讲笑话最好的模型。但尽管情况复杂，性能差异中的很大一部分仍可由单一变量解释，即模型规模。一般情况下，模型越大，(a) 性能与可靠性越好，(b) 每 token 成本越高，(c) 对冷门事实的召回越好。他表示模型之间存在排序：Luna < Terra < Sol < Astra。如今版本号同时承载几层含义：发布顺序、与其他版本的关系，以及改进幅度。因此像 6.1 这样的编号意味着它晚于 5.6 发布，可能在训练数据或性格上与其它 6.1 模型有相似之处（这也是它不叫 5.7 的原因），但提升幅度不足以撑起 7 会带来的头条与期待。",
+   "published_at": "2026-10-30T21:59:22+00:00",
+   "summary_short": "Drew Breunig 把 NES 6502 CPU 模拟器写入 Qwen3.5-4B 权重，可在模型内极慢运行 NES ROM",
+   "summary_long": "Drew Breunig 受 Divyansh Agrawal 的 qwenputer 启发，把一个可工作的任天堂娱乐系统（NES）6502 CPU 模拟器「烤」进了 Qwen3.5-4B 的权重中，因此现在可以在 Qwen 里运行 Super Mario Bros 等 NES ROM，原文注明速度非常慢。在 Hacker News 的评论中，Breunig 公开了他用来构建这套系统的 Opus 5.5 提示词。第一步提示要求先阅读 qwenputer 的博客文章及相关源码，再探索能否用同样技术模拟 NES 的芯片与内存（原文类比人们今天用 FPGA 在 MISTR 中所做的事），并判断需要多大规模的模型、若改用更小更快的模型能否达到标准时钟速度。第二步提示则是决定动手做，「只为好玩」，慢一点没关系，目标是拿到权重以及一个可以指向 ROM 的 CLI。原文还提到，Opus 据称找到并使用了 Christopher Pow 于 15 年前发布的 NES CPU 一致性测试集。原文未详述实现细节与性能数据。",
    "key_points": [
-    "LLM 性能是多维度的，不存在“数学最好也讲笑话最好”的固定排序",
-    "模型规模是解释性能差异的单一主导变量",
-    "模型越大通常性能与可靠性更好、每 token 成本更高、对冷门事实的召回更好"
+    "Drew Breunig 将 NES 6502 CPU 模拟器内置到 Qwen3.5-4B 权重中，可在模型内运行 Super Mario Bros 等 NES ROM，速度很慢",
+    "灵感来自 Divyansh Agrawal 的 qwenputer；构建所用的 Opus 5.5 提示词在 Hacker News 评论中公开",
+    "提示词先要求阅读 qwenputer 资料并评估可行性、模型规模与能否达到标准时钟速度，再决定「只为好玩」动手实现"
    ],
    "topics": [
-    "scaling",
-    "product"
+    "post-training",
+    "coding-agent"
    ],
    "category": "模型",
    "categories": [
-    "模型"
+    "模型",
+    "Agent 与开发"
    ],
-   "horizon": "long",
-   "score": 67.8,
+   "horizon": "short",
+   "score": 73.2,
    "status": "review",
    "extra": {
     "content_source": "rss",
     "source_tags": [
-     "generative-ai",
-     "gpt",
-     "openai",
+     "games",
      "ai",
-     "llms"
+     "generative-ai",
+     "llms",
+     "drew-breunig"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://news.ycombinator.com/item?id=50248124#50250804",
-      "https://news.ycombinator.com/item?id=50248124#50249160",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/gpt",
-      "https://simonwillison.net/tags/openai",
+      "https://github.com/dbreunig/nesformer",
+      "https://divagr.com/blog/qwenputer",
+      "https://news.ycombinator.com/item?id=50306442#50307402",
+      "https://github.com/christopherpow/nes-test-roms/blob/master/other/nestest.txt",
+      "https://news.ycombinator.com/item?id=50306442",
+      "https://simonwillison.net/tags/games",
       "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai",
       "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/ted-sanders"
+      "https://simonwillison.net/tags/drew-breunig",
+      "https://simonwillison.net/tags/qwen",
+      "https://simonwillison.net/tags/conformance-suites"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "f3538b6fb36f4f58",
-   "url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1-1",
-   "title": "Granite Switch 4.1.1 — Update models like you update software",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-29T13:37:07+00:00",
-   "summary_short": "Granite Switch 4.1.1：只换适配器就能更新模型",
-   "summary_long": "原文回顾一周前发布的 Granite Switch 4.1：其模块化 Switch 架构让用户用专门的、缓存高效的适配器配置语言模型，在单一端点上增加新的专业能力。4.1.1 是补丁版本，版本号含义与软件一致：与 4.1 完全向后兼容、无需迁移，只是底层的增量改进。此次更新了 Granite Speech ASR 模型，支持 10 种语言的多语种语音转文字，原生带标点与大小写，转录结果无需再做格式化即可交给下游模型；还更新了 granitelib-core 中的 Decision 适配器，在 Jev Decision Index 测试集上整体表现提升。原文强调此次发布的速度与效率：除训练新 ASR 模型和 Decision 适配器外没有重算任何东西，基础模型未动，组合所需的最新适配器即可部署。团队正在制作教程和 Adapter SDK，让开发者和第三方提供方自行构建适配器、迭代版本并按软件的方式发布更新。",
+   "id": "b10f4376d756427e",
+   "url": "https://www.qbitai.com/2026/10/506743.html",
+   "title": "英伟达团队基于 MiniMax H3 开源视频增强方案，最高支持 4K 重生成",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-10-30T07:31:11+00:00",
+   "summary_short": "英伟达与MIT团队开源H3视频增强权重，把低清草稿重生成2K、最高4K",
+   "summary_long": "MiniMax H3 于今年 8 月开放权重后，围绕它的微调、蒸馏与工具适配迅速增多，一个月内下载量超过 2400 万次，产生 300 多个公开衍生模型。由英伟达与麻省理工学院研究人员组成的 Efficient-Large-Model 团队在 Hugging Face 发布了视频增强项目 Open-H3-Regenerate-2K 的模型权重，配套推理代码已在 NVlabs/Sana 仓库开放。该方案复用 H3 基础模型的生成能力，把低分辨率视频草稿重新生成为高分辨率画面，支持 2560×1440 的 2K 输出，最高可实现 3840×2160 原生 4K 重生成。官方 H3-Regenerate-2K 模块仅通过 API 提供服务，此次发布则为高分辨率重生成环节提供了一套可自行部署的开放实现。训练时保持 H3 Transformer 主干与视频 VAE 参数不变，只训练新增的细化 LoRA；推理时结合潜空间放大器、SoL-Engine 稀疏注意力与快速 VAE 解码器加速。在单张 NVIDIA B200 上，约 5 秒视频的 2K 处理耗时由 87.26 秒降至 22.45 秒。",
    "key_points": [
-    "4.1.1 是补丁版本，与 4.1 完全向后兼容、无需迁移，只做底层增量改进。",
-    "更新 Granite Speech ASR 模型：10 种语言语音转文字，原生标点与大小写，转录结果可直接供下游模型使用。",
-    "更新 granitelib-core 的 Decision 适配器，在 Jev Decision Index 测试集上整体表现提升。"
+    "模型权重发布于 Hugging Face，推理代码在 NVlabs/Sana 仓库开放；方案基于 MiniMax H3，支持 2560×1440 的 2K 输出，最高可做 3840×2160 原生 4K 重生成",
+    "训练阶段冻结 H3 Transformer 主干与视频 VAE，仅训练新增细化 LoRA，推理时与 LightX2V FL2VA Turbo、LMS Sharp 等社区适配器合并，三步去噪；在单张 B200、预热条件下，约 5 秒视频的潜空间放大、三步细化与 2K 解码合计耗时从 87.26 秒降至 22.45 秒（约 3.9 倍），其中快速解码器把解码从约 15 秒降至约 1.6 秒",
+    "RefinerBench-150 对比评测中，相同输入与 2K 输出下 UniPercept 平均分 60.0，官方 H3-Regenerate-2K API 为 53.4；VBench 上该方案美学质量、成像质量与主体一致性更高，官方 API 在运动平滑度和动态程度上略优"
    ],
    "topics": [
-    "post-training"
+    "post-training",
+    "open-source",
+    "reasoning"
    ],
    "category": "模型",
    "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 63.5,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://cdn-uploads.huggingface.co/production/uploads/662836b742709fe826510597/F5YZJX3QZ8HbecaJnHe4Q.png",
-      "https://huggingface.co/blog/ibm-granite/granite-switch-4-1",
-      "https://huggingface.co/ibm-granite/granite-switch-4.1-30b",
-      "https://huggingface.co/ibm-granite/granite-speech-5.0-470m-turboctc",
-      "https://huggingface.co/ibm-granite/granitelib-core-r1.0",
-      "https://huggingface.co/collections/ibm-granite/granite-switch",
-      "https://huggingface.co/spaces/ibm-granite/speech-to-decisions"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "739e0b5535e3ec06",
-   "url": "https://martinfowler.com/bliki/LLM-Voice.html",
-   "title": "LLM Voice",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-29T14:57:55+00:00",
-   "summary_short": "作者谈“LLM 腔”：读起来像机器写的，为何值得警惕",
-   "summary_long": "作者说，读文章时越来越常生出“这是 LLM 写的”感觉，虽说不清依据，但继续读的意愿会衰减，甚至反感。他对市面上的 LLM 文本检测工具持怀疑态度：既不信准确性，也认为抓错了重点——对“LLM 腔”的反应是人的直觉，是一种散文的恐怖谷；等到要借助工具判断时已经太晚。他也怀疑自己的判断力：语言本会变化，嫌年轻人用词是年长者的特征，他反感的某些说法确实出自真人之口，更像代际差异而非碳与硅之别。他建议作者格外警惕 LLM 腔，尤其不要用 LLM 写初稿——即便人工编辑也难清除，接受 LLM 的改写建议同样危险；用 LLM 做大纲可以，但仅止于大纲，正文自己写。他强调写作是思考工具，把写作交给 LLM 就是把思考交给 LLM。文中举出例外：Jim Highsmith 因帕金森病需借助 LLM 写作；翻译则是更棘手的情况（原文在此中断）。",
-   "key_points": [
-    "作者靠直觉而非工具识别“LLM 腔”，认为检测工具既可信度存疑，又抓错了重点——反应是人的，等到要用工具时已经太晚。",
-    "他建议不要让 LLM 写初稿、也不要接受其改写建议，因为 LLM 腔难以清除；用 LLM 做大纲可以，但仅止于大纲，正文必须自己写。",
-    "写作是思考的工具，把写作外包给 LLM 就等于把思考与理解外包；例外是因病需要借助 LLM 写作的 Jim Highsmith。"
-   ],
-   "topics": [
-    "llm-detection",
-    "writing",
-    "social-impact"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "long",
-   "score": 58.4,
-   "status": "review",
-   "extra": {
-    "hn_points": 306,
-    "hn_comments": 163,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://en.wikipedia.org/wiki/Uncanny_valley",
-      "https://bjsm.bmj.com/content/60/9/677"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "1c71db68b8cad680",
-   "url": "https://www.qbitai.com/2026/10/506098.html",
-   "title": "工程能力一键复用，专心卷新能力！轮子造一次就够了｜详解FluxVLA Engine技术报告",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-10-28T10:32:39+00:00",
-   "summary_short": "逐际动力FluxVLA Engine更新V2技术报告，新增在线强化学习与评测扩展",
-   "summary_long": "具身智能模型能力提升快，但把指令翻译成物理动作的工程底座仍不完善。逐际动力今年4月8日开源的工程底座FluxVLA Engine近期更新第二版技术报告，相较9月首版新增在线强化学习后训练实验，并扩展仿真评测与真机部署覆盖。仿真侧，14种策略接入同一套LIBERO闭环评测，RoboCasa GR-1、RoboTwin与RoboDojo各有8种策略的接入结果；推理端针对8组模型与设备组合的实测显示，优化后模型推理路径频率提升至2.31–9.64倍；在ALOHA、Rebot、双臂Franka及自研全尺寸人形机器人LimX Oli上验证了从模型checkpoint直达真机闭环执行的部署链路。在线强化学习方面，SmolVLA在LIBERO-10和RoboTwin Clean十项任务上成功率分别提升10.0和15.4个百分点。平台围绕统一配置、模块解耦、面向部署的系统优化、实验可复现四项原则设计，目标是让底层工程能力可复用。",
-   "key_points": [
-    "V2报告新增在线强化学习后训练实验：SmolVLA在LIBERO-10、RoboTwin Clean十项任务成功率分别提升10.0和15.4个百分点。",
-    "仿真侧14种策略接入同一套LIBERO闭环评测，RoboCasa GR-1、RoboTwin、RoboDojo各有8种策略接入；推理端8组模型与设备组合实测推理路径频率提升2.31–9.64倍。",
-    "在ALOHA、Rebot、双臂Franka与LimX Oli上验证从模型checkpoint直达真机闭环执行的部署链路；平台按统一配置、模块解耦、部署优化、实验可复现四项原则设计。"
-   ],
-   "topics": [
-    "harness",
-    "eval",
-    "post-training"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
+    "模型",
     "Agent 与开发"
    ],
-   "horizon": "long",
-   "score": 58.1,
+   "horizon": "short",
+   "score": 69.8,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
      "资讯",
-     "首页轮播",
-     "具身底座工程",
-     "逐际动力"
+     "MiniMax"
     ],
     "outbound": {
-     "arxiv": [
-      "2609.17210"
-     ],
+     "arxiv": [],
      "links": [
-      "https://www.qbitai.com/author/hengyu",
+      "https://www.qbitai.com/author/qbitai",
       "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/%e5%85%b7%e8%ba%ab%e5%ba%95%e5%ba%a7%e5%b7%a5%e7%a8%8b",
-      "https://www.qbitai.com/tag/%e9%80%90%e9%99%85%e5%8a%a8%e5%8a%9b",
-      "https://www.qbitai.com/2026/10/505799.html",
-      "https://www.qbitai.com/2026/10/505955.html",
-      "https://www.qbitai.com/2026/10/502083.html",
-      "https://www.qbitai.com/2026/10/502009.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/506098.html&title=工程能力一键复用，专心卷新能力！轮子造一次就够了｜详解FluxVLA Engine技术报告&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2026/10/506194.html",
-      "https://www.qbitai.com/2025/07/315891.html",
-      "https://www.qbitai.com/tag/%e4%ba%8c%e6%ac%a1%e5%bc%80%e5%8f%91",
-      "https://www.qbitai.com/tag/%e4%ba%ba%e5%bd%a2%e6%9c%ba%e5%99%a8%e4%ba%ba",
-      "https://www.qbitai.com/tag/%e5%85%a8%e5%b0%ba%e5%af%b8",
-      "https://www.qbitai.com/tag/%e5%85%b7%e8%ba%ab%e6%99%ba%e8%83%bd",
-      "https://www.qbitai.com/2023/11/96272.html",
-      "https://www.qbitai.com/tag/%e6%96%87%e8%bf%9c%e7%9f%a5%e8%a1%8c",
-      "https://www.qbitai.com/tag/%e8%bd%a6%e5%9c%88%e6%9c%80%e6%96%b0%e8%ae%a4%e7%9f%a5",
-      "https://www.qbitai.com/2025/08/326780.html",
-      "https://www.qbitai.com/2025/12/362188.html",
+      "https://www.qbitai.com/tag/minimax",
+      "https://www.qbitai.com/2026/10/506747.html",
+      "https://www.qbitai.com/2026/10/506662.html",
+      "https://www.qbitai.com/2026/10/506609.html",
+      "https://www.qbitai.com/2026/10/506281.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/506743.html&title=英伟达团队基于 MiniMax H3 开源视频增强方案，最高支持 4K 重生成&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2025/06/299465.html",
+      "https://www.qbitai.com/tag/%e8%b6%85%e7%ba%a7%e6%99%ba%e8%83%bd%e4%bd%93",
+      "https://www.qbitai.com/2026/05/426793.html",
+      "https://www.qbitai.com/2026/08/467270.html",
+      "https://www.qbitai.com/2026/03/389024.html",
+      "https://www.qbitai.com/2026/06/428092.html",
+      "https://www.qbitai.com/2025/12/365665.html",
       "https://www.qbitai.com/2026/10/505551.html",
       "https://www.qbitai.com/2026/10/504930.html",
       "https://www.qbitai.com/2026/10/505407.html",
@@ -348,67 +122,217 @@
    }
   },
   {
-   "id": "66607358e02b273d",
-   "url": "https://www.qbitai.com/2026/10/505934.html",
-   "title": "刚刚，扩散模型杀进Agent主场！350亿参数，速度比Jev快一倍",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-10-29T02:18:28+00:00",
-   "summary_short": "扩散智能发布350亿参数扩散语言模型Clover，Agent任务速度超Jev组合一倍",
-   "summary_long": "扩散智能发布扩散语言模型Clover-35B-A3B-Preview，采用MoE架构，总参数350亿、每token激活约30亿，支持思考模式，把团队此前Dream 7B的70亿参数推进到350亿规模。与自回归模型逐token串行生成不同，它采用块扩散：块间依次推进、块内多位置并行更新，并围绕块扩散重构门控Delta网络（GDN），让已生成的上下文压缩进持续更新的状态、当前块通过双向注意力相互参考。原文称参数量提升后速度并未变慢，同尺寸对比中超过自回归模型。演示包括约1秒思考加4至5秒生成可交互太阳系模拟器、十来秒生成LaTeX简历代码、通过WebMCP连续完成开票等六项任务，以及线上购物下单流程。WindTunnel的49个网页Agent任务各试3次，Clover中位执行时间1.52秒，Jev+Mercury 2.5组合为3.21秒，成功率98.6%对95.9%。代码侧SWE-bench Verified 73.6、Terminal-Bench 2.1为51.7，工具使用τ³ Overall 65.3、BFCL-v4 67.9。团队由香港大学孔令鹏教授及博士生龚珊三、叶佳成创立，2022年提出DiffuSeq。",
+   "id": "77b8021d805e32e5",
+   "url": "https://www.interconnects.ai/p/was-i-wrong-about-open-models-and",
+   "title": "Was I wrong about open models & cyber risks?",
+   "source": "Interconnects",
+   "tier": "A",
+   "published_at": "2026-10-30T17:36:56+00:00",
+   "summary_short": "作者复盘开放权重模型的网络风险担忧，认为风险更像加速而非阶跃。",
+   "summary_long": "作者此前在 PHP2Shell、GitLab 等严重漏洞集中披露后提出“黑色十月”一说，认为 AI 模型的网络风险开始兑现；他提到币安又发生重大加密安全事件，但指出加密行业黑客问题由来已久，并非衡量漏洞转化为新型社会危害的最佳样本。他的最佳猜测是：幕后的修复工作只是在加速，更多人和资源被投入修补互联网，《华尔街日报》报道网络应急响应人员已不堪重负；漏洞数量正指数上升，并将在 S 型曲线顶部经历很长时间才趋于平缓。随后他回应自己数周前那篇争议观点：Claude Mythos 发布时被描绘成新型网络武器，落入坏人之手会造成大规模社会动荡，但他认为这似乎错了——按各项衡量，GLM-5.3 才是跨过该能力门槛的模型，而该模型权重发布一个多月后，公开证据显示情况没有太大变化。他甚至认为，即便 Claude Mythos 以开放权重形式意外放出，世界大体上也不会有事：网络事件会明显增加、对社会不利，但更像加速而非风险的阶跃。他称这一轮开放权重恐慌的主要推动者实际上做出了可证伪的预测，并列举他认为措辞过度的例子，包括 Rob Wiblin 的播客发言与 Anthropic“Project Glasswing”公告博客，另提到 Zvi Mowshowitz 一个更合理的表述（原文此处中断）。",
    "key_points": [
-    "Clover-35B-A3B-Preview为MoE架构，总参数350亿、每token激活约30亿，支持思考模式，规模从Dream 7B的70亿扩至350亿",
-    "WindTunnel的49个网页Agent任务各试3次：中位执行时间1.52秒，Jev+Mercury 2.5组合为3.21秒；成功率98.6%对95.9%",
-    "技术上是块扩散加重构的门控Delta网络：历史上下文压缩进持续更新状态，当前块用双向注意力，并做可学习的块大小校准"
+    "作者在 PHP2Shell、GitLab 等漏洞披露后提出“黑色十月”，认为 AI 网络风险开始显现，但同时判断漏洞呈指数上升、修补力量也在加码，应急人员已不堪重负。",
+    "他认为 Claude Mythos 若以开放权重泄露，世界“大体不会有事”，风险更像加速而非阶跃；并称按各项衡量 GLM-5.3 才是跨过该能力门槛的模型，权重发布一个多月后公开证据显示变化不大。",
+    "他称开放权重恐慌的主要推动者立下了可证伪的预测，并举例 Rob Wiblin 与 Anthropic“Project Glasswing”公告的表述，认为部分措辞过度。"
    ],
    "topics": [
-    "diffusion-lm",
-    "tool-use",
-    "reasoning"
+    "cybersecurity",
+    "open-source"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 68.7,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://x.com/DevMuzzammil/status/2113042127039164663",
+      "https://techcrunch.com/2026/10/29/binance-pauses-withdrawals-as-hackers-suspected-of-stealing-billions-in-crypto/",
+      "https://www.reuters.com/legal/government/cryptos-biggest-hacks-heists-2026-09-25/",
+      "https://www.wsj.com/pro/cybersecurity/cyber-responders-strained-by-black-october-e259ea25",
+      "https://cve.0xosprey.com/",
+      "https://substackcdn.com/image/fetch/$s_!NQ70!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff51bb5d0-4390-4676-af4a-6bc8199412d5_2006x1362.png",
+      "https://www.interconnects.ai/p/the-cyber-risk-discourse-is-broken",
+      "https://www.interconnects.ai/p/was-i-wrong-about-open-models-and?utm_source=substack&utm_medium=email&utm_content=share&action=share",
+      "https://80000hours.org/podcast/episodes/claude-mythos-hacking-alignment/?utm_source=chatgpt.com",
+      "https://www.anthropic.com/glasswing?utm_source=chatgpt.com",
+      "https://thezvi.substack.com/p/claude-mythos-the-system-card?utm_source=chatgpt.com",
+      "https://epoch.ai/publications/open-weight-models-patch-gap",
+      "https://joshuasaxe181906.substack.com/p/if-the-vulnpocalypse-is-the-apocalypse?utm_source=profile&utm_medium=reader2",
+      "https://x.com/malwaretechblog/status/2115864790833004641?s=46",
+      "https://joshuasaxe181906.substack.com/",
+      "https://www.resilientcyber.io/?utm_campaign=profile_chips",
+      "https://substackcdn.com/image/fetch/$s_!z4OX!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F87d65fe4-692c-4c2d-8413-6db28c48cb4b_1625x1204.png",
+      "https://joshuasaxe181906.substack.com/p/if-the-vulnpocalypse-is-the-apocalypse",
+      "https://www.rusi.org/explore-our-research/publications/commentary/responding-risks-open-weight-ai-models?utm_source=chatgpt.com",
+      "https://www.interconnects.ai/about#§group-paid-subscriptions"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "25cc4c9bb2e3e7e5",
+   "url": "https://openai.com/index/helping-websites-express-ai-training-preferences",
+   "title": "Making it easier for websites to express AI training preferences",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-30T09:30:00+00:00",
+   "summary_short": "OpenAI宣布将遵守robots.txt中表达AI训练偏好的通用信号",
+   "summary_long": "OpenAI于10月30日发布公告，称将遵守robots.txt中的一项通用信号，网站可用它表达关于其内容能否用于基础生成式AI训练的偏好。这是一项自愿性举措，目的是让发布者和网站运营方一次性把同一偏好传达给多个参与其中的AI提供方；此前运营方需要逐一识别各家爬虫，并为每个提供方单独维护规则，通用信号可减少这部分工作量。OpenAI计划在未来几个月内实施该信号，届时会再公布具体实施细节。原文强调，新信号不会取代现有的robots.txt控制手段，现有爬虫控制将继续适用并得到遵守。该做法依托互联网工程任务组（IETF）AI Preferences工作组正在进行的工作，OpenAI与其他参与者一同在当日宣布这一共享信号，并认为这有助于其继续参与IETF标准讨论。OpenAI表示，将随着相关讨论与行业情况的变化继续调整自身做法，并鼓励其他AI提供方也遵守该信号。",
+   "key_points": [
+    "OpenAI将遵守robots.txt中的一项通用信号，网站可据此表达其内容能否用于基础生成式AI训练的偏好，该信号属自愿性质。",
+    "共享信号让发布者一次性向多个参与的AI提供方传达同一偏好，无需再逐个识别爬虫、为每家提供方分别维护规则。",
+    "新信号不会取代现有robots.txt控制，现有爬虫控制继续适用；实施预计在未来几个月内启动，届时公布细节。"
+   ],
+   "topics": [
+    "policy",
+    "ai-training-data"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 67.0,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Company"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://datatracker.ietf.org/doc/draft-kelley-aipref-training-preference-signal/",
+      "https://developers.openai.com/api/docs/bots",
+      "https://datatracker.ietf.org/doc/draft-ietf-aipref-vocab/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "9e37c40a85b31b2e",
+   "url": "https://newsletter.signoz.io/p/ai-isnt-replacing-sres-its-deskilling",
+   "title": "AI isn't replacing SREs, it's deskilling them",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-30T15:52:18+00:00",
+   "summary_short": "AI接管95%故障响应后，SRE会不会像1983年自动化操作员那样技能退化",
+   "summary_long": "这篇通讯以一个更实际的问题切入：当AI处理95%的故障响应后，SRE是否会变得更不擅长处理真正关键的那5%。作者借用1983年认知心理学家Lisanne Bainbridge的论文《自动化的讽刺》：该研究发现，一旦自动化接管一个流程，人类操作员在自动化失效的罕见时刻反而更关键，却因为平时缺乏练习而更难应对这些例外——自动化本意是把人移出循环，结果却给人留下最糟糕的工作：长时间被动监控加上罕见且高风险、自己越来越没准备的危机。作者据此类比：工业自动化接管蓝领的常规体力任务，把例外留给失去肌肉记忆的工人；AI则接管知识工作中的常规认知任务（模式匹配、分流、已知问题处理），把罕见、复杂、模糊的问题留给人类，而这正是需要深度专业、又恰因停止练习而萎缩的能力。原文还列举当前已实现或高度AI辅助的环节：告警降噪与智能分组、已知问题的runbook执行、日志模式检测与异常标记、基于历史事件数据的基础根因建议、对已充分理解的故障模式做自动修复（如重启崩溃的pod或扩容）。原文在此处截断，后续内容未详述。",
+   "key_points": [
+    "核心问题：AI处理95%的故障响应后，SRE处理那5%关键问题的能力是否会悄悄退化，以及在下一次新型故障出现前是否有人会察觉",
+    "理论依据：1983年Lisanne Bainbridge的《自动化的讽刺》指出，自动化程度越高，操作员在罕见失效时刻越关键，却越缺乏练习、干预能力越差",
+    "现状与近期目标：当前已有告警降噪分组、runbook执行、日志模式检测与异常标记、基础根因建议、已知故障模式自动修复；近期目标包括跨指标/日志/追踪的多信号关联、部分理解故障的自主根因分析、预测性故障检测、AI变更风险评估与自动回滚"
+   ],
+   "topics": [
+    "automation",
+    "deskilling",
+    "future-of-work"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 66.2,
+   "status": "review",
+   "extra": {
+    "hn_points": 460,
+    "hn_comments": 336,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://substack.com/@elizabethmathew21",
+      "https://swizec.com/blog/the-future-of-software-engineering-is-sre/",
+      "https://substackcdn.com/image/fetch/$s_!Hgvq!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F530d847f-26cb-4ddd-a6de-875cbbaf8fab_6233x4167.webp",
+      "https://www.semanticscholar.org/paper/Ironies-of-automation-Bainbridge/0713bb9d9b138e4e0a15406006de9b0cddf68e28",
+      "https://www.thelancet.com/journals/langas/article/PIIS2468-1253(25)00133-5/abstract",
+      "https://flightsafety.org/wp-content/uploads/2019/12/IASS_2019_Behrend_Lafargue.pdf",
+      "https://signoz.io/",
+      "https://www.linkedin.com/posts/pranay01_something-ive-been-thinking-about-lately-activity-7428804029134225408-IXif?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAC3MkwYBDZBMgATtR9hOGisjheK_u1VDu6w"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "616adec25212601b",
+   "url": "https://www.qbitai.com/2026/10/506662.html",
+   "title": "从学习人类到学习机器人同伴，清华大学联合无问芯穹、智元提出具身智能规模化落地新路径",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-10-30T03:48:04+00:00",
+   "summary_short": "清华联合无问芯穹、智元提出群体经验学习CEL，96台真机验证成功率97.5%",
+   "summary_long": "具身智能从实验室走向真实世界后，机器人能力提升主要靠人一遍遍示范或手动纠错，但机器人可以成百上千台批量部署，经验丰富的操作人员数量却无法同步增长，成为一大卡点。清华大学、无问芯穹与智元联合提出群体经验学习（CEL）新范式：机器人不只学人类示范，还可借鉴群体中其他机器人的成功经验，一台机器人摸索出的有效做法能沉淀下来供整个群体共享复用。实验覆盖插花、叠衣服、手机充电、凳子组装、手机包装五项家庭服务与工业任务，两台未参加训练的机器人在600次测试中失败15次，总体成功率97.5%，五项任务成功率均超过6名人类操作员的平均水平；手机包装任务成功率从79.2%升至98.3%，连续测试120次仅失败2次。参与训练的机器人从16台增至96台时，成功率从86.7%提升到98.3%。支撑落地的是系统与算法两端：基于开源框架RLinf构建的容错异步训练系统FATS，96台规模测试中累计采集9834轮执行经验，22台机器人发生30次故障，故障时间损失仅占全部运行机时的1.3%；算法侧的失败引导经验检索微调算法FERT，从成功操作学做法、从失败操作找问题。",
+   "key_points": [
+    "提出群体经验学习（CEL）范式，让机器人互相学习成功经验，不再主要依赖人类示教，并在96台真实机器人集群上完成规模化验证",
+    "五项任务测试中两台未训练机器人总体成功率97.5%，全部超过6名人类操作员平均水平；手机包装任务从79.2%提升至98.3%",
+    "参与训练机器人从16台增至96台，成功率从86.7%升至98.3%；系统侧用容错异步训练系统FATS支撑，96台测试中故障时间损失仅占运行机时1.3%"
+   ],
+   "topics": [
+    "post-training",
+    "open-source",
+    "multi-agent"
    ],
    "category": "模型",
    "categories": [
-    "模型"
+    "模型",
+    "Agent 与开发"
    ],
-   "horizon": "short",
-   "score": 56.8,
+   "horizon": "long",
+   "score": 65.3,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
      "资讯",
-     "Agent",
-     "扩散模型"
+     "具身智能",
+     "无问芯穹",
+     "智元机器人"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.qbitai.com/author/henry",
+      "https://www.qbitai.com/author/qbitai",
       "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/agent",
-      "https://www.qbitai.com/tag/%e6%89%a9%e6%95%a3%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/2026/10/503701.html",
-      "https://www.qbitai.com/2026/10/503685.html",
-      "https://www.qbitai.com/2026/10/502644.html",
-      "https://www.qbitai.com/2026/10/502628.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/505934.html&title=刚刚，扩散模型杀进Agent主场！350亿参数，速度比Jev快一倍&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2024/08/178609.html",
-      "https://www.qbitai.com/2025/07/307485.html",
-      "https://www.qbitai.com/2026/01/374666.html",
-      "https://www.qbitai.com/tag/cuda",
-      "https://www.qbitai.com/tag/%e5%9b%bd%e4%ba%a7%e8%8a%af%e7%89%87",
-      "https://www.qbitai.com/2025/12/366334.html",
-      "https://www.qbitai.com/tag/ai%e7%94%9f%e6%b4%bb%e5%8a%a9%e6%89%8b",
-      "https://www.qbitai.com/tag/%e6%b6%82%e9%b8%a6%e6%99%ba%e8%83%bd",
-      "https://www.qbitai.com/2026/02/376417.html",
-      "https://www.qbitai.com/tag/%e7%99%be%e5%ba%a6%e5%8d%83%e5%b8%86",
-      "https://www.qbitai.com/2026/05/426069.html",
-      "https://www.qbitai.com/tag/vibe-coding",
-      "https://www.qbitai.com/2026/10/504879.html",
+      "https://www.qbitai.com/tag/%e5%85%b7%e8%ba%ab%e6%99%ba%e8%83%bd",
+      "https://www.qbitai.com/tag/%e6%97%a0%e9%97%ae%e8%8a%af%e7%a9%b9",
+      "https://www.qbitai.com/tag/%e6%99%ba%e5%85%83%e6%9c%ba%e5%99%a8%e4%ba%ba",
+      "https://www.qbitai.com/2026/10/506779.html",
+      "https://www.qbitai.com/2026/10/506747.html",
+      "https://www.qbitai.com/2026/10/506743.html",
+      "https://www.qbitai.com/2026/10/506609.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/506662.html&title=从学习人类到学习机器人同伴，清华大学联合无问芯穹、智元提出具身智能规模化落地新路径&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2024/12/232696.html",
+      "https://www.qbitai.com/tag/%e7%ab%af%e4%be%a7%e6%a8%a1%e5%9e%8b",
+      "https://www.qbitai.com/2026/02/378674.html",
+      "https://www.qbitai.com/2024/05/139655.html",
+      "https://www.qbitai.com/tag/%e6%93%8e%e5%a4%a9%e6%9f%b1",
+      "https://www.qbitai.com/tag/%e7%89%b9%e6%96%af%e6%8b%89",
+      "https://www.qbitai.com/tag/%e8%8b%b1%e4%bc%9f%e8%be%be",
+      "https://www.qbitai.com/tag/%e9%a9%ac%e6%96%af%e5%85%8b",
+      "https://www.qbitai.com/2026/04/402189.html",
+      "https://www.qbitai.com/2026/08/469520.html",
+      "https://www.qbitai.com/tag/%e5%8d%8e%e4%b8%ba",
+      "https://www.qbitai.com/tag/%e6%98%86%e4%bb%91%e8%a1%8c",
+      "https://www.qbitai.com/tag/%e7%90%86%e6%83%b3%e6%b1%bd%e8%bd%a6",
+      "https://www.qbitai.com/2026/05/415065.html",
+      "https://www.qbitai.com/tag/last-r1",
+      "https://www.qbitai.com/tag/%e8%87%b3%e7%ae%80%e5%8a%a8%e5%8a%9b",
+      "https://www.qbitai.com/tag/%e9%9a%90%e7%a9%ba%e9%97%b4",
       "https://www.qbitai.com/2026/10/505551.html",
-      "https://www.qbitai.com/2026/10/504832.html",
       "https://www.qbitai.com/2026/10/504930.html",
       "https://www.qbitai.com/2026/10/505407.html",
+      "https://www.qbitai.com/2026/10/505083.html",
+      "https://www.qbitai.com/2026/10/506227.html",
       "https://weibo.com/qbitai?is_all=1",
       "https://www.zhihu.com/org/liang-zi-wei-48/activities",
       "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
@@ -419,442 +343,156 @@
    }
   },
   {
-   "id": "e1c742c1d925baf7",
-   "url": "https://huggingface.co/blog/announcing-project-protostar",
-   "title": "Announcing Project ProtoStar: Making Publicly Funded Science AI-Ready",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-29T00:00:00+00:00",
-   "summary_short": "Project ProtoStar 启动：让公共资助科研成果变成 AI 可用格式",
-   "summary_long": "Project ProtoStar 是由高校、研究机构、产业界和开放科学社区共同发起的计划，目标是让公共资助的科研成果更容易被发现、复用，并可在其基础上继续开发。参与方将以 AI 可用、机器可操作的格式，在开放基础设施上发布科学数据集、模型和代码，并通过一系列开放挑战赛展示其价值；首场挑战由卡内基梅隆大学主办，11 月 2 日开放。创始伙伴包括卡内基梅隆大学、普渡大学、佐治亚理工学院、亚利桑那州立大学和乔治·华盛顿大学（通过 Open Forum for AI 作为高校联盟伙伴）、Astera Institute、作为基础设施伙伴的 Hugging Face，以及通过 Fostering Innovation Network 参与的 ORCA 社区伙伴；参与组织通过谅解备忘录确认参与。原文指出，美国联邦政府每年研发投入约 1900 亿美元，NIH、NSF 等机构不断强化公共获取要求，但公开不等于可用：数据常散落在互不兼容的系统中、以静态或遗留格式保存，并缺少文档、元数据与溯源信息，使 AI 难以跨学科发现、解读与整合资源。",
-   "key_points": [
-    "以 AI 可用、机器可操作的格式在开放基础设施上发布公共资助的数据集、模型与代码，并用开放挑战赛验证价值；首场挑战由卡内基梅隆大学主办，11 月 2 日开放。",
-    "创始伙伴涵盖五所高校（经 Open Forum for AI）、Astera Institute、基础设施伙伴 Hugging Face 与社区伙伴 ORCA，参与方通过谅解备忘录正式确认。",
-    "原文强调“公开不等于可用”：科学资源分散在互不兼容的系统、格式静态或陈旧、缺少文档与元数据溯源，阻碍 AI 跨学科发现与整合。"
-   ],
+   "id": "6dc6a18633084fd8",
+   "url": "https://www.404media.co/manifestos-fear-and-loser-thinking-inside-protons-ai-reckoning/",
+   "title": "Manifestos, Fear, and 'Loser Thinking': Inside Proton's AI Reckoning",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-29T14:29:06+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
    "topics": [
-    "open-source",
-    "product"
+    "cybersecurity",
+    "ai-adoption"
    ],
    "category": "行业动态",
    "categories": [
     "行业动态",
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 55.5,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2401.13822"
-     ],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/announcing-project-protostar.md",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/announcing-project-protostar/header.jpg",
-      "https://huggingface.co/project-protostar",
-      "https://www.cmu.edu/",
-      "https://www.purdue.edu/",
-      "https://www.gatech.edu/",
-      "https://www.asu.edu/",
-      "https://www.gwu.edu/",
-      "https://www.openforumai.org/",
-      "https://astera.org/",
-      "https://huggingface.co/",
-      "https://orcaopen.org/",
-      "https://orcaopen.org/work/fostering-innovation-through-open-science-fin",
-      "https://www.congress.gov/crs-product/R48694",
-      "https://www.nih.gov/",
-      "https://www.nsf.gov/",
-      "https://www.nlm.nih.gov/NIHbmic/generalist_repositories.html",
-      "https://datacommons.cancer.gov/news/nci-crdc-artificial-intelligence-data-readiness-aidr-challenge",
-      "https://huggingface.co/blog/evijit/public-org-data-ai",
-      "https://huggingface.co/spaces/evijit/hf-science-growth",
-      "https://www.ncbi.nlm.nih.gov/",
-      "https://huggingface.co/nasa-impact",
-      "https://arxiv.org/abs/2401.13822",
-      "https://huggingface.co/HuggingFaceBio",
-      "https://huggingface.co/blog/HuggingFaceBio/carbon-annotator-genbank-genome-annotation",
-      "https://huggingface.co/spaces/HuggingFaceBio/Carbon-X-Release",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/announcing-project-protostar/climate-challenge.jpg",
-      "https://doi.org/10.1184/R1/7890488.v6",
-      "https://huggingface.co/spaces/CMU-OSPO/protostar-challenge-climate-risk-intelligence"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "2df0e95472f64437",
-   "url": "https://latent.space/p/elorian/",
-   "title": "Can Frontier Models See Past a Decoy? Elorian Tests Visual Reasoning",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-10-29T16:00:00+00:00",
-   "summary_short": "Elorian发布视觉推理模型Glimpse，并联合Mercor推出DecoyCount基准，前沿模型准确率均不足50%",
-   "summary_long": "Elorian本月发布其首个视觉推理模型Glimpse，宣称是“从所见之物对物理世界进行推理”的新型视觉思维模型。公司同时与AI数据公司Mercor联合发布基准DecoyCount，用于检验语言模型是真正在数物体，还是依赖视觉捷径与替代启发式。配套论文称，前沿模型在该基准上准确率均低于50%，最高为GPT-6 Astra的43.17%；论文未提及Glimpse，但CEO Andrew Dai称内部测试中Glimpse在1660道题上得分为50.48%，是对比中唯一超过50%的模型，Gemini-3.8-flash为32.71%、Qwen3.8-max为28.31%、Claude-Fable-5.1为25.22%。Dai表示评测图像与文本已从训练中排除，污染检查未发现重叠；但他也说明Glimpse为单次运行、未使用agent或工具框架，而论文中六个模型各自为三次运行的平均。论文结论称“更强的通用推理本身并不能泛化到对齐的视觉推理”。Dai指出，多数基准只看最终数字，无法区分是看错了还是判断错了。",
-   "key_points": [
-    "DecoyCount由Elorian与Mercor联合发布，覆盖七种可解释的计数失败机制，检验模型是真计数还是走视觉捷径",
-    "论文中前沿模型准确率均低于50%，最高GPT-6 Astra为43.17%；论文未提及Glimpse",
-    "Dai称Glimpse内部测试得分50.48%（1660题），为唯一过半模型，但为单次运行且无agent/工具框架，其余六模型为三次平均"
-   ],
-   "topics": [
-    "eval",
-    "reasoning",
-    "benchmark-contamination"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测",
-    "模型"
+    "安全"
    ],
    "horizon": "short",
-   "score": 55.4,
+   "score": 60.2,
    "status": "review",
    "extra": {
-    "content_source": "rss",
+    "hn_points": 220,
+    "hn_comments": 77,
     "outbound": {
-     "arxiv": [
-      "2610.34855"
-     ],
+     "arxiv": [],
      "links": [
-      "https://elorian.ai/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://elorian.ai/blog/introducing-glimpse?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/ElorianAI/status/2111142036208501070",
-      "https://www.linkedin.com/in/andrewdai/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.wsgr.com/en/insights/wilson-sonsini-advises-elorian-on-dollar55-million-seed-financing-as-company-emerges-from-stealth.html?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.mercor.com/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://arxiv.org/abs/2610.34855?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=2r2NuDAAAAAJ&citation_for_view=2r2NuDAAAAAJ%3AW7OEmFMy1HYC&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://latent.space/p/ainews-amd-buys-world-labs-for-82b/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://latent.space/p/ainews-anthropic-ends-coding-interviews-hunger-beats-tenure/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.worldlabs.ai/blog/atlas?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv"
+      "https://www.404media.co/proton-to-re-interview-staff-about-ai-to-see-who-gets-to-keep-their-job",
+      "https://www.youtube.com/watch?v=RTCkiWju46o&ref=404media.co",
+      "https://proton.me/blog/introducing-post-quantum-encryption?ref=404media.co"
      ]
     },
-    "summary_mode": "full"
+    "content_source": "direct"
    }
   },
   {
-   "id": "f03a8850b36c0e2d",
-   "url": "https://www.qbitai.com/2026/10/506055.html",
-   "title": "19个项目18个成功，6个GPCR靶点全获命中！国产AI制药再破技术天花板",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-10-28T08:59:00+00:00",
-   "summary_short": "分子之心MMDesign技术报告：19个项目18个成功，6个GPCR靶点全部命中",
-   "summary_long": "分子之心发布AI蛋白质从头设计平台MMDesign的最新技术报告，覆盖18个靶点、纳米抗体（VHH）与大环肽两类分子模态共19个设计项目：每个项目仅测试9-50个候选分子（中位数21个），18个项目获得经实验确认的结合分子，项目成功率94.7%；全部453个受测候选中有139个确认结合，候选命中率30.7%；15个项目至少拿到两个结合分子。六个GPCR靶点（CCR7、CCR8、EP2、GPR68、NK3R、A2AR）全部成功，最优亲和力均达纳摩尔级，GPR68最优KD低至12.1纳摩尔；NK3R的30个候选全部命中。在Thera-SAbDab中查无治疗性抗体先例的5个GPCR靶点上，89个受测设计有53个获得结合，命中率59.6%。对6个已有结合分子的靶点再设计，5个在命中率或亲和力上进一步提升，如PDGFR命中率由4.0%升至21.1%。报告还给出可开发性、序列新颖性数据，以及结构预测模型MMFold在FoldBench上的对照结果。",
+   "id": "b2263e9f84127c76",
+   "url": "https://huggingface.co/blog/nvidia/nemotron-halloween",
+   "title": "nemotron-halloween",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-10-30T17:57:24+00:00",
+   "summary_short": "用Nemotron语音智能体做的万圣节暴躁怪物屋",
+   "summary_long": "原文介绍作者用 NVIDIA Nemotron 开源模型搭建的万圣节互动投影装置 MonsterHouse：把车库门做成一张会说话的嘴，以脾气暴躁的老海盗船人格与来讨糖的孩子对话，讲海盗故事、不停发牢骚，遇到访客说“请”就立刻软化，说“谢谢”则换来温暖道别。系统基于 NVIDIA Nemotron Voice Agent：Nemotron 3 ASR 负责把访客语音转成文字，Nemotron 3.5 Bolt E4B 4GB 小语言模型生成每条回复并用 LoRA 适配器赋予人格，Magpie TTS Zeroshot 依据一段角色参考音频合成语音，Audio2Face-3D 在 Unreal Engine 5 中把语音转成嘴部动画；Nemotron 3 Nano Omni 描述访客服装，YOLO 与 ByteTrack 负责计数和追踪。整套系统运行在一台工作站上，配备 RTX PRO 6000 Blackwell Max-Q 与 RTX PRO 4000 Blackwell。角色 SkelMesh 在 Autodesk Maya 中建模后导入 Unreal 加入虚拟火焰特效。作者称原本预想的难点因 Voice Agent 开箱即用而变得轻松有趣。",
    "key_points": [
-    "19个项目18个获实验确认结合分子，项目成功率94.7%；453个受测候选139个命中，候选命中率30.7%",
-    "六个GPCR靶点全部命中，最优亲和力均达纳摩尔级；无先例可循的5个GPCR靶点上候选命中率59.6%",
-    "跨轮次可优化（PDGFR命中率4.0%升至21.1%）、跨模态可复用（MDM2大环肽21个候选16个命中）"
+    "MonsterHouse 是万圣节互动投影，车库门变成会说话的木嘴，人格是暴躁的老海盗船，对“请”和“谢谢”有明显反应",
+    "技术栈为 NVIDIA Nemotron Voice Agent 统筹：ASR 听、Bolt E4B（配 LoRA 人格适配器）想、Magpie TTS Zeroshot 说、Audio2Face-3D 在 Unreal Engine 5 中驱动嘴部动画",
+    "另用 Nemotron 3 Nano Omni 描述服装、YOLO 与 ByteTrack 计数追踪访客，全部跑在一台带 RTX PRO 6000 Blackwell Max-Q 与 RTX PRO 4000 Blackwell 的工作站上"
    ],
    "topics": [
-    "protein-design",
-    "drug-discovery",
-    "ai-for-science"
+    "voice-agent",
+    "post-training",
+    "product"
    ],
    "category": "产品与应用",
    "categories": [
     "产品与应用"
    ],
-   "horizon": "long",
-   "score": 54.5,
+   "horizon": "short",
+   "score": 59.5,
    "status": "review",
    "extra": {
     "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "AI制药",
-     "分子之心",
-     "蛋白质"
-    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.qbitai.com/author/simiao",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/ai%e5%88%b6%e8%8d%af",
-      "https://www.qbitai.com/tag/%e5%88%86%e5%ad%90%e4%b9%8b%e5%bf%83",
-      "https://www.qbitai.com/tag/%e8%9b%8b%e7%99%bd%e8%b4%a8",
-      "https://www.qbitai.com/2026/10/505956.html",
-      "https://www.qbitai.com/2026/10/505113.html",
-      "https://www.qbitai.com/2026/10/505032.html",
-      "https://www.qbitai.com/2026/10/504931.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/506055.html&title=19个项目18个成功，6个GPCR靶点全获命中！国产AI制药再破技术天花板&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2023/06/64986.html",
-      "https://www.qbitai.com/tag/alphafold2",
-      "https://www.qbitai.com/tag/cpu",
-      "https://www.qbitai.com/tag/%e8%8b%b1%e7%89%b9%e5%b0%94",
-      "https://www.qbitai.com/2021/09/28575.html",
-      "https://www.qbitai.com/tag/pytorch",
-      "https://www.qbitai.com/2026/06/436077.html",
-      "https://www.qbitai.com/tag/%e8%9e%8d%e8%b5%84",
-      "https://www.qbitai.com/2022/05/34963.html",
-      "https://www.qbitai.com/tag/%e4%ba%ba%e5%b7%a5%e6%99%ba%e8%83%bd",
-      "https://www.qbitai.com/2026/04/395198.html",
-      "https://www.qbitai.com/tag/nature",
-      "https://www.qbitai.com/tag/%e8%9b%8b%e7%99%bd%e8%b4%a8%e8%ae%be%e8%ae%a1",
-      "https://www.qbitai.com/2022/07/35967.html",
-      "https://www.qbitai.com/tag/%e6%99%ba%e5%ba%93",
-      "https://www.qbitai.com/tag/huodong",
-      "https://www.qbitai.com/2026/10/505551.html",
-      "https://www.qbitai.com/2026/10/504930.html",
-      "https://www.qbitai.com/2026/10/505407.html",
-      "https://www.qbitai.com/2026/10/505083.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
+      "https://cdn-uploads.huggingface.co/production/uploads/6ab2a746c7d0655b3d8dfbb9/5bIvVxc791He8vRKSaBH4.png",
+      "https://github.com/NVIDIA-AI-Blueprints/nemotron-voice-agent",
+      "https://huggingface.co/nvidia/nemotron-speech-streaming-en-0.6b",
+      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
+      "https://build.nvidia.com/nvidia/magpie-tts-zeroshot",
+      "https://github.com/NVIDIA/Audio2Face-3D",
+      "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16",
+      "https://cdn-uploads.huggingface.co/production/uploads/6ab2a746c7d0655b3d8dfbb9/CzzK5VpTMFR9Azps_6Qbv.png",
+      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-BF16",
+      "https://cdn-uploads.huggingface.co/production/uploads/6ab2a746c7d0655b3d8dfbb9/iVLQ71tHCdvLRIuaJ6oLk.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6ab2a746c7d0655b3d8dfbb9/8AZqpHSWLOS4hpRwACGOY.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6ab2a746c7d0655b3d8dfbb9/v5ff_abLrivfqmxH5ZPqf.png",
+      "https://build.nvidia.com/nvidia/nemotron-3.5-bolt-e4b",
+      "https://docs.nvidia.com/nemo/automodel/model-coverage/vision-language-models/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-BF16",
+      "https://build.nvidia.com/nvidia/nemotron-voice-agent",
+      "https://research.nvidia.com/labs/nemotron/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB/"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "2a3824a8bb57b020",
-   "url": "https://www.qbitai.com/2026/10/506227.html",
-   "title": "刚刚，Gemini 4 Carbon全面超越Opus 5.5！首发Token半价",
+   "id": "3fafcda97b474933",
+   "url": "https://www.qbitai.com/2026/10/506686.html",
+   "title": "RSI立大功！国产开源登顶全球第一，1.3B OXR重塑OCR",
    "source": "量子位",
    "tier": "B",
-   "published_at": "2026-10-29T00:03:58+00:00",
-   "summary_short": "Gemini 4 Carbon登顶AA智能指数，编程与安全能力超越Opus 5.5，首发半价",
-   "summary_long": "Gemini 4 Argon亮相两周后，谷歌推出新旗舰Gemini 4 Carbon。原文称其在Artificial Analysis智能指数5.0以59分登顶，超过Claude Opus 5.5和GPT-6 Astra；能连续数日运行，在复杂代码库中定位隐蔽Bug并写出修复补丁。Terminal-Bench 4.0得65.2%，GraphWalks 96.2%，Vending-Bench 2余额16,484美元。Carbon首发输入2美元、输出10美元/百万Token，缓存命中输入低至0.2美元；独立评测显示单次评估输出12.3万Token，少于Opus 5.5的17.3万。原文也指出FrontierSWE 2、OSWorld-2.1和Coding Agent指数仍落后。安全方面，SEC-bench Pro、ExploitGym、CWE-bench分别达88.2%、54.8%、71.0%，终端作弊成功率与提示词注入攻击成功率均为0.0%。",
+   "published_at": "2026-10-30T05:52:47+00:00",
+   "summary_short": "1.3B国产开源模型OXR借RSI训练登顶三大文档解析榜单，速度也第一。",
+   "summary_long": "文档解析长期面临双栏串行、手写公式乱码、跨页大表格结构崩解等难题，劣质提取会拖垮RAG下游。国产开源模型OXR参数量仅1.3B，却在OmniDocBench（97.18）、olmOCR-Bench（87.84）、DocParsingBench（87.76）三个榜单登顶，且评测流程和代码全量开源可复现。它可解析表格、公式、代码块、化学方程式等13类文档元素，单张RTX PRO 6000端到端解析100页文档仅需101秒。核心在于后训练阶段引入面向文档解析的递归自我改进（RSI）范式，不依赖新增人类手工标注，分三阶段：预测与分类阶段用通用VLM和多次rollout将样本分为Correct、Wrong、Uncertain三档，并通过图像扰动记录视觉脆弱点；归因与训练规划阶段由VLM逐个诊断错误原因，经SigLIP2提取特征后聚类成原因簇；数据生成阶段结合原因簇与真实样本版式风格合成新数据，回流训练下一代模型。架构上采用独立轻量模型负责版面分析，OXR主模型同时负责内容识别与阅读顺序判断，抹平阅读顺序带来的性能损耗。",
    "key_points": [
-    "Artificial Analysis智能指数5.0得59分登顶，超过Claude Opus 5.5和GPT-6 Astra；可连续数日运行并独立完成多步工程任务。",
-    "首发输入2美元、输出10美元/百万Token，为Opus 5.5标价一半；缓存命中输入低至0.2美元，单次评估输出Token比Opus 5.5少29%。",
-    "安全防御覆盖找漏洞、验证利用、打补丁，SEC-bench Pro 88.2%、ExploitGym 54.8%、CWE-bench 71.0%；终端作弊成功率与提示词注入攻击成功率均为0.0%，但FrontierSWE 2、OSWorld-2.1和Coding Agent指数仍落后。"
-   ],
-   "topics": [
-    "coding-agent",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 53.9,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "Gemini"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/mengchen",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/gemini",
-      "https://www.qbitai.com/2026/10/506194.html",
-      "https://www.qbitai.com/2026/10/505551.html",
-      "https://www.qbitai.com/2026/10/504314.html",
-      "https://www.qbitai.com/2026/10/503880.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/506227.html&title=刚刚，Gemini 4 Carbon全面超越Opus 5.5！首发Token半价&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2024/02/120082.html",
-      "https://www.qbitai.com/tag/gemini-advanced",
-      "https://www.qbitai.com/tag/%e8%b0%b7%e6%ad%8c",
-      "https://www.qbitai.com/2025/11/354072.html",
-      "https://www.qbitai.com/tag/gemini-3",
-      "https://www.qbitai.com/2024/12/229123.html",
-      "https://www.qbitai.com/tag/llama",
-      "https://www.qbitai.com/tag/meta",
-      "https://www.qbitai.com/tag/%e5%a4%a7%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/2026/05/426706.html",
-      "https://www.qbitai.com/2026/02/381460.html",
-      "https://www.qbitai.com/2024/04/134402.html",
-      "https://www.qbitai.com/2026/10/504879.html",
-      "https://www.qbitai.com/2026/10/504930.html",
-      "https://www.qbitai.com/2026/10/505407.html",
-      "https://www.qbitai.com/2026/10/505083.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "8266ea920e518e8f",
-   "url": "https://latent.space/p/ainews-gemini-4-carbon/",
-   "title": "[AINews] Gemini 4 Carbon tops leaderboards, launches for cyber defenders",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-10-29T05:55:19+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "eval"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 50.6,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "ainews: weekday roundups"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://latent.space/p/opus55/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://latent.space/p/ainews-gemini-4-argon-gdms-answer/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/ArtificialAnlys/status/2115494553780367384",
-      "https://twitter.com/i/lists/1585430245762441216?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://news.smol.ai/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.latent.space/p/2026?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://latent.space/account/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/sundarpichai/status/2115489219804352921?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/GoogleDeepMind/status/2115489356437651654?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/GoogleAI/status/2115489593818816591?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/_philschmid/status/2115490204345868756?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/ArtificialAnlys/status/2115494553780367384?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/ValsAI/status/2115489579344216448?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/OfficialLoganK/status/2115490746589720943?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/arena/status/2115495002998751262?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/arena/status/2115551386608017411?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/ValsAI/status/2115489570574008615?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/ValsAI/status/2115489577297391616?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/ProximalHQ/status/2115530176012685550?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/KLieret/status/2115494425656705351?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/andonlabs/status/2115490819926798499?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/andonlabs/status/2115492483698471159?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/Yuchenj_UW/status/2115498423952781439?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/scaling01/status/2115491144339427803?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/scaling01/status/2115502223593746913?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/AndrewCurran_/status/2115546957909533157?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/kimmonismus/status/2115626170897109454?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/zhangqiaorjc/status/2115519130577285433?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/TheRundownAI/status/2115489453611356402?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/scaling01/status/2115482233142231454?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/kimmonismus/status/2115426857634210237?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/scaling01/status/2115453083253952827?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/teortaxesTex/status/2115490887656726877?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/teortaxesTex/status/2115341231425302870?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/nrehiew_/status/2115542872556777817?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/PranjalAggarw16/status/2115459772472279078?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/ValsAI/status/2115399427540316263?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/thoughtfullab/status/2115491465325617636?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://x.com/ZhihuFrontier/status/2115655393821278510?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv"
-     ]
-    }
-   }
-  },
-  {
-   "id": "502de87809f2a788",
-   "url": "https://simonwillison.net/2026/Oct/29/ben-hylak/",
-   "title": "Quoting Ben Hylak",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-10-29T14:06:27+00:00",
-   "summary_short": "Ben Hylak：所有产品都该是 headless MCP，唯独自家产品例外",
-   "summary_long": "Simon Willison 的博客于 2026 年 10 月 29 日收录了 Ben Hylak 的一段引语。Hylak 在引语中主张，自己使用的每一个产品都应该是 headless 的 MCP，接入 agent，这样他就永远不必思考它下面运行着什么东西；但他紧接着为自家产品开了一个例外——他说在自家产品里，客户喜欢 UI，也非常喜欢他们，“我们在这一点上很特别”。这段表述先提出“一切皆可 MCP 化”的普遍主张，随后又对自家产品豁免，形成前后反差。原文只收录了这段引语本身，并未交代其出处语境、Ben Hylak 的身份，也没有进一步展开该说法；页面标注了 ai 与 model-context-protocol 标签，并由 WorkOS Airlock 赞助。原文未详述其后续讨论。",
-   "key_points": [
-    "引语主张：用户使用的每个产品都应是 headless MCP，接入 agent，让人无需思考底层实现",
-    "随即转折：Hylak 为自家产品开例外，称客户喜欢其 UI、也非常喜欢他们，“我们在这方面很特别”",
-    "出处：由 Simon Willison 于 2026 年 10 月 29 日收录发布，标注 ai 与 model-context-protocol 标签，原文未提供更多背景"
-   ],
-   "topics": [
-    "mcp",
-    "product"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 50.4,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "model-context-protocol",
-     "ai"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://10xn.link/simon-workos",
-      "https://twitter.com/benhylak/status/2115172657910120740"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "caef38f057d7dea7",
-   "url": "https://www.qbitai.com/2026/10/506194.html",
-   "title": "【图片中转测试，未发布】工程能力一键复用，专心卷新能力！轮子造一次就够了｜详解FluxVLA Engine技术报告",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-10-28T11:09:10+00:00",
-   "summary_short": "逐际动力FluxVLA Engine更新V2报告，打通具身智能训评部署全链路",
-   "summary_long": "逐际动力更新开源工程底座FluxVLA Engine第二版技术报告。相较9月首版，V2新增在线强化学习后训练实验，并扩大仿真评测与真机部署覆盖：仿真侧14种策略接入同一套LIBERO闭环评测，RoboCasa GR-1、RoboTwin、RoboDojo各有8种策略接入；推理端8组模型与设备组合实测，优化后推理路径频率提升至2.31–9.64倍；在ALOHA、Rebot、双臂Franka及自研全尺寸人形机器人LimX Oli上验证了从模型checkpoint直达真机闭环执行的部署链路。在线RL方面，SmolVLA在LIBERO-10与RoboTwin Clean十项任务上成功率分别提升10.0和15.4个百分点（66.2%→76.2%、45.9%→61.3%）。平台围绕统一配置、模块解耦、面向部署的系统优化、实验可复现四项原则设计，数据统一为LeRobot规范，已集成Qwen-VL、GR00T、π系列、DreamZero等架构，也支持API调用GPT-6 Astra与MiniMax-M3.1-Flash。该项目今年4月8日开源。",
-   "key_points": [
-    "V2新增在线强化学习后训练：SmolVLA经任务专用PPO后训练，LIBERO-10成功率从66.2%升至76.2%，RoboTwin Clean十项任务从45.9%升至61.3%",
-    "14种策略接入同一套LIBERO闭环评测，13个本地checkpoint中11个平均成功率超95%（DiT4DiT 98.65%、π0.5 97.95%）；8组模型与设备组合的推理路径频率提升2.31–9.64倍",
-    "在ALOHA、Rebot、双臂Franka与LimX Oli人形机器人上完整验证从checkpoint到真机闭环执行的部署链路"
+    "OXR在OmniDocBench（97.18）、olmOCR-Bench（87.84）、DocParsingBench（87.76）三榜第一，评测流程和代码全量开源可复现。",
+    "后训练引入RSI递归自我改进，分预测与分类、归因与训练规划、数据生成三阶段，不依赖新增人类手工标注。",
+    "架构上独立轻量模型做版面分析，OXR主模型做内容识别与阅读顺序判断，单张RTX PRO 6000解析100页文档仅101秒。"
    ],
    "topics": [
     "post-training",
-    "open-source",
-    "coding-agent"
+    "open-source"
    ],
-   "category": "Agent 与开发",
+   "category": "模型",
    "categories": [
-    "Agent 与开发",
     "模型"
    ],
    "horizon": "long",
-   "score": 50.3,
+   "score": 56.9,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
      "资讯",
-     "首页轮播",
-     "具身底座工程",
-     "逐际动力"
+     "OCR"
     ],
     "outbound": {
-     "arxiv": [
-      "2609.17210"
-     ],
+     "arxiv": [],
      "links": [
-      "https://www.qbitai.com/author/mengchen",
+      "https://www.qbitai.com/author/jay",
       "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/%e5%85%b7%e8%ba%ab%e5%ba%95%e5%ba%a7%e5%b7%a5%e7%a8%8b",
-      "https://www.qbitai.com/tag/%e9%80%90%e9%99%85%e5%8a%a8%e5%8a%9b",
-      "https://www.qbitai.com/2026/10/506227.html",
+      "https://www.qbitai.com/tag/ocr",
+      "https://www.qbitai.com/2026/10/506674.html",
+      "https://www.qbitai.com/2026/10/504517.html",
+      "https://www.qbitai.com/2026/10/504184.html",
+      "https://www.qbitai.com/2026/10/503341.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/506686.html&title=RSI立大功！国产开源登顶全球第一，1.3B OXR重塑OCR&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2023/12/109275.html",
+      "https://www.qbitai.com/tag/%e5%a4%9a%e6%a8%a1%e6%80%81",
+      "https://www.qbitai.com/2020/06/15561.html",
+      "https://www.qbitai.com/tag/nmt",
+      "https://www.qbitai.com/tag/%e4%b8%81%e7%a3%8a",
+      "https://www.qbitai.com/tag/%e7%bd%91%e6%98%93",
+      "https://www.qbitai.com/tag/%e8%af%8d%e5%85%b8%e7%ac%94",
+      "https://www.qbitai.com/2020/12/20406.html",
+      "https://www.qbitai.com/tag/%e8%85%be%e8%ae%af%e4%bc%98%e5%9b%be",
+      "https://www.qbitai.com/2024/01/117000.html",
+      "https://www.qbitai.com/tag/ai",
+      "https://www.qbitai.com/tag/%e5%a4%a7%e6%a8%a1%e5%9e%8b",
+      "https://www.qbitai.com/2020/07/16654.html",
+      "https://www.qbitai.com/tag/paddlepaddle",
+      "https://www.qbitai.com/tag/%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae",
+      "https://www.qbitai.com/2024/09/189611.html",
       "https://www.qbitai.com/2026/10/505551.html",
-      "https://www.qbitai.com/2026/10/504314.html",
-      "https://www.qbitai.com/2026/10/503880.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/506194.html&title=【图片中转测试，未发布】工程能力一键复用，专心卷新能力！轮子造一次就够了｜详解FluxVLA Engine技术报告&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2025/12/362188.html",
-      "https://www.qbitai.com/tag/%e5%85%b7%e8%ba%ab%e6%99%ba%e8%83%bd",
-      "https://www.qbitai.com/2023/11/96272.html",
-      "https://www.qbitai.com/tag/%e6%96%87%e8%bf%9c%e7%9f%a5%e8%a1%8c",
-      "https://www.qbitai.com/tag/%e8%bd%a6%e5%9c%88%e6%9c%80%e6%96%b0%e8%ae%a4%e7%9f%a5",
-      "https://www.qbitai.com/2025/08/326780.html",
-      "https://www.qbitai.com/tag/%e4%ba%ba%e5%bd%a2%e6%9c%ba%e5%99%a8%e4%ba%ba",
-      "https://www.qbitai.com/tag/%e5%85%a8%e5%b0%ba%e5%af%b8",
-      "https://www.qbitai.com/2025/07/315891.html",
-      "https://www.qbitai.com/tag/%e4%ba%8c%e6%ac%a1%e5%bc%80%e5%8f%91",
-      "https://www.qbitai.com/2026/10/506098.html",
-      "https://www.qbitai.com/2026/10/504879.html",
-      "https://www.qbitai.com/2026/10/504832.html",
-      "https://www.qbitai.com/2026/10/504930.html",
       "https://www.qbitai.com/2026/10/505407.html",
+      "https://www.qbitai.com/2026/10/506227.html",
+      "https://www.qbitai.com/2026/10/505799.html",
+      "https://www.qbitai.com/2026/10/505928.html",
       "https://weibo.com/qbitai?is_all=1",
       "https://www.zhihu.com/org/liang-zi-wei-48/activities",
       "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
@@ -865,49 +503,88 @@
    }
   },
   {
-   "id": "32e3919a05879071",
-   "url": "https://simonwillison.net/2026/Oct/29/api-credits/",
-   "title": "API credits benefit for eligible ChatGPT subscriptions",
-   "source": "Simon Willison",
+   "id": "9226a0978b1ef723",
+   "url": "https://www.404media.co/protons-ceo-cancels-ai-re-interviews/",
+   "title": "Proton's CEO Cancels AI 'Re-Interviews'",
+   "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-29T22:48:29+00:00",
-   "summary_short": "OpenAI 效仿 Anthropic，向100/200/500美元订阅用户发放等额 API 额度",
-   "summary_long": "文章对比了两家 AI 公司近期推出的订阅附加权益。本月早些时候，Anthropic 宣布为 Max 和 Team 订阅用户提供一项新福利：每月支付 100、200、500 美元的订阅者，可获得与订阅金额等值、且会过期的 Anthropic API 额度。OpenAI 随后推出了几乎完全相同的方案：持有 100、200、500 美元订阅计划的用户，同样可获得等额额度，用于其名下某一个 API 组织。作者表示自己同时订阅了两家公司的服务，因此认为这是好消息；由于额度已由现有订阅覆盖，作者甚至可能借此发布一些面向公众的演示项目。原文未详述额度的具体有效期、适用条件或其他档位安排。",
+   "published_at": "2026-10-30T17:24:45+00:00",
+   "summary_short": "Proton CEO取消强制AI\"再面试\"，称仍将推进AI",
+   "summary_long": "据404 Media获得的约两小时全员会录音及六名现任员工说法，Proton CEO Andy Yen于周五取消了一场近乎覆盖全公司的\"再面试\"——原要求员工说明自己如何使用AI，且明显意在让AI使用不足者可能被解雇。此举发生在404 Media周四发布调查之后：该调查基于八名现任和一名前员工、Slack聊天、会议录音及CTO Bart Butler撰写的AI宣言，称Yen正积极在全公司推AI，有时不顾员工的安全担忧。在安全Slack频道中，有员工建议新代码上线前至少花几天做渗透测试，Yen回复称这是\"loser thinking\"，并要求\"别再 lovingly handcraft 我们的代码，多用AI\"。调查还称公司存在恐惧文化，员工不敢表达安全顾虑；推AI很大程度是为提升年收入。用户在社交媒体上批评公司贬低安全优先级，并要求Yen辞职。Yen在会上承认自己沟通有失误、会反思改进，但表示\"仍会继续推\"，并称与领导层和董事会讨论后决定取消再面试，因为\"它们已无意中达到了目的\"——员工现在开始谈论和学习AI。他还提到下月将进行组织调整、\"在团队间重新分配人才\"，但\"不会因AI裁员\"。Butler称Yen已承诺改进沟通，并表示\"我们搞砸了\"。",
    "key_points": [
-    "Anthropic 先推出：100/200/500 美元月订阅用户获等值、会过期的 Anthropic API 额度",
-    "OpenAI 随后推出几乎相同的方案，额度可用于其一个 API 组织",
-    "作者同时订阅两家服务，称可能因此发布面向公众的演示；原文未详述额度有效期等细节"
+    "Proton CEO Andy Yen取消近乎全公司范围的AI\"再面试\"，该面试原本要求员工说明AI使用情况，使用不足者可能被解雇",
+    "此决定紧随404 Media调查发布，该调查称Yen强推AI、无视员工安全顾虑，并在Slack中嘲讽建议先做渗透测试的员工",
+    "Yen承认沟通失误但称\"仍会继续推\"，并宣布下月组织调整，称不会因AI裁员；用户则在社交媒体要求其辞职"
    ],
    "topics": [
-    "pricing"
+    "alignment",
+    "cybersecurity",
+    "product"
    ],
    "category": "行业动态",
    "categories": [
-    "行业动态"
+    "行业动态",
+    "安全"
    ],
    "horizon": "short",
-   "score": 50.1,
+   "score": 54.8,
    "status": "review",
    "extra": {
-    "content_source": "rss",
+    "hn_points": 246,
+    "hn_comments": 205,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.404media.co/manifestos-fear-and-loser-thinking-inside-protons-ai-reckoning/",
+      "https://proton.me/foundation?ref=404media.co",
+      "https://www.reddit.com/r/ProtonMail/comments/1xilgwk/comment/19ru2qt4r4r5u/?ref=404media.co"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "c7606af40dbb903f",
+   "url": "https://openai.com/index/community-safety-report-and-new-protections-for-teens",
+   "title": "Community safety report and new protections for teens",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-10-30T09:00:00+00:00",
+   "summary_short": "OpenAI将发布社区安全报告，并收紧暴力及未成年人枪支内容限制",
+   "summary_long": "OpenAI 10月30日宣布两项社区安全举措：发布《社区安全报告》，并收紧未成年人相关枪支内容及涉既往大规模袭击信息的限制。原文称，ChatGPT 的训练目标是不提供可助人策划或实施暴力的指令；对既往大规模袭击及实施者，模型将减少细节，限制对武器装备及获取方式的重构，以及可能放大袭击者恶名的伤害规模对比，且不论用户年龄或提问理由均适用。若近期对话出现可能暴力的预警信号，ChatGPT 在分享可能被滥用的信息时将更保守；并正努力在预测用户未满18岁时适用更严格限制，即使对话无暴力意图。OpenAI 称2026年第三季度向执法机构转介超过200次，首份报告将于2027年初发布，覆盖2026年下半年，此后每半年更新。",
+   "key_points": [
+    "OpenAI宣布将发布《社区安全报告》，首份报告于2027年初发布、覆盖2026年下半年，之后每半年更新。",
+    "对既往大规模袭击及实施者减少细节，限制武器装备及获取方式的重构和可能放大袭击者恶名的伤害规模对比，适用所有年龄与提问理由。",
+    "近期聊天出现可能暴力预警信号时，ChatGPT分享可能被滥用信息将更保守；并拟在预测用户未满18岁时适用更严格限制，即使无暴力意图；2026年第三季度执法转介超过200次。"
+   ],
+   "topics": [
+    "alignment",
+    "product"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 53.0,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
     "source_tags": [
-     "ai",
-     "openai",
-     "generative-ai",
-     "llms",
-     "anthropic"
+     "Safety"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://help.openai.com/en/articles/20001626-api-credits-benefit-for-eligible-chatgpt-subscriptions",
-      "https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/#api-credits",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/openai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/anthropic",
-      "https://simonwillison.net/tags/llm-pricing"
+      "https://openai.com/index/our-commitment-to-community-safety/",
+      "https://open.kg/en/news/incidents/123517-v-brazilii-fermera-arestovali-za-obsuzhdenie-ubijstva-syna-s-chatgpt.html",
+      "https://www.wpbf.com/article/south-palm-beach-man-cyberstalking-ex-girlfriend-threats-chatgpt/73434967",
+      "https://openai.com/index/chatgpt-recognize-context-in-sensitive-conversations/",
+      "https://openai.com/policies/usage-policies/",
+      "https://openai.com/index/chatgpt-for-teens/",
+      "https://openai.com/index/our-approach-to-age-prediction/",
+      "https://openai.com/index/introducing-parental-controls/"
      ]
     },
     "summary_mode": "full"
