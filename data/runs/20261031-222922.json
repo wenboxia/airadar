@@ -1,0 +1,112 @@
+{
+ "run_id": "20261031-222922",
+ "started": "2026-10-31T22:29:22+00:00",
+ "finished": "2026-10-31T22:30:22+00:00",
+ "mode": "LLM 模式 | 降级链 primary(deepseek-flash) → fallback(glm-5.3)",
+ "stats": {
+  "fetch": {
+   "arxiv_mentions": {
+    "seen": 1,
+    "fetched": 1,
+    "kept": 0,
+    "stale_reports": 0,
+    "not_requested": 0
+   },
+   "total": 33,
+   "per_source": {
+    "Anthropic News": 0,
+    "Google DeepMind Blog": 0,
+    "MCP Official Blog": 0,
+    "Simon Willison": 2,
+    "Hugging Face Blog": 1,
+    "Andrej Karpathy": 1,
+    "Lilian Weng": 0,
+    "GitHub Blog (AI)": 0,
+    "Eugene Yan": 0,
+    "Interconnects": 1,
+    "OpenAI News": 3,
+    "GitHub Trending (AI)": "failed: HTTPError",
+    "Sebastian Raschka": 0,
+    "AI Snake Oil": 0,
+    "Dwarkesh Podcast": 1,
+    "Hacker News (AI 高分帖)": 11,
+    "Import AI": 0,
+    "Latent Space": 3,
+    "Ethan Mollick": 0,
+    "量子位": 10
+   }
+  },
+  "timing": {
+   "fetch": 7.3,
+   "dedupe": 0.0,
+   "triage": 14.9,
+   "summarize": 30.5,
+   "classify": 7.2,
+   "publish": 0.1
+  },
+  "dedupe": {
+   "kept": 15,
+   "dropped_already_in_db": 18,
+   "dropped_dup_url": 0,
+   "dropped_dup_title": 0
+  },
+  "llm_calls": 26,
+  "llm_tokens": 51453,
+  "llm_prompt_tokens": 34450,
+  "llm_completion_tokens": 17003,
+  "calls_by_provider": {
+   "primary": 26
+  },
+  "triage": {
+   "published": 1,
+   "review": 4,
+   "discarded": 10,
+   "llm_scored": 15,
+   "degraded": 0,
+   "capped": 0,
+   "by_kind": {
+    "从业者判断": 3,
+    "二手转述": 6,
+    "开源项目": 1,
+    "公司动态": 1,
+    "营销通稿": 4
+   }
+  },
+  "summarize": {
+   "summarized": 5,
+   "brief_mode": 0,
+   "hallucination_flagged": 0,
+   "degraded_title_only": 0
+  },
+  "classify": {
+   "classified": 5,
+   "degraded_heuristic": 0
+  },
+  "publish": {
+   "published": 1,
+   "pending": 4,
+   "db_totals": {
+    "discarded": 444,
+    "published": 461,
+    "review": 694
+   }
+  },
+  "budget": {
+   "tokens_used": 51453,
+   "calls_made": 26,
+   "token_limit": 400000,
+   "call_limit": 260
+  },
+  "memory": {
+   "topics": 51,
+   "span_days": 646,
+   "lifecycle_ready": true
+  }
+ },
+ "errors": [
+  {
+   "where": "fetch",
+   "error": "GitHub Trending (AI): 403 Client Error: rate limit exceeded for url: https://api.github.com/search/repositories?q=topic:ai-agents+created:%3E2026-10-01&sort=stars&order=desc&per_page=5"
+  }
+ ]
+}

@@ -1,6 +1,47 @@
 {
- "generated_at": "2026-10-30T23:00:30+00:00",
+ "generated_at": "2026-10-31T22:30:22+00:00",
  "items": [
+  {
+   "id": "58bdc6b4d6104e60",
+   "url": "https://github.com/dbreunig/nesformer",
+   "title": "Show HN: A working Nintendo in ~1GB of Qwen weights",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-30T16:40:22+00:00",
+   "summary_short": "NES 的 6502 CPU 被编译器写入 Qwen3.5 权重，模型逐 token 预测执行来跑游戏",
+   "summary_long": "nesformer 把 NES 的 6502 CPU（2A03 芯片核心）、2 KB 工作内存和卡带程序 ROM 一起放进一个标准 Qwen3_5ForCausalLM checkpoint 里运行。原文强调这些权重不是训练出来的，而是由编译器逐项计算得到；玩游戏时，模型逐 token 预测 CPU 的执行日志，画面绘制、手柄读取和 vblank 中断触发则由一个小的宿主程序完成。项目基于 Divyansh Agrawal 的 Qwenputer（曾把 CHIP-8 和 RISC-V CPU 编译进 Qwen3.5-4B），复用了它的编译器和核心技巧：用模型的 Gated DeltaNet 状态充当机器内存。原文展示的《超级马力欧兄弟》World 1-1 画面中，所有 CPU token 均由模型产生；对随附的测试游戏，每一帧都与传统 6502 模拟器输出完全一致。使用上，首轮需约 20 秒用 numba 编译引擎，之后每帧耗时 1 至 6 秒，600 帧约需 25 分钟；支持 iNES mapper 0（NROM）的 ROM，同一份权重可直接跑任意 NROM 游戏、无需重建，其他板卡的游戏会停下并给出提示。",
+   "key_points": [
+    "6502 CPU、2 KB 工作内存和卡带 ROM 都运行在标准 Qwen3.5 权重内，权重由编译器计算而非训练得到",
+    "模型逐 token 预测 CPU 执行日志，宿主程序负责画面、手柄与 vblank 中断，复用 Qwenputer 的编译器及“Gated DeltaNet 状态即内存”技巧",
+    "支持 NROM（iNES mapper 0）ROM，同一权重无需重建即可换游戏；随附测试游戏每帧输出与传统 6502 模拟器完全一致，速度约每帧 1 至 6 秒"
+   ],
+   "topics": [
+    "product",
+    "weights-as-program"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "开源项目"
+   ],
+   "horizon": "long",
+   "score": 77.4,
+   "status": "published",
+   "extra": {
+    "hn_points": 282,
+    "hn_comments": 144,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/divagr18/qwenputer",
+      "https://divagr.com/blog/qwenputer",
+      "https://github.com/pinobatch/thwaite-nes"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "7e2aaf184ac3d7d5",
    "url": "https://cyberplace.social/@GossiTheDog/117528831681803563",
@@ -2969,68 +3010,6 @@
      ]
     },
     "summary_mode": "full"
-   }
-  },
-  {
-   "id": "849b423196d125cc",
-   "url": "https://huggingface.co/blog/reflection-beam",
-   "title": "Welcome Beam: a 501B open model you can own, customize, and scale",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-16T00:00:00+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "open-source",
-    "coding-agent"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 85.3,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/reflection-beam.md",
-      "https://huggingface.co/reflection/Beam-1.0-501B-A23B",
-      "https://huggingface.co/reflection/Beam-1.0-501B-A23B-FP8",
-      "https://huggingface.co/reflection/Beam-1.0-501B-A23B-NVFP4",
-      "https://developers.reflection.ai/mirror-overview",
-      "https://huggingface.co/reflection/Beam-1.0-501B-A23B/discussions/5",
-      "https://github.com/vllm-project/recipes/pull/1132",
-      "https://endpoints.huggingface.co/new/reflection/Beam-1.0-501B-A23B-FP8",
-      "https://endpoints.huggingface.co/new/reflection/Beam-1.0-501B-A23B-NVFP4",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/multi_step_tools-low.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/multi_step_tools-high.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/long_context-low.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/long_context-high.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/terminal-low.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/terminal-high.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/math-low.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/math-high.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/structured_output-low.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beam-vibe-evals-2026-10-12/tree/traces/structured_output-high.jsonl",
-      "https://huggingface.co/datasets/HuggingFaceH4/Multilingual-Thinking",
-      "https://github.com/huggingface/trl/pull/7629",
-      "https://huggingface.co/buckets/burtenshaw/beamspeak-demo/tree/trace/beam-build.sanitized.jsonl",
-      "https://huggingface.co/buckets/burtenshaw/beamspeak-demo/resolve/beamspeak-source.zip",
-      "https://huggingface.co/buckets/burtenshaw/beamspeak-demo/resolve/RUNNING.md",
-      "https://huggingface.co/datasets/programbench/ProgramBench-Tests",
-      "https://burtenshaw-beam-pi-programbench.hf.space/study",
-      "https://burtenshaw-beam-pi-programbench.hf.space/?project=beam-pi-programbench-20261009",
-      "https://huggingface.co/spaces/burtenshaw/beam-pi-programbench/tree/main/results/beam-pi-programbench-20261009",
-      "https://huggingface.co/spaces/burtenshaw/beam-pi-programbench/tree/main/source",
-      "https://huggingface.co/buckets/burtenshaw/qwen35-incident-triage-reproduction",
-      "https://huggingface.co/reflection/Beam-1.0-501B-A23B/discussions"
-     ]
-    }
    }
   },
   {

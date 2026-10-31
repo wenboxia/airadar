@@ -1,286 +1,162 @@
 {
- "generated_at": "2026-10-30T23:00:30+00:00",
+ "generated_at": "2026-10-31T22:30:22+00:00",
  "items": [
   {
-   "id": "4e2c9c66b20a8391",
-   "url": "https://simonwillison.net/2026/Oct/30/nesformer/",
-   "title": "dbreunig/nesformer",
-   "source": "Simon Willison",
+   "id": "a7e11bfba6b108f7",
+   "url": "https://karpathy.bearblog.dev/hacker-tube/",
+   "title": "HackerTube",
+   "source": "Andrej Karpathy",
    "tier": "A",
-   "published_at": "2026-10-30T21:59:22+00:00",
-   "summary_short": "Drew Breunig 把 NES 6502 CPU 模拟器写入 Qwen3.5-4B 权重，可在模型内极慢运行 NES ROM",
-   "summary_long": "Drew Breunig 受 Divyansh Agrawal 的 qwenputer 启发，把一个可工作的任天堂娱乐系统（NES）6502 CPU 模拟器「烤」进了 Qwen3.5-4B 的权重中，因此现在可以在 Qwen 里运行 Super Mario Bros 等 NES ROM，原文注明速度非常慢。在 Hacker News 的评论中，Breunig 公开了他用来构建这套系统的 Opus 5.5 提示词。第一步提示要求先阅读 qwenputer 的博客文章及相关源码，再探索能否用同样技术模拟 NES 的芯片与内存（原文类比人们今天用 FPGA 在 MISTR 中所做的事），并判断需要多大规模的模型、若改用更小更快的模型能否达到标准时钟速度。第二步提示则是决定动手做，「只为好玩」，慢一点没关系，目标是拿到权重以及一个可以指向 ROM 的 CLI。原文还提到，Opus 据称找到并使用了 Christopher Pow 于 15 年前发布的 NES CPU 一致性测试集。原文未详述实现细节与性能数据。",
+   "published_at": "2026-10-31T17:00:00+00:00",
+   "summary_short": "用 AI 从 Hacker News 评论筛出 6454 个视频，搭成自建 YouTube 站 HackerTube",
+   "summary_long": "作者周五晚 11 点打开 YouTube，看到的是满屏低质推荐：夸张缩略图、重复老套的话题、糟糕的内容。作者承认这套算法对普通网民或许有效，但对自己无效。于是周六早上，作者让 Opus 5.5 写一个基于 Hacker News 推荐视频的 YouTube 克隆站，成果是 hackertube.org。原文称，Opus 下载了 Hacker News 的全部评论并做过滤，再用 Sonnet 以工作流处理这些评论，剔除垃圾与低质内容，最终留下 4 万条推荐 YouTube 视频的评论，对应 6454 个视频，时间跨度为 2007–2026 年，涉及 150 个话题。之后作者套上 YouTube 界面、注册域名、部署到 VPS，并做安全加固与优化。站点特点包括：内容质量较高；使用 50% 缩略图而非上传缩略图；无需账号的个性化推荐，状态存于本地浏览器会话；支持键盘快捷键；可导出站点数据交给 agent 复刻自己的版本。原文称这一流程现在约需 2 小时。",
    "key_points": [
-    "Drew Breunig 将 NES 6502 CPU 模拟器内置到 Qwen3.5-4B 权重中，可在模型内运行 Super Mario Bros 等 NES ROM，速度很慢",
-    "灵感来自 Divyansh Agrawal 的 qwenputer；构建所用的 Opus 5.5 提示词在 Hacker News 评论中公开",
-    "提示词先要求阅读 qwenputer 资料并评估可行性、模型规模与能否达到标准时钟速度，再决定「只为好玩」动手实现"
+    "起因是作者不满 YouTube 推荐质量：夸张缩略图、同质化话题、低质内容，认为算法不适合自己",
+    "做法是用 Opus 5.5 抓取并过滤 Hacker News 全部评论，再经 Sonnet 工作流去垃圾与低质内容，筛出 4 万条视频推荐评论",
+    "结果汇总 6454 个视频，覆盖 2007–2026 年、150 个话题，套上 YouTube 式界面并部署到 VPS"
    ],
    "topics": [
-    "post-training",
-    "coding-agent"
+    "coding-agent",
+    "product"
    ],
-   "category": "模型",
+   "category": "Agent 与开发",
    "categories": [
-    "模型",
-    "Agent 与开发"
+    "Agent 与开发",
+    "产品与应用"
    ],
    "horizon": "short",
-   "score": 73.2,
+   "score": 74.1,
    "status": "review",
    "extra": {
     "content_source": "rss",
-    "source_tags": [
-     "games",
-     "ai",
-     "generative-ai",
-     "llms",
-     "drew-breunig"
-    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/dbreunig/nesformer",
-      "https://divagr.com/blog/qwenputer",
-      "https://news.ycombinator.com/item?id=50306442#50307402",
-      "https://github.com/christopherpow/nes-test-roms/blob/master/other/nestest.txt",
-      "https://news.ycombinator.com/item?id=50306442",
-      "https://simonwillison.net/tags/games",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/drew-breunig",
-      "https://simonwillison.net/tags/qwen",
-      "https://simonwillison.net/tags/conformance-suites"
+      "https://hackertube.org/"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "b10f4376d756427e",
-   "url": "https://www.qbitai.com/2026/10/506743.html",
-   "title": "英伟达团队基于 MiniMax H3 开源视频增强方案，最高支持 4K 重生成",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-10-30T07:31:11+00:00",
-   "summary_short": "英伟达与MIT团队开源H3视频增强权重，把低清草稿重生成2K、最高4K",
-   "summary_long": "MiniMax H3 于今年 8 月开放权重后，围绕它的微调、蒸馏与工具适配迅速增多，一个月内下载量超过 2400 万次，产生 300 多个公开衍生模型。由英伟达与麻省理工学院研究人员组成的 Efficient-Large-Model 团队在 Hugging Face 发布了视频增强项目 Open-H3-Regenerate-2K 的模型权重，配套推理代码已在 NVlabs/Sana 仓库开放。该方案复用 H3 基础模型的生成能力，把低分辨率视频草稿重新生成为高分辨率画面，支持 2560×1440 的 2K 输出，最高可实现 3840×2160 原生 4K 重生成。官方 H3-Regenerate-2K 模块仅通过 API 提供服务，此次发布则为高分辨率重生成环节提供了一套可自行部署的开放实现。训练时保持 H3 Transformer 主干与视频 VAE 参数不变，只训练新增的细化 LoRA；推理时结合潜空间放大器、SoL-Engine 稀疏注意力与快速 VAE 解码器加速。在单张 NVIDIA B200 上，约 5 秒视频的 2K 处理耗时由 87.26 秒降至 22.45 秒。",
-   "key_points": [
-    "模型权重发布于 Hugging Face，推理代码在 NVlabs/Sana 仓库开放；方案基于 MiniMax H3，支持 2560×1440 的 2K 输出，最高可做 3840×2160 原生 4K 重生成",
-    "训练阶段冻结 H3 Transformer 主干与视频 VAE，仅训练新增细化 LoRA，推理时与 LightX2V FL2VA Turbo、LMS Sharp 等社区适配器合并，三步去噪；在单张 B200、预热条件下，约 5 秒视频的潜空间放大、三步细化与 2K 解码合计耗时从 87.26 秒降至 22.45 秒（约 3.9 倍），其中快速解码器把解码从约 15 秒降至约 1.6 秒",
-    "RefinerBench-150 对比评测中，相同输入与 2K 输出下 UniPercept 平均分 60.0，官方 H3-Regenerate-2K API 为 53.4；VBench 上该方案美学质量、成像质量与主体一致性更高，官方 API 在运动平滑度和动态程度上略优"
-   ],
-   "topics": [
-    "post-training",
-    "open-source",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 69.8,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "MiniMax"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/qbitai",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/minimax",
-      "https://www.qbitai.com/2026/10/506747.html",
-      "https://www.qbitai.com/2026/10/506662.html",
-      "https://www.qbitai.com/2026/10/506609.html",
-      "https://www.qbitai.com/2026/10/506281.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/506743.html&title=英伟达团队基于 MiniMax H3 开源视频增强方案，最高支持 4K 重生成&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2025/06/299465.html",
-      "https://www.qbitai.com/tag/%e8%b6%85%e7%ba%a7%e6%99%ba%e8%83%bd%e4%bd%93",
-      "https://www.qbitai.com/2026/05/426793.html",
-      "https://www.qbitai.com/2026/08/467270.html",
-      "https://www.qbitai.com/2026/03/389024.html",
-      "https://www.qbitai.com/2026/06/428092.html",
-      "https://www.qbitai.com/2025/12/365665.html",
-      "https://www.qbitai.com/2026/10/505551.html",
-      "https://www.qbitai.com/2026/10/504930.html",
-      "https://www.qbitai.com/2026/10/505407.html",
-      "https://www.qbitai.com/2026/10/505083.html",
-      "https://www.qbitai.com/2026/10/504931.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "77b8021d805e32e5",
-   "url": "https://www.interconnects.ai/p/was-i-wrong-about-open-models-and",
-   "title": "Was I wrong about open models & cyber risks?",
-   "source": "Interconnects",
+   "id": "5b0ac3b976a1c0a5",
+   "url": "https://blog.talosintelligence.com/appraisal-by-ai-model-driven-victim-prioritization-in-the-volta-infostealer/",
+   "title": "Malware uses LLMs to rank victims by how much they're worth",
+   "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-30T17:36:56+00:00",
-   "summary_short": "作者复盘开放权重模型的网络风险担忧，认为风险更像加速而非阶跃。",
-   "summary_long": "作者此前在 PHP2Shell、GitLab 等严重漏洞集中披露后提出“黑色十月”一说，认为 AI 模型的网络风险开始兑现；他提到币安又发生重大加密安全事件，但指出加密行业黑客问题由来已久，并非衡量漏洞转化为新型社会危害的最佳样本。他的最佳猜测是：幕后的修复工作只是在加速，更多人和资源被投入修补互联网，《华尔街日报》报道网络应急响应人员已不堪重负；漏洞数量正指数上升，并将在 S 型曲线顶部经历很长时间才趋于平缓。随后他回应自己数周前那篇争议观点：Claude Mythos 发布时被描绘成新型网络武器，落入坏人之手会造成大规模社会动荡，但他认为这似乎错了——按各项衡量，GLM-5.3 才是跨过该能力门槛的模型，而该模型权重发布一个多月后，公开证据显示情况没有太大变化。他甚至认为，即便 Claude Mythos 以开放权重形式意外放出，世界大体上也不会有事：网络事件会明显增加、对社会不利，但更像加速而非风险的阶跃。他称这一轮开放权重恐慌的主要推动者实际上做出了可证伪的预测，并列举他认为措辞过度的例子，包括 Rob Wiblin 的播客发言与 Anthropic“Project Glasswing”公告博客，另提到 Zvi Mowshowitz 一个更合理的表述（原文此处中断）。",
+   "published_at": "2026-10-31T14:29:03+00:00",
+   "summary_short": "VOLTA用LLM充当情报分析师，按变现价值给受害者资产排序",
+   "summary_long": "原文介绍名为VOLTA-AUTODOXER的自删除Windows信息窃取程序，经CAIRN研究披露。它窃取浏览器密码、Cookie、支付卡、加密货币钱包助记词、Discord/Telegram/Steam/Roblox会话、Microsoft OAuth令牌、SSH与云密钥、Wi-Fi配置和截图后，构建受害者结构化证据包，包含地理位置、住址、雇主、推断出生年份、卡号后四位、Slack工作区、文档元数据、iPhone备份迹象及Roblox账户估值，并用窃取会话查询Gmail收据、外卖订单和Discord信息。证据包序列化后POST到OpenRouter，系统提示要求模型充当“取证情报分析师”撰写目标评估，输出“WHAT THEY'RE WORTH”按低/中/高分级排列资产，以及“THEIR OPSEC”评估安全状况和密码卫生。若模型拒绝，VOLTA检查“I can’t”等措辞并沿最多三个模型回退。原文称其新意在于AI不支撑传统恶意能力，而是替操作者做情报分析。",
    "key_points": [
-    "作者在 PHP2Shell、GitLab 等漏洞披露后提出“黑色十月”，认为 AI 网络风险开始显现，但同时判断漏洞呈指数上升、修补力量也在加码，应急人员已不堪重负。",
-    "他认为 Claude Mythos 若以开放权重泄露，世界“大体不会有事”，风险更像加速而非阶跃；并称按各项衡量 GLM-5.3 才是跨过该能力门槛的模型，权重发布一个多月后公开证据显示变化不大。",
-    "他称开放权重恐慌的主要推动者立下了可证伪的预测，并举例 Rob Wiblin 与 Anthropic“Project Glasswing”公告的表述，认为部分措辞过度。"
+    "VOLTA窃取多种凭据、会话、密钥与截图后，用LLM对受害者资产按变现价值分级，并评估其OPSEC与密码卫生",
+    "默认模型为anthropic/claude-opus-4.6，回退链为moonshotai/kimi-k2、google/gemini-2.5-flash，温度设为0.2，并检查拒绝措辞",
+    "该程序自删除且无攻击者自有基础设施；原文称其AI集成 novelty 是让模型充当操作者的情报分析师"
    ],
    "topics": [
     "cybersecurity",
-    "open-source"
+    "prompt-injection"
    ],
    "category": "安全",
    "categories": [
     "安全"
    ],
+   "horizon": "short",
+   "score": 69.6,
+   "status": "review",
+   "extra": {
+    "hn_points": 223,
+    "hn_comments": 119,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://blog.talosintelligence.com/author/ryan-fetterman/",
+      "https://blog.talosintelligence.com/introducing-cairn-frontier-tracking-for-ai-integrated-malware/",
+      "https://blog.talosintelligence.com/the-closed-quorum-inside-the-first-reported-autonomous-ai-c2-implant/",
+      "https://www.facebook.com/sharer.php?u=https://blog.talosintelligence.com/appraisal-by-ai-model-driven-victim-prioritization-in-the-volta-infostealer/",
+      "https://x.com/share?url=https://blog.talosintelligence.com/appraisal-by-ai-model-driven-victim-prioritization-in-the-volta-infostealer/",
+      "https://www.linkedin.com/sharing/share-offsite/?url=https://blog.talosintelligence.com/appraisal-by-ai-model-driven-victim-prioritization-in-the-volta-infostealer/",
+      "https://www.reddit/submit?url=https://blog.talosintelligence.com/appraisal-by-ai-model-driven-victim-prioritization-in-the-volta-infostealer/"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "18eadc7cf156685b",
+   "url": "https://latent.space/p/arca/",
+   "title": "Agents Prompt People: Using Agents for Long-Horizon Financial Work",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-10-31T16:05:00+00:00",
+   "summary_short": "Arca用智能体承担长达十天的长周期金融工作，人类顾问保留最终决策",
+   "summary_long": "在AI Engineer New York上，Arca首席AI工程师Aman Singh介绍了这家“AI原生”财富管理公司如何用智能体承担长周期金融工作。他说这类任务“长周期但并非长时间连续运行”，单个任务可长达十天，中间有大量停顿、决策点和交接，因此Arca自建内部记忆系统，为每位客户维护持久状态：已发生什么、接下来追踪什么、未来几天要做什么、长期跟踪什么、哪个人负责哪项动作。模型上，Arca使用Anthropic、OpenAI等前沿实验室的模型，以Claude为主，并自研harness按内部基准自动为任务选择最佳模型，同时保留更换供应商的灵活性。安全方面，智能体只做分析与提出方案，交易和资金移动由人类顾问执行；Singh称所有安全限制都是完全确定性的，把决策从智能体手中拿走；公司还对提示注入等已知问题做验证检查，智能体本身不在沙箱中运行，但计算使用沙箱，并把智能体写的代码转换成严格格式、丢弃原代码、在后端前加护栏。此外，Arca用人类顾问反馈与智能体trace训练“元智能体”，由其提出harness改进建议。",
+   "key_points": [
+    "智能体任务可长达十天，属“长周期但非长时间连续运行”，Arca自建按客户持久化的记忆系统，追踪进展、下一步动作与责任人",
+    "自研harness按内部基准自动为任务选择模型，主要使用Claude，同时保留更换模型供应商的灵活性",
+    "智能体只负责分析与提出方案，交易及资金移动由人类顾问执行，安全限制“完全确定性”；对提示注入等已知问题做验证检查，智能体不在沙箱内但计算走沙箱，代码转成严格格式并加护栏后才触达后端"
+   ],
+   "topics": [
+    "memory",
+    "harness",
+    "prompt-injection"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "安全"
+   ],
    "horizon": "long",
-   "score": 68.7,
+   "score": 68.9,
    "status": "review",
    "extra": {
     "content_source": "rss",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://x.com/DevMuzzammil/status/2113042127039164663",
-      "https://techcrunch.com/2026/10/29/binance-pauses-withdrawals-as-hackers-suspected-of-stealing-billions-in-crypto/",
-      "https://www.reuters.com/legal/government/cryptos-biggest-hacks-heists-2026-09-25/",
-      "https://www.wsj.com/pro/cybersecurity/cyber-responders-strained-by-black-october-e259ea25",
-      "https://cve.0xosprey.com/",
-      "https://substackcdn.com/image/fetch/$s_!NQ70!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff51bb5d0-4390-4676-af4a-6bc8199412d5_2006x1362.png",
-      "https://www.interconnects.ai/p/the-cyber-risk-discourse-is-broken",
-      "https://www.interconnects.ai/p/was-i-wrong-about-open-models-and?utm_source=substack&utm_medium=email&utm_content=share&action=share",
-      "https://80000hours.org/podcast/episodes/claude-mythos-hacking-alignment/?utm_source=chatgpt.com",
-      "https://www.anthropic.com/glasswing?utm_source=chatgpt.com",
-      "https://thezvi.substack.com/p/claude-mythos-the-system-card?utm_source=chatgpt.com",
-      "https://epoch.ai/publications/open-weight-models-patch-gap",
-      "https://joshuasaxe181906.substack.com/p/if-the-vulnpocalypse-is-the-apocalypse?utm_source=profile&utm_medium=reader2",
-      "https://x.com/malwaretechblog/status/2115864790833004641?s=46",
-      "https://joshuasaxe181906.substack.com/",
-      "https://www.resilientcyber.io/?utm_campaign=profile_chips",
-      "https://substackcdn.com/image/fetch/$s_!z4OX!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F87d65fe4-692c-4c2d-8413-6db28c48cb4b_1625x1204.png",
-      "https://joshuasaxe181906.substack.com/p/if-the-vulnpocalypse-is-the-apocalypse",
-      "https://www.rusi.org/explore-our-research/publications/commentary/responding-risks-open-weight-ai-models?utm_source=chatgpt.com",
-      "https://www.interconnects.ai/about#§group-paid-subscriptions"
+      "https://ai.engineer/nyc/2026/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.linkedin.com/in/amanps/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://arcawealth.ai/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=100s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=160s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=241s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=325s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=440s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=562s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=662s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=734s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=826s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=905s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=969s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=1120s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=1191s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=1232s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=1342s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=1421s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "25cc4c9bb2e3e7e5",
-   "url": "https://openai.com/index/helping-websites-express-ai-training-preferences",
-   "title": "Making it easier for websites to express AI training preferences",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-30T09:30:00+00:00",
-   "summary_short": "OpenAI宣布将遵守robots.txt中表达AI训练偏好的通用信号",
-   "summary_long": "OpenAI于10月30日发布公告，称将遵守robots.txt中的一项通用信号，网站可用它表达关于其内容能否用于基础生成式AI训练的偏好。这是一项自愿性举措，目的是让发布者和网站运营方一次性把同一偏好传达给多个参与其中的AI提供方；此前运营方需要逐一识别各家爬虫，并为每个提供方单独维护规则，通用信号可减少这部分工作量。OpenAI计划在未来几个月内实施该信号，届时会再公布具体实施细节。原文强调，新信号不会取代现有的robots.txt控制手段，现有爬虫控制将继续适用并得到遵守。该做法依托互联网工程任务组（IETF）AI Preferences工作组正在进行的工作，OpenAI与其他参与者一同在当日宣布这一共享信号，并认为这有助于其继续参与IETF标准讨论。OpenAI表示，将随着相关讨论与行业情况的变化继续调整自身做法，并鼓励其他AI提供方也遵守该信号。",
-   "key_points": [
-    "OpenAI将遵守robots.txt中的一项通用信号，网站可据此表达其内容能否用于基础生成式AI训练的偏好，该信号属自愿性质。",
-    "共享信号让发布者一次性向多个参与的AI提供方传达同一偏好，无需再逐个识别爬虫、为每家提供方分别维护规则。",
-    "新信号不会取代现有robots.txt控制，现有爬虫控制继续适用；实施预计在未来几个月内启动，届时公布细节。"
-   ],
-   "topics": [
-    "policy",
-    "ai-training-data"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 67.0,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Company"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://datatracker.ietf.org/doc/draft-kelley-aipref-training-preference-signal/",
-      "https://developers.openai.com/api/docs/bots",
-      "https://datatracker.ietf.org/doc/draft-ietf-aipref-vocab/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "9e37c40a85b31b2e",
-   "url": "https://newsletter.signoz.io/p/ai-isnt-replacing-sres-its-deskilling",
-   "title": "AI isn't replacing SREs, it's deskilling them",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-30T15:52:18+00:00",
-   "summary_short": "AI接管95%故障响应后，SRE会不会像1983年自动化操作员那样技能退化",
-   "summary_long": "这篇通讯以一个更实际的问题切入：当AI处理95%的故障响应后，SRE是否会变得更不擅长处理真正关键的那5%。作者借用1983年认知心理学家Lisanne Bainbridge的论文《自动化的讽刺》：该研究发现，一旦自动化接管一个流程，人类操作员在自动化失效的罕见时刻反而更关键，却因为平时缺乏练习而更难应对这些例外——自动化本意是把人移出循环，结果却给人留下最糟糕的工作：长时间被动监控加上罕见且高风险、自己越来越没准备的危机。作者据此类比：工业自动化接管蓝领的常规体力任务，把例外留给失去肌肉记忆的工人；AI则接管知识工作中的常规认知任务（模式匹配、分流、已知问题处理），把罕见、复杂、模糊的问题留给人类，而这正是需要深度专业、又恰因停止练习而萎缩的能力。原文还列举当前已实现或高度AI辅助的环节：告警降噪与智能分组、已知问题的runbook执行、日志模式检测与异常标记、基于历史事件数据的基础根因建议、对已充分理解的故障模式做自动修复（如重启崩溃的pod或扩容）。原文在此处截断，后续内容未详述。",
-   "key_points": [
-    "核心问题：AI处理95%的故障响应后，SRE处理那5%关键问题的能力是否会悄悄退化，以及在下一次新型故障出现前是否有人会察觉",
-    "理论依据：1983年Lisanne Bainbridge的《自动化的讽刺》指出，自动化程度越高，操作员在罕见失效时刻越关键，却越缺乏练习、干预能力越差",
-    "现状与近期目标：当前已有告警降噪分组、runbook执行、日志模式检测与异常标记、基础根因建议、已知故障模式自动修复；近期目标包括跨指标/日志/追踪的多信号关联、部分理解故障的自主根因分析、预测性故障检测、AI变更风险评估与自动回滚"
-   ],
-   "topics": [
-    "automation",
-    "deskilling",
-    "future-of-work"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "long",
-   "score": 66.2,
-   "status": "review",
-   "extra": {
-    "hn_points": 460,
-    "hn_comments": 336,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://substack.com/@elizabethmathew21",
-      "https://swizec.com/blog/the-future-of-software-engineering-is-sre/",
-      "https://substackcdn.com/image/fetch/$s_!Hgvq!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F530d847f-26cb-4ddd-a6de-875cbbaf8fab_6233x4167.webp",
-      "https://www.semanticscholar.org/paper/Ironies-of-automation-Bainbridge/0713bb9d9b138e4e0a15406006de9b0cddf68e28",
-      "https://www.thelancet.com/journals/langas/article/PIIS2468-1253(25)00133-5/abstract",
-      "https://flightsafety.org/wp-content/uploads/2019/12/IASS_2019_Behrend_Lafargue.pdf",
-      "https://signoz.io/",
-      "https://www.linkedin.com/posts/pranay01_something-ive-been-thinking-about-lately-activity-7428804029134225408-IXif?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAC3MkwYBDZBMgATtR9hOGisjheK_u1VDu6w"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "616adec25212601b",
-   "url": "https://www.qbitai.com/2026/10/506662.html",
-   "title": "从学习人类到学习机器人同伴，清华大学联合无问芯穹、智元提出具身智能规模化落地新路径",
+   "id": "5a7b69bb0c03782b",
+   "url": "https://www.qbitai.com/2026/10/506785.html",
+   "title": "AI零帧起手写算子，反超DeepSeek人类手写巅峰：快了9.8%！",
    "source": "量子位",
    "tier": "B",
-   "published_at": "2026-10-30T03:48:04+00:00",
-   "summary_short": "清华联合无问芯穹、智元提出群体经验学习CEL，96台真机验证成功率97.5%",
-   "summary_long": "具身智能从实验室走向真实世界后，机器人能力提升主要靠人一遍遍示范或手动纠错，但机器人可以成百上千台批量部署，经验丰富的操作人员数量却无法同步增长，成为一大卡点。清华大学、无问芯穹与智元联合提出群体经验学习（CEL）新范式：机器人不只学人类示范，还可借鉴群体中其他机器人的成功经验，一台机器人摸索出的有效做法能沉淀下来供整个群体共享复用。实验覆盖插花、叠衣服、手机充电、凳子组装、手机包装五项家庭服务与工业任务，两台未参加训练的机器人在600次测试中失败15次，总体成功率97.5%，五项任务成功率均超过6名人类操作员的平均水平；手机包装任务成功率从79.2%升至98.3%，连续测试120次仅失败2次。参与训练的机器人从16台增至96台时，成功率从86.7%提升到98.3%。支撑落地的是系统与算法两端：基于开源框架RLinf构建的容错异步训练系统FATS，96台规模测试中累计采集9834轮执行经验，22台机器人发生30次故障，故障时间损失仅占全部运行机时的1.3%；算法侧的失败引导经验检索微调算法FERT，从成功操作学做法、从失败操作找问题。",
+   "published_at": "2026-10-30T11:05:06+00:00",
+   "summary_short": "面壁ForgeKernel零源码直播22.5小时自写算子，反超DeepSeek FlashMLA 9.8%",
+   "summary_long": "原文称，面壁智能的算子生成系统ForgeKernel在无人参与、没有源码和论文的情况下，仅凭算子的数学定义与目标硬件约束，在英伟达B200上通过22.5小时直播、42轮迭代产出32个版本，用1张B200和22个GPU小时，把DeepSeek-V4.1的FlashMLA Prefill算子耗时从首版1834微秒降至472微秒，而FlashMLA为518微秒，即快9.8%，人类为此写的代码为0行。此前10月27日昇腾CANN官方发文称其同时登顶CANNBench 950DT、950PR、A3三张榜单。团队与清华大学等机构在arXiv发表JustGoal论文，只给优化目标、不给算子知识，B200上10个算子有8个跑赢人类维护的开源库。ForgeKernel的做法是把架构设计与实现能力分离、将实测硬件经验存入知识库、以自身最佳版本为对手迭代。原文称其在29项对比中24项打平或超越专家实现，且方法不绑定具体硬件，迁移昇腾只需把性能分析工具从NCU换成msprof。目前生成的算子已接入训练框架，在国产芯片与英伟达平台完成MiniCPM5-1B长训测试，并已开源。",
    "key_points": [
-    "提出群体经验学习（CEL）范式，让机器人互相学习成功经验，不再主要依赖人类示教，并在96台真实机器人集群上完成规模化验证",
-    "五项任务测试中两台未训练机器人总体成功率97.5%，全部超过6名人类操作员平均水平；手机包装任务从79.2%提升至98.3%",
-    "参与训练机器人从16台增至96台，成功率从86.7%升至98.3%；系统侧用容错异步训练系统FATS支撑，96台测试中故障时间损失仅占运行机时1.3%"
+    "直播中第一版耗时1834微秒，不到4小时降到593微秒，最终472微秒，对比FlashMLA的518微秒快9.8%",
+    "10月27日昇腾CANN官方称其同时登顶CANNBench 950DT、950PR、A3三榜，A3榜总分4341.16、基准加速比1.898×",
+    "方法为架构设计与实现分离、把实测硬件经验存入知识库、以自身最佳版本为对手自进化，且不依赖特定硬件"
    ],
    "topics": [
-    "post-training",
-    "open-source",
-    "multi-agent"
+    "reasoning",
+    "coding-agent",
+    "post-training"
    ],
    "category": "模型",
    "categories": [
@@ -288,303 +164,56 @@
     "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 65.3,
+   "score": 66.7,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
      "资讯",
-     "具身智能",
-     "无问芯穹",
-     "智元机器人"
+     "首页轮播",
+     "Deepseek",
+     "ForgeKernel",
+     "算子"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.qbitai.com/author/qbitai",
+      "https://www.qbitai.com/author/shisan",
       "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/%e5%85%b7%e8%ba%ab%e6%99%ba%e8%83%bd",
-      "https://www.qbitai.com/tag/%e6%97%a0%e9%97%ae%e8%8a%af%e7%a9%b9",
-      "https://www.qbitai.com/tag/%e6%99%ba%e5%85%83%e6%9c%ba%e5%99%a8%e4%ba%ba",
-      "https://www.qbitai.com/2026/10/506779.html",
-      "https://www.qbitai.com/2026/10/506747.html",
-      "https://www.qbitai.com/2026/10/506743.html",
-      "https://www.qbitai.com/2026/10/506609.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/506662.html&title=从学习人类到学习机器人同伴，清华大学联合无问芯穹、智元提出具身智能规模化落地新路径&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2024/12/232696.html",
-      "https://www.qbitai.com/tag/%e7%ab%af%e4%be%a7%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/2026/02/378674.html",
-      "https://www.qbitai.com/2024/05/139655.html",
-      "https://www.qbitai.com/tag/%e6%93%8e%e5%a4%a9%e6%9f%b1",
-      "https://www.qbitai.com/tag/%e7%89%b9%e6%96%af%e6%8b%89",
-      "https://www.qbitai.com/tag/%e8%8b%b1%e4%bc%9f%e8%be%be",
-      "https://www.qbitai.com/tag/%e9%a9%ac%e6%96%af%e5%85%8b",
-      "https://www.qbitai.com/2026/04/402189.html",
-      "https://www.qbitai.com/2026/08/469520.html",
-      "https://www.qbitai.com/tag/%e5%8d%8e%e4%b8%ba",
-      "https://www.qbitai.com/tag/%e6%98%86%e4%bb%91%e8%a1%8c",
-      "https://www.qbitai.com/tag/%e7%90%86%e6%83%b3%e6%b1%bd%e8%bd%a6",
-      "https://www.qbitai.com/2026/05/415065.html",
-      "https://www.qbitai.com/tag/last-r1",
-      "https://www.qbitai.com/tag/%e8%87%b3%e7%ae%80%e5%8a%a8%e5%8a%9b",
-      "https://www.qbitai.com/tag/%e9%9a%90%e7%a9%ba%e9%97%b4",
+      "https://www.qbitai.com/tag/deepseek",
+      "https://www.qbitai.com/tag/forgekernel",
+      "https://www.qbitai.com/tag/%e7%ae%97%e5%ad%90",
+      "https://www.qbitai.com/tag/%e9%9d%a2%e5%a3%81%e6%99%ba%e8%83%bd",
+      "https://www.qbitai.com/2026/10/505186.html",
+      "https://www.qbitai.com/2026/10/506376.html",
+      "https://www.qbitai.com/2026/10/505454.html",
+      "https://www.qbitai.com/2026/10/503109.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/506785.html&title=AI零帧起手写算子，反超DeepSeek人类手写巅峰：快了9.8%！&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2025/08/324282.html",
+      "https://www.qbitai.com/tag/deepseek-v3",
+      "https://www.qbitai.com/tag/%e5%ae%9e%e6%b5%8b",
+      "https://www.qbitai.com/tag/%e5%bc%80%e6%ba%90",
+      "https://www.qbitai.com/2025/02/258072.html",
+      "https://www.qbitai.com/tag/%e9%80%9a%e4%bf%a1%e5%ba%93",
+      "https://www.qbitai.com/2025/02/253378.html",
+      "https://www.qbitai.com/tag/gpt-5",
+      "https://www.qbitai.com/tag/openai",
+      "https://www.qbitai.com/2025/02/257487.html",
+      "https://www.qbitai.com/2025/03/263194.html",
+      "https://www.qbitai.com/tag/%e9%98%bf%e9%87%8c",
+      "https://www.qbitai.com/2026/08/467487.html",
+      "https://www.qbitai.com/tag/%e5%ae%87%e6%a0%91",
+      "https://www.qbitai.com/tag/%e6%a2%81%e6%96%87%e9%94%8b",
+      "https://www.qbitai.com/tag/%e7%8e%8b%e5%85%b4%e5%85%b4",
       "https://www.qbitai.com/2026/10/505551.html",
-      "https://www.qbitai.com/2026/10/504930.html",
-      "https://www.qbitai.com/2026/10/505407.html",
-      "https://www.qbitai.com/2026/10/505083.html",
       "https://www.qbitai.com/2026/10/506227.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "6dc6a18633084fd8",
-   "url": "https://www.404media.co/manifestos-fear-and-loser-thinking-inside-protons-ai-reckoning/",
-   "title": "Manifestos, Fear, and 'Loser Thinking': Inside Proton's AI Reckoning",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-29T14:29:06+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "cybersecurity",
-    "ai-adoption"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 60.2,
-   "status": "review",
-   "extra": {
-    "hn_points": 220,
-    "hn_comments": 77,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.404media.co/proton-to-re-interview-staff-about-ai-to-see-who-gets-to-keep-their-job",
-      "https://www.youtube.com/watch?v=RTCkiWju46o&ref=404media.co",
-      "https://proton.me/blog/introducing-post-quantum-encryption?ref=404media.co"
-     ]
-    },
-    "content_source": "direct"
-   }
-  },
-  {
-   "id": "b2263e9f84127c76",
-   "url": "https://huggingface.co/blog/nvidia/nemotron-halloween",
-   "title": "nemotron-halloween",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-30T17:57:24+00:00",
-   "summary_short": "用Nemotron语音智能体做的万圣节暴躁怪物屋",
-   "summary_long": "原文介绍作者用 NVIDIA Nemotron 开源模型搭建的万圣节互动投影装置 MonsterHouse：把车库门做成一张会说话的嘴，以脾气暴躁的老海盗船人格与来讨糖的孩子对话，讲海盗故事、不停发牢骚，遇到访客说“请”就立刻软化，说“谢谢”则换来温暖道别。系统基于 NVIDIA Nemotron Voice Agent：Nemotron 3 ASR 负责把访客语音转成文字，Nemotron 3.5 Bolt E4B 4GB 小语言模型生成每条回复并用 LoRA 适配器赋予人格，Magpie TTS Zeroshot 依据一段角色参考音频合成语音，Audio2Face-3D 在 Unreal Engine 5 中把语音转成嘴部动画；Nemotron 3 Nano Omni 描述访客服装，YOLO 与 ByteTrack 负责计数和追踪。整套系统运行在一台工作站上，配备 RTX PRO 6000 Blackwell Max-Q 与 RTX PRO 4000 Blackwell。角色 SkelMesh 在 Autodesk Maya 中建模后导入 Unreal 加入虚拟火焰特效。作者称原本预想的难点因 Voice Agent 开箱即用而变得轻松有趣。",
-   "key_points": [
-    "MonsterHouse 是万圣节互动投影，车库门变成会说话的木嘴，人格是暴躁的老海盗船，对“请”和“谢谢”有明显反应",
-    "技术栈为 NVIDIA Nemotron Voice Agent 统筹：ASR 听、Bolt E4B（配 LoRA 人格适配器）想、Magpie TTS Zeroshot 说、Audio2Face-3D 在 Unreal Engine 5 中驱动嘴部动画",
-    "另用 Nemotron 3 Nano Omni 描述服装、YOLO 与 ByteTrack 计数追踪访客，全部跑在一台带 RTX PRO 6000 Blackwell Max-Q 与 RTX PRO 4000 Blackwell 的工作站上"
-   ],
-   "topics": [
-    "voice-agent",
-    "post-training",
-    "product"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 59.5,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://cdn-uploads.huggingface.co/production/uploads/6ab2a746c7d0655b3d8dfbb9/5bIvVxc791He8vRKSaBH4.png",
-      "https://github.com/NVIDIA-AI-Blueprints/nemotron-voice-agent",
-      "https://huggingface.co/nvidia/nemotron-speech-streaming-en-0.6b",
-      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
-      "https://build.nvidia.com/nvidia/magpie-tts-zeroshot",
-      "https://github.com/NVIDIA/Audio2Face-3D",
-      "https://huggingface.co/nvidia/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-BF16",
-      "https://cdn-uploads.huggingface.co/production/uploads/6ab2a746c7d0655b3d8dfbb9/CzzK5VpTMFR9Azps_6Qbv.png",
-      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-BF16",
-      "https://cdn-uploads.huggingface.co/production/uploads/6ab2a746c7d0655b3d8dfbb9/iVLQ71tHCdvLRIuaJ6oLk.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6ab2a746c7d0655b3d8dfbb9/8AZqpHSWLOS4hpRwACGOY.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/6ab2a746c7d0655b3d8dfbb9/v5ff_abLrivfqmxH5ZPqf.png",
-      "https://build.nvidia.com/nvidia/nemotron-3.5-bolt-e4b",
-      "https://docs.nvidia.com/nemo/automodel/model-coverage/vision-language-models/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB-BF16",
-      "https://build.nvidia.com/nvidia/nemotron-voice-agent",
-      "https://research.nvidia.com/labs/nemotron/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "3fafcda97b474933",
-   "url": "https://www.qbitai.com/2026/10/506686.html",
-   "title": "RSI立大功！国产开源登顶全球第一，1.3B OXR重塑OCR",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-10-30T05:52:47+00:00",
-   "summary_short": "1.3B国产开源模型OXR借RSI训练登顶三大文档解析榜单，速度也第一。",
-   "summary_long": "文档解析长期面临双栏串行、手写公式乱码、跨页大表格结构崩解等难题，劣质提取会拖垮RAG下游。国产开源模型OXR参数量仅1.3B，却在OmniDocBench（97.18）、olmOCR-Bench（87.84）、DocParsingBench（87.76）三个榜单登顶，且评测流程和代码全量开源可复现。它可解析表格、公式、代码块、化学方程式等13类文档元素，单张RTX PRO 6000端到端解析100页文档仅需101秒。核心在于后训练阶段引入面向文档解析的递归自我改进（RSI）范式，不依赖新增人类手工标注，分三阶段：预测与分类阶段用通用VLM和多次rollout将样本分为Correct、Wrong、Uncertain三档，并通过图像扰动记录视觉脆弱点；归因与训练规划阶段由VLM逐个诊断错误原因，经SigLIP2提取特征后聚类成原因簇；数据生成阶段结合原因簇与真实样本版式风格合成新数据，回流训练下一代模型。架构上采用独立轻量模型负责版面分析，OXR主模型同时负责内容识别与阅读顺序判断，抹平阅读顺序带来的性能损耗。",
-   "key_points": [
-    "OXR在OmniDocBench（97.18）、olmOCR-Bench（87.84）、DocParsingBench（87.76）三榜第一，评测流程和代码全量开源可复现。",
-    "后训练引入RSI递归自我改进，分预测与分类、归因与训练规划、数据生成三阶段，不依赖新增人类手工标注。",
-    "架构上独立轻量模型做版面分析，OXR主模型做内容识别与阅读顺序判断，单张RTX PRO 6000解析100页文档仅101秒。"
-   ],
-   "topics": [
-    "post-training",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 56.9,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "OCR"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/jay",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/ocr",
-      "https://www.qbitai.com/2026/10/506674.html",
-      "https://www.qbitai.com/2026/10/504517.html",
-      "https://www.qbitai.com/2026/10/504184.html",
-      "https://www.qbitai.com/2026/10/503341.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/506686.html&title=RSI立大功！国产开源登顶全球第一，1.3B OXR重塑OCR&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2023/12/109275.html",
-      "https://www.qbitai.com/tag/%e5%a4%9a%e6%a8%a1%e6%80%81",
-      "https://www.qbitai.com/2020/06/15561.html",
-      "https://www.qbitai.com/tag/nmt",
-      "https://www.qbitai.com/tag/%e4%b8%81%e7%a3%8a",
-      "https://www.qbitai.com/tag/%e7%bd%91%e6%98%93",
-      "https://www.qbitai.com/tag/%e8%af%8d%e5%85%b8%e7%ac%94",
-      "https://www.qbitai.com/2020/12/20406.html",
-      "https://www.qbitai.com/tag/%e8%85%be%e8%ae%af%e4%bc%98%e5%9b%be",
-      "https://www.qbitai.com/2024/01/117000.html",
-      "https://www.qbitai.com/tag/ai",
-      "https://www.qbitai.com/tag/%e5%a4%a7%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/2020/07/16654.html",
-      "https://www.qbitai.com/tag/paddlepaddle",
-      "https://www.qbitai.com/tag/%e5%bc%80%e6%ba%90%e9%a1%b9%e7%9b%ae",
-      "https://www.qbitai.com/2024/09/189611.html",
-      "https://www.qbitai.com/2026/10/505551.html",
       "https://www.qbitai.com/2026/10/505407.html",
-      "https://www.qbitai.com/2026/10/506227.html",
       "https://www.qbitai.com/2026/10/505799.html",
       "https://www.qbitai.com/2026/10/505928.html",
       "https://weibo.com/qbitai?is_all=1",
       "https://www.zhihu.com/org/liang-zi-wei-48/activities",
       "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
       "https://beian.miit.gov.cn/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "9226a0978b1ef723",
-   "url": "https://www.404media.co/protons-ceo-cancels-ai-re-interviews/",
-   "title": "Proton's CEO Cancels AI 'Re-Interviews'",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-30T17:24:45+00:00",
-   "summary_short": "Proton CEO取消强制AI\"再面试\"，称仍将推进AI",
-   "summary_long": "据404 Media获得的约两小时全员会录音及六名现任员工说法，Proton CEO Andy Yen于周五取消了一场近乎覆盖全公司的\"再面试\"——原要求员工说明自己如何使用AI，且明显意在让AI使用不足者可能被解雇。此举发生在404 Media周四发布调查之后：该调查基于八名现任和一名前员工、Slack聊天、会议录音及CTO Bart Butler撰写的AI宣言，称Yen正积极在全公司推AI，有时不顾员工的安全担忧。在安全Slack频道中，有员工建议新代码上线前至少花几天做渗透测试，Yen回复称这是\"loser thinking\"，并要求\"别再 lovingly handcraft 我们的代码，多用AI\"。调查还称公司存在恐惧文化，员工不敢表达安全顾虑；推AI很大程度是为提升年收入。用户在社交媒体上批评公司贬低安全优先级，并要求Yen辞职。Yen在会上承认自己沟通有失误、会反思改进，但表示\"仍会继续推\"，并称与领导层和董事会讨论后决定取消再面试，因为\"它们已无意中达到了目的\"——员工现在开始谈论和学习AI。他还提到下月将进行组织调整、\"在团队间重新分配人才\"，但\"不会因AI裁员\"。Butler称Yen已承诺改进沟通，并表示\"我们搞砸了\"。",
-   "key_points": [
-    "Proton CEO Andy Yen取消近乎全公司范围的AI\"再面试\"，该面试原本要求员工说明AI使用情况，使用不足者可能被解雇",
-    "此决定紧随404 Media调查发布，该调查称Yen强推AI、无视员工安全顾虑，并在Slack中嘲讽建议先做渗透测试的员工",
-    "Yen承认沟通失误但称\"仍会继续推\"，并宣布下月组织调整，称不会因AI裁员；用户则在社交媒体要求其辞职"
-   ],
-   "topics": [
-    "alignment",
-    "cybersecurity",
-    "product"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 54.8,
-   "status": "review",
-   "extra": {
-    "hn_points": 246,
-    "hn_comments": 205,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.404media.co/manifestos-fear-and-loser-thinking-inside-protons-ai-reckoning/",
-      "https://proton.me/foundation?ref=404media.co",
-      "https://www.reddit.com/r/ProtonMail/comments/1xilgwk/comment/19ru2qt4r4r5u/?ref=404media.co"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "c7606af40dbb903f",
-   "url": "https://openai.com/index/community-safety-report-and-new-protections-for-teens",
-   "title": "Community safety report and new protections for teens",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-30T09:00:00+00:00",
-   "summary_short": "OpenAI将发布社区安全报告，并收紧暴力及未成年人枪支内容限制",
-   "summary_long": "OpenAI 10月30日宣布两项社区安全举措：发布《社区安全报告》，并收紧未成年人相关枪支内容及涉既往大规模袭击信息的限制。原文称，ChatGPT 的训练目标是不提供可助人策划或实施暴力的指令；对既往大规模袭击及实施者，模型将减少细节，限制对武器装备及获取方式的重构，以及可能放大袭击者恶名的伤害规模对比，且不论用户年龄或提问理由均适用。若近期对话出现可能暴力的预警信号，ChatGPT 在分享可能被滥用的信息时将更保守；并正努力在预测用户未满18岁时适用更严格限制，即使对话无暴力意图。OpenAI 称2026年第三季度向执法机构转介超过200次，首份报告将于2027年初发布，覆盖2026年下半年，此后每半年更新。",
-   "key_points": [
-    "OpenAI宣布将发布《社区安全报告》，首份报告于2027年初发布、覆盖2026年下半年，之后每半年更新。",
-    "对既往大规模袭击及实施者减少细节，限制武器装备及获取方式的重构和可能放大袭击者恶名的伤害规模对比，适用所有年龄与提问理由。",
-    "近期聊天出现可能暴力预警信号时，ChatGPT分享可能被滥用信息将更保守；并拟在预测用户未满18岁时适用更严格限制，即使无暴力意图；2026年第三季度执法转介超过200次。"
-   ],
-   "topics": [
-    "alignment",
-    "product"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 53.0,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Safety"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://openai.com/index/our-commitment-to-community-safety/",
-      "https://open.kg/en/news/incidents/123517-v-brazilii-fermera-arestovali-za-obsuzhdenie-ubijstva-syna-s-chatgpt.html",
-      "https://www.wpbf.com/article/south-palm-beach-man-cyberstalking-ex-girlfriend-threats-chatgpt/73434967",
-      "https://openai.com/index/chatgpt-recognize-context-in-sensitive-conversations/",
-      "https://openai.com/policies/usage-policies/",
-      "https://openai.com/index/chatgpt-for-teens/",
-      "https://openai.com/index/our-approach-to-age-prediction/",
-      "https://openai.com/index/introducing-parental-controls/"
      ]
     },
     "summary_mode": "full"
