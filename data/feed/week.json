@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-31T22:30:22+00:00",
+ "generated_at": "2026-11-01T22:50:48+00:00",
  "top": [
   {
    "id": "d28967fce9c692cd",
@@ -684,6 +684,43 @@
    }
   },
   {
+   "id": "82785ab4f152db3e",
+   "url": "https://ryanmadden.net/gpt-56-beats-factorio/",
+   "title": "GPT-5.6 Sol can beat Factorio on peaceful mode",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-31T18:50:34+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "agent-loop",
+    "harness",
+    "tool-use"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 79.8,
+   "status": "published",
+   "extra": {
+    "hn_points": 176,
+    "hn_comments": 187,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.youtube.com/watch?v=kLuSDUzKYZs",
+      "https://ryanmadden.net/claude-plays-factorio/",
+      "https://ryanmadden.net/towards-automating-factorio/",
+      "https://ryanmadden.net/faketorio-an-agent-testbed/"
+     ]
+    },
+    "content_source": "direct"
+   }
+  },
+  {
    "id": "2325af3360e06716",
    "url": "https://www.cerebras.ai/blog/how-we-deploy-trillion-parameter-frontier-models-on-cerebras",
    "title": "Cerebras Deploys Trillion-Parameter AI Models",
@@ -1089,6 +1126,105 @@
    }
   },
   {
+   "id": "dd35d009aad680f7",
+   "url": "https://simonwillison.net/2026/Oct/31/how-we-took-over-chatgpt-accounts/",
+   "title": "How We Took Over ChatGPT Accounts",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-10-31T23:15:22+00:00",
+   "summary_short": "安全团队披露可窃取 ChatGPT 用户数据的漏洞链，OpenAI 已修复",
+   "summary_long": "Parameter Labs 披露其发现的一条针对 ChatGPT artifacts 机制的漏洞利用链。该机制在沙箱 iframe 中展示交互式自定义 HTML 应用（OpenAI 曾称之为 Canvas，最新版本称为 HTML previews），原文强调这些内容必须严格隔离，以免不可信代码接触 OpenAI API 或私有数据。攻击链较复杂：OpenAI 在图表支持中使用 MathLive JavaScript 库，该库自带虚拟键盘，可由沙箱 iframe 通过 postMessage() 在父页面触发；接收消息的代码使用 innerHTML，因此任何能发消息的框架都能向父页面注入自定义 HTML，且没有机制阻止其他沙箱框架（包括 HTML preview 框架）调用该方法。innerHTML 虽不直接执行 script，但可注入不受沙箱限制的新 iframe。OpenAI 的 CSP 完全禁止内联脚本，仅允许少数域名加载脚本，其中包含 YouTube，而 YouTube 的 oEmbed 端点可被用来反射并以可执行方式返回 JavaScript。在 ChatGPT 上取得 JavaScript 执行能力后，从 API 获取用户私有数据并经图片引用外传十分容易。最终可构造一个 ChatGPT 分享链接，其他已登录用户访问后私有数据可能被窃取，或被代替执行操作。OpenAI 已",
+   "key_points": [
+    "漏洞出在 ChatGPT 的 artifacts（HTML previews）沙箱 iframe，攻击者可借 MathLive 虚拟键盘的 postMessage 与 innerHTML 向父页面注入 HTML",
+    "绕过 CSP 的关键是白名单中的 YouTube：其 oEmbed 端点可反射 JavaScript 并使其执行",
+    "取得脚本执行后可读取用户私有数据并经图片引用外传，构造的分享链接会让其他已登录用户中招"
+   ],
+   "topics": [
+    "cybersecurity",
+    "privacy"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "iframes",
+     "javascript",
+     "sandboxing",
+     "security",
+     "xss"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.parameter.ai/labs/we-found-a-gap-at-openai",
+      "https://help.openai.com/en/articles/20001246-working-with-writing-blocks-and-code-blocks-in-chatgpt",
+      "https://mathlive.io/mathfield/virtual-keyboard/",
+      "https://news.ycombinator.com/item?id=50314699",
+      "https://simonwillison.net/tags/iframes",
+      "https://simonwillison.net/tags/javascript",
+      "https://simonwillison.net/tags/sandboxing",
+      "https://simonwillison.net/tags/security",
+      "https://simonwillison.net/tags/xss",
+      "https://simonwillison.net/tags/openai",
+      "https://simonwillison.net/tags/chatgpt",
+      "https://simonwillison.net/tags/content-security-policy"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "f9b8a9efbf26f92e",
+   "url": "https://github.com/guregodevo/memdoor/tree/main/examples/workflows/team-solve",
+   "title": "Memdoor: A team of 5 Qwen3.8-27B models beats Fable 5 on LiveCodeBench Hard",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-31T22:46:12+00:00",
+   "summary_short": "五个小模型组队解题，前十题均分 9.8，作者称与原作者 harness 持平",
+   "summary_long": "原文介绍 Memdoor 的 team-solve 工作流：规划、两个并行构思、求解、测试、审查、修复、验证等步骤，五个 Qwen3.8-27B 实例各持全新上下文，只通过磁盘文件交流，成败由运行公开样例的脚本判定；共八个 YAML 文件，不写代码，步骤里不指定模型。作者称这是把 GVS5H（Lee, 2026）的方法实现为 Memdoor 工作流。测试沿用原作者同款模型、提示词、循环与 128K 回复上限，在 LiveCodeBench Hard 前 10 题各跑 5 次，用修正后的评分器对全部隐藏测试打分：该工作流均值 9.8，原作者 harness 9.6，Fable 5 单次调用 8.0；50 次运行的中位耗时 40 分钟、每次 0.39 美元，合计 35.79 美元。原文明确样本仅 10 题、5 次，9.8 与 9.6 在噪声范围内，结论只是与原作者 harness 持平；污染未排除，Fable 5 的数据取自原作者文件，并非在本 harness 中运行。",
+   "key_points": [
+    "流程为 plan → ideate-a/ideate-b（并行）→ solve → test → review → repair → verify，每步一个 YAML 文件，requires 定义 DAG，底层是 mario 引擎；每个 agent 提示词要求全新上下文、读文件、不依赖对话",
+    "前 10 题各 5 次的均值：该工作流 9.8、原作者 harness 9.6、Fable 5 单次调用 8.0；50 次运行中位 40 分钟、每次 0.39 美元共 35.79 美元，跑在 OpenRouter 而非本地",
+    "原文自述局限：样本仅 10 题对原作者的 100 题，9.8 与 9.6 在噪声内，只主张与原 harness 持平；污染未排除；并记录 manager 编造错误反例致正确程序被改写、另两次正确程序被覆盖后恢复，这些均属原作者循环的缺口且原样保留"
+   ],
+   "topics": [
+    "multi-agent",
+    "coding-agent",
+    "harness"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "评测",
+    "开源项目"
+   ],
+   "horizon": "long",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 418,
+    "hn_comments": 203,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://news.ycombinator.com/item?id=50320995",
+      "https://github.com/slee-persis/GVS5H",
+      "https://memdoor.ai/docs/team-solve",
+      "https://memdoor.ai/docs/providers#a-local-runtime-no-key",
+      "https://github.com/guregodevo/mario"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "64d59b55a8fb8666",
    "url": "https://openai.com/index/chatgpt-expanding-world-of-work",
    "title": "ChatGPT’s expanding world of work",
@@ -1252,68 +1388,6 @@
      ]
     },
     "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "d1a3b4fa5d93fb49",
-   "url": "https://magazine.sebastianraschka.com/p/building-reasoning-models",
-   "title": "Build Your Own Reasoning Model: A Full Video Course",
-   "source": "Sebastian Raschka",
-   "tier": "A",
-   "published_at": "2026-10-24T11:14:32+00:00",
-   "summary_short": "8个视频、11小时，从预训练模型手写推理模型方法，理解其工作机制",
-   "summary_long": "原文介绍一套从零构建推理模型的视频课程，共8个视频、约11小时，配套此前以PyTorch从零实现推理模型的材料。课程从一个小型预训练Qwen3模型出发，在Python和PyTorch中实现评估、推理时扩展、强化学习和蒸馏等方法。原文指出，当前几乎所有当代LLM都是推理模型或提供推理模式，理解推理模型（含推理扩展、强化学习、蒸馏）仍有价值。原文还说明，推理模型可视为传统LLM的升级：通过带可验证奖励的强化学习进行更多后训练，并可选用推理扩展技术；它可作为agent harness中的引擎，harness负责任务的上下文管理并提供工具。课程建议具备Python和PyTorch基础；此前从零构建LLM内容为推荐但非必需。原文称该课程是此前Coding LLMs from the Ground Up课程的续集，但也可在先修课程之外单独观看。",
-   "key_points": [
-    "课程共8个视频、约11小时，从一个小型预训练Qwen3模型出发，用Python和PyTorch实现评估、推理时扩展、强化学习和蒸馏。",
-    "原文将推理模型描述为传统LLM的升级：通过带可验证奖励的强化学习增加后训练，并可选用推理扩展技术；推理模型可作为agent harness中的引擎。",
-    "课程建议具备Python和PyTorch基础；此前从零构建LLM内容为推荐但非必需，该课程是Coding LLMs from the Ground Up的续集，也可不要求先修课程观看。"
-   ],
-   "topics": [
-    "post-training",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 76.2,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://magazine.sebastianraschka.com/p/controlling-reasoning-effort-in-llms",
-      "https://mng.bz/Nwr7",
-      "https://magazine.sebastianraschka.com/p/coding-llms-from-the-ground-up",
-      "https://substackcdn.com/image/fetch/$s_!0A8p!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff0fa0f45-5efe-4937-a0e9-970b6f65ed8e_1868x986.png",
-      "https://magazine.sebastianraschka.com/p/components-of-a-coding-agent",
-      "https://amzn.to/4fqvn0D",
-      "https://amzn.to/4aAKiFY",
-      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch02/02_setup-tips",
-      "https://substackcdn.com/image/fetch/$s_!xQp0!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F67d8d671-53cc-4111-a3df-80ed733af3b5_1868x622.png",
-      "https://substackcdn.com/image/fetch/$s_!GRkU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa32da890-2402-4704-a90b-b46b4f64b95c_1544x864.png",
-      "https://www.linkedin.com/learning/ai-reasoning-models-the-building-blocks-for-the-next-generation-of-ai-applications",
-      "https://www.youtube.com/watch?v=Kh9mqTzjuEQ",
-      "https://www.youtube.com/watch?v=BJua0yjO5dk",
-      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch02",
-      "https://www.youtube.com/watch?v=JQJ_8_jSAoY",
-      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch03",
-      "https://www.youtube.com/watch?v=t5y-kS9nNxU",
-      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch04",
-      "https://www.youtube.com/watch?v=TVMyOJ_3Gxo",
-      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch05",
-      "https://www.youtube.com/watch?v=237Hf7Q3lgg",
-      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch06",
-      "https://www.youtube.com/watch?v=VxfUrUrrczs",
-      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch07",
-      "https://www.youtube.com/watch?v=msp69FR5NZs",
-      "https://github.com/rasbt/reasoning-from-scratch/tree/main/ch08",
-      "https://substackcdn.com/image/fetch/$s_!_ebf!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb9cbbdff-4cb9-47cd-9679-badef260e2f3_4284x3043.jpeg"
-     ]
-    },
     "summary_mode": "full"
    }
   },

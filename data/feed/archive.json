@@ -1,6 +1,142 @@
 {
- "generated_at": "2026-10-31T22:30:22+00:00",
+ "generated_at": "2026-11-01T22:50:48+00:00",
  "items": [
+  {
+   "id": "dd35d009aad680f7",
+   "url": "https://simonwillison.net/2026/Oct/31/how-we-took-over-chatgpt-accounts/",
+   "title": "How We Took Over ChatGPT Accounts",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-10-31T23:15:22+00:00",
+   "summary_short": "安全团队披露可窃取 ChatGPT 用户数据的漏洞链，OpenAI 已修复",
+   "summary_long": "Parameter Labs 披露其发现的一条针对 ChatGPT artifacts 机制的漏洞利用链。该机制在沙箱 iframe 中展示交互式自定义 HTML 应用（OpenAI 曾称之为 Canvas，最新版本称为 HTML previews），原文强调这些内容必须严格隔离，以免不可信代码接触 OpenAI API 或私有数据。攻击链较复杂：OpenAI 在图表支持中使用 MathLive JavaScript 库，该库自带虚拟键盘，可由沙箱 iframe 通过 postMessage() 在父页面触发；接收消息的代码使用 innerHTML，因此任何能发消息的框架都能向父页面注入自定义 HTML，且没有机制阻止其他沙箱框架（包括 HTML preview 框架）调用该方法。innerHTML 虽不直接执行 script，但可注入不受沙箱限制的新 iframe。OpenAI 的 CSP 完全禁止内联脚本，仅允许少数域名加载脚本，其中包含 YouTube，而 YouTube 的 oEmbed 端点可被用来反射并以可执行方式返回 JavaScript。在 ChatGPT 上取得 JavaScript 执行能力后，从 API 获取用户私有数据并经图片引用外传十分容易。最终可构造一个 ChatGPT 分享链接，其他已登录用户访问后私有数据可能被窃取，或被代替执行操作。OpenAI 已",
+   "key_points": [
+    "漏洞出在 ChatGPT 的 artifacts（HTML previews）沙箱 iframe，攻击者可借 MathLive 虚拟键盘的 postMessage 与 innerHTML 向父页面注入 HTML",
+    "绕过 CSP 的关键是白名单中的 YouTube：其 oEmbed 端点可反射 JavaScript 并使其执行",
+    "取得脚本执行后可读取用户私有数据并经图片引用外传，构造的分享链接会让其他已登录用户中招"
+   ],
+   "topics": [
+    "cybersecurity",
+    "privacy"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "iframes",
+     "javascript",
+     "sandboxing",
+     "security",
+     "xss"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.parameter.ai/labs/we-found-a-gap-at-openai",
+      "https://help.openai.com/en/articles/20001246-working-with-writing-blocks-and-code-blocks-in-chatgpt",
+      "https://mathlive.io/mathfield/virtual-keyboard/",
+      "https://news.ycombinator.com/item?id=50314699",
+      "https://simonwillison.net/tags/iframes",
+      "https://simonwillison.net/tags/javascript",
+      "https://simonwillison.net/tags/sandboxing",
+      "https://simonwillison.net/tags/security",
+      "https://simonwillison.net/tags/xss",
+      "https://simonwillison.net/tags/openai",
+      "https://simonwillison.net/tags/chatgpt",
+      "https://simonwillison.net/tags/content-security-policy"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "f9b8a9efbf26f92e",
+   "url": "https://github.com/guregodevo/memdoor/tree/main/examples/workflows/team-solve",
+   "title": "Memdoor: A team of 5 Qwen3.8-27B models beats Fable 5 on LiveCodeBench Hard",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-31T22:46:12+00:00",
+   "summary_short": "五个小模型组队解题，前十题均分 9.8，作者称与原作者 harness 持平",
+   "summary_long": "原文介绍 Memdoor 的 team-solve 工作流：规划、两个并行构思、求解、测试、审查、修复、验证等步骤，五个 Qwen3.8-27B 实例各持全新上下文，只通过磁盘文件交流，成败由运行公开样例的脚本判定；共八个 YAML 文件，不写代码，步骤里不指定模型。作者称这是把 GVS5H（Lee, 2026）的方法实现为 Memdoor 工作流。测试沿用原作者同款模型、提示词、循环与 128K 回复上限，在 LiveCodeBench Hard 前 10 题各跑 5 次，用修正后的评分器对全部隐藏测试打分：该工作流均值 9.8，原作者 harness 9.6，Fable 5 单次调用 8.0；50 次运行的中位耗时 40 分钟、每次 0.39 美元，合计 35.79 美元。原文明确样本仅 10 题、5 次，9.8 与 9.6 在噪声范围内，结论只是与原作者 harness 持平；污染未排除，Fable 5 的数据取自原作者文件，并非在本 harness 中运行。",
+   "key_points": [
+    "流程为 plan → ideate-a/ideate-b（并行）→ solve → test → review → repair → verify，每步一个 YAML 文件，requires 定义 DAG，底层是 mario 引擎；每个 agent 提示词要求全新上下文、读文件、不依赖对话",
+    "前 10 题各 5 次的均值：该工作流 9.8、原作者 harness 9.6、Fable 5 单次调用 8.0；50 次运行中位 40 分钟、每次 0.39 美元共 35.79 美元，跑在 OpenRouter 而非本地",
+    "原文自述局限：样本仅 10 题对原作者的 100 题，9.8 与 9.6 在噪声内，只主张与原 harness 持平；污染未排除；并记录 manager 编造错误反例致正确程序被改写、另两次正确程序被覆盖后恢复，这些均属原作者循环的缺口且原样保留"
+   ],
+   "topics": [
+    "multi-agent",
+    "coding-agent",
+    "harness"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "评测",
+    "开源项目"
+   ],
+   "horizon": "long",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 418,
+    "hn_comments": 203,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://news.ycombinator.com/item?id=50320995",
+      "https://github.com/slee-persis/GVS5H",
+      "https://memdoor.ai/docs/team-solve",
+      "https://memdoor.ai/docs/providers#a-local-runtime-no-key",
+      "https://github.com/guregodevo/mario"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "82785ab4f152db3e",
+   "url": "https://ryanmadden.net/gpt-56-beats-factorio/",
+   "title": "GPT-5.6 Sol can beat Factorio on peaceful mode",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-31T18:50:34+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "agent-loop",
+    "harness",
+    "tool-use"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 79.8,
+   "status": "published",
+   "extra": {
+    "hn_points": 176,
+    "hn_comments": 187,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.youtube.com/watch?v=kLuSDUzKYZs",
+      "https://ryanmadden.net/claude-plays-factorio/",
+      "https://ryanmadden.net/towards-automating-factorio/",
+      "https://ryanmadden.net/faketorio-an-agent-testbed/"
+     ]
+    },
+    "content_source": "direct"
+   }
+  },
   {
    "id": "58bdc6b4d6104e60",
    "url": "https://github.com/dbreunig/nesformer",
@@ -2573,40 +2709,6 @@
      ]
     },
     "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "9b13d6a721a0c270",
-   "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
-   "title": "DeepSeek-v4.1-Flash-1017",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-17T08:21:25+00:00",
-   "summary_short": "DeepSeek-V4.1-Flash 小版本更新：多项基准提升，任务更快更省",
-   "summary_long": "DeepSeek-V4.1-Flash-1017 是 DeepSeek-V4.1-Flash 的小版本更新。原文称其在推理、编码、智能体任务与视觉基准上均有明显提升，同时缩短任务执行时间与输出长度，让用户更快、更低成本地完成任务，并在多个 agent harness 上推进性能—成本帕累托前沿。原文给出与该系列前版及 K3、GLM-5.3、GPT-5.6 Sol、Opus 5 的对比数据，例如 HLE 无工具 42.6（前版 36.8）、Terminal-Bench 4.0 42.3（31.2）、DeepSWE v1.1 77.0（74.2）、BabyVision 带工具 92.5（89.6）。该版本不含 Jinja 格式 chat template，encoding 文件夹提供自包含 Python 参考实现 encoding.py 及多轮对话、工具调用、思考模式等测试用例，另发布带 Python 绑定的 Rust 库 deepseek-recipe 用于请求转换与输出解析；本地推理需参考 inference 文件夹做权重转换，推荐 temperature 与 top_p 均为 1.0、上下文 1M tokens、max_tokens≥256K，权重以 MIT 许可发布。",
-   "key_points": [
-    "定位为 DeepSeek-V4.1-Flash 的小版本更新，原文称推理、编码、智能体与视觉基准均提升，并缩短执行时间与输出长度",
-    "基准对比覆盖 DS-V4.1-Flash-1017、前版 DS-V4.1-Flash 及 K3、GLM-5.3、GPT-5.6 Sol、Opus 5，Terminal-Bench 4.0 使用 Claude Code harness、DeepSWE v1.1 使用 Mini-SWE-V2 harness",
-    "交付方式变化：不含 Jinja chat template，改为 encoding.py 参考实现与 Rust 库 deepseek-recipe；推荐 temperature 1.0、top_p 1.0、上下文 1M tokens、max_tokens≥256K，MIT 许可"
-   ],
-   "topics": [
-    "post-training",
-    "coding-agent",
-    "tool-use"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 77.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 591,
-    "hn_comments": 526,
-    "content_source": "reader",
     "summary_mode": "full"
    }
   },

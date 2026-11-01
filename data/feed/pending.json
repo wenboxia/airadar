@@ -1,81 +1,69 @@
 {
- "generated_at": "2026-10-31T22:30:22+00:00",
+ "generated_at": "2026-11-01T22:50:48+00:00",
  "items": [
   {
-   "id": "a7e11bfba6b108f7",
-   "url": "https://karpathy.bearblog.dev/hacker-tube/",
-   "title": "HackerTube",
-   "source": "Andrej Karpathy",
-   "tier": "A",
-   "published_at": "2026-10-31T17:00:00+00:00",
-   "summary_short": "用 AI 从 Hacker News 评论筛出 6454 个视频，搭成自建 YouTube 站 HackerTube",
-   "summary_long": "作者周五晚 11 点打开 YouTube，看到的是满屏低质推荐：夸张缩略图、重复老套的话题、糟糕的内容。作者承认这套算法对普通网民或许有效，但对自己无效。于是周六早上，作者让 Opus 5.5 写一个基于 Hacker News 推荐视频的 YouTube 克隆站，成果是 hackertube.org。原文称，Opus 下载了 Hacker News 的全部评论并做过滤，再用 Sonnet 以工作流处理这些评论，剔除垃圾与低质内容，最终留下 4 万条推荐 YouTube 视频的评论，对应 6454 个视频，时间跨度为 2007–2026 年，涉及 150 个话题。之后作者套上 YouTube 界面、注册域名、部署到 VPS，并做安全加固与优化。站点特点包括：内容质量较高；使用 50% 缩略图而非上传缩略图；无需账号的个性化推荐，状态存于本地浏览器会话；支持键盘快捷键；可导出站点数据交给 agent 复刻自己的版本。原文称这一流程现在约需 2 小时。",
-   "key_points": [
-    "起因是作者不满 YouTube 推荐质量：夸张缩略图、同质化话题、低质内容，认为算法不适合自己",
-    "做法是用 Opus 5.5 抓取并过滤 Hacker News 全部评论，再经 Sonnet 工作流去垃圾与低质内容，筛出 4 万条视频推荐评论",
-    "结果汇总 6454 个视频，覆盖 2007–2026 年、150 个话题，套上 YouTube 式界面并部署到 VPS"
-   ],
-   "topics": [
-    "coding-agent",
-    "product"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 74.1,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://hackertube.org/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "5b0ac3b976a1c0a5",
-   "url": "https://blog.talosintelligence.com/appraisal-by-ai-model-driven-victim-prioritization-in-the-volta-infostealer/",
-   "title": "Malware uses LLMs to rank victims by how much they're worth",
+   "id": "761e5e0baaa44518",
+   "url": "https://nolanlawson.com/2026/10/28/the-ai-cost-of-javascript-frameworks/",
+   "title": "The AI cost of JavaScript frameworks",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-31T14:29:03+00:00",
-   "summary_short": "VOLTA用LLM充当情报分析师，按变现价值给受害者资产排序",
-   "summary_long": "原文介绍名为VOLTA-AUTODOXER的自删除Windows信息窃取程序，经CAIRN研究披露。它窃取浏览器密码、Cookie、支付卡、加密货币钱包助记词、Discord/Telegram/Steam/Roblox会话、Microsoft OAuth令牌、SSH与云密钥、Wi-Fi配置和截图后，构建受害者结构化证据包，包含地理位置、住址、雇主、推断出生年份、卡号后四位、Slack工作区、文档元数据、iPhone备份迹象及Roblox账户估值，并用窃取会话查询Gmail收据、外卖订单和Discord信息。证据包序列化后POST到OpenRouter，系统提示要求模型充当“取证情报分析师”撰写目标评估，输出“WHAT THEY'RE WORTH”按低/中/高分级排列资产，以及“THEIR OPSEC”评估安全状况和密码卫生。若模型拒绝，VOLTA检查“I can’t”等措辞并沿最多三个模型回退。原文称其新意在于AI不支撑传统恶意能力，而是替操作者做情报分析。",
+   "published_at": "2026-11-01T06:06:19+00:00",
+   "summary_short": "用宝可梦应用实测各 JS 框架的 AI 生成成本与质量",
+   "summary_long": "原文针对前端社区“凭感觉做决定”的现象：框架被称“极快”、工具被称能“超充”开发，却常常没有任何证据；即便进入智能体写代码的时代，仍有人以“某框架更适合智能体”为由重写前端，同样拿不出基准数据。为此原文作者设计了一个基准测试：用 PokéAPI 做一个规模不大但完整的宝可梦应用，让智能体分别用 Next.js、Nuxt、SvelteKit 等框架/元框架构建，再用基于无障碍树（而非原始 DOM）的规范符合性测试套件校验输出以防作弊，并从开发耗时、token 消耗、代码行数、Lighthouse 性能与无障碍得分四个维度评估。为求公平，每个框架都使用其官方 MCP 或 skills；不强制 SSR/CSR 等架构，也不要求性能最大化；禁用 Tailwind、Bootstrap 等组件框架，改用规范 token 保证视觉一致；智能体在沙箱中运行，事先不知道会被 Lighthouse 测试。原文强调两点局限：该应用只是单一原型（偏内容型、交互少），且所测指标高度随机。可见原文未给出具体排名结果。",
    "key_points": [
-    "VOLTA窃取多种凭据、会话、密钥与截图后，用LLM对受害者资产按变现价值分级，并评估其OPSEC与密码卫生",
-    "默认模型为anthropic/claude-opus-4.6，回退链为moonshotai/kimi-k2、google/gemini-2.5-flash，温度设为0.2，并检查拒绝措辞",
-    "该程序自删除且无攻击者自有基础设施；原文称其AI集成 novelty 是让模型充当操作者的情报分析师"
+    "出发点：前端技术与框架选择常基于“感觉”，宣称更快、更省却缺少证据，智能体时代依然如此",
+    "方法：PokéAPI 宝可梦应用 + 各框架智能体实现 + 无障碍树符合性测试，衡量开发耗时、token、代码行数、Lighthouse 性能与无障碍分",
+    "控制变量：各框架使用官方 MCP/skills，不指定 SSR/CSR 架构，禁用 Tailwind 等组件框架，智能体在沙箱中且不知情 Lighthouse 测试"
    ],
    "topics": [
-    "cybersecurity",
-    "prompt-injection"
+    "eval",
+    "coding-agent"
    ],
-   "category": "安全",
+   "category": "评测",
    "categories": [
-    "安全"
+    "评测"
    ],
-   "horizon": "short",
-   "score": 69.6,
+   "horizon": "long",
+   "score": 69.8,
    "status": "review",
    "extra": {
-    "hn_points": 223,
-    "hn_comments": 119,
+    "hn_points": 270,
+    "hn_comments": 209,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://blog.talosintelligence.com/author/ryan-fetterman/",
-      "https://blog.talosintelligence.com/introducing-cairn-frontier-tracking-for-ai-integrated-malware/",
-      "https://blog.talosintelligence.com/the-closed-quorum-inside-the-first-reported-autonomous-ai-c2-implant/",
-      "https://www.facebook.com/sharer.php?u=https://blog.talosintelligence.com/appraisal-by-ai-model-driven-victim-prioritization-in-the-volta-infostealer/",
-      "https://x.com/share?url=https://blog.talosintelligence.com/appraisal-by-ai-model-driven-victim-prioritization-in-the-volta-infostealer/",
-      "https://www.linkedin.com/sharing/share-offsite/?url=https://blog.talosintelligence.com/appraisal-by-ai-model-driven-victim-prioritization-in-the-volta-infostealer/",
-      "https://www.reddit/submit?url=https://blog.talosintelligence.com/appraisal-by-ai-model-driven-victim-prioritization-in-the-volta-infostealer/"
+      "https://www.youtube.com/watch?v=0XwWVjQOmyg",
+      "https://www.baldurbjarnason.com/2022/programming-is-a-pop-culture/",
+      "https://infrequently.org/2018/09/the-developer-experience-bait-and-switch/",
+      "https://en.wikipedia.org/wiki/The_Righteous_Mind#Key_concepts_and_scholars_discussed",
+      "https://pokeapi.co/",
+      "https://pocketjavascript.com/blog/2015/11/23/introducing-pokedex-org/",
+      "https://developer.chrome.com/docs/lighthouse/",
+      "https://jasonformat.com/application-holotypes/",
+      "https://svelte.dev/docs/kit/migrating-to-sveltekit-3",
+      "https://svelte.dev/blog/sveltekit-3-is-here",
+      "https://angular.dev/ai/mcp",
+      "https://angular.dev/ai/agent-skills",
+      "https://docs.astro.build/en/guides/build-with-ai/",
+      "https://hono.dev/docs/agents",
+      "https://nextjs.org/docs/app/guides/ai-agents",
+      "https://nuxt.com/docs/4.x/guide/ai",
+      "https://github.com/remix-run/react-router/tree/main/.agents/skills/react-router",
+      "https://svelte.dev/docs/ai/claude-plugin",
+      "https://github.com/nolanlawson/agent-framework-benchmark/blob/b95ada03930ca3670c8ff6377c3af815df0ac040/bench/frameworks.mjs#L15C13-L15C79",
+      "https://web.dev/explore/learn-core-web-vitals",
+      "https://github.com/nolanlawson/agent-framework-benchmark-results/blob/98aa834240926ae1bd2739453cdae29be9cd918e/20261026/next-2/agent/repo/app/src/components/PokemonCard.tsx#L16-L23",
+      "https://github.com/nolanlawson/agent-framework-benchmark-results/blob/98aa834240926ae1bd2739453cdae29be9cd918e/20261026/next-5/agent/repo/app/src/components/PokemonCard.tsx#L20",
+      "https://github.com/nolanlawson/agent-framework-benchmark-results/blob/98aa834240926ae1bd2739453cdae29be9cd918e/20261026/next-1/agent/repo/app/src/components/pokemon-cards.tsx#L10",
+      "https://github.com/nolanlawson/agent-framework-benchmark-results/blob/98aa834240926ae1bd2739453cdae29be9cd918e/20261026/next-3/agent/repo/app/components/PokemonCards.tsx#L13",
+      "https://github.com/nolanlawson/agent-framework-benchmark-results/blob/98aa834240926ae1bd2739453cdae29be9cd918e/20261026/next-4/agent/repo/app/src/components/PokemonCard.tsx#L19",
+      "https://github.com/nolanlawson/agent-framework-benchmark-results/blob/98aa834240926ae1bd2739453cdae29be9cd918e/20261026/gracile-4/agent/repo/app/src/routes/(home).client.ts#L7",
+      "https://github.com/nolanlawson/agent-framework-benchmark-results/blob/98aa834240926ae1bd2739453cdae29be9cd918e/20261026/gracile-2/agent/repo/app/src/client/pokemon-browser.ts#L6",
+      "https://github.com/nolanlawson/agent-framework-benchmark/blob/cfb0cf176f16014fd00d12ca875777a2e7f2e762/template/SPEC.md?plain=1#L35-L36",
+      "https://youtu.be/AdNJ3fydeao?t=411",
+      "https://github.com/nolanlawson/agent-framework-benchmark",
+      "https://toot.cafe/@nolan/117519051277607728",
+      "https://news.ycombinator.com/item?id=50323088"
      ]
     },
     "content_source": "direct",
@@ -83,128 +71,59 @@
    }
   },
   {
-   "id": "18eadc7cf156685b",
-   "url": "https://latent.space/p/arca/",
-   "title": "Agents Prompt People: Using Agents for Long-Horizon Financial Work",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-10-31T16:05:00+00:00",
-   "summary_short": "Arca用智能体承担长达十天的长周期金融工作，人类顾问保留最终决策",
-   "summary_long": "在AI Engineer New York上，Arca首席AI工程师Aman Singh介绍了这家“AI原生”财富管理公司如何用智能体承担长周期金融工作。他说这类任务“长周期但并非长时间连续运行”，单个任务可长达十天，中间有大量停顿、决策点和交接，因此Arca自建内部记忆系统，为每位客户维护持久状态：已发生什么、接下来追踪什么、未来几天要做什么、长期跟踪什么、哪个人负责哪项动作。模型上，Arca使用Anthropic、OpenAI等前沿实验室的模型，以Claude为主，并自研harness按内部基准自动为任务选择最佳模型，同时保留更换供应商的灵活性。安全方面，智能体只做分析与提出方案，交易和资金移动由人类顾问执行；Singh称所有安全限制都是完全确定性的，把决策从智能体手中拿走；公司还对提示注入等已知问题做验证检查，智能体本身不在沙箱中运行，但计算使用沙箱，并把智能体写的代码转换成严格格式、丢弃原代码、在后端前加护栏。此外，Arca用人类顾问反馈与智能体trace训练“元智能体”，由其提出harness改进建议。",
-   "key_points": [
-    "智能体任务可长达十天，属“长周期但非长时间连续运行”，Arca自建按客户持久化的记忆系统，追踪进展、下一步动作与责任人",
-    "自研harness按内部基准自动为任务选择模型，主要使用Claude，同时保留更换模型供应商的灵活性",
-    "智能体只负责分析与提出方案，交易及资金移动由人类顾问执行，安全限制“完全确定性”；对提示注入等已知问题做验证检查，智能体不在沙箱内但计算走沙箱，代码转成严格格式并加护栏后才触达后端"
-   ],
-   "topics": [
-    "memory",
-    "harness",
-    "prompt-injection"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "安全"
-   ],
-   "horizon": "long",
-   "score": 68.9,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://ai.engineer/nyc/2026/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.linkedin.com/in/amanps/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://arcawealth.ai/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=100s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=160s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=241s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=325s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=440s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=562s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=662s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=734s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=826s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=905s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=969s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=1120s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=1191s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=1232s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=1342s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=KM3VQZKjpiY&t=1421s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "5a7b69bb0c03782b",
-   "url": "https://www.qbitai.com/2026/10/506785.html",
-   "title": "AI零帧起手写算子，反超DeepSeek人类手写巅峰：快了9.8%！",
+   "id": "7049b5553d5bda52",
+   "url": "https://www.qbitai.com/2026/11/506990.html",
+   "title": "老牌便利店机器人售货折戟：实验室锤炼上万次，货架前还是摔瓶子",
    "source": "量子位",
    "tier": "B",
-   "published_at": "2026-10-30T11:05:06+00:00",
-   "summary_short": "面壁ForgeKernel零源码直播22.5小时自写算子，反超DeepSeek FlashMLA 9.8%",
-   "summary_long": "原文称，面壁智能的算子生成系统ForgeKernel在无人参与、没有源码和论文的情况下，仅凭算子的数学定义与目标硬件约束，在英伟达B200上通过22.5小时直播、42轮迭代产出32个版本，用1张B200和22个GPU小时，把DeepSeek-V4.1的FlashMLA Prefill算子耗时从首版1834微秒降至472微秒，而FlashMLA为518微秒，即快9.8%，人类为此写的代码为0行。此前10月27日昇腾CANN官方发文称其同时登顶CANNBench 950DT、950PR、A3三张榜单。团队与清华大学等机构在arXiv发表JustGoal论文，只给优化目标、不给算子知识，B200上10个算子有8个跑赢人类维护的开源库。ForgeKernel的做法是把架构设计与实现能力分离、将实测硬件经验存入知识库、以自身最佳版本为对手迭代。原文称其在29项对比中24项打平或超越专家实现，且方法不绑定具体硬件，迁移昇腾只需把性能分析工具从NCU换成msprof。目前生成的算子已接入训练框架，在国产芯片与英伟达平台完成MiniCPM5-1B长训测试，并已开源。",
+   "published_at": "2026-11-01T07:50:57+00:00",
+   "summary_short": "红旗连锁机器人售货研发16个月后终止，真实货架抓取难题暴露",
+   "summary_long": "2025年3月，红旗连锁公告研发机器人无人售货系统，称已完成实验室软硬件测试，但提示机械臂抓取失误率高、视觉识别受光照影响、避障与数据传输稳定等不足。研发16个月后，2026年7月初公司公告终止项目，称系统暂未达到大规模商业化落地标准，转为24小时云值守业务。接近红旗人士称，夏季玻璃瓶冷饮结水珠机器人拿不稳总摔碎，复杂包装、窄过道及周围有顾客店员等真实场景也比实验复杂。2025年年报研发费用约286.68万元，原文据此推断项目支出约280万元。行业层面，机器人零售仓已落地30余城超100个，至少十余家公司做零售项目，但走访显示多数机器人只承担取货，需人值守补货充电，不能独立理货售货。",
    "key_points": [
-    "直播中第一版耗时1834微秒，不到4小时降到593微秒，最终472微秒，对比FlashMLA的518微秒快9.8%",
-    "10月27日昇腾CANN官方称其同时登顶CANNBench 950DT、950PR、A3三榜，A3榜总分4341.16、基准加速比1.898×",
-    "方法为架构设计与实现分离、把实测硬件经验存入知识库、以自身最佳版本为对手自进化，且不依赖特定硬件"
+    "红旗连锁2025年3月公告研发机器人无人售货系统，2026年7月初终止，称系统暂未达到大规模商业化落地标准，转做24小时云值守。",
+    "红旗此前提示机械臂抓取失误率高、视觉识别受光照影响、避障和数据传输稳定等不足；业内人士称玻璃瓶冷饮结水珠拿不稳摔碎，真实场景更复杂。",
+    "机器人零售已在30余城落地超100个零售仓，至少十余家公司参与，但走访显示多数机器人只取货，需人工值守补货充电，不能独立理货售货。"
    ],
    "topics": [
-    "reasoning",
-    "coding-agent",
-    "post-training"
+    "robotics",
+    "retail-automation"
    ],
-   "category": "模型",
+   "category": "行业动态",
    "categories": [
-    "模型",
-    "Agent 与开发"
+    "行业动态"
    ],
-   "horizon": "long",
-   "score": 66.7,
+   "horizon": "short",
+   "score": 65.8,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
      "资讯",
-     "首页轮播",
-     "Deepseek",
-     "ForgeKernel",
-     "算子"
+     "机器人"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.qbitai.com/author/shisan",
+      "https://www.qbitai.com/author/jay",
       "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/deepseek",
-      "https://www.qbitai.com/tag/forgekernel",
-      "https://www.qbitai.com/tag/%e7%ae%97%e5%ad%90",
-      "https://www.qbitai.com/tag/%e9%9d%a2%e5%a3%81%e6%99%ba%e8%83%bd",
-      "https://www.qbitai.com/2026/10/505186.html",
-      "https://www.qbitai.com/2026/10/506376.html",
-      "https://www.qbitai.com/2026/10/505454.html",
-      "https://www.qbitai.com/2026/10/503109.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/506785.html&title=AI零帧起手写算子，反超DeepSeek人类手写巅峰：快了9.8%！&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2025/08/324282.html",
-      "https://www.qbitai.com/tag/deepseek-v3",
-      "https://www.qbitai.com/tag/%e5%ae%9e%e6%b5%8b",
-      "https://www.qbitai.com/tag/%e5%bc%80%e6%ba%90",
-      "https://www.qbitai.com/2025/02/258072.html",
-      "https://www.qbitai.com/tag/%e9%80%9a%e4%bf%a1%e5%ba%93",
-      "https://www.qbitai.com/2025/02/253378.html",
-      "https://www.qbitai.com/tag/gpt-5",
-      "https://www.qbitai.com/tag/openai",
-      "https://www.qbitai.com/2025/02/257487.html",
-      "https://www.qbitai.com/2025/03/263194.html",
-      "https://www.qbitai.com/tag/%e9%98%bf%e9%87%8c",
-      "https://www.qbitai.com/2026/08/467487.html",
-      "https://www.qbitai.com/tag/%e5%ae%87%e6%a0%91",
-      "https://www.qbitai.com/tag/%e6%a2%81%e6%96%87%e9%94%8b",
-      "https://www.qbitai.com/tag/%e7%8e%8b%e5%85%b4%e5%85%b4",
+      "https://www.qbitai.com/tag/%e6%9c%ba%e5%99%a8%e4%ba%ba",
+      "https://www.qbitai.com/2026/11/506922.html",
+      "https://www.qbitai.com/2026/10/506686.html",
+      "https://www.qbitai.com/2026/10/506674.html",
+      "https://www.qbitai.com/2026/10/504517.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/506990.html&title=老牌便利店机器人售货折戟：实验室锤炼上万次，货架前还是摔瓶子&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2023/07/67403.html",
+      "https://www.qbitai.com/tag/%e5%85%b7%e8%ba%ab%e6%99%ba%e8%83%bd",
+      "https://www.qbitai.com/tag/%e6%9d%8e%e9%a3%9e%e9%a3%9e",
+      "https://www.qbitai.com/2025/12/359560.html",
+      "https://www.qbitai.com/2019/05/2714.html",
+      "https://www.qbitai.com/tag/%e8%87%aa%e5%8a%a8%e9%a9%be%e9%a9%b6",
+      "https://www.qbitai.com/2025/08/322361.html",
+      "https://www.qbitai.com/2021/06/24655.html",
+      "https://www.qbitai.com/tag/%e5%88%9b%e6%96%b0",
+      "https://www.qbitai.com/tag/%e6%b7%b1%e5%ba%a6%e5%ad%a6%e4%b9%a0",
+      "https://www.qbitai.com/2022/09/37677.html",
+      "https://www.qbitai.com/tag/%e8%85%be%e8%ae%af",
       "https://www.qbitai.com/2026/10/505551.html",
       "https://www.qbitai.com/2026/10/506227.html",
       "https://www.qbitai.com/2026/10/505407.html",
@@ -216,6 +135,304 @@
       "https://beian.miit.gov.cn/"
      ]
     },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "7a06514023fd7da4",
+   "url": "https://simonwillison.net/2026/Nov/1/kyle-kingsbury/",
+   "title": "Quoting Kyle Kingsbury",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-01T16:49:04+00:00",
+   "summary_short": "Kyle Kingsbury：LLM 的使用正在侵蚀人们对文档、软件及其背后组织的信任",
+   "summary_long": "这段引文来自 Kyle Kingsbury 关于 Jepsen 对 ParticleDB 1.1.4 的测试结果。他提出，从更广的范围看，LLM 的使用正在侵蚀人们对文档、软件以及产出这些软件的组织所抱有的信任。他提到，工程师或许会开始对任何新软件项目抱有怀疑：过去被当作成熟系统标志的那些信号，如今更容易被伪造。在此基础上，他留下两个问题：在 LLM 时代，维护者能做些什么来确保软件正确、文档准确？在完成这些工作之后，他们又如何向用户证明其质量？原文未给出答案，也未展开具体案例或数据，仅以 llms、ai、generative-ai、ai-misuse 等标签归类。",
+   "key_points": [
+    "LLM 的使用正在侵蚀人们对文档、软件以及产出这些软件的组织所抱有的信任。",
+    "过去被视为成熟系统标志的信号如今更容易被伪造，因此工程师可能对任何新软件项目持怀疑态度。",
+    "原文以两个问题收尾：维护者如何确保软件与文档的正确性，以及如何向用户证明其质量；但未给出答案。"
+   ],
+   "topics": [
+    "hallucination",
+    "open-source"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 65.4,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "kyle-kingsbury",
+     "llms",
+     "ai",
+     "generative-ai",
+     "ai-misuse"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://jepsen.io/analyses/particledb-1.1.4#llm-tradeoffs",
+      "https://simonwillison.net/tags/kyle-kingsbury",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/ai-misuse"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "246d4261b40fdeb3",
+   "url": "https://www.qbitai.com/2026/10/506904.html",
+   "title": "刚刚，DeepSeek重磅开源：Agent底座架构！",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-10-31T13:49:44+00:00",
+   "summary_short": "DeepSeek开源Super-agent底座架构，AI可无人派活自行发现Bug并提交PR",
+   "summary_long": "DeepSeek公开了Personal Agent的底层架构思路《Super-agent：迈向更自主的Agent系统》，并给出GitHub原型仓库。原文指出，开发者常在IM群聊讨论方案、到GitHub提交代码、再按PR评论修改，传统Coding Agent把这些操作分散在不同会话里，需要人自己记进度、补上下文；而一个人通常只能同时跟进3到5个活跃Session，多任务协作效率受人类注意力限制。Super-agent提出连续、高效、主动、持久四个特征，采用Router加Worker的双层架构：Router接收消息、分配任务、维护全局上下文，Worker并行执行具体任务，并通过订阅与直通机制让Worker直接接收PR后续评论。它还使用投机执行提前在后台尝试复现Bug或准备会议回复草稿，用两级事件过滤（程序规则筛除加大模型判断）控制Token消耗，引入异步ReAct Loop（已在DeepSeek Harness中实现但未默认开启）、计算与状态及执行环境分离以支持离线续跑，以及独立Watchdog监督故障与无效循环。实测在约300条消息、20项工作请求的环境中，任务完成时间中位数12.4分钟、95分位15.7分钟，传统单Session方案在中性提示下95分位为29.5分钟；取消事件直通后Router决策次数增加约30%、读取缓存Token增加约37%。",
+   "key_points": [
+    "Super-agent面向多平台多任务场景，可在无人@、无人下指令时自行发现Bug、定位并提交修复PR，并跨IM群聊与GitHub PR评审延续同一任务上下文。",
+    "架构为上层Router统筹调度与全局上下文、下层多个Worker并行执行，并设订阅与直通机制让Worker直接接收后续评论，减少Router转发。",
+    "配套机制包括投机执行、两级事件过滤、异步ReAct Loop、计算/状态/执行环境分离与独立Watchdog，支撑24小时在线与异常自动恢复。"
+   ],
+   "topics": [
+    "multi-agent",
+    "agent-loop",
+    "context-engineering"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 62.6,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "Deepseek"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/mengyao",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/deepseek",
+      "https://www.qbitai.com/2026/10/506884.html",
+      "https://www.qbitai.com/2026/10/506866.html",
+      "https://www.qbitai.com/2026/10/506855.html",
+      "https://www.qbitai.com/2026/10/505108.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/10/506904.html&title=刚刚，DeepSeek重磅开源：Agent底座架构！&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2025/02/255619.html",
+      "https://www.qbitai.com/tag/%e7%99%be%e5%ba%a6%e6%90%9c%e7%b4%a2",
+      "https://www.qbitai.com/2025/06/290445.html",
+      "https://www.qbitai.com/tag/ai%e5%8c%bb%e7%96%97%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95",
+      "https://www.qbitai.com/2026/01/369302.html",
+      "https://www.qbitai.com/2026/10/503093.html",
+      "https://www.qbitai.com/2025/02/257612.html",
+      "https://www.qbitai.com/2026/08/471642.html",
+      "https://www.qbitai.com/2026/10/505551.html",
+      "https://www.qbitai.com/2026/10/506227.html",
+      "https://www.qbitai.com/2026/10/505407.html",
+      "https://www.qbitai.com/2026/10/505799.html",
+      "https://www.qbitai.com/2026/10/505928.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "8f7e0709d34eb152",
+   "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/ai-agent-swarms-unleashed-in-minecraft-to-build-a-thriving-civilization-50-agent-teams-fail-after-falling-into-paralyzing-bureaucracy",
+   "title": "AI agent swarms in Minecraft fail to build civilization, drown in bureaucracy",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-01T13:47:24+00:00",
+   "summary_short": "原文内容缺失，仅剩网页导航，无法概括",
+   "summary_long": "本次提供的【原文】不包含任何文章正文，通篇是网站导航、会员推广、订阅入口、地区版本切换与页脚等界面性文本（如加入会员、解锁高级内容、性能数据库、路线图、邮件订阅等链接条目），没有可用于摘要的报道主体。原文未详述研究由谁开展、使用了什么方法、涉及多少智能体或团队、在《我的世界》中的具体任务设定、失败表现与数据、以及是否引用了研究者或论文来源；也没有给出任何结论或评论。由于缺少可核验的内容，本文无法按背景、核心内容、意义三个层次撰写摘要，否则会构成推测与补充。建议补充文章正文后重新生成摘要，届时可依原文事实进行压缩与提炼，并严格区分标题元数据与正文信息。",
+   "key_points": [
+    "【原文】只有网站导航与会员/订阅界面文本，没有文章正文",
+    "原文未详述研究方、作者、实验设置、智能体数量与失败数据",
+    "无法据现有材料进行概括，任何结论性描述都会属于外推"
+   ],
+   "topics": [
+    "multi-agent",
+    "eval"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测"
+   ],
+   "horizon": "short",
+   "score": 57.6,
+   "status": "review",
+   "extra": {
+    "hn_points": 139,
+    "hn_comments": 63,
+    "content_source": "reader",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "96603222f1ad2f3a",
+   "url": "https://www.qbitai.com/2026/11/507031.html",
+   "title": "清华姚期智团队新作：代数世界模型，让AI像牛顿一样思考",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-11-01T08:02:37+00:00",
+   "summary_short": "清华团队提出代数世界模型AWM，让AI从试错转向形式化证明",
+   "summary_long": "原文围绕“AI能否像牛顿一样从现象中提炼规律”展开。团队指出，ARC-AGI-3游戏不提供规则和目标，顶级模型虽能生成符号化规则并取得高分，但这类规则更像第谷的观测记录，只描述现象；面对被改为无解的关卡，模型会给出错误的最低步数判断。清华姚期智、袁洋团队提出代数世界模型（AWM），把游戏对象、关系和规则抽象为代数世界，经探索写成Python假设、凝炼为通用规则、再用Lean 4形式化证明。基于Opus 5.5的AWM两次尝试即证明某关无解且再多一步可胜；在ARC-AGI-3上183关全部通关、得分99.9%，平均动作数为人类基准43%。其思路借鉴范畴论的投射极限与归纳极限。原文也指出边界：证明基于已观测世界，探索不全则只是局部真理。",
+   "key_points": [
+    "ARC-AGI-3不提供规则与目标，顶级模型生成的符号规则只描述现象，面对无解关卡会给出错误步数判断。",
+    "AWM将对象、关系和规则抽象为代数世界，按探索、凝炼、证明三步，用Python假设和Lean 4形式化。",
+    "在ARC-AGI-3上183关全通、得分99.9%，平均动作数为人类43%；原文称其证明依赖观测范围，探索不全只是局部真理。"
+   ],
+   "topics": [
+    "reasoning",
+    "harness"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 56.5,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "世界模型"
+    ],
+    "outbound": {
+     "arxiv": [
+      "2610.40503"
+     ],
+     "links": [
+      "https://www.qbitai.com/author/jay",
+      "https://www.qbitai.com",
+      "https://ephemeral6.github.io/awm-site/",
+      "https://www.qbitai.com/tag/%e4%b8%96%e7%95%8c%e6%a8%a1%e5%9e%8b",
+      "https://www.qbitai.com/2026/11/506990.html",
+      "https://www.qbitai.com/2026/11/506922.html",
+      "https://www.qbitai.com/2026/10/506686.html",
+      "https://www.qbitai.com/2026/10/506674.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/507031.html&title=清华姚期智团队新作：代数世界模型，让AI像牛顿一样思考&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2026/04/410791.html",
+      "https://www.qbitai.com/tag/ai",
+      "https://www.qbitai.com/tag/%e4%ba%ba%e5%b7%a5%e6%99%ba%e8%83%bd",
+      "https://www.qbitai.com/2025/09/332582.html",
+      "https://www.qbitai.com/tag/%e5%ae%87%e6%a0%91%e6%9c%ba%e5%99%a8%e4%ba%ba",
+      "https://www.qbitai.com/2025/01/242451.html",
+      "https://www.qbitai.com/tag/4d",
+      "https://www.qbitai.com/tag/%e6%99%ba%e5%85%83%e6%9c%ba%e5%99%a8%e4%ba%ba",
+      "https://www.qbitai.com/2026/03/391698.html",
+      "https://www.qbitai.com/tag/yann-lecun",
+      "https://www.qbitai.com/2026/06/436148.html",
+      "https://www.qbitai.com/tag/%e5%85%b7%e8%ba%ab%e6%99%ba%e8%83%bd",
+      "https://www.qbitai.com/tag/%e5%a4%a7%e6%99%93%e6%9c%ba%e5%99%a8%e4%ba%ba",
+      "https://www.qbitai.com/2026/02/377835.html",
+      "https://www.qbitai.com/tag/%e6%b8%85%e5%8d%8e%e5%a4%a7%e5%ad%a6",
+      "https://www.qbitai.com/tag/%e7%94%9f%e6%95%b0%e7%a7%91%e6%8a%80",
+      "https://www.qbitai.com/2026/10/505551.html",
+      "https://www.qbitai.com/2026/10/506227.html",
+      "https://www.qbitai.com/2026/10/505407.html",
+      "https://www.qbitai.com/2026/10/506904.html",
+      "https://www.qbitai.com/2026/10/505799.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "e07ec5d69c955902",
+   "url": "https://twitter.com/jiahaoshao1/status/2116475922190922088",
+   "title": "Anthropic blocks users for anything touching training larger models",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-31T19:39:19+00:00",
+   "summary_short": "用户称未蒸馏Claude，却因RFT/SFT等操作被Anthropic封禁或降级",
+   "summary_long": "原文是一条帖文（署名 Jiahao Shao），作者公开指责 Anthropic 及其 CEO Dario Amodei。作者称自己从未蒸馏 Claude，其 rollout 来自一个强的开源模型，Claude 只是用来提交任务和运行分析；但仍被标记为“训练竞争对手”。此后凡是涉及 RFT、SFT 或训练更大模型的操作，都会导致被封禁、Opus 5.5 被降级为 Opus 5，或会话被直接终止。作者还批评 Anthropic 用全球数据训练自己的模型，却把做研究自动化的付费用户当成敌人。帖文时间为 10 月 31 日，显示浏览量 275.8K。原文未提供 Anthropic 方面的回应，也未详述相关政策的条款细节。",
+   "key_points": [
+    "作者称自己未蒸馏 Claude，rollout 来自另一个强的开源模型，Claude 仅用于提交任务和分析",
+    "作者称被标记为“训练竞争对手”，此后涉及 RFT、SFT 或训练更大模型即被封禁、Opus 5.5 降级为 Opus 5 或会话终止",
+    "帖文批评 Anthropic 用全球数据训练模型，却把做研究自动化的付费用户视为敌人，原文未含 Anthropic 回应"
+   ],
+   "topics": [
+    "platform-policy",
+    "account-bans",
+    "distillation"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 51.2,
+   "status": "review",
+   "extra": {
+    "hn_points": 448,
+    "hn_comments": 250,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "4b795773d113de2c",
+   "url": "https://blog.raed.dev/posts/proton-loser-thinking/",
+   "title": "It wasn't AI that flipped Proton's charge",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-01T18:53:55+00:00",
+   "summary_short": "Proton CEO痛斥工程师要求安全测试，作者认为问题在领导层而非AI",
+   "summary_long": "作者多年付费使用Proton，并常向想离开Gmail的人推荐它。本周404 Media发表调查报道，称Proton管理层正推动AI进入公司内部。引发传播的细节来自安全Slack频道：一名工程师请求多给几天时间，在新代码上线前做渗透测试，CEO Andy Yen回复这是\"bullshit and loser thinking\"，并让团队别再精心手工写代码、多用AI。员工还被告知AI使用情况可能决定其职位去留；该计划泄露后被撤回，Yen称它已达成目的。作者认为这被当成AI话题是误读：工程师用AI写代码已是常态，只要有评审、测试和明确责任人就没问题；报道描述的是CEO当众把提出安全顾虑说成\"失败者思维\"，不少公司引入编码智能体也没羞辱任何人，若Proton做不到，问题在领导层。作者指出，Proton是隐私公司，用户付费买的就是开发者的谨慎，一次泄露邮件的缺陷会是致命的。有员工在Reddit为公司辩护称Yen并不反对渗透测试、只要不拖慢流程，作者视之为危机公关式的拙劣带节奏。作者说自己仍想继续推荐Proton，但这取决于那位要求多几天测试的工程师能否赢过痴迷速度的领导层。",
+   "key_points": [
+    "404 Media调查称Proton领导层推动内部使用AI，安全频道中工程师请求几天做渗透测试，CEO Andy Yen称其为\"bullshit and loser thinking\"并要求多用AI",
+    "员工被告知AI使用情况可能影响职位去留，计划泄露后被撤回，Yen称其已达成目的",
+    "作者认为关键不是AI而是领导层：AI写代码需评审、测试与责任人，多家公司引入编码智能体并未羞辱员工"
+   ],
+   "topics": [
+    "coding-agent",
+    "privacy"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 50.2,
+   "status": "review",
+   "extra": {
+    "hn_points": 130,
+    "hn_comments": 79,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.404media.co/manifestos-fear-and-loser-thinking-inside-protons-ai-reckoning/",
+      "https://www.404media.co/proton-to-re-interview-staff-about-ai-to-see-who-gets-to-keep-their-job/",
+      "https://www.404media.co/protons-ceo-cancels-ai-re-interviews/",
+      "https://en.wikipedia.org/wiki/2024_CrowdStrike-related_IT_outages",
+      "https://www.reddit.com/r/ProtonMail/comments/1xkezig/im_a_proton_employee_and_im_breaking_my_silence/",
+      "https://www.reddit.com/r/ProtonMail/comments/1xl1uvx/why_im_staying_at_proton_and_what_i_think_needs/"
+     ]
+    },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   }

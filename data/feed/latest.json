@@ -1,43 +1,138 @@
 {
- "generated_at": "2026-10-31T22:30:22+00:00",
- "date": "2026-10-31",
- "run_id": "20261031-222922",
+ "generated_at": "2026-11-01T22:50:48+00:00",
+ "date": "2026-11-01",
+ "run_id": "20261101-224942",
  "top": [
   {
-   "id": "58bdc6b4d6104e60",
-   "url": "https://github.com/dbreunig/nesformer",
-   "title": "Show HN: A working Nintendo in ~1GB of Qwen weights",
+   "id": "82785ab4f152db3e",
+   "url": "https://ryanmadden.net/gpt-56-beats-factorio/",
+   "title": "GPT-5.6 Sol can beat Factorio on peaceful mode",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-30T16:40:22+00:00",
-   "summary_short": "NES 的 6502 CPU 被编译器写入 Qwen3.5 权重，模型逐 token 预测执行来跑游戏",
-   "summary_long": "nesformer 把 NES 的 6502 CPU（2A03 芯片核心）、2 KB 工作内存和卡带程序 ROM 一起放进一个标准 Qwen3_5ForCausalLM checkpoint 里运行。原文强调这些权重不是训练出来的，而是由编译器逐项计算得到；玩游戏时，模型逐 token 预测 CPU 的执行日志，画面绘制、手柄读取和 vblank 中断触发则由一个小的宿主程序完成。项目基于 Divyansh Agrawal 的 Qwenputer（曾把 CHIP-8 和 RISC-V CPU 编译进 Qwen3.5-4B），复用了它的编译器和核心技巧：用模型的 Gated DeltaNet 状态充当机器内存。原文展示的《超级马力欧兄弟》World 1-1 画面中，所有 CPU token 均由模型产生；对随附的测试游戏，每一帧都与传统 6502 模拟器输出完全一致。使用上，首轮需约 20 秒用 numba 编译引擎，之后每帧耗时 1 至 6 秒，600 帧约需 25 分钟；支持 iNES mapper 0（NROM）的 ROM，同一份权重可直接跑任意 NROM 游戏、无需重建，其他板卡的游戏会停下并给出提示。",
-   "key_points": [
-    "6502 CPU、2 KB 工作内存和卡带 ROM 都运行在标准 Qwen3.5 权重内，权重由编译器计算而非训练得到",
-    "模型逐 token 预测 CPU 执行日志，宿主程序负责画面、手柄与 vblank 中断，复用 Qwenputer 的编译器及“Gated DeltaNet 状态即内存”技巧",
-    "支持 NROM（iNES mapper 0）ROM，同一权重无需重建即可换游戏；随附测试游戏每帧输出与传统 6502 模拟器完全一致，速度约每帧 1 至 6 秒"
-   ],
+   "published_at": "2026-10-31T18:50:34+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
    "topics": [
-    "product",
-    "weights-as-program"
+    "agent-loop",
+    "harness",
+    "tool-use"
    ],
-   "category": "产品与应用",
+   "category": "Agent 与开发",
    "categories": [
-    "产品与应用",
-    "开源项目"
+    "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 77.4,
+   "score": 79.8,
    "status": "published",
    "extra": {
-    "hn_points": 282,
-    "hn_comments": 144,
+    "hn_points": 176,
+    "hn_comments": 187,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/divagr18/qwenputer",
-      "https://divagr.com/blog/qwenputer",
-      "https://github.com/pinobatch/thwaite-nes"
+      "https://www.youtube.com/watch?v=kLuSDUzKYZs",
+      "https://ryanmadden.net/claude-plays-factorio/",
+      "https://ryanmadden.net/towards-automating-factorio/",
+      "https://ryanmadden.net/faketorio-an-agent-testbed/"
+     ]
+    },
+    "content_source": "direct"
+   }
+  },
+  {
+   "id": "dd35d009aad680f7",
+   "url": "https://simonwillison.net/2026/Oct/31/how-we-took-over-chatgpt-accounts/",
+   "title": "How We Took Over ChatGPT Accounts",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-10-31T23:15:22+00:00",
+   "summary_short": "安全团队披露可窃取 ChatGPT 用户数据的漏洞链，OpenAI 已修复",
+   "summary_long": "Parameter Labs 披露其发现的一条针对 ChatGPT artifacts 机制的漏洞利用链。该机制在沙箱 iframe 中展示交互式自定义 HTML 应用（OpenAI 曾称之为 Canvas，最新版本称为 HTML previews），原文强调这些内容必须严格隔离，以免不可信代码接触 OpenAI API 或私有数据。攻击链较复杂：OpenAI 在图表支持中使用 MathLive JavaScript 库，该库自带虚拟键盘，可由沙箱 iframe 通过 postMessage() 在父页面触发；接收消息的代码使用 innerHTML，因此任何能发消息的框架都能向父页面注入自定义 HTML，且没有机制阻止其他沙箱框架（包括 HTML preview 框架）调用该方法。innerHTML 虽不直接执行 script，但可注入不受沙箱限制的新 iframe。OpenAI 的 CSP 完全禁止内联脚本，仅允许少数域名加载脚本，其中包含 YouTube，而 YouTube 的 oEmbed 端点可被用来反射并以可执行方式返回 JavaScript。在 ChatGPT 上取得 JavaScript 执行能力后，从 API 获取用户私有数据并经图片引用外传十分容易。最终可构造一个 ChatGPT 分享链接，其他已登录用户访问后私有数据可能被窃取，或被代替执行操作。OpenAI 已",
+   "key_points": [
+    "漏洞出在 ChatGPT 的 artifacts（HTML previews）沙箱 iframe，攻击者可借 MathLive 虚拟键盘的 postMessage 与 innerHTML 向父页面注入 HTML",
+    "绕过 CSP 的关键是白名单中的 YouTube：其 oEmbed 端点可反射 JavaScript 并使其执行",
+    "取得脚本执行后可读取用户私有数据并经图片引用外传，构造的分享链接会让其他已登录用户中招"
+   ],
+   "topics": [
+    "cybersecurity",
+    "privacy"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "iframes",
+     "javascript",
+     "sandboxing",
+     "security",
+     "xss"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.parameter.ai/labs/we-found-a-gap-at-openai",
+      "https://help.openai.com/en/articles/20001246-working-with-writing-blocks-and-code-blocks-in-chatgpt",
+      "https://mathlive.io/mathfield/virtual-keyboard/",
+      "https://news.ycombinator.com/item?id=50314699",
+      "https://simonwillison.net/tags/iframes",
+      "https://simonwillison.net/tags/javascript",
+      "https://simonwillison.net/tags/sandboxing",
+      "https://simonwillison.net/tags/security",
+      "https://simonwillison.net/tags/xss",
+      "https://simonwillison.net/tags/openai",
+      "https://simonwillison.net/tags/chatgpt",
+      "https://simonwillison.net/tags/content-security-policy"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "f9b8a9efbf26f92e",
+   "url": "https://github.com/guregodevo/memdoor/tree/main/examples/workflows/team-solve",
+   "title": "Memdoor: A team of 5 Qwen3.8-27B models beats Fable 5 on LiveCodeBench Hard",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-31T22:46:12+00:00",
+   "summary_short": "五个小模型组队解题，前十题均分 9.8，作者称与原作者 harness 持平",
+   "summary_long": "原文介绍 Memdoor 的 team-solve 工作流：规划、两个并行构思、求解、测试、审查、修复、验证等步骤，五个 Qwen3.8-27B 实例各持全新上下文，只通过磁盘文件交流，成败由运行公开样例的脚本判定；共八个 YAML 文件，不写代码，步骤里不指定模型。作者称这是把 GVS5H（Lee, 2026）的方法实现为 Memdoor 工作流。测试沿用原作者同款模型、提示词、循环与 128K 回复上限，在 LiveCodeBench Hard 前 10 题各跑 5 次，用修正后的评分器对全部隐藏测试打分：该工作流均值 9.8，原作者 harness 9.6，Fable 5 单次调用 8.0；50 次运行的中位耗时 40 分钟、每次 0.39 美元，合计 35.79 美元。原文明确样本仅 10 题、5 次，9.8 与 9.6 在噪声范围内，结论只是与原作者 harness 持平；污染未排除，Fable 5 的数据取自原作者文件，并非在本 harness 中运行。",
+   "key_points": [
+    "流程为 plan → ideate-a/ideate-b（并行）→ solve → test → review → repair → verify，每步一个 YAML 文件，requires 定义 DAG，底层是 mario 引擎；每个 agent 提示词要求全新上下文、读文件、不依赖对话",
+    "前 10 题各 5 次的均值：该工作流 9.8、原作者 harness 9.6、Fable 5 单次调用 8.0；50 次运行中位 40 分钟、每次 0.39 美元共 35.79 美元，跑在 OpenRouter 而非本地",
+    "原文自述局限：样本仅 10 题对原作者的 100 题，9.8 与 9.6 在噪声内，只主张与原 harness 持平；污染未排除；并记录 manager 编造错误反例致正确程序被改写、另两次正确程序被覆盖后恢复，这些均属原作者循环的缺口且原样保留"
+   ],
+   "topics": [
+    "multi-agent",
+    "coding-agent",
+    "harness"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "评测",
+    "开源项目"
+   ],
+   "horizon": "long",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 418,
+    "hn_comments": 203,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://news.ycombinator.com/item?id=50320995",
+      "https://github.com/slee-persis/GVS5H",
+      "https://memdoor.ai/docs/team-solve",
+      "https://memdoor.ai/docs/providers#a-local-runtime-no-key",
+      "https://github.com/guregodevo/mario"
      ]
     },
     "content_source": "direct",
@@ -47,40 +142,135 @@
  ],
  "items": [
   {
-   "id": "58bdc6b4d6104e60",
-   "url": "https://github.com/dbreunig/nesformer",
-   "title": "Show HN: A working Nintendo in ~1GB of Qwen weights",
+   "id": "82785ab4f152db3e",
+   "url": "https://ryanmadden.net/gpt-56-beats-factorio/",
+   "title": "GPT-5.6 Sol can beat Factorio on peaceful mode",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-10-30T16:40:22+00:00",
-   "summary_short": "NES 的 6502 CPU 被编译器写入 Qwen3.5 权重，模型逐 token 预测执行来跑游戏",
-   "summary_long": "nesformer 把 NES 的 6502 CPU（2A03 芯片核心）、2 KB 工作内存和卡带程序 ROM 一起放进一个标准 Qwen3_5ForCausalLM checkpoint 里运行。原文强调这些权重不是训练出来的，而是由编译器逐项计算得到；玩游戏时，模型逐 token 预测 CPU 的执行日志，画面绘制、手柄读取和 vblank 中断触发则由一个小的宿主程序完成。项目基于 Divyansh Agrawal 的 Qwenputer（曾把 CHIP-8 和 RISC-V CPU 编译进 Qwen3.5-4B），复用了它的编译器和核心技巧：用模型的 Gated DeltaNet 状态充当机器内存。原文展示的《超级马力欧兄弟》World 1-1 画面中，所有 CPU token 均由模型产生；对随附的测试游戏，每一帧都与传统 6502 模拟器输出完全一致。使用上，首轮需约 20 秒用 numba 编译引擎，之后每帧耗时 1 至 6 秒，600 帧约需 25 分钟；支持 iNES mapper 0（NROM）的 ROM，同一份权重可直接跑任意 NROM 游戏、无需重建，其他板卡的游戏会停下并给出提示。",
-   "key_points": [
-    "6502 CPU、2 KB 工作内存和卡带 ROM 都运行在标准 Qwen3.5 权重内，权重由编译器计算而非训练得到",
-    "模型逐 token 预测 CPU 执行日志，宿主程序负责画面、手柄与 vblank 中断，复用 Qwenputer 的编译器及“Gated DeltaNet 状态即内存”技巧",
-    "支持 NROM（iNES mapper 0）ROM，同一权重无需重建即可换游戏；随附测试游戏每帧输出与传统 6502 模拟器完全一致，速度约每帧 1 至 6 秒"
-   ],
+   "published_at": "2026-10-31T18:50:34+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
    "topics": [
-    "product",
-    "weights-as-program"
+    "agent-loop",
+    "harness",
+    "tool-use"
    ],
-   "category": "产品与应用",
+   "category": "Agent 与开发",
    "categories": [
-    "产品与应用",
-    "开源项目"
+    "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 77.4,
+   "score": 79.8,
    "status": "published",
    "extra": {
-    "hn_points": 282,
-    "hn_comments": 144,
+    "hn_points": 176,
+    "hn_comments": 187,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/divagr18/qwenputer",
-      "https://divagr.com/blog/qwenputer",
-      "https://github.com/pinobatch/thwaite-nes"
+      "https://www.youtube.com/watch?v=kLuSDUzKYZs",
+      "https://ryanmadden.net/claude-plays-factorio/",
+      "https://ryanmadden.net/towards-automating-factorio/",
+      "https://ryanmadden.net/faketorio-an-agent-testbed/"
+     ]
+    },
+    "content_source": "direct"
+   }
+  },
+  {
+   "id": "dd35d009aad680f7",
+   "url": "https://simonwillison.net/2026/Oct/31/how-we-took-over-chatgpt-accounts/",
+   "title": "How We Took Over ChatGPT Accounts",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-10-31T23:15:22+00:00",
+   "summary_short": "安全团队披露可窃取 ChatGPT 用户数据的漏洞链，OpenAI 已修复",
+   "summary_long": "Parameter Labs 披露其发现的一条针对 ChatGPT artifacts 机制的漏洞利用链。该机制在沙箱 iframe 中展示交互式自定义 HTML 应用（OpenAI 曾称之为 Canvas，最新版本称为 HTML previews），原文强调这些内容必须严格隔离，以免不可信代码接触 OpenAI API 或私有数据。攻击链较复杂：OpenAI 在图表支持中使用 MathLive JavaScript 库，该库自带虚拟键盘，可由沙箱 iframe 通过 postMessage() 在父页面触发；接收消息的代码使用 innerHTML，因此任何能发消息的框架都能向父页面注入自定义 HTML，且没有机制阻止其他沙箱框架（包括 HTML preview 框架）调用该方法。innerHTML 虽不直接执行 script，但可注入不受沙箱限制的新 iframe。OpenAI 的 CSP 完全禁止内联脚本，仅允许少数域名加载脚本，其中包含 YouTube，而 YouTube 的 oEmbed 端点可被用来反射并以可执行方式返回 JavaScript。在 ChatGPT 上取得 JavaScript 执行能力后，从 API 获取用户私有数据并经图片引用外传十分容易。最终可构造一个 ChatGPT 分享链接，其他已登录用户访问后私有数据可能被窃取，或被代替执行操作。OpenAI 已",
+   "key_points": [
+    "漏洞出在 ChatGPT 的 artifacts（HTML previews）沙箱 iframe，攻击者可借 MathLive 虚拟键盘的 postMessage 与 innerHTML 向父页面注入 HTML",
+    "绕过 CSP 的关键是白名单中的 YouTube：其 oEmbed 端点可反射 JavaScript 并使其执行",
+    "取得脚本执行后可读取用户私有数据并经图片引用外传，构造的分享链接会让其他已登录用户中招"
+   ],
+   "topics": [
+    "cybersecurity",
+    "privacy"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "iframes",
+     "javascript",
+     "sandboxing",
+     "security",
+     "xss"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.parameter.ai/labs/we-found-a-gap-at-openai",
+      "https://help.openai.com/en/articles/20001246-working-with-writing-blocks-and-code-blocks-in-chatgpt",
+      "https://mathlive.io/mathfield/virtual-keyboard/",
+      "https://news.ycombinator.com/item?id=50314699",
+      "https://simonwillison.net/tags/iframes",
+      "https://simonwillison.net/tags/javascript",
+      "https://simonwillison.net/tags/sandboxing",
+      "https://simonwillison.net/tags/security",
+      "https://simonwillison.net/tags/xss",
+      "https://simonwillison.net/tags/openai",
+      "https://simonwillison.net/tags/chatgpt",
+      "https://simonwillison.net/tags/content-security-policy"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "f9b8a9efbf26f92e",
+   "url": "https://github.com/guregodevo/memdoor/tree/main/examples/workflows/team-solve",
+   "title": "Memdoor: A team of 5 Qwen3.8-27B models beats Fable 5 on LiveCodeBench Hard",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-10-31T22:46:12+00:00",
+   "summary_short": "五个小模型组队解题，前十题均分 9.8，作者称与原作者 harness 持平",
+   "summary_long": "原文介绍 Memdoor 的 team-solve 工作流：规划、两个并行构思、求解、测试、审查、修复、验证等步骤，五个 Qwen3.8-27B 实例各持全新上下文，只通过磁盘文件交流，成败由运行公开样例的脚本判定；共八个 YAML 文件，不写代码，步骤里不指定模型。作者称这是把 GVS5H（Lee, 2026）的方法实现为 Memdoor 工作流。测试沿用原作者同款模型、提示词、循环与 128K 回复上限，在 LiveCodeBench Hard 前 10 题各跑 5 次，用修正后的评分器对全部隐藏测试打分：该工作流均值 9.8，原作者 harness 9.6，Fable 5 单次调用 8.0；50 次运行的中位耗时 40 分钟、每次 0.39 美元，合计 35.79 美元。原文明确样本仅 10 题、5 次，9.8 与 9.6 在噪声范围内，结论只是与原作者 harness 持平；污染未排除，Fable 5 的数据取自原作者文件，并非在本 harness 中运行。",
+   "key_points": [
+    "流程为 plan → ideate-a/ideate-b（并行）→ solve → test → review → repair → verify，每步一个 YAML 文件，requires 定义 DAG，底层是 mario 引擎；每个 agent 提示词要求全新上下文、读文件、不依赖对话",
+    "前 10 题各 5 次的均值：该工作流 9.8、原作者 harness 9.6、Fable 5 单次调用 8.0；50 次运行中位 40 分钟、每次 0.39 美元共 35.79 美元，跑在 OpenRouter 而非本地",
+    "原文自述局限：样本仅 10 题对原作者的 100 题，9.8 与 9.6 在噪声内，只主张与原 harness 持平；污染未排除；并记录 manager 编造错误反例致正确程序被改写、另两次正确程序被覆盖后恢复，这些均属原作者循环的缺口且原样保留"
+   ],
+   "topics": [
+    "multi-agent",
+    "coding-agent",
+    "harness"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "评测",
+    "开源项目"
+   ],
+   "horizon": "long",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 418,
+    "hn_comments": 203,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://news.ycombinator.com/item?id=50320995",
+      "https://github.com/slee-persis/GVS5H",
+      "https://memdoor.ai/docs/team-solve",
+      "https://memdoor.ai/docs/providers#a-local-runtime-no-key",
+      "https://github.com/guregodevo/mario"
      ]
     },
     "content_source": "direct",
