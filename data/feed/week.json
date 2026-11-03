@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-01T22:50:48+00:00",
+ "generated_at": "2026-11-03T01:37:16+00:00",
  "top": [
   {
    "id": "d28967fce9c692cd",
@@ -45,6 +45,136 @@
       "https://help.openai.com/articles/20001509-why-was-my-chat-paused-or-ended-as-a-precaution"
      ]
     }
+   }
+  },
+  {
+   "id": "38c41eb0ed980884",
+   "url": "https://rikiyat.github.io/blog/weight-space-programming/",
+   "title": "Astra can read and write weights to improve Qwen",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-02T18:21:28+00:00",
+   "summary_short": "LLM 不靠梯度直接读写网络权重，修好 Qwen 数学短板",
+   "summary_long": "原文提出「权重空间编程」（Weight-Space Programming）：通用大模型直接读写神经网络权重，不经过优化器、不使用梯度下降，只围绕自然语言目标，有时甚至完全没有环境反馈。实验显示，GPT-6 Astra 仅查看 17,253 个原始权重、不用任何工具，就以 99% 置信度判断出该网络训练的任务是 Breakout；一次修改 3.5% 的权重，就让原本 0% 成功率的策略达到 100%。在无梯度条件下，它定位到 Qwen3.5-0.8B 中导致推理循环的权重问题（Qwen 自己的模型卡也有提示），仅编辑 0.016% 的权重，在相同采样设置下把 MATH-500 从 7.9% 提升到 48.1%，并顺带把 IFEval 提升 3 倍。整个过程不允许 Astra 编写训练循环，而是靠推理判断网络各部分在计算什么、应当计算什么。作者认为，深度学习长期把简单的归纳偏置编码进 Adam、Muon 这类小型符号优化器，这一局面正在改变。",
+   "key_points": [
+    "Astra 仅凭 17,253 个原始权重、不使用工具，就以 99% 置信度识别出网络训练于 Breakout",
+    "一次性编辑 3.5% 的权重，使无法越过障碍的训练策略成功率从 0% 升至 100%",
+    "无梯度编辑 Qwen3.5-0.8B 的 0.016% 权重，MATH-500 从 7.9% 升至 48.1%，IFEval 提升 3 倍，全程不写训练循环"
+   ],
+   "topics": [
+    "post-training",
+    "interpretability",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 85.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 1904,
+    "hn_comments": 604,
+    "outbound": {
+     "arxiv": [
+      "1412.6980",
+      "1703.03864",
+      "1903.03176",
+      "2102.11174",
+      "2202.05262",
+      "2209.12892",
+      "2209.14733",
+      "2211.00593",
+      "2212.14024",
+      "2301.05062",
+      "2303.17503",
+      "2305.17333",
+      "2309.03409",
+      "2309.08600",
+      "2310.03714",
+      "2402.13144",
+      "2406.11695",
+      "2406.11717",
+      "2410.23208",
+      "2505.12470",
+      "2507.19457",
+      "2509.24372",
+      "2510.05092",
+      "2512.12895",
+      "2512.15674",
+      "2603.28052",
+      "2610.07334"
+     ],
+     "links": [
+      "https://rikiyat.github.io",
+      "https://jaydenteoh.github.io/",
+      "https://alexzhang13.github.io/",
+      "https://omarkhattab.com/",
+      "https://huggingface.co/Qwen/Qwen3.5-0.8B/blob/main/README.md#L856",
+      "https://karpathy.medium.com/software-2-0-a64152b37c35",
+      "https://arxiv.org/abs/2102.11174",
+      "https://arxiv.org/abs/2301.05062",
+      "https://github.com/RikiyaT/lm_understand-logs/tree/main/exp3_language/python_dataset",
+      "https://github.com/RikiyaT/lm_understand-logs/tree/main/exp7_sycophancy/dataset",
+      "https://github.com/RikiyaT/lm_understand-logs",
+      "https://huggingface.co/RikiyaT/Qwen3.5-0.8B-weight-space-programming",
+      "https://huggingface.co/akhaliq",
+      "https://huggingface.co/spaces/akhaliq/weight-space-programming-demo",
+      "https://jacobxli.com/",
+      "https://akihisa-watanabe.github.io/",
+      "https://souradip-chakraborty.github.io/",
+      "https://people.eecs.berkeley.edu/~matei/",
+      "https://sky.cs.berkeley.edu/",
+      "https://heather.miller.am/",
+      "https://cmpnd.ai/",
+      "https://zicokolter.com/"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "de4cf53f9db96311",
+   "url": "https://openai.com/index/scaling-git-at-openai",
+   "title": "Scaling Git at OpenAI",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-02T15:30:00+00:00",
+   "summary_short": "OpenAI 自研 Git 后端 Pando：push 延迟中位数降近 5 倍，日传输近 1PB",
+   "summary_long": "过去一年，OpenAI 单体仓库的规模与需求快速增长：Codex 让工程师能并行做更多工作，带来更多分支、push、合并，以及来自开发环境、研究任务和 CI 的 fetch/clone。自去年年底起，支撑该仓库的系统开始吃力，出现 fetch/push 缓慢、合并失败，可靠性一度低于 90%。OpenAI 因此构建了 Git 仓库的新后端 Pando，在不中断工程工作、不改变团队使用 Git 方式的前提下替换后端，现已支撑其 monorepo 的全部开发。Pando 追求两点：面向多分支并发 push 的水平可扩展写入，以及最大化读取吞吐以跑满客户端可用带宽，同时保持 Git 协议与客户端兼容。生产中它把 push 延迟中位数降低近 5 倍，每天传输近 1PB Git 数据。设计上，Pando 按分支独立协调更新、无关分支可并行推进（代价是跨分支读取可能看到不同时间点），并在多次 fetch 间复用 packfile，以少量计算向众多客户端提供相同字节。OpenAI 表示将继续向上游 Git 贡献改进。",
+   "key_points": [
+    "Pando 是 OpenAI 为 Git 仓库构建的新后端，已支撑其 monorepo 全部开发，且未改变团队原有的 Git 工作流",
+    "设计上按分支独立协调更新、复用 packfile；生产中 push 延迟中位数降低近 5 倍，每天传输近 1PB Git 数据",
+    "动机是 Codex 带来的并行开发压力导致 fetch/push 缓慢与合并失败、可靠性一度低于 90%，OpenAI 表示将继续向上游 Git 贡献改进"
+   ],
+   "topics": [
+    "git-infrastructure",
+    "monorepo",
+    "coding-agent"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 84.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Engineering"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/openai/git",
+      "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/#building-more-secure-software-foundations",
+      "https://oai-git.openai.chatgpt.site/"
+     ]
+    },
+    "summary_mode": "full"
    }
   },
   {
@@ -153,108 +283,6 @@
       "https://dell.huggingface.co/updates/mistral-large-4"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "85daa6a854746cd3",
-   "url": "https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/",
-   "title": "Octoverse: Commits, pushes, reach new highs in 2026 as developers build with agents",
-   "source": "GitHub Blog (AI)",
-   "tier": "S",
-   "published_at": "2026-10-28T16:07:40+00:00",
-   "summary_short": "GitHub Octoverse：过去12个月推送179亿次，AI智能体成日常开发主力",
-   "summary_long": "GitHub 的 Octoverse 年度回顾显示：过去 12 个月，开发者向 GitHub 推送代码 179 亿次，超过 2024 与 2025 两年之和；全部仓库（公开与私有）提交达 343 亿次，为两年前的三倍多；合并 PR 超 13 亿个，日均 350 万。今年新建仓库中，带 agent 配置文件的仓库平均提交量是无该配置新仓库的 8 倍；截至 9 月，超 40% 的 PR 由 agent 发起（3 月为 17%），61% 的 Copilot 用户使用不止一个模型。GitHub Actions 每秒运行 1440 个任务（日均 1.24 亿次），为去年三倍多；开发者合并 3000 万个 Dependabot PR。报告首次按行业披露公共仓库情况，采矿、建筑、医疗、农业相关仓库自 2022 年均增长数倍。原文还举了尼泊尔洪水信息项目 Gati、NASA JPL 航天器软件、开源电子阅读器固件等案例。",
-   "key_points": [
-    "过去 12 个月代码推送 179 亿次，超过 2024、2025 两年总和；总提交 343 亿次，合并 PR 超 13 亿个。",
-    "带 agent 配置的新仓库平均提交量是其他新仓库的 8 倍；9 月超 40% 的 PR 由 agent 发起，3 月仅 17%。",
-    "GitHub Actions 每秒运行 1440 个任务，合并 3000 万个 Dependabot PR；报告首次按行业统计公共仓库。"
-   ],
-   "topics": [
-    "coding-agent",
-    "open-source"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 82.2,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "News & insights",
-     "Octoverse"
-    ],
-    "outbound": {
-     "arxiv": [
-      "1706.03762",
-      "1906.11241"
-     ],
-     "links": [
-      "https://github.com/nirajbhusal/rasuwa-flood-bulletin",
-      "https://github.com/nirajbhusal/gati-alerts",
-      "https://github.com/nasa/spacewasm",
-      "https://github.com/crosspoint-reader/crosspoint-reader",
-      "https://github.com/kinlane",
-      "https://github.com/kim-em",
-      "https://github.com/andig",
-      "https://github.com/evcc-io/evcc",
-      "https://github.com/tracefinity/tracefinity",
-      "https://github.com/rendeirolab/wsidata",
-      "https://github.com/sbhattlab/PlayClass",
-      "https://github.com/waikato-ahuora-smart-energy-systems/OpenPinch",
-      "https://github.com/midt-bg/sigma",
-      "https://github.com/hughhowey/neo",
-      "https://github.com/google-deepmind/alphafold",
-      "https://github.com/tensorflow/tensor2tensor",
-      "https://arxiv.org/abs/1706.03762",
-      "https://github.com/dylanhmorris/sars-cov-2-stability",
-      "https://github.com/achael/eht-imaging",
-      "https://arxiv.org/abs/1906.11241",
-      "https://docs.github.com/pull-requests/how-tos/stacked-pull-requests?utm_source=octoverse-pr-stacks-docs&utm_medium=blog&utm_campaign=universe-2026",
-      "https://docs.github.com/copilot/concepts/models/auto-model-selection?utm_source=octoverse-auto-model-selection-docs&utm_medium=blog&utm_campaign=universe-2026",
-      "https://github.blog/changelog/2026-09-14-configure-cost-and-quality-in-copilot-auto-model-selection/",
-      "https://github.blog/ai-and-ml/github-copilot/project-hydrafusion-frontier-quality-via-multi-model-orchestration/",
-      "https://docs.github.com/copilot/concepts/models/copilot-fusion?utm_source=octoverse-fusion-docs&utm_medium=blog&utm_campaign=universe-2026",
-      "https://github.com/gem/oq-engine",
-      "https://github.com/opentermsarchive/engine",
-      "https://github.com/JuliusBrussee/caveman",
-      "https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/",
-      "https://github.blog"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "5ef94984dce414f6",
-   "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/",
-   "title": "Genie 4: A new generation of world simulation",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-10-27T16:01:38+00:00",
-   "summary_short": "官网列表出现 Genie 4，仅一句描述，原文无实质内容",
-   "summary_long": "这篇原文实际抓到的是 DeepMind 官网的一组栏目导航与模型列表，并不是一篇介绍文章。与标题相关的全部信息只有两处：在“Specialized models”列表中，“Genie 4”的说明是“Generate and explore interactive worlds”（生成并探索交互式世界）；在“Breakthroughs”栏目下，同一句描述再次出现，链接指向 Genie 模型页面。列表中还有 Genie 3，它使用的是完全相同的描述，此外还有 SIMA 2（“在虚拟 3D 世界中与你一起游玩、推理和学习的智能体”）、Gemini、Veo、Lyria、Gemma、Gemini Robotics 等条目。页面其余部分是 Evals、Publications、Responsibility、Frontier safety，以及 AlphaFold、WeatherNext 等栏目链接和配图。原文没有给出 Genie 4 的技术细节、能力边界、发布时间、演示效果或任何结论性评价，也没有署名作者，因此无法判断它与 Genie 3 的具体差异，也无法确认这次发布包含哪些内容。以上为原文全部可用信息，其余内容原文未详述。",
-   "key_points": [
-    "原文实际上是官网导航和模型列表，涉及 Genie 4 的描述只有“Generate and explore interactive worlds”这一句",
-    "Genie 3 在列表中使用与 Genie 4 完全相同的描述，原文未说明两者的区别",
-    "原文未提供 Genie 4 的技术细节、发布时间、演示内容或作者署名"
-   ],
-   "topics": [
-    "world-model"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 81.9,
-   "status": "published",
-   "extra": {
-    "content_source": "reader",
     "summary_mode": "full"
    }
   }
@@ -307,6 +335,136 @@
    }
   },
   {
+   "id": "38c41eb0ed980884",
+   "url": "https://rikiyat.github.io/blog/weight-space-programming/",
+   "title": "Astra can read and write weights to improve Qwen",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-02T18:21:28+00:00",
+   "summary_short": "LLM 不靠梯度直接读写网络权重，修好 Qwen 数学短板",
+   "summary_long": "原文提出「权重空间编程」（Weight-Space Programming）：通用大模型直接读写神经网络权重，不经过优化器、不使用梯度下降，只围绕自然语言目标，有时甚至完全没有环境反馈。实验显示，GPT-6 Astra 仅查看 17,253 个原始权重、不用任何工具，就以 99% 置信度判断出该网络训练的任务是 Breakout；一次修改 3.5% 的权重，就让原本 0% 成功率的策略达到 100%。在无梯度条件下，它定位到 Qwen3.5-0.8B 中导致推理循环的权重问题（Qwen 自己的模型卡也有提示），仅编辑 0.016% 的权重，在相同采样设置下把 MATH-500 从 7.9% 提升到 48.1%，并顺带把 IFEval 提升 3 倍。整个过程不允许 Astra 编写训练循环，而是靠推理判断网络各部分在计算什么、应当计算什么。作者认为，深度学习长期把简单的归纳偏置编码进 Adam、Muon 这类小型符号优化器，这一局面正在改变。",
+   "key_points": [
+    "Astra 仅凭 17,253 个原始权重、不使用工具，就以 99% 置信度识别出网络训练于 Breakout",
+    "一次性编辑 3.5% 的权重，使无法越过障碍的训练策略成功率从 0% 升至 100%",
+    "无梯度编辑 Qwen3.5-0.8B 的 0.016% 权重，MATH-500 从 7.9% 升至 48.1%，IFEval 提升 3 倍，全程不写训练循环"
+   ],
+   "topics": [
+    "post-training",
+    "interpretability",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 85.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 1904,
+    "hn_comments": 604,
+    "outbound": {
+     "arxiv": [
+      "1412.6980",
+      "1703.03864",
+      "1903.03176",
+      "2102.11174",
+      "2202.05262",
+      "2209.12892",
+      "2209.14733",
+      "2211.00593",
+      "2212.14024",
+      "2301.05062",
+      "2303.17503",
+      "2305.17333",
+      "2309.03409",
+      "2309.08600",
+      "2310.03714",
+      "2402.13144",
+      "2406.11695",
+      "2406.11717",
+      "2410.23208",
+      "2505.12470",
+      "2507.19457",
+      "2509.24372",
+      "2510.05092",
+      "2512.12895",
+      "2512.15674",
+      "2603.28052",
+      "2610.07334"
+     ],
+     "links": [
+      "https://rikiyat.github.io",
+      "https://jaydenteoh.github.io/",
+      "https://alexzhang13.github.io/",
+      "https://omarkhattab.com/",
+      "https://huggingface.co/Qwen/Qwen3.5-0.8B/blob/main/README.md#L856",
+      "https://karpathy.medium.com/software-2-0-a64152b37c35",
+      "https://arxiv.org/abs/2102.11174",
+      "https://arxiv.org/abs/2301.05062",
+      "https://github.com/RikiyaT/lm_understand-logs/tree/main/exp3_language/python_dataset",
+      "https://github.com/RikiyaT/lm_understand-logs/tree/main/exp7_sycophancy/dataset",
+      "https://github.com/RikiyaT/lm_understand-logs",
+      "https://huggingface.co/RikiyaT/Qwen3.5-0.8B-weight-space-programming",
+      "https://huggingface.co/akhaliq",
+      "https://huggingface.co/spaces/akhaliq/weight-space-programming-demo",
+      "https://jacobxli.com/",
+      "https://akihisa-watanabe.github.io/",
+      "https://souradip-chakraborty.github.io/",
+      "https://people.eecs.berkeley.edu/~matei/",
+      "https://sky.cs.berkeley.edu/",
+      "https://heather.miller.am/",
+      "https://cmpnd.ai/",
+      "https://zicokolter.com/"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "de4cf53f9db96311",
+   "url": "https://openai.com/index/scaling-git-at-openai",
+   "title": "Scaling Git at OpenAI",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-02T15:30:00+00:00",
+   "summary_short": "OpenAI 自研 Git 后端 Pando：push 延迟中位数降近 5 倍，日传输近 1PB",
+   "summary_long": "过去一年，OpenAI 单体仓库的规模与需求快速增长：Codex 让工程师能并行做更多工作，带来更多分支、push、合并，以及来自开发环境、研究任务和 CI 的 fetch/clone。自去年年底起，支撑该仓库的系统开始吃力，出现 fetch/push 缓慢、合并失败，可靠性一度低于 90%。OpenAI 因此构建了 Git 仓库的新后端 Pando，在不中断工程工作、不改变团队使用 Git 方式的前提下替换后端，现已支撑其 monorepo 的全部开发。Pando 追求两点：面向多分支并发 push 的水平可扩展写入，以及最大化读取吞吐以跑满客户端可用带宽，同时保持 Git 协议与客户端兼容。生产中它把 push 延迟中位数降低近 5 倍，每天传输近 1PB Git 数据。设计上，Pando 按分支独立协调更新、无关分支可并行推进（代价是跨分支读取可能看到不同时间点），并在多次 fetch 间复用 packfile，以少量计算向众多客户端提供相同字节。OpenAI 表示将继续向上游 Git 贡献改进。",
+   "key_points": [
+    "Pando 是 OpenAI 为 Git 仓库构建的新后端，已支撑其 monorepo 全部开发，且未改变团队原有的 Git 工作流",
+    "设计上按分支独立协调更新、复用 packfile；生产中 push 延迟中位数降低近 5 倍，每天传输近 1PB Git 数据",
+    "动机是 Codex 带来的并行开发压力导致 fetch/push 缓慢与合并失败、可靠性一度低于 90%，OpenAI 表示将继续向上游 Git 贡献改进"
+   ],
+   "topics": [
+    "git-infrastructure",
+    "monorepo",
+    "coding-agent"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 84.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Engineering"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/openai/git",
+      "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities/#building-more-secure-software-foundations",
+      "https://oai-git.openai.chatgpt.site/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "db98bf59a6c7e420",
    "url": "https://huggingface.co/blog/LiquidAI/lfm3",
    "title": "Build specialized multimodal models with LFM3",
@@ -410,6 +568,45 @@
       "https://llama.app/docs/serve",
       "https://github.com/huggingface/trl/tree/main/examples/sft_mistral_large_4",
       "https://dell.huggingface.co/updates/mistral-large-4"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "ed4b58253682640f",
+   "url": "https://openai.com/index/lifeval",
+   "title": "LifeVal",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-02T09:00:00+00:00",
+   "summary_short": "LifeVal：衡量 AI 在日常任务上表现的评测",
+   "summary_long": "原文介绍了一项名为 LifeVal 的评测，用于衡量 AI 在日常生活任务上的进展。为找出人们最需要帮助的任务，原文参考美国时间使用调查和跨国时间使用研究，并补充了一项覆盖 3995 名受访者、具人口代表性的新调查。评测任务覆盖照护、健康、教育、家庭事务管理、个人财务、购物和获取政府服务等。文中给出示例及当前模型表现：搬家后选择合适的幼儿园 93.1%、洪灾前管理志愿者 98.0%、为家庭找新房 100%、远程陪祖母看比赛 96.3%、为刚确诊糖尿病的父母准备照护与餐食计划 90.4%。原文称，过去一年模型在浏览器使用、计算机使用和连接器任务上更快、更强、更对齐，使 ChatGPT 从聊天工具走向代理式个人助理。",
+   "key_points": [
+    "LifeVal 用于追踪并推动模型在过去一年中于日常任务上的表现提升",
+    "任务范围来自两项时间使用研究与一项 3995 人的代表性调查，覆盖照护、健康、教育、家庭事务、个人财务、购物和政府服务",
+    "示例任务得分包括 93.1%、98.0%、100%、96.3% 和 90.4%，原文称模型在浏览器使用、计算机使用和连接器任务上更强，推动 ChatGPT 向代理式个人助理发展"
+   ],
+   "topics": [
+    "eval"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测"
+   ],
+   "horizon": "long",
+   "score": 82.8,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Research"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.bls.gov/tus/",
+      "https://www.timeuse.org/mtus"
      ]
     },
     "summary_mode": "full"
@@ -645,45 +842,6 @@
    }
   },
   {
-   "id": "1758535ac6be3e6b",
-   "url": "https://openai.com/index/introducing-gpt-6-1-terra",
-   "title": "Introducing GPT-6.1 Terra",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-26T00:00:00+00:00",
-   "summary_short": "GPT-6.1 Terra：电脑操作更快更准，API 价格降 50%",
-   "summary_long": "原文介绍 GPT-6.1 Terra，定位为快速高效的模型，结合细致的视觉推理、精确的电脑操作，以及更清晰自然的写作；它相对 GPT-5.6 Terra 有显著升级，适用于撰写提案、解读技术图纸、填表、剪辑视频等日常工作。其标准 API 价格比 GPT-5.6 Terra 和 GPT-6.1 Sol 低 50%，便于开发者自动化发票读取、录入等高频任务；在 ChatGPT Work 和 Codex 中，同等用量额度可完成比 GPT-5.6 Terra 更多的任务。基准方面，在 Agents' Last Exam 的中等推理投入下，它比 GPT-5.6 Terra 高 15 个百分点，成本约为后者三分之一；在最大投入下，token 效率为 Claude Opus 5.5 的三倍以上，每 token 价格为其四分之一，每任务成本约低 9 倍；速度比 GPT-6 Astra 与 GPT-6.1 Sol 快三倍以上。事实性上，内部错误诱导基准的低推理投入错误率从 53.6% 降至 16.7%。原文未署名发布方。",
-   "key_points": [
-    "标准 API 价格比 GPT-5.6 Terra 与 GPT-6.1 Sol 低 50%；在 ChatGPT Work 和 Codex 中，同样用量额度可完成更多任务",
-    "在 Agents' Last Exam 的中等推理投入下，比 GPT-5.6 Terra 高 15 个百分点，成本约为其三分之一；在最大投入下，token 效率为 Claude Opus 5.5 的三倍以上，每任务成本约低 9 倍，速度比 GPT-6 Astra 与 GPT-6.1 Sol 快三倍以上",
-    "事实性内部基准的低推理投入错误率从 53.6% 降至 16.7%，最大投入下降 18 个百分点至 4.3%；在 Terminal-Bench 4.0 最大投入下解出 50.3%，超过 GPT-5.6 Terra 公布的 21.5%，但最复杂编码任务仍建议用 GPT-6.1 Sol 与 GPT-6 Astra"
-   ],
-   "topics": [
-    "reasoning",
-    "hallucination"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 79.9,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Product"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://deploymentsafety.openai.com/gpt-6-1-terra"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "82785ab4f152db3e",
    "url": "https://ryanmadden.net/gpt-56-beats-factorio/",
    "title": "GPT-5.6 Sol can beat Factorio on peaceful mode",
@@ -718,50 +876,6 @@
      ]
     },
     "content_source": "direct"
-   }
-  },
-  {
-   "id": "2325af3360e06716",
-   "url": "https://www.cerebras.ai/blog/how-we-deploy-trillion-parameter-frontier-models-on-cerebras",
-   "title": "Cerebras Deploys Trillion-Parameter AI Models",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-25T01:33:49+00:00",
-   "summary_short": "Cerebras 拆解如何用 59 片晶圆部署 3 万亿参数大模型",
-   "summary_long": "Cerebras 发文说明如何在晶圆级芯片上部署万亿参数级前沿模型。单片 WSE-3T 晶圆仅有 44 GB 片上内存，而万亿参数模型的权重本身就需要数 TB，因此必须把模型拆分到多片晶圆上。文章以开源模型 Kimi K3（约 3 万亿参数、69 个线性注意力层、24 个稠密层）为例，假设平均请求长度 256k、权重 4 bit 量化、KV cache 8 bit。按此计算，3T 参数共约 1.5 TB 原始载荷，除 93 层后每层约 16 GB。稠密层需为 KV cache 留出空间，故每片晶圆放一层，用 24 片；线性注意力层只需固定的每请求状态，每片可放两层，用 35 片，合计 59 片。晶圆之间以流水线方式连接，只传递激活值，经以太网 RDMA 每跳约 2 微秒；由于单层即可完全放在片内，模型权重基本不需移动。文章还描述了单请求如何像流水线一样逐级流过各晶圆，但关于如何同时服务大量并发请求的部分在原文中截断，未给出完整说明。",
-   "key_points": [
-    "单片 WSE-3T 片上内存 44 GB，而万亿参数模型权重需数 TB，因此按层切分到多片晶圆",
-    "以 Kimi K3（约 3T 参数、69 个线性注意力层 + 24 个稠密层）为例，在 4 bit 权重、8 bit KV cache、256k 请求长度假设下，每层约 16 GB，共需 59 片晶圆（35 + 24）",
-    "晶圆间以流水线方式连接，仅激活值跨片传输，走 RDMA over Ethernet 每跳约 2 微秒；权重通常留在片内不动"
-   ],
-   "topics": [
-    "inference-deployment",
-    "quantization",
-    "kv-cache"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 79.3,
-   "status": "published",
-   "extra": {
-    "hn_points": 341,
-    "hn_comments": 123,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.cerebras.ai/chip",
-      "https://www.kimi.com/en/blog/kimi-k3",
-      "https://modal.com/blog/trillion-tokens-trillion-parameters",
-      "https://huggingface.co/moonshotai/Kimi-K3",
-      "https://huggingface.co/moonshotai/Kimi-K3#2-model-summary",
-      "http://cloud.cerebras.ai"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
    }
   },
   {
@@ -843,45 +957,6 @@
      ]
     },
     "content_source": "direct"
-   }
-  },
-  {
-   "id": "1dc75a32fc6a65d3",
-   "url": "https://lynchlab.net/llm-skin-cancer",
-   "title": "A 10-year-old CNN outperforms frontier LLMs for skin cancer diagnosis",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-25T17:15:38+00:00",
-   "summary_short": "10年前CNN微调20分钟，皮肤癌6分类准确率62%，胜过两大前沿LLM的42%",
-   "summary_long": "原文作者从MILK10k（ISIC 2025年发布的公开数据集）随机抽取200个经组织病理确诊的皮肤病变，每例含临床照片与皮肤镜图像，用于对比两个前沿LLM（GPT-6 Astra、Claude Fable 5.1）与一个微调的Inception v3卷积网络。样本中100例不应让患者离院，100例可安全离院，且全部经活检，因此判读难度更高。LLM在默认设置下拿到两张图与同一提示，需从6种诊断中给出最可能项（或“不确定”）、置信度、次选与是否可无需治疗、活检或随访直接离院。CNN使用日常照片预训练的权重，在单张H100上以ISIC Archive的68,011张图像微调全部层约20分钟，测试病变及同一病变或患者的其他照片在训练前已剔除。结果CNN在6分类中答对125/200（62%），两个LLM为84与85（42%）。作者举例，一例耳部厚度不足0.8mm的浸润性黑色素瘤被两个LLM判为脂溢性角化病并称可离院，CNN判为黑色素瘤。该模型小到可在手机浏览器经WebGPU本地运行。",
-   "key_points": [
-    "200例经活检确诊病变的6分类诊断中，微调Inception v3正确125例（62%），GPT-6 Astra 84例、Claude Fable 5.1 85例（均42%）",
-    "文中举例：耳部不足0.8mm的浸润性黑色素瘤被两个LLM判为脂溢性角化病并称可离院，CNN判对；另一例脂溢性角化病三者全错，但都不会将其放离院",
-    "CNN仅在单张H100上用68,011张ISIC Archive图像微调约20分钟，测试病变及同病变或患者图像训练前已剔除，模型小到可在手机浏览器用WebGPU本地运行、无需上传数据"
-   ],
-   "topics": [
-    "eval"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测"
-   ],
-   "horizon": "long",
-   "score": 78.3,
-   "status": "published",
-   "extra": {
-    "hn_points": 312,
-    "hn_comments": 164,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://doi.org/10.34970/648456",
-      "https://www.isic-archive.com",
-      "https://d2gaqzonlm544h.cloudfront.net/skin-ai/data/llm-skin-cancer-test.zip"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
    }
   },
   {
@@ -1225,46 +1300,6 @@
    }
   },
   {
-   "id": "64d59b55a8fb8666",
-   "url": "https://openai.com/index/chatgpt-expanding-world-of-work",
-   "title": "ChatGPT’s expanding world of work",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-10-26T10:00:00+00:00",
-   "summary_short": "OpenAI 公开 ChatGPT 工作用途数据集，覆盖 165 类工作活动与近百个国家",
-   "summary_long": "OpenAI Economic Research 发布 OpenAI Signals 数据，揭示消费者如何在工作中使用 ChatGPT。数据覆盖近 100 个国家、165 类工作活动，时间跨度从 2025 年第一季度到 2026 年第三季度，按季度呈现。这些活动类别称为 Intermediate Work Activities（IWAs），基于 O*NET 标准化框架，将职业特定任务归入跨职业共享的工作活动类别；采用统一框架有助于研究者把 ChatGPT 使用情况与其他职业和就业数据比较。原文指出，各国在工作用途上差异很大；把数据与 IWAs 关联后发现，工作相关使用变得不那么集中于最常见的活动，即各国随时间趋于专业化，且专业化方向不同，这可能反映各国工作类型差异或 AI 工具获取程度不同。在每季度均可观测的 74 个国家中，十大最常见活动在 2026 年第三季度平均占各国已分类工作消息的 51.1%，低于 2025 年第一季度的 56.0%。数据覆盖个人 ChatGPT 套餐的工作相关消息，不含企业消息或 Codex 使用；为保护隐私，研究者不阅读个人对话，由自动化系统在识别信息后对消息分类。",
-   "key_points": [
-    "数据覆盖近 100 个国家、165 类工作活动，按季度呈现，时间从 2025 年第一季度到 2026 年第三季度。",
-    "活动分类基于 O*NET 的 Intermediate Work Activities 框架，便于与其他职业和就业数据比较。",
-    "74 国中十大最常见活动占比从 2025 年第一季度的 56.0% 降至 2026 年第三季度的 51.1%，显示使用趋于分散、各国专业化方向不同。"
-   ],
-   "topics": [
-    "ai-adoption",
-    "labor-market",
-    "usage-data"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 77.1,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Research"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://openai.com/signals/data-download/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "7e2aaf184ac3d7d5",
    "url": "https://cyberplace.social/@GossiTheDog/117528831681803563",
    "title": "Backdoors in official Claude Code extensions",
@@ -1392,6 +1427,45 @@
    }
   },
   {
+   "id": "e33216d0e243d7ea",
+   "url": "https://latent.space/p/building_legal_agents_when_you_can_t_see_the_data_-_jacob_lauritzen_cto_of_legora/",
+   "title": "Building Legal Agents When You Can't See the Data - Jacob Lauritzen, CTO of Legora",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-11-02T22:54:03+00:00",
+   "summary_short": "Legora CTO 讲如何在看不到 agent 工作痕迹时构建并测试法律 agent",
+   "summary_long": "Legora 的 agent 为律师做的工作，团队自己看不到任何一条执行痕迹，因为数据属于律所客户。CTO Jacob Lauritzen 在访谈中介绍，团队从斯德哥尔摩地下室起步，用 ChatGPT 加瑞典法律和搜索工具做产品；如今律师可用它起草和编辑 Word 文档、在一张表里审阅 1 万份合同、做尽职调查，agent 还在律师、客户与其他 agent 之间协调工作，Legora 自己做收购时也用该产品做尽调。测试上，三名工程师与三名律师基于客户的工作构建模拟测试环境，类似强化学习中的“worlds”，并把失败收窄到 10 到 20 种类型。Jacob 估计模型已能做好约 60% 的法律工作。一次发布后引用准确率从 70% 升到 99%，而 Legora 未作任何改动。数据隐私使其全部跑在 Azure 上。产品还包括被行业连名字一起抄走的百万单元格 Tabular Review、Slack 中的 intake 机器人，以及 agent 建列表、列表再启动另一个 agent 的机制。他曾用“300 斯巴达”幻灯片论证 20 名工程师永远够用，如今有 100 人仍觉人手不足。",
+   "key_points": [
+    "Legora 无法读取 agent 为律师执行任务的任何痕迹，数据归律所客户所有；团队用三名工程师加三名律师、基于客户工作搭建模拟环境来测试，并把失败类型收窄到 10 到 20 种",
+    "Jacob 估计模型目前能做好约 60% 的法律工作；一次发布后引用准确率从 70% 升到 99%，Legora 没有改动任何东西",
+    "产品包括百万单元格的 Tabular Review（行业连名字一起复制）、Slack 中的 intake 机器人，以及 agent 建列表、列表再启动 agent 的机制；因数据隐私全部运行在 Azure 上"
+   ],
+   "topics": [
+    "harness",
+    "eval",
+    "multi-agent"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "产品与应用"
+   ],
+   "horizon": "long",
+   "score": 75.8,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://legora.com",
+      "https://forwardeployed.com"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "a80dd20eaec84f5f",
    "url": "https://simonwillison.net/2026/Oct/29/how-i-built-the-most-ai-pilled-company-in-the-world/",
    "title": "Building a multiplayer game world with autonomous Fable-class models",
@@ -1443,37 +1517,6 @@
       "https://simonwillison.net/tags/claude-mythos-fable"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "d7b6b5fce56b21ea",
-   "url": "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
-   "title": "Anthropic S-1",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-26T13:04:50+00:00",
-   "summary_short": "Anthropic向SEC提交S-1注册声明，拟公开发行证券",
-   "summary_long": "原文是Anthropic, PBC于2026年10月26日向美国证券交易委员会（SEC）提交的S-1注册声明封面页。文件显示，公司注册地为特拉华州，主要行政办公地址位于加州旧金山Market Street，电话为(415)326-6303，标准行业分类代码为7372；首席执行官兼联合创始人为Dario Amodei，总裁兼联合创始人为Daniela Amodei。文件将公司勾选为非加速申报人（non-accelerated filer），并注明拟公开发售将在注册声明生效后尽快开始。封面页还列出法律顾问Wilson Sonsini Goodrich & Rosati, P.C.与Freshfields US LLP，以及双方的服务代理人联系人。原文仅限于封面页及一张封面图片，并声明初步招股说明书信息尚不完整、可能变更，在注册声明生效前不得出售相关证券。发行规模、估值、财务数据、募资用途等，原文均未详述。",
-   "key_points": [
-    "Anthropic, PBC于2026年10月26日向SEC提交S-1注册声明，注册号为333-（编号未完整显示）",
-    "注册地为特拉华州，总部位于加州旧金山；Dario Amodei任CEO兼联合创始人，Daniela Amodei任总裁兼联合创始人",
-    "文件自列为非加速申报人，并称公开发售将在注册声明生效后尽快进行"
-   ],
-   "topics": [
-    "product"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 75.6,
-   "status": "published",
-   "extra": {
-    "hn_points": 1416,
-    "hn_comments": 1383,
-    "content_source": "reader",
     "summary_mode": "full"
    }
   },
