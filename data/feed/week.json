@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-03T01:37:16+00:00",
+ "generated_at": "2026-11-04T00:01:19+00:00",
  "top": [
   {
    "id": "d28967fce9c692cd",
@@ -136,6 +136,51 @@
    }
   },
   {
+   "id": "a55665cf48953af7",
+   "url": "https://huggingface.co/blog/allenai/statebench",
+   "title": "StateBench: Testing how language models track state changes over long documents",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-03T17:15:21+00:00",
+   "summary_short": "AI2 发布 StateBench，用四个难度层级测试长文档中的状态追踪能力",
+   "summary_long": "AI2 推出 StateBench，一个衡量长上下文“状态追踪”能力的基准，衡量语言模型在长文档中跟踪实体信息随文档演变而变化的能力。原文指出，状态追踪是读代码（变量反复赋值）和读故事（角色移动、物品易手）等任务的基础，例如小说里“约翰把刀给了玛丽”就改变了角色状态。不同状态追踪问题难度差异很大：简单的只需找到最新更新，难的需沿变化链条逐步推进，漏掉一步就会答错。原文提到，Transformer 在长依赖链的困难状态追踪上存在理论局限，这推动了 Gated DeltaNet 等带运行记忆的循环与混合架构。既有测试多聚焦最难情况，研究者需要知道各类架构分别能处理哪类追踪，因此 StateBench 设四个难度层级：R-trivial（不可变赋值）、Aperiodic（按值重新赋值）、Soluble（自引用更新，如 x = x + 5）、General finite（按引用赋值，如五杯换球）。结果显示：直接在这些任务上训练时，循环与混合模型的泛化距离远大于 Transformer；而 Gemini 3.8 Flash、Claude Opus 5.5、GPT-6 Sol 与 Luna 等前沿模型在输入变长时仍在较难的状态追踪上失效。",
+   "key_points": [
+    "StateBench 分四级难度，对应不可变赋值、按值重新赋值、自引用更新、按引用赋值（如五杯换球）四类状态更新操作",
+    "直接在这些任务上训练时，循环与混合架构的泛化距离显著超过 Transformer",
+    "Gemini 3.8 Flash、Claude Opus 5.5、GPT-6 Sol 与 Luna 等前沿模型在输入变长时仍在较难的状态追踪形式上失效"
+   ],
+   "topics": [
+    "eval",
+    "reasoning",
+    "context-engineering"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 84.6,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://allenai.org/papers/statebench",
+      "https://huggingface.co/datasets/allenai/state-bench",
+      "https://github.com/allenai/state-bench",
+      "https://www.datocms-assets.com/64837/1792006215-statebench-draft-blog-google-docs-image-1.png",
+      "https://arxiv.org/html/2404.08819v2#S3.SS1",
+      "https://www.datocms-assets.com/64837/1792006353-statebench-draft-blog-google-docs-image-2.png",
+      "https://www.datocms-assets.com/64837/1792006435-statebench-draft-blog-google-docs-image-3.png",
+      "https://www.datocms-assets.com/64837/1792006493-statebench-draft-blog-google-docs-image-4.png"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "de4cf53f9db96311",
    "url": "https://openai.com/index/scaling-git-at-openai",
    "title": "Scaling Git at OpenAI",
@@ -175,61 +220,6 @@
      ]
     },
     "summary_mode": "full"
-   }
-  },
-  {
-   "id": "db98bf59a6c7e420",
-   "url": "https://huggingface.co/blog/LiquidAI/lfm3",
-   "title": "Build specialized multimodal models with LFM3",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-27T17:16:52+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "post-training",
-    "multimodal"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 84.0,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://huggingface.co/collections/LiquidAI/lfm3",
-      "https://cdn-uploads.huggingface.co/production/uploads/644249b08443bce4c9890a0f/iZQBqXVZfrcUNCklF4eAs.png",
-      "https://huggingface.co/LiquidAI/LFM2.5-8B-A1B",
-      "https://cdn-uploads.huggingface.co/production/uploads/644249b08443bce4c9890a0f/6RfJINOKr6Ay2kHCPR-mz.png",
-      "https://huggingface.co/LiquidAI/LFM3-1.7B",
-      "https://huggingface.co/LiquidAI/LFM3-VL-2B",
-      "https://huggingface.co/LiquidAI/LFM3-Audio-2B",
-      "https://huggingface.co/LiquidAI/LFM3-Omni-2B",
-      "https://huggingface.co/LiquidAI/d1-2B",
-      "https://huggingface.co/LiquidAI/d1-omni-2B",
-      "https://docs.liquid.ai/examples/agent-harnesses",
-      "https://huggingface.co/LiquidAI/d1-3B",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_sft_with_trl.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_dpo_with_trl.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_grpo_with_trl.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_cpt_with_trl.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_vl_sft_with_trl.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_vl_grpo_with_trl.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_audio_sft_with_transformers.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_audio_tts_sft_with_transformers.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_omni_sft_with_transformers.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_omni_vqa_sft_with_transformers.ipynb",
-      "https://www.youtube.com/watch?v=ZARw2VY6Dlk",
-      "https://huggingface.co/LiquidAI/LFM3-1.7B-Base",
-      "https://github.com/Liquid4All/cookbook/tree/main/finetuning/notebooks"
-     ]
-    }
    }
   },
   {
@@ -423,6 +413,51 @@
    }
   },
   {
+   "id": "a55665cf48953af7",
+   "url": "https://huggingface.co/blog/allenai/statebench",
+   "title": "StateBench: Testing how language models track state changes over long documents",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-03T17:15:21+00:00",
+   "summary_short": "AI2 发布 StateBench，用四个难度层级测试长文档中的状态追踪能力",
+   "summary_long": "AI2 推出 StateBench，一个衡量长上下文“状态追踪”能力的基准，衡量语言模型在长文档中跟踪实体信息随文档演变而变化的能力。原文指出，状态追踪是读代码（变量反复赋值）和读故事（角色移动、物品易手）等任务的基础，例如小说里“约翰把刀给了玛丽”就改变了角色状态。不同状态追踪问题难度差异很大：简单的只需找到最新更新，难的需沿变化链条逐步推进，漏掉一步就会答错。原文提到，Transformer 在长依赖链的困难状态追踪上存在理论局限，这推动了 Gated DeltaNet 等带运行记忆的循环与混合架构。既有测试多聚焦最难情况，研究者需要知道各类架构分别能处理哪类追踪，因此 StateBench 设四个难度层级：R-trivial（不可变赋值）、Aperiodic（按值重新赋值）、Soluble（自引用更新，如 x = x + 5）、General finite（按引用赋值，如五杯换球）。结果显示：直接在这些任务上训练时，循环与混合模型的泛化距离远大于 Transformer；而 Gemini 3.8 Flash、Claude Opus 5.5、GPT-6 Sol 与 Luna 等前沿模型在输入变长时仍在较难的状态追踪上失效。",
+   "key_points": [
+    "StateBench 分四级难度，对应不可变赋值、按值重新赋值、自引用更新、按引用赋值（如五杯换球）四类状态更新操作",
+    "直接在这些任务上训练时，循环与混合架构的泛化距离显著超过 Transformer",
+    "Gemini 3.8 Flash、Claude Opus 5.5、GPT-6 Sol 与 Luna 等前沿模型在输入变长时仍在较难的状态追踪形式上失效"
+   ],
+   "topics": [
+    "eval",
+    "reasoning",
+    "context-engineering"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 84.6,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://allenai.org/papers/statebench",
+      "https://huggingface.co/datasets/allenai/state-bench",
+      "https://github.com/allenai/state-bench",
+      "https://www.datocms-assets.com/64837/1792006215-statebench-draft-blog-google-docs-image-1.png",
+      "https://arxiv.org/html/2404.08819v2#S3.SS1",
+      "https://www.datocms-assets.com/64837/1792006353-statebench-draft-blog-google-docs-image-2.png",
+      "https://www.datocms-assets.com/64837/1792006435-statebench-draft-blog-google-docs-image-3.png",
+      "https://www.datocms-assets.com/64837/1792006493-statebench-draft-blog-google-docs-image-4.png"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "de4cf53f9db96311",
    "url": "https://openai.com/index/scaling-git-at-openai",
    "title": "Scaling Git at OpenAI",
@@ -462,61 +497,6 @@
      ]
     },
     "summary_mode": "full"
-   }
-  },
-  {
-   "id": "db98bf59a6c7e420",
-   "url": "https://huggingface.co/blog/LiquidAI/lfm3",
-   "title": "Build specialized multimodal models with LFM3",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-27T17:16:52+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "post-training",
-    "multimodal"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 84.0,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://huggingface.co/collections/LiquidAI/lfm3",
-      "https://cdn-uploads.huggingface.co/production/uploads/644249b08443bce4c9890a0f/iZQBqXVZfrcUNCklF4eAs.png",
-      "https://huggingface.co/LiquidAI/LFM2.5-8B-A1B",
-      "https://cdn-uploads.huggingface.co/production/uploads/644249b08443bce4c9890a0f/6RfJINOKr6Ay2kHCPR-mz.png",
-      "https://huggingface.co/LiquidAI/LFM3-1.7B",
-      "https://huggingface.co/LiquidAI/LFM3-VL-2B",
-      "https://huggingface.co/LiquidAI/LFM3-Audio-2B",
-      "https://huggingface.co/LiquidAI/LFM3-Omni-2B",
-      "https://huggingface.co/LiquidAI/d1-2B",
-      "https://huggingface.co/LiquidAI/d1-omni-2B",
-      "https://docs.liquid.ai/examples/agent-harnesses",
-      "https://huggingface.co/LiquidAI/d1-3B",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_sft_with_trl.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_dpo_with_trl.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_grpo_with_trl.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_cpt_with_trl.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_vl_sft_with_trl.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_vl_grpo_with_trl.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_audio_sft_with_transformers.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_audio_tts_sft_with_transformers.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_omni_sft_with_transformers.ipynb",
-      "https://colab.research.google.com/github/Liquid4All/cookbook/blob/main/finetuning/notebooks/lfm3_omni_vqa_sft_with_transformers.ipynb",
-      "https://www.youtube.com/watch?v=ZARw2VY6Dlk",
-      "https://huggingface.co/LiquidAI/LFM3-1.7B-Base",
-      "https://github.com/Liquid4All/cookbook/tree/main/finetuning/notebooks"
-     ]
-    }
    }
   },
   {
@@ -686,31 +666,100 @@
    }
   },
   {
-   "id": "5ef94984dce414f6",
-   "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/",
-   "title": "Genie 4: A new generation of world simulation",
-   "source": "Google DeepMind Blog",
+   "id": "fec0e46ceba430b8",
+   "url": "https://huggingface.co/blog/transformers-mic",
+   "title": "Transformers Model Integration Contracts",
+   "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-10-27T16:01:38+00:00",
-   "summary_short": "官网列表出现 Genie 4，仅一句描述，原文无实质内容",
-   "summary_long": "这篇原文实际抓到的是 DeepMind 官网的一组栏目导航与模型列表，并不是一篇介绍文章。与标题相关的全部信息只有两处：在“Specialized models”列表中，“Genie 4”的说明是“Generate and explore interactive worlds”（生成并探索交互式世界）；在“Breakthroughs”栏目下，同一句描述再次出现，链接指向 Genie 模型页面。列表中还有 Genie 3，它使用的是完全相同的描述，此外还有 SIMA 2（“在虚拟 3D 世界中与你一起游玩、推理和学习的智能体”）、Gemini、Veo、Lyria、Gemma、Gemini Robotics 等条目。页面其余部分是 Evals、Publications、Responsibility、Frontier safety，以及 AlphaFold、WeatherNext 等栏目链接和配图。原文没有给出 Genie 4 的技术细节、能力边界、发布时间、演示效果或任何结论性评价，也没有署名作者，因此无法判断它与 Genie 3 的具体差异，也无法确认这次发布包含哪些内容。以上为原文全部可用信息，其余内容原文未详述。",
+   "published_at": "2026-11-03T00:00:00+00:00",
+   "summary_short": "提出 MIC 契约标准：用缩小的模型 fixture 在 CPU 上拦截回归",
+   "summary_long": "2026年7月30日，Transformers 为 T5 启用 PyTorch 的 SDPA，副作用是 UMT5 解码器可以注意到未来的 token，训练时能提前看到答案；程序没有崩溃，这个 bug 在 main 上存在了近两个月。回放那些提交时，一个在 CPU 上运行的小型 UMT5 模型在每一次提交上都能报出该问题。原文称 Transformers 支持 750 多种模型类型，main 上有 8.8 万+ CPU 测试、每日 20 万+ GPU 测试，每个 PR 全跑并不现实。办法是把模型缩小成 fixture：按真实 checkpoint 的配置构建层数更少更窄但保留每种层的模型，tokenizer 与 processor 文件不变，发布一次重复使用，在廉价 CPU runner 上跑快速集成测试；UMT5 fixture 权重 66MB，原始 checkpoint 为 1,227MB。由此提出 transformers-mic 标准：契约由 fixture、可运行的 Markdown 用法示例、人工审核的基线输出三部分组成，用法路径仍产出基线则契约成立，覆盖架构与用法而非单个 checkpoint。契约已在 huggingface-mic 发布，Hub 上的 fleet 数据集固定每个 MIC 的版本与打包版本，PR 按改动文件挑选 MIC。原文强调 fixture 不会取",
    "key_points": [
-    "原文实际上是官网导航和模型列表，涉及 Genie 4 的描述只有“Generate and explore interactive worlds”这一句",
-    "Genie 3 在列表中使用与 Genie 4 完全相同的描述，原文未说明两者的区别",
-    "原文未提供 Genie 4 的技术细节、发布时间、演示内容或作者署名"
+    "UMT5 回归：为 T5 启用 SDPA 后，UMT5 解码器可以看到未来 token，该 bug 在 main 上存在近两个月，小型 CPU fixture 在每次回放提交时都能报出。",
+    "fixture 方案：按真实 checkpoint 配置缩小模型，保留每一种层，tokenizer/processor 不变；UMT5 fixture 权重 66MB，原始 checkpoint 为 1,227MB，可在廉价 CPU runner 上跑快速集成测试。",
+    "transformers-mic 契约三部分：fixture、可运行的 Markdown 用法示例、人工审核的基线输出；契约覆盖架构与用法路径而非单个 checkpoint。"
    ],
    "topics": [
-    "world-model"
+    "harness",
+    "eval"
    ],
-   "category": "模型",
+   "category": "Agent 与开发",
    "categories": [
-    "模型"
+    "Agent 与开发"
    ],
-   "horizon": "short",
-   "score": 81.9,
+   "horizon": "long",
+   "score": 82.0,
    "status": "published",
    "extra": {
-    "content_source": "reader",
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/huggingface/blog/blob/main/transformers-mic.md",
+      "https://github.com/huggingface/transformers",
+      "https://github.com/huggingface/transformers-mic/blob/main/docs/evidence.md#on-cpu",
+      "https://github.com/huggingface/transformers-mic",
+      "https://huggingface.co/huggingface-mic",
+      "https://huggingface.co/huggingface-mic/smollm-mic/blob/main/integrations/transformers/usage.md",
+      "https://huggingface.co/datasets/huggingface-mic/transformers-fleet",
+      "https://github.com/huggingface/transformers/commit/560f36cc561fa154d224b7a6dfcba1d57a621d7b",
+      "https://github.com/huggingface/transformers/commit/d7ba937671edb174fd80d33f9ecbd38f6559dfca",
+      "https://github.com/huggingface/transformers-mic/blob/main/docs/evidence.md#shadow-backfill",
+      "https://github.com/huggingface/transformers-mic/blob/main/docs/evidence.md#transformers-ci-proof",
+      "https://github.com/huggingface/transformers-mic/blob/main/docs/fixtures.md#recipe",
+      "https://huggingface-mic-mic-coverage.static.hf.space/shrink/Llama-4-Scout-17B-16E-Instruct-mic.html",
+      "https://github.com/huggingface/transformers-mic/blob/main/docs/cli.md#automated-mode",
+      "https://huggingface.co/spaces/huggingface-mic/mic-coverage",
+      "https://github.com/huggingface/transformers-mic/blob/main/docs/fixtures.md#choosing-the-weights",
+      "https://github.com/huggingface/transformers-mic/blob/main/docs/fixtures.md#overfit-versus-random-what-can-we-conclude",
+      "https://transformers-ci.huggingface.cool/d/mic-failures/mic-failures?from=now-4w&to=now&timezone=browser"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "20954e3ac0ff87f7",
+   "url": "https://huggingface.co/blog/cwe-bench",
+   "title": "CWE-bench v2: More coverage, quality, and transparency",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-03T00:00:00+00:00",
+   "summary_short": "CWE-bench v2 公开 100 个安全修复任务，覆盖 91 种 CWE，评分程序化、可复现",
+   "summary_long": "CWE-bench 用于测试前沿网络安全能力。Collinear AI 发布 v2 版本，公开 100 个任务，任何人都可以运行并评测模型。设置不变：智能体拿到真实开源仓库的检出代码和简短指令，目标是在不破坏既有功能的前提下找到并修复安全弱点；评分完全程序化，结果确定，无需额外成本即可复现。程序化检查由 LLM 评审小组协助打磨，偏向难度与公平性；另外维护一个留出集（held-out set），用于追踪模型没见过的任务上的进展，需联系 cyber@collinear.ai。100 个任务覆盖 91 种 CWE。每个任务都核验了以下问题：指令是否像真实指令；评分行为能否从指令推断；验证器是否检查正确行为，而不是某一种修复结构；初始代码是否失败而参考修复是否通过；原有功能是否仍可用；是否能拒绝已知上游补丁等记忆化解法。所有任务还经过人工复核。结果在两处追踪：数据集页面的开放权重模型榜（社区提 PR 添加结果），以及包含 Gemini、Claude、GPT 等仅 API 模型的 Space 榜。11 个受评模型中，Gemini 4 Argon 以 67.8% pass@1、81.0% pass@4 领先，略高于 Claude Opus 5.5（67.3%、78.0%）。95 个任务至少被一个模型解出，但领先者仍有 19% 的尝试全部失败。任务集、评分器与 harness 均公开，可用 H",
+   "key_points": [
+    "公开 100 个任务覆盖 91 种 CWE，评分完全程序化、结果确定可复现，任务集、评分器与 harness 均开源，可用 Harbor 直接从 Hub 运行。",
+    "11 个受评模型中 Gemini 4 Argon 以 67.8% pass@1、81.0% pass@4 居首，Claude Opus 5.5 以 67.3%、78.0% 紧随；95 个任务至少被一个模型解出，但领先者仍有 19% 每次尝试均失败。",
+    "每个任务都核验六项质量要求并全部人工复核，包括验证器能否拒绝已知上游补丁等记忆化解法；另设留出集追踪模型未见任务，需联系 cyber@collinear.ai。"
+   ],
+   "topics": [
+    "eval",
+    "cybersecurity",
+    "coding-agent"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测"
+   ],
+   "horizon": "short",
+   "score": 81.6,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/huggingface/blog/blob/main/cwe-bench.md",
+      "https://cwe-bench.com/",
+      "https://collinear.ai/",
+      "https://huggingface.co/datasets/collinear-ai/cwe-bench",
+      "https://www.cwebench.com",
+      "https://huggingface.co/docs/hub/eval-results#adding-evaluation-results",
+      "https://huggingface.co/spaces/collinear-ai/cwe-bench-leaderboard",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/cwe-bench/pareto.png",
+      "https://harborframework.com/"
+     ]
+    },
     "summary_mode": "full"
    }
   },
@@ -760,6 +809,83 @@
       "https://model-spec.openai.com/2026-10-29.html#control_side_effects",
       "https://model-spec.openai.com/2026-10-29.html#assume_objective_pov",
       "https://model-spec-feedback-2026.openai.chatgpt.site"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "adafdd4764cb9dbb",
+   "url": "https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/",
+   "title": "Agentic cheminformatics with Google Antigravity",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-11-03T17:01:49+00:00",
+   "summary_short": "Google Antigravity 搭配化学信息学技能，把药物设计的一次迭代从数天压缩到一小时",
+   "summary_long": "药物研发早期需要在图表和文献中整理数据、训练预测模型并提出候选分子，单次迭代通常要花数天。原文介绍了一套为 Google Antigravity 构建的 Cheminformatics Skills：语言模型负责工作流编排、数据库导航与科学推理，确定性化学工具负责分子计算；底层基于开源工具包 RDKit，并接入 ChEMBL 与 PubChem 的整理资源，把领域最佳实践编入智能体工作流。原文指出，化学数据表示形式多样（论文中的 IUPAC 名称、专利中的 Markush 结构、目录中的 SDF 文件），且改动一个原子或键就是另一种化合物，因此系统必须统一来源并处理其中可能的错误。作者称该环境可成为计算化学家与实验化学家共用的科研工作台。演示中，智能体针对真实肺癌治疗药物检索数千个化合物、做匹配分子对分析，一小时内提出带合成路线的新型刚性化大环。原文并以克唑替尼（5 个主要可旋转键）到洛拉替尼（环化后降至零）说明刚性化提升效力的经典思路。",
+   "key_points": [
+    "原文演示：智能体检索数千化合物、进行匹配分子对分析，在一小时内提出新型刚性化大环及合成路线",
+    "技能套件以 RDKit 为基础，连接 ChEMBL 与 PubChem，由确定性化学工具执行分子计算，语言模型负责编排与推理",
+    "原文强调分子表示形式多样（IUPAC 名称、Markush 结构、SDF），且一个原子或键的差错即代表不同化合物"
+   ],
+   "topics": [
+    "tool-use",
+    "rag",
+    "harness"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "产品与应用"
+   ],
+   "horizon": "long",
+   "score": 81.4,
+   "status": "published",
+   "extra": {
+    "content_source": "reader",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "bc4177032a04e266",
+   "url": "https://huggingface.co/blog/ibm-research/palette-deck-building",
+   "title": "Palette: teaching a small model to build decks in your design language",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-03T16:35:36+00:00",
+   "summary_short": "20B 小模型用合成数据学自有设计语言，分设计师与编码两步生成幻灯片",
+   "summary_long": "前沿模型能生成不错的幻灯片，但多套之间风格雷同，会漂回自身的固有风格，提示无法阻止；同时机密内容不能离开自有系统。这两点都指向一个自托管、用自有设计语言训练的开放权重模型，可真正能自托管的小模型在这方面表现很差：标题融进背景、文字溢出、图形重叠。Palette 检验一个假设：用自有设计语言的合成数据训练小模型，再加一个校验用 harness，能否在保留结果所有权的同时与前沿系统竞争。作者用 LoRA 微调了一个 20B 模型，把任务拆成两个角色：设计师读取计划，写出结构化 JSON brief（配色、字体系统、每页布局、确切内容与简短设计理由）；编码者据此为单页编写 pptxgenjs JavaScript。训练数据遵循 IBM Design Language，在 PresentBench 上于所测三个领域中的两个排名第一。由于每页上下文在写代码前已固定，编码调用可并行，编码阶段约快 6–7 倍。经验之一是：编码样本长度约为设计师样本的 5 倍，简单混合会让设计师训练不足，需对其过采样 5 倍。",
+   "key_points": [
+    "问题：前沿模型多套输出风格雷同且会漂回自有风格，机密内容又不能出系统，因此需要自托管的开放权重模型；但小模型生成的幻灯片常出现标题消失、文字溢出、图形重叠等损坏。",
+    "方法：用 LoRA 微调 20B 模型，拆成“设计师”与“编码者”两个角色——前者产出可读可改的结构化 JSON brief（配色、字体、每页布局/内容/设计理由），后者写 pptxgenjs JavaScript；上下文预先固定使编码可并行，编码阶段约快 6–7 倍。",
+    "结果与经验：训练数据遵循 IBM Design Language，在 PresentBench 所测三个领域中两个排名第一；因编码样本约长 5 倍，对设计师样本过采样 5 倍才避免其训练不足。数据合成的具体做法原文未详述。"
+   ],
+   "topics": [
+    "post-training",
+    "harness",
+    "multi-agent"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 81.3,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.ibm.com/design/language/resources/",
+      "https://huggingface.co/datasets/PresentBench/PresentBench",
+      "https://gitbrent.github.io/PptxGenJS/",
+      "https://cdn-uploads.huggingface.co/production/uploads/63890e3843d8b0797a0ad606/YTsME8ZIwzzxmo-QmpTQq.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/63890e3843d8b0797a0ad606/PZoiyAFg_nrWRryQhjGN_.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/63890e3843d8b0797a0ad606/iZzBRJXOUxncecFIEgw-B.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/63890e3843d8b0797a0ad606/QiWVeHtadoTFYsfdPjkDr.png",
+      "https://github.com/docling-project/docling"
      ]
     },
     "summary_mode": "full"
@@ -879,87 +1005,6 @@
    }
   },
   {
-   "id": "34370e88c88d0cd4",
-   "url": "https://huggingface.co/blog/allenai/novelty-bench",
-   "title": "Can we trust LLMs to judge whether a research idea is novel?",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-10-27T16:12:42+00:00",
-   "summary_short": "Ai2 发布基准测试 LLM 新颖性评判：微小改动即致结论大变",
-   "summary_long": "Ai2 发布研究《Old Ideas, Novel Problems》，考察大语言模型评估科研想法新颖性的可靠性，并公开测试“新颖性评判器”的基准、数据与代码，以及可自动构建新评测集的流水线。原文称，AI 系统除生成想法外还需判断其是否真正新颖，这一任务常交给另一个 LLM；此类评判器没有标准构建方式，模型、提示词、评估格式、推理预算乃至文献检索的选择都会实质影响结论，且往往只在人类论文而非其真正要评估的 AI 生成想法上验证。基准从 ICLR 2026 评审中明确讨论原创性的段落取材：高新颖性池 154 条来自所在领域评分前 10% 的录用论文，评审肯定新颖性且无人质疑；低新颖性池 145 条来自后 10% 的被拒论文，评审提出原创性疑虑且无人肯定。测试六个模型发现，仅改动提示词中的几个词，判断两个想法哪个更新颖的准确率变动可超 50 个百分点；检索与额外推理未稳定提升表现；两个专门构建的新颖性评估系统不如简单提示的 Claude Opus 4.6 基线。",
-   "key_points": [
-    "六款模型（GPT-5.1、GPT-5.2、GPT-5.4、Claude Sonnet 4.5、Claude Opus 4.5、Claude Opus 4.6）在评估设置的细微变化下，对同一批想法给出差异巨大的新颖性判断",
-    "仅改动提示词中的几个词，模型判断两个想法哪个更新颖的准确率变化超过 50 个百分点；检索与额外推理并未稳定改善判断",
-    "基准基于 ICLR 2026 同行评审原文而非录用结果构建，含 154 条高新颖性想法与 145 条低新颖性想法；两个专门构建的新颖性评估系统表现不如简单提示的 Claude Opus 4.6 基线"
-   ],
-   "topics": [
-    "eval",
-    "llm-as-judge",
-    "reasoning"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测"
-   ],
-   "horizon": "long",
-   "score": 79.2,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2610.02022"
-     ],
-     "links": [
-      "https://arxiv.org/abs/2610.02022",
-      "https://huggingface.co/datasets/allenai/novelty-judge-bench",
-      "https://github.com/allenai/novelty-eval",
-      "https://www.datocms-assets.com/64837/1793023853-novelty-bench-header.png",
-      "https://allenai.org/blog/asta-datavoyager",
-      "https://allenai.org/blog/autodiscovery",
-      "https://allenai.org/blog/theorizer",
-      "https://allenai.org/asta",
-      "https://www.datocms-assets.com/64837/1793023853-novelty-bench-prompt-wording-chart.png"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "c61ee1a62651ca79",
-   "url": "https://oioannou.com/blog/ai-promised-less-work/",
-   "title": "AI promised less work. I've never worked more",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-27T11:08:14+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "coding-agent",
-    "social-impact"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 78.9,
-   "status": "published",
-   "extra": {
-    "hn_points": 610,
-    "hn_comments": 601,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://bold.org/"
-     ]
-    },
-    "content_source": "direct"
-   }
-  },
-  {
    "id": "d8eb5a4b641ea994",
    "url": "https://labs.ycombinator.com/projects/games/index.html",
    "title": "We ran AI agent swarms in Minecraft and Mindustry",
@@ -1040,6 +1085,83 @@
     "hn_points": 397,
     "hn_comments": 1,
     "content_source": "reader",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "9b0f1b3870f8f7bf",
+   "url": "https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/",
+   "title": "Qwen 3.8 27B on my laptop can interpret model weights, too",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-03T16:29:48+00:00",
+   "summary_short": "作者实测：Qwen 3.8 27B 在笔记本上也能直接读懂模型权重",
+   "summary_long": "原文介绍论文《Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights》（Rikiya Takehi、Jayden Teoh、Alex Zhang、Omar Khattab），作者自称为博客文章但形似论文。论文称前沿模型尤其是 GPT-6 Astra 能直接读写神经网络原始权重（即包含大量浮点数的模型文本描述）：仅凭权重看出网络被训练做什么；在无环境反馈、不许写训练循环的前提下从零写出小游戏网络，胜过用 PPO 训练一亿步的网络；还能定位 Qwen3.5-0.8B 权重中导致推理循环的问题，原生修改 0.016% 的权重，使 MATH-500 从 7.9% 升至 48.1%、IFEval 提升 3 倍，作者称之为 Weight-Space Programming。文中提到 spaCy 作者 Matthew Honnibal 批评论文混淆了两类问题，Sean Goedecke 则拆解了该案例。原文作者聚焦“无工具”一支：用论文仓库中四个 10x10 网格游戏（Breakout、Pong、Pac-Man、Freeway）的权重提示词测试，Kimi K3.1 Pro 用 9 分 41 秒、19,493 个推理 token 猜中 Breakout，并称本地运行的 Qwe",
+   "key_points": [
+    "论文提出 Weight-Space Programming：LLM 直接阅读和修改模型原始权重，GPT-6 Astra 可仅凭权重判断网络训练目标，并从零写出小游戏网络",
+    "论文称 Astra 不写训练循环、原生编辑 Qwen3.5-0.8B 的 0.016% 权重，使 MATH-500 从 7.9% 升至 48.1%、IFEval 提升 3 倍；Matthew Honnibal 批评其混淆两类问题，Sean Goedecke 拆解了该案例",
+    "原文作者用论文仓库中四个网格游戏的权重提示词实测：Kimi K3.1 Pro 用 9 分 41 秒、19,493 个推理 token 猜中 Breakout，并称笔记本上的 Qwen 3.8 27B 同样可以"
+   ],
+   "topics": [
+    "eval",
+    "reasoning",
+    "open-source"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 77.8,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "machine-learning",
+     "ai",
+     "generative-ai",
+     "local-llms",
+     "llms"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://rikiyat.github.io/blog/weight-space-programming/",
+      "https://huggingface.co/Qwen/Qwen3.5-0.8B/blob/main/README.md#L856",
+      "https://honnibal.dev/blog/astra-read-write-misleading",
+      "https://www.seangoedecke.com/llms-are-not-superhuman-at-reading-and-writing-neural-network-weights/",
+      "https://en.wikipedia.org/wiki/Freeway_(video_game)",
+      "https://github.com/RikiyaT/lm_understand-logs",
+      "https://github.com/RikiyaT/lm_understand-logs/tree/main/exp1_which_game",
+      "https://github.com/RikiyaT/lm_understand-logs/blob/main/exp1_which_game/runs/breakout/prompt.txt",
+      "https://github.com/RikiyaT/lm_understand-logs/blob/main/exp1_which_game/runs/freeway/prompt.txt",
+      "https://github.com/RikiyaT/lm_understand-logs/blob/main/exp1_which_game/runs/pacman/prompt.txt",
+      "https://github.com/RikiyaT/lm_understand-logs/blob/main/exp1_which_game/runs/pong/prompt.txt",
+      "https://llm.datasette.io/",
+      "https://github.com/simonw/llm-openrouter",
+      "https://gist.github.com/simonw/9f18d2945a105c04734ef7e5cd95717c",
+      "https://simonwillison.net/2026/Aug/16/qwen-38-27b/",
+      "https://huggingface.co/lmstudio-community/Qwen3.8-27B-GGUF/blob/main/Qwen3.8-27B-Q4_K_M.gguf",
+      "https://lmstudio.ai",
+      "https://github.com/llm-lmstudio/llm-lmstudio",
+      "https://github.com/llm-lmstudio/llm-lmstudio/issues/16",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F387d3a7927f165b1986bb6c2099d0f53#response-1",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F387d3a7927f165b1986bb6c2099d0f53#reasoning-1",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F387d3a7927f165b1986bb6c2099d0f53#response-2",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F387d3a7927f165b1986bb6c2099d0f53#reasoning-2",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F387d3a7927f165b1986bb6c2099d0f53#response",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F387d3a7927f165b1986bb6c2099d0f53#reasoning",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F6ed68f659e26a32e7d9096391d92f326",
+      "https://simonwillison.net/tags/machine-learning",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/local-llms",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/qwen",
+      "https://simonwillison.net/tags/paper-review"
+     ]
+    },
     "summary_mode": "full"
    }
   },
@@ -1293,6 +1415,86 @@
       "https://memdoor.ai/docs/team-solve",
       "https://memdoor.ai/docs/providers#a-local-runtime-no-key",
       "https://github.com/guregodevo/mario"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "da9a5824109ffaf4",
+   "url": "https://github.com/postmanlabs/postman-app-support/issues/14370",
+   "title": "Postman silently auto-installs AI plugins and attempts to share all API data",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-03T17:22:37+00:00",
+   "summary_short": "用户报告 Postman 桌面版自动安装 Codex、Claude 插件并改写它们的配置",
+   "summary_long": "GitHub issue #14370（2026年10月25日）作者称，在 Mac 上打开 Postman 桌面版 12.33.4 后，编码代理出现异常：反复的 MCP 认证警告，Codex 反复把 API 工作导向 Postman skills。Postman 自身日志（2026-10-24T09:34:14.418Z）记录 source 为 auto-existing-upgrade，结果为 claude-code:installed、codex:installed。~/.codex/config.toml 被改写：加入指向 postmanlabs/postman-plugin 的 marketplace、启用 postman@postman 插件、写入 hooks.state 的 trusted_hash。该 hook 以 startup|clear|compact 匹配器注册 SessionStart 命令，输出的上下文要求在非平凡 API 工程任务前加载 postman:api-engineer 技能，作者称这远超用户明确要求使用 Postman 的范围。安装器源码中 codex.ts 在安装后调用 approvePostmanHook，codex-hooks.ts 通过 hooks/list 取哈希并用 config/batchWrite 写入 trusted_hash",
+   "key_points": [
+    "Postman 日志记录:autoInstall 以 auto-existing-upgrade 方式执行脚本，结果为 claude-code:installed、codex:installed",
+    "~/.codex/config.toml 被加入 Postman marketplace 源、启用 postman@postman 插件并写入 hooks.state 的 trusted_hash",
+    "SessionStart hook 输出的指令要求在任何非平凡 API 工程任务前加载 postman:api-engineer 技能，作者认为范围远超用户明确请求"
+   ],
+   "topics": [
+    "cybersecurity",
+    "mcp",
+    "coding-agent"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全",
+    "Agent 与开发",
+    "开源项目"
+   ],
+   "horizon": "short",
+   "score": 76.5,
+   "status": "published",
+   "extra": {
+    "hn_points": 961,
+    "hn_comments": 313,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/indicava",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issue-6028138383",
+      "https://github.com/postmanlabs/postman-plugin/blob/6c8e452e0f4237f4bcc0901cb1ac442dec707e49/hooks/session-start-context.md",
+      "https://github.com/postmanlabs/postman-plugin/blob/6c8e452e0f4237f4bcc0901cb1ac442dec707e49/hooks/codex-hooks.json",
+      "https://github.com/postmanlabs/postman-plugin/blob/6c8e452e0f4237f4bcc0901cb1ac442dec707e49/installer/src/hosts/codex-hooks.ts",
+      "https://github.com/postmanlabs/postman-plugin/blob/6c8e452e0f4237f4bcc0901cb1ac442dec707e49/installer/src/hosts/codex.ts",
+      "https://mcp.postman.com/mcp",
+      "https://github.com/postmanlabs/postman-plugin/blob/6c8e452e0f4237f4bcc0901cb1ac442dec707e49/mcp.codex.json",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6587956218",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6588558752",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6599154379",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6611122028",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6611520882",
+      "https://private-user-images.githubusercontent.com/141689453/693815905-22da1820-10fd-4cab-91db-17c955d5279d.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3NTA2NTAsIm5iZiI6MTc5Mzc1MDM1MCwicGF0aCI6Ii8xNDE2ODk0NTMvNjkzODE1OTA1LTIyZGExODIwLTEwZmQtNGNhYi05MWRiLTE3Yzk1NWQ1Mjc5ZC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QyMzU5MTBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1kZWM0OTlkYzY1OWU3MTFiMmI0NWEzOWNiNTg4MTU4OGUxMmEzY2Q5YThmZGJiNjNhZmI0N2NkY2ViYzZhNzA4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.ZssT6bP4DTPg8txR20FH2hVfqsb3few9CjsZNv3DnCg",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612308791",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#event-35053169206",
+      "https://github.com/danielkjellid/dotfiles/commit/083192155ff5bc2b36693551923a06559e4d7b54",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612536775",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612707641",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612777602",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612804290",
+      "https://private-user-images.githubusercontent.com/141689453/693872635-0fb398f6-152b-4c84-a7db-b5c6a217eb28.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3NTA2NTAsIm5iZiI6MTc5Mzc1MDM1MCwicGF0aCI6Ii8xNDE2ODk0NTMvNjkzODcyNjM1LTBmYjM5OGY2LTE1MmItNGM4NC1hN2RiLWI1YzZhMjE3ZWIyOC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QyMzU5MTBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT01ZWY5MGMxMWUzZTExNzIyZTdjZTJhNDI2MjI3MDVkYjYwZTk3MTAxOTNiMGU0OTRiMWQwYTc3NTUwM2IzODIxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.ttLKSGHXbOCZwwQWCWhF3q0RdvkQPp5KaDZPo7ngZ80",
+      "https://private-user-images.githubusercontent.com/141689453/693872634-a6395034-0c72-4862-a16b-6d6392ca3d5a.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3NTA2NTAsIm5iZiI6MTc5Mzc1MDM1MCwicGF0aCI6Ii8xNDE2ODk0NTMvNjkzODcyNjM0LWE2Mzk1MDM0LTBjNzItNDg2Mi1hMTZiLTZkNjM5MmNhM2Q1YS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QyMzU5MTBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1lMzYzYTU0NjAyYmYxNzE5YTJiYjU2Nzc4MjYyOTFhMmI5MmQ4YjAzNDEzNTYzZmQxYTE3ZGVkNWQ4ODM4YjAwJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.uLq86ir-wcwleFUu1R7-FG0Ecowg8bnQwqO5wBtMMBc",
+      "https://web.archive.org/web/20261026090707/https://www.postman.com/downloads/",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612827451",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612859645",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612901226",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612959019",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6614109517",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6614985113",
+      "https://www.usebruno.com/",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6615364854",
+      "https://private-user-images.githubusercontent.com/141689453/693872635-0fb398f6-152b-4c84-a7db-b5c6a217eb28.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3NDAwMjIsIm5iZiI6MTc5MzczOTcyMiwicGF0aCI6Ii8xNDE2ODk0NTMvNjkzODcyNjM1LTBmYjM5OGY2LTE1MmItNGM4NC1hN2RiLWI1YzZhMjE3ZWIyOC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QyMTAyMDJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1kM2VjZjFmNzFhMjA3OTk0NDM0MGQ2MzhkMmY2OGJhNmIyNmU4OWUyYjdiYjRlZmRmZjhlZDY0ZjBiZmI5ZWEwJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.4vcIa1_sGMBs4CIAFUJStSIxd2AYbTGjLlPCUPNCLhw",
+      "https://private-user-images.githubusercontent.com/141689453/693872634-a6395034-0c72-4862-a16b-6d6392ca3d5a.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3NDAwMjIsIm5iZiI6MTc5MzczOTcyMiwicGF0aCI6Ii8xNDE2ODk0NTMvNjkzODcyNjM0LWE2Mzk1MDM0LTBjNzItNDg2Mi1hMTZiLTZkNjM5MmNhM2Q1YS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QyMTAyMDJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wMjFjZGE0ZWE2NDQ0Njk4M2U3OTIxYzAzODhjZTY4ZGQzYWI1MGE5N2U2ZjI0NzdiMzQ2M2E0MTUwYjJiZmE1JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.8yn1mHK3RzLhWhvcxs3_hRJsOD9kewm7lXAm64j5Tvo",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6615406948",
+      "https://www.reddit.com/r/postman_api/comments/1xfat2u/postman_autoinstalled_plugins_into_my_codex_and/",
+      "https://www.reddit.com/r/codex/comments/1xfartn/postman_autoinstalled_a_global_codex_plugin_on_my/",
+      "https://www.reddit.com/r/ClaudeAI/comments/1xfauxa/postman_desktop_automatically_installed_a_claude/",
+      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6615574719"
      ]
     },
     "content_source": "direct",
