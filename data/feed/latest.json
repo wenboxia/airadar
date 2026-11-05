@@ -1,223 +1,234 @@
 {
- "generated_at": "2026-11-04T00:01:19+00:00",
- "date": "2026-11-04",
- "run_id": "20261103-235907",
+ "generated_at": "2026-11-05T00:24:11+00:00",
+ "date": "2026-11-05",
+ "run_id": "20261105-002242",
  "top": [
   {
-   "id": "a55665cf48953af7",
-   "url": "https://huggingface.co/blog/allenai/statebench",
-   "title": "StateBench: Testing how language models track state changes over long documents",
-   "source": "Hugging Face Blog",
+   "id": "a4f4c423c5426033",
+   "url": "https://openai.com/index/a-thousand-fewer-paths-to-root",
+   "title": "A thousand fewer paths to root",
+   "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-11-03T17:15:21+00:00",
-   "summary_short": "AI2 发布 StateBench，用四个难度层级测试长文档中的状态追踪能力",
-   "summary_long": "AI2 推出 StateBench，一个衡量长上下文“状态追踪”能力的基准，衡量语言模型在长文档中跟踪实体信息随文档演变而变化的能力。原文指出，状态追踪是读代码（变量反复赋值）和读故事（角色移动、物品易手）等任务的基础，例如小说里“约翰把刀给了玛丽”就改变了角色状态。不同状态追踪问题难度差异很大：简单的只需找到最新更新，难的需沿变化链条逐步推进，漏掉一步就会答错。原文提到，Transformer 在长依赖链的困难状态追踪上存在理论局限，这推动了 Gated DeltaNet 等带运行记忆的循环与混合架构。既有测试多聚焦最难情况，研究者需要知道各类架构分别能处理哪类追踪，因此 StateBench 设四个难度层级：R-trivial（不可变赋值）、Aperiodic（按值重新赋值）、Soluble（自引用更新，如 x = x + 5）、General finite（按引用赋值，如五杯换球）。结果显示：直接在这些任务上训练时，循环与混合模型的泛化距离远大于 Transformer；而 Gemini 3.8 Flash、Claude Opus 5.5、GPT-6 Sol 与 Luna 等前沿模型在输入变长时仍在较难的状态追踪上失效。",
+   "published_at": "2026-11-04T08:00:00+00:00",
+   "summary_short": "自主流水线在Linux内核生成948个提权利用，API成本约120万美元。",
+   "summary_long": "原文介绍一套自主漏洞发现、利用与补丁生成流水线，针对漏洞发现规模化后优先级判断与验证仍是瓶颈的问题。流程为识别Linux内核审计目标、静态扫描候选、隔离环境动态复现、生成PoC和补丁，最后由人类研究员复核。2026年10月中旬一次运行分析2,308个候选，动态复现1,724个漏洞，生成291个信息泄露PoC和948个LPE利用（可让本地非特权用户获取root），API成本1,213,430美元，每个LPE约1,279美元。目标虚拟机运行标准桌面系统，威胁模型参照Pwn2Own、TyphoonPWN。按历史赏金金额假设估值为1,890万–6,630万美元，为成本16–55倍。在适配kernelCTF环境获得25个信息泄露PoC和21个LPE，成本约32,936美元；若接收赏金约150万美元、约45倍。原文称至少发现并使用10种新Linux利用技术，人类研究员复核并报告漏洞与补丁。",
    "key_points": [
-    "StateBench 分四级难度，对应不可变赋值、按值重新赋值、自引用更新、按引用赋值（如五杯换球）四类状态更新操作",
-    "直接在这些任务上训练时，循环与混合架构的泛化距离显著超过 Transformer",
-    "Gemini 3.8 Flash、Claude Opus 5.5、GPT-6 Sol 与 Luna 等前沿模型在输入变长时仍在较难的状态追踪形式上失效"
+    "流水线覆盖发现、动态验证、可利用性评估和补丁生成，最终由人类安全研究员复核并报告。",
+    "2026年10月中旬运行：2,308个候选、1,724个动态复现、291个信息泄露PoC、948个LPE利用；API成本1,213,430美元，每个LPE 1,279美元。",
+    "适配kernelCTF环境：25个信息泄露PoC、21个LPE，成本约32,936美元；若接收赏金约150万美元；原文称至少10种新利用技术。"
    ],
    "topics": [
-    "eval",
-    "reasoning",
-    "context-engineering"
+    "cybersecurity",
+    "agent-loop",
+    "multi-agent"
    ],
-   "category": "评测",
+   "category": "安全",
    "categories": [
-    "评测",
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 84.6,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://allenai.org/papers/statebench",
-      "https://huggingface.co/datasets/allenai/state-bench",
-      "https://github.com/allenai/state-bench",
-      "https://www.datocms-assets.com/64837/1792006215-statebench-draft-blog-google-docs-image-1.png",
-      "https://arxiv.org/html/2404.08819v2#S3.SS1",
-      "https://www.datocms-assets.com/64837/1792006353-statebench-draft-blog-google-docs-image-2.png",
-      "https://www.datocms-assets.com/64837/1792006435-statebench-draft-blog-google-docs-image-3.png",
-      "https://www.datocms-assets.com/64837/1792006493-statebench-draft-blog-google-docs-image-4.png"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "fec0e46ceba430b8",
-   "url": "https://huggingface.co/blog/transformers-mic",
-   "title": "Transformers Model Integration Contracts",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-11-03T00:00:00+00:00",
-   "summary_short": "提出 MIC 契约标准：用缩小的模型 fixture 在 CPU 上拦截回归",
-   "summary_long": "2026年7月30日，Transformers 为 T5 启用 PyTorch 的 SDPA，副作用是 UMT5 解码器可以注意到未来的 token，训练时能提前看到答案；程序没有崩溃，这个 bug 在 main 上存在了近两个月。回放那些提交时，一个在 CPU 上运行的小型 UMT5 模型在每一次提交上都能报出该问题。原文称 Transformers 支持 750 多种模型类型，main 上有 8.8 万+ CPU 测试、每日 20 万+ GPU 测试，每个 PR 全跑并不现实。办法是把模型缩小成 fixture：按真实 checkpoint 的配置构建层数更少更窄但保留每种层的模型，tokenizer 与 processor 文件不变，发布一次重复使用，在廉价 CPU runner 上跑快速集成测试；UMT5 fixture 权重 66MB，原始 checkpoint 为 1,227MB。由此提出 transformers-mic 标准：契约由 fixture、可运行的 Markdown 用法示例、人工审核的基线输出三部分组成，用法路径仍产出基线则契约成立，覆盖架构与用法而非单个 checkpoint。契约已在 huggingface-mic 发布，Hub 上的 fleet 数据集固定每个 MIC 的版本与打包版本，PR 按改动文件挑选 MIC。原文强调 fixture 不会取",
-   "key_points": [
-    "UMT5 回归：为 T5 启用 SDPA 后，UMT5 解码器可以看到未来 token，该 bug 在 main 上存在近两个月，小型 CPU fixture 在每次回放提交时都能报出。",
-    "fixture 方案：按真实 checkpoint 配置缩小模型，保留每一种层，tokenizer/processor 不变；UMT5 fixture 权重 66MB，原始 checkpoint 为 1,227MB，可在廉价 CPU runner 上跑快速集成测试。",
-    "transformers-mic 契约三部分：fixture、可运行的 Markdown 用法示例、人工审核的基线输出；契约覆盖架构与用法路径而非单个 checkpoint。"
-   ],
-   "topics": [
-    "harness",
-    "eval"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
+    "安全",
     "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 82.0,
+   "score": 86.5,
    "status": "published",
    "extra": {
     "content_source": "direct",
+    "source_tags": [
+     "Security"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/transformers-mic.md",
-      "https://github.com/huggingface/transformers",
-      "https://github.com/huggingface/transformers-mic/blob/main/docs/evidence.md#on-cpu",
-      "https://github.com/huggingface/transformers-mic",
-      "https://huggingface.co/huggingface-mic",
-      "https://huggingface.co/huggingface-mic/smollm-mic/blob/main/integrations/transformers/usage.md",
-      "https://huggingface.co/datasets/huggingface-mic/transformers-fleet",
-      "https://github.com/huggingface/transformers/commit/560f36cc561fa154d224b7a6dfcba1d57a621d7b",
-      "https://github.com/huggingface/transformers/commit/d7ba937671edb174fd80d33f9ecbd38f6559dfca",
-      "https://github.com/huggingface/transformers-mic/blob/main/docs/evidence.md#shadow-backfill",
-      "https://github.com/huggingface/transformers-mic/blob/main/docs/evidence.md#transformers-ci-proof",
-      "https://github.com/huggingface/transformers-mic/blob/main/docs/fixtures.md#recipe",
-      "https://huggingface-mic-mic-coverage.static.hf.space/shrink/Llama-4-Scout-17B-16E-Instruct-mic.html",
-      "https://github.com/huggingface/transformers-mic/blob/main/docs/cli.md#automated-mode",
-      "https://huggingface.co/spaces/huggingface-mic/mic-coverage",
-      "https://github.com/huggingface/transformers-mic/blob/main/docs/fixtures.md#choosing-the-weights",
-      "https://github.com/huggingface/transformers-mic/blob/main/docs/fixtures.md#overfit-versus-random-what-can-we-conclude",
-      "https://transformers-ci.huggingface.cool/d/mic-failures/mic-failures?from=now-4w&to=now&timezone=browser"
+      "https://www.zerodayinitiative.com/blog/2026/3/11/announcing-pwn2own-berlin-for-2026",
+      "https://typhooncon.com/typhoonpwn-2026/",
+      "https://google.github.io/security-research/kernelctf/rules.html",
+      "https://github.com/openai/plugins/tree/main/plugins/codex-security"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "20954e3ac0ff87f7",
-   "url": "https://huggingface.co/blog/cwe-bench",
-   "title": "CWE-bench v2: More coverage, quality, and transparency",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-11-03T00:00:00+00:00",
-   "summary_short": "CWE-bench v2 公开 100 个安全修复任务，覆盖 91 种 CWE，评分程序化、可复现",
-   "summary_long": "CWE-bench 用于测试前沿网络安全能力。Collinear AI 发布 v2 版本，公开 100 个任务，任何人都可以运行并评测模型。设置不变：智能体拿到真实开源仓库的检出代码和简短指令，目标是在不破坏既有功能的前提下找到并修复安全弱点；评分完全程序化，结果确定，无需额外成本即可复现。程序化检查由 LLM 评审小组协助打磨，偏向难度与公平性；另外维护一个留出集（held-out set），用于追踪模型没见过的任务上的进展，需联系 cyber@collinear.ai。100 个任务覆盖 91 种 CWE。每个任务都核验了以下问题：指令是否像真实指令；评分行为能否从指令推断；验证器是否检查正确行为，而不是某一种修复结构；初始代码是否失败而参考修复是否通过；原有功能是否仍可用；是否能拒绝已知上游补丁等记忆化解法。所有任务还经过人工复核。结果在两处追踪：数据集页面的开放权重模型榜（社区提 PR 添加结果），以及包含 Gemini、Claude、GPT 等仅 API 模型的 Space 榜。11 个受评模型中，Gemini 4 Argon 以 67.8% pass@1、81.0% pass@4 领先，略高于 Claude Opus 5.5（67.3%、78.0%）。95 个任务至少被一个模型解出，但领先者仍有 19% 的尝试全部失败。任务集、评分器与 harness 均公开，可用 H",
+   "id": "7838c87736f9082f",
+   "url": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
+   "title": "Kimi K3.1 Pro model weights are out",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-04T15:30:30+00:00",
+   "summary_short": "Kimi K3.1 Pro 开放权重：2.8T MoE、百万 token 上下文、原生多模态",
+   "summary_long": "原文介绍 Kimi K3.1 Pro：它是 K3.1 系列首个模型，也是开放权重、原生多模态的 agentic 模型；由 Kimi K3 经数百个下游领域的大规模联合强化学习后训练而来，上下文窗口为 100 万 token，官方称其在编程、3D 创作、金融研究、事实准确性和其他 agentic 能力上有明显提升。架构为 MoE，总参数 2.8T、激活 104B，93 层；注意力由 69 层 KDA 与 24 层 Gated DSA 组成，相较 K3 以 Gated DSA 替换全注意力 Gated MLA，以提升长上下文建模效率。896 个专家，每个 token 选 16 个，另有 2 个共享专家；词表 160K；视觉编码器为 401M 参数的 MoonViT-V2；采用 MXFP4 权重 / MXFP8 激活的量化感知训练。原文附有与 Claude Fable 5.1、GPT-6 Astra、Claude Opus 5.5、DeepSeek-V4.1-Flash-1017、GLM-5.3 等的逐项基准对比表，例如 Terminal-Bench 4.0 得 65.7、BrowseComp 92.1、GDPval-AA v2.1 Elo 1846。",
    "key_points": [
-    "公开 100 个任务覆盖 91 种 CWE，评分完全程序化、结果确定可复现，任务集、评分器与 harness 均开源，可用 Harbor 直接从 Hub 运行。",
-    "11 个受评模型中 Gemini 4 Argon 以 67.8% pass@1、81.0% pass@4 居首，Claude Opus 5.5 以 67.3%、78.0% 紧随；95 个任务至少被一个模型解出，但领先者仍有 19% 每次尝试均失败。",
-    "每个任务都核验六项质量要求并全部人工复核，包括验证器能否拒绝已知上游补丁等记忆化解法；另设留出集追踪模型未见任务，需联系 cyber@collinear.ai。"
+    "开放权重、原生多模态的 agentic 模型，K3.1 系列首个，上下文 1048576 token",
+    "MoE 总参数 2.8T、激活 104B，用 69 层 KDA + 24 层 Gated DSA 替换 K3 的全注意力 Gated MLA 以优化长上下文",
+    "原文给出与 Claude Fable 5.1、GPT-6 Astra、Claude Opus 5.5、DeepSeek-V4.1-Flash、GLM-5.3 的逐项基准对比，如 Terminal-Bench 4.0 65.7、HLE-Full w/ tools 70.0、OSWorld V2.1 79.6"
    ],
    "topics": [
-    "eval",
-    "cybersecurity",
-    "coding-agent"
+    "post-training",
+    "open-source",
+    "reasoning"
    ],
-   "category": "评测",
+   "category": "模型",
    "categories": [
-    "评测"
+    "模型"
    ],
    "horizon": "short",
    "score": 81.6,
    "status": "published",
    "extra": {
-    "content_source": "direct",
+    "hn_points": 341,
+    "hn_comments": 88,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/cwe-bench.md",
-      "https://cwe-bench.com/",
-      "https://collinear.ai/",
-      "https://huggingface.co/datasets/collinear-ai/cwe-bench",
-      "https://www.cwebench.com",
-      "https://huggingface.co/docs/hub/eval-results#adding-evaluation-results",
-      "https://huggingface.co/spaces/collinear-ai/cwe-bench-leaderboard",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/cwe-bench/pareto.png",
-      "https://harborframework.com/"
+      "https://www.kimi.ai",
+      "https://www.moonshot.ai",
+      "https://huggingface.co/moonshotai",
+      "https://twitter.com/kimi_moonshot",
+      "https://discord.gg/TYU2fdJykW",
+      "https://modelscope.cn/organization/moonshotai",
+      "https://huggingface.co/moonshotai/Kimi-K3.1-Pro/blob/main/LICENSE",
+      "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart",
+      "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "https://www.tbench.ai/",
+      "https://www.terminal-bench-science.ai/",
+      "https://www.swe-marathon.org/",
+      "https://www.vals.ai/benchmarks/programbench",
+      "https://openai.com/index/gpt-6-astra/",
+      "https://www.anthropic.com/claude-opus-5-5-system-card",
+      "https://www.anthropic.com/claude-fable-5-1-mythos-5-1-system-card",
+      "https://api-docs.deepseek.com/news/news261017/",
+      "https://z.ai/blog/glm-5.3",
+      "https://posttrainbench.com/",
+      "https://huggingface.co/datasets/Anthropic/BioMysteryBench-full/commit/b5a889c",
+      "https://github.com/rdi-berkeley/agents-last-exam",
+      "https://artificialanalysis.ai/",
+      "https://www.mercor.com/apex/apex-agents-leaderboard/",
+      "https://platform.kimi.ai",
+      "https://github.com/vllm-project/vllm",
+      "https://recipes.vllm.ai/moonshotai/Kimi-K3.1-Pro",
+      "https://github.com/sgl-project/sglang",
+      "https://docs.sglang.io/cookbook/autoregressive/Moonshotai/Kimi-K3.1-Pro",
+      "https://github.com/lightseekorg/tokenspeed",
+      "https://lightseek.org/tokenspeed/recipes/models#kimi-k3-1-pro",
+      "https://platform.kimi.ai/docs/guide/use-thinking-effort",
+      "https://huggingface.co/docs/safetensors",
+      "https://huggingface.co/docs/inference-providers",
+      "https://huggingface.co/docs/hub/eval-results"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "3a06f84c0f51a102",
+   "url": "https://openai.com/index/openai-to-acquire-pierre",
+   "title": "OpenAI to acquire Pierre Computer Company, Inc.",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-04T14:30:00+00:00",
+   "summary_short": "OpenAI 宣布收购 Code Storage 与 Trees、Diffs 等开发者工具背后的 Pierre 公司",
+   "summary_long": "OpenAI 于 2026 年 11 月 4 日宣布将收购 Pierre Computer Company, Inc.（简称 Pierre）。Pierre 是 Code Storage 及一系列知名开源开发者工具背后的公司，Codex 应用中的文件浏览与变更审查功能已在使用的 Trees 和 Diffs 库即出自 Pierre。原文提到，Trees 让开发者快速浏览项目文件，Diffs 便于查看改动，两者都能在高性能下处理大量代码；Diffs 的 Edit 模式允许审查者就地修改代码，Pierre 近期还发布了随开发者输入或 agent 流式输出代码而更新的高速语法高亮工具 Highlights。同一支小团队既在 diff 中嵌入编辑器，也设计了 Code Storage 的 API。OpenAI 本周早些时候还介绍了其内部源代码管理后端 Pando。OpenAI 表示希望与 Pierre 团队一起，基于开发者已依赖的 Git 工作流，适配团队与编码 agent 协作的方式，并推动业界源代码管理的未来，让 Codex 连接公司交付的代码与其人员所做的决策。Pierre 的开源项目将保持开源，OpenAI 会继续贡献；收购完成前客户可继续使用 Code Storage，OpenAI 将把其功能引入 Codex。交易尚需满足惯例交割条件，包括获得监管批准，交割前两家公司保持独立。",
+   "key_points": [
+    "Pierre 是 Code Storage 及 Trees、Diffs、Highlights 等开源开发者工具的开发方，Codex 已在使用其 Trees 与 Diffs 库",
+    "OpenAI 希望基于现有 Git 工作流适配编码 agent 的协作方式，并推动源代码管理的未来",
+    "Pierre 开源项目将保持开源，OpenAI 将继续贡献；Code Storage 客户在交割后仍可使用，相关功能将逐步并入 Codex"
+   ],
+   "topics": [
+    "coding-agent",
+    "open-source",
+    "product"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 77.5,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Company"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://pierre.computer/",
+      "https://code.storage/"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "adafdd4764cb9dbb",
-   "url": "https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/",
-   "title": "Agentic cheminformatics with Google Antigravity",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-11-03T17:01:49+00:00",
-   "summary_short": "Google Antigravity 搭配化学信息学技能，把药物设计的一次迭代从数天压缩到一小时",
-   "summary_long": "药物研发早期需要在图表和文献中整理数据、训练预测模型并提出候选分子，单次迭代通常要花数天。原文介绍了一套为 Google Antigravity 构建的 Cheminformatics Skills：语言模型负责工作流编排、数据库导航与科学推理，确定性化学工具负责分子计算；底层基于开源工具包 RDKit，并接入 ChEMBL 与 PubChem 的整理资源，把领域最佳实践编入智能体工作流。原文指出，化学数据表示形式多样（论文中的 IUPAC 名称、专利中的 Markush 结构、目录中的 SDF 文件），且改动一个原子或键就是另一种化合物，因此系统必须统一来源并处理其中可能的错误。作者称该环境可成为计算化学家与实验化学家共用的科研工作台。演示中，智能体针对真实肺癌治疗药物检索数千个化合物、做匹配分子对分析，一小时内提出带合成路线的新型刚性化大环。原文并以克唑替尼（5 个主要可旋转键）到洛拉替尼（环化后降至零）说明刚性化提升效力的经典思路。",
-   "key_points": [
-    "原文演示：智能体检索数千化合物、进行匹配分子对分析，在一小时内提出新型刚性化大环及合成路线",
-    "技能套件以 RDKit 为基础，连接 ChEMBL 与 PubChem，由确定性化学工具执行分子计算，语言模型负责编排与推理",
-    "原文强调分子表示形式多样（IUPAC 名称、Markush 结构、SDF），且一个原子或键的差错即代表不同化合物"
-   ],
-   "topics": [
-    "tool-use",
-    "rag",
-    "harness"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "产品与应用"
-   ],
-   "horizon": "long",
-   "score": 81.4,
-   "status": "published",
-   "extra": {
-    "content_source": "reader",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "bc4177032a04e266",
-   "url": "https://huggingface.co/blog/ibm-research/palette-deck-building",
-   "title": "Palette: teaching a small model to build decks in your design language",
+   "id": "5afc49da7bd40515",
+   "url": "https://huggingface.co/blog/Dharma-AI/dharma-field-extractor",
+   "title": "Dharma Field Extractor: Any Document In, Structured Fields in JSON Out",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-11-03T16:35:36+00:00",
-   "summary_short": "20B 小模型用合成数据学自有设计语言，分设计师与编码两步生成幻灯片",
-   "summary_long": "前沿模型能生成不错的幻灯片，但多套之间风格雷同，会漂回自身的固有风格，提示无法阻止；同时机密内容不能离开自有系统。这两点都指向一个自托管、用自有设计语言训练的开放权重模型，可真正能自托管的小模型在这方面表现很差：标题融进背景、文字溢出、图形重叠。Palette 检验一个假设：用自有设计语言的合成数据训练小模型，再加一个校验用 harness，能否在保留结果所有权的同时与前沿系统竞争。作者用 LoRA 微调了一个 20B 模型，把任务拆成两个角色：设计师读取计划，写出结构化 JSON brief（配色、字体系统、每页布局、确切内容与简短设计理由）；编码者据此为单页编写 pptxgenjs JavaScript。训练数据遵循 IBM Design Language，在 PresentBench 上于所测三个领域中的两个排名第一。由于每页上下文在写代码前已固定，编码调用可并行，编码阶段约快 6–7 倍。经验之一是：编码样本长度约为设计师样本的 5 倍，简单混合会让设计师训练不足，需对其过采样 5 倍。",
+   "published_at": "2026-11-04T17:50:10+00:00",
+   "summary_short": "2B参数文档字段提取模型：按schema输出JSON，原文称优于测试的前沿LLM",
+   "summary_long": "原文介绍 DharmaOCR-LITE 之后的 Field Extractor：一个 20 亿参数模型，输入文档图像和请求，返回结构化 JSON。它支持两种调用：Open 模式不提供 schema，模型根据上下文与版面判断字段并以键值对返回；Schema-directed 模式按用户给定字段名和类型（string、number、boolean）填充，表格逐行逐列对应，文档中不存在的字段返回 null 而非编造。原文以发票、医疗申请单、身份证、合同为例，说明 OCR 只给全文，仍需代码把值映射到数据库字段；通用 LLM 虽可做，但在前沿 API 价格与延迟下，高频任务成本高。该模型用同一 checkpoint 处理多种文档，无需按文档类型微调。原文称其优于测试过的所有前沿 LLM，成本仅为一小部分，但未详述评测方法和数据。",
    "key_points": [
-    "问题：前沿模型多套输出风格雷同且会漂回自有风格，机密内容又不能出系统，因此需要自托管的开放权重模型；但小模型生成的幻灯片常出现标题消失、文字溢出、图形重叠等损坏。",
-    "方法：用 LoRA 微调 20B 模型，拆成“设计师”与“编码者”两个角色——前者产出可读可改的结构化 JSON brief（配色、字体、每页布局/内容/设计理由），后者写 pptxgenjs JavaScript；上下文预先固定使编码可并行，编码阶段约快 6–7 倍。",
-    "结果与经验：训练数据遵循 IBM Design Language，在 PresentBench 所测三个领域中两个排名第一；因编码样本约长 5 倍，对设计师样本过采样 5 倍才避免其训练不足。数据合成的具体做法原文未详述。"
+    "模型为20亿参数，输入文档图像与字段请求或 schema，输出带类型的结构化 JSON。",
+    "Open 模式自动识别字段；Schema-directed 模式按指定字段名和类型填充，缺失字段返回 null，表格逐行逐列映射。",
+    "原文称同一 checkpoint 覆盖多类文档、无需按类型微调，并在测试中优于所有前沿 LLM、成本更低；但未给出评测细节。"
    ],
    "topics": [
-    "post-training",
-    "harness",
-    "multi-agent"
+    "document-extraction",
+    "structured-output",
+    "small-model"
    ],
    "category": "模型",
    "categories": [
-    "模型",
-    "Agent 与开发"
+    "模型"
    ],
-   "horizon": "long",
-   "score": 81.3,
+   "horizon": "short",
+   "score": 76.2,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
-     "arxiv": [],
+     "arxiv": [
+      "2604.14314"
+     ],
      "links": [
-      "https://www.ibm.com/design/language/resources/",
-      "https://huggingface.co/datasets/PresentBench/PresentBench",
-      "https://gitbrent.github.io/PptxGenJS/",
-      "https://cdn-uploads.huggingface.co/production/uploads/63890e3843d8b0797a0ad606/YTsME8ZIwzzxmo-QmpTQq.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/63890e3843d8b0797a0ad606/PZoiyAFg_nrWRryQhjGN_.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/63890e3843d8b0797a0ad606/iZzBRJXOUxncecFIEgw-B.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/63890e3843d8b0797a0ad606/QiWVeHtadoTFYsfdPjkDr.png",
-      "https://github.com/docling-project/docling"
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/JIRHcND5LFS_JhgAe-ObV.png",
+      "https://huggingface.co/Dharma-AI/Dharma-OCR-LITE",
+      "https://arxiv.org/abs/2604.14314",
+      "https://ocr-portal.prd-us-east-2.dharma-ai.com/login",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/j-k3pMh-GwLH6bgsRZ-4u.gif",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/SuMRjXc_gcp3LZm3K_mWs.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/rGnjzOfdYJrtG8gG_6kZc.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/bHPhh4WTqoSI2Aqg0NAii.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/m3CfHgYlaDZ9srzt2X99_.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/GRHwR5tiDzDKVUtMotsAb.png",
+      "https://dharma-ai.com",
+      "https://github.com/ricardobnjunior/Brazilian-Identity-Document-Dataset",
+      "https://huggingface.co/datasets/naver-clova-ix/cord-v2",
+      "https://huggingface.co/datasets/lmms-lab/DocVQA",
+      "https://huggingface.co/datasets/Theivaprakasham/wildreceipt",
+      "https://huggingface.co/datasets/darentang/sroie",
+      "https://rrc.cvc.uab.es/?ch=13",
+      "https://huggingface.co/datasets/nielsr/funsd",
+      "https://guillaumejaume.github.io/FUNSD/",
+      "https://zenodo.org/records/6371710",
+      "https://huggingface.co/datasets/Sagarjha456/line_items",
+      "https://doi.org/10.17632/tnj49gpmtz.2",
+      "https://huggingface.co/datasets/katanaml-org/invoices-donut-data-v1",
+      "https://huggingface.co/datasets/HumynLabs/Brazilian_Bills_and_Invoices_Dataset",
+      "https://huggingface.co/datasets/tech4humans/br-doc-extraction",
+      "https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization",
+      "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
+      "https://huggingface.co/blog/Dharma-AI/gpu-management",
+      "https://huggingface.co/blog/Dharma-AI/newer-models-same-advantages",
+      "https://huggingface.co/blog/Dharma-AI/why-specialization-is-inevitable",
+      "https://huggingface.co/blog/Dharma-AI/specialization-beats-scale",
+      "https://huggingface.co/blog/Dharma-AI/text-degeneration-a-production-failure-mode",
+      "https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots",
+      "https://huggingface.co/Dharma-AI",
+      "https://huggingface.co/spaces/Dharma-AI/DharmaOCR-demo"
      ]
     },
     "summary_mode": "full"
@@ -226,379 +237,233 @@
  ],
  "items": [
   {
-   "id": "a55665cf48953af7",
-   "url": "https://huggingface.co/blog/allenai/statebench",
-   "title": "StateBench: Testing how language models track state changes over long documents",
-   "source": "Hugging Face Blog",
+   "id": "a4f4c423c5426033",
+   "url": "https://openai.com/index/a-thousand-fewer-paths-to-root",
+   "title": "A thousand fewer paths to root",
+   "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-11-03T17:15:21+00:00",
-   "summary_short": "AI2 发布 StateBench，用四个难度层级测试长文档中的状态追踪能力",
-   "summary_long": "AI2 推出 StateBench，一个衡量长上下文“状态追踪”能力的基准，衡量语言模型在长文档中跟踪实体信息随文档演变而变化的能力。原文指出，状态追踪是读代码（变量反复赋值）和读故事（角色移动、物品易手）等任务的基础，例如小说里“约翰把刀给了玛丽”就改变了角色状态。不同状态追踪问题难度差异很大：简单的只需找到最新更新，难的需沿变化链条逐步推进，漏掉一步就会答错。原文提到，Transformer 在长依赖链的困难状态追踪上存在理论局限，这推动了 Gated DeltaNet 等带运行记忆的循环与混合架构。既有测试多聚焦最难情况，研究者需要知道各类架构分别能处理哪类追踪，因此 StateBench 设四个难度层级：R-trivial（不可变赋值）、Aperiodic（按值重新赋值）、Soluble（自引用更新，如 x = x + 5）、General finite（按引用赋值，如五杯换球）。结果显示：直接在这些任务上训练时，循环与混合模型的泛化距离远大于 Transformer；而 Gemini 3.8 Flash、Claude Opus 5.5、GPT-6 Sol 与 Luna 等前沿模型在输入变长时仍在较难的状态追踪上失效。",
+   "published_at": "2026-11-04T08:00:00+00:00",
+   "summary_short": "自主流水线在Linux内核生成948个提权利用，API成本约120万美元。",
+   "summary_long": "原文介绍一套自主漏洞发现、利用与补丁生成流水线，针对漏洞发现规模化后优先级判断与验证仍是瓶颈的问题。流程为识别Linux内核审计目标、静态扫描候选、隔离环境动态复现、生成PoC和补丁，最后由人类研究员复核。2026年10月中旬一次运行分析2,308个候选，动态复现1,724个漏洞，生成291个信息泄露PoC和948个LPE利用（可让本地非特权用户获取root），API成本1,213,430美元，每个LPE约1,279美元。目标虚拟机运行标准桌面系统，威胁模型参照Pwn2Own、TyphoonPWN。按历史赏金金额假设估值为1,890万–6,630万美元，为成本16–55倍。在适配kernelCTF环境获得25个信息泄露PoC和21个LPE，成本约32,936美元；若接收赏金约150万美元、约45倍。原文称至少发现并使用10种新Linux利用技术，人类研究员复核并报告漏洞与补丁。",
    "key_points": [
-    "StateBench 分四级难度，对应不可变赋值、按值重新赋值、自引用更新、按引用赋值（如五杯换球）四类状态更新操作",
-    "直接在这些任务上训练时，循环与混合架构的泛化距离显著超过 Transformer",
-    "Gemini 3.8 Flash、Claude Opus 5.5、GPT-6 Sol 与 Luna 等前沿模型在输入变长时仍在较难的状态追踪形式上失效"
+    "流水线覆盖发现、动态验证、可利用性评估和补丁生成，最终由人类安全研究员复核并报告。",
+    "2026年10月中旬运行：2,308个候选、1,724个动态复现、291个信息泄露PoC、948个LPE利用；API成本1,213,430美元，每个LPE 1,279美元。",
+    "适配kernelCTF环境：25个信息泄露PoC、21个LPE，成本约32,936美元；若接收赏金约150万美元；原文称至少10种新利用技术。"
    ],
    "topics": [
-    "eval",
-    "reasoning",
-    "context-engineering"
+    "cybersecurity",
+    "agent-loop",
+    "multi-agent"
    ],
-   "category": "评测",
+   "category": "安全",
    "categories": [
-    "评测",
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 84.6,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://allenai.org/papers/statebench",
-      "https://huggingface.co/datasets/allenai/state-bench",
-      "https://github.com/allenai/state-bench",
-      "https://www.datocms-assets.com/64837/1792006215-statebench-draft-blog-google-docs-image-1.png",
-      "https://arxiv.org/html/2404.08819v2#S3.SS1",
-      "https://www.datocms-assets.com/64837/1792006353-statebench-draft-blog-google-docs-image-2.png",
-      "https://www.datocms-assets.com/64837/1792006435-statebench-draft-blog-google-docs-image-3.png",
-      "https://www.datocms-assets.com/64837/1792006493-statebench-draft-blog-google-docs-image-4.png"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "fec0e46ceba430b8",
-   "url": "https://huggingface.co/blog/transformers-mic",
-   "title": "Transformers Model Integration Contracts",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-11-03T00:00:00+00:00",
-   "summary_short": "提出 MIC 契约标准：用缩小的模型 fixture 在 CPU 上拦截回归",
-   "summary_long": "2026年7月30日，Transformers 为 T5 启用 PyTorch 的 SDPA，副作用是 UMT5 解码器可以注意到未来的 token，训练时能提前看到答案；程序没有崩溃，这个 bug 在 main 上存在了近两个月。回放那些提交时，一个在 CPU 上运行的小型 UMT5 模型在每一次提交上都能报出该问题。原文称 Transformers 支持 750 多种模型类型，main 上有 8.8 万+ CPU 测试、每日 20 万+ GPU 测试，每个 PR 全跑并不现实。办法是把模型缩小成 fixture：按真实 checkpoint 的配置构建层数更少更窄但保留每种层的模型，tokenizer 与 processor 文件不变，发布一次重复使用，在廉价 CPU runner 上跑快速集成测试；UMT5 fixture 权重 66MB，原始 checkpoint 为 1,227MB。由此提出 transformers-mic 标准：契约由 fixture、可运行的 Markdown 用法示例、人工审核的基线输出三部分组成，用法路径仍产出基线则契约成立，覆盖架构与用法而非单个 checkpoint。契约已在 huggingface-mic 发布，Hub 上的 fleet 数据集固定每个 MIC 的版本与打包版本，PR 按改动文件挑选 MIC。原文强调 fixture 不会取",
-   "key_points": [
-    "UMT5 回归：为 T5 启用 SDPA 后，UMT5 解码器可以看到未来 token，该 bug 在 main 上存在近两个月，小型 CPU fixture 在每次回放提交时都能报出。",
-    "fixture 方案：按真实 checkpoint 配置缩小模型，保留每一种层，tokenizer/processor 不变；UMT5 fixture 权重 66MB，原始 checkpoint 为 1,227MB，可在廉价 CPU runner 上跑快速集成测试。",
-    "transformers-mic 契约三部分：fixture、可运行的 Markdown 用法示例、人工审核的基线输出；契约覆盖架构与用法路径而非单个 checkpoint。"
-   ],
-   "topics": [
-    "harness",
-    "eval"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
+    "安全",
     "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 82.0,
+   "score": 86.5,
    "status": "published",
    "extra": {
     "content_source": "direct",
+    "source_tags": [
+     "Security"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/transformers-mic.md",
-      "https://github.com/huggingface/transformers",
-      "https://github.com/huggingface/transformers-mic/blob/main/docs/evidence.md#on-cpu",
-      "https://github.com/huggingface/transformers-mic",
-      "https://huggingface.co/huggingface-mic",
-      "https://huggingface.co/huggingface-mic/smollm-mic/blob/main/integrations/transformers/usage.md",
-      "https://huggingface.co/datasets/huggingface-mic/transformers-fleet",
-      "https://github.com/huggingface/transformers/commit/560f36cc561fa154d224b7a6dfcba1d57a621d7b",
-      "https://github.com/huggingface/transformers/commit/d7ba937671edb174fd80d33f9ecbd38f6559dfca",
-      "https://github.com/huggingface/transformers-mic/blob/main/docs/evidence.md#shadow-backfill",
-      "https://github.com/huggingface/transformers-mic/blob/main/docs/evidence.md#transformers-ci-proof",
-      "https://github.com/huggingface/transformers-mic/blob/main/docs/fixtures.md#recipe",
-      "https://huggingface-mic-mic-coverage.static.hf.space/shrink/Llama-4-Scout-17B-16E-Instruct-mic.html",
-      "https://github.com/huggingface/transformers-mic/blob/main/docs/cli.md#automated-mode",
-      "https://huggingface.co/spaces/huggingface-mic/mic-coverage",
-      "https://github.com/huggingface/transformers-mic/blob/main/docs/fixtures.md#choosing-the-weights",
-      "https://github.com/huggingface/transformers-mic/blob/main/docs/fixtures.md#overfit-versus-random-what-can-we-conclude",
-      "https://transformers-ci.huggingface.cool/d/mic-failures/mic-failures?from=now-4w&to=now&timezone=browser"
+      "https://www.zerodayinitiative.com/blog/2026/3/11/announcing-pwn2own-berlin-for-2026",
+      "https://typhooncon.com/typhoonpwn-2026/",
+      "https://google.github.io/security-research/kernelctf/rules.html",
+      "https://github.com/openai/plugins/tree/main/plugins/codex-security"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "20954e3ac0ff87f7",
-   "url": "https://huggingface.co/blog/cwe-bench",
-   "title": "CWE-bench v2: More coverage, quality, and transparency",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-11-03T00:00:00+00:00",
-   "summary_short": "CWE-bench v2 公开 100 个安全修复任务，覆盖 91 种 CWE，评分程序化、可复现",
-   "summary_long": "CWE-bench 用于测试前沿网络安全能力。Collinear AI 发布 v2 版本，公开 100 个任务，任何人都可以运行并评测模型。设置不变：智能体拿到真实开源仓库的检出代码和简短指令，目标是在不破坏既有功能的前提下找到并修复安全弱点；评分完全程序化，结果确定，无需额外成本即可复现。程序化检查由 LLM 评审小组协助打磨，偏向难度与公平性；另外维护一个留出集（held-out set），用于追踪模型没见过的任务上的进展，需联系 cyber@collinear.ai。100 个任务覆盖 91 种 CWE。每个任务都核验了以下问题：指令是否像真实指令；评分行为能否从指令推断；验证器是否检查正确行为，而不是某一种修复结构；初始代码是否失败而参考修复是否通过；原有功能是否仍可用；是否能拒绝已知上游补丁等记忆化解法。所有任务还经过人工复核。结果在两处追踪：数据集页面的开放权重模型榜（社区提 PR 添加结果），以及包含 Gemini、Claude、GPT 等仅 API 模型的 Space 榜。11 个受评模型中，Gemini 4 Argon 以 67.8% pass@1、81.0% pass@4 领先，略高于 Claude Opus 5.5（67.3%、78.0%）。95 个任务至少被一个模型解出，但领先者仍有 19% 的尝试全部失败。任务集、评分器与 harness 均公开，可用 H",
+   "id": "7838c87736f9082f",
+   "url": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
+   "title": "Kimi K3.1 Pro model weights are out",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-04T15:30:30+00:00",
+   "summary_short": "Kimi K3.1 Pro 开放权重：2.8T MoE、百万 token 上下文、原生多模态",
+   "summary_long": "原文介绍 Kimi K3.1 Pro：它是 K3.1 系列首个模型，也是开放权重、原生多模态的 agentic 模型；由 Kimi K3 经数百个下游领域的大规模联合强化学习后训练而来，上下文窗口为 100 万 token，官方称其在编程、3D 创作、金融研究、事实准确性和其他 agentic 能力上有明显提升。架构为 MoE，总参数 2.8T、激活 104B，93 层；注意力由 69 层 KDA 与 24 层 Gated DSA 组成，相较 K3 以 Gated DSA 替换全注意力 Gated MLA，以提升长上下文建模效率。896 个专家，每个 token 选 16 个，另有 2 个共享专家；词表 160K；视觉编码器为 401M 参数的 MoonViT-V2；采用 MXFP4 权重 / MXFP8 激活的量化感知训练。原文附有与 Claude Fable 5.1、GPT-6 Astra、Claude Opus 5.5、DeepSeek-V4.1-Flash-1017、GLM-5.3 等的逐项基准对比表，例如 Terminal-Bench 4.0 得 65.7、BrowseComp 92.1、GDPval-AA v2.1 Elo 1846。",
    "key_points": [
-    "公开 100 个任务覆盖 91 种 CWE，评分完全程序化、结果确定可复现，任务集、评分器与 harness 均开源，可用 Harbor 直接从 Hub 运行。",
-    "11 个受评模型中 Gemini 4 Argon 以 67.8% pass@1、81.0% pass@4 居首，Claude Opus 5.5 以 67.3%、78.0% 紧随；95 个任务至少被一个模型解出，但领先者仍有 19% 每次尝试均失败。",
-    "每个任务都核验六项质量要求并全部人工复核，包括验证器能否拒绝已知上游补丁等记忆化解法；另设留出集追踪模型未见任务，需联系 cyber@collinear.ai。"
+    "开放权重、原生多模态的 agentic 模型，K3.1 系列首个，上下文 1048576 token",
+    "MoE 总参数 2.8T、激活 104B，用 69 层 KDA + 24 层 Gated DSA 替换 K3 的全注意力 Gated MLA 以优化长上下文",
+    "原文给出与 Claude Fable 5.1、GPT-6 Astra、Claude Opus 5.5、DeepSeek-V4.1-Flash、GLM-5.3 的逐项基准对比，如 Terminal-Bench 4.0 65.7、HLE-Full w/ tools 70.0、OSWorld V2.1 79.6"
    ],
    "topics": [
-    "eval",
-    "cybersecurity",
-    "coding-agent"
+    "post-training",
+    "open-source",
+    "reasoning"
    ],
-   "category": "评测",
+   "category": "模型",
    "categories": [
-    "评测"
+    "模型"
    ],
    "horizon": "short",
    "score": 81.6,
    "status": "published",
    "extra": {
-    "content_source": "direct",
+    "hn_points": 341,
+    "hn_comments": 88,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/cwe-bench.md",
-      "https://cwe-bench.com/",
-      "https://collinear.ai/",
-      "https://huggingface.co/datasets/collinear-ai/cwe-bench",
-      "https://www.cwebench.com",
-      "https://huggingface.co/docs/hub/eval-results#adding-evaluation-results",
-      "https://huggingface.co/spaces/collinear-ai/cwe-bench-leaderboard",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/cwe-bench/pareto.png",
-      "https://harborframework.com/"
+      "https://www.kimi.ai",
+      "https://www.moonshot.ai",
+      "https://huggingface.co/moonshotai",
+      "https://twitter.com/kimi_moonshot",
+      "https://discord.gg/TYU2fdJykW",
+      "https://modelscope.cn/organization/moonshotai",
+      "https://huggingface.co/moonshotai/Kimi-K3.1-Pro/blob/main/LICENSE",
+      "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "https://platform.kimi.ai/docs/guide/kimi-k3-1-pro-quickstart",
+      "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "https://www.tbench.ai/",
+      "https://www.terminal-bench-science.ai/",
+      "https://www.swe-marathon.org/",
+      "https://www.vals.ai/benchmarks/programbench",
+      "https://openai.com/index/gpt-6-astra/",
+      "https://www.anthropic.com/claude-opus-5-5-system-card",
+      "https://www.anthropic.com/claude-fable-5-1-mythos-5-1-system-card",
+      "https://api-docs.deepseek.com/news/news261017/",
+      "https://z.ai/blog/glm-5.3",
+      "https://posttrainbench.com/",
+      "https://huggingface.co/datasets/Anthropic/BioMysteryBench-full/commit/b5a889c",
+      "https://github.com/rdi-berkeley/agents-last-exam",
+      "https://artificialanalysis.ai/",
+      "https://www.mercor.com/apex/apex-agents-leaderboard/",
+      "https://platform.kimi.ai",
+      "https://github.com/vllm-project/vllm",
+      "https://recipes.vllm.ai/moonshotai/Kimi-K3.1-Pro",
+      "https://github.com/sgl-project/sglang",
+      "https://docs.sglang.io/cookbook/autoregressive/Moonshotai/Kimi-K3.1-Pro",
+      "https://github.com/lightseekorg/tokenspeed",
+      "https://lightseek.org/tokenspeed/recipes/models#kimi-k3-1-pro",
+      "https://platform.kimi.ai/docs/guide/use-thinking-effort",
+      "https://huggingface.co/docs/safetensors",
+      "https://huggingface.co/docs/inference-providers",
+      "https://huggingface.co/docs/hub/eval-results"
      ]
     },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "adafdd4764cb9dbb",
-   "url": "https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/",
-   "title": "Agentic cheminformatics with Google Antigravity",
-   "source": "Google DeepMind Blog",
+   "id": "3a06f84c0f51a102",
+   "url": "https://openai.com/index/openai-to-acquire-pierre",
+   "title": "OpenAI to acquire Pierre Computer Company, Inc.",
+   "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-11-03T17:01:49+00:00",
-   "summary_short": "Google Antigravity 搭配化学信息学技能，把药物设计的一次迭代从数天压缩到一小时",
-   "summary_long": "药物研发早期需要在图表和文献中整理数据、训练预测模型并提出候选分子，单次迭代通常要花数天。原文介绍了一套为 Google Antigravity 构建的 Cheminformatics Skills：语言模型负责工作流编排、数据库导航与科学推理，确定性化学工具负责分子计算；底层基于开源工具包 RDKit，并接入 ChEMBL 与 PubChem 的整理资源，把领域最佳实践编入智能体工作流。原文指出，化学数据表示形式多样（论文中的 IUPAC 名称、专利中的 Markush 结构、目录中的 SDF 文件），且改动一个原子或键就是另一种化合物，因此系统必须统一来源并处理其中可能的错误。作者称该环境可成为计算化学家与实验化学家共用的科研工作台。演示中，智能体针对真实肺癌治疗药物检索数千个化合物、做匹配分子对分析，一小时内提出带合成路线的新型刚性化大环。原文并以克唑替尼（5 个主要可旋转键）到洛拉替尼（环化后降至零）说明刚性化提升效力的经典思路。",
+   "published_at": "2026-11-04T14:30:00+00:00",
+   "summary_short": "OpenAI 宣布收购 Code Storage 与 Trees、Diffs 等开发者工具背后的 Pierre 公司",
+   "summary_long": "OpenAI 于 2026 年 11 月 4 日宣布将收购 Pierre Computer Company, Inc.（简称 Pierre）。Pierre 是 Code Storage 及一系列知名开源开发者工具背后的公司，Codex 应用中的文件浏览与变更审查功能已在使用的 Trees 和 Diffs 库即出自 Pierre。原文提到，Trees 让开发者快速浏览项目文件，Diffs 便于查看改动，两者都能在高性能下处理大量代码；Diffs 的 Edit 模式允许审查者就地修改代码，Pierre 近期还发布了随开发者输入或 agent 流式输出代码而更新的高速语法高亮工具 Highlights。同一支小团队既在 diff 中嵌入编辑器，也设计了 Code Storage 的 API。OpenAI 本周早些时候还介绍了其内部源代码管理后端 Pando。OpenAI 表示希望与 Pierre 团队一起，基于开发者已依赖的 Git 工作流，适配团队与编码 agent 协作的方式，并推动业界源代码管理的未来，让 Codex 连接公司交付的代码与其人员所做的决策。Pierre 的开源项目将保持开源，OpenAI 会继续贡献；收购完成前客户可继续使用 Code Storage，OpenAI 将把其功能引入 Codex。交易尚需满足惯例交割条件，包括获得监管批准，交割前两家公司保持独立。",
    "key_points": [
-    "原文演示：智能体检索数千化合物、进行匹配分子对分析，在一小时内提出新型刚性化大环及合成路线",
-    "技能套件以 RDKit 为基础，连接 ChEMBL 与 PubChem，由确定性化学工具执行分子计算，语言模型负责编排与推理",
-    "原文强调分子表示形式多样（IUPAC 名称、Markush 结构、SDF），且一个原子或键的差错即代表不同化合物"
+    "Pierre 是 Code Storage 及 Trees、Diffs、Highlights 等开源开发者工具的开发方，Codex 已在使用其 Trees 与 Diffs 库",
+    "OpenAI 希望基于现有 Git 工作流适配编码 agent 的协作方式，并推动源代码管理的未来",
+    "Pierre 开源项目将保持开源，OpenAI 将继续贡献；Code Storage 客户在交割后仍可使用，相关功能将逐步并入 Codex"
    ],
    "topics": [
-    "tool-use",
-    "rag",
-    "harness"
+    "coding-agent",
+    "open-source",
+    "product"
    ],
-   "category": "Agent 与开发",
+   "category": "行业动态",
    "categories": [
-    "Agent 与开发",
-    "产品与应用"
+    "行业动态"
    ],
-   "horizon": "long",
-   "score": 81.4,
-   "status": "published",
-   "extra": {
-    "content_source": "reader",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "bc4177032a04e266",
-   "url": "https://huggingface.co/blog/ibm-research/palette-deck-building",
-   "title": "Palette: teaching a small model to build decks in your design language",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-11-03T16:35:36+00:00",
-   "summary_short": "20B 小模型用合成数据学自有设计语言，分设计师与编码两步生成幻灯片",
-   "summary_long": "前沿模型能生成不错的幻灯片，但多套之间风格雷同，会漂回自身的固有风格，提示无法阻止；同时机密内容不能离开自有系统。这两点都指向一个自托管、用自有设计语言训练的开放权重模型，可真正能自托管的小模型在这方面表现很差：标题融进背景、文字溢出、图形重叠。Palette 检验一个假设：用自有设计语言的合成数据训练小模型，再加一个校验用 harness，能否在保留结果所有权的同时与前沿系统竞争。作者用 LoRA 微调了一个 20B 模型，把任务拆成两个角色：设计师读取计划，写出结构化 JSON brief（配色、字体系统、每页布局、确切内容与简短设计理由）；编码者据此为单页编写 pptxgenjs JavaScript。训练数据遵循 IBM Design Language，在 PresentBench 上于所测三个领域中的两个排名第一。由于每页上下文在写代码前已固定，编码调用可并行，编码阶段约快 6–7 倍。经验之一是：编码样本长度约为设计师样本的 5 倍，简单混合会让设计师训练不足，需对其过采样 5 倍。",
-   "key_points": [
-    "问题：前沿模型多套输出风格雷同且会漂回自有风格，机密内容又不能出系统，因此需要自托管的开放权重模型；但小模型生成的幻灯片常出现标题消失、文字溢出、图形重叠等损坏。",
-    "方法：用 LoRA 微调 20B 模型，拆成“设计师”与“编码者”两个角色——前者产出可读可改的结构化 JSON brief（配色、字体、每页布局/内容/设计理由），后者写 pptxgenjs JavaScript；上下文预先固定使编码可并行，编码阶段约快 6–7 倍。",
-    "结果与经验：训练数据遵循 IBM Design Language，在 PresentBench 所测三个领域中两个排名第一；因编码样本约长 5 倍，对设计师样本过采样 5 倍才避免其训练不足。数据合成的具体做法原文未详述。"
-   ],
-   "topics": [
-    "post-training",
-    "harness",
-    "multi-agent"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 81.3,
+   "horizon": "short",
+   "score": 77.5,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.ibm.com/design/language/resources/",
-      "https://huggingface.co/datasets/PresentBench/PresentBench",
-      "https://gitbrent.github.io/PptxGenJS/",
-      "https://cdn-uploads.huggingface.co/production/uploads/63890e3843d8b0797a0ad606/YTsME8ZIwzzxmo-QmpTQq.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/63890e3843d8b0797a0ad606/PZoiyAFg_nrWRryQhjGN_.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/63890e3843d8b0797a0ad606/iZzBRJXOUxncecFIEgw-B.png",
-      "https://cdn-uploads.huggingface.co/production/uploads/63890e3843d8b0797a0ad606/QiWVeHtadoTFYsfdPjkDr.png",
-      "https://github.com/docling-project/docling"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "9b0f1b3870f8f7bf",
-   "url": "https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/",
-   "title": "Qwen 3.8 27B on my laptop can interpret model weights, too",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-11-03T16:29:48+00:00",
-   "summary_short": "作者实测：Qwen 3.8 27B 在笔记本上也能直接读懂模型权重",
-   "summary_long": "原文介绍论文《Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights》（Rikiya Takehi、Jayden Teoh、Alex Zhang、Omar Khattab），作者自称为博客文章但形似论文。论文称前沿模型尤其是 GPT-6 Astra 能直接读写神经网络原始权重（即包含大量浮点数的模型文本描述）：仅凭权重看出网络被训练做什么；在无环境反馈、不许写训练循环的前提下从零写出小游戏网络，胜过用 PPO 训练一亿步的网络；还能定位 Qwen3.5-0.8B 权重中导致推理循环的问题，原生修改 0.016% 的权重，使 MATH-500 从 7.9% 升至 48.1%、IFEval 提升 3 倍，作者称之为 Weight-Space Programming。文中提到 spaCy 作者 Matthew Honnibal 批评论文混淆了两类问题，Sean Goedecke 则拆解了该案例。原文作者聚焦“无工具”一支：用论文仓库中四个 10x10 网格游戏（Breakout、Pong、Pac-Man、Freeway）的权重提示词测试，Kimi K3.1 Pro 用 9 分 41 秒、19,493 个推理 token 猜中 Breakout，并称本地运行的 Qwe",
-   "key_points": [
-    "论文提出 Weight-Space Programming：LLM 直接阅读和修改模型原始权重，GPT-6 Astra 可仅凭权重判断网络训练目标，并从零写出小游戏网络",
-    "论文称 Astra 不写训练循环、原生编辑 Qwen3.5-0.8B 的 0.016% 权重，使 MATH-500 从 7.9% 升至 48.1%、IFEval 提升 3 倍；Matthew Honnibal 批评其混淆两类问题，Sean Goedecke 拆解了该案例",
-    "原文作者用论文仓库中四个网格游戏的权重提示词实测：Kimi K3.1 Pro 用 9 分 41 秒、19,493 个推理 token 猜中 Breakout，并称笔记本上的 Qwen 3.8 27B 同样可以"
-   ],
-   "topics": [
-    "eval",
-    "reasoning",
-    "open-source"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测",
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 77.8,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
     "source_tags": [
-     "machine-learning",
-     "ai",
-     "generative-ai",
-     "local-llms",
-     "llms"
+     "Company"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://rikiyat.github.io/blog/weight-space-programming/",
-      "https://huggingface.co/Qwen/Qwen3.5-0.8B/blob/main/README.md#L856",
-      "https://honnibal.dev/blog/astra-read-write-misleading",
-      "https://www.seangoedecke.com/llms-are-not-superhuman-at-reading-and-writing-neural-network-weights/",
-      "https://en.wikipedia.org/wiki/Freeway_(video_game)",
-      "https://github.com/RikiyaT/lm_understand-logs",
-      "https://github.com/RikiyaT/lm_understand-logs/tree/main/exp1_which_game",
-      "https://github.com/RikiyaT/lm_understand-logs/blob/main/exp1_which_game/runs/breakout/prompt.txt",
-      "https://github.com/RikiyaT/lm_understand-logs/blob/main/exp1_which_game/runs/freeway/prompt.txt",
-      "https://github.com/RikiyaT/lm_understand-logs/blob/main/exp1_which_game/runs/pacman/prompt.txt",
-      "https://github.com/RikiyaT/lm_understand-logs/blob/main/exp1_which_game/runs/pong/prompt.txt",
-      "https://llm.datasette.io/",
-      "https://github.com/simonw/llm-openrouter",
-      "https://gist.github.com/simonw/9f18d2945a105c04734ef7e5cd95717c",
-      "https://simonwillison.net/2026/Aug/16/qwen-38-27b/",
-      "https://huggingface.co/lmstudio-community/Qwen3.8-27B-GGUF/blob/main/Qwen3.8-27B-Q4_K_M.gguf",
-      "https://lmstudio.ai",
-      "https://github.com/llm-lmstudio/llm-lmstudio",
-      "https://github.com/llm-lmstudio/llm-lmstudio/issues/16",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F387d3a7927f165b1986bb6c2099d0f53#response-1",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F387d3a7927f165b1986bb6c2099d0f53#reasoning-1",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F387d3a7927f165b1986bb6c2099d0f53#response-2",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F387d3a7927f165b1986bb6c2099d0f53#reasoning-2",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F387d3a7927f165b1986bb6c2099d0f53#response",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F387d3a7927f165b1986bb6c2099d0f53#reasoning",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F6ed68f659e26a32e7d9096391d92f326",
-      "https://simonwillison.net/tags/machine-learning",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/local-llms",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/qwen",
-      "https://simonwillison.net/tags/paper-review"
+      "https://pierre.computer/",
+      "https://code.storage/"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "da9a5824109ffaf4",
-   "url": "https://github.com/postmanlabs/postman-app-support/issues/14370",
-   "title": "Postman silently auto-installs AI plugins and attempts to share all API data",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-03T17:22:37+00:00",
-   "summary_short": "用户报告 Postman 桌面版自动安装 Codex、Claude 插件并改写它们的配置",
-   "summary_long": "GitHub issue #14370（2026年10月25日）作者称，在 Mac 上打开 Postman 桌面版 12.33.4 后，编码代理出现异常：反复的 MCP 认证警告，Codex 反复把 API 工作导向 Postman skills。Postman 自身日志（2026-10-24T09:34:14.418Z）记录 source 为 auto-existing-upgrade，结果为 claude-code:installed、codex:installed。~/.codex/config.toml 被改写：加入指向 postmanlabs/postman-plugin 的 marketplace、启用 postman@postman 插件、写入 hooks.state 的 trusted_hash。该 hook 以 startup|clear|compact 匹配器注册 SessionStart 命令，输出的上下文要求在非平凡 API 工程任务前加载 postman:api-engineer 技能，作者称这远超用户明确要求使用 Postman 的范围。安装器源码中 codex.ts 在安装后调用 approvePostmanHook，codex-hooks.ts 通过 hooks/list 取哈希并用 config/batchWrite 写入 trusted_hash",
+   "id": "5afc49da7bd40515",
+   "url": "https://huggingface.co/blog/Dharma-AI/dharma-field-extractor",
+   "title": "Dharma Field Extractor: Any Document In, Structured Fields in JSON Out",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-04T17:50:10+00:00",
+   "summary_short": "2B参数文档字段提取模型：按schema输出JSON，原文称优于测试的前沿LLM",
+   "summary_long": "原文介绍 DharmaOCR-LITE 之后的 Field Extractor：一个 20 亿参数模型，输入文档图像和请求，返回结构化 JSON。它支持两种调用：Open 模式不提供 schema，模型根据上下文与版面判断字段并以键值对返回；Schema-directed 模式按用户给定字段名和类型（string、number、boolean）填充，表格逐行逐列对应，文档中不存在的字段返回 null 而非编造。原文以发票、医疗申请单、身份证、合同为例，说明 OCR 只给全文，仍需代码把值映射到数据库字段；通用 LLM 虽可做，但在前沿 API 价格与延迟下，高频任务成本高。该模型用同一 checkpoint 处理多种文档，无需按文档类型微调。原文称其优于测试过的所有前沿 LLM，成本仅为一小部分，但未详述评测方法和数据。",
    "key_points": [
-    "Postman 日志记录:autoInstall 以 auto-existing-upgrade 方式执行脚本，结果为 claude-code:installed、codex:installed",
-    "~/.codex/config.toml 被加入 Postman marketplace 源、启用 postman@postman 插件并写入 hooks.state 的 trusted_hash",
-    "SessionStart hook 输出的指令要求在任何非平凡 API 工程任务前加载 postman:api-engineer 技能，作者认为范围远超用户明确请求"
+    "模型为20亿参数，输入文档图像与字段请求或 schema，输出带类型的结构化 JSON。",
+    "Open 模式自动识别字段；Schema-directed 模式按指定字段名和类型填充，缺失字段返回 null，表格逐行逐列映射。",
+    "原文称同一 checkpoint 覆盖多类文档、无需按类型微调，并在测试中优于所有前沿 LLM、成本更低；但未给出评测细节。"
    ],
    "topics": [
-    "cybersecurity",
-    "mcp",
-    "coding-agent"
+    "document-extraction",
+    "structured-output",
+    "small-model"
    ],
-   "category": "安全",
+   "category": "模型",
    "categories": [
-    "安全",
-    "Agent 与开发",
-    "开源项目"
+    "模型"
    ],
    "horizon": "short",
-   "score": 76.5,
+   "score": 76.2,
    "status": "published",
    "extra": {
-    "hn_points": 961,
-    "hn_comments": 313,
+    "content_source": "direct",
     "outbound": {
-     "arxiv": [],
+     "arxiv": [
+      "2604.14314"
+     ],
      "links": [
-      "https://github.com/indicava",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issue-6028138383",
-      "https://github.com/postmanlabs/postman-plugin/blob/6c8e452e0f4237f4bcc0901cb1ac442dec707e49/hooks/session-start-context.md",
-      "https://github.com/postmanlabs/postman-plugin/blob/6c8e452e0f4237f4bcc0901cb1ac442dec707e49/hooks/codex-hooks.json",
-      "https://github.com/postmanlabs/postman-plugin/blob/6c8e452e0f4237f4bcc0901cb1ac442dec707e49/installer/src/hosts/codex-hooks.ts",
-      "https://github.com/postmanlabs/postman-plugin/blob/6c8e452e0f4237f4bcc0901cb1ac442dec707e49/installer/src/hosts/codex.ts",
-      "https://mcp.postman.com/mcp",
-      "https://github.com/postmanlabs/postman-plugin/blob/6c8e452e0f4237f4bcc0901cb1ac442dec707e49/mcp.codex.json",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6587956218",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6588558752",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6599154379",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6611122028",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6611520882",
-      "https://private-user-images.githubusercontent.com/141689453/693815905-22da1820-10fd-4cab-91db-17c955d5279d.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3NTA2NTAsIm5iZiI6MTc5Mzc1MDM1MCwicGF0aCI6Ii8xNDE2ODk0NTMvNjkzODE1OTA1LTIyZGExODIwLTEwZmQtNGNhYi05MWRiLTE3Yzk1NWQ1Mjc5ZC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QyMzU5MTBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1kZWM0OTlkYzY1OWU3MTFiMmI0NWEzOWNiNTg4MTU4OGUxMmEzY2Q5YThmZGJiNjNhZmI0N2NkY2ViYzZhNzA4JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.ZssT6bP4DTPg8txR20FH2hVfqsb3few9CjsZNv3DnCg",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612308791",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#event-35053169206",
-      "https://github.com/danielkjellid/dotfiles/commit/083192155ff5bc2b36693551923a06559e4d7b54",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612536775",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612707641",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612777602",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612804290",
-      "https://private-user-images.githubusercontent.com/141689453/693872635-0fb398f6-152b-4c84-a7db-b5c6a217eb28.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3NTA2NTAsIm5iZiI6MTc5Mzc1MDM1MCwicGF0aCI6Ii8xNDE2ODk0NTMvNjkzODcyNjM1LTBmYjM5OGY2LTE1MmItNGM4NC1hN2RiLWI1YzZhMjE3ZWIyOC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QyMzU5MTBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT01ZWY5MGMxMWUzZTExNzIyZTdjZTJhNDI2MjI3MDVkYjYwZTk3MTAxOTNiMGU0OTRiMWQwYTc3NTUwM2IzODIxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.ttLKSGHXbOCZwwQWCWhF3q0RdvkQPp5KaDZPo7ngZ80",
-      "https://private-user-images.githubusercontent.com/141689453/693872634-a6395034-0c72-4862-a16b-6d6392ca3d5a.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3NTA2NTAsIm5iZiI6MTc5Mzc1MDM1MCwicGF0aCI6Ii8xNDE2ODk0NTMvNjkzODcyNjM0LWE2Mzk1MDM0LTBjNzItNDg2Mi1hMTZiLTZkNjM5MmNhM2Q1YS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QyMzU5MTBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1lMzYzYTU0NjAyYmYxNzE5YTJiYjU2Nzc4MjYyOTFhMmI5MmQ4YjAzNDEzNTYzZmQxYTE3ZGVkNWQ4ODM4YjAwJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.uLq86ir-wcwleFUu1R7-FG0Ecowg8bnQwqO5wBtMMBc",
-      "https://web.archive.org/web/20261026090707/https://www.postman.com/downloads/",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612827451",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612859645",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612901226",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6612959019",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6614109517",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6614985113",
-      "https://www.usebruno.com/",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6615364854",
-      "https://private-user-images.githubusercontent.com/141689453/693872635-0fb398f6-152b-4c84-a7db-b5c6a217eb28.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3NDAwMjIsIm5iZiI6MTc5MzczOTcyMiwicGF0aCI6Ii8xNDE2ODk0NTMvNjkzODcyNjM1LTBmYjM5OGY2LTE1MmItNGM4NC1hN2RiLWI1YzZhMjE3ZWIyOC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QyMTAyMDJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1kM2VjZjFmNzFhMjA3OTk0NDM0MGQ2MzhkMmY2OGJhNmIyNmU4OWUyYjdiYjRlZmRmZjhlZDY0ZjBiZmI5ZWEwJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.4vcIa1_sGMBs4CIAFUJStSIxd2AYbTGjLlPCUPNCLhw",
-      "https://private-user-images.githubusercontent.com/141689453/693872634-a6395034-0c72-4862-a16b-6d6392ca3d5a.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3NDAwMjIsIm5iZiI6MTc5MzczOTcyMiwicGF0aCI6Ii8xNDE2ODk0NTMvNjkzODcyNjM0LWE2Mzk1MDM0LTBjNzItNDg2Mi1hMTZiLTZkNjM5MmNhM2Q1YS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QyMTAyMDJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wMjFjZGE0ZWE2NDQ0Njk4M2U3OTIxYzAzODhjZTY4ZGQzYWI1MGE5N2U2ZjI0NzdiMzQ2M2E0MTUwYjJiZmE1JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.8yn1mHK3RzLhWhvcxs3_hRJsOD9kewm7lXAm64j5Tvo",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6615406948",
-      "https://www.reddit.com/r/postman_api/comments/1xfat2u/postman_autoinstalled_plugins_into_my_codex_and/",
-      "https://www.reddit.com/r/codex/comments/1xfartn/postman_autoinstalled_a_global_codex_plugin_on_my/",
-      "https://www.reddit.com/r/ClaudeAI/comments/1xfauxa/postman_desktop_automatically_installed_a_claude/",
-      "https://github.com/postmanlabs/postman-app-support/issues/14370#issuecomment-6615574719"
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/JIRHcND5LFS_JhgAe-ObV.png",
+      "https://huggingface.co/Dharma-AI/Dharma-OCR-LITE",
+      "https://arxiv.org/abs/2604.14314",
+      "https://ocr-portal.prd-us-east-2.dharma-ai.com/login",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/j-k3pMh-GwLH6bgsRZ-4u.gif",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/SuMRjXc_gcp3LZm3K_mWs.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/rGnjzOfdYJrtG8gG_6kZc.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/bHPhh4WTqoSI2Aqg0NAii.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/m3CfHgYlaDZ9srzt2X99_.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/GRHwR5tiDzDKVUtMotsAb.png",
+      "https://dharma-ai.com",
+      "https://github.com/ricardobnjunior/Brazilian-Identity-Document-Dataset",
+      "https://huggingface.co/datasets/naver-clova-ix/cord-v2",
+      "https://huggingface.co/datasets/lmms-lab/DocVQA",
+      "https://huggingface.co/datasets/Theivaprakasham/wildreceipt",
+      "https://huggingface.co/datasets/darentang/sroie",
+      "https://rrc.cvc.uab.es/?ch=13",
+      "https://huggingface.co/datasets/nielsr/funsd",
+      "https://guillaumejaume.github.io/FUNSD/",
+      "https://zenodo.org/records/6371710",
+      "https://huggingface.co/datasets/Sagarjha456/line_items",
+      "https://doi.org/10.17632/tnj49gpmtz.2",
+      "https://huggingface.co/datasets/katanaml-org/invoices-donut-data-v1",
+      "https://huggingface.co/datasets/HumynLabs/Brazilian_Bills_and_Invoices_Dataset",
+      "https://huggingface.co/datasets/tech4humans/br-doc-extraction",
+      "https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization",
+      "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
+      "https://huggingface.co/blog/Dharma-AI/gpu-management",
+      "https://huggingface.co/blog/Dharma-AI/newer-models-same-advantages",
+      "https://huggingface.co/blog/Dharma-AI/why-specialization-is-inevitable",
+      "https://huggingface.co/blog/Dharma-AI/specialization-beats-scale",
+      "https://huggingface.co/blog/Dharma-AI/text-degeneration-a-production-failure-mode",
+      "https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots",
+      "https://huggingface.co/Dharma-AI",
+      "https://huggingface.co/spaces/Dharma-AI/DharmaOCR-demo"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   }

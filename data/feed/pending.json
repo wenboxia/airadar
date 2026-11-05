@@ -1,83 +1,91 @@
 {
- "generated_at": "2026-11-04T00:01:19+00:00",
+ "generated_at": "2026-11-05T00:24:11+00:00",
  "items": [
   {
-   "id": "435a4449f912b507",
-   "url": "https://honnibal.dev/blog/astra-read-write-misleading",
-   "title": "The 'Astra can read and write weights to improve Qwen' post is misleading",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "c85e9d7dd64e1f57",
+   "url": "https://www.interconnects.ai/p/how-well-can-we-measure-open-model",
+   "title": "How big is the open model economy today?",
+   "source": "Interconnects",
    "tier": "A",
-   "published_at": "2026-11-03T12:21:17+00:00",
-   "summary_short": "有人逐条拆解“Astra 直读写权重改进 Qwen”的宣传：多数实验其实要写 Python 并运行模型，并非只看原始权重。",
-   "summary_long": "原文对“Astra 能读写权重来改进 Qwen”一文提出质疑，拿舞台魔术类比：魔术师每次换一种手法，观众却以为只有一种，于是每次都自以为推翻了原先的猜测。原文用表格列出该文全部实验的对照项（实验内容、网络规模、是否读取原始权重、是否写入权重、是否用 Python、是否运行网络、结果），指出真正符合“只把原始浮点数放进上下文、不用工具、不运行网络”这一设定的，只有实验 1、2、4，网络规模在 1.7 万至 17.2 万权重之间。所有涉及真实语言模型的实验都用了 Python；作为主要亮点的 Qwen 结果还可以在最多 50 批练习题上运行模型。原文还提到：实验 8b 在 Gemma 3 270M 上失败；实验 7a 失败，7b 改为看注意力模式后 3/3 正确；实验 5 的权重从零开始，且只在 Breakout 上胜过 PPO-500M（517 对 25），在 Seaquest（53 对 89）与 Asterix（53 对 55）上落败。作者判断：Qwen 结果显示的是 Astra 可被提示去设计并执行人类 ML 工程师能做的任务，一兩年前的模型做不到这些；但用 Python 的实验不应与直接读写权重的实验放在同一篇里。",
+   "published_at": "2026-11-04T16:35:44+00:00",
+   "summary_short": "以三家开源推理初创的token量，估算开源模型推理市场规模",
+   "summary_long": "作者维护的 Interconnects Dashboard 汇总网络上关于开源模型采用与性能的数据，但文中指出，目前所有关于开源模型采用度的测量都极不精确：平台指标嘈杂、初创公司的数据带有营销色彩、公开评测也不完美，需要靠有经验的判断来解读。本文要回答的核心问题是：开源模型推理市场有多大？它在增长吗？相对 OpenAI/Anthropic 是否只是一个零头？作者以开源模型推理初创 Baseten、Fireworks、Together AI 作为风向标，并参考 OpenRouter API 中披露的开源模型 token 占比。超大规模云厂商（如 Amazon Bedrock、Azure 的 model garden）可能占有更大份额，但作者未见其按模型类别拆分用量。三家初创公开披露的 token 量（对数刻度）显示近指数增长，并在文中提到 GLM 5.2 在开源 agent 上带来跃升后出现上扬。Fireworks 在其首次公司大会上称，仅面向客户定制模型这一块业务，每日就服务超过 40T token；该垂类自夏季以来增长超过 2 倍，作者预计秋季其总量将远超 100T。作者还试图用 Google 财报中披露的平台与 API token 量做横向对照，但对照图表的具体结果原文未详述。",
    "key_points": [
-    "“仅看原始权重、不用工具、不运行网络”的设定只出现在实验 1、2、4，网络规模为 1.7 万至 17.2 万权重",
-    "所有涉及真实语言模型的实验都使用 Python，作为主要亮点的 Qwen 实验还会在最多 50 批练习题上运行模型",
-    "作者认为 Qwen 结果说明 Astra 能执行人类 ML 工程师可做的任务，但与直接读写权重的实验不宜混在同一篇文章中"
+    "作者强调现有开源模型采用数据极不精确，来源包括嘈杂的平台指标、初创公司营销口径和不完美的公开评测",
+    "以 Baseten、Fireworks、Together AI 三家开源推理初创及 OpenRouter 的开源 token 占比作为主要风向标，超大规模云厂商未按模型类别披露用量",
+    "Fireworks 称仅客户定制模型这一块业务每日服务超 40T token，该垂类自夏季增长超 2 倍，作者预计秋季其总量远超 100T"
    ],
    "topics": [
-    "eval"
+    "open-source",
+    "product"
    ],
-   "category": "评测",
+   "category": "行业动态",
    "categories": [
-    "评测"
+    "行业动态"
    ],
    "horizon": "long",
-   "score": 74.4,
+   "score": 72.3,
    "status": "review",
    "extra": {
-    "hn_points": 871,
-    "hn_comments": 189,
+    "content_source": "rss",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://rikiyat.github.io/blog/weight-space-programming/"
+      "https://dashboard.interconnects.ai/",
+      "https://www.interconnects.ai/p/how-well-can-we-measure-open-model?utm_source=substack&utm_medium=email&utm_content=share&action=share",
+      "https://natolambert.com/slides/2026/fireworks/talk#6",
+      "https://www.youtube.com/watch?v=zsO5RktNB7k",
+      "https://substackcdn.com/image/fetch/$s_!hFZ7!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F6c5f2798-10bc-487a-8932-5f851ad61b24_1600x840.svg",
+      "https://www.interconnects.ai/p/glm-52-is-the-step-change-for-open?utm_source=publication-search",
+      "https://x.com/natolambert/status/2117672040807489553",
+      "https://www.interconnects.ai/p/how-well-can-we-measure-open-model"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "605a80a50559aa46",
-   "url": "https://news.ycombinator.com/item?id=50352757",
-   "title": "OpenAI seems to be silently re-enabling model training on Codex chats",
+   "id": "150a39b9eb9ad0c3",
+   "url": "https://news.ycombinator.com/item?id=50363461",
+   "title": "Tell HN: Gemini trains on chat history, even for subscribers (personal accounts)",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-11-03T14:53:41+00:00",
-   "summary_short": "用户称Codex数据共享设置被静默重新开启，追问是否普遍",
-   "summary_long": "有用户称，其公司为防IP通过提示词泄露给前沿实验室，一直主动关闭Codex/Claude Code等的数据共享。日前其与同事发现Codex中的相关设置被静默重新开启，无人主动重新选择加入。用户给出检查地址chatgpt.com/settings/data-controls，需查看“Improve the model for everyone”选项，并询问这是孤立事件还是更普遍。帖子的EDIT补充称此前已有类似讨论，并指出还可在privacy.openai.com的页面关闭数据共享。评论区围绕数据是否可能被用于训练、服务商合同限制及标记机制展开讨论，有评论提到Anthropic报告、Azure异步过滤器、FTC对用户数据处理的警告等，但多为评论者推测，原文未确认OpenAI的具体做法。",
+   "published_at": "2026-11-04T10:10:27+00:00",
+   "summary_short": "Gemini个人订阅用户的已存聊天记录仍会被用于训练，且无法单独退出",
+   "summary_long": "Hacker News 一则“Tell HN”帖指出：拥有个人版 Google AI 订阅的用户，在 Gemini 中保存的聊天历史可被用于训练生成式 AI 模型；除非关闭聊天历史或改用临时会话，否则没有其他退出方式。帖文引用 Google 支持文档称，若“Keep Activity”开启，Gemini 应用活动会被用于改进 Google 服务，包括训练生成式 AI 模型；部分聊天会由人工审核员查看，且被人工审核过的聊天即使用户删除活动也不会删除，而是保留最长三年；文档还明确提醒，不要输入不希望审核员看到、或不愿被 Google 用于改进服务（包括机器学习技术）的机密信息。关闭“Keep Activity”可停止训练，代价是 72 小时后丢失聊天会话。发帖者称自己原以为付费订阅就不会变成“产品”，发现得太晚。评论区有人表示所有前沿模型厂商都有类似人工审核，并讨论补贴订阅换取训练数据、数据飞轮等。",
    "key_points": [
-    "用户称其公司为防IP泄露一直关闭Codex/Claude Code等数据共享，但日前发现Codex设置被静默重新开启，无人主动选择加入。",
-    "用户提供的检查路径为chatgpt.com/settings/data-controls中的“Improve the model for everyone”，并补充可在privacy.openai.com关闭数据共享。",
-    "评论区讨论数据是否仍可能被训练使用，涉及Anthropic标记机制、Azure异步过滤器、FTC对用户数据处理的警告等，但多为评论者推测，原文未确认OpenAI的具体做法。"
+    "个人 Google AI 订阅用户在 Gemini 的已保存聊天历史可用于模型训练，唯一退出方式是关闭聊天历史或使用临时会话",
+    "Google 文档称部分聊天由人工审核员查看，被审核聊天在删除活动后仍保留最长三年，并提醒勿输入机密信息",
+    "关闭“Keep Activity”可停止训练，但 72 小时后会丢失聊天会话"
    ],
    "topics": [
     "privacy",
-    "coding-agent"
+    "product"
    ],
    "category": "安全",
    "categories": [
-    "安全"
+    "安全",
+    "行业动态"
    ],
    "horizon": "short",
-   "score": 66.9,
+   "score": 72.0,
    "status": "review",
    "extra": {
-    "hn_points": 420,
-    "hn_comments": 133,
+    "hn_points": 622,
+    "hn_comments": 161,
     "outbound": {
      "arxiv": [],
      "links": [
       "https://news.ycombinator.com",
-      "https://hn.algolia.com/?query=OpenAI%20seems%20to%20be%20silently%20re-enabling%20model%20training%20on%20Codex%20chats&type=story&dateRange=all&sort=byDate&storyText=false&prefix&page=0",
-      "https://www.ftc.gov/policy/advocacy-research/tech-at-ftc/2024/02/ai-other-companies-quietly-changing-your-terms-service-could-be-unfair-or-deceptive",
-      "https://www.thenerve.news/p/sam-altman-annie-altman-sexual-abuse-allegations-openai-ceo-civil-case-deposition-family-dismissal",
-      "https://techcrunch.com/2026/10/26/cohere-says-alibabas-qwen-model-tried-to-send-a-file-to-beijing/",
-      "https://github.com/deepseek-ai/DeepInfer",
-      "https://news.ycombinator.com/item?id=49643556",
-      "https://github.com/codealong/codealong",
-      "https://m.youtube.com/shorts/TfT4v4iICCk",
+      "https://hn.algolia.com/?query=Tell%20HN%3A%20Gemini%20trains%20on%20chat%20history%2C%20even%20for%20subscribers%20%28personal%20accounts%29&type=story&dateRange=all&sort=byDate&storyText=false&prefix&page=0",
+      "https://www.nytimes.com/wirecutter/advice/ai-chat-privacy/",
+      "https://www.404media.co/inside-project-lily-the-humans-reading-your-chatgpt-chats/",
+      "https://www.winknews.com/news/woman-arrested-after-ai-threat-against-lee-county-sheriffs-office-investigators/article_3d4c5915-7015-43c0-b86a-d7fa5eadf958.html",
+      "https://www.forbes.com/sites/maryroeloffs/2026/11/03/google-will-cut-off-search-engine-access-to-schools-banning-generative-ai/",
+      "https://justanalytics.app/blog/cookie-consent-statistics-2026",
+      "https://support.google.com/gemini/answer/13594961?hl=en#human_review",
+      "https://keyboard.futo.tech/",
+      "https://policies.google.com/terms?hl=en-US#toc-permission",
       "https://github.com/HackerNews/API",
       "https://www.ycombinator.com/legal/",
       "https://www.ycombinator.com/apply/"
@@ -88,374 +96,194 @@
    }
   },
   {
-   "id": "360a3a5d8e13c5c4",
-   "url": "https://latent.space/p/ainews-llms-can-read-write-neural-network-weights-weight-space-programming-cuts-autoresearch-out-of/",
-   "title": "[AINews] LLMs can read & write neural network weights: \"Weight Space Programming\" cuts Autoresearch out of the RSI loop",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-11-03T05:35:00+00:00",
-   "summary_short": "LLM 能直接读写神经网络权重：识别功能、一步修 bug、从零生成权重",
-   "summary_long": "原文称这是一篇“重磅”论文：让一个足够聪明的模型直接读取并编辑一个较弱模型的权重，而不走写 PyTorch/Jax 代码、跑算力、看 loss 曲线与评测的传统流程。原文把它类比为不看源码、直接看（很小的）编译可执行文件的 0 与 1，并能做到：1）判断这些权重在做什么；2）在给定失败轨迹时一步修好 bug，或用 50 步朝某个方向改进（原文注明此处可能夸大）；3）一次性从零写出整个网络权重，并胜过一些独立训练的模型。原文称似乎已有独立复现。文章把这项工作归为某种机制可解释性变体，指出它目前不太可能扩展到比简单游戏和强化学习策略更复杂的任务，但认为在这一新的 RSI 能力上已实现从 0 到 1。背景方面，原文提到 AI/科技正处熊市、Anthropic 债券获“垃圾”评级、OpenAI 融资新闻，以及 8 个月前 Karpathy 的 autoresearch。",
+   "id": "88c23216a431785a",
+   "url": "https://www.mindstudio.ai/blog/linux-nvidia-rtx-spark-laptop",
+   "title": "Nvidia RTX Spark encrypted firmware slows inference speed to 35% on Linux",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-04T08:46:29+00:00",
+   "summary_short": "RTX Spark笔记本装Linux后GPU锁780MHz，推理从65跌到14 tokens/s",
+   "summary_long": "原文实测：Linux 可以安装在 RTX Spark 笔记本（如微星 Prestige N16 Flip AI Plus）上，能进入完整桌面、通过 Nvidia 开源内核驱动获得 GPU 加速，4K 120Hz 输出、音频、键盘和触控板配置后可用。但插电后 GPU 被锁在约 780MHz，而 Windows 下可达约 2.2GHz。原因是名为 Nvidia Platform Controllers and Framework 的 Windows 专有组件负责 CPU 与 GPU 间的功耗调度，其在 Linux 上没有对应实现，且固件功耗表加密、只有 Windows 驱动能解密。GPT-OSS-120B 测试中，Windows 为 65.4 tokens/s、WSL 为 65.1、DGX Spark 为 61，同一台笔记本的 Linux 原生只有 13.9。内存分配是另一个问题：机器默认给 GPU 预留 96GB 统一内存，只有 Windows 提供修改该划分的设置。原文认为 WSL 是目前实用的折中方案，真正修复取决于 Nvidia 是否把平台控制器的功耗管理逻辑移植进 Linux 驱动。安装过程也非即插即用：Omarchy 在微星机型上出现闪屏，Debian 可用但需 USB 网卡，且原生内核不识别键盘、触控板和 GPU。",
    "key_points": [
-    "核心做法：让强模型直接读取并编辑弱模型的权重，绕开编写训练代码、盯 loss 曲线与评测的整套流程",
-    "展示的三类能力：识别权重功能、依失败轨迹一步修 bug（或约 50 步定向改进，原文称可能夸大）、一次性从零生成权重并胜过部分独立训练模型",
-    "原文称似乎已有独立复现；但适用范围目前限于简单游戏与强化学习策略等，被归为机制可解释性的某种变体，原文未详述其规模与方法细节"
+    "插电后 Linux 下 GPU 锁在约 780MHz，Windows 约 2.2GHz，根源是仅限 Windows 的 Nvidia Platform Controllers and Framework 组件与加密功耗表",
+    "GPT-OSS-120B 实测：Windows 65.4 tokens/s、WSL 65.1、DGX Spark 61、同机 Linux 原生 13.9 tokens/s",
+    "默认 96GB 统一内存划给 GPU，只有 Windows 能改这一划分，导致 Linux 可用内存极少"
    ],
    "topics": [
-    "post-training",
-    "interpretability",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "评测"
-   ],
-   "horizon": "long",
-   "score": 62.6,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "ainews: weekday roundups"
-    ],
-    "outbound": {
-     "arxiv": [
-      "2604.18556",
-      "2605.00649"
-     ],
-     "links": [
-      "https://latent.space/p/ainews-google-admits-ai-mode-hurts-search-revenue-15-500b-drop-worst-since-2004-ipo-ai-bear-market-c/",
-      "https://x.com/0xsmac/status/2117333816188801079?a=E7i0Iw06jCLViGy9EKk&s=20",
-      "https://techcrunch.com/2026/10/30/anthropic-expected-to-receive-high-junk-rating-from-credit-agencies-following-ipo-report-says/",
-      "https://x.com/fkronawitter1/status/2117311995066159388",
-      "https://latent.space/p/ainews-autoresearch-sparks-of-recursive/",
-      "https://latent.space/p/ainews-fearing-rsi-openai-anthropic/",
-      "https://latent.space/p/rlm/",
-      "https://x.com/rikiyatakehi/status/2117313742891327994",
-      "https://x.com/AlexKrentsel/status/2117376696211091894?a=XlZbF9HMgWa8dt8wZv4&s=20",
-      "https://x.com/rikiyatakehi/status/2117313763795722318?a=igPYwigqvseH3zvPIw0&s=20",
-      "https://x.com/rikiyatakehi/status/2117313787938459972?a=gPaI2mgHqVLk_ZHp7gw&s=20",
-      "https://x.com/rikiyatakehi/status/2117313810390204419?a=DwPP-KNjuHPfjyrenyw&s=20",
-      "https://x.com/giffmana/status/2117346161866514524",
-      "https://x.com/rikiyatakehi/status/2117313805977780547?a=ljBcQPd2XHOO4HR-hTY&s=20",
-      "https://arxiv.org/html/2304.02015v1",
-      "https://x.com/AlexKrentsel/status/2117376683724660898",
-      "https://latent.space/p/the-utility-of-interpretability-emmanuel/",
-      "https://x.com/AlexKrentsel/status/2117376719720198536?a=ymB2TGMLFr5NEhkavx8&s=20",
-      "https://x.com/NeelNanda5/status/2117375052618539485",
-      "https://twitter.com/i/lists/1585430245762441216",
-      "https://news.smol.ai/",
-      "https://www.latent.space/p/2026",
-      "https://support.substack.com/hc/en-us/articles/8914938285204-How-do-I-subscribe-to-or-unsubscribe-from-a-section-on-Substack",
-      "https://x.com/DeepSeekHarness/status/2116857257245987236",
-      "https://x.com/zhihufrontier/status/2117074614434316705",
-      "https://x.com/tianyi/status/2116859582639403080",
-      "https://x.com/kimmonismus/status/2116905923109089285",
-      "https://x.com/zhihufrontier/status/2117074480636010559",
-      "https://x.com/badlogicgames/status/2116997870213906524",
-      "https://x.com/omarsar0/status/2116942815150157871",
-      "https://x.com/tianyi/status/2117064134961631414",
-      "https://x.com/teortaxestex/status/2116988654602031170",
-      "https://x.com/teortaxestex/status/2116856872003375236",
-      "https://x.com/teortaxestex/status/2116854115779121384",
-      "https://x.com/teortaxestex/status/2116854564770979998",
-      "https://x.com/teortaxestex/status/2116864269887103202",
-      "https://x.com/SemiAnalysis_/status/2117075900575477855",
-      "https://x.com/kimmonismus/status/2117180792153468945",
-      "https://x.com/dylan522p/status/2117092550842683671",
-      "https://x.com/demishassabis/status/2117142448577093706"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "0e7b16327df7de13",
-   "url": "https://github.blog/open-source/maintainers/arnis-turns-any-place-on-earth-into-a-minecraft-world/",
-   "title": "Arnis turns any place on Earth into a Minecraft world",
-   "source": "GitHub Blog (AI)",
-   "tier": "S",
-   "published_at": "2026-11-03T16:00:00+00:00",
-   "summary_short": "Arnis用开放地图数据把现实地点变成可自由探索的Minecraft世界",
-   "summary_long": "Arnis是Louis Erbkamm维护的开源项目，它读取OpenStreetMap及其他来源的真实世界数据，把用户熟悉的地点转换成可在Minecraft中自由探索的世界。项目始于2022年，Louis从13岁开始写代码，最初只是把Minecraft与地理数据结合的消遣，他在学校假期用两周完成了手写Python的首个原型，当时只基于OpenStreetMap，生成一座城镇耗时较久。为了测试，他查了德国的城镇，选中了德国最小的城镇Arnis，因为该镇建筑、街道、水域等元素丰富，适合测试，项目名也由此而来。目前项目在GitHub上获得近90万次下载、约70名贡献者。加入高程数据后世界不再平坦，来自各地的地理空间专家主动提出想法；从Python移植到Rust前，Louis也在GitHub公开讨论征求意见。贡献者把Arnis翻译成约20种语言并自行开发了重要功能。例如，Louis散步时注意到城市里有很多垃圾桶，但生成的世界里没有，社区一起找到了合适的方块。对地图无法描述细节的结构，如自由女神像、救世基督像，Arnis会把3D模型转换为Minecraft方块。作为唯一维护者，Louis亲自审阅每个拉取请求，通常利用晚上或周末工作。他使用GitHub Copilot总览新版本未解决问题与缺陷、追踪缺陷来源并生成修复；引入AI后代码评审和文档工作都有增加。对大功能的大型拉取请求，他在GitHu",
-   "key_points": [
-    "Arnis用OpenStreetMap等真实世界数据生成可探索的Minecraft世界，2022年由Louis Erbkamm发起，GitHub下载近90万次、约70名贡献者。",
-    "首个原型是两周内手写的Python版本，仅基于OpenStreetMap；测试地点选德国最小城镇Arnis，项目因此得名。",
-    "社区贡献约20种语言翻译和重要功能；垃圾桶功能源于Louis散步时的观察，由社区共同找到合适方块；自由女神像等细节结构通过3D模型转换。"
-   ],
-   "topics": [
-    "open-source",
-    "product"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "long",
-   "score": 59.5,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "Maintainers",
-     "Open Source",
-     "GitHub Copilot",
-     "GitHub Copilot app",
-     "open source"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.blog/open-source/maintainers/arnis-turns-any-place-on-earth-into-a-minecraft-world/",
-      "https://github.blog"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "6fd6ad7938fa5bc5",
-   "url": "https://openai.com/index/rewarding-defenders-with-bigger-bug-bounties",
-   "title": "Rewarding defenders with bigger bug bounties",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-02T18:00:00+00:00",
-   "summary_short": "OpenAI 提高漏洞赏金，中高危奖励中点涨超四倍，新增质量与忠诚度加成",
-   "summary_long": "OpenAI 宣布提高其安全漏洞赏金计划的奖励，以鼓励独立研究人员挖掘其测试可能遗漏的漏洞，并为更高质量的漏洞报告新增激励。原文称，独立安全研究者对保护全行业技术至关重要，激励负责任披露是其安全模型的核心部分，与工程师用模型找弱点、复现并测试修复的 Defense Factory 工作互补。\n\n具体而言，中、高、严重级别发现的奖励区间中点平均提高四倍以上；ChatGPT、Codex、API 平台等核心产品的严重漏洞最高可获 3 万美元，特别突出的严重发现仍可获最高 10 万美元，含奖金最高 17.2 万美元。新增激励包括：高质量报告可获基础赏金倍数加成；5 级忠诚度奖励计划；针对新上线功能的短期优先活动专项奖金池。示例中，ChatGPT 零点击账户接管历史奖励 6500 美元，新算法下（30000×1.15 质量×1.30 活动×1.15 忠诚）为 51577 美元。已提交但未发奖的报告适用新区间，公告前 30 天内发放的赏金若本应更高将补差额。安全团队将于 11 月 20–21 日在奥克兰 PROMPT2PWN 活动现场。",
-   "key_points": [
-    "中、高、严重级别发现的奖励区间中点平均提高四倍以上；核心产品严重漏洞最高 3 万美元，特别突出者最高 10 万美元、含奖金最高 17.2 万美元",
-    "新增三类加成：高质量报告（如可靠的概念验证能隔离漏洞、说明可利用时机并展示影响）的质量倍数、5 级忠诚度奖励、优先活动专项奖金池",
-    "追溯支付：未发奖的已提交报告适用新区间，公告前 30 天已发放赏金如在新区间下更高将补差额"
-   ],
-   "topics": [
-    "cybersecurity",
-    "jailbreak",
-    "prompt-injection"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 56.2,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Security"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://bugcrowd.com/engagements/openai",
-      "https://openai.com/the-defense-factory/",
-      "https://p2p.nahamcon.com/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "26c6032e1d267765",
-   "url": "https://openai.com/index/accelerating-engineering-for-the-physical-world",
-   "title": "Accelerating engineering for the physical world",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-03T12:00:00+00:00",
-   "summary_short": "OpenAI公布模型辅助工程设计进展，Astra一周内设计出可与Codex对话的设备",
-   "summary_long": "原文分享OpenAI模型辅助工程师设计、仿真和制造实体产品的进展，覆盖机械、电气工程与端到端系统设计，已用于内部团队加速试错。原文称模型被训练支持从准备图纸、搭建仿真到跨学科协调变更，让工程师有更多时间探索想法。过去一年前沿模型能力提升帮助内部团队更快迭代，行业工作流中也出现早期证据；OpenAI正与外部合作者探索落地方向，并邀请工程师与软件厂商合作。案例中团队用GPT-6定义需求并设计外壳、PCB与软件集成，做出可与Codex对话的测试设备Astra：两名成员以副业形式不到一周完成设计，合同制造商不到一个月产出小批原型。但原文指出量产仍需多轮评审迭代，Astra未能稳定考虑制造商的生产限制、公差与装配细节。原文还称OpenAI硬件团队用Codex和ChatGPT修改CAD模型、准备图纸、搭建仿真与评审设计，自2月以来token用量增长23倍。",
-   "key_points": [
-    "覆盖机械、电气与端到端系统设计：模型可辅助准备图纸、搭建仿真、跨学科协调变更；OpenAI硬件团队自2月以来模型用量（token计）增长23倍",
-    "Astra测试案例：用GPT-6定义功能需求并设计外壳、PCB与软件集成，两名成员以副业形式不到一周完成设计，合同制造商不到一个月造出小批原型",
-    "原文承认局限：Astra未能稳定考虑制造商的生产限制、公差与装配细节，量产仍需多轮评审迭代；OpenAI邀请工程师、工程公司与软件厂商合作"
-   ],
-   "topics": [
-    "product",
-    "hardware-engineering"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 54.8,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Research"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://openai.com/index/gpt-6-astra/",
-      "https://worklouder.cc/codex-micro",
-      "https://images.ctfassets.net/kftzwdyauwt9/5aP4AhwHhDUmDxisSLcb2X/12114476f73d643b73dffe90b819cc0c/prototype-device-enclosure-diagram.png"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "43fa8ceef8c57a95",
-   "url": "https://www.qbitai.com/2026/11/507367.html",
-   "title": "模拟计算进入矩阵时代！北大联手硅谷IBM，写下新定义",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-11-03T03:16:23+00:00",
-   "summary_short": "北大与IBM等学者发综述定义现代模拟计算，展示模拟矩阵计算一步求解",
-   "summary_long": "一篇发表于Nature旗下期刊的综述提出“现代模拟计算”定义，四位作者来自北京大学、IBM苏黎世研究院和Unconventional AI。文章从任务、硬件、应用可行性三方面区分传统与现代：现代模拟计算面向AI和6G中的矩阵计算，基于阻变存储器等新型纳米器件，并探索高精度、可扩展路径。其核心是用电导、电压映射数学变量，借欧姆定律和基尔霍夫定律完成乘加，并归纳解微分方程、解矩阵方程、矩阵向量乘法三个原语。安纳智芯的模拟矩阵计算电路用全局负反馈一步求解矩阵方程，单次操作小于100纳秒，响应时间与矩阵维度无关；2025年团队用位切片和8个离散电导态应对精度难题。",
-   "key_points": [
-    "综述由北京大学、IBM苏黎世研究院和Unconventional AI的四位作者合作，试图为“现代模拟计算”建立正式定义。",
-    "论文从任务、硬件、应用可行性区分传统与现代：面向矩阵计算、基于RRAM等新型器件、探索高精度与可扩展工程路径。",
-    "AMC电路用全局负反馈一步求解矩阵方程，单次操作小于100纳秒，响应时间与矩阵维度无关；2025年工作以位切片和8个离散电导态应对精度与扩展性。"
-   ],
-   "topics": [
-    "analog-computing",
-    "compute-hardware",
-    "chip"
+    "inference-performance",
+    "hardware",
+    "linux-driver"
    ],
    "category": "行业动态",
    "categories": [
     "行业动态"
    ],
-   "horizon": "long",
-   "score": 54.8,
+   "horizon": "short",
+   "score": 68.1,
    "status": "review",
    "extra": {
+    "hn_points": 584,
+    "hn_comments": 267,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://goremy.ai/?utm_source=mindstudio-blog&utm_medium=interstitial&utm_campaign=remy-blog-enterprise&utm_content=b05-04c",
+      "https://goremy.ai/?utm_source=mindstudio-blog&utm_medium=interstitial&utm_campaign=remy-blog-enterprise&utm_content=b05-12c",
+      "https://goremy.ai/?utm_source=mindstudio-blog&utm_medium=interstitial&utm_campaign=remy-blog-enterprise&utm_content=b05-09a"
+     ]
+    },
     "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "7c1041935d0b84bb",
+   "url": "https://simonwillison.net/2026/Nov/3/datasette-agent/",
+   "title": "datasette-agent 0.5a0",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-03T23:13:45+00:00",
+   "summary_short": "Datasette Agent 0.5a0 发布，新增可停靠在页面旁的聊天面板",
+   "summary_long": "Datasette Agent 发布 0.5a0 版本，原文称这是一次重要发布。其中最受关注的新功能名为 panel（面板），它让 agent 聊天窗口保持打开，并停靠在 Datasette 的页面旁边，例如某张表页面或查询页面。原文指出，与 datasette-apps 结合使用时，用户可以先通过提示词让一个由数据库支撑的应用从无到有地生成出来，然后再借助停靠在该应用旁边的聊天窗口对它进行修改。想试用的人可以用 GitHub 账号登录 agent.datasette.io。原文未详述该版本的其他改动或具体技术实现细节。",
+   "key_points": [
+    "0.5a0 被原文称为 Datasette Agent 的一次重要发布",
+    "新增 panel 功能：agent 聊天窗口可保持打开并停靠在 Datasette 页面（如表页面、查询页面）旁边",
+    "配合 datasette-apps 时，可用提示词生成数据库支撑的应用，并从旁边的聊天窗口中修改它"
+   ],
+   "topics": [
+    "tool-use",
+    "open-source"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 66.3,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
     "source_tags": [
-     "资讯"
+     "projects",
+     "datasette",
+     "datasette-agent"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.qbitai.com/author/keleixi",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/2026/10/504277.html",
-      "https://www.qbitai.com/2026/10/502849.html",
-      "https://www.qbitai.com/2026/10/502767.html",
-      "https://www.qbitai.com/2026/09/493363.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/507367.html&title=模拟计算进入矩阵时代！北大联手硅谷IBM，写下新定义&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2026/10/506904.html",
-      "https://www.qbitai.com/2026/10/506227.html",
-      "https://www.qbitai.com/2026/11/507107.html",
-      "https://www.qbitai.com/2026/10/506819.html",
-      "https://www.qbitai.com/2026/11/507038.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
+      "https://github.com/datasette/datasette-agent/releases/tag/0.5a0",
+      "https://agent.datasette.io/",
+      "https://github.com/datasette/datasette-apps",
+      "https://simonwillison.net/tags/projects",
+      "https://simonwillison.net/tags/datasette",
+      "https://simonwillison.net/tags/datasette-agent"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "262cfa35f4308cc0",
-   "url": "https://openai.com/index/preparing-our-next-security-sprint-to-harden-openai",
-   "title": "Preparing our next security sprint to harden OpenAI",
+   "id": "0a437d67f2effbc5",
+   "url": "https://openai.com/index/introducing-images-2-6",
+   "title": "Introducing Images 2.6",
    "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-11-02T18:00:00+00:00",
-   "summary_short": "OpenAI启动新一轮安全冲刺，漏洞赏金提高逾四倍",
-   "summary_long": "OpenAI宣布计划开展下一轮内部安全冲刺，把新的研究人员和安全合作伙伴与自家团队聚到一起，用其模型测试并加固系统。此次与安全公司Cathedral合作，其研究人员将与OpenAI团队并肩挑战防御体系；Cathedral首席执行官兼联合创始人Gavin Kliger在原文中给出评价。OpenAI同时改进安全漏洞赏金计划，关键发现的奖励提高逾四倍。原文回顾上一轮冲刺：25%的产品工程师投入查找和修复弱点，借助Codex调查发现、在隔离环境复现漏洞并准备补丁供审核。原文称仅靠传统网络防御已不再足够，行业内近期事件显示威胁出现之快，需要建立持续防御闭环。OpenAI表示正用最强模型加固自身防御，并向Daybreak客户开放这些能力，同时承诺六个月内提供10亿美元补贴访问额度，用于保护关键服务与数字基础设施的前线防御者，并分享上轮冲刺的架构与经验，以及面向行业和政府的网络防御者蓝图。",
+   "published_at": "2026-11-04T00:00:00+00:00",
+   "summary_short": "Images 2.6 发布：生成速度提升 50%，新增 GIF 动图与更一致的编辑",
+   "summary_long": "原文宣布在 ChatGPT、Codex 和 API 中推出 Images 2.6。官方称，全球用户目前每周通过这三个渠道生成 40 亿张图片，平均每天超过 5 亿张。新版本生成图片的速度比此前快 50%。API 提供 GPT‑Image‑2.6 Flare 与 GPT‑Image‑2.6 Sunburst 两个模型供开发者选择：质量设为 low 时，Flare 最快可在 6 秒内出图；对于需要更高细节与精确度的工作，Sunburst 在质量设为 medium 或 high 时，能提供更高质量和更强的跨编辑一致性。Flare 还提升了海报、产品图等专业视觉的版式质量。Images 2.6 新增 GIF 能力，可把品牌吉祥物、角色或产品图做成循环动画，也适用于社交媒体反应图与 meme，或在视频制作前用动态分镜探索角色动作。编辑过程中可保持角色、产品与品牌细节一致，从而更快打磨成品。原文以 OpenArt 提供的两组提示词示例展示 GIF 精灵图效果，未详述可用范围与价格等信息。",
    "key_points": [
-    "与安全公司Cathedral合作开展新一轮内部安全冲刺，用OpenAI模型挑战自身防御",
-    "安全漏洞赏金计划改进，关键发现奖励提高逾四倍",
-    "上一轮冲刺投入25%产品工程师，用Codex调查发现、隔离环境复现漏洞并准备补丁"
+    "在 ChatGPT、Codex 与 API 中推出，官方称三端每周生成 40 亿张图片、日均超 5 亿张",
+    "生成速度比此前快 50%；API 提供 Flare（low 质量最快约 6 秒）与 Sunburst（medium/high 质量下质量更高、编辑一致性更强）",
+    "新增 GIF 动图生成，可用于品牌吉祥物动画、社交媒体表情包与 meme、视频制作前的动态分镜"
    ],
    "topics": [
-    "cybersecurity"
+    "image-generation",
+    "model-release"
    ],
-   "category": "安全",
+   "category": "模型",
    "categories": [
-    "安全"
+    "模型"
    ],
    "horizon": "short",
-   "score": 52.5,
+   "score": 65.4,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
-     "Security"
+     "Product"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://openai.com/the-defense-factory/"
+      "https://developers.openai.com/api/docs/pricing#image-generation"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "b601bde8c39913a3",
-   "url": "https://www.qbitai.com/2026/11/507382.html",
-   "title": "A社紧急修改招股书！RSI我们快要控制不住了",
+   "id": "f46bd8b9888cca66",
+   "url": "https://www.qbitai.com/2026/11/507647.html",
+   "title": "百度无人车搞出“黑客帝国”！世界模型实时推演全局，跑一天抵三年",
    "source": "量子位",
    "tier": "B",
-   "published_at": "2026-11-03T03:41:06+00:00",
-   "summary_short": "Anthropic招股书预警下一代模型逼近RSI红线，Q3营收环比增速放缓",
-   "summary_long": "量子位报道，Anthropic更新招股书，正式披露2026年第三季度财务数据。招股书写入罕见安全预警：公司越来越多用AI加速AI的研发，模型能力提升速度可能超过其开发、验证并落实安全、对齐与安保措施的速度；内部预判下一代模型可能即将触达《负责任扩展协议》所定义的「由AI驱动的大幅加速进展」阈值，即RSI红线；并称衡量研发加速的许多证据是滞后指标，公司可能在加速已经发生之后才知道加速已至。A社强调目前在役模型仍在控制范围内，后续会加强人类监督与安全评估。财务上，Q3营收约170亿美元（1130亿人民币），高于此前向投资人吹风的168亿美元预估，同比增1127%；前九个月累计营收332.4亿美元，同比增1200%。Q3净亏232.9亿美元，前九个月累计净亏1040亿美元，大头来自可转换票据和衍生负债公允价值变动的会计减计。算力采购账单8954亿美元，供应商含亚马逊、谷歌、SpaceX及算力租赁新贵。但环比看，Q3营收环比增速从Q2的144%降至47%，月新增流水从约7.6亿美元降至约5.8亿美元。",
+   "published_at": "2026-11-04T16:13:23+00:00",
+   "summary_short": "百度ApolloWorld世界模型：虚拟城市实时推演，一天虚拟路测抵真实三年",
+   "summary_long": "百度Apollo披露全新世界模型ApolloWorld，用AI构建持续变化的虚拟交通环境，让无人车在其中经历不同天气、道路和交通参与者，完成整趟Robotaxi行程。系统采用多智能体驱动方案，车辆、行人被建模为具决策和互动能力的AI智能体，会随无人车动作调整行为，车流密度与他车驾驶风格也可调整。此次展示的是完整行程级虚拟路测，覆盖深圳滨海大道、香港机场等场景，相机与激光雷达观测数据均由模型持续生成，并通过知识蒸馏加快推理以实现实时响应。该模型已用于萝卜快跑全球化测试与验证，百度披露其一天完成的虚拟路测里程，相当于一辆配安全员的真实测试车连续行驶约三年。与之配合的新一代L4端到端模型架构，已在国内一定规模车辆上投入实际运营，正逐步替换传统方案。原文还指出传统仿真依赖非响应式回放的局限，并提到百度提出面向物理AI的“2+3”世界模型评价框架，具体内容原文未详述。",
    "key_points": [
-    "招股书第29页预警：下一代模型可能即将触达《负责任扩展协议》定义的「由AI驱动的大幅加速进展」阈值，且加速证据多为滞后指标，可能事后才知加速已至",
-    "Q3营收约170亿美元、同比增1127%，但环比增速从Q2的144%降至47%，月新增流水由约7.6亿美元降至约5.8亿美元",
-    "Q3净亏232.9亿美元、前九个月累计净亏1040亿美元，主因会计减计而非现金消耗；算力采购账单达8954亿美元"
+    "ApolloWorld将交通参与者建模为具决策与互动能力的AI智能体，支持可交互、可纠错、可溯源的完整行程级虚拟路测",
+    "百度披露其一天虚拟路测里程相当于一辆配安全员真实测试车连续行驶约三年，已用于萝卜快跑全球化测试与验证",
+    "新一代L4端到端模型架构已在国内一定规模车辆上投入实际运营，正逐步替换传统方案"
    ],
    "topics": [
-    "alignment",
-    "recursive-self-improvement"
+    "world-model",
+    "multi-agent",
+    "autonomous-driving"
    ],
-   "category": "安全",
+   "category": "模型",
    "categories": [
-    "安全",
-    "行业动态"
+    "模型"
    ],
    "horizon": "short",
-   "score": 51.8,
+   "score": 63.5,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
      "资讯",
-     "Anthropic",
-     "RSI"
+     "首页轮播",
+     "百度Apollo"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.qbitai.com/author/yuyang",
+      "https://www.qbitai.com/author/jessica",
       "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/anthropic",
-      "https://www.qbitai.com/tag/rsi",
-      "https://www.qbitai.com/2026/10/502667.html",
-      "https://www.qbitai.com/2026/10/502544.html",
-      "https://www.qbitai.com/2026/09/491280.html",
-      "https://www.qbitai.com/2026/09/482586.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/507382.html&title=A社紧急修改招股书！RSI我们快要控制不住了&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2025/10/339852.html",
-      "https://www.qbitai.com/tag/%e5%a7%9a%e9%a1%ba%e5%ae%87",
-      "https://www.qbitai.com/tag/%e6%b8%85%e5%8d%8e%e7%89%b9%e5%a5%96",
-      "https://www.qbitai.com/tag/%e7%89%a9%e7%90%86%e5%87%9d%e8%81%9a%e6%80%81",
-      "https://www.qbitai.com/tag/%e8%b0%b7%e6%ad%8cdeepmind",
-      "https://www.qbitai.com/2026/06/433717.html",
-      "https://www.qbitai.com/tag/claude",
-      "https://www.qbitai.com/tag/dario",
-      "https://www.qbitai.com/2026/11/507038.html",
-      "https://www.qbitai.com/tag/claude-code",
-      "https://www.qbitai.com/2023/05/56124.html",
-      "https://www.qbitai.com/tag/%e5%a4%a7%e8%af%ad%e8%a8%80%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/2026/09/487752.html",
-      "https://www.qbitai.com/tag/%e4%b8%96%e7%95%8c%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/tag/%e7%94%9f%e6%95%b0%e7%a7%91%e6%8a%80",
-      "https://www.qbitai.com/2025/03/261556.html",
+      "https://www.qbitai.com/tag/%e7%99%be%e5%ba%a6apollo",
+      "https://www.qbitai.com/2026/11/507473.html",
+      "https://www.qbitai.com/2026/10/506569.html",
+      "https://www.qbitai.com/2026/10/506246.html",
+      "https://www.qbitai.com/2026/10/506042.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/507647.html&title=百度无人车搞出“黑客帝国”！世界模型实时推演全局，跑一天抵三年&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2020/03/12490.html",
+      "https://www.qbitai.com/2024/12/232717.html",
+      "https://www.qbitai.com/tag/%e5%90%89%e5%88%a9",
+      "https://www.qbitai.com/tag/%e6%9e%81%e8%b6%8a%e6%b1%bd%e8%bd%a6",
+      "https://www.qbitai.com/tag/%e8%bd%a6%e5%9c%88%e6%9c%80%e6%96%b0%e8%ae%a4%e7%9f%a5",
+      "https://www.qbitai.com/2024/08/183398.html",
+      "https://www.qbitai.com/tag/%e6%97%a0%e4%ba%ba%e8%bd%a6%e5%be%80%e5%93%aa%e9%87%8c%e5%bc%80%ef%bc%9f",
+      "https://www.qbitai.com/tag/%e6%9d%8e%e5%bd%a6%e5%ae%8f",
+      "https://www.qbitai.com/tag/%e8%87%aa%e5%8a%a8%e9%a9%be%e9%a9%b6",
+      "https://www.qbitai.com/2024/10/199386.html",
+      "https://www.qbitai.com/2021/05/23856.html",
+      "https://www.qbitai.com/tag/%e6%b8%85%e5%8d%8eair",
+      "https://www.qbitai.com/tag/%e8%bd%a6%e8%b7%af%e5%8d%8f%e5%90%8c",
+      "https://www.qbitai.com/2022/03/33186.html",
       "https://www.qbitai.com/2026/10/506904.html",
+      "https://www.qbitai.com/2026/11/507107.html",
       "https://www.qbitai.com/2026/10/506227.html",
       "https://www.qbitai.com/2026/10/506819.html",
-      "https://www.qbitai.com/2026/10/505799.html",
+      "https://www.qbitai.com/2026/11/507038.html",
       "https://weibo.com/qbitai?is_all=1",
       "https://www.zhihu.com/org/liang-zi-wei-48/activities",
       "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
@@ -466,40 +294,77 @@
    }
   },
   {
-   "id": "09484dfee9e7507c",
-   "url": "https://arstechnica.com/gadgets/2026/10/fujifilm-to-boost-tape-production-5x-as-ai-fuels-archiving-demand/",
-   "title": "Fujifilm to boost tape production 5x as AI fuels archiving demand",
+   "id": "a959325bd7bead26",
+   "url": "https://ben.stolovitz.com/posts/how-use-ai-oct-2026/",
+   "title": "How I use AI (Oct 2026)",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-11-02T14:02:42+00:00",
-   "summary_short": "富士胶片投约100亿日元，把磁带产能提至5倍，押注AI带来的归档需求",
-   "summary_long": "富士胶片在周四发布的公告中表示，将投资约100亿日元（约6300万美元），把磁带产能提升至2025财年产量水平的5倍。该公司将归档需求的激增归因于生成式AI的普及，称其正带来全球数据需求的“指数级增长”。这笔投资将落地神奈川工厂小田原厂区，是富士胶片迄今在专用LTO磁带设施上最大的一笔投资；项目横跨2026至2028财年，用于扩大生产和增加人员，主要生产最新一代“FUJIFILM LTO Ultrium10”磁带。原文指出，主流消费者几十年前就已弃用磁带，但企业界从未放弃：云服务与数据中心运营商依赖磁带备份海量数据，因为磁带能以相对较低的成本存储大体量数据；磁带盒可被轻易断开连接并存放于抽屉、保险库或独立设施，富士胶片强调这种“气隙隔离”能力是用户数据的最后一道防线，并称“鉴于网络攻击的复杂程度，磁带作为防范勒索软件等威胁的手段正受到越来越多关注”。原文回顾，富士胶片自1950年代起做磁带存储介质，2000年推出首款LTO Ultrium磁带，2011年首家商业化生产含钡铁氧体磁性粒子的磁带，2025年推出LTO Ultrium10，首次采用将钡铁氧体与锶铁氧体技术结合的“精细混合磁性粒子”。",
+   "published_at": "2026-11-03T18:11:11+00:00",
+   "summary_short": "年度AI使用复盘：代理式编程取代手写代码，并起草个人AI政策",
+   "summary_long": "这篇年度复盘记录作者过去12个月的AI使用变化：其岗位从微软Windows AI团队工程师转为Salesforce AI Research研究工程师，每月token支出约3000美元。日常用途仍包括编程、研究与搜索、摘要/转录/语音、写作、艺术/音乐/视频，今年新增起草个人AI政策，理由是人们明显缺乏使用规范，甚至把思考委托给机器。编程方面，作者称已很少手写代码，改为管理约5—6个Claude Code等代理，每个代理使用独立Git worktree，能写代码、跑测试、创建和审查PR；代理可在约20分钟做出原型、快速试错、修紧急bug。但原文强调工程并未解决：放任代理会产出功能差、架构过度、难读、自夸的劣质代码，仍需人类品味和经验。",
    "key_points": [
-    "富士胶片将投资约100亿日元（约6300万美元），把磁带产能提升到2025财年的5倍，项目在2026至2028财年执行，主要生产LTO Ultrium10",
-    "公司将需求增长归因于生成式AI导致的数据“指数级增长”，云服务与数据中心运营商因低成本大容量存储而扩大使用磁带",
-    "原文强调磁带可离线存放形成“气隙隔离”，被视为防范勒索软件等网络攻击的最后防线"
+    "作者从微软Windows AI团队转至Salesforce AI Research，每月token约3000美元，AI用途覆盖编程、研究搜索、摘要转录语音、写作、艺术音乐视频，并新增个人AI政策。",
+    "编程已由代理式编程主导：管理5—6个Claude Code/OpenCode/Codex/Pi代理，各用独立Git worktree，代理写代码、跑测试、建/审PR，约20分钟做原型并快速试错。",
+    "原文强调工程未解决：代理独立运行会产出功能差、过度架构、难读、自夸的劣质代码，仍需人类品味和经验；个人政策用于区分AI帮助与伤害。"
    ],
    "topics": [
-    "storage",
-    "data-center"
+    "coding-agent",
+    "multi-agent",
+    "harness"
    ],
-   "category": "行业动态",
+   "category": "Agent 与开发",
    "categories": [
-    "行业动态"
+    "Agent 与开发"
    ],
-   "horizon": "short",
-   "score": 51.2,
+   "horizon": "long",
+   "score": 62.7,
    "status": "review",
    "extra": {
-    "hn_points": 353,
-    "hn_comments": 142,
+    "hn_points": 248,
+    "hn_comments": 298,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://cdn.arstechnica.net/wp-content/uploads/2026/10/LTO-Roadmap-2026-HiRes.jpg",
-      "https://www.lto.org/roadmap/",
-      "https://arstechnica.com/author/nickindge/",
-      "https://arstechnica.com/gadgets/2026/10/fujifilm-to-boost-tape-production-5x-as-ai-fuels-archiving-demand/#comments"
+      "https://www.hankgreen.com/ai-policy/",
+      "https://www.youtube.com/watch?v=ssE1rmt3EpE",
+      "https://x.com/brainpop/status/2102857266584281519",
+      "https://github.com/citelao/mumbo/commit/a92fd3117bde8cf0fa8e323aaa64093eb4466396",
+      "https://github.com/citelao/mac-native-echo-cancellation",
+      "https://github.com/citelao/ios-native-echo-cancellation",
+      "https://en.wikipedia.org/wiki/Fail_fast_(business)",
+      "https://github.com/mumble-voip/mumble/pull/7180",
+      "https://en.wikipedia.org/wiki/Anthropomorphism#:~:text=people%20use%20their%20schemas%20about%20other%20humans%20as%20a%20basis%20for%20inferring%20the%20properties%20of%20non%2Dhuman%20entities%20in%20order%20to%20make%20efficient%20judgements%20about%20the%20environment%2C%20even%20if%20those%20inferences%20are%20not%20always%20accurate",
+      "https://github.com/citelao/dotfiles/blob/main/dotfiles/.chezmoitemplates/skills/claudy-comment-detector/SKILL.md",
+      "https://github.com/mumble-voip/mumble/pull/7136#discussion_r2972225192",
+      "https://www.google.com/search?q=npr+rss",
+      "https://www.google.com/search?q=ai%27ve+as+a+term+for+thing+made+my+ai&nfpr=1",
+      "https://claude.ai/share/9839381c-f319-41b4-86e2-890bcf89243d",
+      "https://www.google.com/search?q=HP+Reverb+G2",
+      "https://www.google.com/search?q=ai+intelligence+is+spiky",
+      "https://www.google.com/search?q=emoji+sigh",
+      "https://emojiterra.com/face-exhaling/",
+      "https://www.google.com/search?q=rel+nofollow+markdown",
+      "https://www.google.com/search?q=best+hysa",
+      "https://claude.ai/share/e0f6a055-89a4-418d-97e1-3d924bc57ff7",
+      "https://claude.ai/share/9854282b-a5cd-453c-82b9-5977088339db",
+      "https://claude.ai/share/eceabd9f-9be0-4aaa-bbc0-4c2e18a51dd1",
+      "https://claude.ai/share/0ea61a73-5291-4055-860b-8321a8302b9c",
+      "https://openai.com/index/new-chatgpt-ads-format-and-measurement/",
+      "https://www.google.com/search?q=lego+cat+on+a+balcony+tiktok+guy",
+      "https://www.tiktok.com/@avadonye/video/7573375686862195990?lang=en",
+      "https://www.google.com/search?q=art+vtuber+who+is+a+lizard+on+TikTok+who+gives+short+tutorials",
+      "https://www.tiktok.com/@mallows.art.tricks/video/7692078554749750550",
+      "https://en.wikipedia.org/wiki/Fermi_problem",
+      "https://claude.ai/share/b616183f-7b48-4aa4-99f6-fa2a2e22d4e6",
+      "https://danmackinlay.name/post/llm_hacks_2026.html#self-tuition-via-llm",
+      "https://github.com/mumble-voip/mumble/blame/162f42805ce095c37ab57f1d81ba92cdb31bbac5/AGENTS.md#L9-L23",
+      "https://www.youtube.com/watch?v=0xS68sl2D70",
+      "https://danmackinlay.name/notebook/learning_with_ai.html#:~:text=Even%20with%20the%20prompt%20loaded%2C%20Claude%20keeps%20forgetting%20it%E2%80%99s%20meant%20to%20be%20a%20tutor%20and%20reverts%20to%20summary%20mode",
+      "https://chatgpt.com/share/6adcd33c-2aec-83ea-b117-6a2ad49d1646",
+      "https://en.wikipedia.org/wiki/Control_(video_game)",
+      "https://www.google.com/search?q=good+ending+control+original",
+      "https://www.bing.com/search?q=good+ending+control+original",
+      "https://www.gsb.stanford.edu/insights/popular-ai-models-show-partisan-bias-when-asked-talk-politics"
      ]
     },
     "content_source": "direct",
@@ -507,18 +372,18 @@
    }
   },
   {
-   "id": "3d509e27bae229a3",
-   "url": "https://openai.com/index/jill-hazelbaker-chief-corporate-affairs-officer",
-   "title": "OpenAI appoints Jill Hazelbaker as Chief Corporate Affairs Officer",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-03T00:00:00+00:00",
-   "summary_short": "OpenAI任命Uber前总裁Jill Hazelbaker为首席公司事务官",
-   "summary_long": "OpenAI于11月3日宣布任命Jill Hazelbaker为首席公司事务官，领导公司全球传播与企业定位，并与OpenAI各负责人协作，加深公众对AI的理解、增强对其使命的信任。原文称她有近二十年为科技公司和政治领袖提供咨询的经验。她此前在Uber任职十年，任总裁兼首席公司事务官，参与推动Uber从初创公司成长为全球最大科技平台之一；更早曾在Snap负责传播与公共政策，并在Google担任高级职务，负责全球企业传播、欧洲中东非洲传播及欧洲政府关系。她职业生涯始于美国政治，曾任参议员麦凯恩2008年总统竞选全国传播总监兼首席发言人，以及纽约市长布隆伯格的新闻秘书。OpenAI联合创始人兼总裁Greg Brockman表示，随着AI进入更多人的生活，沟通与赢得公众信任愈发重要。Hazelbaker称AI是当代最深刻的技术变革。",
+   "id": "f3900be82c6f7ae6",
+   "url": "https://asia.nikkei.com/business/technology/artificial-intelligence/us-tech-giants-hidden-ai-debt-swells-90-to-3.2tn-in-6-months",
+   "title": "US tech giants' hidden AI debt swells 90% to $3.2T in 6 months",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-03T21:26:44+00:00",
+   "summary_short": "美国科技巨头AI相关表外债务半年内激增90%，规模达约3.2万亿美元",
+   "summary_long": "原文报道，美国科技巨头在人工智能相关义务上形成的表外债务持续膨胀，六个月内几乎翻倍，达到约3.2万亿美元。文章称，谷歌、Meta等公司的承诺与义务规模已达到其资产的80%。报道指出，科技巨头正大举向此类AI基础设施投入资金，配图为亚马逊位于美国印第安纳州的数据中心；投资者对看似无休止的支出日益感到不安。原文未详述这些债务与义务的具体构成、统计方式以及所涉公司的完整名单。页面同时列出相关报道链接，其中一条称五家美国科技巨头的隐性债务升至1.65万亿美元，涉及不透明的AI融资。",
    "key_points": [
-    "Jill Hazelbaker将出任OpenAI首席公司事务官，负责全球传播与企业定位，并与公司各负责人协作加深公众对AI的理解、增强对其使命的信任。",
-    "她此前在Uber任职十年、担任总裁兼首席公司事务官，参与推动Uber从初创公司转型为全球最大科技平台之一；更早曾在Snap和Google担任传播与公共政策相关高级职务。",
-    "她职业生涯始于美国政治，曾任参议员约翰·麦凯恩2008年总统竞选全国传播总监兼首席发言人，以及纽约市长迈克尔·布隆伯格的新闻秘书；OpenAI联合创始人兼总裁Greg Brockman与Hazelbaker本人均就此次任命发表表态。"
+    "美国科技巨头AI相关表外债务六个月内增长约90%，至约3.2万亿美元",
+    "谷歌、Meta等公司的承诺与义务占其资产的80%",
+    "投资者对看似无休止的AI相关支出日益感到不安"
    ],
    "topics": [
     "product"
@@ -526,6 +391,190 @@
    "category": "行业动态",
    "categories": [
     "行业动态"
+   ],
+   "horizon": "short",
+   "score": 61.2,
+   "status": "review",
+   "extra": {
+    "hn_points": 408,
+    "hn_comments": 166,
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "edbf4ed1a954103d",
+   "url": "https://arxiv.org/abs/2605.29713",
+   "title": "The Little Book of Generative AI Foundations: An Intuitive Mathematical Primer",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-03T21:40:53+00:00",
+   "summary_short": "一本195页、以推导为导向的生成式AI数学基础入门书，从PCA一直贯通到扩散模型与GAN",
+   "summary_long": "这是 arXiv 上的一份预印本，2026年5月28日提交，9月8日修订为第二版，共195页，作者为 Tianhua Chen。该书定位为紧凑、以推导为导向的现代生成式人工智能数学基础入门；它并不逐一遍历最新架构或实现细节，而是沿一条连贯的脉络串联起主要生成模型家族：从 PCA、概率 PCA、变分自编码器、扩散模型，到归一化流、自回归分解、GAN、Wasserstein GAN 与基于能量的模型。原文称，其目标是让生成建模的结构更易理解，同时不删减理解这些模型如何被推导、彼此如何关联所需的数学内容。读者定位为对数学抱有好奇心的研究者、实践者与学生。第二版新增贯穿全书的可视化解释；原文未详述各章具体安排与前置知识要求。",
+   "key_points": [
+    "195页修订版预印本，第二版新增贯穿全书的可视化解释",
+    "内容覆盖 PCA、概率 PCA、变分自编码器、扩散模型、归一化流、自回归分解、GAN、Wasserstein GAN 与基于能量的模型",
+    "以推导为导向，强调各生成模型之间的结构与关联，而非罗列架构与实现细节"
+   ],
+   "topics": [
+    "generative-models",
+    "mathematical-foundations",
+    "education"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 59.0,
+   "status": "review",
+   "extra": {
+    "hn_points": 382,
+    "hn_comments": 60,
+    "outbound": {
+     "arxiv": [
+      "2605.29713"
+     ],
+     "links": [
+      "https://arxiv.org/abs/2605.29713v1",
+      "https://arxiv.org/search/cs?searchtype=author&query=Chen,+T",
+      "https://arxiv.org/html/2605.29713v2",
+      "https://arxiv.org/abs/2605.29713",
+      "https://arxiv.org/abs/2605.29713v2",
+      "https://doi.org/10.48550/arXiv.2605.29713",
+      "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
+      "https://scixplorer.org/abs/arXiv:2605.29713",
+      "https://scholar.google.com/scholar_lookup?arxiv_id=2605.29713",
+      "https://api.semanticscholar.org/arXiv:2605.29713",
+      "http://www.bibsonomy.org/BibtexHandler?requTask=upload&url=https://arxiv.org/abs/2605.29713&description=The Little Book of Generative AI Foundations: An Intuitive Mathematical Primer",
+      "https://reddit.com/submit?url=https://arxiv.org/abs/2605.29713&title=The Little Book of Generative AI Foundations: An Intuitive Mathematical Primer",
+      "https://info.arxiv.org/labs/showcase.html#arxiv-bibliographic-explorer",
+      "https://www.connectedpapers.com/about",
+      "https://www.litmaps.co/",
+      "https://www.scite.ai/",
+      "https://alphaxiv.org/",
+      "https://www.catalyzex.com",
+      "https://dagshub.com/",
+      "http://gotit.pub/faq",
+      "https://huggingface.co/huggingface",
+      "https://sciencecast.org/welcome",
+      "https://replicate.com/docs/arxiv/about",
+      "https://huggingface.co/docs/hub/spaces",
+      "https://txyz.ai",
+      "https://influencemap.cmlab.dev/",
+      "https://core.ac.uk/services/recommender",
+      "https://iarxiv.org/about",
+      "https://info.arxiv.org/labs/index.html",
+      "https://info.arxiv.org/help/mathjax.html"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "68d6e2cfb53f89d3",
+   "url": "https://www.qbitai.com/2026/11/507586.html",
+   "title": "不靠堆砌数据，让机器人看懂真实物理世界 | 招商局狮子山实验室发布「驭物™ Lion-ER-35B-A3B」具身推理模型",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-11-04T10:08:38+00:00",
+   "summary_short": "狮子山实验室发布驭物™具身推理模型，十项具身基准全部提升",
+   "summary_long": "日常生活中，人类能凭直觉分辨二维画面位置与三维空间高度、视角变化中的同一物体、物体移动与相机转动，但机器人常因此执行失败。招商局先进技术研究院下属狮子山人工智能实验室发布具身推理视觉语言模型「驭物™ Lion-ER-35B-A3B」，采用MoE架构，总参数约35B，每个Token仅激活约3B。原文称其核心不是堆参数，而是能力牵引的具身数据引擎：将具身推理拆为实体、空间、时序、物理、可供性、任务、社会、证据8个一级领域、39项二级能力，通过能力编译生成训练题，并以数据提纯、几何构题、定向合成核验监督；监督训练集含312380条样本，Eval-Driven Data Harness从错题反哺下一轮数据，素材池覆盖31个数据源约430万条记录。评测采用avg@4，十项公开基准全部指标高于基座，等权综合均分65.29，部分指标超过更大参数模型。原文认为这有助于机器人真正理解三维物理世界，并走出区别于大规模堆砌训练数据的技术路线。",
+   "key_points": [
+    "采用MoE架构，总参数约35B，每个Token仅激活约3B参数。",
+    "搭建能力牵引的具身数据引擎：8个一级领域、39项二级能力，312380条监督样本，并以Eval-Driven Data Harness从错题反哺数据迭代。",
+    "十项公开基准avg@4全部指标高于基座，等权综合均分65.29；Where2Place为64.28、较基座提升9.30分，ERQA为64.38、提升6.19分，SAT为89.33，ERQA轨迹子类为68.18、提升12.12分。"
+   ],
+   "topics": [
+    "reasoning",
+    "embodied-ai",
+    "training-data"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 55.8,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "具身推理模型",
+     "狮子山人工智能实验室"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "42f4810ce57263f7",
+   "url": "https://simonwillison.net/2026/Nov/4/datasette-apps/",
+   "title": "datasette-apps 0.3a0",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-04T00:29:36+00:00",
+   "summary_short": "datasette-apps 0.3a0 改进 Datasette Agent 集成",
+   "summary_long": "datasette-apps 0.3a0 发布。Datasette Apps 为 Datasette 增加在内部托管和编辑自定义 HTML 应用的能力；这些应用可以手工创建，但原文称通过 Datasette Agent 借助 LLM 创建更容易。本次版本改进这一集成：在 Datasette Agent 聊天消息中输入 # 可标记应用，并会从用户有权限查看的应用中自动补全。新增 app_add_stored_queries() 和 app_remove_stored_queries() 工具，让 agent 管理应用可调用哪些存储查询；授予写查询前需要用户批准。app_create() 现在会检查每个请求的存储查询是否存在、用户是否可查看，并在创建应用前要求用户批准写查询。agent 工具显示的“View app”按钮以及 # 应用引用上的链接，现在会在 Datasette Agent 面板中全屏打开应用。",
+   "key_points": [
+    "在 Datasette Agent 聊天消息中输入 # 可标记应用，并会从用户有权限查看的应用中自动补全。",
+    "新增 app_add_stored_queries() 与 app_remove_stored_queries() 工具，让 agent 管理应用可调用的存储查询；授予写查询前需要用户批准。",
+    "app_create() 会检查请求的存储查询是否存在且用户可查看，并在创建应用前要求批准写查询；“View app”按钮和 # 引用链接改为在 Datasette Agent 面板全屏打开应用。"
+   ],
+   "topics": [
+    "tool-use"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 53.0,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "datasette",
+     "datasette-agent",
+     "datasette-apps"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/datasette/datasette-apps/releases/tag/0.3a0",
+      "https://agent.datasette.io/",
+      "https://simonwillison.net/tags/datasette",
+      "https://simonwillison.net/tags/datasette-agent",
+      "https://simonwillison.net/tags/datasette-apps"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "75679f5aa60bfcf8",
+   "url": "https://openai.com/index/daybreak-red-aws-govcloud",
+   "title": "Daybreak Red is now available in AWS GovCloud (US-East)",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-04T07:00:00+00:00",
+   "summary_short": "Daybreak Red 上线 AWS GovCloud，政府安全团队可用 GPT‑5.6 Cyber 做授权安全测试",
+   "summary_long": "在 Daybreak 模型已上线 Amazon Bedrock 的基础上，GPT‑5.6 Cyber 现通过 Daybreak Red 向获批客户开放于 AWS GovCloud（US‑East）。原文称，这一扩展让政府安全团队能在其支持关键任务的 AWS 环境中使用先进网络安全能力。Daybreak Red 提供经专项训练的网络安全模型，用于经授权的漏洞研究、漏洞利用验证与安全测试；GPT‑5.6 Cyber 可帮助防御者调查复杂软件缺陷、在受控环境中复现漏洞并开发缓解措施，合格从业者应在实施前审查发现与拟议修复。原文指出，政府机构采用此类能力不仅看模型性能，还须符合既有安全、治理与运营要求；GovCloud 可用性为此提供了通过 Amazon Bedrock 纳入工作流的路径。Daybreak Red 对已验证防御者的授权安全任务减少拒答，同时加强身份验证、监控与访问控制；推理数据不用于训练模型，客户无需与 OpenAI 共享数据。访问需 OpenAI 批准与 AWS 配置，且批准不会自动开启模型访问。",
+   "key_points": [
+    "GPT‑5.6 Cyber 通过 Daybreak Red 在 AWS GovCloud（US‑East）向获批客户开放，此前 Daybreak 模型已在 Amazon Bedrock 上线",
+    "用途为经授权的漏洞研究、漏洞利用验证和安全测试，可协助调查复杂软件缺陷、在受控环境复现漏洞并开发缓解措施；合格从业者应在实施前审查发现与修复方案",
+    "对已验证防御者的授权安全任务减少拒答，同时强化身份验证、监控与访问控制；在 Bedrock 上推理数据不用于训练模型，客户无需与 OpenAI 共享数据"
+   ],
+   "topics": [
+    "cybersecurity",
+    "product"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "安全"
    ],
    "horizon": "short",
    "score": 51.0,
@@ -533,54 +582,14 @@
    "extra": {
     "content_source": "direct",
     "source_tags": [
-     "Company"
+     "Product"
     ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "3e54baa4f89982b0",
-   "url": "https://www.regenerator1.com/p/anthropics-growth-just-flattened",
-   "title": "Anthropic's growth just flattened",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-02T22:33:20+00:00",
-   "summary_short": "Anthropic第三季度收入168亿美元，但拆到月度后增速已明显放缓",
-   "summary_long": "据纽约时报DealBook报道，Anthropic昨日向投资者披露第三季度财务数据：第三季度收入168亿美元；第一季度48亿、第二季度116亿（环比增68亿、+141%），第三季度环比增52亿、+45%。单看季度数字仍然惊人，但作者拆解成月度增速后认为图景不同：第二季度月均增长约7.6亿美元，第三季度降至约5.8亿美元；再结合“7月年化收入650亿美元”（约合7月收入54亿美元）这一数据点，作者估算8、9月增长可能更为有限。作者还指出，Anthropic未向投资者提供基于9月收入的年化数字，他据此推测该数字相较7月不够亮眼。放缓原因可能是季节性（8月通常偏淡），也可能是供给跟不上需求；若是后者，属“高质量问题”。作者同时提到，这也可能是CoreWeave等“neocloud”厂商股价暴跌的另一原因：它们基于AI算力需求长期高速增长的假设借入数百亿美元，而利率上升推高债务成本、近期AI服务收入增长却在走平。",
-   "key_points": [
-    "第三季度收入168亿美元，环比增52亿（+45%），低于第二季度环比增68亿（+141%）；作者强调第二季度新增收入多于第三季度",
-    "拆成月度看：第二季度月均增约7.6亿美元，第三季度降至约5.8亿美元；结合作者引用的7月年化650亿美元数据，8、9月可能仅温和增长",
-    "作者称Anthropic未披露9月年化收入数字，推测其相对7月不够亮眼；放缓或因季节性，或因供给跟不上需求（后者属“高质量问题”）"
-   ],
-   "topics": [
-    "ai-revenue",
-    "compute-demand",
-    "market-competition"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 50.2,
-   "status": "review",
-   "extra": {
-    "hn_points": 227,
-    "hn_comments": 265,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://substack.com/@regenerator1",
-      "https://substackcdn.com/image/fetch/$s_!qfl2!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F68ef8665-4279-4a1d-b5d6-447d33f93edd_1206x748.png",
-      "https://www.nytimes.com/2026/10/14/technology/anthropic-ipo-revenue-profit.html",
-      "https://www.nytimes.com/by/lauren-hirsch",
-      "https://www.nytimes.com/by/sri-muppidi",
-      "https://www.cnbc.com/2026/08/17/anthropic-says-annualized-revenue-climbed-to-65-billion-in-july.html",
-      "https://substackcdn.com/image/fetch/$s_!eKfb!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5c5b29e2-15c4-4340-b321-a333d542d50c_1356x676.png",
-      "https://www.regenerator1.com/p/when-will-the-ai-bubble-burst"
+      "https://aws.amazon.com/about-aws/whats-new/2026/10/openai-daybreak-red-govcloud-east/"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   }
