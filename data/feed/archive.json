@@ -1,6 +1,152 @@
 {
- "generated_at": "2026-11-06T23:46:06+00:00",
+ "generated_at": "2026-11-08T22:55:10+00:00",
  "items": [
+  {
+   "id": "5e9d3fd0e59ccb77",
+   "url": "https://github.com/synchopate/llama-modchip",
+   "title": "Llama-modchip: 284B DeepSeek on 64GB RAM, no GPU",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-08T10:22:04+00:00",
+   "summary_short": "llama-modchip实现284B MoE在64GB内存无GPU运行",
+   "summary_long": "llama-modchip（v2.4.0）是一组 ggml/llama.cpp 内核补丁、量化转码器和运行时工具，目标是在 x86_64 与 ARM64 CPU 上把稀疏 MoE 检查点完全放进系统内存运行。原文的关键案例是 284.33B 总参数、13.17B 激活参数的 DeepSeek-V4-Flash：标准 UD-IQ1_S 构建占 76.87 GiB，超过 64GB Linux 系统约 62.5 GiB 可用内存，会引发 page-cache thrashing 或 OOM；它被降到 56.56 GiB（1.71 bpw），模型加 256K KV 缓存的峰值 VmRSS 为 57.61 GiB，零 swap 驻留内存。其 CPU 缓存与 SIMD 内核补丁给出预填充 +77%、解码 +53%，16 核 Zen 5 预填充从 25.0 提升到 44.36 tok/s；还包含 1.64 MB 自推测草稿器和 /dev/shm KV 槽快照，恢复时间 13.1–32.6 ms。原文另列 30B MoE 在 16–32GB 设备上 25.0–60.4 tok/s、8 通道工作站 111.62 tok/s 等数据。",
+   "key_points": [
+    "284.33B 总参数、13.17B 激活的 DeepSeek-V4-Flash 以 1.71 bpw 压到 56.56 GiB，可在 64GB Linux 内存零 swap 运行，峰值 VmRSS 57.61 GiB。",
+    "CPU 缓存与 SIMD 内核补丁带来 +77% 预填充、+53% 解码；16 核 Zen 5 预填充 25.0→44.36 tok/s。",
+    "支持 16–32GB 跑 30B MoE（25.0–60.4 tok/s）、CPU+16GB GPU 混合 80.80 tok/s、8 通道工作站 111.62 tok/s；含 1.64 MB 自推测草稿器与 /dev/shm KV 槽快照 13.1–32.6 ms 恢复。"
+   ],
+   "topics": [
+    "quantization",
+    "inference",
+    "moe"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "开源项目"
+   ],
+   "horizon": "long",
+   "score": 76.8,
+   "status": "published",
+   "extra": {
+    "hn_points": 328,
+    "hn_comments": 129,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/synchopate/llama-modchip/issues/new?template=cpu_benchmark_submission.yml",
+      "https://github.com/synchopate/llama-modchip/releases/tag/v2.4.0",
+      "https://github.com/synchopate/llama-modchip/discussions",
+      "https://github.com/synchopate/llama-modchip/issues/1",
+      "https://github.com/synchopate/llama-modchip/issues/8",
+      "https://github.com/synchopate/llama-modchip/issues/2",
+      "https://github.com/synchopate/llama-modchip/issues/9",
+      "https://github.com/synchopate/llama-modchip/issues/new?template=benchmark.yml",
+      "https://github.com/synchopate/llama-modchip/issues/1#issuecomment-6595559921",
+      "https://github.com/synchopate/llama-modchip/issues/6",
+      "https://github.com/synchopate/llama-modchip/issues/5",
+      "https://github.com/synchopate/llama-modchip/issues/12",
+      "https://github.com/synchopate/llama-modchip/issues/10",
+      "https://github.com/synchopate/llama-modchip/issues/11"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "5186d80b7eef5626",
+   "url": "https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again",
+   "title": "Claude Code's \"Don't Ask Again\" exposes passwords in 1,122 public GitHub files",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-07T20:45:32+00:00",
+   "summary_short": "Claude Code 的\"不再询问\"把含密码的命令写进项目内设置文件，致 1,122 个公开 GitHub 文件泄露真实密钥。",
+   "summary_long": "开发机本地存着数据库连接串、云密钥、API token。让 Claude Code 检查数据库或调用 API 时，它提出的命令会带上配置中的密钥；执行前它会询问，若选择\"是，且不再询问\"，它就把这条含密钥的完整命令写入项目文件夹内的 .claude/settings.local.json，且该文件没有任何私有标记，于是随代码一起被提交。原文称，GitHub 上 104,185 份该文件的公开副本中有 1,122 份含真实密钥，另有 1,160 个出现在 git 历史、团队有意提交的共享 settings.json 及仓库内的 agent 聊天记录中；Apiiro 研究在 1,994 个公开仓库发现 2,539 个真实密钥，涉及 63 个组织。Claude Code 只把该文件加入开发者的全局 gitignore，不写进仓库自身的 .gitignore，覆盖不了后来才成为仓库的文件夹、其他机器上的克隆或已被提交的文件；文件已被 git 跟踪时用户不会被告知。Anthropic 的 Claude Code 负责人 Boris Cherny 回应称，团队正研究防范办法，计划试点让 auto mode 捕获该问题并内置基础密钥扫描。",
+   "key_points": [
+    "选\"是，且不再询问\"后，Claude Code 把含密钥的完整命令写入项目内 .claude/settings.local.json，该文件无私有标记，会随代码提交",
+    "原文数据：104,185 份公开副本中 1,122 份含真实密钥；Apiiro 在 1,994 个公开仓库发现 2,539 个真实密钥，涉及 63 个组织，包括生产 Azure Postgres 密码、Square 生产 token、医疗记录数据库的 owner 密码",
+    "防护缺口：文件只被加入开发者全局 gitignore，不进仓库 .gitignore；已被 git 跟踪时用户不会被告知，1,105 个含密钥仓库中 539 个有 Claude 共同署名的提交改动了该文件"
+   ],
+   "topics": [
+    "cybersecurity",
+    "privacy"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 82.7,
+   "status": "published",
+   "extra": {
+    "hn_points": 570,
+    "hn_comments": 387,
+    "content_source": "reader",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "594105e3c51985ed",
+   "url": "https://www.anthropic.com/research/components-of-agent-memory",
+   "title": "The Components of Agent Memory",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-07T06:39:04+00:00",
+   "summary_short": "智能体记忆组件：用“做梦”在空闲时反思日志、整理笔记",
+   "summary_long": "原文借人类记忆机制讨论 AI 智能体的记忆设计：海马体在当下快速捕获经历，但只有部分经历会在离线时（睡眠、静息）被重放，并逐渐巩固进新皮层，成为长期知识。智能体同样把大量工作留在日志或对话记录里；Letta 与 UC Berkeley 的研究者提出 sleep-time compute，让模型利用交互之间的空闲时间重整已有上下文，这一思路可用于让智能体反思日志以修正错误、生成笔记和新的记忆表征，原文称这一过程为 dreaming，并称它帮助 Claude 获得了有效记忆。原文将智能体记忆定义为 Claude 从经验（与用户的交互、被分配的任务）中获得、跨会话保留、并以可读取上下文形式保存的知识，明确排除权重变化、上下文内学习与 compaction。此外还讨论了：在事件发生时标记显著事件或写入记忆笔记；写记忆本身是对未来需求的预测；以及在 CL-Bench 1.0 的数据库问答任务上用 Claude Managed Agents 探索“记录失败—提出假设—验证—形成规则”的学习循环（原文此处截断，未给出结果）。",
+   "key_points": [
+    "人类记忆的分工是当下快速编码加上离线重放巩固，被标记为重要的事件在离线期被重放得更多；智能体可对应地在会话日志中标记显著事件或写入记忆笔记。",
+    "dreaming：智能体利用交互间的空闲时间反思日志，可修正错误、生成笔记、构建新的记忆表征，或决定预先加载进未来会话的内容。",
+    "原文界定智能体记忆为跨会话保留、可读取的上下文，不含权重更新、上下文内学习与 compaction。"
+   ],
+   "topics": [
+    "memory",
+    "context-engineering",
+    "agent-loop"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 84.9,
+   "status": "published",
+   "extra": {
+    "hn_points": 173,
+    "hn_comments": 99,
+    "outbound": {
+     "arxiv": [
+      "2504.13171"
+     ],
+     "links": [
+      "https://stanford.edu/~jlmcc/papers/McCMcNaughtonOReilly95.pdf",
+      "https://www.science.org/doi/10.1126/science.adk8261?referrer=https%3A%2F%2Fwww.google.com%2F",
+      "https://www.nature.com/articles/s41467-018-06213-1",
+      "https://www.nature.com/articles/s41593-019-0467-3",
+      "https://arxiv.org/abs/2504.13171",
+      "https://platform.claude.com/docs/en/managed-agents/dreams",
+      "https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/",
+      "https://www.anthropic.com/research/in-context-learning-and-induction-heads",
+      "https://platform.claude.com/docs/en/build-with-claude/compaction",
+      "https://www.nature.com/articles/385533a0",
+      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool",
+      "https://continual-learning-bench.com/news/cl-bench-1-0/",
+      "https://platform.claude.com/docs/en/managed-agents/overview",
+      "https://platform.claude.com/docs/en/managed-agents/memory",
+      "https://www.youtube.com/watch?v=CXhYDOvgpuU",
+      "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
+      "https://github.com/harveyai/harvey-labs",
+      "https://code.claude.com/docs/en/memory",
+      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet",
+      "https://platform.claude.com/cookbook/managed-agents-cma-dreaming-with-a-dynamic-workflow",
+      "https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/knowledge-wiki"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "be1ba71e55b7f125",
    "url": "https://huggingface.co/blog/allenai/toyblocks",
@@ -2479,64 +2625,6 @@
       "https://openai.com/careers/software-engineer-habitat-(online-data)-seattle/"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "1fd8476b4493a52b",
-   "url": "https://www.kimi.ai/blog/kimi-k3-1-pro",
-   "title": "Kimi K3.1 Pro and K3.1 Pro Highspeed",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-23T16:59:08+00:00",
-   "summary_short": "Kimi K3.1 Pro 发布：3T 级开源权重模型，100 万 token 上下文",
-   "summary_long": "Kimi K3.1 Pro 是 K3.1 系列首个模型，原文称其为迄今最强的 3T 级开源权重模型，上下文窗口为 100 万 token。它是 Kimi K3 的后训练版本，后训练算力大幅增加；为在数百个下游领域进行大规模联合强化学习，原文称优化了 RL 框架、长上下文推理、训练效率、沙箱基础设施、rollout 调度、环境质量检查共享平台等各层，使每单位 RL 算力带来稳定可预期的回报。原文称其在编程、智能体与知识基准上匹配或接近最强闭源模型：Terminal-Bench 4.0 得 65.7%，高于 GPT-6 Astra 的 58.2%，略低于 Claude Opus 5.5 的 66.4%；内部基准 Kimi Code Bench 3.0 Long-horizon 得 61.2%，高于 K3 的 55.95%；BenchCAD 带工具得 92.7%，接近 Claude Opus 5.5 的 96.2% 与 GPT-6 Astra 的 95.9%。同时发布的 Highspeed 版本速度为 2-3 倍。两者已在 Kimi.ai、Kimi Work、Kimi Code 和 Kimi API 上线，完整模型权重将于 11 月 4 日前发布。",
-   "key_points": [
-    "基准表现：Terminal-Bench 4.0 得 65.7%，高于 GPT-6 Astra（58.2%），略低于 Claude Opus 5.5（66.4%）；内部基准 Kimi Code Bench 3.0 Long-horizon 得 61.2%，K3 为 55.95%",
-    "3D 与空间推理：BenchCAD（多视图渲染经 CAD 代码生成做 3D 重建）带工具得 92.7%，接近 Claude Opus 5.5 的 96.2% 和 GPT-6 Astra 的 95.9%，擅长参数化建模",
-    "长程编程内部测试：在开源人体解剖模型 human-atlas（296 个骨骼组件、402 个肌肉组件）上搭建带训练与评估流程的行走动力学模拟器，经 167 项任务、420 次独立评审迭代控制器，并修正 36 处肩部肌肉力臂计算错误，使仿真人从数秒内倒地到交替步态连续行走 11.2 秒"
-   ],
-   "topics": [
-    "post-training",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 76.2,
-   "status": "published",
-   "extra": {
-    "hn_points": 583,
-    "hn_comments": 352,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.kimi.ai/",
-      "https://www.kimi.ai/code",
-      "https://platform.kimi.ai/",
-      "https://github.com/ashemag/human-atlas",
-      "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
-      "https://www.tbench.ai/",
-      "https://www.terminal-bench-science.ai/",
-      "https://openai.com/index/gpt-6-astra/",
-      "https://www.anthropic.com/claude-opus-5-5-system-card",
-      "https://www.anthropic.com/claude-fable-5-1-mythos-5-1-system-card",
-      "https://api-docs.deepseek.com/news/news261017/",
-      "https://z.ai/blog/glm-5.3",
-      "https://www.swe-marathon.org/",
-      "https://posttrainbench.com/",
-      "https://www.vals.ai/benchmarks/programbench",
-      "https://www-cdn.anthropic.com/fc1b44717c85dc068bc6ba5024219938094694bd/Claude%20Opus%205.5%20System%20Card.pdf",
-      "https://openai.com/zh-Hans-CN/index/gpt-6-astra/",
-      "https://huggingface.co/datasets/Anthropic/BioMysteryBench-full/commit/b5a889c",
-      "https://github.com/rdi-berkeley/agents-last-exam",
-      "https://artificialanalysis.ai/",
-      "https://www.mercor.com/apex/apex-agents-leaderboard/"
-     ]
-    },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
