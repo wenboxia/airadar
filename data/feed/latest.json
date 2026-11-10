@@ -1,63 +1,90 @@
 {
- "generated_at": "2026-11-08T22:55:09+00:00",
- "date": "2026-11-08",
- "run_id": "20261108-225308",
+ "generated_at": "2026-11-10T02:10:43+00:00",
+ "date": "2026-11-10",
+ "run_id": "20261110-020837",
  "top": [
   {
-   "id": "594105e3c51985ed",
-   "url": "https://www.anthropic.com/research/components-of-agent-memory",
-   "title": "The Components of Agent Memory",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "a6a85766a0447ad7",
+   "url": "https://arxiv.org/abs/2608.11341v1",
+   "title": "Apodex Discovery: Reality Benchmarks and Environments for Evaluating and Building Discoverative Artificial Intelligence",
+   "source": "论文（被提及）",
    "tier": "A",
-   "published_at": "2026-11-07T06:39:04+00:00",
-   "summary_short": "智能体记忆组件：用“做梦”在空闲时反思日志、整理笔记",
-   "summary_long": "原文借人类记忆机制讨论 AI 智能体的记忆设计：海马体在当下快速捕获经历，但只有部分经历会在离线时（睡眠、静息）被重放，并逐渐巩固进新皮层，成为长期知识。智能体同样把大量工作留在日志或对话记录里；Letta 与 UC Berkeley 的研究者提出 sleep-time compute，让模型利用交互之间的空闲时间重整已有上下文，这一思路可用于让智能体反思日志以修正错误、生成笔记和新的记忆表征，原文称这一过程为 dreaming，并称它帮助 Claude 获得了有效记忆。原文将智能体记忆定义为 Claude 从经验（与用户的交互、被分配的任务）中获得、跨会话保留、并以可读取上下文形式保存的知识，明确排除权重变化、上下文内学习与 compaction。此外还讨论了：在事件发生时标记显著事件或写入记忆笔记；写记忆本身是对未来需求的预测；以及在 CL-Bench 1.0 的数据库问答任务上用 Claude Managed Agents 探索“记录失败—提出假设—验证—形成规则”的学习循环（原文此处截断，未给出结果）。",
+   "published_at": "2026-08-11T18:48:40+00:00",
+   "summary_short": "Apodex Discovery：用可验证的真实难题环境与\"重载求解器\"评估发现型AI，AAV设计超SOTA 7%",
+   "summary_long": "原文以阿波罗计划作类比：其成功在于把遥远目标转化为包含明确目标、仿真、验证与反复修正的任务架构。AI正面临类似转折——前沿模型在问题、工具与成功标准被明确后能解决困难任务，但有现实后果的挑战很少以可执行、可验证的形式出现。为此提出 Apodex Discovery：通过由基础模型、harness、工具与控制策略构成的\"重载求解器\"，构建并评估执行长时、有状态、可验证探究的\"发现型AI\"。框架含三部分：问题侦察调研16个领域561个行业，汇集423个高价值真实问题，首轮选用20个；统一的环境—任务—回合抽象提供数据、工具、约束、反馈、轨迹记录及对中间产物与最终提交的验证；HDS6 独立于任务成败评估 Tools、Repair、Alternatives、Coherence、Evidence、Scope。结果：AAV衣壳设计在可行性、趋向性、结构预测与生成设计上超已发表SOTA 7%；药物重定位与再配方中，专用生物医学环境使 GPT-5.5、GPT-5.6-sol 的平均归一化预测分较同一闭卷骨干分别提升2.5与7.6分。受控消融显示固定 TRACES 回合接口可将性能差异归因到具体求解器组件。",
    "key_points": [
-    "人类记忆的分工是当下快速编码加上离线重放巩固，被标记为重要的事件在离线期被重放得更多；智能体可对应地在会话日志中标记显著事件或写入记忆笔记。",
-    "dreaming：智能体利用交互间的空闲时间反思日志，可修正错误、生成笔记、构建新的记忆表征，或决定预先加载进未来会话的内容。",
-    "原文界定智能体记忆为跨会话保留、可读取的上下文，不含权重更新、上下文内学习与 compaction。"
+    "问题侦察覆盖16个领域561个行业，汇集423个高价值真实问题，首轮发布选用20个。",
+    "统一的环境—任务—回合抽象提供数据、工具、约束、反馈、轨迹记录及中间产物与最终提交的验证；HDS6 独立于最终任务成败评估 Tools、Repair、Alternatives、Coherence、Evidence、Scope 六项。",
+    "AAV衣壳设计在可行性、趋向性、结构预测与生成设计上超已发表SOTA 7%；药物重定位与再配方任务使 GPT-5.5、GPT-5.6-sol 平均归一化预测分较同一闭卷骨干提升2.5与7.6分；消融显示固定 TRACES 接口支持将性能差异归因到具体求解器组件。"
    ],
    "topics": [
-    "memory",
-    "context-engineering",
+    "eval",
+    "harness",
     "agent-loop"
    ],
-   "category": "Agent 与开发",
+   "category": "评测",
    "categories": [
-    "Agent 与开发"
+    "评测",
+    "Agent 与开发",
+    "研究论文"
    ],
    "horizon": "long",
-   "score": 84.9,
+   "score": 81.5,
    "status": "published",
    "extra": {
-    "hn_points": 173,
-    "hn_comments": 99,
+    "authors": [
+     "Brian Wang",
+     "Bin Feng",
+     "Xiaoman Pan",
+     "Chenyang An",
+     "Felix Liu",
+     "Tangqi Fang",
+     "Gongbo Sun",
+     "Lingfeng Shen"
+    ],
+    "author_count": 29,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "Anthropic News",
+     "Hacker News (AI 高分帖)"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "1b18e8c9acf73639",
+   "url": "https://github.com/thisisme6598/gemini_files/",
+   "title": "Google Gemini routes personal Drive files and emails to human annotators",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-09T18:24:38+00:00",
+   "summary_short": "Gemini将个人Drive/邮件送入人工审核，且可后台自动抓取",
+   "summary_long": "原文指出，Google曾在2023年承诺Gmail、Docs和Drive中的个人内容“不会被人工审核员看到”，但更新的帮助页面16836988及10月16日对原博客的修改明确承认，已连接的Drive/邮件会进入人工审核流程，并警告审核员看到的“可能正是邮件或文件”，含机密信息不应连接。测试还显示，即使用户未使用@Drive或@Gmail标签，聊天中提及旅行、账单等个人话题也会自主触发后台Workspace查询；由于工具调用和上下文注入具有概率性，可能出现零检索、元数据/泛化摘要、部分未脱敏摘录、整份文件摄入四种结果。原文用网络服务账单邮件测试，称四种结果均出现。原文最后指出，正则和NER自动清洗不足以去标识化叙事性数据。",
+   "key_points": [
+    "Google更新帮助页面和2023年博客，承认已连接的Drive/邮件会进入人工审核流程，并警告含机密信息不应连接。",
+    "即使用户未用@标签，聊天中提及个人话题也可能自主触发后台Workspace查询；结果具有概率性，包括零检索、摘要、部分未脱敏摘录和整份文件摄入。",
+    "原文用网络服务账单邮件测试称四种结果均出现，并指出正则和NER自动清洗不足以去标识化叙事性数据。"
+   ],
+   "topics": [
+    "privacy"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全",
+    "开源项目"
+   ],
+   "horizon": "short",
+   "score": 80.4,
+   "status": "published",
+   "extra": {
+    "hn_points": 425,
+    "hn_comments": 104,
     "outbound": {
-     "arxiv": [
-      "2504.13171"
-     ],
+     "arxiv": [],
      "links": [
-      "https://stanford.edu/~jlmcc/papers/McCMcNaughtonOReilly95.pdf",
-      "https://www.science.org/doi/10.1126/science.adk8261?referrer=https%3A%2F%2Fwww.google.com%2F",
-      "https://www.nature.com/articles/s41467-018-06213-1",
-      "https://www.nature.com/articles/s41593-019-0467-3",
-      "https://arxiv.org/abs/2504.13171",
-      "https://platform.claude.com/docs/en/managed-agents/dreams",
-      "https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/",
-      "https://www.anthropic.com/research/in-context-learning-and-induction-heads",
-      "https://platform.claude.com/docs/en/build-with-claude/compaction",
-      "https://www.nature.com/articles/385533a0",
-      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool",
-      "https://continual-learning-bench.com/news/cl-bench-1-0/",
-      "https://platform.claude.com/docs/en/managed-agents/overview",
-      "https://platform.claude.com/docs/en/managed-agents/memory",
-      "https://www.youtube.com/watch?v=CXhYDOvgpuU",
-      "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
-      "https://github.com/harveyai/harvey-labs",
-      "https://code.claude.com/docs/en/memory",
-      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet",
-      "https://platform.claude.com/cookbook/managed-agents-cma-dreaming-with-a-dynamic-workflow",
-      "https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/knowledge-wiki"
+      "https://blog.google/innovation-and-ai/products/our-responsible-approach-to-building-guardrails-for-generative-ai/",
+      "https://support.google.com/gemini/answer/16836988",
+      "https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-infotypes"
      ]
     },
     "content_source": "direct",
@@ -65,147 +92,230 @@
    }
   },
   {
-   "id": "5186d80b7eef5626",
-   "url": "https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again",
-   "title": "Claude Code's \"Don't Ask Again\" exposes passwords in 1,122 public GitHub files",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-07T20:45:32+00:00",
-   "summary_short": "Claude Code 的\"不再询问\"把含密码的命令写进项目内设置文件，致 1,122 个公开 GitHub 文件泄露真实密钥。",
-   "summary_long": "开发机本地存着数据库连接串、云密钥、API token。让 Claude Code 检查数据库或调用 API 时，它提出的命令会带上配置中的密钥；执行前它会询问，若选择\"是，且不再询问\"，它就把这条含密钥的完整命令写入项目文件夹内的 .claude/settings.local.json，且该文件没有任何私有标记，于是随代码一起被提交。原文称，GitHub 上 104,185 份该文件的公开副本中有 1,122 份含真实密钥，另有 1,160 个出现在 git 历史、团队有意提交的共享 settings.json 及仓库内的 agent 聊天记录中；Apiiro 研究在 1,994 个公开仓库发现 2,539 个真实密钥，涉及 63 个组织。Claude Code 只把该文件加入开发者的全局 gitignore，不写进仓库自身的 .gitignore，覆盖不了后来才成为仓库的文件夹、其他机器上的克隆或已被提交的文件；文件已被 git 跟踪时用户不会被告知。Anthropic 的 Claude Code 负责人 Boris Cherny 回应称，团队正研究防范办法，计划试点让 auto mode 捕获该问题并内置基础密钥扫描。",
+   "id": "f37b680abcf7adcb",
+   "url": "https://openai.com/index/control-room",
+   "title": "Control Room: A central system to track and stop model workloads across our research infrastructure",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-09T13:00:00+00:00",
+   "summary_short": "Control Room：跨研究基础设施追踪模型负载、可快速停止其运行的中央系统",
+   "summary_long": "原文介绍其团队构建的 Control Room：一个跨研究基础设施追踪模型负载，并在出现安全或安保担忧时快速将其停止的中央系统。原文称，随着模型能力增强、相关安全与安保风险变大，能及时发现潜在问题并在需要时迅速让模型停止运行变得愈发关键。Control Room 接入所有研究推理负载，包括用于模型训练与评估的 agentic sampling、数据处理等，并与错位（misalignment）监控系统配合，在做出停止或暂停任务的干预决定后 35 秒内停止模型输出。系统被设计为在其他系统失效时仍能工作，并在 Control Room 自身宕机时也能停止模型输出；目前已部署在研究基础设施中需求最迫切的部分。原文还提到，外部模型服务栈本身更集中，已有成熟的快速下线模型部署的运维能力。\n\n工作原理上，Control Room 整合三类系统：负载（如强化学习实验、评估、大批量采样或数据处理任务）、推理引擎（直接运行在 GPU 上的模型）与中央 Control Room 服务。所有做 agentic 推理的研究负载都必须关联一个获批的安全案例。任务启动时向 Control Room 申请 job_id，每次采样请求携带该 ID 发给推理引擎，引擎再向 Control Room 请求许可；若该任务已被终止，服务拒绝请求，引擎随即拒绝，从而停止该任务后续的模型输出。原文对后续步骤的描述在结尾处被截断",
    "key_points": [
-    "选\"是，且不再询问\"后，Claude Code 把含密钥的完整命令写入项目内 .claude/settings.local.json，该文件无私有标记，会随代码提交",
-    "原文数据：104,185 份公开副本中 1,122 份含真实密钥；Apiiro 在 1,994 个公开仓库发现 2,539 个真实密钥，涉及 63 个组织，包括生产 Azure Postgres 密码、Square 生产 token、医疗记录数据库的 owner 密码",
-    "防护缺口：文件只被加入开发者全局 gitignore，不进仓库 .gitignore；已被 git 跟踪时用户不会被告知，1,105 个含密钥仓库中 539 个有 Claude 共同署名的提交改动了该文件"
+    "Control Room 是跨研究基础设施追踪模型负载、并在安全或安保担忧出现时快速停止的中央系统，接入所有研究推理负载。",
+    "它与错位监控系统配合，在做出干预决定后 35 秒内停止模型输出；设计上可在其他系统失效时继续工作，自身宕机时也能停止模型输出。",
+    "机制上由负载、推理引擎与中央服务三部分组成：负载申请 job_id，引擎在每次推理前向 Control Room 请求许可，任务被终止则拒绝输出。"
    ],
    "topics": [
-    "cybersecurity",
-    "privacy"
+    "alignment",
+    "cybersecurity"
    ],
    "category": "安全",
    "categories": [
     "安全"
    ],
-   "horizon": "short",
-   "score": 82.7,
+   "horizon": "long",
+   "score": 79.2,
    "status": "published",
    "extra": {
-    "hn_points": 570,
-    "hn_comments": 387,
-    "content_source": "reader",
+    "content_source": "direct",
+    "source_tags": [
+     "Safety"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/",
+      "https://openai.com/careers/research-engineer-research-scientist-ai-systems-engineer-rsi-san-francisco/",
+      "https://openai.com/careers/researcher-agent-safety-oversight-and-system-mitigations-san-francisco/"
+     ]
+    },
     "summary_mode": "full"
    }
   },
   {
-   "id": "5e9d3fd0e59ccb77",
-   "url": "https://github.com/synchopate/llama-modchip",
-   "title": "Llama-modchip: 284B DeepSeek on 64GB RAM, no GPU",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "e4687d5a7224be5c",
+   "url": "https://arxiv.org/abs/2610.39076v3",
+   "title": "Tactus: Tactile & Pose Sensing Glove for Natural Dexterity Data Collection",
+   "source": "论文（被提及）",
    "tier": "A",
-   "published_at": "2026-11-08T10:22:04+00:00",
-   "summary_short": "llama-modchip实现284B MoE在64GB内存无GPU运行",
-   "summary_long": "llama-modchip（v2.4.0）是一组 ggml/llama.cpp 内核补丁、量化转码器和运行时工具，目标是在 x86_64 与 ARM64 CPU 上把稀疏 MoE 检查点完全放进系统内存运行。原文的关键案例是 284.33B 总参数、13.17B 激活参数的 DeepSeek-V4-Flash：标准 UD-IQ1_S 构建占 76.87 GiB，超过 64GB Linux 系统约 62.5 GiB 可用内存，会引发 page-cache thrashing 或 OOM；它被降到 56.56 GiB（1.71 bpw），模型加 256K KV 缓存的峰值 VmRSS 为 57.61 GiB，零 swap 驻留内存。其 CPU 缓存与 SIMD 内核补丁给出预填充 +77%、解码 +53%，16 核 Zen 5 预填充从 25.0 提升到 44.36 tok/s；还包含 1.64 MB 自推测草稿器和 /dev/shm KV 槽快照，恢复时间 13.1–32.6 ms。原文另列 30B MoE 在 16–32GB 设备上 25.0–60.4 tok/s、8 通道工作站 111.62 tok/s 等数据。",
+   "published_at": "2026-10-29T00:10:55+00:00",
+   "summary_short": "Tactus：可测指尖力与抗遮挡姿态的织物传感手套，附首个跨平台基准",
+   "summary_long": "机器人灵巧操作策略与世界模型学习需要带精确接触力与手部姿态的自然操作演示数据，但现有可穿戴平台无法同时提供标定过的指尖力传感与抗遮挡手部追踪，且不破坏自然操作行为。Tactus 是织物集成传感手套，围绕三点协同设计：1.5 mm 指尖堆叠的薄型共形 3D 针织结构；依据实测接触研究在操作相关区域布置电容式触觉传感器；融合 IMU 的姿态追踪，在手-物遮挡最严重时仍保持精度；并提供跨手套一致性标定流程与会话级个体校正。作者还提出触觉力回归与手部姿态估计的标准化基准协议，用于 Tactus 与两款商用触觉手套的对比，称这是首个此类量化跨平台评估。结果：95% 置信度下最小可检测力 0.59 N，比商用基线低 1.6–2.7 倍，跨被试一致性 0.87；遮挡最重时指尖关键点相对误差 11.0 mm。原文称这些信号支持物体属性估计、滑动检测与手-物交互记录。",
    "key_points": [
-    "284.33B 总参数、13.17B 激活的 DeepSeek-V4-Flash 以 1.71 bpw 压到 56.56 GiB，可在 64GB Linux 内存零 swap 运行，峰值 VmRSS 57.61 GiB。",
-    "CPU 缓存与 SIMD 内核补丁带来 +77% 预填充、+53% 解码；16 核 Zen 5 预填充 25.0→44.36 tok/s。",
-    "支持 16–32GB 跑 30B MoE（25.0–60.4 tok/s）、CPU+16GB GPU 混合 80.80 tok/s、8 通道工作站 111.62 tok/s；含 1.64 MB 自推测草稿器与 /dev/shm KV 槽快照 13.1–32.6 ms 恢复。"
+    "设计三支柱：1.5 mm 指尖堆叠的 3D 针织共形结构减少对自然操作的干扰；依据实测接触研究在操作相关区域放置电容式触觉传感器；IMU 融合姿态追踪在手-物遮挡下仍保持精度。",
+    "提供跨手套一致性的标定流程与会话级个体化校正，并提出触觉力回归和手部姿态估计的标准化基准协议，用于 Tactus 与两款商用触觉手套的量化对比，原文称这是首个此类跨平台评估。",
+    "指标：95% 置信度下最小可检测力 0.59 N，比商用基线低 1.6–2.7 倍；跨被试一致性 0.87；操作中遮挡最重时指尖关键点相对误差 11.0 mm。"
    ],
    "topics": [
-    "quantization",
-    "inference",
-    "moe"
+    "post-training",
+    "eval",
+    "open-source"
    ],
    "category": "模型",
    "categories": [
     "模型",
-    "开源项目"
+    "评测",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 78.9,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Li Guan",
+     "Rachael Granberry",
+     "Sahar Aseeri",
+     "Sahar Rostami",
+     "Taylor Niehues",
+     "Sai Dhanoosh Marri",
+     "Mia Huang",
+     "Dingtian Zhang"
+    ],
+    "author_count": 104,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "Import AI"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "7b1451fc786c34f9",
+   "url": "https://huggingface.co/blog/amazon/higher-order-pruning-experts",
+   "title": "Your Experts Have Partners. There's HOPE for Keeping Them Together",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-09T12:34:29+00:00",
+   "summary_short": "HOPE：考虑专家交互的二阶MoE剪枝法，50%剪枝平均排名最佳",
+   "summary_long": "MoE 能把 LLM 扩展到数千亿参数，但推理时每个专家 MLP 都必须占用内存，即使单 token 只激活少数专家；原文称 Qwen3.5-122B 每层 256 个专家、共 48 个 MoE 层，约 250GB 参数内存中 95% 被专家 MLP 占用，而每 token 每层仅用 8 个。专家剪枝通过永久删除最无用专家直接缓解该瓶颈，且无需训练、可与量化组合、避免动态加载/卸载的延迟问题，难点是判断哪些专家可安全删除。现有方法按校准数据给每个专家独立打标量分并逐层剪枝，属于一阶方法，假设专家贡献彼此独立；原文指出专家会形成稳定协同群组、常被共同激活，忽略交互会在激进剪枝下次优。HOPE 是考虑专家成对交互的二阶剪枝法，50% 剪枝时平均排名最佳，在 agentic coding 任务上比次优方法最高提升 6.1%。",
+   "key_points": [
+    "MoE 推理内存主要由专家 MLP 占用；原文举例 Qwen3.5-122B 约 250GB 参数内存中 95% 被专家 MLP 占用，而每 token 每层仅激活 8 个专家。",
+    "现有专家剪枝方法按校准数据独立给每个专家打标量重要性分，属于一阶方法；原文认为专家会形成稳定协同群组，忽略专家交互会导致激进剪枝下效果次优。",
+    "HOPE 是考虑专家成对交互的二阶剪枝方法；在 50% 剪枝率下取得最佳平均排名，在 agentic coding 任务上比次优剪枝方法最高提升 6.1%。"
+   ],
+   "topics": [
+    "moe",
+    "expert-pruning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
    ],
    "horizon": "long",
    "score": 76.8,
    "status": "published",
    "extra": {
-    "hn_points": 328,
-    "hn_comments": 129,
+    "content_source": "direct",
     "outbound": {
-     "arxiv": [],
+     "arxiv": [
+      "2504.05586",
+      "2504.06792",
+      "2505.20225",
+      "2510.13999",
+      "2510.16411",
+      "2606.15716",
+      "2609.18916"
+     ],
      "links": [
-      "https://github.com/synchopate/llama-modchip/issues/new?template=cpu_benchmark_submission.yml",
-      "https://github.com/synchopate/llama-modchip/releases/tag/v2.4.0",
-      "https://github.com/synchopate/llama-modchip/discussions",
-      "https://github.com/synchopate/llama-modchip/issues/1",
-      "https://github.com/synchopate/llama-modchip/issues/8",
-      "https://github.com/synchopate/llama-modchip/issues/2",
-      "https://github.com/synchopate/llama-modchip/issues/9",
-      "https://github.com/synchopate/llama-modchip/issues/new?template=benchmark.yml",
-      "https://github.com/synchopate/llama-modchip/issues/1#issuecomment-6595559921",
-      "https://github.com/synchopate/llama-modchip/issues/6",
-      "https://github.com/synchopate/llama-modchip/issues/5",
-      "https://github.com/synchopate/llama-modchip/issues/12",
-      "https://github.com/synchopate/llama-modchip/issues/10",
-      "https://github.com/synchopate/llama-modchip/issues/11"
+      "https://arxiv.org/abs/2510.13999",
+      "https://arxiv.org/abs/2505.20225",
+      "https://arxiv.org/abs/2510.16411",
+      "https://arxiv.org/abs/2609.18916",
+      "https://huggingface.co/blog/moe-transformers",
+      "https://arxiv.org/abs/2606.15716",
+      "https://arxiv.org/abs/2504.05586",
+      "https://arxiv.org/abs/2504.06792",
+      "https://github.com/awslabs/HOPE",
+      "https://github.com/awslabs/hybrid-model-factory/"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   }
  ],
  "items": [
   {
-   "id": "594105e3c51985ed",
-   "url": "https://www.anthropic.com/research/components-of-agent-memory",
-   "title": "The Components of Agent Memory",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "a6a85766a0447ad7",
+   "url": "https://arxiv.org/abs/2608.11341v1",
+   "title": "Apodex Discovery: Reality Benchmarks and Environments for Evaluating and Building Discoverative Artificial Intelligence",
+   "source": "论文（被提及）",
    "tier": "A",
-   "published_at": "2026-11-07T06:39:04+00:00",
-   "summary_short": "智能体记忆组件：用“做梦”在空闲时反思日志、整理笔记",
-   "summary_long": "原文借人类记忆机制讨论 AI 智能体的记忆设计：海马体在当下快速捕获经历，但只有部分经历会在离线时（睡眠、静息）被重放，并逐渐巩固进新皮层，成为长期知识。智能体同样把大量工作留在日志或对话记录里；Letta 与 UC Berkeley 的研究者提出 sleep-time compute，让模型利用交互之间的空闲时间重整已有上下文，这一思路可用于让智能体反思日志以修正错误、生成笔记和新的记忆表征，原文称这一过程为 dreaming，并称它帮助 Claude 获得了有效记忆。原文将智能体记忆定义为 Claude 从经验（与用户的交互、被分配的任务）中获得、跨会话保留、并以可读取上下文形式保存的知识，明确排除权重变化、上下文内学习与 compaction。此外还讨论了：在事件发生时标记显著事件或写入记忆笔记；写记忆本身是对未来需求的预测；以及在 CL-Bench 1.0 的数据库问答任务上用 Claude Managed Agents 探索“记录失败—提出假设—验证—形成规则”的学习循环（原文此处截断，未给出结果）。",
+   "published_at": "2026-08-11T18:48:40+00:00",
+   "summary_short": "Apodex Discovery：用可验证的真实难题环境与\"重载求解器\"评估发现型AI，AAV设计超SOTA 7%",
+   "summary_long": "原文以阿波罗计划作类比：其成功在于把遥远目标转化为包含明确目标、仿真、验证与反复修正的任务架构。AI正面临类似转折——前沿模型在问题、工具与成功标准被明确后能解决困难任务，但有现实后果的挑战很少以可执行、可验证的形式出现。为此提出 Apodex Discovery：通过由基础模型、harness、工具与控制策略构成的\"重载求解器\"，构建并评估执行长时、有状态、可验证探究的\"发现型AI\"。框架含三部分：问题侦察调研16个领域561个行业，汇集423个高价值真实问题，首轮选用20个；统一的环境—任务—回合抽象提供数据、工具、约束、反馈、轨迹记录及对中间产物与最终提交的验证；HDS6 独立于任务成败评估 Tools、Repair、Alternatives、Coherence、Evidence、Scope。结果：AAV衣壳设计在可行性、趋向性、结构预测与生成设计上超已发表SOTA 7%；药物重定位与再配方中，专用生物医学环境使 GPT-5.5、GPT-5.6-sol 的平均归一化预测分较同一闭卷骨干分别提升2.5与7.6分。受控消融显示固定 TRACES 回合接口可将性能差异归因到具体求解器组件。",
    "key_points": [
-    "人类记忆的分工是当下快速编码加上离线重放巩固，被标记为重要的事件在离线期被重放得更多；智能体可对应地在会话日志中标记显著事件或写入记忆笔记。",
-    "dreaming：智能体利用交互间的空闲时间反思日志，可修正错误、生成笔记、构建新的记忆表征，或决定预先加载进未来会话的内容。",
-    "原文界定智能体记忆为跨会话保留、可读取的上下文，不含权重更新、上下文内学习与 compaction。"
+    "问题侦察覆盖16个领域561个行业，汇集423个高价值真实问题，首轮发布选用20个。",
+    "统一的环境—任务—回合抽象提供数据、工具、约束、反馈、轨迹记录及中间产物与最终提交的验证；HDS6 独立于最终任务成败评估 Tools、Repair、Alternatives、Coherence、Evidence、Scope 六项。",
+    "AAV衣壳设计在可行性、趋向性、结构预测与生成设计上超已发表SOTA 7%；药物重定位与再配方任务使 GPT-5.5、GPT-5.6-sol 平均归一化预测分较同一闭卷骨干提升2.5与7.6分；消融显示固定 TRACES 接口支持将性能差异归因到具体求解器组件。"
    ],
    "topics": [
-    "memory",
-    "context-engineering",
+    "eval",
+    "harness",
     "agent-loop"
    ],
-   "category": "Agent 与开发",
+   "category": "评测",
    "categories": [
-    "Agent 与开发"
+    "评测",
+    "Agent 与开发",
+    "研究论文"
    ],
    "horizon": "long",
-   "score": 84.9,
+   "score": 81.5,
    "status": "published",
    "extra": {
-    "hn_points": 173,
-    "hn_comments": 99,
+    "authors": [
+     "Brian Wang",
+     "Bin Feng",
+     "Xiaoman Pan",
+     "Chenyang An",
+     "Felix Liu",
+     "Tangqi Fang",
+     "Gongbo Sun",
+     "Lingfeng Shen"
+    ],
+    "author_count": 29,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "Anthropic News",
+     "Hacker News (AI 高分帖)"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "1b18e8c9acf73639",
+   "url": "https://github.com/thisisme6598/gemini_files/",
+   "title": "Google Gemini routes personal Drive files and emails to human annotators",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-09T18:24:38+00:00",
+   "summary_short": "Gemini将个人Drive/邮件送入人工审核，且可后台自动抓取",
+   "summary_long": "原文指出，Google曾在2023年承诺Gmail、Docs和Drive中的个人内容“不会被人工审核员看到”，但更新的帮助页面16836988及10月16日对原博客的修改明确承认，已连接的Drive/邮件会进入人工审核流程，并警告审核员看到的“可能正是邮件或文件”，含机密信息不应连接。测试还显示，即使用户未使用@Drive或@Gmail标签，聊天中提及旅行、账单等个人话题也会自主触发后台Workspace查询；由于工具调用和上下文注入具有概率性，可能出现零检索、元数据/泛化摘要、部分未脱敏摘录、整份文件摄入四种结果。原文用网络服务账单邮件测试，称四种结果均出现。原文最后指出，正则和NER自动清洗不足以去标识化叙事性数据。",
+   "key_points": [
+    "Google更新帮助页面和2023年博客，承认已连接的Drive/邮件会进入人工审核流程，并警告含机密信息不应连接。",
+    "即使用户未用@标签，聊天中提及个人话题也可能自主触发后台Workspace查询；结果具有概率性，包括零检索、摘要、部分未脱敏摘录和整份文件摄入。",
+    "原文用网络服务账单邮件测试称四种结果均出现，并指出正则和NER自动清洗不足以去标识化叙事性数据。"
+   ],
+   "topics": [
+    "privacy"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全",
+    "开源项目"
+   ],
+   "horizon": "short",
+   "score": 80.4,
+   "status": "published",
+   "extra": {
+    "hn_points": 425,
+    "hn_comments": 104,
     "outbound": {
-     "arxiv": [
-      "2504.13171"
-     ],
+     "arxiv": [],
      "links": [
-      "https://stanford.edu/~jlmcc/papers/McCMcNaughtonOReilly95.pdf",
-      "https://www.science.org/doi/10.1126/science.adk8261?referrer=https%3A%2F%2Fwww.google.com%2F",
-      "https://www.nature.com/articles/s41467-018-06213-1",
-      "https://www.nature.com/articles/s41593-019-0467-3",
-      "https://arxiv.org/abs/2504.13171",
-      "https://platform.claude.com/docs/en/managed-agents/dreams",
-      "https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/",
-      "https://www.anthropic.com/research/in-context-learning-and-induction-heads",
-      "https://platform.claude.com/docs/en/build-with-claude/compaction",
-      "https://www.nature.com/articles/385533a0",
-      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool",
-      "https://continual-learning-bench.com/news/cl-bench-1-0/",
-      "https://platform.claude.com/docs/en/managed-agents/overview",
-      "https://platform.claude.com/docs/en/managed-agents/memory",
-      "https://www.youtube.com/watch?v=CXhYDOvgpuU",
-      "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
-      "https://github.com/harveyai/harvey-labs",
-      "https://code.claude.com/docs/en/memory",
-      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet",
-      "https://platform.claude.com/cookbook/managed-agents-cma-dreaming-with-a-dynamic-workflow",
-      "https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/knowledge-wiki"
+      "https://blog.google/innovation-and-ai/products/our-responsible-approach-to-building-guardrails-for-generative-ai/",
+      "https://support.google.com/gemini/answer/16836988",
+      "https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-infotypes"
      ]
     },
     "content_source": "direct",
@@ -213,87 +323,143 @@
    }
   },
   {
-   "id": "5186d80b7eef5626",
-   "url": "https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again",
-   "title": "Claude Code's \"Don't Ask Again\" exposes passwords in 1,122 public GitHub files",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-07T20:45:32+00:00",
-   "summary_short": "Claude Code 的\"不再询问\"把含密码的命令写进项目内设置文件，致 1,122 个公开 GitHub 文件泄露真实密钥。",
-   "summary_long": "开发机本地存着数据库连接串、云密钥、API token。让 Claude Code 检查数据库或调用 API 时，它提出的命令会带上配置中的密钥；执行前它会询问，若选择\"是，且不再询问\"，它就把这条含密钥的完整命令写入项目文件夹内的 .claude/settings.local.json，且该文件没有任何私有标记，于是随代码一起被提交。原文称，GitHub 上 104,185 份该文件的公开副本中有 1,122 份含真实密钥，另有 1,160 个出现在 git 历史、团队有意提交的共享 settings.json 及仓库内的 agent 聊天记录中；Apiiro 研究在 1,994 个公开仓库发现 2,539 个真实密钥，涉及 63 个组织。Claude Code 只把该文件加入开发者的全局 gitignore，不写进仓库自身的 .gitignore，覆盖不了后来才成为仓库的文件夹、其他机器上的克隆或已被提交的文件；文件已被 git 跟踪时用户不会被告知。Anthropic 的 Claude Code 负责人 Boris Cherny 回应称，团队正研究防范办法，计划试点让 auto mode 捕获该问题并内置基础密钥扫描。",
+   "id": "f37b680abcf7adcb",
+   "url": "https://openai.com/index/control-room",
+   "title": "Control Room: A central system to track and stop model workloads across our research infrastructure",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-09T13:00:00+00:00",
+   "summary_short": "Control Room：跨研究基础设施追踪模型负载、可快速停止其运行的中央系统",
+   "summary_long": "原文介绍其团队构建的 Control Room：一个跨研究基础设施追踪模型负载，并在出现安全或安保担忧时快速将其停止的中央系统。原文称，随着模型能力增强、相关安全与安保风险变大，能及时发现潜在问题并在需要时迅速让模型停止运行变得愈发关键。Control Room 接入所有研究推理负载，包括用于模型训练与评估的 agentic sampling、数据处理等，并与错位（misalignment）监控系统配合，在做出停止或暂停任务的干预决定后 35 秒内停止模型输出。系统被设计为在其他系统失效时仍能工作，并在 Control Room 自身宕机时也能停止模型输出；目前已部署在研究基础设施中需求最迫切的部分。原文还提到，外部模型服务栈本身更集中，已有成熟的快速下线模型部署的运维能力。\n\n工作原理上，Control Room 整合三类系统：负载（如强化学习实验、评估、大批量采样或数据处理任务）、推理引擎（直接运行在 GPU 上的模型）与中央 Control Room 服务。所有做 agentic 推理的研究负载都必须关联一个获批的安全案例。任务启动时向 Control Room 申请 job_id，每次采样请求携带该 ID 发给推理引擎，引擎再向 Control Room 请求许可；若该任务已被终止，服务拒绝请求，引擎随即拒绝，从而停止该任务后续的模型输出。原文对后续步骤的描述在结尾处被截断",
    "key_points": [
-    "选\"是，且不再询问\"后，Claude Code 把含密钥的完整命令写入项目内 .claude/settings.local.json，该文件无私有标记，会随代码提交",
-    "原文数据：104,185 份公开副本中 1,122 份含真实密钥；Apiiro 在 1,994 个公开仓库发现 2,539 个真实密钥，涉及 63 个组织，包括生产 Azure Postgres 密码、Square 生产 token、医疗记录数据库的 owner 密码",
-    "防护缺口：文件只被加入开发者全局 gitignore，不进仓库 .gitignore；已被 git 跟踪时用户不会被告知，1,105 个含密钥仓库中 539 个有 Claude 共同署名的提交改动了该文件"
+    "Control Room 是跨研究基础设施追踪模型负载、并在安全或安保担忧出现时快速停止的中央系统，接入所有研究推理负载。",
+    "它与错位监控系统配合，在做出干预决定后 35 秒内停止模型输出；设计上可在其他系统失效时继续工作，自身宕机时也能停止模型输出。",
+    "机制上由负载、推理引擎与中央服务三部分组成：负载申请 job_id，引擎在每次推理前向 Control Room 请求许可，任务被终止则拒绝输出。"
    ],
    "topics": [
-    "cybersecurity",
-    "privacy"
+    "alignment",
+    "cybersecurity"
    ],
    "category": "安全",
    "categories": [
     "安全"
    ],
-   "horizon": "short",
-   "score": 82.7,
+   "horizon": "long",
+   "score": 79.2,
    "status": "published",
    "extra": {
-    "hn_points": 570,
-    "hn_comments": 387,
-    "content_source": "reader",
+    "content_source": "direct",
+    "source_tags": [
+     "Safety"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/",
+      "https://openai.com/careers/research-engineer-research-scientist-ai-systems-engineer-rsi-san-francisco/",
+      "https://openai.com/careers/researcher-agent-safety-oversight-and-system-mitigations-san-francisco/"
+     ]
+    },
     "summary_mode": "full"
    }
   },
   {
-   "id": "5e9d3fd0e59ccb77",
-   "url": "https://github.com/synchopate/llama-modchip",
-   "title": "Llama-modchip: 284B DeepSeek on 64GB RAM, no GPU",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "e4687d5a7224be5c",
+   "url": "https://arxiv.org/abs/2610.39076v3",
+   "title": "Tactus: Tactile & Pose Sensing Glove for Natural Dexterity Data Collection",
+   "source": "论文（被提及）",
    "tier": "A",
-   "published_at": "2026-11-08T10:22:04+00:00",
-   "summary_short": "llama-modchip实现284B MoE在64GB内存无GPU运行",
-   "summary_long": "llama-modchip（v2.4.0）是一组 ggml/llama.cpp 内核补丁、量化转码器和运行时工具，目标是在 x86_64 与 ARM64 CPU 上把稀疏 MoE 检查点完全放进系统内存运行。原文的关键案例是 284.33B 总参数、13.17B 激活参数的 DeepSeek-V4-Flash：标准 UD-IQ1_S 构建占 76.87 GiB，超过 64GB Linux 系统约 62.5 GiB 可用内存，会引发 page-cache thrashing 或 OOM；它被降到 56.56 GiB（1.71 bpw），模型加 256K KV 缓存的峰值 VmRSS 为 57.61 GiB，零 swap 驻留内存。其 CPU 缓存与 SIMD 内核补丁给出预填充 +77%、解码 +53%，16 核 Zen 5 预填充从 25.0 提升到 44.36 tok/s；还包含 1.64 MB 自推测草稿器和 /dev/shm KV 槽快照，恢复时间 13.1–32.6 ms。原文另列 30B MoE 在 16–32GB 设备上 25.0–60.4 tok/s、8 通道工作站 111.62 tok/s 等数据。",
+   "published_at": "2026-10-29T00:10:55+00:00",
+   "summary_short": "Tactus：可测指尖力与抗遮挡姿态的织物传感手套，附首个跨平台基准",
+   "summary_long": "机器人灵巧操作策略与世界模型学习需要带精确接触力与手部姿态的自然操作演示数据，但现有可穿戴平台无法同时提供标定过的指尖力传感与抗遮挡手部追踪，且不破坏自然操作行为。Tactus 是织物集成传感手套，围绕三点协同设计：1.5 mm 指尖堆叠的薄型共形 3D 针织结构；依据实测接触研究在操作相关区域布置电容式触觉传感器；融合 IMU 的姿态追踪，在手-物遮挡最严重时仍保持精度；并提供跨手套一致性标定流程与会话级个体校正。作者还提出触觉力回归与手部姿态估计的标准化基准协议，用于 Tactus 与两款商用触觉手套的对比，称这是首个此类量化跨平台评估。结果：95% 置信度下最小可检测力 0.59 N，比商用基线低 1.6–2.7 倍，跨被试一致性 0.87；遮挡最重时指尖关键点相对误差 11.0 mm。原文称这些信号支持物体属性估计、滑动检测与手-物交互记录。",
    "key_points": [
-    "284.33B 总参数、13.17B 激活的 DeepSeek-V4-Flash 以 1.71 bpw 压到 56.56 GiB，可在 64GB Linux 内存零 swap 运行，峰值 VmRSS 57.61 GiB。",
-    "CPU 缓存与 SIMD 内核补丁带来 +77% 预填充、+53% 解码；16 核 Zen 5 预填充 25.0→44.36 tok/s。",
-    "支持 16–32GB 跑 30B MoE（25.0–60.4 tok/s）、CPU+16GB GPU 混合 80.80 tok/s、8 通道工作站 111.62 tok/s；含 1.64 MB 自推测草稿器与 /dev/shm KV 槽快照 13.1–32.6 ms 恢复。"
+    "设计三支柱：1.5 mm 指尖堆叠的 3D 针织共形结构减少对自然操作的干扰；依据实测接触研究在操作相关区域放置电容式触觉传感器；IMU 融合姿态追踪在手-物遮挡下仍保持精度。",
+    "提供跨手套一致性的标定流程与会话级个体化校正，并提出触觉力回归和手部姿态估计的标准化基准协议，用于 Tactus 与两款商用触觉手套的量化对比，原文称这是首个此类跨平台评估。",
+    "指标：95% 置信度下最小可检测力 0.59 N，比商用基线低 1.6–2.7 倍；跨被试一致性 0.87；操作中遮挡最重时指尖关键点相对误差 11.0 mm。"
    ],
    "topics": [
-    "quantization",
-    "inference",
-    "moe"
+    "post-training",
+    "eval",
+    "open-source"
    ],
    "category": "模型",
    "categories": [
     "模型",
-    "开源项目"
+    "评测",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 78.9,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Li Guan",
+     "Rachael Granberry",
+     "Sahar Aseeri",
+     "Sahar Rostami",
+     "Taylor Niehues",
+     "Sai Dhanoosh Marri",
+     "Mia Huang",
+     "Dingtian Zhang"
+    ],
+    "author_count": 104,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "Import AI"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "7b1451fc786c34f9",
+   "url": "https://huggingface.co/blog/amazon/higher-order-pruning-experts",
+   "title": "Your Experts Have Partners. There's HOPE for Keeping Them Together",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-09T12:34:29+00:00",
+   "summary_short": "HOPE：考虑专家交互的二阶MoE剪枝法，50%剪枝平均排名最佳",
+   "summary_long": "MoE 能把 LLM 扩展到数千亿参数，但推理时每个专家 MLP 都必须占用内存，即使单 token 只激活少数专家；原文称 Qwen3.5-122B 每层 256 个专家、共 48 个 MoE 层，约 250GB 参数内存中 95% 被专家 MLP 占用，而每 token 每层仅用 8 个。专家剪枝通过永久删除最无用专家直接缓解该瓶颈，且无需训练、可与量化组合、避免动态加载/卸载的延迟问题，难点是判断哪些专家可安全删除。现有方法按校准数据给每个专家独立打标量分并逐层剪枝，属于一阶方法，假设专家贡献彼此独立；原文指出专家会形成稳定协同群组、常被共同激活，忽略交互会在激进剪枝下次优。HOPE 是考虑专家成对交互的二阶剪枝法，50% 剪枝时平均排名最佳，在 agentic coding 任务上比次优方法最高提升 6.1%。",
+   "key_points": [
+    "MoE 推理内存主要由专家 MLP 占用；原文举例 Qwen3.5-122B 约 250GB 参数内存中 95% 被专家 MLP 占用，而每 token 每层仅激活 8 个专家。",
+    "现有专家剪枝方法按校准数据独立给每个专家打标量重要性分，属于一阶方法；原文认为专家会形成稳定协同群组，忽略专家交互会导致激进剪枝下效果次优。",
+    "HOPE 是考虑专家成对交互的二阶剪枝方法；在 50% 剪枝率下取得最佳平均排名，在 agentic coding 任务上比次优剪枝方法最高提升 6.1%。"
+   ],
+   "topics": [
+    "moe",
+    "expert-pruning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
    ],
    "horizon": "long",
    "score": 76.8,
    "status": "published",
    "extra": {
-    "hn_points": 328,
-    "hn_comments": 129,
+    "content_source": "direct",
     "outbound": {
-     "arxiv": [],
+     "arxiv": [
+      "2504.05586",
+      "2504.06792",
+      "2505.20225",
+      "2510.13999",
+      "2510.16411",
+      "2606.15716",
+      "2609.18916"
+     ],
      "links": [
-      "https://github.com/synchopate/llama-modchip/issues/new?template=cpu_benchmark_submission.yml",
-      "https://github.com/synchopate/llama-modchip/releases/tag/v2.4.0",
-      "https://github.com/synchopate/llama-modchip/discussions",
-      "https://github.com/synchopate/llama-modchip/issues/1",
-      "https://github.com/synchopate/llama-modchip/issues/8",
-      "https://github.com/synchopate/llama-modchip/issues/2",
-      "https://github.com/synchopate/llama-modchip/issues/9",
-      "https://github.com/synchopate/llama-modchip/issues/new?template=benchmark.yml",
-      "https://github.com/synchopate/llama-modchip/issues/1#issuecomment-6595559921",
-      "https://github.com/synchopate/llama-modchip/issues/6",
-      "https://github.com/synchopate/llama-modchip/issues/5",
-      "https://github.com/synchopate/llama-modchip/issues/12",
-      "https://github.com/synchopate/llama-modchip/issues/10",
-      "https://github.com/synchopate/llama-modchip/issues/11"
+      "https://arxiv.org/abs/2510.13999",
+      "https://arxiv.org/abs/2505.20225",
+      "https://arxiv.org/abs/2510.16411",
+      "https://arxiv.org/abs/2609.18916",
+      "https://huggingface.co/blog/moe-transformers",
+      "https://arxiv.org/abs/2606.15716",
+      "https://arxiv.org/abs/2504.05586",
+      "https://arxiv.org/abs/2504.06792",
+      "https://github.com/awslabs/HOPE",
+      "https://github.com/awslabs/hybrid-model-factory/"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   }
