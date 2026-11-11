@@ -1,466 +1,408 @@
 {
- "generated_at": "2026-11-10T02:10:43+00:00",
- "date": "2026-11-10",
- "run_id": "20261110-020837",
+ "generated_at": "2026-11-11T00:04:13+00:00",
+ "date": "2026-11-11",
+ "run_id": "20261111-000222",
  "top": [
   {
-   "id": "a6a85766a0447ad7",
-   "url": "https://arxiv.org/abs/2608.11341v1",
-   "title": "Apodex Discovery: Reality Benchmarks and Environments for Evaluating and Building Discoverative Artificial Intelligence",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2026-08-11T18:48:40+00:00",
-   "summary_short": "Apodex Discovery：用可验证的真实难题环境与\"重载求解器\"评估发现型AI，AAV设计超SOTA 7%",
-   "summary_long": "原文以阿波罗计划作类比：其成功在于把遥远目标转化为包含明确目标、仿真、验证与反复修正的任务架构。AI正面临类似转折——前沿模型在问题、工具与成功标准被明确后能解决困难任务，但有现实后果的挑战很少以可执行、可验证的形式出现。为此提出 Apodex Discovery：通过由基础模型、harness、工具与控制策略构成的\"重载求解器\"，构建并评估执行长时、有状态、可验证探究的\"发现型AI\"。框架含三部分：问题侦察调研16个领域561个行业，汇集423个高价值真实问题，首轮选用20个；统一的环境—任务—回合抽象提供数据、工具、约束、反馈、轨迹记录及对中间产物与最终提交的验证；HDS6 独立于任务成败评估 Tools、Repair、Alternatives、Coherence、Evidence、Scope。结果：AAV衣壳设计在可行性、趋向性、结构预测与生成设计上超已发表SOTA 7%；药物重定位与再配方中，专用生物医学环境使 GPT-5.5、GPT-5.6-sol 的平均归一化预测分较同一闭卷骨干分别提升2.5与7.6分。受控消融显示固定 TRACES 回合接口可将性能差异归因到具体求解器组件。",
-   "key_points": [
-    "问题侦察覆盖16个领域561个行业，汇集423个高价值真实问题，首轮发布选用20个。",
-    "统一的环境—任务—回合抽象提供数据、工具、约束、反馈、轨迹记录及中间产物与最终提交的验证；HDS6 独立于最终任务成败评估 Tools、Repair、Alternatives、Coherence、Evidence、Scope 六项。",
-    "AAV衣壳设计在可行性、趋向性、结构预测与生成设计上超已发表SOTA 7%；药物重定位与再配方任务使 GPT-5.5、GPT-5.6-sol 平均归一化预测分较同一闭卷骨干提升2.5与7.6分；消融显示固定 TRACES 接口支持将性能差异归因到具体求解器组件。"
-   ],
-   "topics": [
-    "eval",
-    "harness",
-    "agent-loop"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测",
-    "Agent 与开发",
-    "研究论文"
-   ],
-   "horizon": "long",
-   "score": 81.5,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Brian Wang",
-     "Bin Feng",
-     "Xiaoman Pan",
-     "Chenyang An",
-     "Felix Liu",
-     "Tangqi Fang",
-     "Gongbo Sun",
-     "Lingfeng Shen"
-    ],
-    "author_count": 29,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "Anthropic News",
-     "Hacker News (AI 高分帖)"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "1b18e8c9acf73639",
-   "url": "https://github.com/thisisme6598/gemini_files/",
-   "title": "Google Gemini routes personal Drive files and emails to human annotators",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-09T18:24:38+00:00",
-   "summary_short": "Gemini将个人Drive/邮件送入人工审核，且可后台自动抓取",
-   "summary_long": "原文指出，Google曾在2023年承诺Gmail、Docs和Drive中的个人内容“不会被人工审核员看到”，但更新的帮助页面16836988及10月16日对原博客的修改明确承认，已连接的Drive/邮件会进入人工审核流程，并警告审核员看到的“可能正是邮件或文件”，含机密信息不应连接。测试还显示，即使用户未使用@Drive或@Gmail标签，聊天中提及旅行、账单等个人话题也会自主触发后台Workspace查询；由于工具调用和上下文注入具有概率性，可能出现零检索、元数据/泛化摘要、部分未脱敏摘录、整份文件摄入四种结果。原文用网络服务账单邮件测试，称四种结果均出现。原文最后指出，正则和NER自动清洗不足以去标识化叙事性数据。",
-   "key_points": [
-    "Google更新帮助页面和2023年博客，承认已连接的Drive/邮件会进入人工审核流程，并警告含机密信息不应连接。",
-    "即使用户未用@标签，聊天中提及个人话题也可能自主触发后台Workspace查询；结果具有概率性，包括零检索、摘要、部分未脱敏摘录和整份文件摄入。",
-    "原文用网络服务账单邮件测试称四种结果均出现，并指出正则和NER自动清洗不足以去标识化叙事性数据。"
-   ],
-   "topics": [
-    "privacy"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全",
-    "开源项目"
-   ],
-   "horizon": "short",
-   "score": 80.4,
-   "status": "published",
-   "extra": {
-    "hn_points": 425,
-    "hn_comments": 104,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://blog.google/innovation-and-ai/products/our-responsible-approach-to-building-guardrails-for-generative-ai/",
-      "https://support.google.com/gemini/answer/16836988",
-      "https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-infotypes"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "f37b680abcf7adcb",
-   "url": "https://openai.com/index/control-room",
-   "title": "Control Room: A central system to track and stop model workloads across our research infrastructure",
-   "source": "OpenAI News",
+   "id": "7da1b2b4758f6148",
+   "url": "https://deepmind.google/blog/gemini-robotics-2-5-accelerates-real-world-physical-intelligence/",
+   "title": "Gemini Robotics 2.5 accelerates real-world general dexterity",
+   "source": "Google DeepMind Blog",
    "tier": "S",
-   "published_at": "2026-11-09T13:00:00+00:00",
-   "summary_short": "Control Room：跨研究基础设施追踪模型负载、可快速停止其运行的中央系统",
-   "summary_long": "原文介绍其团队构建的 Control Room：一个跨研究基础设施追踪模型负载，并在出现安全或安保担忧时快速将其停止的中央系统。原文称，随着模型能力增强、相关安全与安保风险变大，能及时发现潜在问题并在需要时迅速让模型停止运行变得愈发关键。Control Room 接入所有研究推理负载，包括用于模型训练与评估的 agentic sampling、数据处理等，并与错位（misalignment）监控系统配合，在做出停止或暂停任务的干预决定后 35 秒内停止模型输出。系统被设计为在其他系统失效时仍能工作，并在 Control Room 自身宕机时也能停止模型输出；目前已部署在研究基础设施中需求最迫切的部分。原文还提到，外部模型服务栈本身更集中，已有成熟的快速下线模型部署的运维能力。\n\n工作原理上，Control Room 整合三类系统：负载（如强化学习实验、评估、大批量采样或数据处理任务）、推理引擎（直接运行在 GPU 上的模型）与中央 Control Room 服务。所有做 agentic 推理的研究负载都必须关联一个获批的安全案例。任务启动时向 Control Room 申请 job_id，每次采样请求携带该 ID 发给推理引擎，引擎再向 Control Room 请求许可；若该任务已被终止，服务拒绝请求，引擎随即拒绝，从而停止该任务后续的模型输出。原文对后续步骤的描述在结尾处被截断",
+   "published_at": "2026-11-09T19:51:47+00:00",
+   "summary_short": "谷歌发布Gemini Robotics 2.5视觉-语言-动作模型，任务成功率提升30%–100%、速度快20%–30%",
+   "summary_long": "原文于11月10日发布，介绍Gemini Robotics 2.5——其迄今能力最强的视觉-语言-动作（VLA）模型，既拓展了机器人可学习的技能范围，也提升了技能获得速度，并改善了灵巧性、可靠性与安全性，以帮助机器人走出实验室、进入更非结构化的真实环境。原文称，此前已将全身智能带给包括人形机器人在内的多种机器人，此次进展很大程度上得益于Gemini 4 Argon加速机器人研究的能力。团队在200多个不同任务上评测该模型，例如用夹子分餐、给礼盒系蝴蝶结、移液，这些任务涉及高级工具使用、可变形物体操作和精细易碎物体处理。相比此前基线，Gemini Robotics 2.5按任务类型成功率高出30%至100%，完成任务快20%至30%。它原生支持多种机器人形态，包括Apptronik的Apollo 2人形机器人（配五指、22自由度SharpaWave手）与使用两指平行夹爪的Franka Duo平台。原文还称，该模型正逐步向机器人合作伙伴开放；文末提到的可操控性与智能体安全性部分内容不完整，具体细节原文未详述。",
    "key_points": [
-    "Control Room 是跨研究基础设施追踪模型负载、并在安全或安保担忧出现时快速停止的中央系统，接入所有研究推理负载。",
-    "它与错位监控系统配合，在做出干预决定后 35 秒内停止模型输出；设计上可在其他系统失效时继续工作，自身宕机时也能停止模型输出。",
-    "机制上由负载、推理引擎与中央服务三部分组成：负载申请 job_id，引擎在每次推理前向 Control Room 请求许可，任务被终止则拒绝输出。"
+    "Gemini Robotics 2.5是原文所称其迄今最强的VLA模型，同时扩大技能广度与学习速度。",
+    "在200多个任务上评测，成功率比此前基线高30%–100%，速度快20%–30%。",
+    "原生适配多种机器人形态：Apptronik Apollo 2人形机器人（22自由度SharpaWave手）与Franka Duo平行夹爪平台。"
    ],
    "topics": [
-    "alignment",
-    "cybersecurity"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "long",
-   "score": 79.2,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Safety"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/",
-      "https://openai.com/careers/research-engineer-research-scientist-ai-systems-engineer-rsi-san-francisco/",
-      "https://openai.com/careers/researcher-agent-safety-oversight-and-system-mitigations-san-francisco/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "e4687d5a7224be5c",
-   "url": "https://arxiv.org/abs/2610.39076v3",
-   "title": "Tactus: Tactile & Pose Sensing Glove for Natural Dexterity Data Collection",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2026-10-29T00:10:55+00:00",
-   "summary_short": "Tactus：可测指尖力与抗遮挡姿态的织物传感手套，附首个跨平台基准",
-   "summary_long": "机器人灵巧操作策略与世界模型学习需要带精确接触力与手部姿态的自然操作演示数据，但现有可穿戴平台无法同时提供标定过的指尖力传感与抗遮挡手部追踪，且不破坏自然操作行为。Tactus 是织物集成传感手套，围绕三点协同设计：1.5 mm 指尖堆叠的薄型共形 3D 针织结构；依据实测接触研究在操作相关区域布置电容式触觉传感器；融合 IMU 的姿态追踪，在手-物遮挡最严重时仍保持精度；并提供跨手套一致性标定流程与会话级个体校正。作者还提出触觉力回归与手部姿态估计的标准化基准协议，用于 Tactus 与两款商用触觉手套的对比，称这是首个此类量化跨平台评估。结果：95% 置信度下最小可检测力 0.59 N，比商用基线低 1.6–2.7 倍，跨被试一致性 0.87；遮挡最重时指尖关键点相对误差 11.0 mm。原文称这些信号支持物体属性估计、滑动检测与手-物交互记录。",
-   "key_points": [
-    "设计三支柱：1.5 mm 指尖堆叠的 3D 针织共形结构减少对自然操作的干扰；依据实测接触研究在操作相关区域放置电容式触觉传感器；IMU 融合姿态追踪在手-物遮挡下仍保持精度。",
-    "提供跨手套一致性的标定流程与会话级个体化校正，并提出触觉力回归和手部姿态估计的标准化基准协议，用于 Tactus 与两款商用触觉手套的量化对比，原文称这是首个此类跨平台评估。",
-    "指标：95% 置信度下最小可检测力 0.59 N，比商用基线低 1.6–2.7 倍；跨被试一致性 0.87；操作中遮挡最重时指尖关键点相对误差 11.0 mm。"
-   ],
-   "topics": [
-    "post-training",
-    "eval",
-    "open-source"
+    "robotics",
+    "vla",
+    "dexterity"
    ],
    "category": "模型",
    "categories": [
-    "模型",
-    "评测",
-    "研究论文"
+    "模型"
    ],
-   "horizon": "long",
-   "score": 78.9,
+   "horizon": "short",
+   "score": 82.5,
    "status": "published",
    "extra": {
-    "authors": [
-     "Li Guan",
-     "Rachael Granberry",
-     "Sahar Aseeri",
-     "Sahar Rostami",
-     "Taylor Niehues",
-     "Sai Dhanoosh Marri",
-     "Mia Huang",
-     "Dingtian Zhang"
-    ],
-    "author_count": 104,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "Import AI"
-    ],
+    "content_source": "reader",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://developers.googleblog.com/gemini-4-argon-for-robotics?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content="
+     ]
+    },
     "summary_mode": "full"
    }
   },
   {
-   "id": "7b1451fc786c34f9",
-   "url": "https://huggingface.co/blog/amazon/higher-order-pruning-experts",
-   "title": "Your Experts Have Partners. There's HOPE for Keeping Them Together",
+   "id": "3229de0d919212c3",
+   "url": "https://huggingface.co/blog/decision",
+   "title": "Decision Models in Hugging Face",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-11-09T12:34:29+00:00",
-   "summary_short": "HOPE：考虑专家交互的二阶MoE剪枝法，50%剪枝平均排名最佳",
-   "summary_long": "MoE 能把 LLM 扩展到数千亿参数，但推理时每个专家 MLP 都必须占用内存，即使单 token 只激活少数专家；原文称 Qwen3.5-122B 每层 256 个专家、共 48 个 MoE 层，约 250GB 参数内存中 95% 被专家 MLP 占用，而每 token 每层仅用 8 个。专家剪枝通过永久删除最无用专家直接缓解该瓶颈，且无需训练、可与量化组合、避免动态加载/卸载的延迟问题，难点是判断哪些专家可安全删除。现有方法按校准数据给每个专家独立打标量分并逐层剪枝，属于一阶方法，假设专家贡献彼此独立；原文指出专家会形成稳定协同群组、常被共同激活，忽略交互会在激进剪枝下次优。HOPE 是考虑专家成对交互的二阶剪枝法，50% 剪枝时平均排名最佳，在 agentic coding 任务上比次优方法最高提升 6.1%。",
+   "published_at": "2026-11-10T00:00:00+00:00",
+   "summary_short": "Hugging Face 介绍决策模型：不生成文本，直接对既定选项给出概率",
+   "summary_long": "原文以客服工单为例：让 LLM 返回 JSON 虽可行，但提出另一种做法——模型直接评估候选答案并返回概率分布，不生成任何文本。文中给出 pipeline(\"decision\", model=\"autotrust/GEV-26B-Decide\") 示例，输入 state 与带 criteria 的 questions，输出 department 的 choice 为 billing，confidence 约 0.9974。原文定义决策模型：接收输入上下文（state），评估带一组预定义可能答案（primitives）的问题，返回结构化决策及概率；基本接口为 State + Questions + Allowed Answers → Decisions + Probabilities。名称上，TypeSafe AI 提出 Jev 并称其为 System One 模型，社区最终采用 decision model 一词，因其描述模型的计算角色而非某种认知理论。原文列出的不用 LLM 的理由：不保证遵循 schema，可能产出非法 JSON、多余键或选项外答案；Outlines、XGrammar 等约束解码可强制结构但仍有额外开销；生成整段回答并无必要（原文此处截断）。",
    "key_points": [
-    "MoE 推理内存主要由专家 MLP 占用；原文举例 Qwen3.5-122B 约 250GB 参数内存中 95% 被专家 MLP 占用，而每 token 每层仅激活 8 个专家。",
-    "现有专家剪枝方法按校准数据独立给每个专家打标量重要性分，属于一阶方法；原文认为专家会形成稳定协同群组，忽略专家交互会导致激进剪枝下效果次优。",
-    "HOPE 是考虑专家成对交互的二阶剪枝方法；在 50% 剪枝率下取得最佳平均排名，在 agentic coding 任务上比次优剪枝方法最高提升 6.1%。"
+    "决策模型的基本接口是 State + Questions + Allowed Answers → Decisions + Probabilities，即对预设选项打分而非逐 token 生成文本。",
+    "示例用 transformers 的 pipeline(\"decision\") 调用 autotrust/GEV-26B-Decide，输出选项、confidence 以及各选项的概率分布。",
+    "原文指出直接用 LLM 的问题：schema 不保证被遵循、约束解码（Outlines、XGrammar）带来额外开销、生成整段回答没有必要；术语源自 TypeSafe AI 的 Jev（System One 模型），社区改用 decision model。"
    ],
    "topics": [
-    "moe",
-    "expert-pruning"
+    "decision-model",
+    "structured-output"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
    "horizon": "long",
-   "score": 76.8,
+   "score": 79.5,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
-     "arxiv": [
-      "2504.05586",
-      "2504.06792",
-      "2505.20225",
-      "2510.13999",
-      "2510.16411",
-      "2606.15716",
-      "2609.18916"
-     ],
+     "arxiv": [],
      "links": [
-      "https://arxiv.org/abs/2510.13999",
-      "https://arxiv.org/abs/2505.20225",
-      "https://arxiv.org/abs/2510.16411",
-      "https://arxiv.org/abs/2609.18916",
-      "https://huggingface.co/blog/moe-transformers",
-      "https://arxiv.org/abs/2606.15716",
-      "https://arxiv.org/abs/2504.05586",
-      "https://arxiv.org/abs/2504.06792",
-      "https://github.com/awslabs/HOPE",
-      "https://github.com/awslabs/hybrid-model-factory/"
+      "https://github.com/huggingface/blog/blob/main/decision.md",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/decision/decision-models.png",
+      "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+      "https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow",
+      "https://x.com/ariG23498/status/2113220513158009022",
+      "https://github.com/dottxt-ai/outlines",
+      "https://github.com/mlc-ai/xgrammar",
+      "https://huggingface.co/tasks/zero-shot-classification",
+      "https://huggingface.co/docs/transformers/main/en/serve-cli/serving#v1systemone",
+      "https://huggingface.co/blog/ggml-org/decision-models-in-llamacpp",
+      "https://huggingface.co/models?other=decision-model&sort=trending",
+      "https://github.com/huggingface/trl/pull/8040",
+      "https://unsloth.ai/docs/basics/train-your-own-decision-model-with-unsloth"
      ]
     },
     "summary_mode": "full"
+   }
+  },
+  {
+   "id": "6f6fff482120edaf",
+   "url": "https://simonwillison.net/2026/Nov/10/prompting-claude-fable-52/",
+   "title": "Quoting Prompting Claude Fable 5.2",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-10T05:34:14+00:00",
+   "summary_short": "Anthropic文档：声明“代码是你的”可让模型更愿合并重复代码",
+   "summary_long": "Anthropic 在 Claude Fable 5.2 的提示文档中指出，模型会明显受到提示中“它写的代码归谁所有”这一说法的影响。在 Anthropic 针对小型编程任务的测试中，如果提示没有提到代码归属，或者把代码库描述成别人的，模型倾向于在既有结构上继续追加代码，即使这样会重复已有的代码。文档建议，如果希望模型在写代码的同时改进结构，就要明确说明代码库属于它自己，并给出了一句示范提示：“This codebase is yours: what it's for and how it's built are your call, and you'll keep building on it.”测试数据显示，使用这句话时，模型约有一半的尝试会合并重复代码；不使用这句话时，这一比例不到十分之一。原文未详述测试任务的具体规模、适用边界，以及该结论是否适用于更大规模的代码库。",
+   "key_points": [
+    "提示中是否交代代码归属，会影响 Claude Fable 5.2 在小型编程任务中的写法",
+    "未提及归属或把代码库说成他人所有时，模型倾向于在既有结构上追加代码，即使重复已有代码",
+    "明确声明该代码库属于模型自己并让其决定用途与构建方式时，约半数尝试合并了重复代码；无此句时不足十分之一"
+   ],
+   "topics": [
+    "context-engineering",
+    "coding-agent"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 76.5,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "prompt-engineering",
+     "anthropic",
+     "generative-ai",
+     "ai",
+     "llms"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2#say-who-owns-the-code",
+      "https://simonwillison.net/tags/prompt-engineering",
+      "https://simonwillison.net/tags/anthropic",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/claude-mythos-fable"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "fc6b6a56df7b3650",
+   "url": "https://deepmind.google/blog/gemini-4-carbon-is-now-available/",
+   "title": "Gemini 4 Carbon is now available",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-11-10T16:03:47+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "model-release",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 75.4,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://twitter.com/intent/tweet?text=Gemini%204%20Carbon%20is%20now%20available%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+      "https://www.facebook.com/sharer/sharer.php?caption=Gemini%204%20Carbon%20is%20now%20available&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/&title=Gemini%204%20Carbon%20is%20now%20available",
+      "https://blog.google/authors/koray-kavukcuoglu/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+      "https://deepmind.google/fairwind-program/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
+      "https://cursor.com/cursorbench",
+      "https://www.perplexity.ai/hub/blog/wandr-benchmark-evaluating-research-agents-that-must-search-wide-and-deep",
+      "https://zapier.com/benchmarks",
+      "http://antigravity.google/blog/gemini-4-carbon-in-google-antigravity/",
+      "https://aistudio.google.com/prompts/new_chat?model=gemini-4-carbon",
+      "https://cloud.google.com/gemini-enterprise",
+      "https://aistudio.google.com/docs/pricing",
+      "https://one.google.com/about/google-ai-plans",
+      "https://antigravity.google/",
+      "http://gemini.google.com/",
+      "http://aimode.google/",
+      "https://artificialanalysis.ai/evaluations/mka",
+      "https://aistudio.google.com/apps/bundled/pelican-campus-quest",
+      "https://aistudio.google.com/apps/bundled/gemini-supply",
+      "https://github.com/google-gemini/demolab",
+      "https://aistudio.google.com/apps/bundled/koerner-hall",
+      "https://cloud.google.com/transform/how-google-does-it-using-agents-help-find-track-and-fix-vulnerabilities",
+      "https://www.wiz.io/blog/php2shell-php-rce",
+      "https://www.wiz.io/blog/scan-for-good-critical-ai-exposures",
+      "https://deepmind.google/blog/introducing-alphaproof-code",
+      "https://forms.gle/WvmBbPvRbpKG1BPn9",
+      "https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security/",
+      "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_safety_report.pdf",
+      "https://developer.android.com/studio",
+      "http://gemini.google.com",
+      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Carbon-Model-Card.pdf",
+      "https://aistudio.google.com/learn/gemini-4-carbon-developer-guide",
+      "https://aistudio.google.com/docs/whats-new-gemini-4-carbon",
+      "https://policies.google.com/privacy"
+     ]
+    }
    }
   }
  ],
  "items": [
   {
-   "id": "a6a85766a0447ad7",
-   "url": "https://arxiv.org/abs/2608.11341v1",
-   "title": "Apodex Discovery: Reality Benchmarks and Environments for Evaluating and Building Discoverative Artificial Intelligence",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2026-08-11T18:48:40+00:00",
-   "summary_short": "Apodex Discovery：用可验证的真实难题环境与\"重载求解器\"评估发现型AI，AAV设计超SOTA 7%",
-   "summary_long": "原文以阿波罗计划作类比：其成功在于把遥远目标转化为包含明确目标、仿真、验证与反复修正的任务架构。AI正面临类似转折——前沿模型在问题、工具与成功标准被明确后能解决困难任务，但有现实后果的挑战很少以可执行、可验证的形式出现。为此提出 Apodex Discovery：通过由基础模型、harness、工具与控制策略构成的\"重载求解器\"，构建并评估执行长时、有状态、可验证探究的\"发现型AI\"。框架含三部分：问题侦察调研16个领域561个行业，汇集423个高价值真实问题，首轮选用20个；统一的环境—任务—回合抽象提供数据、工具、约束、反馈、轨迹记录及对中间产物与最终提交的验证；HDS6 独立于任务成败评估 Tools、Repair、Alternatives、Coherence、Evidence、Scope。结果：AAV衣壳设计在可行性、趋向性、结构预测与生成设计上超已发表SOTA 7%；药物重定位与再配方中，专用生物医学环境使 GPT-5.5、GPT-5.6-sol 的平均归一化预测分较同一闭卷骨干分别提升2.5与7.6分。受控消融显示固定 TRACES 回合接口可将性能差异归因到具体求解器组件。",
-   "key_points": [
-    "问题侦察覆盖16个领域561个行业，汇集423个高价值真实问题，首轮发布选用20个。",
-    "统一的环境—任务—回合抽象提供数据、工具、约束、反馈、轨迹记录及中间产物与最终提交的验证；HDS6 独立于最终任务成败评估 Tools、Repair、Alternatives、Coherence、Evidence、Scope 六项。",
-    "AAV衣壳设计在可行性、趋向性、结构预测与生成设计上超已发表SOTA 7%；药物重定位与再配方任务使 GPT-5.5、GPT-5.6-sol 平均归一化预测分较同一闭卷骨干提升2.5与7.6分；消融显示固定 TRACES 接口支持将性能差异归因到具体求解器组件。"
-   ],
-   "topics": [
-    "eval",
-    "harness",
-    "agent-loop"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测",
-    "Agent 与开发",
-    "研究论文"
-   ],
-   "horizon": "long",
-   "score": 81.5,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Brian Wang",
-     "Bin Feng",
-     "Xiaoman Pan",
-     "Chenyang An",
-     "Felix Liu",
-     "Tangqi Fang",
-     "Gongbo Sun",
-     "Lingfeng Shen"
-    ],
-    "author_count": 29,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "Anthropic News",
-     "Hacker News (AI 高分帖)"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "1b18e8c9acf73639",
-   "url": "https://github.com/thisisme6598/gemini_files/",
-   "title": "Google Gemini routes personal Drive files and emails to human annotators",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-09T18:24:38+00:00",
-   "summary_short": "Gemini将个人Drive/邮件送入人工审核，且可后台自动抓取",
-   "summary_long": "原文指出，Google曾在2023年承诺Gmail、Docs和Drive中的个人内容“不会被人工审核员看到”，但更新的帮助页面16836988及10月16日对原博客的修改明确承认，已连接的Drive/邮件会进入人工审核流程，并警告审核员看到的“可能正是邮件或文件”，含机密信息不应连接。测试还显示，即使用户未使用@Drive或@Gmail标签，聊天中提及旅行、账单等个人话题也会自主触发后台Workspace查询；由于工具调用和上下文注入具有概率性，可能出现零检索、元数据/泛化摘要、部分未脱敏摘录、整份文件摄入四种结果。原文用网络服务账单邮件测试，称四种结果均出现。原文最后指出，正则和NER自动清洗不足以去标识化叙事性数据。",
-   "key_points": [
-    "Google更新帮助页面和2023年博客，承认已连接的Drive/邮件会进入人工审核流程，并警告含机密信息不应连接。",
-    "即使用户未用@标签，聊天中提及个人话题也可能自主触发后台Workspace查询；结果具有概率性，包括零检索、摘要、部分未脱敏摘录和整份文件摄入。",
-    "原文用网络服务账单邮件测试称四种结果均出现，并指出正则和NER自动清洗不足以去标识化叙事性数据。"
-   ],
-   "topics": [
-    "privacy"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全",
-    "开源项目"
-   ],
-   "horizon": "short",
-   "score": 80.4,
-   "status": "published",
-   "extra": {
-    "hn_points": 425,
-    "hn_comments": 104,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://blog.google/innovation-and-ai/products/our-responsible-approach-to-building-guardrails-for-generative-ai/",
-      "https://support.google.com/gemini/answer/16836988",
-      "https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-infotypes"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "f37b680abcf7adcb",
-   "url": "https://openai.com/index/control-room",
-   "title": "Control Room: A central system to track and stop model workloads across our research infrastructure",
-   "source": "OpenAI News",
+   "id": "7da1b2b4758f6148",
+   "url": "https://deepmind.google/blog/gemini-robotics-2-5-accelerates-real-world-physical-intelligence/",
+   "title": "Gemini Robotics 2.5 accelerates real-world general dexterity",
+   "source": "Google DeepMind Blog",
    "tier": "S",
-   "published_at": "2026-11-09T13:00:00+00:00",
-   "summary_short": "Control Room：跨研究基础设施追踪模型负载、可快速停止其运行的中央系统",
-   "summary_long": "原文介绍其团队构建的 Control Room：一个跨研究基础设施追踪模型负载，并在出现安全或安保担忧时快速将其停止的中央系统。原文称，随着模型能力增强、相关安全与安保风险变大，能及时发现潜在问题并在需要时迅速让模型停止运行变得愈发关键。Control Room 接入所有研究推理负载，包括用于模型训练与评估的 agentic sampling、数据处理等，并与错位（misalignment）监控系统配合，在做出停止或暂停任务的干预决定后 35 秒内停止模型输出。系统被设计为在其他系统失效时仍能工作，并在 Control Room 自身宕机时也能停止模型输出；目前已部署在研究基础设施中需求最迫切的部分。原文还提到，外部模型服务栈本身更集中，已有成熟的快速下线模型部署的运维能力。\n\n工作原理上，Control Room 整合三类系统：负载（如强化学习实验、评估、大批量采样或数据处理任务）、推理引擎（直接运行在 GPU 上的模型）与中央 Control Room 服务。所有做 agentic 推理的研究负载都必须关联一个获批的安全案例。任务启动时向 Control Room 申请 job_id，每次采样请求携带该 ID 发给推理引擎，引擎再向 Control Room 请求许可；若该任务已被终止，服务拒绝请求，引擎随即拒绝，从而停止该任务后续的模型输出。原文对后续步骤的描述在结尾处被截断",
+   "published_at": "2026-11-09T19:51:47+00:00",
+   "summary_short": "谷歌发布Gemini Robotics 2.5视觉-语言-动作模型，任务成功率提升30%–100%、速度快20%–30%",
+   "summary_long": "原文于11月10日发布，介绍Gemini Robotics 2.5——其迄今能力最强的视觉-语言-动作（VLA）模型，既拓展了机器人可学习的技能范围，也提升了技能获得速度，并改善了灵巧性、可靠性与安全性，以帮助机器人走出实验室、进入更非结构化的真实环境。原文称，此前已将全身智能带给包括人形机器人在内的多种机器人，此次进展很大程度上得益于Gemini 4 Argon加速机器人研究的能力。团队在200多个不同任务上评测该模型，例如用夹子分餐、给礼盒系蝴蝶结、移液，这些任务涉及高级工具使用、可变形物体操作和精细易碎物体处理。相比此前基线，Gemini Robotics 2.5按任务类型成功率高出30%至100%，完成任务快20%至30%。它原生支持多种机器人形态，包括Apptronik的Apollo 2人形机器人（配五指、22自由度SharpaWave手）与使用两指平行夹爪的Franka Duo平台。原文还称，该模型正逐步向机器人合作伙伴开放；文末提到的可操控性与智能体安全性部分内容不完整，具体细节原文未详述。",
    "key_points": [
-    "Control Room 是跨研究基础设施追踪模型负载、并在安全或安保担忧出现时快速停止的中央系统，接入所有研究推理负载。",
-    "它与错位监控系统配合，在做出干预决定后 35 秒内停止模型输出；设计上可在其他系统失效时继续工作，自身宕机时也能停止模型输出。",
-    "机制上由负载、推理引擎与中央服务三部分组成：负载申请 job_id，引擎在每次推理前向 Control Room 请求许可，任务被终止则拒绝输出。"
+    "Gemini Robotics 2.5是原文所称其迄今最强的VLA模型，同时扩大技能广度与学习速度。",
+    "在200多个任务上评测，成功率比此前基线高30%–100%，速度快20%–30%。",
+    "原生适配多种机器人形态：Apptronik Apollo 2人形机器人（22自由度SharpaWave手）与Franka Duo平行夹爪平台。"
    ],
    "topics": [
-    "alignment",
-    "cybersecurity"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "long",
-   "score": 79.2,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Safety"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot/",
-      "https://openai.com/careers/research-engineer-research-scientist-ai-systems-engineer-rsi-san-francisco/",
-      "https://openai.com/careers/researcher-agent-safety-oversight-and-system-mitigations-san-francisco/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "e4687d5a7224be5c",
-   "url": "https://arxiv.org/abs/2610.39076v3",
-   "title": "Tactus: Tactile & Pose Sensing Glove for Natural Dexterity Data Collection",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2026-10-29T00:10:55+00:00",
-   "summary_short": "Tactus：可测指尖力与抗遮挡姿态的织物传感手套，附首个跨平台基准",
-   "summary_long": "机器人灵巧操作策略与世界模型学习需要带精确接触力与手部姿态的自然操作演示数据，但现有可穿戴平台无法同时提供标定过的指尖力传感与抗遮挡手部追踪，且不破坏自然操作行为。Tactus 是织物集成传感手套，围绕三点协同设计：1.5 mm 指尖堆叠的薄型共形 3D 针织结构；依据实测接触研究在操作相关区域布置电容式触觉传感器；融合 IMU 的姿态追踪，在手-物遮挡最严重时仍保持精度；并提供跨手套一致性标定流程与会话级个体校正。作者还提出触觉力回归与手部姿态估计的标准化基准协议，用于 Tactus 与两款商用触觉手套的对比，称这是首个此类量化跨平台评估。结果：95% 置信度下最小可检测力 0.59 N，比商用基线低 1.6–2.7 倍，跨被试一致性 0.87；遮挡最重时指尖关键点相对误差 11.0 mm。原文称这些信号支持物体属性估计、滑动检测与手-物交互记录。",
-   "key_points": [
-    "设计三支柱：1.5 mm 指尖堆叠的 3D 针织共形结构减少对自然操作的干扰；依据实测接触研究在操作相关区域放置电容式触觉传感器；IMU 融合姿态追踪在手-物遮挡下仍保持精度。",
-    "提供跨手套一致性的标定流程与会话级个体化校正，并提出触觉力回归和手部姿态估计的标准化基准协议，用于 Tactus 与两款商用触觉手套的量化对比，原文称这是首个此类跨平台评估。",
-    "指标：95% 置信度下最小可检测力 0.59 N，比商用基线低 1.6–2.7 倍；跨被试一致性 0.87；操作中遮挡最重时指尖关键点相对误差 11.0 mm。"
-   ],
-   "topics": [
-    "post-training",
-    "eval",
-    "open-source"
+    "robotics",
+    "vla",
+    "dexterity"
    ],
    "category": "模型",
    "categories": [
-    "模型",
-    "评测",
-    "研究论文"
+    "模型"
    ],
-   "horizon": "long",
-   "score": 78.9,
+   "horizon": "short",
+   "score": 82.5,
    "status": "published",
    "extra": {
-    "authors": [
-     "Li Guan",
-     "Rachael Granberry",
-     "Sahar Aseeri",
-     "Sahar Rostami",
-     "Taylor Niehues",
-     "Sai Dhanoosh Marri",
-     "Mia Huang",
-     "Dingtian Zhang"
-    ],
-    "author_count": 104,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "Import AI"
-    ],
+    "content_source": "reader",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://developers.googleblog.com/gemini-4-argon-for-robotics?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content="
+     ]
+    },
     "summary_mode": "full"
    }
   },
   {
-   "id": "7b1451fc786c34f9",
-   "url": "https://huggingface.co/blog/amazon/higher-order-pruning-experts",
-   "title": "Your Experts Have Partners. There's HOPE for Keeping Them Together",
+   "id": "3229de0d919212c3",
+   "url": "https://huggingface.co/blog/decision",
+   "title": "Decision Models in Hugging Face",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-11-09T12:34:29+00:00",
-   "summary_short": "HOPE：考虑专家交互的二阶MoE剪枝法，50%剪枝平均排名最佳",
-   "summary_long": "MoE 能把 LLM 扩展到数千亿参数，但推理时每个专家 MLP 都必须占用内存，即使单 token 只激活少数专家；原文称 Qwen3.5-122B 每层 256 个专家、共 48 个 MoE 层，约 250GB 参数内存中 95% 被专家 MLP 占用，而每 token 每层仅用 8 个。专家剪枝通过永久删除最无用专家直接缓解该瓶颈，且无需训练、可与量化组合、避免动态加载/卸载的延迟问题，难点是判断哪些专家可安全删除。现有方法按校准数据给每个专家独立打标量分并逐层剪枝，属于一阶方法，假设专家贡献彼此独立；原文指出专家会形成稳定协同群组、常被共同激活，忽略交互会在激进剪枝下次优。HOPE 是考虑专家成对交互的二阶剪枝法，50% 剪枝时平均排名最佳，在 agentic coding 任务上比次优方法最高提升 6.1%。",
+   "published_at": "2026-11-10T00:00:00+00:00",
+   "summary_short": "Hugging Face 介绍决策模型：不生成文本，直接对既定选项给出概率",
+   "summary_long": "原文以客服工单为例：让 LLM 返回 JSON 虽可行，但提出另一种做法——模型直接评估候选答案并返回概率分布，不生成任何文本。文中给出 pipeline(\"decision\", model=\"autotrust/GEV-26B-Decide\") 示例，输入 state 与带 criteria 的 questions，输出 department 的 choice 为 billing，confidence 约 0.9974。原文定义决策模型：接收输入上下文（state），评估带一组预定义可能答案（primitives）的问题，返回结构化决策及概率；基本接口为 State + Questions + Allowed Answers → Decisions + Probabilities。名称上，TypeSafe AI 提出 Jev 并称其为 System One 模型，社区最终采用 decision model 一词，因其描述模型的计算角色而非某种认知理论。原文列出的不用 LLM 的理由：不保证遵循 schema，可能产出非法 JSON、多余键或选项外答案；Outlines、XGrammar 等约束解码可强制结构但仍有额外开销；生成整段回答并无必要（原文此处截断）。",
    "key_points": [
-    "MoE 推理内存主要由专家 MLP 占用；原文举例 Qwen3.5-122B 约 250GB 参数内存中 95% 被专家 MLP 占用，而每 token 每层仅激活 8 个专家。",
-    "现有专家剪枝方法按校准数据独立给每个专家打标量重要性分，属于一阶方法；原文认为专家会形成稳定协同群组，忽略专家交互会导致激进剪枝下效果次优。",
-    "HOPE 是考虑专家成对交互的二阶剪枝方法；在 50% 剪枝率下取得最佳平均排名，在 agentic coding 任务上比次优剪枝方法最高提升 6.1%。"
+    "决策模型的基本接口是 State + Questions + Allowed Answers → Decisions + Probabilities，即对预设选项打分而非逐 token 生成文本。",
+    "示例用 transformers 的 pipeline(\"decision\") 调用 autotrust/GEV-26B-Decide，输出选项、confidence 以及各选项的概率分布。",
+    "原文指出直接用 LLM 的问题：schema 不保证被遵循、约束解码（Outlines、XGrammar）带来额外开销、生成整段回答没有必要；术语源自 TypeSafe AI 的 Jev（System One 模型），社区改用 decision model。"
    ],
    "topics": [
-    "moe",
-    "expert-pruning"
+    "decision-model",
+    "structured-output"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
    "horizon": "long",
-   "score": 76.8,
+   "score": 79.5,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
-     "arxiv": [
-      "2504.05586",
-      "2504.06792",
-      "2505.20225",
-      "2510.13999",
-      "2510.16411",
-      "2606.15716",
-      "2609.18916"
-     ],
+     "arxiv": [],
      "links": [
-      "https://arxiv.org/abs/2510.13999",
-      "https://arxiv.org/abs/2505.20225",
-      "https://arxiv.org/abs/2510.16411",
-      "https://arxiv.org/abs/2609.18916",
-      "https://huggingface.co/blog/moe-transformers",
-      "https://arxiv.org/abs/2606.15716",
-      "https://arxiv.org/abs/2504.05586",
-      "https://arxiv.org/abs/2504.06792",
-      "https://github.com/awslabs/HOPE",
-      "https://github.com/awslabs/hybrid-model-factory/"
+      "https://github.com/huggingface/blog/blob/main/decision.md",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/decision/decision-models.png",
+      "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+      "https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow",
+      "https://x.com/ariG23498/status/2113220513158009022",
+      "https://github.com/dottxt-ai/outlines",
+      "https://github.com/mlc-ai/xgrammar",
+      "https://huggingface.co/tasks/zero-shot-classification",
+      "https://huggingface.co/docs/transformers/main/en/serve-cli/serving#v1systemone",
+      "https://huggingface.co/blog/ggml-org/decision-models-in-llamacpp",
+      "https://huggingface.co/models?other=decision-model&sort=trending",
+      "https://github.com/huggingface/trl/pull/8040",
+      "https://unsloth.ai/docs/basics/train-your-own-decision-model-with-unsloth"
      ]
     },
     "summary_mode": "full"
+   }
+  },
+  {
+   "id": "6f6fff482120edaf",
+   "url": "https://simonwillison.net/2026/Nov/10/prompting-claude-fable-52/",
+   "title": "Quoting Prompting Claude Fable 5.2",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-10T05:34:14+00:00",
+   "summary_short": "Anthropic文档：声明“代码是你的”可让模型更愿合并重复代码",
+   "summary_long": "Anthropic 在 Claude Fable 5.2 的提示文档中指出，模型会明显受到提示中“它写的代码归谁所有”这一说法的影响。在 Anthropic 针对小型编程任务的测试中，如果提示没有提到代码归属，或者把代码库描述成别人的，模型倾向于在既有结构上继续追加代码，即使这样会重复已有的代码。文档建议，如果希望模型在写代码的同时改进结构，就要明确说明代码库属于它自己，并给出了一句示范提示：“This codebase is yours: what it's for and how it's built are your call, and you'll keep building on it.”测试数据显示，使用这句话时，模型约有一半的尝试会合并重复代码；不使用这句话时，这一比例不到十分之一。原文未详述测试任务的具体规模、适用边界，以及该结论是否适用于更大规模的代码库。",
+   "key_points": [
+    "提示中是否交代代码归属，会影响 Claude Fable 5.2 在小型编程任务中的写法",
+    "未提及归属或把代码库说成他人所有时，模型倾向于在既有结构上追加代码，即使重复已有代码",
+    "明确声明该代码库属于模型自己并让其决定用途与构建方式时，约半数尝试合并了重复代码；无此句时不足十分之一"
+   ],
+   "topics": [
+    "context-engineering",
+    "coding-agent"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 76.5,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "prompt-engineering",
+     "anthropic",
+     "generative-ai",
+     "ai",
+     "llms"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2#say-who-owns-the-code",
+      "https://simonwillison.net/tags/prompt-engineering",
+      "https://simonwillison.net/tags/anthropic",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/claude-mythos-fable"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "fc6b6a56df7b3650",
+   "url": "https://deepmind.google/blog/gemini-4-carbon-is-now-available/",
+   "title": "Gemini 4 Carbon is now available",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-11-10T16:03:47+00:00",
+   "summary_short": "",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "model-release",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 75.4,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://twitter.com/intent/tweet?text=Gemini%204%20Carbon%20is%20now%20available%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+      "https://www.facebook.com/sharer/sharer.php?caption=Gemini%204%20Carbon%20is%20now%20available&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/&title=Gemini%204%20Carbon%20is%20now%20available",
+      "https://blog.google/authors/koray-kavukcuoglu/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+      "https://deepmind.google/fairwind-program/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
+      "https://cursor.com/cursorbench",
+      "https://www.perplexity.ai/hub/blog/wandr-benchmark-evaluating-research-agents-that-must-search-wide-and-deep",
+      "https://zapier.com/benchmarks",
+      "http://antigravity.google/blog/gemini-4-carbon-in-google-antigravity/",
+      "https://aistudio.google.com/prompts/new_chat?model=gemini-4-carbon",
+      "https://cloud.google.com/gemini-enterprise",
+      "https://aistudio.google.com/docs/pricing",
+      "https://one.google.com/about/google-ai-plans",
+      "https://antigravity.google/",
+      "http://gemini.google.com/",
+      "http://aimode.google/",
+      "https://artificialanalysis.ai/evaluations/mka",
+      "https://aistudio.google.com/apps/bundled/pelican-campus-quest",
+      "https://aistudio.google.com/apps/bundled/gemini-supply",
+      "https://github.com/google-gemini/demolab",
+      "https://aistudio.google.com/apps/bundled/koerner-hall",
+      "https://cloud.google.com/transform/how-google-does-it-using-agents-help-find-track-and-fix-vulnerabilities",
+      "https://www.wiz.io/blog/php2shell-php-rce",
+      "https://www.wiz.io/blog/scan-for-good-critical-ai-exposures",
+      "https://deepmind.google/blog/introducing-alphaproof-code",
+      "https://forms.gle/WvmBbPvRbpKG1BPn9",
+      "https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security/",
+      "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_safety_report.pdf",
+      "https://developer.android.com/studio",
+      "http://gemini.google.com",
+      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Carbon-Model-Card.pdf",
+      "https://aistudio.google.com/learn/gemini-4-carbon-developer-guide",
+      "https://aistudio.google.com/docs/whats-new-gemini-4-carbon",
+      "https://policies.google.com/privacy"
+     ]
+    }
    }
   }
  ]
