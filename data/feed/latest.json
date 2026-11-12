@@ -1,408 +1,420 @@
 {
- "generated_at": "2026-11-11T00:04:13+00:00",
- "date": "2026-11-11",
- "run_id": "20261111-000222",
+ "generated_at": "2026-11-12T01:34:32+00:00",
+ "date": "2026-11-12",
+ "run_id": "20261112-013215",
  "top": [
   {
-   "id": "7da1b2b4758f6148",
-   "url": "https://deepmind.google/blog/gemini-robotics-2-5-accelerates-real-world-physical-intelligence/",
-   "title": "Gemini Robotics 2.5 accelerates real-world general dexterity",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-11-09T19:51:47+00:00",
-   "summary_short": "谷歌发布Gemini Robotics 2.5视觉-语言-动作模型，任务成功率提升30%–100%、速度快20%–30%",
-   "summary_long": "原文于11月10日发布，介绍Gemini Robotics 2.5——其迄今能力最强的视觉-语言-动作（VLA）模型，既拓展了机器人可学习的技能范围，也提升了技能获得速度，并改善了灵巧性、可靠性与安全性，以帮助机器人走出实验室、进入更非结构化的真实环境。原文称，此前已将全身智能带给包括人形机器人在内的多种机器人，此次进展很大程度上得益于Gemini 4 Argon加速机器人研究的能力。团队在200多个不同任务上评测该模型，例如用夹子分餐、给礼盒系蝴蝶结、移液，这些任务涉及高级工具使用、可变形物体操作和精细易碎物体处理。相比此前基线，Gemini Robotics 2.5按任务类型成功率高出30%至100%，完成任务快20%至30%。它原生支持多种机器人形态，包括Apptronik的Apollo 2人形机器人（配五指、22自由度SharpaWave手）与使用两指平行夹爪的Franka Duo平台。原文还称，该模型正逐步向机器人合作伙伴开放；文末提到的可操控性与智能体安全性部分内容不完整，具体细节原文未详述。",
-   "key_points": [
-    "Gemini Robotics 2.5是原文所称其迄今最强的VLA模型，同时扩大技能广度与学习速度。",
-    "在200多个任务上评测，成功率比此前基线高30%–100%，速度快20%–30%。",
-    "原生适配多种机器人形态：Apptronik Apollo 2人形机器人（22自由度SharpaWave手）与Franka Duo平行夹爪平台。"
-   ],
-   "topics": [
-    "robotics",
-    "vla",
-    "dexterity"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 82.5,
-   "status": "published",
-   "extra": {
-    "content_source": "reader",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://developers.googleblog.com/gemini-4-argon-for-robotics?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content="
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "3229de0d919212c3",
-   "url": "https://huggingface.co/blog/decision",
-   "title": "Decision Models in Hugging Face",
+   "id": "d2296a64c0dc3b89",
+   "url": "https://huggingface.co/blog/token-pooling",
+   "title": "Token Pooling-Aware Training for Multi-Vector Embedding Models",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-11-10T00:00:00+00:00",
-   "summary_short": "Hugging Face 介绍决策模型：不生成文本，直接对既定选项给出概率",
-   "summary_long": "原文以客服工单为例：让 LLM 返回 JSON 虽可行，但提出另一种做法——模型直接评估候选答案并返回概率分布，不生成任何文本。文中给出 pipeline(\"decision\", model=\"autotrust/GEV-26B-Decide\") 示例，输入 state 与带 criteria 的 questions，输出 department 的 choice 为 billing，confidence 约 0.9974。原文定义决策模型：接收输入上下文（state），评估带一组预定义可能答案（primitives）的问题，返回结构化决策及概率；基本接口为 State + Questions + Allowed Answers → Decisions + Probabilities。名称上，TypeSafe AI 提出 Jev 并称其为 System One 模型，社区最终采用 decision model 一词，因其描述模型的计算角色而非某种认知理论。原文列出的不用 LLM 的理由：不保证遵循 schema，可能产出非法 JSON、多余键或选项外答案；Outlines、XGrammar 等约束解码可强制结构但仍有额外开销；生成整段回答并无必要（原文此处截断）。",
+   "published_at": "2026-11-11T00:00:00+00:00",
+   "summary_short": "池化感知训练让多向量嵌入在4倍压缩下保留97.8%的未池化检索质量",
+   "summary_long": "原文讨论多向量嵌入模型在检索中表达力强、但文档向量数量庞大的存储问题，并介绍 token pooling 与池化感知训练。多向量模型为每个查询 token 保留匹配机会，文档侧会积累大量向量；即使使用 Fast-PLAID 的 2-bit/4-bit 残差量化，百万文档仍可能达到 12.8 GB，把每篇文档池化到 50 个向量可降至 3.2 GB。Token pooling 用 Ward 层次聚类合并相似 token 向量，以组均值表示并重新归一化，供 MaxSim 打分。池化越激进越容易丢失有用信息，池化感知训练让编码器在向量被合并时保留重要信息。原文给出的结果：pool_factor=4 时，常规训练模型保留未池化 NanoBEIR nDCG@10 的 94.6%，文档向量减少 4 倍；池化感知训练在同一存储预算下把保留率提高到 97.8%。文章还用 Sentence Transformers 给出可复现示例，并讨论质量与存储权衡。",
    "key_points": [
-    "决策模型的基本接口是 State + Questions + Allowed Answers → Decisions + Probabilities，即对预设选项打分而非逐 token 生成文本。",
-    "示例用 transformers 的 pipeline(\"decision\") 调用 autotrust/GEV-26B-Decide，输出选项、confidence 以及各选项的概率分布。",
-    "原文指出直接用 LLM 的问题：schema 不保证被遵循、约束解码（Outlines、XGrammar）带来额外开销、生成整段回答没有必要；术语源自 TypeSafe AI 的 Jev（System One 模型），社区改用 decision model。"
+    "多向量模型为每个查询 token 保留匹配机会，表达力强，但文档向量数量会快速膨胀；Fast-PLAID 量化下，200 个 128 维向量每文档需 12.8 KB，百万文档达 12.8 GB。",
+    "Token pooling 用 Ward 层次聚类合并相似 token 向量，按组均值表示并归一化，以适配 MaxSim 打分；压缩越强越可能丢失有用信息。",
+    "池化感知训练让编码器在合并时保留重要信息；pool_factor=4 时，常规模型保留 94.6% 未池化 NanoBEIR nDCG@10，池化感知训练提升到 97.8%，且文档向量减少 4 倍。"
    ],
    "topics": [
-    "decision-model",
-    "structured-output"
+    "post-training",
+    "rag"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
    "horizon": "long",
-   "score": 79.5,
+   "score": 82.5,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/decision.md",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/decision/decision-models.png",
-      "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
-      "https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow",
-      "https://x.com/ariG23498/status/2113220513158009022",
-      "https://github.com/dottxt-ai/outlines",
-      "https://github.com/mlc-ai/xgrammar",
-      "https://huggingface.co/tasks/zero-shot-classification",
-      "https://huggingface.co/docs/transformers/main/en/serve-cli/serving#v1systemone",
-      "https://huggingface.co/blog/ggml-org/decision-models-in-llamacpp",
-      "https://huggingface.co/models?other=decision-model&sort=trending",
-      "https://github.com/huggingface/trl/pull/8040",
-      "https://unsloth.ai/docs/basics/train-your-own-decision-model-with-unsloth"
+      "https://github.com/huggingface/blog/blob/main/token-pooling.md",
+      "https://stefan-jo.github.io/learn-to-pool/downloads/paper.pdf",
+      "https://huggingface.co/blog/lightonai/lateon-hpool-regularization",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/token-pooling/mve_token_pooling_results.png",
+      "https://huggingface.co/blog/multi-vector-encoder",
+      "https://github.com/lightonai/fast-plaid",
+      "https://sbert.net/docs/package_reference/multi_vector_encoder/modules.html#hierarchicaltokenpooling",
+      "https://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering",
+      "https://huggingface.co/blog/matryoshka",
+      "https://sbert.net/docs/package_reference/multi_vector_encoder/losses.html#multivectortokenpoolingloss",
+      "https://github.com/huggingface/sentence-transformers/blob/main/examples/multi_vector_encoder/training/token_pooling/training_cached_contrastive.py",
+      "https://docs.astral.sh/uv/getting-started/installation/",
+      "https://huggingface.co/docs/hub/jobs-quickstart",
+      "https://sbert.net/docs/multi_vector_encoder/usage/kernels.html",
+      "https://huggingface.co/kernels/sentence-transformers/late-interaction-kernels",
+      "https://huggingface.co/kernels/sentence-transformers/ward-clustering",
+      "https://huggingface.co/tomaarsen/mve-ModernBERT-base-token-pooling-baseline",
+      "https://huggingface.co/tomaarsen/mve-ModernBERT-base-token-pooling",
+      "https://sbert.net/examples/multi_vector_encoder/training/matryoshka/README.html",
+      "https://sbert.net/examples/multi_vector_encoder/training/token_pooling/README.html",
+      "https://github.com/huggingface/sentence-transformers/blob/main/examples/multi_vector_encoder/training/token_pooling/evaluate_token_pooling.py",
+      "https://stefan-jo.github.io/learn-to-pool",
+      "https://huggingface.co/papers/2409.14683",
+      "https://huggingface.co/papers/2101.06983",
+      "https://huggingface.co/collections/sentence-transformers/multivectorencoder-integrations"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "6f6fff482120edaf",
-   "url": "https://simonwillison.net/2026/Nov/10/prompting-claude-fable-52/",
-   "title": "Quoting Prompting Claude Fable 5.2",
-   "source": "Simon Willison",
+   "id": "ae3c6c28ceab44c4",
+   "url": "https://www.vulncheck.com/blog/anthropic-glasswing-november-update",
+   "title": "Tracking Anthropic-discovered vulnerabilities",
+   "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-11-10T05:34:14+00:00",
-   "summary_short": "Anthropic文档：声明“代码是你的”可让模型更愿合并重复代码",
-   "summary_long": "Anthropic 在 Claude Fable 5.2 的提示文档中指出，模型会明显受到提示中“它写的代码归谁所有”这一说法的影响。在 Anthropic 针对小型编程任务的测试中，如果提示没有提到代码归属，或者把代码库描述成别人的，模型倾向于在既有结构上继续追加代码，即使这样会重复已有的代码。文档建议，如果希望模型在写代码的同时改进结构，就要明确说明代码库属于它自己，并给出了一句示范提示：“This codebase is yours: what it's for and how it's built are your call, and you'll keep building on it.”测试数据显示，使用这句话时，模型约有一半的尝试会合并重复代码；不使用这句话时，这一比例不到十分之一。原文未详述测试任务的具体规模、适用边界，以及该结论是否适用于更大规模的代码库。",
+   "published_at": "2026-11-10T22:17:56+00:00",
+   "summary_short": "442个Anthropic相关CVE中仅2个在野利用",
+   "summary_long": "Project Glasswing启动七个月后，VulnCheck更新追踪：可归因于Anthropic的CVE共442个，约占今年已发布93,450个CVE的0.5%，其中仅2个被发现在野利用。Anthropic自身账本列出37,966项发现，仅7,349项（19.4%）公开、217项标记修复；自9月以来新增近12,000项发现，仅多15项修复，发现与修复差距扩大。约1,654项（4.4%）被标为重复，接近修复数的八倍，另有419项撤回。其宣称的真实正例率从90.8%升至94.2%，原文称这引发如何计入重复和撤回发现的疑问。OSS Scanner把验证工作转移给维护者；curl将34份已发布报告中的19份拒为漏洞，确认6份为低危，另有9份待评估。",
    "key_points": [
-    "提示中是否交代代码归属，会影响 Claude Fable 5.2 在小型编程任务中的写法",
-    "未提及归属或把代码库说成他人所有时，模型倾向于在既有结构上追加代码，即使重复已有代码",
-    "明确声明该代码库属于模型自己并让其决定用途与构建方式时，约半数尝试合并了重复代码；无此句时不足十分之一"
+    "七个月追踪到442个可归因于Anthropic的CVE，约占今年全部CVE的0.5%，仅2个被发现在野利用。",
+    "Anthropic账本37,966项发现中仅7,349项公开（19.4%）、217项修复；9月以来新增近12,000项发现仅增15项修复。",
+    "约1,654项被标为重复、419项撤回；宣称真实正例率升至94.2%引发疑问；curl将34份报告中19份拒为漏洞。"
    ],
    "topics": [
-    "context-engineering",
-    "coding-agent"
+    "cybersecurity"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 78.9,
+   "status": "published",
+   "extra": {
+    "hn_points": 447,
+    "hn_comments": 218,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://console.vulncheck.com/signin",
+      "https://www.vulncheck.com/blog/anthropic-glasswing-cves",
+      "https://www.vulncheck.com/blog/anthropic-ledger",
+      "https://www.vulncheck.com/blog/state-of-exploitation-1h-2026#has-anthropic-glasswing-lived-up-to-the-hype-it-brought-this-year",
+      "https://www.vulncheck.com/blog/anthropic-glasswing-receipts",
+      "https://github.com/patrickmgarrity/Anthropic-Credited-CVEs",
+      "https://red.anthropic.com/2026/cvd/ledger/",
+      "https://www.anthropic.com/research/launching-opt-in-vuln-finding-service-for-open-source",
+      "https://github.com/anthropics/oss-scanner",
+      "https://www.linkedin.com/in/danielstenberg/",
+      "https://www.linkedin.com/feed/update/urn:li:share:7524224297595269120/",
+      "https://daniel.haxx.se/blog/2026/05/11/mythos-finds-a-curl-vulnerability/",
+      "https://vulncheck.com/product/exploit-intelligence"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "e879c6fc35d4933f",
+   "url": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/",
+   "title": "AlphaGenome 2: Deciphering how cells read DNA to better understand disease",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-11-11T15:00:15+00:00",
+   "summary_short": "AlphaGenome 2：改条件式DNA模型，按细胞类型预测变异影响，检出量近乎翻倍",
+   "summary_long": "人体每个细胞携带相同DNA，不同细胞类型靠开关不同基因完成各自功能。Human Cell Atlas等全球计划正测绘数百万细胞的基因表达，但预测DNA细微变异如何影响特定细胞中的表达仍是未解难题。继去年推出在宽泛组织层面预测变异影响的AlphaGenome、以及覆盖全部90亿种单字母变化的AlphaGenome Atlas后，团队发布AlphaGenome 2。它由并行输出改为条件模型：在输入百万字母DNA序列的同时输入一个组织、细胞类型或状态，并在架构每一层使用该条件，从而学习同一段DNA在不同细胞中被读取的差异；条件可取自参考目录，也可由用户自己的单细胞实验经cell encoder即时生成。模型基于68种组织、逾1亿个单细胞图谱训练，识别出的改变基因表达的变异约为此前最先进模型的两倍，并能预测模型未见过的细胞与疾病状态。它还支持跨模态填补，例如只输入单细胞基因活性即可预测染色质可及性。模型即日起通过AlphaGenome API开放非商业研究使用，商业研究为私密预览。",
+   "key_points": [
+    "模型从并行输出改为条件模型，条件（组织、细胞类型或状态）在架构每一层注入，以捕捉相近细胞类型间的细微差异",
+    "基于68种组织逾1亿个单细胞图谱训练，识别出的改变基因表达的变异数量约为此前最先进模型的两倍，且可预测未见过的细胞与疾病状态",
+    "支持跨模态填补（如由单细胞基因活性预测染色质可及性）；即日起经AlphaGenome API开放非商业研究，商业研究为私密预览"
+   ],
+   "topics": [
+    "genomics",
+    "single-cell",
+    "foundation-model"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 76.8,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/alphagenome-2.pdf",
+      "https://deepmind.google/blog/alphagenome-ai-for-better-understanding-the-genome/",
+      "https://deepmind.google/blog/alphagenome-atlas-a-predictive-map-of-every-possible-dna-letter-change-in-the-human-genome/",
+      "https://www.nature.com/articles/s41586-024-07501-1",
+      "https://www.alphagenomedocs.com/",
+      "https://www.alphagenomecommunity.com/",
+      "https://forms.gle/ftBfHGH7NUrCZEjN6"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "9656e9adb8553921",
+   "url": "https://blog.modelcontextprotocol.io/posts/exploring-file-uploads-and-downloads-in-mcp/",
+   "title": "Exploring File Uploads and Downloads in MCP",
+   "source": "MCP Official Blog",
+   "tier": "S",
+   "published_at": "2026-11-10T09:00:00+00:00",
+   "summary_short": "MCP 发布实验性文件上传/下载扩展草案，公开征求意见",
+   "summary_long": "MCP 最初只是把模型连接到工具的简单方式，但过去两年社区项目野心渐长，许多 MCP 服务器项目需要处理文件：把对话中的 PDF 存进云存储、把大 CSV 拉进代码沙箱都是常见需求，目前却要靠大量定制的工具约定和传输机制。原文称，因客户讨论中该需求反复出现，其启动了 File Uploads 工作组，用一个月时间拿出粗略的扩展定义，希望开发者试用。该工作仍属实验性质：形态已勾勒，但尚无参考实现，作者预计与云存储、数据库导入导出等第三方服务集成后内部机制会有较大变化；扩展保持可选，不支持的客户端与服务器无需改动，目标年底前定稿并稳定。设计上模型无需逐字节读取文件，文件直接送往目的地；扩展标识为 io.modelcontextprotocol/files，服务器在 server/discover 中声明 upload 与 maxInlineBytes，工具参数用 x-mcp-file 标记。",
+   "key_points": [
+    "MCP 服务器处理文件的需求（PDF 存云存储、大 CSV 进沙箱）此前需大量定制约定，因此启动了 File Uploads 工作组",
+    "扩展草案仍属实验性，尚无参考实现，与第三方文件服务集成后内部机制可能大改，目标年底前定稿并稳定",
+    "扩展保持可选：不支持它的客户端与服务器无需任何改动"
+   ],
+   "topics": [
+    "mcp",
+    "tool-use"
    ],
    "category": "Agent 与开发",
    "categories": [
     "Agent 与开发"
    ],
-   "horizon": "long",
-   "score": 76.5,
+   "horizon": "short",
+   "score": 75.3,
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "source_tags": [
-     "prompt-engineering",
-     "anthropic",
-     "generative-ai",
-     "ai",
-     "llms"
-    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2#say-who-owns-the-code",
-      "https://simonwillison.net/tags/prompt-engineering",
-      "https://simonwillison.net/tags/anthropic",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/claude-mythos-fable"
+      "https://modelcontextprotocol.io/community/working-groups/file-uploads",
+      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/blob/main/specification/draft/file-uploads.md",
+      "https://modelcontextprotocol.io/specification/2026-07-28/server/tools#x-mcp-header",
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic#statelessness",
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/mrtr",
+      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/blob/main/specification/draft/file-uploads.md#open-questions",
+      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/blob/main/specification/draft/file-uploads.md#security-implications",
+      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads",
+      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/issues",
+      "https://discord.com/channels/1358869848138059966/1497669234564661438",
+      "https://modelcontextprotocol.io/community/communication",
+      "https://github.com/jayzuccarelli",
+      "https://github.com/kevklam",
+      "https://github.com/kziemski",
+      "https://github.com/kurtisvg",
+      "https://github.com/meastes",
+      "https://github.com/patrick-rodgers",
+      "https://github.com/tsarlandie-oai",
+      "https://github.com/modelcontextprotocol/modelcontextprotocol/discussions?discussions_q=Files+Working+Group+Meeting+in%3Atitle"
      ]
     },
     "summary_mode": "full"
-   }
-  },
-  {
-   "id": "fc6b6a56df7b3650",
-   "url": "https://deepmind.google/blog/gemini-4-carbon-is-now-available/",
-   "title": "Gemini 4 Carbon is now available",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-11-10T16:03:47+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "model-release",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 75.4,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://twitter.com/intent/tweet?text=Gemini%204%20Carbon%20is%20now%20available%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
-      "https://www.facebook.com/sharer/sharer.php?caption=Gemini%204%20Carbon%20is%20now%20available&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/&title=Gemini%204%20Carbon%20is%20now%20available",
-      "https://blog.google/authors/koray-kavukcuoglu/",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
-      "https://deepmind.google/fairwind-program/",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
-      "https://cursor.com/cursorbench",
-      "https://www.perplexity.ai/hub/blog/wandr-benchmark-evaluating-research-agents-that-must-search-wide-and-deep",
-      "https://zapier.com/benchmarks",
-      "http://antigravity.google/blog/gemini-4-carbon-in-google-antigravity/",
-      "https://aistudio.google.com/prompts/new_chat?model=gemini-4-carbon",
-      "https://cloud.google.com/gemini-enterprise",
-      "https://aistudio.google.com/docs/pricing",
-      "https://one.google.com/about/google-ai-plans",
-      "https://antigravity.google/",
-      "http://gemini.google.com/",
-      "http://aimode.google/",
-      "https://artificialanalysis.ai/evaluations/mka",
-      "https://aistudio.google.com/apps/bundled/pelican-campus-quest",
-      "https://aistudio.google.com/apps/bundled/gemini-supply",
-      "https://github.com/google-gemini/demolab",
-      "https://aistudio.google.com/apps/bundled/koerner-hall",
-      "https://cloud.google.com/transform/how-google-does-it-using-agents-help-find-track-and-fix-vulnerabilities",
-      "https://www.wiz.io/blog/php2shell-php-rce",
-      "https://www.wiz.io/blog/scan-for-good-critical-ai-exposures",
-      "https://deepmind.google/blog/introducing-alphaproof-code",
-      "https://forms.gle/WvmBbPvRbpKG1BPn9",
-      "https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security/",
-      "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_safety_report.pdf",
-      "https://developer.android.com/studio",
-      "http://gemini.google.com",
-      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Carbon-Model-Card.pdf",
-      "https://aistudio.google.com/learn/gemini-4-carbon-developer-guide",
-      "https://aistudio.google.com/docs/whats-new-gemini-4-carbon",
-      "https://policies.google.com/privacy"
-     ]
-    }
    }
   }
  ],
  "items": [
   {
-   "id": "7da1b2b4758f6148",
-   "url": "https://deepmind.google/blog/gemini-robotics-2-5-accelerates-real-world-physical-intelligence/",
-   "title": "Gemini Robotics 2.5 accelerates real-world general dexterity",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-11-09T19:51:47+00:00",
-   "summary_short": "谷歌发布Gemini Robotics 2.5视觉-语言-动作模型，任务成功率提升30%–100%、速度快20%–30%",
-   "summary_long": "原文于11月10日发布，介绍Gemini Robotics 2.5——其迄今能力最强的视觉-语言-动作（VLA）模型，既拓展了机器人可学习的技能范围，也提升了技能获得速度，并改善了灵巧性、可靠性与安全性，以帮助机器人走出实验室、进入更非结构化的真实环境。原文称，此前已将全身智能带给包括人形机器人在内的多种机器人，此次进展很大程度上得益于Gemini 4 Argon加速机器人研究的能力。团队在200多个不同任务上评测该模型，例如用夹子分餐、给礼盒系蝴蝶结、移液，这些任务涉及高级工具使用、可变形物体操作和精细易碎物体处理。相比此前基线，Gemini Robotics 2.5按任务类型成功率高出30%至100%，完成任务快20%至30%。它原生支持多种机器人形态，包括Apptronik的Apollo 2人形机器人（配五指、22自由度SharpaWave手）与使用两指平行夹爪的Franka Duo平台。原文还称，该模型正逐步向机器人合作伙伴开放；文末提到的可操控性与智能体安全性部分内容不完整，具体细节原文未详述。",
-   "key_points": [
-    "Gemini Robotics 2.5是原文所称其迄今最强的VLA模型，同时扩大技能广度与学习速度。",
-    "在200多个任务上评测，成功率比此前基线高30%–100%，速度快20%–30%。",
-    "原生适配多种机器人形态：Apptronik Apollo 2人形机器人（22自由度SharpaWave手）与Franka Duo平行夹爪平台。"
-   ],
-   "topics": [
-    "robotics",
-    "vla",
-    "dexterity"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 82.5,
-   "status": "published",
-   "extra": {
-    "content_source": "reader",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://developers.googleblog.com/gemini-4-argon-for-robotics?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content="
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "3229de0d919212c3",
-   "url": "https://huggingface.co/blog/decision",
-   "title": "Decision Models in Hugging Face",
+   "id": "d2296a64c0dc3b89",
+   "url": "https://huggingface.co/blog/token-pooling",
+   "title": "Token Pooling-Aware Training for Multi-Vector Embedding Models",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-11-10T00:00:00+00:00",
-   "summary_short": "Hugging Face 介绍决策模型：不生成文本，直接对既定选项给出概率",
-   "summary_long": "原文以客服工单为例：让 LLM 返回 JSON 虽可行，但提出另一种做法——模型直接评估候选答案并返回概率分布，不生成任何文本。文中给出 pipeline(\"decision\", model=\"autotrust/GEV-26B-Decide\") 示例，输入 state 与带 criteria 的 questions，输出 department 的 choice 为 billing，confidence 约 0.9974。原文定义决策模型：接收输入上下文（state），评估带一组预定义可能答案（primitives）的问题，返回结构化决策及概率；基本接口为 State + Questions + Allowed Answers → Decisions + Probabilities。名称上，TypeSafe AI 提出 Jev 并称其为 System One 模型，社区最终采用 decision model 一词，因其描述模型的计算角色而非某种认知理论。原文列出的不用 LLM 的理由：不保证遵循 schema，可能产出非法 JSON、多余键或选项外答案；Outlines、XGrammar 等约束解码可强制结构但仍有额外开销；生成整段回答并无必要（原文此处截断）。",
+   "published_at": "2026-11-11T00:00:00+00:00",
+   "summary_short": "池化感知训练让多向量嵌入在4倍压缩下保留97.8%的未池化检索质量",
+   "summary_long": "原文讨论多向量嵌入模型在检索中表达力强、但文档向量数量庞大的存储问题，并介绍 token pooling 与池化感知训练。多向量模型为每个查询 token 保留匹配机会，文档侧会积累大量向量；即使使用 Fast-PLAID 的 2-bit/4-bit 残差量化，百万文档仍可能达到 12.8 GB，把每篇文档池化到 50 个向量可降至 3.2 GB。Token pooling 用 Ward 层次聚类合并相似 token 向量，以组均值表示并重新归一化，供 MaxSim 打分。池化越激进越容易丢失有用信息，池化感知训练让编码器在向量被合并时保留重要信息。原文给出的结果：pool_factor=4 时，常规训练模型保留未池化 NanoBEIR nDCG@10 的 94.6%，文档向量减少 4 倍；池化感知训练在同一存储预算下把保留率提高到 97.8%。文章还用 Sentence Transformers 给出可复现示例，并讨论质量与存储权衡。",
    "key_points": [
-    "决策模型的基本接口是 State + Questions + Allowed Answers → Decisions + Probabilities，即对预设选项打分而非逐 token 生成文本。",
-    "示例用 transformers 的 pipeline(\"decision\") 调用 autotrust/GEV-26B-Decide，输出选项、confidence 以及各选项的概率分布。",
-    "原文指出直接用 LLM 的问题：schema 不保证被遵循、约束解码（Outlines、XGrammar）带来额外开销、生成整段回答没有必要；术语源自 TypeSafe AI 的 Jev（System One 模型），社区改用 decision model。"
+    "多向量模型为每个查询 token 保留匹配机会，表达力强，但文档向量数量会快速膨胀；Fast-PLAID 量化下，200 个 128 维向量每文档需 12.8 KB，百万文档达 12.8 GB。",
+    "Token pooling 用 Ward 层次聚类合并相似 token 向量，按组均值表示并归一化，以适配 MaxSim 打分；压缩越强越可能丢失有用信息。",
+    "池化感知训练让编码器在合并时保留重要信息；pool_factor=4 时，常规模型保留 94.6% 未池化 NanoBEIR nDCG@10，池化感知训练提升到 97.8%，且文档向量减少 4 倍。"
    ],
    "topics": [
-    "decision-model",
-    "structured-output"
+    "post-training",
+    "rag"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
    "horizon": "long",
-   "score": 79.5,
+   "score": 82.5,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/decision.md",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/decision/decision-models.png",
-      "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
-      "https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow",
-      "https://x.com/ariG23498/status/2113220513158009022",
-      "https://github.com/dottxt-ai/outlines",
-      "https://github.com/mlc-ai/xgrammar",
-      "https://huggingface.co/tasks/zero-shot-classification",
-      "https://huggingface.co/docs/transformers/main/en/serve-cli/serving#v1systemone",
-      "https://huggingface.co/blog/ggml-org/decision-models-in-llamacpp",
-      "https://huggingface.co/models?other=decision-model&sort=trending",
-      "https://github.com/huggingface/trl/pull/8040",
-      "https://unsloth.ai/docs/basics/train-your-own-decision-model-with-unsloth"
+      "https://github.com/huggingface/blog/blob/main/token-pooling.md",
+      "https://stefan-jo.github.io/learn-to-pool/downloads/paper.pdf",
+      "https://huggingface.co/blog/lightonai/lateon-hpool-regularization",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/token-pooling/mve_token_pooling_results.png",
+      "https://huggingface.co/blog/multi-vector-encoder",
+      "https://github.com/lightonai/fast-plaid",
+      "https://sbert.net/docs/package_reference/multi_vector_encoder/modules.html#hierarchicaltokenpooling",
+      "https://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering",
+      "https://huggingface.co/blog/matryoshka",
+      "https://sbert.net/docs/package_reference/multi_vector_encoder/losses.html#multivectortokenpoolingloss",
+      "https://github.com/huggingface/sentence-transformers/blob/main/examples/multi_vector_encoder/training/token_pooling/training_cached_contrastive.py",
+      "https://docs.astral.sh/uv/getting-started/installation/",
+      "https://huggingface.co/docs/hub/jobs-quickstart",
+      "https://sbert.net/docs/multi_vector_encoder/usage/kernels.html",
+      "https://huggingface.co/kernels/sentence-transformers/late-interaction-kernels",
+      "https://huggingface.co/kernels/sentence-transformers/ward-clustering",
+      "https://huggingface.co/tomaarsen/mve-ModernBERT-base-token-pooling-baseline",
+      "https://huggingface.co/tomaarsen/mve-ModernBERT-base-token-pooling",
+      "https://sbert.net/examples/multi_vector_encoder/training/matryoshka/README.html",
+      "https://sbert.net/examples/multi_vector_encoder/training/token_pooling/README.html",
+      "https://github.com/huggingface/sentence-transformers/blob/main/examples/multi_vector_encoder/training/token_pooling/evaluate_token_pooling.py",
+      "https://stefan-jo.github.io/learn-to-pool",
+      "https://huggingface.co/papers/2409.14683",
+      "https://huggingface.co/papers/2101.06983",
+      "https://huggingface.co/collections/sentence-transformers/multivectorencoder-integrations"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "6f6fff482120edaf",
-   "url": "https://simonwillison.net/2026/Nov/10/prompting-claude-fable-52/",
-   "title": "Quoting Prompting Claude Fable 5.2",
-   "source": "Simon Willison",
+   "id": "ae3c6c28ceab44c4",
+   "url": "https://www.vulncheck.com/blog/anthropic-glasswing-november-update",
+   "title": "Tracking Anthropic-discovered vulnerabilities",
+   "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-11-10T05:34:14+00:00",
-   "summary_short": "Anthropic文档：声明“代码是你的”可让模型更愿合并重复代码",
-   "summary_long": "Anthropic 在 Claude Fable 5.2 的提示文档中指出，模型会明显受到提示中“它写的代码归谁所有”这一说法的影响。在 Anthropic 针对小型编程任务的测试中，如果提示没有提到代码归属，或者把代码库描述成别人的，模型倾向于在既有结构上继续追加代码，即使这样会重复已有的代码。文档建议，如果希望模型在写代码的同时改进结构，就要明确说明代码库属于它自己，并给出了一句示范提示：“This codebase is yours: what it's for and how it's built are your call, and you'll keep building on it.”测试数据显示，使用这句话时，模型约有一半的尝试会合并重复代码；不使用这句话时，这一比例不到十分之一。原文未详述测试任务的具体规模、适用边界，以及该结论是否适用于更大规模的代码库。",
+   "published_at": "2026-11-10T22:17:56+00:00",
+   "summary_short": "442个Anthropic相关CVE中仅2个在野利用",
+   "summary_long": "Project Glasswing启动七个月后，VulnCheck更新追踪：可归因于Anthropic的CVE共442个，约占今年已发布93,450个CVE的0.5%，其中仅2个被发现在野利用。Anthropic自身账本列出37,966项发现，仅7,349项（19.4%）公开、217项标记修复；自9月以来新增近12,000项发现，仅多15项修复，发现与修复差距扩大。约1,654项（4.4%）被标为重复，接近修复数的八倍，另有419项撤回。其宣称的真实正例率从90.8%升至94.2%，原文称这引发如何计入重复和撤回发现的疑问。OSS Scanner把验证工作转移给维护者；curl将34份已发布报告中的19份拒为漏洞，确认6份为低危，另有9份待评估。",
    "key_points": [
-    "提示中是否交代代码归属，会影响 Claude Fable 5.2 在小型编程任务中的写法",
-    "未提及归属或把代码库说成他人所有时，模型倾向于在既有结构上追加代码，即使重复已有代码",
-    "明确声明该代码库属于模型自己并让其决定用途与构建方式时，约半数尝试合并了重复代码；无此句时不足十分之一"
+    "七个月追踪到442个可归因于Anthropic的CVE，约占今年全部CVE的0.5%，仅2个被发现在野利用。",
+    "Anthropic账本37,966项发现中仅7,349项公开（19.4%）、217项修复；9月以来新增近12,000项发现仅增15项修复。",
+    "约1,654项被标为重复、419项撤回；宣称真实正例率升至94.2%引发疑问；curl将34份报告中19份拒为漏洞。"
    ],
    "topics": [
-    "context-engineering",
-    "coding-agent"
+    "cybersecurity"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 78.9,
+   "status": "published",
+   "extra": {
+    "hn_points": 447,
+    "hn_comments": 218,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://console.vulncheck.com/signin",
+      "https://www.vulncheck.com/blog/anthropic-glasswing-cves",
+      "https://www.vulncheck.com/blog/anthropic-ledger",
+      "https://www.vulncheck.com/blog/state-of-exploitation-1h-2026#has-anthropic-glasswing-lived-up-to-the-hype-it-brought-this-year",
+      "https://www.vulncheck.com/blog/anthropic-glasswing-receipts",
+      "https://github.com/patrickmgarrity/Anthropic-Credited-CVEs",
+      "https://red.anthropic.com/2026/cvd/ledger/",
+      "https://www.anthropic.com/research/launching-opt-in-vuln-finding-service-for-open-source",
+      "https://github.com/anthropics/oss-scanner",
+      "https://www.linkedin.com/in/danielstenberg/",
+      "https://www.linkedin.com/feed/update/urn:li:share:7524224297595269120/",
+      "https://daniel.haxx.se/blog/2026/05/11/mythos-finds-a-curl-vulnerability/",
+      "https://vulncheck.com/product/exploit-intelligence"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "e879c6fc35d4933f",
+   "url": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/",
+   "title": "AlphaGenome 2: Deciphering how cells read DNA to better understand disease",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-11-11T15:00:15+00:00",
+   "summary_short": "AlphaGenome 2：改条件式DNA模型，按细胞类型预测变异影响，检出量近乎翻倍",
+   "summary_long": "人体每个细胞携带相同DNA，不同细胞类型靠开关不同基因完成各自功能。Human Cell Atlas等全球计划正测绘数百万细胞的基因表达，但预测DNA细微变异如何影响特定细胞中的表达仍是未解难题。继去年推出在宽泛组织层面预测变异影响的AlphaGenome、以及覆盖全部90亿种单字母变化的AlphaGenome Atlas后，团队发布AlphaGenome 2。它由并行输出改为条件模型：在输入百万字母DNA序列的同时输入一个组织、细胞类型或状态，并在架构每一层使用该条件，从而学习同一段DNA在不同细胞中被读取的差异；条件可取自参考目录，也可由用户自己的单细胞实验经cell encoder即时生成。模型基于68种组织、逾1亿个单细胞图谱训练，识别出的改变基因表达的变异约为此前最先进模型的两倍，并能预测模型未见过的细胞与疾病状态。它还支持跨模态填补，例如只输入单细胞基因活性即可预测染色质可及性。模型即日起通过AlphaGenome API开放非商业研究使用，商业研究为私密预览。",
+   "key_points": [
+    "模型从并行输出改为条件模型，条件（组织、细胞类型或状态）在架构每一层注入，以捕捉相近细胞类型间的细微差异",
+    "基于68种组织逾1亿个单细胞图谱训练，识别出的改变基因表达的变异数量约为此前最先进模型的两倍，且可预测未见过的细胞与疾病状态",
+    "支持跨模态填补（如由单细胞基因活性预测染色质可及性）；即日起经AlphaGenome API开放非商业研究，商业研究为私密预览"
+   ],
+   "topics": [
+    "genomics",
+    "single-cell",
+    "foundation-model"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 76.8,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/alphagenome-2.pdf",
+      "https://deepmind.google/blog/alphagenome-ai-for-better-understanding-the-genome/",
+      "https://deepmind.google/blog/alphagenome-atlas-a-predictive-map-of-every-possible-dna-letter-change-in-the-human-genome/",
+      "https://www.nature.com/articles/s41586-024-07501-1",
+      "https://www.alphagenomedocs.com/",
+      "https://www.alphagenomecommunity.com/",
+      "https://forms.gle/ftBfHGH7NUrCZEjN6"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "9656e9adb8553921",
+   "url": "https://blog.modelcontextprotocol.io/posts/exploring-file-uploads-and-downloads-in-mcp/",
+   "title": "Exploring File Uploads and Downloads in MCP",
+   "source": "MCP Official Blog",
+   "tier": "S",
+   "published_at": "2026-11-10T09:00:00+00:00",
+   "summary_short": "MCP 发布实验性文件上传/下载扩展草案，公开征求意见",
+   "summary_long": "MCP 最初只是把模型连接到工具的简单方式，但过去两年社区项目野心渐长，许多 MCP 服务器项目需要处理文件：把对话中的 PDF 存进云存储、把大 CSV 拉进代码沙箱都是常见需求，目前却要靠大量定制的工具约定和传输机制。原文称，因客户讨论中该需求反复出现，其启动了 File Uploads 工作组，用一个月时间拿出粗略的扩展定义，希望开发者试用。该工作仍属实验性质：形态已勾勒，但尚无参考实现，作者预计与云存储、数据库导入导出等第三方服务集成后内部机制会有较大变化；扩展保持可选，不支持的客户端与服务器无需改动，目标年底前定稿并稳定。设计上模型无需逐字节读取文件，文件直接送往目的地；扩展标识为 io.modelcontextprotocol/files，服务器在 server/discover 中声明 upload 与 maxInlineBytes，工具参数用 x-mcp-file 标记。",
+   "key_points": [
+    "MCP 服务器处理文件的需求（PDF 存云存储、大 CSV 进沙箱）此前需大量定制约定，因此启动了 File Uploads 工作组",
+    "扩展草案仍属实验性，尚无参考实现，与第三方文件服务集成后内部机制可能大改，目标年底前定稿并稳定",
+    "扩展保持可选：不支持它的客户端与服务器无需任何改动"
+   ],
+   "topics": [
+    "mcp",
+    "tool-use"
    ],
    "category": "Agent 与开发",
    "categories": [
     "Agent 与开发"
    ],
-   "horizon": "long",
-   "score": 76.5,
+   "horizon": "short",
+   "score": 75.3,
    "status": "published",
    "extra": {
     "content_source": "rss",
-    "source_tags": [
-     "prompt-engineering",
-     "anthropic",
-     "generative-ai",
-     "ai",
-     "llms"
-    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2#say-who-owns-the-code",
-      "https://simonwillison.net/tags/prompt-engineering",
-      "https://simonwillison.net/tags/anthropic",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/claude-mythos-fable"
+      "https://modelcontextprotocol.io/community/working-groups/file-uploads",
+      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/blob/main/specification/draft/file-uploads.md",
+      "https://modelcontextprotocol.io/specification/2026-07-28/server/tools#x-mcp-header",
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic#statelessness",
+      "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/mrtr",
+      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/blob/main/specification/draft/file-uploads.md#open-questions",
+      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/blob/main/specification/draft/file-uploads.md#security-implications",
+      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads",
+      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/issues",
+      "https://discord.com/channels/1358869848138059966/1497669234564661438",
+      "https://modelcontextprotocol.io/community/communication",
+      "https://github.com/jayzuccarelli",
+      "https://github.com/kevklam",
+      "https://github.com/kziemski",
+      "https://github.com/kurtisvg",
+      "https://github.com/meastes",
+      "https://github.com/patrick-rodgers",
+      "https://github.com/tsarlandie-oai",
+      "https://github.com/modelcontextprotocol/modelcontextprotocol/discussions?discussions_q=Files+Working+Group+Meeting+in%3Atitle"
      ]
     },
     "summary_mode": "full"
-   }
-  },
-  {
-   "id": "fc6b6a56df7b3650",
-   "url": "https://deepmind.google/blog/gemini-4-carbon-is-now-available/",
-   "title": "Gemini 4 Carbon is now available",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-11-10T16:03:47+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "model-release",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 75.4,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://twitter.com/intent/tweet?text=Gemini%204%20Carbon%20is%20now%20available%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
-      "https://www.facebook.com/sharer/sharer.php?caption=Gemini%204%20Carbon%20is%20now%20available&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/&title=Gemini%204%20Carbon%20is%20now%20available",
-      "https://blog.google/authors/koray-kavukcuoglu/",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
-      "https://deepmind.google/fairwind-program/",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
-      "https://cursor.com/cursorbench",
-      "https://www.perplexity.ai/hub/blog/wandr-benchmark-evaluating-research-agents-that-must-search-wide-and-deep",
-      "https://zapier.com/benchmarks",
-      "http://antigravity.google/blog/gemini-4-carbon-in-google-antigravity/",
-      "https://aistudio.google.com/prompts/new_chat?model=gemini-4-carbon",
-      "https://cloud.google.com/gemini-enterprise",
-      "https://aistudio.google.com/docs/pricing",
-      "https://one.google.com/about/google-ai-plans",
-      "https://antigravity.google/",
-      "http://gemini.google.com/",
-      "http://aimode.google/",
-      "https://artificialanalysis.ai/evaluations/mka",
-      "https://aistudio.google.com/apps/bundled/pelican-campus-quest",
-      "https://aistudio.google.com/apps/bundled/gemini-supply",
-      "https://github.com/google-gemini/demolab",
-      "https://aistudio.google.com/apps/bundled/koerner-hall",
-      "https://cloud.google.com/transform/how-google-does-it-using-agents-help-find-track-and-fix-vulnerabilities",
-      "https://www.wiz.io/blog/php2shell-php-rce",
-      "https://www.wiz.io/blog/scan-for-good-critical-ai-exposures",
-      "https://deepmind.google/blog/introducing-alphaproof-code",
-      "https://forms.gle/WvmBbPvRbpKG1BPn9",
-      "https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security/",
-      "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_safety_report.pdf",
-      "https://developer.android.com/studio",
-      "http://gemini.google.com",
-      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Carbon-Model-Card.pdf",
-      "https://aistudio.google.com/learn/gemini-4-carbon-developer-guide",
-      "https://aistudio.google.com/docs/whats-new-gemini-4-carbon",
-      "https://policies.google.com/privacy"
-     ]
-    }
    }
   }
  ]
