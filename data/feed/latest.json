@@ -1,319 +1,492 @@
 {
- "generated_at": "2026-11-12T01:34:32+00:00",
- "date": "2026-11-12",
- "run_id": "20261112-013215",
+ "generated_at": "2026-11-13T00:26:31+00:00",
+ "date": "2026-11-13",
+ "run_id": "20261113-002414",
  "top": [
   {
-   "id": "d2296a64c0dc3b89",
-   "url": "https://huggingface.co/blog/token-pooling",
-   "title": "Token Pooling-Aware Training for Multi-Vector Embedding Models",
+   "id": "56dac742ff29ffe2",
+   "url": "https://huggingface.co/blog/3d-lora-finetuning",
+   "title": "The Definitive Fine-Tuning Guide for 3D Generation Models",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-11-11T00:00:00+00:00",
-   "summary_short": "池化感知训练让多向量嵌入在4倍压缩下保留97.8%的未池化检索质量",
-   "summary_long": "原文讨论多向量嵌入模型在检索中表达力强、但文档向量数量庞大的存储问题，并介绍 token pooling 与池化感知训练。多向量模型为每个查询 token 保留匹配机会，文档侧会积累大量向量；即使使用 Fast-PLAID 的 2-bit/4-bit 残差量化，百万文档仍可能达到 12.8 GB，把每篇文档池化到 50 个向量可降至 3.2 GB。Token pooling 用 Ward 层次聚类合并相似 token 向量，以组均值表示并重新归一化，供 MaxSim 打分。池化越激进越容易丢失有用信息，池化感知训练让编码器在向量被合并时保留重要信息。原文给出的结果：pool_factor=4 时，常规训练模型保留未池化 NanoBEIR nDCG@10 的 94.6%，文档向量减少 4 倍；池化感知训练在同一存储预算下把保留率提高到 97.8%。文章还用 Sentence Transformers 给出可复现示例，并讨论质量与存储权衡。",
+   "published_at": "2026-11-12T00:00:00+00:00",
+   "summary_short": "提供TRELLIS.2三维生成模型微调脚本与容器，并用LoRA改进鞋底几何",
+   "summary_long": "这篇指南面向3D生成模型微调，提供可在本地或Hugging Face Jobs运行的脚本与容器，用于在自有3D资产上微调TRELLIS.2。原文先说明3D生成在机器人、仿真、媒体和娱乐中的用途，以及GLB/PLY、NeRF/3DGS等格式与表示带来的标准化困难；TRELLIS用统一潜表示并由解码器输出所需格式，TRELLIS.2进一步改善3D结构表示。原文指出，通用模型可能在特定应用的关键细节上出错，例如家具几何或鞋底。实验使用GSO中188个鞋类对象，预训练模型常生成外观正确但鞋底不准确的鞋，因而测试LoRA能否改善鞋底。文中还说明TRELLIS.2的五阶段流程，并强调训练时哪些组件冻结与哪些微调同样重要；使用PEFT训练LoRA，HF Jobs用于预处理和训练。原文未详述最终效果结论。",
    "key_points": [
-    "多向量模型为每个查询 token 保留匹配机会，表达力强，但文档向量数量会快速膨胀；Fast-PLAID 量化下，200 个 128 维向量每文档需 12.8 KB，百万文档达 12.8 GB。",
-    "Token pooling 用 Ward 层次聚类合并相似 token 向量，按组均值表示并归一化，以适配 MaxSim 打分；压缩越强越可能丢失有用信息。",
-    "池化感知训练让编码器在合并时保留重要信息；pool_factor=4 时，常规模型保留 94.6% 未池化 NanoBEIR nDCG@10，池化感知训练提升到 97.8%，且文档向量减少 4 倍。"
+    "提供TRELLIS.2微调脚本和容器，可在本地或Hugging Face Jobs运行，支持用自有3D资产并按少量参数运行。",
+    "实验使用GSO的188个鞋类对象：预训练模型常把鞋底生成得不准确，目标是测试LoRA能否改善该细节。",
+    "TRELLIS.2流程分离结构、细节几何和材质，训练时需选择冻结与微调组件；LoRA用PEFT实现。"
    ],
    "topics": [
     "post-training",
-    "rag"
+    "open-source",
+    "harness"
    ],
    "category": "模型",
    "categories": [
-    "模型"
+    "模型",
+    "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 82.5,
+   "score": 81.3,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
-     "arxiv": [],
+     "arxiv": [
+      "2508.10104"
+     ],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/token-pooling.md",
-      "https://stefan-jo.github.io/learn-to-pool/downloads/paper.pdf",
-      "https://huggingface.co/blog/lightonai/lateon-hpool-regularization",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/token-pooling/mve_token_pooling_results.png",
-      "https://huggingface.co/blog/multi-vector-encoder",
-      "https://github.com/lightonai/fast-plaid",
-      "https://sbert.net/docs/package_reference/multi_vector_encoder/modules.html#hierarchicaltokenpooling",
-      "https://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering",
-      "https://huggingface.co/blog/matryoshka",
-      "https://sbert.net/docs/package_reference/multi_vector_encoder/losses.html#multivectortokenpoolingloss",
-      "https://github.com/huggingface/sentence-transformers/blob/main/examples/multi_vector_encoder/training/token_pooling/training_cached_contrastive.py",
-      "https://docs.astral.sh/uv/getting-started/installation/",
-      "https://huggingface.co/docs/hub/jobs-quickstart",
-      "https://sbert.net/docs/multi_vector_encoder/usage/kernels.html",
-      "https://huggingface.co/kernels/sentence-transformers/late-interaction-kernels",
-      "https://huggingface.co/kernels/sentence-transformers/ward-clustering",
-      "https://huggingface.co/tomaarsen/mve-ModernBERT-base-token-pooling-baseline",
-      "https://huggingface.co/tomaarsen/mve-ModernBERT-base-token-pooling",
-      "https://sbert.net/examples/multi_vector_encoder/training/matryoshka/README.html",
-      "https://sbert.net/examples/multi_vector_encoder/training/token_pooling/README.html",
-      "https://github.com/huggingface/sentence-transformers/blob/main/examples/multi_vector_encoder/training/token_pooling/evaluate_token_pooling.py",
-      "https://stefan-jo.github.io/learn-to-pool",
-      "https://huggingface.co/papers/2409.14683",
-      "https://huggingface.co/papers/2101.06983",
-      "https://huggingface.co/collections/sentence-transformers/multivectorencoder-integrations"
+      "https://github.com/huggingface/blog/blob/main/3d-lora-finetuning.md",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/sole_orbit_base_vs_lora.gif",
+      "https://github.com/suvadityamuk/trellis2-finetuning",
+      "https://en.wikipedia.org/wiki/GlTF",
+      "https://en.wikipedia.org/wiki/PLY_(file_format)",
+      "https://huggingface.co/spaces/suvadityamuk/3d-representations-guide",
+      "https://www.matthewtancik.com/nerf",
+      "https://en.wikipedia.org/wiki/Gaussian_splatting",
+      "https://huggingface.co/papers/2412.01506",
+      "https://huggingface.co/papers/2512.14692",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/sole_orbit_base.gif",
+      "https://huggingface.co/datasets/hugging-3d/google-scanned-objects",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/meme.jpg",
+      "https://huggingface.co/docs/peft/package_reference/lora",
+      "https://huggingface.co/settings/tokens/new",
+      "https://huggingface.co/collections/facebook/dinov3",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/pipeline_lr.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/image_to_tokens.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/stage1_sparse_structure.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/ovoxel_sparse.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/stage2_shape.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/stage3_texture.png",
+      "https://hf.co/jobs",
+      "https://github.com/microsoft/TRELLIS.2/blob/main/data_toolkit/README.md",
+      "https://huggingface.co/datasets/suvadityamuk/gso-footwear-trellis2-latents",
+      "https://github.com/suvadityamuk/trellis2-finetuning/blob/master/preprocess.py",
+      "https://github.com/suvadityamuk/trellis2-finetuning#1-preprocess-trellis2-prep",
+      "https://github.com/suvadityamuk/trellis2-finetuning#3-train-trellis2-train",
+      "https://github.com/suvadityamuk/trellis2-finetuning/blob/master/finetune.py",
+      "https://huggingface.co/suvadityamuk/trellis-2-finetune-gso",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/preprocessing.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/conditioning_views.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/lora_adapters.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/training_loop.png",
+      "https://huggingface.co/collections/stabilityai/stable-diffusion-3",
+      "https://huggingface.co/collections/black-forest-labs/flux2",
+      "https://huggingface.co/spaces/ariG23498/flow-matching",
+      "https://huggingface.co/papers/2207.12598",
+      "https://github.com/suvadityamuk/trellis2-finetuning/blob/master/container/trellis2/configs/lora/slat_flow_img2shape_lora_gso.json",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/training_loss.png"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "ae3c6c28ceab44c4",
-   "url": "https://www.vulncheck.com/blog/anthropic-glasswing-november-update",
-   "title": "Tracking Anthropic-discovered vulnerabilities",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-10T22:17:56+00:00",
-   "summary_short": "442个Anthropic相关CVE中仅2个在野利用",
-   "summary_long": "Project Glasswing启动七个月后，VulnCheck更新追踪：可归因于Anthropic的CVE共442个，约占今年已发布93,450个CVE的0.5%，其中仅2个被发现在野利用。Anthropic自身账本列出37,966项发现，仅7,349项（19.4%）公开、217项标记修复；自9月以来新增近12,000项发现，仅多15项修复，发现与修复差距扩大。约1,654项（4.4%）被标为重复，接近修复数的八倍，另有419项撤回。其宣称的真实正例率从90.8%升至94.2%，原文称这引发如何计入重复和撤回发现的疑问。OSS Scanner把验证工作转移给维护者；curl将34份已发布报告中的19份拒为漏洞，确认6份为低危，另有9份待评估。",
-   "key_points": [
-    "七个月追踪到442个可归因于Anthropic的CVE，约占今年全部CVE的0.5%，仅2个被发现在野利用。",
-    "Anthropic账本37,966项发现中仅7,349项公开（19.4%）、217项修复；9月以来新增近12,000项发现仅增15项修复。",
-    "约1,654项被标为重复、419项撤回；宣称真实正例率升至94.2%引发疑问；curl将34份报告中19份拒为漏洞。"
-   ],
-   "topics": [
-    "cybersecurity"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 78.9,
-   "status": "published",
-   "extra": {
-    "hn_points": 447,
-    "hn_comments": 218,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://console.vulncheck.com/signin",
-      "https://www.vulncheck.com/blog/anthropic-glasswing-cves",
-      "https://www.vulncheck.com/blog/anthropic-ledger",
-      "https://www.vulncheck.com/blog/state-of-exploitation-1h-2026#has-anthropic-glasswing-lived-up-to-the-hype-it-brought-this-year",
-      "https://www.vulncheck.com/blog/anthropic-glasswing-receipts",
-      "https://github.com/patrickmgarrity/Anthropic-Credited-CVEs",
-      "https://red.anthropic.com/2026/cvd/ledger/",
-      "https://www.anthropic.com/research/launching-opt-in-vuln-finding-service-for-open-source",
-      "https://github.com/anthropics/oss-scanner",
-      "https://www.linkedin.com/in/danielstenberg/",
-      "https://www.linkedin.com/feed/update/urn:li:share:7524224297595269120/",
-      "https://daniel.haxx.se/blog/2026/05/11/mythos-finds-a-curl-vulnerability/",
-      "https://vulncheck.com/product/exploit-intelligence"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "e879c6fc35d4933f",
-   "url": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/",
-   "title": "AlphaGenome 2: Deciphering how cells read DNA to better understand disease",
-   "source": "Google DeepMind Blog",
+   "id": "a88bddb17214a029",
+   "url": "https://huggingface.co/blog/ibm-granite/llmon-an-llm-native-markup-language-now-in-granite",
+   "title": "LLMON: An LLM-Native Markup Language, now in Granite 4.1 3B and 8B",
+   "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-11-11T15:00:15+00:00",
-   "summary_short": "AlphaGenome 2：改条件式DNA模型，按细胞类型预测变异影响，检出量近乎翻倍",
-   "summary_long": "人体每个细胞携带相同DNA，不同细胞类型靠开关不同基因完成各自功能。Human Cell Atlas等全球计划正测绘数百万细胞的基因表达，但预测DNA细微变异如何影响特定细胞中的表达仍是未解难题。继去年推出在宽泛组织层面预测变异影响的AlphaGenome、以及覆盖全部90亿种单字母变化的AlphaGenome Atlas后，团队发布AlphaGenome 2。它由并行输出改为条件模型：在输入百万字母DNA序列的同时输入一个组织、细胞类型或状态，并在架构每一层使用该条件，从而学习同一段DNA在不同细胞中被读取的差异；条件可取自参考目录，也可由用户自己的单细胞实验经cell encoder即时生成。模型基于68种组织、逾1亿个单细胞图谱训练，识别出的改变基因表达的变异约为此前最先进模型的两倍，并能预测模型未见过的细胞与疾病状态。它还支持跨模态填补，例如只输入单细胞基因活性即可预测染色质可及性。模型即日起通过AlphaGenome API开放非商业研究使用，商业研究为私密预览。",
+   "published_at": "2026-11-12T19:07:35+00:00",
+   "summary_short": "LLMON：为 LLM 显式标注结构与语义的标记语言，并发布 3B/8B 预览模型",
+   "summary_long": "LLM 的上下文混杂着系统提示、历史对话、作用于检索文档的指令、工具返回或用户数据、输出约束与推理链；原文认为这些结构大多对模型是隐式的，或者用并非为 LLM 设计的 JSON 编码，这正是小模型脆弱、偶发意外失败的原因之一，也容易被提示注入利用。作者提出 LLMON（LLM Object Notation，读作 lemon）：用有意义的标签标记语义连贯的组件，标签由保留的特殊 token 分隔符包裹；嵌套等数据模式以因果 LLM 无歧义的方式表述；唯一 ID 可指向上下文中任意位置的指令，并把指令绑定到它应作用的数据，类似函数调用传参。此次发布两个由 Granite 4.1 基座衍生的实验性预览模型（3B、8B），它们经训练可读取与生成 LLMON 文本，同时开放含工具包、工作流与模板示例的 GitHub 仓库。原文称，在部分基准上，间接提示注入的成功率降至近零，同时相对 Granite 4.1 Instruct 保持通用能力。",
    "key_points": [
-    "模型从并行输出改为条件模型，条件（组织、细胞类型或状态）在架构每一层注入，以捕捉相近细胞类型间的细微差异",
-    "基于68种组织逾1亿个单细胞图谱训练，识别出的改变基因表达的变异数量约为此前最先进模型的两倍，且可预测未见过的细胞与疾病状态",
-    "支持跨模态填补（如由单细胞基因活性预测染色质可及性）；即日起经AlphaGenome API开放非商业研究，商业研究为私密预览"
+    "LLMON 用保留特殊 token 包裹的有意义标签显式标注上下文组件的结构与语义，并用唯一 ID 把指令绑定到它应作用的数据。",
+    "发布 granite-4.1-3b-LLMON-preview 与 granite-4.1-8b-LLMON-preview 两个实验性预览模型，以及含工具包、工作流与模板示例的 GitHub 仓库。",
+    "原文称在部分基准上，间接提示注入攻击成功率降至近零，并且相对 Granite 4.1 Instruct 保持通用能力；Mellea 原生支持 LLMON，并提供 JSON 转换器与 LoRA 微调自定义结构的做法。"
    ],
    "topics": [
-    "genomics",
-    "single-cell",
-    "foundation-model"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 76.8,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/alphagenome-2.pdf",
-      "https://deepmind.google/blog/alphagenome-ai-for-better-understanding-the-genome/",
-      "https://deepmind.google/blog/alphagenome-atlas-a-predictive-map-of-every-possible-dna-letter-change-in-the-human-genome/",
-      "https://www.nature.com/articles/s41586-024-07501-1",
-      "https://www.alphagenomedocs.com/",
-      "https://www.alphagenomecommunity.com/",
-      "https://forms.gle/ftBfHGH7NUrCZEjN6"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "9656e9adb8553921",
-   "url": "https://blog.modelcontextprotocol.io/posts/exploring-file-uploads-and-downloads-in-mcp/",
-   "title": "Exploring File Uploads and Downloads in MCP",
-   "source": "MCP Official Blog",
-   "tier": "S",
-   "published_at": "2026-11-10T09:00:00+00:00",
-   "summary_short": "MCP 发布实验性文件上传/下载扩展草案，公开征求意见",
-   "summary_long": "MCP 最初只是把模型连接到工具的简单方式，但过去两年社区项目野心渐长，许多 MCP 服务器项目需要处理文件：把对话中的 PDF 存进云存储、把大 CSV 拉进代码沙箱都是常见需求，目前却要靠大量定制的工具约定和传输机制。原文称，因客户讨论中该需求反复出现，其启动了 File Uploads 工作组，用一个月时间拿出粗略的扩展定义，希望开发者试用。该工作仍属实验性质：形态已勾勒，但尚无参考实现，作者预计与云存储、数据库导入导出等第三方服务集成后内部机制会有较大变化；扩展保持可选，不支持的客户端与服务器无需改动，目标年底前定稿并稳定。设计上模型无需逐字节读取文件，文件直接送往目的地；扩展标识为 io.modelcontextprotocol/files，服务器在 server/discover 中声明 upload 与 maxInlineBytes，工具参数用 x-mcp-file 标记。",
-   "key_points": [
-    "MCP 服务器处理文件的需求（PDF 存云存储、大 CSV 进沙箱）此前需大量定制约定，因此启动了 File Uploads 工作组",
-    "扩展草案仍属实验性，尚无参考实现，与第三方文件服务集成后内部机制可能大改，目标年底前定稿并稳定",
-    "扩展保持可选：不支持它的客户端与服务器无需任何改动"
-   ],
-   "topics": [
-    "mcp",
-    "tool-use"
+    "context-engineering",
+    "prompt-injection",
+    "harness"
    ],
    "category": "Agent 与开发",
    "categories": [
-    "Agent 与开发"
+    "Agent 与开发",
+    "安全"
    ],
-   "horizon": "short",
-   "score": 75.3,
+   "horizon": "long",
+   "score": 80.7,
    "status": "published",
    "extra": {
-    "content_source": "rss",
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2310.12815",
+      "2402.06363",
+      "2410.02644",
+      "2603.22519",
+      "2610.38120"
+     ],
+     "links": [
+      "https://huggingface.co/ibm-granite/granite-4.1-3b-llmon-preview",
+      "https://huggingface.co/ibm-granite/granite-4.1-8b-llmon-preview",
+      "https://github.com/generative-computing/llmon",
+      "https://github.com/generative-computing/mellea",
+      "https://github.com/generative-computing/llmon/tree/main/llmon/lang",
+      "https://arxiv.org/abs/2310.12815",
+      "https://cdn-uploads.huggingface.co/production/uploads/6484ca4d5ff9a3d2ee52a83b/3UqXuyb58P8n3NiHnJiK4.png",
+      "https://arxiv.org/pdf/2410.02644",
+      "https://arxiv.org/pdf/2402.06363",
+      "https://cdn-uploads.huggingface.co/production/uploads/6484ca4d5ff9a3d2ee52a83b/VMIEO4qYlmxLhK0DmMO6C.png",
+      "https://huggingface.co/ibm-granite/granite-4.1-8b-base",
+      "https://huggingface.co/spaces/ibm-granite/LLMON-Attention-Visualization",
+      "https://cdn-uploads.huggingface.co/production/uploads/6484ca4d5ff9a3d2ee52a83b/nv3yYV9JSHPrHEJYfKiqo.gif",
+      "https://github.com/generative-computing/llmon/blob/main/llmon/examples/lora-finetuning/byo-vocab_LoRA_scienceworld.ipynb",
+      "https://github.com/generative-computing/llmon/blob/main/llmon/examples/lora-finetuning/byo-vocab_LoRA_for_agents.ipynb",
+      "https://arxiv.org/abs/2610.38120",
+      "https://arxiv.org/abs/2603.22519"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "f101ffad2bb3a113",
+   "url": "https://ipo.anthropic.com/us/",
+   "title": "Anthropic IPO",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-12T11:46:41+00:00",
+   "summary_short": "Anthropic路演材料：Q3'26收入170亿美元、同比增超12倍，净亏233亿美元",
+   "summary_long": "原文为Anthropic首次公开募股（IPO）路演材料。开篇称Anthropic是一家公益公司（public benefit corporation），致力于确保AI的益处并缓解其风险，并引用创始人信：AI是人类历史上最具影响的技术之一，若管理得当，可加速科学创新、大幅提高经济增长率、使重大疾病的疗法触手可及、解决世代未能解决的问题。路演分11个章节，包括机会与核心优势、产品与平台、前沿与安全研究、算力策略、企业战略、财务模型与结论，并穿插Bristol Myers Squibb、Accenture、AIG等环节（原文未展开）。Q3'26财务亮点（截至2026年9月30日）：收入170亿美元，同比增长超12倍；年化收入超10万美元的客户超11,900家，同比增长超12倍；自2025年一季度以来算力效率提升超4倍；调整后运营利润率15%，运营利润率-3%；净亏损233亿美元，主因估值上升带来的219亿美元非现金费用（可转换票据、衍生负债与SAFE公允价值变动）。客户案例含Legora、礼来、乐天、Salesforce与沃尔玛：礼来5万余名员工可使用Claude Enterprise，乐天70多个业务单元使用AI、新功能上市由24天缩短至5天，Salesforce开发者人均有效产出同比增长151%。",
+   "key_points": [
+    "Q3'26收入170亿美元、同比增长超12倍；年化收入超10万美元客户超11,900家、同比增超12倍；算力效率较2025年一季度提升超4倍",
+    "净亏损233亿美元，含219亿美元非现金费用，源于估值上升导致的可转换票据、衍生负债与SAFE公允价值变动；调整后运营利润率15%，运营利润率-3%",
+    "客户案例：礼来5万余名员工接入Claude Enterprise、推广以来扩大5倍；乐天70多个业务单元使用AI，新功能上市从24天降至5天；Salesforce开发者有效产出同比增151%、API迁移快18倍"
+   ],
+   "topics": [
+    "ipo",
+    "funding"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 79.5,
+   "status": "published",
+   "extra": {
+    "hn_points": 799,
+    "hn_comments": 791,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://modelcontextprotocol.io/community/working-groups/file-uploads",
-      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/blob/main/specification/draft/file-uploads.md",
-      "https://modelcontextprotocol.io/specification/2026-07-28/server/tools#x-mcp-header",
-      "https://modelcontextprotocol.io/specification/2026-07-28/basic#statelessness",
-      "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/mrtr",
-      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/blob/main/specification/draft/file-uploads.md#open-questions",
-      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/blob/main/specification/draft/file-uploads.md#security-implications",
-      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads",
-      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/issues",
-      "https://discord.com/channels/1358869848138059966/1497669234564661438",
-      "https://modelcontextprotocol.io/community/communication",
-      "https://github.com/jayzuccarelli",
-      "https://github.com/kevklam",
-      "https://github.com/kziemski",
-      "https://github.com/kurtisvg",
-      "https://github.com/meastes",
-      "https://github.com/patrick-rodgers",
-      "https://github.com/tsarlandie-oai",
-      "https://github.com/modelcontextprotocol/modelcontextprotocol/discussions?discussions_q=Files+Working+Group+Meeting+in%3Atitle"
+      "https://www.schwab.com/stocks/ipo-direct-listing",
+      "https://us.etrade.com/what-we-offer/investment-choices/new-issues/anthropic?cid=pa-anthropic_ipo-et",
+      "https://fidelity.com/ipo",
+      "https://robinhood.com/us/en/ipo-access/",
+      "https://www.sofi.com/invest/ipo-investing/"
      ]
     },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "a8d5fa7d24b3647f",
+   "url": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/",
+   "title": "Introducing Gemini 4 Hydrogen",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-11-12T18:00:50+00:00",
+   "summary_short": "谷歌推出 Gemini 4 Hydrogen，主打日常编码与智能体工作流的速度与效率",
+   "summary_long": "Google DeepMind 发布 Gemini 4 Hydrogen，定位是把前沿智能带给所有人，重点在速度与效率，服务日常编码和智能体（agentic）工作流。原文说明，其前沿模型 Gemini 4 Carbon 与 Gemini 4 Argon 擅长长周期的深度推理，而 Hydrogen 面向多样智能体工作流中的快速执行。Hydrogen 将在 Google AI Studio 全部层级、Gemini API、Gemini for business、Gemini 应用、Google Search，以及 Google Antigravity 中已付费的 Google AI Pro 与 Ultra 订阅用户中提供。性能上，Hydrogen 在默认 high 思考档位下于 Artificial Analysis Intelligence Index 上超过 Argon（51 对 50），最高 xhigh 档位可达 54。价格在 100 万 token 上下文窗口内统一：输入每百万 token 1.50 美元，输出每百万 token 7.50 美元。原文还介绍了 Google Antigravity 中的 Orchestrator，可在同一会话内动态切换 Carbon 与 Hydrogen 等模型；在 Terminal-Bench 4.0 上接近 Carbon 的任务成功率，平均少",
+   "key_points": [
+    "Hydrogen 定位为快速执行模型，与擅长深度推理的 Carbon、Argon 形成互补，可单独使用，也可作为多模型工作流中的执行引擎。",
+    "在 Artificial Analysis Intelligence Index 上，Hydrogen 默认 high 档位得 51，超过 Argon 的 50；xhigh 档位达 54；100 万 token 上下文内价格统一为输入 1.50 美元/百万 token、输出 7.50 美元/百万 token。",
+    "Google Antigravity 新增 Orchestrator，可在同一会话动态切换模型，在 Terminal-Bench 4.0 上接近 Carbon 的任务成功率，同时平均少用 24% 配额、快 19%。"
+   ],
+   "topics": [
+    "reasoning",
+    "product",
+    "coding-agent"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 78.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://twitter.com/intent/tweet?text=Introducing%20Gemini%204%20Hydrogen%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+      "https://www.facebook.com/sharer/sharer.php?caption=Introducing%20Gemini%204%20Hydrogen&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/&title=Introducing%20Gemini%204%20Hydrogen",
+      "https://blog.google/authors/koray-kavukcuoglu/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
+      "https://aistudio.google.com/prompts/new_chat?model=gemini-4-hydrogen",
+      "https://cloud.google.com/gemini-enterprise",
+      "http://gemini.google.com/",
+      "https://blog.google/products-and-platforms/products/search/gemini-4-hydrogen-search-upgrade",
+      "https://antigravity.google/",
+      "https://artificialanalysis.ai/",
+      "https://antigravity.google/blog/gemini-4-hydrogen-in-google-antigravity",
+      "https://www.tbench.ai/news/terminal-bench-4-0",
+      "https://www.tbench.ai/",
+      "https://arena.ai/leaderboard/agent",
+      "https://www.vals.ai/benchmarks/tax_agent_bench",
+      "https://www.vals.ai/benchmarks/legal_research",
+      "https://artificialanalysis.ai/evaluations/automationbench-aa",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/multimodal-knowledge-agent-benchmark/",
+      "https://agents-last-exam.org/leaderboard",
+      "https://aistudio.google.com/apps/bundled/geminisland?showPreview=true&showAssistant=true&fullscreenApplet=true",
+      "https://aistudio.google.com/apps/bundled/material-flask-website?showPreview=true&showAssistant=true&fullscreenApplet=true",
+      "https://github.com/google-gemini/demolab",
+      "https://institute.deepmind.com/essays/the-case-for-reasoning-transparency/",
+      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Hydrogen-Model-Card.pdf",
+      "https://aistudio.google.com/docs/whats-new-gemini-4-hydrogen",
+      "https://developer.android.com/studio",
+      "http://sheets.new/",
+      "https://policies.google.com/privacy"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "cce714811b519a82",
+   "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+   "title": "Gemini Decisions API",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-11T18:32:42+00:00",
+   "summary_short": "Decisions API 可单次评估千个多模态封闭问题并返回置信度",
+   "summary_long": "Gemini Decisions API 是面向封闭集合决策的新端点，由 Gemini Decision 1 模型驱动，可通过 Google AI Studio 的 Gemini API 使用。它支持将文本、图像、音频、视频、PDF（最多 256K tokens）作为共享输入，一次请求最多评估 1,000 个独立问题，混合是/否、2 至 255 选项选择和有序列评分标准。模型不逐 token 生成答案，而是在单次前向中为候选选项打分，返回概率和 0 至 1 置信度，端到端延迟 150-250 毫秒，价格每百万输入 token 0.10 美元且不计输出 token。原文称其在代理路由、推理、排序和多模态理解基准上领先且校准误差最低，在共享基准套件上比 Gemini 3.5 Flash-Lite 配合 Interactions API 便宜近 5 倍。",
+   "key_points": [
+    "支持单次请求对文本、图像、音频、视频和 PDF 的共享输入评估最多 1,000 个是/否、多选和评分标准问题，输入上限 256K tokens。",
+    "Gemini Decision 1 不逐 token 生成文本，而是单次前向打分，返回概率和 0-1 置信度，端到端延迟 150-250ms，每百万输入 token 0.10 美元、输出 token 不计费。",
+    "原文称其在代理路由、推理、排序和多模态理解基准上领先且校准误差最低；在共享基准套件上比 Gemini 3.5 Flash-Lite 配合 Interactions API 近 5 倍便宜。"
+   ],
+   "topics": [
+    "reasoning",
+    "inference-latency",
+    "tool-use"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 77.6,
+   "status": "published",
+   "extra": {
+    "hn_points": 553,
+    "hn_comments": 157,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://twitter.com/intent/tweet?text=Gemini%20Decisions%20API%3A%20Fast%2C%20calibrated%20multimodal%20decisions%20%40google&url=https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "https://www.facebook.com/sharer/sharer.php?caption=Gemini%20Decisions%20API%3A%20Fast%2C%20calibrated%20multimodal%20decisions&u=https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/&title=Gemini%20Decisions%20API%3A%20Fast%2C%20calibrated%20multimodal%20decisions",
+      "https://aistudio.google.com/docs/decisions-api",
+      "https://aistudio.google.com/apps/bundled/gemini-decisions-api-playground?fullscreenApplet=true",
+      "https://aistudio.google.com/docs/interactions-overview",
+      "https://stitch.withgoogle.com/rapid",
+      "https://aistudio.google.com/api-keys",
+      "https://aistudio.google.com/apps/bundled/doorstep-parcels-qa?fullscreenApplet=true",
+      "https://aistudio.google.com/apps/bundled/speed-sketch?fullscreenApplet=true",
+      "https://aistudio.google.com/apps/bundled/find-the-zoo-keeper?fullscreenApplet=true",
+      "https://openrouter.ai/google/gemini-decision-1",
+      "https://docs.langchain.com/oss/python/integrations/providers/google",
+      "https://ai-sdk.dev/providers/ai-sdk-providers/google",
+      "https://docs.litellm.ai/docs/providers/gemini",
+      "https://pydantic.dev/docs/ai/models/google/",
+      "https://docs.pipecat.ai/api-reference/server/classifiers/google",
+      "https://docs.livekit.io/agents/integrations/google/",
+      "https://opencode.ai/",
+      "https://forms.gle/NFt1W6pL1gCY9FGM8",
+      "https://policies.google.com/privacy"
+     ]
+    },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   }
  ],
  "items": [
   {
-   "id": "d2296a64c0dc3b89",
-   "url": "https://huggingface.co/blog/token-pooling",
-   "title": "Token Pooling-Aware Training for Multi-Vector Embedding Models",
+   "id": "56dac742ff29ffe2",
+   "url": "https://huggingface.co/blog/3d-lora-finetuning",
+   "title": "The Definitive Fine-Tuning Guide for 3D Generation Models",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-11-11T00:00:00+00:00",
-   "summary_short": "池化感知训练让多向量嵌入在4倍压缩下保留97.8%的未池化检索质量",
-   "summary_long": "原文讨论多向量嵌入模型在检索中表达力强、但文档向量数量庞大的存储问题，并介绍 token pooling 与池化感知训练。多向量模型为每个查询 token 保留匹配机会，文档侧会积累大量向量；即使使用 Fast-PLAID 的 2-bit/4-bit 残差量化，百万文档仍可能达到 12.8 GB，把每篇文档池化到 50 个向量可降至 3.2 GB。Token pooling 用 Ward 层次聚类合并相似 token 向量，以组均值表示并重新归一化，供 MaxSim 打分。池化越激进越容易丢失有用信息，池化感知训练让编码器在向量被合并时保留重要信息。原文给出的结果：pool_factor=4 时，常规训练模型保留未池化 NanoBEIR nDCG@10 的 94.6%，文档向量减少 4 倍；池化感知训练在同一存储预算下把保留率提高到 97.8%。文章还用 Sentence Transformers 给出可复现示例，并讨论质量与存储权衡。",
+   "published_at": "2026-11-12T00:00:00+00:00",
+   "summary_short": "提供TRELLIS.2三维生成模型微调脚本与容器，并用LoRA改进鞋底几何",
+   "summary_long": "这篇指南面向3D生成模型微调，提供可在本地或Hugging Face Jobs运行的脚本与容器，用于在自有3D资产上微调TRELLIS.2。原文先说明3D生成在机器人、仿真、媒体和娱乐中的用途，以及GLB/PLY、NeRF/3DGS等格式与表示带来的标准化困难；TRELLIS用统一潜表示并由解码器输出所需格式，TRELLIS.2进一步改善3D结构表示。原文指出，通用模型可能在特定应用的关键细节上出错，例如家具几何或鞋底。实验使用GSO中188个鞋类对象，预训练模型常生成外观正确但鞋底不准确的鞋，因而测试LoRA能否改善鞋底。文中还说明TRELLIS.2的五阶段流程，并强调训练时哪些组件冻结与哪些微调同样重要；使用PEFT训练LoRA，HF Jobs用于预处理和训练。原文未详述最终效果结论。",
    "key_points": [
-    "多向量模型为每个查询 token 保留匹配机会，表达力强，但文档向量数量会快速膨胀；Fast-PLAID 量化下，200 个 128 维向量每文档需 12.8 KB，百万文档达 12.8 GB。",
-    "Token pooling 用 Ward 层次聚类合并相似 token 向量，按组均值表示并归一化，以适配 MaxSim 打分；压缩越强越可能丢失有用信息。",
-    "池化感知训练让编码器在合并时保留重要信息；pool_factor=4 时，常规模型保留 94.6% 未池化 NanoBEIR nDCG@10，池化感知训练提升到 97.8%，且文档向量减少 4 倍。"
+    "提供TRELLIS.2微调脚本和容器，可在本地或Hugging Face Jobs运行，支持用自有3D资产并按少量参数运行。",
+    "实验使用GSO的188个鞋类对象：预训练模型常把鞋底生成得不准确，目标是测试LoRA能否改善该细节。",
+    "TRELLIS.2流程分离结构、细节几何和材质，训练时需选择冻结与微调组件；LoRA用PEFT实现。"
    ],
    "topics": [
     "post-training",
-    "rag"
+    "open-source",
+    "harness"
    ],
    "category": "模型",
    "categories": [
-    "模型"
+    "模型",
+    "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 82.5,
+   "score": 81.3,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
-     "arxiv": [],
+     "arxiv": [
+      "2508.10104"
+     ],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/token-pooling.md",
-      "https://stefan-jo.github.io/learn-to-pool/downloads/paper.pdf",
-      "https://huggingface.co/blog/lightonai/lateon-hpool-regularization",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/token-pooling/mve_token_pooling_results.png",
-      "https://huggingface.co/blog/multi-vector-encoder",
-      "https://github.com/lightonai/fast-plaid",
-      "https://sbert.net/docs/package_reference/multi_vector_encoder/modules.html#hierarchicaltokenpooling",
-      "https://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering",
-      "https://huggingface.co/blog/matryoshka",
-      "https://sbert.net/docs/package_reference/multi_vector_encoder/losses.html#multivectortokenpoolingloss",
-      "https://github.com/huggingface/sentence-transformers/blob/main/examples/multi_vector_encoder/training/token_pooling/training_cached_contrastive.py",
-      "https://docs.astral.sh/uv/getting-started/installation/",
-      "https://huggingface.co/docs/hub/jobs-quickstart",
-      "https://sbert.net/docs/multi_vector_encoder/usage/kernels.html",
-      "https://huggingface.co/kernels/sentence-transformers/late-interaction-kernels",
-      "https://huggingface.co/kernels/sentence-transformers/ward-clustering",
-      "https://huggingface.co/tomaarsen/mve-ModernBERT-base-token-pooling-baseline",
-      "https://huggingface.co/tomaarsen/mve-ModernBERT-base-token-pooling",
-      "https://sbert.net/examples/multi_vector_encoder/training/matryoshka/README.html",
-      "https://sbert.net/examples/multi_vector_encoder/training/token_pooling/README.html",
-      "https://github.com/huggingface/sentence-transformers/blob/main/examples/multi_vector_encoder/training/token_pooling/evaluate_token_pooling.py",
-      "https://stefan-jo.github.io/learn-to-pool",
-      "https://huggingface.co/papers/2409.14683",
-      "https://huggingface.co/papers/2101.06983",
-      "https://huggingface.co/collections/sentence-transformers/multivectorencoder-integrations"
+      "https://github.com/huggingface/blog/blob/main/3d-lora-finetuning.md",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/sole_orbit_base_vs_lora.gif",
+      "https://github.com/suvadityamuk/trellis2-finetuning",
+      "https://en.wikipedia.org/wiki/GlTF",
+      "https://en.wikipedia.org/wiki/PLY_(file_format)",
+      "https://huggingface.co/spaces/suvadityamuk/3d-representations-guide",
+      "https://www.matthewtancik.com/nerf",
+      "https://en.wikipedia.org/wiki/Gaussian_splatting",
+      "https://huggingface.co/papers/2412.01506",
+      "https://huggingface.co/papers/2512.14692",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/sole_orbit_base.gif",
+      "https://huggingface.co/datasets/hugging-3d/google-scanned-objects",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/meme.jpg",
+      "https://huggingface.co/docs/peft/package_reference/lora",
+      "https://huggingface.co/settings/tokens/new",
+      "https://huggingface.co/collections/facebook/dinov3",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/pipeline_lr.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/image_to_tokens.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/stage1_sparse_structure.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/ovoxel_sparse.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/stage2_shape.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/stage3_texture.png",
+      "https://hf.co/jobs",
+      "https://github.com/microsoft/TRELLIS.2/blob/main/data_toolkit/README.md",
+      "https://huggingface.co/datasets/suvadityamuk/gso-footwear-trellis2-latents",
+      "https://github.com/suvadityamuk/trellis2-finetuning/blob/master/preprocess.py",
+      "https://github.com/suvadityamuk/trellis2-finetuning#1-preprocess-trellis2-prep",
+      "https://github.com/suvadityamuk/trellis2-finetuning#3-train-trellis2-train",
+      "https://github.com/suvadityamuk/trellis2-finetuning/blob/master/finetune.py",
+      "https://huggingface.co/suvadityamuk/trellis-2-finetune-gso",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/preprocessing.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/conditioning_views.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/lora_adapters.png",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/training_loop.png",
+      "https://huggingface.co/collections/stabilityai/stable-diffusion-3",
+      "https://huggingface.co/collections/black-forest-labs/flux2",
+      "https://huggingface.co/spaces/ariG23498/flow-matching",
+      "https://huggingface.co/papers/2207.12598",
+      "https://github.com/suvadityamuk/trellis2-finetuning/blob/master/container/trellis2/configs/lora/slat_flow_img2shape_lora_gso.json",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/3d-lora-finetuning/training_loss.png"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "ae3c6c28ceab44c4",
-   "url": "https://www.vulncheck.com/blog/anthropic-glasswing-november-update",
-   "title": "Tracking Anthropic-discovered vulnerabilities",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-10T22:17:56+00:00",
-   "summary_short": "442个Anthropic相关CVE中仅2个在野利用",
-   "summary_long": "Project Glasswing启动七个月后，VulnCheck更新追踪：可归因于Anthropic的CVE共442个，约占今年已发布93,450个CVE的0.5%，其中仅2个被发现在野利用。Anthropic自身账本列出37,966项发现，仅7,349项（19.4%）公开、217项标记修复；自9月以来新增近12,000项发现，仅多15项修复，发现与修复差距扩大。约1,654项（4.4%）被标为重复，接近修复数的八倍，另有419项撤回。其宣称的真实正例率从90.8%升至94.2%，原文称这引发如何计入重复和撤回发现的疑问。OSS Scanner把验证工作转移给维护者；curl将34份已发布报告中的19份拒为漏洞，确认6份为低危，另有9份待评估。",
+   "id": "a88bddb17214a029",
+   "url": "https://huggingface.co/blog/ibm-granite/llmon-an-llm-native-markup-language-now-in-granite",
+   "title": "LLMON: An LLM-Native Markup Language, now in Granite 4.1 3B and 8B",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-12T19:07:35+00:00",
+   "summary_short": "LLMON：为 LLM 显式标注结构与语义的标记语言，并发布 3B/8B 预览模型",
+   "summary_long": "LLM 的上下文混杂着系统提示、历史对话、作用于检索文档的指令、工具返回或用户数据、输出约束与推理链；原文认为这些结构大多对模型是隐式的，或者用并非为 LLM 设计的 JSON 编码，这正是小模型脆弱、偶发意外失败的原因之一，也容易被提示注入利用。作者提出 LLMON（LLM Object Notation，读作 lemon）：用有意义的标签标记语义连贯的组件，标签由保留的特殊 token 分隔符包裹；嵌套等数据模式以因果 LLM 无歧义的方式表述；唯一 ID 可指向上下文中任意位置的指令，并把指令绑定到它应作用的数据，类似函数调用传参。此次发布两个由 Granite 4.1 基座衍生的实验性预览模型（3B、8B），它们经训练可读取与生成 LLMON 文本，同时开放含工具包、工作流与模板示例的 GitHub 仓库。原文称，在部分基准上，间接提示注入的成功率降至近零，同时相对 Granite 4.1 Instruct 保持通用能力。",
    "key_points": [
-    "七个月追踪到442个可归因于Anthropic的CVE，约占今年全部CVE的0.5%，仅2个被发现在野利用。",
-    "Anthropic账本37,966项发现中仅7,349项公开（19.4%）、217项修复；9月以来新增近12,000项发现仅增15项修复。",
-    "约1,654项被标为重复、419项撤回；宣称真实正例率升至94.2%引发疑问；curl将34份报告中19份拒为漏洞。"
+    "LLMON 用保留特殊 token 包裹的有意义标签显式标注上下文组件的结构与语义，并用唯一 ID 把指令绑定到它应作用的数据。",
+    "发布 granite-4.1-3b-LLMON-preview 与 granite-4.1-8b-LLMON-preview 两个实验性预览模型，以及含工具包、工作流与模板示例的 GitHub 仓库。",
+    "原文称在部分基准上，间接提示注入攻击成功率降至近零，并且相对 Granite 4.1 Instruct 保持通用能力；Mellea 原生支持 LLMON，并提供 JSON 转换器与 LoRA 微调自定义结构的做法。"
    ],
    "topics": [
-    "cybersecurity"
+    "context-engineering",
+    "prompt-injection",
+    "harness"
    ],
-   "category": "安全",
+   "category": "Agent 与开发",
    "categories": [
+    "Agent 与开发",
     "安全"
    ],
-   "horizon": "short",
-   "score": 78.9,
+   "horizon": "long",
+   "score": 80.7,
    "status": "published",
    "extra": {
-    "hn_points": 447,
-    "hn_comments": 218,
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2310.12815",
+      "2402.06363",
+      "2410.02644",
+      "2603.22519",
+      "2610.38120"
+     ],
+     "links": [
+      "https://huggingface.co/ibm-granite/granite-4.1-3b-llmon-preview",
+      "https://huggingface.co/ibm-granite/granite-4.1-8b-llmon-preview",
+      "https://github.com/generative-computing/llmon",
+      "https://github.com/generative-computing/mellea",
+      "https://github.com/generative-computing/llmon/tree/main/llmon/lang",
+      "https://arxiv.org/abs/2310.12815",
+      "https://cdn-uploads.huggingface.co/production/uploads/6484ca4d5ff9a3d2ee52a83b/3UqXuyb58P8n3NiHnJiK4.png",
+      "https://arxiv.org/pdf/2410.02644",
+      "https://arxiv.org/pdf/2402.06363",
+      "https://cdn-uploads.huggingface.co/production/uploads/6484ca4d5ff9a3d2ee52a83b/VMIEO4qYlmxLhK0DmMO6C.png",
+      "https://huggingface.co/ibm-granite/granite-4.1-8b-base",
+      "https://huggingface.co/spaces/ibm-granite/LLMON-Attention-Visualization",
+      "https://cdn-uploads.huggingface.co/production/uploads/6484ca4d5ff9a3d2ee52a83b/nv3yYV9JSHPrHEJYfKiqo.gif",
+      "https://github.com/generative-computing/llmon/blob/main/llmon/examples/lora-finetuning/byo-vocab_LoRA_scienceworld.ipynb",
+      "https://github.com/generative-computing/llmon/blob/main/llmon/examples/lora-finetuning/byo-vocab_LoRA_for_agents.ipynb",
+      "https://arxiv.org/abs/2610.38120",
+      "https://arxiv.org/abs/2603.22519"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "f101ffad2bb3a113",
+   "url": "https://ipo.anthropic.com/us/",
+   "title": "Anthropic IPO",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-12T11:46:41+00:00",
+   "summary_short": "Anthropic路演材料：Q3'26收入170亿美元、同比增超12倍，净亏233亿美元",
+   "summary_long": "原文为Anthropic首次公开募股（IPO）路演材料。开篇称Anthropic是一家公益公司（public benefit corporation），致力于确保AI的益处并缓解其风险，并引用创始人信：AI是人类历史上最具影响的技术之一，若管理得当，可加速科学创新、大幅提高经济增长率、使重大疾病的疗法触手可及、解决世代未能解决的问题。路演分11个章节，包括机会与核心优势、产品与平台、前沿与安全研究、算力策略、企业战略、财务模型与结论，并穿插Bristol Myers Squibb、Accenture、AIG等环节（原文未展开）。Q3'26财务亮点（截至2026年9月30日）：收入170亿美元，同比增长超12倍；年化收入超10万美元的客户超11,900家，同比增长超12倍；自2025年一季度以来算力效率提升超4倍；调整后运营利润率15%，运营利润率-3%；净亏损233亿美元，主因估值上升带来的219亿美元非现金费用（可转换票据、衍生负债与SAFE公允价值变动）。客户案例含Legora、礼来、乐天、Salesforce与沃尔玛：礼来5万余名员工可使用Claude Enterprise，乐天70多个业务单元使用AI、新功能上市由24天缩短至5天，Salesforce开发者人均有效产出同比增长151%。",
+   "key_points": [
+    "Q3'26收入170亿美元、同比增长超12倍；年化收入超10万美元客户超11,900家、同比增超12倍；算力效率较2025年一季度提升超4倍",
+    "净亏损233亿美元，含219亿美元非现金费用，源于估值上升导致的可转换票据、衍生负债与SAFE公允价值变动；调整后运营利润率15%，运营利润率-3%",
+    "客户案例：礼来5万余名员工接入Claude Enterprise、推广以来扩大5倍；乐天70多个业务单元使用AI，新功能上市从24天降至5天；Salesforce开发者有效产出同比增151%、API迁移快18倍"
+   ],
+   "topics": [
+    "ipo",
+    "funding"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 79.5,
+   "status": "published",
+   "extra": {
+    "hn_points": 799,
+    "hn_comments": 791,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://console.vulncheck.com/signin",
-      "https://www.vulncheck.com/blog/anthropic-glasswing-cves",
-      "https://www.vulncheck.com/blog/anthropic-ledger",
-      "https://www.vulncheck.com/blog/state-of-exploitation-1h-2026#has-anthropic-glasswing-lived-up-to-the-hype-it-brought-this-year",
-      "https://www.vulncheck.com/blog/anthropic-glasswing-receipts",
-      "https://github.com/patrickmgarrity/Anthropic-Credited-CVEs",
-      "https://red.anthropic.com/2026/cvd/ledger/",
-      "https://www.anthropic.com/research/launching-opt-in-vuln-finding-service-for-open-source",
-      "https://github.com/anthropics/oss-scanner",
-      "https://www.linkedin.com/in/danielstenberg/",
-      "https://www.linkedin.com/feed/update/urn:li:share:7524224297595269120/",
-      "https://daniel.haxx.se/blog/2026/05/11/mythos-finds-a-curl-vulnerability/",
-      "https://vulncheck.com/product/exploit-intelligence"
+      "https://www.schwab.com/stocks/ipo-direct-listing",
+      "https://us.etrade.com/what-we-offer/investment-choices/new-issues/anthropic?cid=pa-anthropic_ipo-et",
+      "https://fidelity.com/ipo",
+      "https://robinhood.com/us/en/ipo-access/",
+      "https://www.sofi.com/invest/ipo-investing/"
      ]
     },
     "content_source": "direct",
@@ -321,97 +494,231 @@
    }
   },
   {
-   "id": "e879c6fc35d4933f",
-   "url": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/",
-   "title": "AlphaGenome 2: Deciphering how cells read DNA to better understand disease",
+   "id": "a8d5fa7d24b3647f",
+   "url": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/",
+   "title": "Introducing Gemini 4 Hydrogen",
    "source": "Google DeepMind Blog",
    "tier": "S",
-   "published_at": "2026-11-11T15:00:15+00:00",
-   "summary_short": "AlphaGenome 2：改条件式DNA模型，按细胞类型预测变异影响，检出量近乎翻倍",
-   "summary_long": "人体每个细胞携带相同DNA，不同细胞类型靠开关不同基因完成各自功能。Human Cell Atlas等全球计划正测绘数百万细胞的基因表达，但预测DNA细微变异如何影响特定细胞中的表达仍是未解难题。继去年推出在宽泛组织层面预测变异影响的AlphaGenome、以及覆盖全部90亿种单字母变化的AlphaGenome Atlas后，团队发布AlphaGenome 2。它由并行输出改为条件模型：在输入百万字母DNA序列的同时输入一个组织、细胞类型或状态，并在架构每一层使用该条件，从而学习同一段DNA在不同细胞中被读取的差异；条件可取自参考目录，也可由用户自己的单细胞实验经cell encoder即时生成。模型基于68种组织、逾1亿个单细胞图谱训练，识别出的改变基因表达的变异约为此前最先进模型的两倍，并能预测模型未见过的细胞与疾病状态。它还支持跨模态填补，例如只输入单细胞基因活性即可预测染色质可及性。模型即日起通过AlphaGenome API开放非商业研究使用，商业研究为私密预览。",
+   "published_at": "2026-11-12T18:00:50+00:00",
+   "summary_short": "谷歌推出 Gemini 4 Hydrogen，主打日常编码与智能体工作流的速度与效率",
+   "summary_long": "Google DeepMind 发布 Gemini 4 Hydrogen，定位是把前沿智能带给所有人，重点在速度与效率，服务日常编码和智能体（agentic）工作流。原文说明，其前沿模型 Gemini 4 Carbon 与 Gemini 4 Argon 擅长长周期的深度推理，而 Hydrogen 面向多样智能体工作流中的快速执行。Hydrogen 将在 Google AI Studio 全部层级、Gemini API、Gemini for business、Gemini 应用、Google Search，以及 Google Antigravity 中已付费的 Google AI Pro 与 Ultra 订阅用户中提供。性能上，Hydrogen 在默认 high 思考档位下于 Artificial Analysis Intelligence Index 上超过 Argon（51 对 50），最高 xhigh 档位可达 54。价格在 100 万 token 上下文窗口内统一：输入每百万 token 1.50 美元，输出每百万 token 7.50 美元。原文还介绍了 Google Antigravity 中的 Orchestrator，可在同一会话内动态切换 Carbon 与 Hydrogen 等模型；在 Terminal-Bench 4.0 上接近 Carbon 的任务成功率，平均少",
    "key_points": [
-    "模型从并行输出改为条件模型，条件（组织、细胞类型或状态）在架构每一层注入，以捕捉相近细胞类型间的细微差异",
-    "基于68种组织逾1亿个单细胞图谱训练，识别出的改变基因表达的变异数量约为此前最先进模型的两倍，且可预测未见过的细胞与疾病状态",
-    "支持跨模态填补（如由单细胞基因活性预测染色质可及性）；即日起经AlphaGenome API开放非商业研究，商业研究为私密预览"
+    "Hydrogen 定位为快速执行模型，与擅长深度推理的 Carbon、Argon 形成互补，可单独使用，也可作为多模型工作流中的执行引擎。",
+    "在 Artificial Analysis Intelligence Index 上，Hydrogen 默认 high 档位得 51，超过 Argon 的 50；xhigh 档位达 54；100 万 token 上下文内价格统一为输入 1.50 美元/百万 token、输出 7.50 美元/百万 token。",
+    "Google Antigravity 新增 Orchestrator，可在同一会话动态切换模型，在 Terminal-Bench 4.0 上接近 Carbon 的任务成功率，同时平均少用 24% 配额、快 19%。"
    ],
    "topics": [
-    "genomics",
-    "single-cell",
-    "foundation-model"
+    "reasoning",
+    "product",
+    "coding-agent"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
-   "horizon": "long",
-   "score": 76.8,
+   "horizon": "short",
+   "score": 78.0,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://storage.googleapis.com/deepmind-media/DeepMind.com/Blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/alphagenome-2.pdf",
-      "https://deepmind.google/blog/alphagenome-ai-for-better-understanding-the-genome/",
-      "https://deepmind.google/blog/alphagenome-atlas-a-predictive-map-of-every-possible-dna-letter-change-in-the-human-genome/",
-      "https://www.nature.com/articles/s41586-024-07501-1",
-      "https://www.alphagenomedocs.com/",
-      "https://www.alphagenomecommunity.com/",
-      "https://forms.gle/ftBfHGH7NUrCZEjN6"
+      "https://twitter.com/intent/tweet?text=Introducing%20Gemini%204%20Hydrogen%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+      "https://www.facebook.com/sharer/sharer.php?caption=Introducing%20Gemini%204%20Hydrogen&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/&title=Introducing%20Gemini%204%20Hydrogen",
+      "https://blog.google/authors/koray-kavukcuoglu/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
+      "https://aistudio.google.com/prompts/new_chat?model=gemini-4-hydrogen",
+      "https://cloud.google.com/gemini-enterprise",
+      "http://gemini.google.com/",
+      "https://blog.google/products-and-platforms/products/search/gemini-4-hydrogen-search-upgrade",
+      "https://antigravity.google/",
+      "https://artificialanalysis.ai/",
+      "https://antigravity.google/blog/gemini-4-hydrogen-in-google-antigravity",
+      "https://www.tbench.ai/news/terminal-bench-4-0",
+      "https://www.tbench.ai/",
+      "https://arena.ai/leaderboard/agent",
+      "https://www.vals.ai/benchmarks/tax_agent_bench",
+      "https://www.vals.ai/benchmarks/legal_research",
+      "https://artificialanalysis.ai/evaluations/automationbench-aa",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/multimodal-knowledge-agent-benchmark/",
+      "https://agents-last-exam.org/leaderboard",
+      "https://aistudio.google.com/apps/bundled/geminisland?showPreview=true&showAssistant=true&fullscreenApplet=true",
+      "https://aistudio.google.com/apps/bundled/material-flask-website?showPreview=true&showAssistant=true&fullscreenApplet=true",
+      "https://github.com/google-gemini/demolab",
+      "https://institute.deepmind.com/essays/the-case-for-reasoning-transparency/",
+      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Hydrogen-Model-Card.pdf",
+      "https://aistudio.google.com/docs/whats-new-gemini-4-hydrogen",
+      "https://developer.android.com/studio",
+      "http://sheets.new/",
+      "https://policies.google.com/privacy"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "9656e9adb8553921",
-   "url": "https://blog.modelcontextprotocol.io/posts/exploring-file-uploads-and-downloads-in-mcp/",
-   "title": "Exploring File Uploads and Downloads in MCP",
-   "source": "MCP Official Blog",
-   "tier": "S",
-   "published_at": "2026-11-10T09:00:00+00:00",
-   "summary_short": "MCP 发布实验性文件上传/下载扩展草案，公开征求意见",
-   "summary_long": "MCP 最初只是把模型连接到工具的简单方式，但过去两年社区项目野心渐长，许多 MCP 服务器项目需要处理文件：把对话中的 PDF 存进云存储、把大 CSV 拉进代码沙箱都是常见需求，目前却要靠大量定制的工具约定和传输机制。原文称，因客户讨论中该需求反复出现，其启动了 File Uploads 工作组，用一个月时间拿出粗略的扩展定义，希望开发者试用。该工作仍属实验性质：形态已勾勒，但尚无参考实现，作者预计与云存储、数据库导入导出等第三方服务集成后内部机制会有较大变化；扩展保持可选，不支持的客户端与服务器无需改动，目标年底前定稿并稳定。设计上模型无需逐字节读取文件，文件直接送往目的地；扩展标识为 io.modelcontextprotocol/files，服务器在 server/discover 中声明 upload 与 maxInlineBytes，工具参数用 x-mcp-file 标记。",
+   "id": "cce714811b519a82",
+   "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+   "title": "Gemini Decisions API",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-11T18:32:42+00:00",
+   "summary_short": "Decisions API 可单次评估千个多模态封闭问题并返回置信度",
+   "summary_long": "Gemini Decisions API 是面向封闭集合决策的新端点，由 Gemini Decision 1 模型驱动，可通过 Google AI Studio 的 Gemini API 使用。它支持将文本、图像、音频、视频、PDF（最多 256K tokens）作为共享输入，一次请求最多评估 1,000 个独立问题，混合是/否、2 至 255 选项选择和有序列评分标准。模型不逐 token 生成答案，而是在单次前向中为候选选项打分，返回概率和 0 至 1 置信度，端到端延迟 150-250 毫秒，价格每百万输入 token 0.10 美元且不计输出 token。原文称其在代理路由、推理、排序和多模态理解基准上领先且校准误差最低，在共享基准套件上比 Gemini 3.5 Flash-Lite 配合 Interactions API 便宜近 5 倍。",
    "key_points": [
-    "MCP 服务器处理文件的需求（PDF 存云存储、大 CSV 进沙箱）此前需大量定制约定，因此启动了 File Uploads 工作组",
-    "扩展草案仍属实验性，尚无参考实现，与第三方文件服务集成后内部机制可能大改，目标年底前定稿并稳定",
-    "扩展保持可选：不支持它的客户端与服务器无需任何改动"
+    "支持单次请求对文本、图像、音频、视频和 PDF 的共享输入评估最多 1,000 个是/否、多选和评分标准问题，输入上限 256K tokens。",
+    "Gemini Decision 1 不逐 token 生成文本，而是单次前向打分，返回概率和 0-1 置信度，端到端延迟 150-250ms，每百万输入 token 0.10 美元、输出 token 不计费。",
+    "原文称其在代理路由、推理、排序和多模态理解基准上领先且校准误差最低；在共享基准套件上比 Gemini 3.5 Flash-Lite 配合 Interactions API 近 5 倍便宜。"
    ],
    "topics": [
-    "mcp",
+    "reasoning",
+    "inference-latency",
     "tool-use"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 77.6,
+   "status": "published",
+   "extra": {
+    "hn_points": 553,
+    "hn_comments": 157,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://twitter.com/intent/tweet?text=Gemini%20Decisions%20API%3A%20Fast%2C%20calibrated%20multimodal%20decisions%20%40google&url=https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "https://www.facebook.com/sharer/sharer.php?caption=Gemini%20Decisions%20API%3A%20Fast%2C%20calibrated%20multimodal%20decisions&u=https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/&title=Gemini%20Decisions%20API%3A%20Fast%2C%20calibrated%20multimodal%20decisions",
+      "https://aistudio.google.com/docs/decisions-api",
+      "https://aistudio.google.com/apps/bundled/gemini-decisions-api-playground?fullscreenApplet=true",
+      "https://aistudio.google.com/docs/interactions-overview",
+      "https://stitch.withgoogle.com/rapid",
+      "https://aistudio.google.com/api-keys",
+      "https://aistudio.google.com/apps/bundled/doorstep-parcels-qa?fullscreenApplet=true",
+      "https://aistudio.google.com/apps/bundled/speed-sketch?fullscreenApplet=true",
+      "https://aistudio.google.com/apps/bundled/find-the-zoo-keeper?fullscreenApplet=true",
+      "https://openrouter.ai/google/gemini-decision-1",
+      "https://docs.langchain.com/oss/python/integrations/providers/google",
+      "https://ai-sdk.dev/providers/ai-sdk-providers/google",
+      "https://docs.litellm.ai/docs/providers/gemini",
+      "https://pydantic.dev/docs/ai/models/google/",
+      "https://docs.pipecat.ai/api-reference/server/classifiers/google",
+      "https://docs.livekit.io/agents/integrations/google/",
+      "https://opencode.ai/",
+      "https://forms.gle/NFt1W6pL1gCY9FGM8",
+      "https://policies.google.com/privacy"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "0667a519c65042ee",
+   "url": "https://github.com/hyperionaidev/smolmaxxing/",
+   "title": "I'm making LLMs work on small and old devices",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-12T15:23:10+00:00",
+   "summary_short": "smolmaxxing 在约 1GB 内存的电视盒与旧 iPad 上跑起 16B 模型",
+   "summary_long": "smolmaxxing 是一个在尽量小的硬件上运行尽量大的语言模型的项目，目前公布了两台设备的实测数据：小米电视盒 S（第三代，Amlogic S7D，4×Cortex-A55，1.9GB 内存约 1GB 可用，Android 14、未 root）与 2013 款 iPad Air（Apple A7 双核，1GB 内存约 700MB 可用，iOS 12.5.7 已越狱）。日常使用方面，电视盒运行 Qwen3.5-2B 达到 7.7 tok/s，iPad 运行 1-bit 的 Bonsai-1.7B 达到 24-26 tok/s；最大模型 Ling-mini-2.0（16B）在两者上分别为 5.1 tok/s 与 2.6-4.5 tok/s。两台设备能在约 1GB 内存上运行 8B 与 16B 混合专家模型，方法是只在内存中保留部分权重，其余按需从闪存读取。仓库中所有数字均在设备本身测得，实现方式是对 llama.cpp 打补丁，原版 llama.cpp 无法加载这些模型文件。",
+   "key_points": [
+    "两台设备公布完整实测：电视盒运行 16B 模型达到 5.1 tok/s，iPad Air 运行同模型为 2.6-4.5 tok/s，全部数值在设备上测得",
+    "关键技术包括针对 Cortex-A55 的 1-bit 查表内核与重打包 2-bit、ternary 格式，以及适配无点积指令的 A7 的版本；裁掉极少使用的词表输出行以省内存；电视盒在跑模型时以无头模式停掉启动器与 Google 服务；混合专家模型只把常用专家留在内存，其余按需从闪存读取并预取下一层",
+    "整个项目是对 llama.cpp 的补丁，仓库含 160 次实验记录（含失败），MIT 许可，后续还将加入手机、单板机与路由器"
+   ],
+   "topics": [
+    "quantization",
+    "edge-inference",
+    "open-source"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "开源项目"
+   ],
+   "horizon": "long",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 273,
+    "hn_comments": 89,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://hackergit.org/r/hyperionaidev/smolmaxxing",
+      "https://github.com/ggml-org/llama.cpp",
+      "https://www.star-history.com/?repos=hyperionaidev%2Fsmolmaxxing&type=date&legend=top-left",
+      "https://github.com/karpathy/llama2.c",
+      "https://huggingface.co/Qwen",
+      "https://huggingface.co/unsloth",
+      "https://huggingface.co/prism-ml",
+      "https://huggingface.co/inclusionAI",
+      "https://huggingface.co/tablinum",
+      "https://huggingface.co/bartowski",
+      "https://huggingface.co/mradermacher",
+      "https://huggingface.co/karpathy/tinyllamas",
+      "https://github.com/staturnzz/amethyst",
+      "https://fonts.google.com/specimen/Archivo",
+      "https://github.com/googlefonts/noto-emoji"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "01b49a7c7dde8d3e",
+   "url": "https://github.blog/ai-and-ml/github-copilot/build-once-run-on-any-agent-a-practical-guide-to-agent-skills/",
+   "title": "Build once, run on any agent: A practical guide to agent skills",
+   "source": "GitHub Blog (AI)",
+   "tier": "S",
+   "published_at": "2026-11-12T22:54:52+00:00",
+   "summary_short": "Agent skill 是以 SKILL.md 为核心的版本化目录，把可重复任务的指令跨 agent 复用",
+   "summary_long": "原文介绍 agent skill 的实践用法：它是以 SKILL.md 为核心的版本化目录，用于描述何时、如何完成一项可重复任务；指令可在不同 agent 间共享，但工具、凭证和权限仍须由运行环境提供。skill 可以描述如何查询数据库，却不授予该数据库的访问权。一，skill 应有明确的任务、输入与输出。示例 Proof Agent 用独立验证者检查 AI 生成改动中的虚假声明、坏代码和安全问题，其原则是“自我验证不是验证”；frontmatter 写明名称与用途，正文的 When to Verify 交代何时调用，其余内容说明要审什么、证据包含什么。二，多个 skill 可协作完成更大流程。Data Forge 的 support-desk 示例里，forge-init 先发现源表、命名规范等信息并写入 manifest，其他 skill 读取该 manifest 获取项目上下文；forge-builder 把工作从 issue 推进到 pull request，调用 forge-dbx 查询数据平台、forge-lint 套用团队标准，过程中由人审阅决策，最终 PR 含管道代码、schema 变更与测试。每个 skill 职责明确，共享上下文。三，skill 适合有边界、可重复、依赖可复用判断的工作，如清单、发布、迁移、指标管道；若流程需要稳定接口、共享状态、审计记录、长时控",
+   "key_points": [
+    "skill 是版本化目录、以 SKILL.md 为核心；指令可跨 agent 共享，但工具、凭证、权限仍由环境提供，skill 本身不授予数据库等资源访问权",
+    "每个 skill 应聚焦一个任务并说明何时适用：Proof Agent 用独立验证者审查 AI 生成改动，遵循“自我验证不是验证”，frontmatter 写名称与用途，正文说明调用时机",
+    "多 skill 可协作：forge-init 把发现的项目细节写入 manifest 供其他 skill 读取，forge-builder 从 issue 协调到 PR，调用 forge-dbx 查询数据、forge-lint 套标准，过程中有人员审阅"
+   ],
+   "topics": [
+    "agent-skills",
+    "multi-agent",
+    "context-engineering"
    ],
    "category": "Agent 与开发",
    "categories": [
     "Agent 与开发"
    ],
-   "horizon": "short",
-   "score": 75.3,
+   "horizon": "long",
+   "score": 76.3,
    "status": "published",
    "extra": {
     "content_source": "rss",
+    "source_tags": [
+     "AI & ML",
+     "GitHub Copilot",
+     "GitHub Universe"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://modelcontextprotocol.io/community/working-groups/file-uploads",
-      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/blob/main/specification/draft/file-uploads.md",
-      "https://modelcontextprotocol.io/specification/2026-07-28/server/tools#x-mcp-header",
-      "https://modelcontextprotocol.io/specification/2026-07-28/basic#statelessness",
-      "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/mrtr",
-      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/blob/main/specification/draft/file-uploads.md#open-questions",
-      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/blob/main/specification/draft/file-uploads.md#security-implications",
-      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads",
-      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/issues",
-      "https://discord.com/channels/1358869848138059966/1497669234564661438",
-      "https://modelcontextprotocol.io/community/communication",
-      "https://github.com/jayzuccarelli",
-      "https://github.com/kevklam",
-      "https://github.com/kziemski",
-      "https://github.com/kurtisvg",
-      "https://github.com/meastes",
-      "https://github.com/patrick-rodgers",
-      "https://github.com/tsarlandie-oai",
-      "https://github.com/modelcontextprotocol/modelcontextprotocol/discussions?discussions_q=Files+Working+Group+Meeting+in%3Atitle"
+      "https://reg.githubuniverse.com/flow/github/universe26/attendee-portal/page/sessioncatalog?search=BLD1787B",
+      "https://github.com/githubevents/build-once-run-on-any-agent/tree/main/demos/proof-agent",
+      "https://github.com/githubevents/build-once-run-on-any-agent/blob/main/demos/proof-agent/SKILL.md",
+      "https://github.com/githubevents/build-once-run-on-any-agent/tree/main/demos/dataforge",
+      "https://github.com/githubevents/build-once-run-on-any-agent/blob/main/demos/dataforge/examples/support-desk/DEMO.md",
+      "https://github.com/githubevents/build-once-run-on-any-agent/blob/main/demos/dataforge/examples/support-desk/dataforge.manifest.yaml",
+      "https://github.com/githubevents/build-once-run-on-any-agent/blob/main/demos/dataforge/README.md#the-skills",
+      "https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills",
+      "https://github.blog/ai-and-ml/github-copilot/build-once-run-on-any-agent-a-practical-guide-to-agent-skills/",
+      "https://github.blog"
      ]
     },
     "summary_mode": "full"

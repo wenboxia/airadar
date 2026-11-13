@@ -1,147 +1,43 @@
 {
- "generated_at": "2026-11-12T01:34:32+00:00",
+ "generated_at": "2026-11-13T00:26:31+00:00",
  "items": [
   {
-   "id": "624a305adfa41ec6",
-   "url": "https://simonwillison.net/2026/Nov/11/gemini-decisions-api/",
-   "title": "Gemini Decisions API",
-   "source": "Simon Willison",
+   "id": "7a69c1b89eda0814",
+   "url": "https://machinelearning.apple.com/research/faster-retrieval",
+   "title": "Faster Retrieval for Better, More Efficient RAG",
+   "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-11-11T22:03:25+00:00",
-   "summary_short": "谷歌发布 Gemini Decision 1，支持文本、图像、音频、视频和 PDF 的判定模型",
-   "summary_long": "谷歌推出 Gemini Decision 1，加入决策模型类别，与 Jev 和 OpenAI 并列。原文称，这个新模型 API 与 Jev 几乎一致：同样支持三类问题（是/否、选择、评分标准打分），也沿用了 Jev 用“Noul”指代是/否问题的叫法。价格与 GPT-6 Luna 决策模型相同：每百万输入 token 收 10 美分，输出免费；Jev 仍是三者中最便宜的，每百万 4.2 美分。输入模态上，Jev 仅支持文本和 JSON，OpenAI 可处理文本和图像，Gemini Decision 1 则是完全多模态，覆盖文本、图像、音频、视频和 PDF。作者用自己那段 Yonkers 踩踏机器人视频做了测试，问了四个是/否问题：视频里有龙吗、有机器人吗、拍摄于法国吗、拍摄于美国吗。原文称 Jev 和 OpenAI 对是/否问题返回 1.0 或 0.0，而 Gemini 返回的是概率值：龙 0.0498、机器人 0.9234、法国 0.0833、美国 0.9230。",
+   "published_at": "2026-11-11T16:57:45+00:00",
+   "summary_short": "Apple 研究者提出离线训练小型神经网络学习支撑函数，加速并提升 RAG 检索精度",
+   "summary_long": "最大内积搜索（MIPS）是推荐系统、搜索与 RAG 的核心：给定查询向量，需在数百万候选键向量中找出最匹配者，RAG 中即把最合适的文档拼到问题前。键数量与维度增长使穷举比较代价剧增，现有近似方法用聚类与量化以精度换速度，但只关注键集合的几何结构，假定查询分布与键相似或干脆不考虑查询。原文指出这在 RAG 中尤成问题：查询是用户短问题，键是长而有信息量的文本，二者差异大；且生产环境的查询分布稳定，通用方法浪费了这一信号。在 ICML 2026 论文《Amortizing Maximum Inner Product Search with Learned Support Functions》中，来自 Apple 的研究者针对固定键库离线一次性训练小型神经网络，学习把查询更快路由到最佳匹配，以前期摊销成本换取推理时更快更准的检索。原文还介绍常规做法把键分为 k 簇、用质心路由，将比较量降至约 n/k，但质心路由不精确、可能漏掉最近邻；而查询到最大内积的映射即键集合的支撑函数，属凸分析研究对象，具凸性（原文此处截断，未详述后续近似方式）。",
    "key_points": [
-    "Gemini Decision 1 与 Jev 几乎一致：同样支持是/否、选择、评分标准打分三类问题，并沿用“Noul”这一说法。",
-    "定价与 GPT-6 Luna 相同（每百万输入 token 10 美分、输出免费），Jev 仍最便宜，为每百万 4.2 美分。",
-    "模态支持：Jev 仅文本和 JSON，OpenAI 支持文本和图像，Gemini Decision 1 覆盖文本、图像、音频、视频和 PDF。"
+    "现有近似 MIPS 方法依赖键集合的聚类、量化索引，假定查询与键分布相似或忽略查询，而 RAG 中短查询与长文本键差异显著，生产环境查询分布又相对稳定，这一信号未被利用",
+    "论文对固定键库离线训练一次小型神经网络来学习查询路由，以一次性摊销成本换取推理阶段更快、更准确的检索",
+    "常规质心路由可把比较量降到约 n/k，但因不精确可能漏掉真正的最近邻；MIPS 中查询到最大内积的映射是键集合的支撑函数，是凸分析中的研究对象，具有凸性"
    ],
    "topics": [
-    "reasoning",
-    "product",
+    "rag",
+    "context-engineering",
     "eval"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "评测"
-   ],
-   "horizon": "short",
-   "score": 74.7,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "ai",
-     "generative-ai",
-     "gemini",
-     "llm-release",
-     "jev"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
-      "https://simonwillison.net/2026/Sep/21/jev/",
-      "https://simonwillison.net/2026/Oct/6/llm-openai-decisions/",
-      "https://simonwillison.net/2026/Nov/10/yonkers-rises/",
-      "https://news.ycombinator.com/item?id=50456791",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/gemini",
-      "https://simonwillison.net/tags/llm-release",
-      "https://simonwillison.net/tags/jev",
-      "https://simonwillison.net/tags/decision-models"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "88e62dcb316dd43d",
-   "url": "https://blog.modelcontextprotocol.io/posts/mcp-release-cycle/",
-   "title": "A More Predictable Release Cycle for MCP",
-   "source": "MCP Official Blog",
-   "tier": "S",
-   "published_at": "2026-11-11T09:00:00+00:00",
-   "summary_short": "MCP 规范改为每六个月固定发布，并新设 Release Manager 角色",
-   "summary_long": "过去两年 MCP 积累了大量改进想法，但提案从评审、实现、测试到进入发布的过程难以为社区跟踪。核心维护者在 MCPCon Europe 讨论后，由 Kurtis Van Gent 在 SEP-3398《Release Cycle Updates》中记录流程，作为今后发布的准则。MCP 规范发布改为固定六个月周期，每年两次，一般在三月和九月的最后一个周二；每次发布都会同步公布提案截止日期与 SDK beta 日期，便于开发者倒推自己的实现与测试计划。未准备好的提案将顺延至后续版本，而非推迟整个规范。下一个版本目标为 2027 年 3 月 30 日，即 MCP 版本 2027-03-30。同时正式设立 Release Manager 角色，Luca Chang 将加入，担任下一周期的发布经理；规划在正式发布前八个月启动，因此会与当前版本最后两个月的工作重叠。",
-   "key_points": [
-    "MCP 规范改为每年两次固定发布，一般在三月和九月的最后一个周二；未准备好的提案顺延到后续版本，而不推迟整个规范",
-    "每次发布同步公布提案截止日期和 SDK beta 日期；下一版本目标为 2027 年 3 月 30 日",
-    "正式设立 Release Manager 角色，Luca Chang 加入下一周期；规划在正式发布前八个月启动，与当前版本最后两个月重叠"
-   ],
-   "topics": [
-    "mcp"
    ],
    "category": "Agent 与开发",
    "categories": [
-    "Agent 与开发"
+    "Agent 与开发",
+    "模型"
    ],
    "horizon": "long",
-   "score": 73.9,
+   "score": 74.2,
    "status": "review",
    "extra": {
-    "content_source": "rss",
+    "hn_points": 232,
+    "hn_comments": 38,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://modelcontextprotocol.io/development/roadmap",
-      "https://github.com/kurtisvg",
-      "https://modelcontextprotocol.io/seps/3398-release-cycle-updates",
-      "https://github.com/LucaButBoring",
-      "https://modelcontextprotocol.io/seps/1686-tasks",
-      "https://modelcontextprotocol.io/seps/2663-tasks-extension",
-      "https://modelcontextprotocol.io/community/working-groups/tasks-events",
-      "https://modelcontextprotocol.io/community/interest-groups/agents",
-      "https://blog.modelcontextprotocol.io/posts/images/mcp-release-cycle/timeline.png",
-      "https://modelcontextprotocol.io/community/sdk-tiers",
-      "https://modelcontextprotocol.io/community/working-interest-groups",
-      "https://voting.modelcontextprotocol.io/p/seps",
-      "https://modelcontextprotocol.io/community/contributing",
-      "https://modelcontextprotocol.io/community/communication"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "645f1651bd53c9c8",
-   "url": "https://www.cbsnews.com/news/united-airlines-bans-ai-agents-booking-flights/",
-   "title": "United Airlines bans AI agents from booking flights on behalf of travelers",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-11T21:24:35+00:00",
-   "summary_short": "美联航禁止第三方AI代理代客订票，称存在安全与合规风险",
-   "summary_long": "美联航周三表示，禁止人工智能代理代表旅客预订机票，理由是安全风险及可能违反联邦规定。原文称，消费者正越来越多使用 Meta 的 Muse、OpenAI 的 dots 等 AI 代理完成购物等任务，而订票需访问客户个人信息，包括支付凭证。美联航称，与第三方个人 AI 助手共享凭证可能泄露敏感信息，其操作可能导致非预期购买、账户变更或 MileagePlus 里程被使用；用 AI 代理值机等还可能违反联邦法规，包括要求旅客本人现场确认行李不含违禁物品。美联航正从自家平台直接、并经旅行社和聚合平台间接限制访问，禁止未经授权的第三方个人 AI 代理使用，并更新订票出票政策。分析师 Henry Harteveldt 认为，这显示美联航想掌控订票流程，不愿再添一个可能更强的中间商，也欲避免 AI 机器人搜索航班带来的成本。西南航空则向 ChatGPT 用户开放航班库存。",
-   "key_points": [
-    "禁令同时覆盖美联航自家数字平台和经旅行社、聚合平台的间接访问，公司同步更新订票与出票政策",
-    "美联航给出的理由包括凭证共享导致敏感信息泄露、可能产生非预期购买/账户变更/里程被使用，以及 AI 代理值机可能违反要求旅客本人核验行李的联邦法规",
-    "分析师 Harteveldt 称美联航意在保留对订票流程的控制、避免新增中间商与 AI 机器人搜索成本；其票价仍可通过 Kayak、Hopper、Google Flights 预订，西南航空则已向 ChatGPT 用户开放航班库存"
-   ],
-   "topics": [
-    "privacy",
-    "agent-security",
-    "policy"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 71.1,
-   "status": "review",
-   "extra": {
-    "hn_points": 353,
-    "hn_comments": 336,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.cbsnews.com/news/ai-agents-customer-bank-accounts-security/",
-      "https://www.cbsnews.com/news/meta-ai-agent-muse-shopping/",
-      "https://www.cbsnews.com/news/sam-altman-openai-dots-chatgpt-agents-safety/",
-      "https://www.cbsnews.com/team/alain-sherter/",
-      "https://www.cbsnews.com/team/kris-van-cleave/"
+      "https://en.wikipedia.org/wiki/Support_function",
+      "https://proceedings.mlr.press/v70/amos17b.html",
+      "https://huggingface.co/datasets/BeIR/nq-generated-queries",
+      "https://github.com/facebookresearch/faiss"
      ]
     },
     "content_source": "direct",
@@ -149,93 +45,111 @@
    }
   },
   {
-   "id": "6734a79295b9f50e",
-   "url": "https://simonwillison.net/2026/Nov/11/anthropic-ipo-roadshow/",
-   "title": "Anthropic's IPO roadshow video",
-   "source": "Simon Willison",
+   "id": "f3e91f75ed135df5",
+   "url": "https://blog.atuin.sh/threads-agent-sessions/",
+   "title": "Atuin Threads: All your agent sessions on every machine",
+   "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-11-11T15:11:59+00:00",
-   "summary_short": "Anthropic IPO 路演视频披露多芯片战略与算力乘数细节",
-   "summary_long": "Anthropic 昨日启动 IPO 路演，其路演视频包含此前未公开的业务运作信息，其中联合创始人 Tom Brown 主讲的“Approach to compute”部分尤为值得关注。原文提到该视频没有官方文字稿，文中引用的内容摘自作者用 MacWhisper 提取的转写。\n\nBrown 称，Claude 的训练与推理如今横跨 AWS Trainium、Google TPU、NVIDIA GPU 和 AMD GPU 四大芯片家族。这源于早期一次非常规押注：当时不少人认为在不同芯片上运行 AI 模型不值得，因为每款芯片都需要专门的软件栈和推理栈，构建成本高、难度大；但 Anthropic 已做了多年。今年他们首次接入 AMD GPU：过去引入新芯片平台需要数十名工程师耗费数月，这次由“Mythos”尝试，三天内就让 Claude 在 AMD 上运行，几乎没有人介入，Claude 移植或编写了近 100% 的 kernel。\n\n第二个算力优势来源是算力乘数的发现速度。Anthropic 关注总有效算力，即物理容量与所发现乘数的乘积：例如训练某智能水平的模型需 100 单位算力，4 倍乘数意味着只需 25 单位即可训练同一模型，或用这 100 单位训练出原本需要 400 单位的更强模型。文中称乘数可相互叠加、彼此增强，难以被复制，并预期随着接近递归自我改进，Claude 将能完全自行发",
+   "published_at": "2026-11-11T14:10:46+00:00",
+   "summary_short": "Atuin Threads 让 AI 编码会话跨机器同步、可搜索、可换工具续跑",
+   "summary_long": "原文以第一人称写道：过去终端里的命令几乎都由自己输入，如今机器上跑的命令超过一半不是自己写的；shell 历史会跟着人到各处，代理会话却散落在不同工具和机器上（笔记本、开发服务器、临时实例、德国的一台廉价裸金属机器），难以搜索，也常被遗忘。作者认为 shell 历史只记录表面，不保留推理与意图，而代理会话把命令、输出、意图和沿途尝试都留在本地，却未被利用。\n\n于是有了 Atuin Threads：从 Atuin 18.24 起，可跨机器搜索代理会话、在任意处恢复，或把会话 fork 到另一个代理工具——比如在开发服务器的 Claude Code 里开始，在笔记本的 Codex 里完成。它复用 Atuin 的加密同步引擎，该引擎能同步任何可建模为 append-only log 的对象，多数 AI 会话正是如此。同步端到端加密，可用托管服务、自建或纯本地，采集为选择性加入；运行 atuin resume 打开 TUI。目前支持 Claude Code、Codex、Pi、Omp、OpenCode。另提供 MCP（atuin mcp），让代理自行检索过往会话。",
    "key_points": [
-    "Claude 的训练与推理同时运行在 AWS Trainium、Google TPU、NVIDIA GPU 和 AMD GPU 四大芯片家族上，源自早期对多芯片策略的押注",
-    "今年首次接入 AMD GPU：三天完成、几乎无人工干预，Claude 自行移植或编写近 100% 的 kernel，而过去需要数十名工程师数月",
-    "Anthropic 以物理算力乘以算力乘数来衡量总有效算力，称乘数可叠加且难被复制，并预期未来 Claude 能自行发现乘数"
+    "从 Atuin 18.24 起支持跨机器搜索代理会话、在任意机器恢复，或把会话 fork 到另一个代理工具",
+    "复用 Atuin 的端到端加密同步引擎，可托管、自建或纯本地，会话采集为 opt-in",
+    "目前支持 Claude Code、Codex、Pi、Omp、OpenCode，原文称还有更多代理将支持"
    ],
    "topics": [
-    "compute",
-    "gpu",
-    "inference"
+    "coding-agent",
+    "mcp",
+    "context-engineering"
    ],
-   "category": "行业动态",
+   "category": "Agent 与开发",
    "categories": [
-    "行业动态",
-    "模型"
+    "Agent 与开发",
+    "产品与应用"
    ],
    "horizon": "short",
-   "score": 70.2,
+   "score": 70.5,
    "status": "review",
    "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "ai",
-     "generative-ai",
-     "llms",
-     "anthropic",
-     "gpus"
-    ],
+    "hn_points": 233,
+    "hn_comments": 83,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://ipo.anthropic.com/us/#roadshow-video",
-      "https://gist.github.com/simonw/9806757fe8acec6221cb0a5cce4d720d",
-      "https://www.anthropic.com/research/a-postmortem-of-three-recent-issues",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/anthropic",
-      "https://simonwillison.net/tags/gpus",
-      "https://simonwillison.net/tags/claude-mythos-fable",
-      "https://simonwillison.net/tags/recursive-self-improvement"
+      "https://exe.dev/?ref=blog.atuin.sh",
+      "https://docs.atuin.sh/latest/self-hosting/server-setup/?ref=blog.atuin.sh",
+      "https://github.com/atuinsh/atuin?ref=blog.atuin.sh",
+      "https://forum.atuin.sh/?ref=blog.atuin.sh",
+      "https://discord.gg/Fq8bJSKPHh?ref=blog.atuin.sh"
      ]
     },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "7737e173e31a5988",
-   "url": "https://claude.com/resources/articles/sheets-whiteboards-data",
-   "title": "Claude Whiteboards, Claude Sheets, and Claude Data",
+   "id": "8fdb0296ea11e78c",
+   "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+   "title": "Gemini 4 Hydrogen",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-11-10T17:55:07+00:00",
-   "summary_short": "Claude 推出白板、表格与数据产品，让协作留在 Claude 内",
-   "summary_long": "原文称，Claude Whiteboards 与 Claude Sheets 进入测试版，Claude Dashboards 转为正式可用并更名为 Claude Data，三者均在所有付费计划中提供。原文指出，此前与 Claude 一起做项目，往往要把产出搬到其他工具，Claude 无法实时跟进进度和改动；现在文档、白板、表格、仪表盘都可以留在 Claude 里，供团队继续一起编辑，需要时还能导入合作方工具继续工作。Whiteboards 可以把口述的杂乱计划转成带时间线、负责人和日期的看板，也可以圈选某一部分向 Claude 提问，结束后转成文档或演示，或导入 Lucid、Miro、Vani by Zoho。Sheets 可凭一句提示生成带标签页、公式、格式和下拉菜单的表格，并逐项标注改动；目前功能较简单，可导出 .xlsx 或 CSV，也可接入 Airtable、Asana、monday.com、Smartsheet。Claude Data 新增数据故事、认证查询与实时共享，其中认证查询和实时共享仍为测试版。",
+   "published_at": "2026-11-12T18:01:48+00:00",
+   "summary_short": "谷歌发布 Gemini 4 Hydrogen，主打快速执行与智能体工作流",
+   "summary_long": "原文称，谷歌 DeepMind 于 2026 年 11 月 12 日发布 Gemini 4 Hydrogen。前沿模型 Gemini 4 Carbon 与 Argon 擅长对最难问题进行长周期深度推理，而 Hydrogen 面向日常编码与智能体工作流的快速执行；同时把 Gemini 4 开放给 Google AI Studio 各层级、Gemini API、Gemini for business、Gemini 应用、Google 搜索，以及 Google Antigravity 中的付费 Pro 与 Ultra 订阅用户。在 Artificial Analysis 智能指数上，Hydrogen 默认高思考水平得分 51，高于 Argon 的 50，最高 xhigh 设置下可达 54，且常比同级模型更快完成任务。其 100 万 token 上下文窗口统一定价为每百万输入 token 1.50 美元、输出 7.50 美元。谷歌还在 Antigravity 推出 Orchestrator，可在同一会话内动态切换 Carbon 与 Hydrogen；在 Terminal-Bench 4.0 上接近 Carbon 的任务成功率，平均少消耗 24% 配额、快 19%。相比 Gemini 3.8 Flash，默认高设置下任务完成快 2.5 倍。",
    "key_points": [
-    "Claude Whiteboards 与 Claude Sheets 进入测试版；Claude Dashboards 转为正式可用，并更名为 Claude Data，三者面向所有付费计划",
-    "产出可留在 Claude 内供团队协作编辑，也能导入 Lucid、Miro、Vani by Zoho、Airtable、Asana、monday.com、Smartsheet 等合作工具，表格还可导出 .xlsx 或 CSV",
-    "Claude Data 提供指标认证查询（带 certified 徽章）、数据故事与讲解视频、实时共享、设计系统支持、按仪表盘设置缓存刷新节奏、变更追踪与版本回滚，其中认证查询和实时共享为测试版"
+    "Hydrogen 定位为面向日常编码与智能体工作流的快速执行模型，与主打长程深度推理的 Carbon、Argon 形成互补，也可作为多模型工作流中的高效执行引擎",
+    "Artificial Analysis 智能指数默认高思考水平为 51（Argon 为 50），最高 xhigh 设置下达 54；100 万 token 上下文窗口统一按每百万输入 1.50 美元、输出 7.50 美元计价",
+    "Antigravity 新增 Orchestrator，可在同一会话中动态切换 Carbon 与 Hydrogen；在 Terminal-Bench 4.0 上接近 Carbon 的任务成功率，平均少用 24% 配额、快 19%"
    ],
    "topics": [
+    "reasoning",
+    "coding-agent",
     "product"
    ],
-   "category": "产品与应用",
+   "category": "模型",
    "categories": [
-    "产品与应用"
+    "模型"
    ],
    "horizon": "short",
    "score": 69.0,
    "status": "review",
    "extra": {
-    "hn_points": 281,
-    "hn_comments": 216,
+    "hn_points": 444,
+    "hn_comments": 287,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://claude.com/resources/articles/dashboards-and-motion",
-      "https://claude.com/claude-for-microsoft-365",
-      "https://claude.com/resources/articles/interactive-connectors-full-tool",
-      "https://www.anthropic.com/claude-fable-and-mythos-5-2"
+      "https://twitter.com/intent/tweet?text=Introducing%20Gemini%204%20Hydrogen%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+      "https://www.facebook.com/sharer/sharer.php?caption=Introducing%20Gemini%204%20Hydrogen&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/&title=Introducing%20Gemini%204%20Hydrogen",
+      "https://blog.google/authors/koray-kavukcuoglu/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
+      "https://aistudio.google.com/prompts/new_chat?model=gemini-4-hydrogen",
+      "https://cloud.google.com/gemini-enterprise",
+      "http://gemini.google.com/",
+      "https://blog.google/products-and-platforms/products/search/gemini-4-hydrogen-search-upgrade",
+      "https://antigravity.google/",
+      "https://artificialanalysis.ai/",
+      "https://antigravity.google/blog/gemini-4-hydrogen-in-google-antigravity",
+      "https://www.tbench.ai/news/terminal-bench-4-0",
+      "https://www.tbench.ai/",
+      "https://arena.ai/leaderboard/agent",
+      "https://www.vals.ai/benchmarks/tax_agent_bench",
+      "https://www.vals.ai/benchmarks/legal_research",
+      "https://artificialanalysis.ai/evaluations/automationbench-aa",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/multimodal-knowledge-agent-benchmark/",
+      "https://agents-last-exam.org/leaderboard",
+      "https://aistudio.google.com/apps/bundled/geminisland?showPreview=true&showAssistant=true&fullscreenApplet=true",
+      "https://aistudio.google.com/apps/bundled/material-flask-website?showPreview=true&showAssistant=true&fullscreenApplet=true",
+      "https://github.com/google-gemini/demolab",
+      "https://institute.deepmind.com/essays/the-case-for-reasoning-transparency/",
+      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Hydrogen-Model-Card.pdf",
+      "https://aistudio.google.com/docs/whats-new-gemini-4-hydrogen",
+      "https://developer.android.com/studio",
+      "http://sheets.new/",
+      "https://policies.google.com/privacy"
      ]
     },
     "content_source": "direct",
@@ -243,128 +157,147 @@
    }
   },
   {
-   "id": "8d8bc38f54a7d350",
-   "url": "https://pietromiotti.com/latest/maya-site",
-   "title": "My AI agents found an unmapped Maya site?",
+   "id": "d40fca9fd5e12c4b",
+   "url": "https://antigravity.google/blog/gemini-4-hydrogen-in-google-antigravity/",
+   "title": "Gemini 4 Hydrogen and Orchestrator",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-11-11T12:05:22+00:00",
-   "summary_short": "作者用AI智能体分析NASA激光雷达数据，找到一处未录入官方名录的玛雅遗址",
-   "summary_long": "作者自称不是考古学家，在秘鲁旅行时了解到宾厄姆1911年\"发现\"马丘比丘，遂与Gemini、ChatGPT、Claude、Grok等智能体讨论；因秘鲁激光雷达覆盖差、雇公司测绘又要许可和费用，于是转向覆盖更好的玛雅地区。智能体把约1200平方公里的丛林激光雷达条带转成图像，48个智能体按一份明确指南逐张查看，寻找金字塔、台地和广场，同时排除自然山丘、天坑和道路；原文强调未使用专门模型或分类器。它们标出多处村落和疑似建筑，其中一处崖顶遗址有平整广场、至少8至12米高的椭圆金字塔、抬高庭院和可能曾为水库的平底洼地。智能体检索文献和档案后称某主要村落似未登记，建议作者向墨西哥国家人类学与历史研究所（INAH）提交报告。原文称，从旅途中的一个念头到收到墨西哥政府官方回复不到72小时。文末更新指出，该遗址其实已被Estrada-Belli等2025年测绘，智能体查阅文献时漏掉，因此属于重新发现，只是尚未进入INAH名录。",
+   "published_at": "2026-11-12T18:52:01+00:00",
+   "summary_short": "Antigravity 上线 Gemini 4 Hydrogen，并新增能动态切换模型的 Orchestrator",
+   "summary_long": "Antigravity 上线 Gemini 4 Hydrogen，并在模型选择器新增 Orchestrator：将 Hydrogen 与 Gemini 4 Carbon 等最强模型组合，用于长周期任务，以取得质量、效率与延迟的平衡。原文称，本周早些时候推出的 Carbon 与 /swarm 用于并行智能体团队处理大型多 worktree 工程任务，几天内已启动数万个 swarm；但日常单会话开发若每步都用前沿模型加多个并行智能体，会拖慢节奏并消耗前沿配额。行业常见的静态“模型路由器”根据首个提示猜测难度、把整个任务交给最便宜且够用的模型；任务变长后，这种做法的路由容易失效。Orchestrator 改为在单条轨迹内动态双向切换：Carbon 先以只读方式探索依赖、消除歧义并制定计划，Hydrogen 接手写代码、更新包、跑测试；遇到阻碍时，再交回 Carbon 修复计划。原文称其在 Terminal-Bench 4.1 上接近 Carbon 的成功率，平均少用 24% 配额、快 19%。Hydrogen 单独使用在 Artificial Analysis 智能指数得 51 分，在 Terminal-Bench 4.1 得 57%。",
    "key_points": [
-    "作者自称非考古学家，借助Gemini、ChatGPT、Claude、Grok等智能体筛查约1200平方公里玛雅丛林的公开激光雷达数据",
-    "智能体没有使用专门模型或分类器，而是按指南逐张看图，识别金字塔、台地、广场并排除自然山丘、天坑和道路",
-    "被标出的崖顶遗址含平整广场、至少8至12米高椭圆金字塔、抬高庭院和疑似水库洼地，智能体建议向INAH提交报告"
+    "Orchestrator 是模型下拉菜单的新选项，把 Hydrogen 与包含 Gemini 4 Carbon 在内的最强模型组合，面向长周期任务平衡质量、效率与延迟",
+    "在 Terminal-Bench 4.1 上，Orchestrator 达到接近 Carbon 的任务成功率，平均少消耗 24% 配额、快 19%",
+    "Hydrogen 也可单独用于日常编码与智能体任务：Artificial Analysis 智能指数 51 分（最高设置 54），Terminal-Bench 4.1 为 57%，并提供 low/medium/high（默认）/xhigh 四档思考深度"
    ],
    "topics": [
-    "multi-agent",
-    "tool-use",
-    "hallucination"
+    "coding-agent",
+    "harness",
+    "multi-agent"
    ],
-   "category": "产品与应用",
+   "category": "Agent 与开发",
    "categories": [
-    "产品与应用",
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 68.1,
-   "status": "review",
-   "extra": {
-    "hn_points": 923,
-    "hn_comments": 336,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://doi.org/10.1016/j.jasrep.2025.105288",
-      "https://en.wikipedia.org/wiki/Hiram_Bingham_III",
-      "https://en.wikipedia.org/wiki/Machu_Picchu",
-      "https://en.wikipedia.org/wiki/Vilcabamba,_Peru",
-      "https://commons.wikimedia.org/wiki/File:Hiram_Bingham_at_Machu_Picchu,_1912.jpg",
-      "https://commons.wikimedia.org/wiki/File:Machupicchu_hb10.jpg",
-      "https://en.wikipedia.org/wiki/Lidar",
-      "https://pietromiotti.com/latest/maya-site/#fn-lidar",
-      "https://en.wikipedia.org/wiki/Maya_civilization",
-      "https://www.inah.gob.mx/",
-      "https://doi.org/10.3390/rs5084045",
-      "https://doi.org/10.1016/j.jasrep.2016.07.029",
-      "https://doi.org/10.15184/aqy.2024.148",
-      "https://doi.org/10.1017/S0956536126100923",
-      "https://pietromiotti.com/latest/maya-site/#fr-lidar-1"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "f574bb1b184a567e",
-   "url": "https://www.qbitai.com/2026/11/509032.html",
-   "title": "英伟达机器人开源撞上Fable 5.2发布！Jim Fan：不是寒冬是夏天",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-11-10T10:35:38+00:00",
-   "summary_short": "英伟达发布GR00T 2世界动作模型，并开放模型数据与工具链",
-   "summary_long": "在CoRL大会上，英伟达GEAR的朱玉可与Jim Fan发布新一代世界动作模型GR00T 2。它同时预测未来画面与机器人动作，demo覆盖裁标签、装显卡、擦火柴、切香蕉、收桌子等任务。原文称模型、数据、仿真环境和采集硬件将陆续开源，首批10万小时人类数据已开放。X-Adapt支持跨本体迁移：人类动捕示范迁移到Dexter，20次成功率65%；UMI夹爪示范迁移到YAM，约四分钟装配成功率60%；DexUMI外骨骼示范迁移到灵巧手完成早餐。预训练混合约40万小时人类视频、1万小时UMI演示和2.35万小时机器人遥操作数据。原文认为更值得关注的是，英伟达开放的是从数据采集、训练到技能调用和部署的一整套开发体系。",
-   "key_points": [
-    "英伟达GEAR在CoRL发布GR00T 2世界动作模型，演示裁标签、装显卡、切香蕉等任务；模型、数据、仿真环境和采集硬件将陆续开源，首批10万小时人类数据已开放。",
-    "X-Adapt支持人类动捕迁移到Dexter（20次成功率65%）、UMI夹爪迁移到YAM（约四分钟装配成功率60%）、DexUMI外骨骼迁移到灵巧手做早餐；预训练含402,730小时人类视频、10,184小时UMI演示、23,500小时机器人遥操作数据。",
-    "Dexter-50零样本成功率40%，一次示范后71%，五次示范后95%，五次示范不足三分钟，单张RTX5090约30分钟LoRA微调；原文还提到Fable 5.2在RoboDojo仿真双臂测试得分64.9%，GPT-6 Astra为29.8%。"
-   ],
-   "topics": [
-    "open-source",
-    "world-model",
-    "robotics"
-   ],
-   "category": "模型",
-   "categories": [
+    "Agent 与开发",
     "模型"
    ],
    "horizon": "short",
-   "score": 67.4,
+   "score": 64.7,
+   "status": "review",
+   "extra": {
+    "hn_points": 268,
+    "hn_comments": 61,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://x.com/intent/tweet?text=Gemini%204%20Hydrogen%20and%20Orchestrator&url=https%3A%2F%2Fantigravity.google%2Fblog%2Fgemini-4-hydrogen-in-google-antigravity",
+      "https://bsky.app/intent/compose?text=Gemini%204%20Hydrogen%20and%20Orchestrator%20https%3A%2F%2Fantigravity.google%2Fblog%2Fgemini-4-hydrogen-in-google-antigravity",
+      "https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fantigravity.google%2Fblog%2Fgemini-4-hydrogen-in-google-antigravity",
+      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+      "https://artificialanalysis.ai/",
+      "https://docs.cloud.google.com/gemini/enterprise/docs/ai-developer-tools-overview"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "adb66fa1efb10251",
+   "url": "https://latent.space/p/jev-revolution/",
+   "title": "The Jev Revolution: What Engineers Are Already Building with System One Models",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-11-12T05:08:20+00:00",
+   "summary_short": "AI Engineer Code Summit 上，工程师展示如何把非生成式的 System One 模型（Jev）嵌入代码与业务流程。",
+   "summary_long": "在 AI Engineer Code Summit 上，System One 模型成为主议题：这类非生成式模型返回结构化选项、分数或概率，通常比推理型 LLM（System Two）更快、更便宜。Jev 的负责人、TypeSafe AI 联合创始人兼 CEO Diogo Almeida 发表主题演讲。他称 Jev 是“可靠的智能”，主张用它“自动化一切”，并提出 System One 模型应与代码集成——“代码是自动化的语言，因此你需要与代码集成”。swyx 将其解读为：在应用代码内部大量插入 System One 模型调用，让软件更聪明，而不是靠拼接字符串碰运气。Almeida 用“95% 的时间是爱因斯坦，5% 的时间是憨豆先生”形容 LLM 的可靠性问题。Glean 的 Chinmay Goyal 表示，System One 模型与 LLM、其他分类器并用，Jev 尤其适合“零样本灵活性”，决策空间分类变化时无需反复微调；用户无需知道用的是哪种模型。UiPath 的 Chibi Vikram 与 Kevin Bernstein 展示了一个用 Jev 对文档块排序的“锦标赛”测试：Jev 先从小分组中选出最相关块，胜出者进入下一轮；即使有数千次 Jev 调用，整个过程耗时不到一秒。Vikram 称 Jev 是“可以调整的积木”，需要寻找新的策略与模式来组合使用。",
+   "key_points": [
+    "System One 模型是非生成式模型，返回结构化选项、分数或概率，通常比推理型 LLM 更快更便宜",
+    "Almeida 主张在应用代码内部集成 System One 模型调用，并称 Jev 是“可靠的智能”，可用来“自动化一切”",
+    "Glean 表示 Jev 适合“零样本灵活性”，决策空间分类变化时无需反复微调，用户无需知道用的是哪种模型"
+   ],
+   "topics": [
+    "system-one-models",
+    "model-integration",
+    "reranking"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 63.8,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://ai.engineer/code/2026/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://latent.space/p/jev/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://latent.space/p/glean-model-routing/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "0d2e754820f17541",
+   "url": "https://www.qbitai.com/2026/11/509355.html",
+   "title": "马斯克Grok泄露自家机密！SpaceX特斯拉工资绩效全曝光",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-11-12T10:08:24+00:00",
+   "summary_short": "3.5万个Grok应用无需登录可访问，SpaceXSI、X和特斯拉内部数据外泄",
+   "summary_long": "安全公司Claroc测试43551个Grok Build应用地址，37571个仍在线，其中94.7%无需登录即可打开；经筛查估计650—800个应用含私密数据，涉及SpaceXSI、X及另外30家企业（6家《财富》500强）。泄露内容包括ICU患者化验、影像和呼吸机记录，承包商应用中18个账户的明文密码，SpaceXSI内部销售工具，以及含22名技术人员姓名、效率和奖金的特斯拉服务中心评分表。Claroc称，Grok分配的随机网址可经被动DNS数据库批量发现，发布面板预选“任何持有链接的人”；对照测试中ChatGPT默认“仅限我”。研究人员自建四人销售团队应用后发现登录检查顺序错误，未受邀Google账户可查看、修改和删除记录。SpaceXSI回应称应用在创建者分享前私密、员工账户默认“仅限你”，但Claroc称付费账户发布面板预选“任何持有链接的人”。报道称SpaceXSI随后下线24个相关应用，其他用户应用仍可访问。",
+   "key_points": [
+    "Claroc测试43551个Grok Build应用地址，94.7%的在线应用无需登录即可打开，估计650—800个应用含私密数据，涉及SpaceXSI、X及另外30家企业。",
+    "泄露示例包括ICU患者化验、影像和呼吸机记录，承包商应用中18个账户的明文密码，SpaceXSI内部销售工具，以及特斯拉服务中心22名技术人员的姓名、效率和奖金表。",
+    "Claroc称随机网址可被被动DNS数据库批量发现，发布面板预选“任何持有链接的人”；其自建应用还存在登录检查顺序错误，未受邀账户可查看、修改和删除记录。SpaceXSI回应称默认私密，但Claroc称付费账户发布面板预选公开；报道后24个相关应用下线，其他用户应用仍可访问。"
+   ],
+   "topics": [
+    "privacy",
+    "product",
+    "cybersecurity"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全",
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 61.8,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
      "资讯",
-     "世界模型",
-     "具身智能",
-     "英伟达"
+     "Grok"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
       "https://www.qbitai.com/author/henry",
       "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/%e4%b8%96%e7%95%8c%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/tag/%e5%85%b7%e8%ba%ab%e6%99%ba%e8%83%bd",
-      "https://www.qbitai.com/tag/%e8%8b%b1%e4%bc%9f%e8%be%be",
+      "https://www.qbitai.com/tag/grok",
+      "https://www.qbitai.com/2026/11/509381.html",
+      "https://www.qbitai.com/2026/11/509032.html",
       "https://www.qbitai.com/2026/11/507757.html",
       "https://www.qbitai.com/2026/11/507076.html",
-      "https://www.qbitai.com/2026/10/505934.html",
-      "https://www.qbitai.com/2026/10/503701.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/509032.html&title=英伟达机器人开源撞上Fable 5.2发布！Jim Fan：不是寒冬是夏天&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2020/03/12480.html",
-      "https://www.qbitai.com/tag/%e5%9b%be%e5%83%8f%e5%a4%84%e7%90%86",
-      "https://www.qbitai.com/tag/huodong",
-      "https://www.qbitai.com/2026/01/370136.html",
-      "https://www.qbitai.com/tag/uc%e4%bc%af%e5%85%8b%e5%88%a9",
-      "https://www.qbitai.com/tag/%e4%ba%ba%e5%bd%a2%e6%9c%ba%e5%99%a8%e4%ba%ba",
-      "https://www.qbitai.com/2022/09/37650.html",
-      "https://www.qbitai.com/tag/ai",
-      "https://www.qbitai.com/2025/04/272149.html",
-      "https://www.qbitai.com/tag/%e5%a6%99%e5%8a%a8%e7%a7%91%e6%8a%80",
-      "https://www.qbitai.com/tag/%e7%89%b9%e6%96%af%e6%8b%89",
-      "https://www.qbitai.com/tag/%e8%bd%a6%e5%9c%88%e6%9c%80%e6%96%b0%e8%ae%a4%e7%9f%a5",
-      "https://www.qbitai.com/2026/03/391744.html",
-      "https://www.qbitai.com/2026/07/446568.html",
-      "https://www.qbitai.com/tag/lingbot-video",
-      "https://www.qbitai.com/tag/%e8%9a%82%e8%9a%81%e7%81%b5%e6%b3%a2",
-      "https://www.qbitai.com/tag/%e8%a7%86%e9%a2%91%e7%94%9f%e6%88%90",
-      "https://www.qbitai.com/2026/11/507647.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/509355.html&title=马斯克Grok泄露自家机密！SpaceX特斯拉工资绩效全曝光&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2026/02/381037.html",
+      "https://www.qbitai.com/tag/%e5%a4%a7%e6%a8%a1%e5%9e%8b",
+      "https://www.qbitai.com/tag/%e9%a9%ac%e6%96%af%e5%85%8b",
+      "https://www.qbitai.com/2026/08/472067.html",
+      "https://www.qbitai.com/2024/03/131680.html",
+      "https://www.qbitai.com/2025/01/240969.html",
+      "https://www.qbitai.com/2025/09/332546.html",
+      "https://www.qbitai.com/2025/11/353733.html",
       "https://www.qbitai.com/2026/11/508107.html",
       "https://www.qbitai.com/2026/11/508264.html",
       "https://www.qbitai.com/2026/11/508466.html",
-      "https://www.qbitai.com/2026/11/507697.html",
+      "https://www.qbitai.com/2026/11/508449.html",
+      "https://www.qbitai.com/2026/11/508244.html",
       "https://weibo.com/qbitai?is_all=1",
       "https://www.zhihu.com/org/liang-zi-wei-48/activities",
       "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
@@ -375,312 +308,363 @@
    }
   },
   {
-   "id": "b22522d14a17f95f",
-   "url": "https://huggingface.co/blog/qvac/botpsy",
-   "title": "BotPsy: On-Device Personal Assistant with a Sub-Billion-Parameter Agentic Language Model",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-11-11T05:01:16+00:00",
-   "summary_short": "Tether AI 推出 0.8B 端侧个人助手模型 BotPsy，工具调用能力翻倍",
-   "summary_long": "Tether AI Research 发布 BotPsy，一个 0.8B 参数、面向函数调用与智能体工作流的模型，基于 Qwen3.5-0.8B 构建，适合端侧部署。原文给出的动机是：前沿云端大模型运营成本高且可能波动，第三方模型存在被修改、拒绝或下线的风险，专有模型对特定工作流定制能力有限，并在隐私、数据控制与透明度上有隐患；同时并非所有任务都需要前沿级智能，小而专的智能体在特定任务上同样能干且更便宜。BotPsy 定位为用工具完成简单任务的“个人助手”，覆盖网页搜索与研究、旅行与生活、商务与金融、企业与客户运营、设备与车辆控制、文件与文档、日历、邮件与消息等场景。受参数规模限制，它最适合低到中等难度任务。原文称其在同尺寸下取得 SOTA 工具使用与智能体表现，优于测试过的所有 1.2B 及以下模型；相比基座模型 Qwen3.5-0.8B-Think，BFCL v4 从 23.4 升至 44.0，ACEBench 从 30.1 升至 58.7，τ-bench 从 23.2 升至 51.5。原文也说明它仍会出错，不适用于高风险用途。",
+   "id": "86c3365af11352aa",
+   "url": "https://www.qbitai.com/2026/11/509291.html",
+   "title": "Anthropic玻璃翼计划被质疑！近4万个候补漏洞，只修了217条",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-11-12T07:55:11+00:00",
+   "summary_short": "VulnCheck质疑Anthropic玻璃翼计划：7个月挖出37966条候选漏洞，仅217条修复",
+   "summary_long": "网络安全公司VulnCheck发布了对Anthropic玻璃翼计划（Project Glasswing）的追踪报告。该计划今年4月推出，旨在用Claude大规模挖掘关键软件与开源项目的安全漏洞，并联合科技企业与开源维护者推动修复；启动时Anthropic称将提供1亿美元模型使用额度和400万美元开源安全捐款，苹果、谷歌、微软、AWS、英伟达等加入。VulnCheck数据显示，截至11月初候选发现达37966条，漏洞披露台账中标记为已修复的仅217条，另有撤回419条、重复1654条；最近两个月候选漏洞新增近1.2万条，修复记录仅新增15条；归因于Anthropic的442个CVE仅占2026年全球公开CVE总量的0.5%。Anthropic官方口径为：截至11月2日6376条经外部安全专家审核，6009条有效，5087条已报告维护者，629条获得上游补丁。原文指出，双方都发现人工审核能力是瓶颈，Anthropic已于10月8日推出OSS Scanner，让维护者主动报名、由Claude免费扫描并直接发送报告。文中以curl为例：维护者Daniel Stenberg收到45份报告，已公开的34份中19份被判定不构成安全漏洞、6份为低危；但9月Claude也曾发现curl一个可致远程代码执行的Use-After-Free漏洞，被称为多年来最严重之一。",
    "key_points": [
-    "基于 Qwen3.5-0.8B 构建的 0.8B 参数端侧模型，面向函数调用与智能体工作流，原文称在六项工具使用与智能体基准中的五项领先，仅 Claw-Eval 上 Qwen3.5-2B-Think 略胜。",
-    "相比基座模型 Qwen3.5-0.8B-Think，BFCL v4 从 23.4 提升到 44.0、ACEBench 从 30.1 提升到 58.7、τ-bench 从 23.2 提升到 51.5，原文称关键基准上智能体能力约翻倍。",
-    "原文称其在 ≤1.2B 量级中优于 Qwen3.5-0.8B-Think、LFM2.5-1.2B-Think、MiniCPM5-1B-Think；同时指出模型仍会出错、不适合高风险场景，且指令累积时表现下降、低资源语言较弱。"
+    "VulnCheck统计：玻璃翼计划推出七个月累计37966条候选漏洞，台账中标记已修复仅217条，另有撤回419条、重复1654条",
+    "差距在扩大：最近两个月候选漏洞新增近1.2万条，已修复记录仅新增15条；442个归因Anthropic的CVE占2026年全球公开CVE总量0.5%",
+    "Anthropic官方数据为6376条经外部专家审核、6009条有效、5087条已报告维护者、629条获上游补丁；官方承认人工验证是严重瓶颈，10月8日推出OSS Scanner绕开人工审核"
    ],
    "topics": [
-    "tool-use",
-    "agent-loop"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 66.9,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://huggingface.co/qvac/BotPsy-0.8B",
-      "https://huggingface.co/qvac/BotPsy-0.8B-GGUFs"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "ac992cc25d49f443",
-   "url": "https://simonwillison.net/2026/Nov/11/llm/",
-   "title": "llm 0.37.2",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-11-11T17:19:52+00:00",
-   "summary_short": "llm 0.37.2 修复了可能向第三方 OpenAI 兼容端点泄露 API key 的安全问题",
-   "summary_long": "llm 发布 0.37.2 版本，修复由 Daniel de Araujo 在 GHSA-v9h7-jj4g-f862 和 GHSA-r639-rr7r-x72w 中报告的安全问题。原文说明，LLM 有一个名为 extra-openai-models.yaml 的机制，用于配合其他提供商的 OpenAI 兼容 API 端点使用，该机制现由 0.37 版新增的 llm openai endpoint add 命令管理。Daniel 报告了两种可能把用户已配置的 OpenAI API key 意外发送给这些提供商的方式：一是 api_key_name 指定的密钥从未被存储时，二是在运行 responses: true 的模型时加上 -o chat_completions 1。原文未详述该问题的进一步影响范围或修复的具体实现细节。",
-   "key_points": [
-    "修复由 Daniel de Araujo 报告的安全问题，对应 GHSA-v9h7-jj4g-f862 与 GHSA-r639-rr7r-x72w",
-    "涉及 extra-openai-models.yaml 机制，该机制用于连接其他提供商的 OpenAI 兼容 API 端点，现由 0.37 新增的 llm openai endpoint add 命令管理",
-    "两种泄露路径：api_key_name 指定的密钥从未存储，或以 -o chat_completions 1 运行 responses: true 的模型"
-   ],
-   "topics": [
-    "privacy",
-    "cybersecurity"
+    "cybersecurity",
+    "open-source"
    ],
    "category": "安全",
    "categories": [
     "安全"
    ],
    "horizon": "short",
-   "score": 64.7,
+   "score": 57.3,
    "status": "review",
    "extra": {
-    "content_source": "rss",
+    "content_source": "direct",
     "source_tags": [
-     "projects",
-     "security",
-     "llm",
-     "releases"
+     "资讯",
+     "Anthropic",
+     "玻璃翼计划"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/simonw/llm/releases/tag/0.37.2",
-      "https://github.com/BluePlexus",
-      "https://github.com/simonw/llm/security/advisories/GHSA-v9h7-jj4g-f862",
-      "https://github.com/simonw/llm/security/advisories/GHSA-r639-rr7r-x72w",
-      "https://llm.datasette.io/en/stable/other-models.html#configure-an-openai-compatible-model",
-      "https://llm.datasette.io/en/stable/other-models.html#openai-endpoint-add",
-      "https://simonwillison.net/tags/projects",
-      "https://simonwillison.net/tags/security",
-      "https://simonwillison.net/tags/llm",
-      "https://simonwillison.net/tags/releases"
+      "https://www.qbitai.com/author/chengqian",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/anthropic",
+      "https://www.qbitai.com/tag/%e7%8e%bb%e7%92%83%e7%bf%bc%e8%ae%a1%e5%88%92",
+      "https://www.qbitai.com/2026/11/507834.html",
+      "https://www.qbitai.com/2026/11/507823.html",
+      "https://www.qbitai.com/2026/11/507225.html",
+      "https://www.qbitai.com/2026/10/506477.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/509291.html&title=Anthropic玻璃翼计划被质疑！近4万个候补漏洞，只修了217条&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2026/08/473947.html",
+      "https://www.qbitai.com/tag/claude",
+      "https://www.qbitai.com/2025/07/316099.html",
+      "https://www.qbitai.com/tag/%e8%9e%8d%e8%b5%84",
+      "https://www.qbitai.com/2025/08/326827.html",
+      "https://www.qbitai.com/tag/gpt-4",
+      "https://www.qbitai.com/tag/openai",
+      "https://www.qbitai.com/2026/09/488380.html",
+      "https://www.qbitai.com/2025/06/301991.html",
+      "https://www.qbitai.com/tag/%e4%be%b5%e6%9d%83",
+      "https://www.qbitai.com/2025/03/261556.html",
+      "https://www.qbitai.com/2026/11/508107.html",
+      "https://www.qbitai.com/2026/11/508264.html",
+      "https://www.qbitai.com/2026/11/508466.html",
+      "https://www.qbitai.com/2026/11/508449.html",
+      "https://www.qbitai.com/2026/11/508244.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "53d5cdba12bea358",
-   "url": "https://simonwillison.net/2026/Nov/11/aws-emulator/",
-   "title": "aws-emulator",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-11-11T21:18:30+00:00",
-   "summary_short": "AWS 官方推出本地模拟器 aws-emulator，无需付费 API key 即可测试",
-   "summary_long": "AWS 推出了官方模拟器 aws-emulator，让开发者可以在本地克隆的众多 AWS 服务上运行测试，而无需为此开通付费 API key。该项目用 Rust 编写，原文称其由一个庞大的 agent 群体完成，项目前三周就有 29,684 次提交。Swaminathan（Swami）Sivasubramanian 在 Werner Vogels 博客的一篇客座文章中讲述了它的由来。目前该模拟器在 macOS 或 Windows 上运行需要 Docker。原文作者希望未来能改进这一点，若能下载单个二进制文件，就能把它用于其他语言、其他平台的标准测试套件中。原文未详述它具体支持哪些服务、性能表现如何或处于什么发布状态。",
+   "id": "779ddc48195a4617",
+   "url": "https://github.blog/news-insights/company-news/github-availability-report-october-2026/",
+   "title": "GitHub availability report: October 2026",
+   "source": "GitHub Blog (AI)",
+   "tier": "S",
+   "published_at": "2026-11-13T00:20:16+00:00",
+   "summary_short": "GitHub十月报告：Central US计算容量翻倍并减少故障升级，但写故障与网络中断仍暴露风险",
+   "summary_long": "GitHub十月可用性更新称，已新增可独立扩展的Azure容量，并移除数条可能放大故障的路径；但写故障、数据迁移期间的监控缺口和区域网络中断，表明扩容需配合更安全运维、更强隔离和已验证的区域恢复。截至11月9日，151个生产服务中140个、50个MySQL主库中32个运行在Azure Central US；Azure承担迁移服务读63%、单体读66%、Git读52%。Central US九个Kubernetes集群完成计算扩容，容量增至两倍以上，迁移服务流量自3月增82%，新增容量吸收超出原数据中心最高周均负载的增长。改进包括提升Actions关键控制面请求容量、NAT网关缓解使使用量降85%（变更中4个生产作业失败，未缓解预计约800个）、连接限制降低重连风暴风险；日请求超2.5亿的Actions端点迁移后峰值数据库读降85%；仓库主题搜索至少3字符使慢或终止查询降约98%。报告还称10月7日写故障暴露数据库编排与生产路由的不安全交互，10月29日Azure网络中断影响Central US三个可用区及至少34,128名登录用户；East US 3建设约落后一周，12月第一周首次验证流量爬坡。",
    "key_points": [
-    "AWS 官方模拟器，可在本地克隆的多种 AWS 服务上运行测试，无需付费 API key",
-    "用 Rust 编写，原文称由大量 agent 协作完成，前三周提交达 29,684 次",
-    "macOS 与 Windows 上目前依赖 Docker 运行，原文作者希望未来能用单个二进制文件"
+    "截至11月9日，140/151个生产服务和32/50个MySQL主库运行在Azure Central US；Azure承担迁移服务读63%、单体读66%、Git读52%；Central US九个Kubernetes集群计算容量增至两倍以上。",
+    "可靠性改进包括提升Actions关键Azure控制面请求容量、NAT网关缓解使使用量降85%、连接限制降低重连风暴风险、高流量Actions端点迁移使峰值数据库读降85%、仓库主题搜索至少3字符使慢或终止查询降约98%。",
+    "10月7日写故障暴露数据库编排与生产路由的不安全交互；10月29日Azure网络中断影响Central US三个可用区及至少34,128名登录用户；East US 3建设约落后计划一周，12月第一周开始首次验证流量爬坡，原则为可用性、容量、功能。"
    ],
    "topics": [
-    "developer-tools",
-    "local-testing",
-    "aws-emulator"
+    "infrastructure",
+    "reliability",
+    "outage"
    ],
-   "category": "Agent 与开发",
+   "category": "行业动态",
    "categories": [
-    "Agent 与开发"
+    "行业动态"
    ],
    "horizon": "short",
-   "score": 61.8,
+   "score": 55.2,
    "status": "review",
    "extra": {
     "content_source": "rss",
     "source_tags": [
-     "amazon",
-     "amazon-web-services",
-     "testing",
-     "werner-vogels",
-     "ai"
+     "Company news",
+     "News & insights",
+     "GitHub Availability Report"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/aws/aws-emulator",
-      "https://www.allthingsdistributed.com/2026/11/aws-emulator-and-the-engineers-job-when-agents-write-the-code.html",
-      "https://simonwillison.net/tags/amazon",
-      "https://simonwillison.net/tags/amazon-web-services",
-      "https://simonwillison.net/tags/testing",
-      "https://simonwillison.net/tags/werner-vogels",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/rust",
-      "https://simonwillison.net/tags/docker",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/agentic-engineering"
+      "https://www.githubstatus.com/",
+      "https://github.blog/category/engineering/",
+      "https://github.blog/news-insights/company-news/github-availability-report-october-2026/",
+      "https://github.blog"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "a525fa830b85f106",
-   "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
-   "title": "Gemini 4 Carbon is now available",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-10T16:07:15+00:00",
-   "summary_short": "Google 发布 Gemini 4 Carbon，主打长时程 agent 与网络安全，三项基准居首且成本更低",
-   "summary_long": "Google 于 2026 年 11 月 10 日向开发者、企业、科学家和消费者开放 Gemini 4 Carbon。原文称其是 Google 最强模型，在网络安全能力，以及跨复杂知识工作、软件工程、科学推理的长时程 agentic 工作流上具备前沿性能；两周前已通过 Fairwind Program 提供给一批网络安全防御者。Carbon 接续此前的 Gemini 4 Argon：原文称 Argon 仍是多数软件工程和知识工作的理想选择，Carbon 则面向考验模型智能极限的任务，如复杂多步编码与调试、开放式科研与发现，会使用更多 token 进行探索、深度推理和扩展验证循环。原文称其在 CursorBench 4.0、Perplexity 的 WANDR、Zapier 的 AutomationBench 上排名第一，每任务成本比次优外部模型低 2 倍以上；在与 Artificial Analysis 合作新推出的多模态知识 agent 基准 MKA 上排名第二，平均每任务成本低 6 倍以上。同时预览 Google Antigravity 的 /swarm，可把单一提示变成可实时跟踪的 agent 团队。API 定价与 Argon 相同（每百万输入 2 美元、输出 10 美元），并向 Google AI Ultra 订阅者推出。",
+   "id": "e10b6b9196df21e8",
+   "url": "https://latent.space/p/ainews-d-day-decision-models-day/",
+   "title": "[AINews] D-Day (Decision Models Day)",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-11-12T05:26:54+00:00",
+   "summary_short": "Google发布Gemini Decision 1决策模型，用单次打分替代逐token生成",
+   "summary_long": "在第二届AIE CODE活动首日，Google抢在Anthropic之前发布生产级决策模型Gemini Decision 1。该模型面向闭集决策，用单次打分替代逐token生成，支持是/否、多选（最多255选项）与评分量表，输入涵盖文本、图像、音频、视频与PDF，单次请求最多1000题，256K上下文，端到端150–250ms，每个答案附置信度。定价每百万输入token 0.10美元、输出不计费，Google称比Flash-Lite便宜约5倍。项目源自Google DeepMind内部原型，约六周内由小团队完成上线。Google自测显示该模型在7个共享基准中的5个优于Jev 1.14（JevBench 92.2%对90.0%）；Artificial Analysis独立评测结果更混杂：Decision Index得66分，与Elephant 9B、Jev 1.14持平，落后Drex Max v1.1与GLiDE v1.2七分，每百万任务成本345美元，高于Drex Max的103美元与Jev的156美元，单任务均时211ms慢于Jev的92ms。Stitch与LangChain已首批接入。",
    "key_points": [
-    "Carbon 定位为考验模型智能极限的任务，原文称 Argon 仍是多数软件工程与知识工作的理想选择",
-    "原文称其在 CursorBench 4.0、Perplexity WANDR、Zapier AutomationBench 排名第一，每任务成本比次优外部模型低 2 倍以上",
-    "预览 Google Antigravity 的 /swarm，单一提示可生成可实时跟踪的 agent 团队，示例包括埃菲尔铁塔 1887–1889 建设 3D 展览与 Platform 37 办公室重建"
+    "Gemini Decision 1为闭集决策模型，单次打分、支持最多255个多选选项与1000题/请求，端到端150–250ms并附置信度",
+    "定价每百万输入token 0.10美元、输出不计费；源于DeepMind内部原型，约六周完成模型与API上线",
+    "Google自测5/7基准优于Jev 1.14，但Artificial Analysis独立评测显示其Decision Index 66分仅持平Jev，成本与延迟高于Jev"
    ],
    "topics": [
-    "reasoning",
-    "coding-agent",
-    "multi-agent"
+    "model-release",
+    "eval",
+    "pricing"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
    "horizon": "short",
-   "score": 59.2,
+   "score": 53.3,
    "status": "review",
    "extra": {
-    "hn_points": 291,
-    "hn_comments": 164,
+    "content_source": "rss",
+    "source_tags": [
+     "ainews: weekday roundups"
+    ],
+    "outbound": {
+     "arxiv": [
+      "2611.10866"
+     ],
+     "links": [
+      "https://www.youtube.com/watch?v=ZZ19zhYnDKY&t=20s",
+      "https://x.com/TheTuringPost/status/2120581560781144293",
+      "https://latent.space/p/jev-revolution/",
+      "https://latent.space/p/ainews-typesafejev-at-100m-arr-75b/",
+      "https://x.com/sundarpichai/status/2120581155078729728",
+      "https://x.com/OfficialLoganK/status/2120581433639198885",
+      "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "https://latent.space/p/jev",
+      "https://serpapi.com/latentspace-ainews-extract-featured",
+      "https://x.com/Google/status/2120583966272983331",
+      "https://x.com/_philschmid/status/2120581248859201675",
+      "https://x.com/_philschmid/status/2120581250582995318",
+      "https://x.com/kimmonismus/status/2120583937814569454",
+      "https://x.com/ArtificialAnlys/status/2120582049522127205",
+      "https://x.com/ArtificialAnlys/status/2120582058363744708",
+      "https://x.com/stitchbygoogle/status/2120585140141425077",
+      "https://x.com/LangChain_OSS/status/2120612277812625492",
+      "https://x.com/arena/status/2120568144687460434",
+      "https://x.com/arena/status/2120579593979695541",
+      "https://x.com/ArtificialAnlys/status/2120698177016005029",
+      "https://x.com/ArtificialAnlys/status/2120664556972257506",
+      "https://x.com/SamuelFitouss10/status/2120590698193854907",
+      "https://x.com/ArtificialAnlys/status/2120672485167497335",
+      "https://x.com/RayanKrishnan/status/2120398162531910116",
+      "https://x.com/theo/status/2120596827980665018",
+      "https://x.com/martin_casado/status/2120605476341891261",
+      "https://x.com/MParakhin/status/2120655457199304820",
+      "https://x.com/theo/status/2120597586298261543",
+      "https://x.com/theo/status/2120618574834462935",
+      "https://x.com/arena/status/2120609164116533606",
+      "https://x.com/kimmonismus/status/2120461099745096146",
+      "https://x.com/teortaxesTex/status/2120383607391101065",
+      "https://x.com/arena/status/2120685092909838405",
+      "https://x.com/NexEcosystem/status/2120488867027636311",
+      "https://x.com/GoogleDeepMind/status/2120484246401777737",
+      "https://x.com/GoogleDeepMind/status/2120484249321033911",
+      "https://x.com/omarsar0/status/2120520666319647096",
+      "https://x.com/pushmeet/status/2120538525938418125",
+      "https://x.com/GoogleDeepMind/status/2120532829805096970",
+      "https://x.com/demishassabis/status/2120565316619284734"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "7c78fca0b301e215",
+   "url": "https://www.qbitai.com/2026/11/509224.html",
+   "title": "纯代码造《后室》，116秒切20种画风！文心新模型玩嗨了",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-11-11T12:43:54+00:00",
+   "summary_short": "百度发布文心5.5 Flash Preview，主打端到端编程，即将开源",
+   "summary_long": "百度在百度世界大会召开前一天发布文心5.5 Flash Preview（ERNIE 5.5 Flash Preview），并宣布即将开源。模型总参数2800亿，单次推理仅激活140亿参数，支持百万Token上下文，生成速度超过每秒200Token。此次重点强化编程能力：不只写网页、补代码，游戏开发、3D建模、视频编排等需连续调用工具、反复测试的复杂任务也能上手；原文称其在Terminal-Bench、AutomationBench等评测中展现出与Claude Opus 5.5、GPT-6.1 Sol等旗舰模型同台竞争的实力。作者实测涵盖116秒切换20种画风的Python动画、单HTML文件的《后室》游戏、Blender约半小时直出苏州园林等。为打通“需求进去、成品出来”的端到端链路，百度准备了1400万可执行代码任务，用Agent执行轨迹训练纠错，并针对游戏引擎、建模、视频创作分场景补课，还首次引入自研RSI技术，由ERNIE Evolve参与推理优化。作者说明这只是初步摸底。",
+   "key_points": [
+    "文心5.5 Flash Preview总参数2800亿、单次推理激活140亿参数，支持百万Token上下文、生成速度超每秒200Token，并宣布即将开源",
+    "重点强化编程：覆盖游戏开发、3D建模、视频编排等需连续调用工具、反复试错的复杂任务；靠1400万可执行代码任务、Agent执行轨迹与分场景工具适配打通端到端",
+    "实测案例包括116秒切20种画风的纯Python动画、用UE5.8连续11小时做武侠游戏《云岫行》、单HTML文件《后室》游戏、Blender造苏州园林；作者称能力上限仍需继续试"
+   ],
+   "topics": [
+    "coding-agent",
+    "post-training",
+    "tool-use"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 51.8,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "首页轮播",
+     "百度文心"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://twitter.com/intent/tweet?text=Gemini%204%20Carbon%20is%20now%20available%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
-      "https://www.facebook.com/sharer/sharer.php?caption=Gemini%204%20Carbon%20is%20now%20available&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/&title=Gemini%204%20Carbon%20is%20now%20available",
-      "https://blog.google/authors/koray-kavukcuoglu/",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
-      "https://deepmind.google/fairwind-program/",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
-      "https://cursor.com/cursorbench",
-      "https://www.perplexity.ai/hub/blog/wandr-benchmark-evaluating-research-agents-that-must-search-wide-and-deep",
-      "https://zapier.com/benchmarks",
-      "http://antigravity.google/blog/gemini-4-carbon-in-google-antigravity/",
-      "https://aistudio.google.com/prompts/new_chat?model=gemini-4-carbon",
-      "https://cloud.google.com/gemini-enterprise",
-      "https://aistudio.google.com/docs/pricing",
-      "https://one.google.com/about/google-ai-plans",
-      "https://antigravity.google/",
-      "http://gemini.google.com/",
-      "http://aimode.google/",
-      "https://artificialanalysis.ai/evaluations/mka",
-      "https://aistudio.google.com/apps/bundled/pelican-campus-quest",
-      "https://aistudio.google.com/apps/bundled/gemini-supply",
-      "https://github.com/google-gemini/demolab",
-      "https://aistudio.google.com/apps/bundled/koerner-hall",
-      "https://cloud.google.com/transform/how-google-does-it-using-agents-help-find-track-and-fix-vulnerabilities",
-      "https://www.wiz.io/blog/php2shell-php-rce",
-      "https://www.wiz.io/blog/scan-for-good-critical-ai-exposures",
-      "https://deepmind.google/blog/introducing-alphaproof-code",
-      "https://forms.gle/WvmBbPvRbpKG1BPn9",
-      "https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security/",
-      "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_safety_report.pdf",
-      "https://developer.android.com/studio",
-      "http://gemini.google.com",
-      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Carbon-Model-Card.pdf",
-      "https://aistudio.google.com/learn/gemini-4-carbon-developer-guide",
-      "https://aistudio.google.com/docs/whats-new-gemini-4-carbon",
-      "https://policies.google.com/privacy"
+      "https://www.qbitai.com/author/yishui",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/%e7%99%be%e5%ba%a6%e6%96%87%e5%bf%83",
+      "https://www.qbitai.com/2026/10/505341.html",
+      "https://www.qbitai.com/2026/11/508107.html",
+      "https://www.qbitai.com/2026/10/505225.html",
+      "https://www.qbitai.com/2026/10/505365.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/509224.html&title=纯代码造《后室》，116秒切20种画风！文心新模型玩嗨了&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2026/11/508746.html",
+      "https://www.qbitai.com/2026/03/393433.html",
+      "https://www.qbitai.com/tag/paddleocr",
+      "https://www.qbitai.com/2026/06/427754.html",
+      "https://www.qbitai.com/tag/%e6%96%87%e6%a1%a3%e8%a7%a3%e6%9e%90%e5%a4%a7%e6%a8%a1%e5%9e%8b",
+      "https://www.qbitai.com/2026/11/508264.html",
+      "https://www.qbitai.com/2026/11/508466.html",
+      "https://www.qbitai.com/2026/11/508449.html",
+      "https://www.qbitai.com/2026/11/508244.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "8c999d6885d24711",
-   "url": "https://openai.com/index/jiostar-vijay-seshadri",
-   "title": "JioStar’s chief architect on AI discovery at 500M-user scale",
+   "id": "5b0f73df89a6e310",
+   "url": "https://openai.com/business/customer-stories/amplitude",
+   "title": "How Amplitude ships product improvements in 1–2 days with OpenAI",
    "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-11-11T00:00:00+00:00",
-   "summary_short": "JioStar 借 OpenAI API 构建语音对话式内容发现，八周上线 15 种语言",
-   "summary_long": "JioStar 运营娱乐与直播体育平台，用户超 5 亿，直播体育并发观看最高达 7250 万。其首席架构师 Vijay Seshadri 在 OpenAI 新加坡高管峰会上与 OpenAI ASEAN 市场负责人 Sidharth Sharma 对谈，讲述如何用 OpenAI API 在 JioHotstar 内构建对话式视频与板球数据发现助手：观众可用自然语言查找影视内容、历史精彩片段、直播比赛瞬间或板球统计，结果以视觉化对话形式返回。该功能支持 15 种以上语言，约八周完成，赶上 2 月的大型板球赛事。Seshadri 称内容发现过去 25 年变化很小，推荐是上一次重大转变，而“语音—视觉界面”让观众能解释自己的具体情境。团队需同时服务娱乐观众与需求迥异的板球粉丝，并把问题框定为准确性、延迟与成本三者的权衡；由于超 60% 用户用语音而非文字，这点尤为关键。他强调评估，将其分为生产前的评估框架与生产中的验证层，后者把用户行为与失败案例转化为新的评估用例。",
+   "published_at": "2026-11-12T20:00:00+00:00",
+   "summary_short": "Amplitude 的 Wave 用 OpenAI 模型把产品改进上线从约一个月缩到1–2天",
+   "summary_long": "Amplitude 长期帮团队看清用户如何使用产品，其主动式产品 agent Wave 负责把这些洞察变成已上线的改进。原文称 Wave 约80%由 OpenAI 模型驱动，包括 GPT‑6.1 Sol、GPT‑6 Luna、GPT‑Image‑2.5 Flare。团队给出产品领域与要提升的指标，Wave 汇总 Amplitude 数据、会话回放、客户反馈与代码，识别并排序机会、设计方案、协调人与编码 agent 实施，再追踪结果用于下一轮。分工上，Sol 负责机会管理与代码和数据的深度调查，Luna 处理扫描代码、跑小型评估等高频低成本任务，Flare 以回放截图作视觉参考生成原型；机会就绪后可直接从 Wave 发给包括 Codex 在内的编码 agent，附技术方案与验收标准。案例中，Wave 在自家首页从100条回放发现80人自行输入问题、仅12人点选建议卡，遂提出个性化卡片并保留自由输入，简短评审后交编码 agent 做 A/B 测试，一天后建议卡发出的消息相对对照组提升160%。Amplitude 估计上线周期可从约一个月降到1–2天。",
    "key_points": [
-    "基于 OpenAI API 在 JioHotstar 内构建对话式发现助手，覆盖影视内容、直播比赛瞬间与逐球板球统计，支持 15 种以上语言、约八周上线",
-    "超 60% 用户偏好语音而非文字输入，技术设计围绕准确性、延迟与成本三方权衡展开",
-    "Seshadri 强调 evals：生产前的评估框架应推动改动，生产中的反馈回路把用户行为与失败转化为新评估用例"
+    "Wave 约80%由 OpenAI 模型驱动，按任务分别使用 GPT‑6.1 Sol、GPT‑6 Luna 与 GPT‑Image‑2.5 Flare",
+    "工作流为：汇总数据、回放、反馈与代码识别机会 → 出技术方案与验收标准 → 交编码 agent（含 Codex）实施 → 追踪结果",
+    "Amplitude 自家首页测试中，100条回放里80人自行输入问题、仅12人点选建议卡，据此改为个性化卡片"
    ],
    "topics": [
     "product",
-    "eval"
+    "multi-agent",
+    "coding-agent"
    ],
    "category": "产品与应用",
    "categories": [
-    "产品与应用",
-    "评测"
+    "产品与应用"
    ],
    "horizon": "short",
-   "score": 56.2,
+   "score": 51.0,
    "status": "review",
    "extra": {
     "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://openai.com/policies/privacy-policy/"
+     ]
+    },
     "summary_mode": "full"
    }
   },
   {
-   "id": "77d255b4e9ac58d2",
-   "url": "https://9to5mac.com/2026/11/10/apple-has-new-mac-app-coming-to-make-running-local-ai-models-easy/",
-   "title": "Apple has new Mac app coming to make running local AI models easy",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-10T21:25:03+00:00",
-   "summary_short": "苹果被曝开发 Harbor：把 Mac 变成本地私有 AI 推理服务器",
-   "summary_long": "泄露者 Aaron Perris 发现苹果正在开发一款名为 Harbor 的 Mac 应用，目标是让本地运行 AI 模型变得简单。据其披露，Harbor 可把 Mac 变成私有 AI 推理服务器，在 Apple silicon 上运行开放权重模型，数据不离开本机硬件，也不会传到云端。它还能通过 Thunderbolt 5 连接多台 Mac，把统一内存池化为单一推理资源，从而运行超出单台电脑容量的模型，或承载更高并发。功能上，Harbor 号称几分钟即可完成部署：自动通过 Thunderbolt 5 检测设备并组建集群，无需手动配置、命令行或基础设施经验；用户可在应用内浏览、下载和加载开放权重模型，模型管理由 Harbor 负责。原文提到，Mac 今年更受欢迎，既因为 MacBook Neo 等低价选择，也因为 Mac Studio、Mac mini 等设备被用于本地跑 AI 模型。Harbor 目前处于苹果 Claris 品牌下的私有预览阶段，原文称未来数周至数月可能公开发布。原文未详述支持哪些模型、性能数据与定价。",
+   "id": "baf44ce1f39f42fd",
+   "url": "https://www.qbitai.com/2026/11/509440.html",
+   "title": "多模态“源神”！MiniMax开源SOTA生图模型，原生4K，一张两毛",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-11-12T11:36:20+00:00",
+   "summary_short": "MiniMax开源图像模型H3-Image：原生4K、最多16张参考图、API低价",
+   "summary_long": "原文称，MiniMax继开源视频模型H3后，又开源了图像模型H3-Image。文中展示的能力包括：从产品外观图推演出正视图、侧视图、俯视图三张正交视图；生成机械拆解爆炸图，遵循装配逻辑分层并标注引线；生成高密度学术排版内容，例如高数试卷，极限符号、积分式等未出现乱码，还能给出带步骤的答案；依据长文本战术指令生成具备纵深感和遮挡关系的3D战斗场景，以及电商资产、装修效果图等。人脸方面，原文称毛孔、雀斑、绒毛等细节被画出，AI味明显减少，并将手指痣这类刻意保留的瑕疵视为重要原因。参数上，H3-Image为原生4K（16MP，4096×4096），网页端体感生成耗时10至20秒，最多支持16张参考图输入，可用于角色一致性与分镜连续性。该模型开源可自由定制，API价格为主流竞品的50%至70%，首周16MP请求再打五折。",
    "key_points": [
-    "Harbor 把 Mac 变成私有 AI 推理服务器，在 Apple silicon 上本地运行开放权重模型，数据不出硬件、不上云。",
-    "['通过 Thunderbolt 5 连接两台及以上 Mac 并池化统一内存，可运行单机跑不动的大模型或提高并发。', '主打几分钟部署、自动发现设备组建集群、应用内下载与管理模型，无需命令行；目前处于苹果 Claris 品牌下的私有预览。']"
+    "原生4K（16MP，4096×4096），网页端体感10至20秒出图，最多支持16张参考图输入",
+    "原文演示的能力覆盖CAD三视图推演、机械爆炸图、高密度学术排版、3D游戏战斗场景与电商资产等",
+    "模型开源可自由定制；API价格为主流竞品50%至70%，首周16MP请求再打五折"
    ],
    "topics": [
-    "product",
     "open-source",
-    "harness"
+    "product"
    ],
-   "category": "产品与应用",
+   "category": "模型",
    "categories": [
-    "产品与应用",
     "模型"
    ],
    "horizon": "short",
-   "score": 53.2,
+   "score": 50.9,
    "status": "review",
    "extra": {
-    "hn_points": 516,
-    "hn_comments": 525,
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "MiniMax"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://9to5mac.com/guides/ai/",
-      "https://9to5mac.com/author/rchristoffel/",
-      "https://x.com/aaronp613/status/2120229190477992162?a=em8hy9-X3UtcmFWDyN0&s=61",
-      "https://x.com/aaronp613/status/2120229190477992162?a=m3_ZPlpfCpfOZMSwac8&s=61",
-      "https://t.co/UYJBQeX4Nf",
-      "https://x.com/aaronp613/status/2120229190477992162?ref_src=twsrc%5Etfw",
-      "https://amzn.to/3Peq3Ge",
-      "https://amzn.to/4xOqqrg",
-      "https://amzn.to/48EbPVU",
-      "https://amzn.to/42JhuGC",
-      "https://amzn.to/3P2X1cy",
-      "https://google.com/preferences/source?q=https://9to5mac.com",
-      "https://9to5mac.com/about/#affiliate",
-      "https://bit.ly/3XgoDyD",
-      "http://9to5mac.com/",
-      "http://twitter.com/9to5mac",
-      "http://facebook.com/9to5mac",
-      "https://www.linkedin.com/company/9to5mac.com/",
-      "https://9to5mac.com/feature/exclusive/",
-      "https://9to5mac.com/guides/review/",
-      "https://9to5mac.com/guides/how-to/",
-      "https://www.youtube.com/9to5mac",
-      "https://www.youtube.com/c/9to5mac?sub_confirmation=1",
-      "https://twitter.com/intent/follow?screen_name=iryantldr&original_referer=https%3A%2F%2F9to5mac.com"
+      "https://www.qbitai.com/author/jay",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/minimax",
+      "https://www.qbitai.com/2026/11/509203.html",
+      "https://www.qbitai.com/2026/11/508706.html",
+      "https://www.qbitai.com/2026/11/507782.html",
+      "https://www.qbitai.com/2026/11/507697.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/509440.html&title=多模态“源神”！MiniMax开源SOTA生图模型，原生4K，一张两毛&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2026/10/505443.html",
+      "https://www.qbitai.com/2023/03/42635.html",
+      "https://www.qbitai.com/tag/chatgpt",
+      "https://www.qbitai.com/tag/glow",
+      "https://www.qbitai.com/2026/06/428092.html",
+      "https://www.qbitai.com/2026/03/383276.html",
+      "https://www.qbitai.com/2026/03/389024.html",
+      "https://www.qbitai.com/2025/05/288945.html",
+      "https://www.qbitai.com/tag/%e8%a7%86%e8%a7%89%e6%84%9f%e7%9f%a5",
+      "https://www.qbitai.com/tag/%e8%a7%86%e8%a7%89%e6%8e%a8%e7%90%86",
+      "https://www.qbitai.com/2026/11/508107.html",
+      "https://www.qbitai.com/2026/11/508264.html",
+      "https://www.qbitai.com/2026/11/508466.html",
+      "https://www.qbitai.com/2026/11/508449.html",
+      "https://www.qbitai.com/2026/11/508244.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   }
