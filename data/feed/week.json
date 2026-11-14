@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-13T00:26:31+00:00",
+ "generated_at": "2026-11-14T00:21:20+00:00",
  "top": [
   {
    "id": "594105e3c51985ed",
@@ -59,6 +59,82 @@
      ]
     },
     "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "8400bdfe1e2afd49",
+   "url": "https://huggingface.co/blog/allenai/xybench",
+   "title": "XYBench: Helping with the problem behind the question",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-13T17:02:35+00:00",
+   "summary_short": "研究者发布XYBench：8千余道题测试AI能否识别用户问错了方向",
+   "summary_long": "真正有用的AI助手要能帮助提出错误问题的用户，而不只是提问精准的用户。研究者发布XYBench，一个含8000多道基于错误前提请求的基准，测试助手如何回应这类提问。提问方式与目标不匹配被称为XY问题：用户想达成X，假定做法Y可行，于是求助Y，比如问如何让总往下滑的糖霜变稠，真正问题是纸杯蛋糕还没凉透。XYBench与卡内基梅隆、NVIDIA、约翰霍普金斯的研究者合作开发，覆盖编程以及烹饪、家居维修等日常场景，衡量模型能否识别隐含误解并优先给出有效方案。在XYBench上评测的Claude Sonnet 4.6、GPT-5、Gemini 3.1 Pro、Qwen3.5-9B、DeepSeek-V4 Pro往往给出了解决方案，但回答仍集中在原本错误的做法上；与人类参考答案相比，五个模型都更少把用户从该做法引向符合其目标的方案。数据来自四个来源：Stack Overflow 1557题、Stack Exchange 184题、102道人工整理样例、6272道由WikiHow指南生成的问题；每题标注明确请求（Y）与可从上下文推断的意图请求（X），并过滤掉直接回答字面请求即足够的情况。该基准获EMNLP 2026最佳资源论文奖。",
+   "key_points": [
+    "XYBench含8115道真实问题，覆盖编程与烹饪、家居维修等日常场景，专门测试模型能否识别用户请求背后的错误前提（XY问题）",
+    "评测的Claude Sonnet 4.6、GPT-5、Gemini 3.1 Pro、Qwen3.5-9B、DeepSeek-V4 Pro多数仍围绕用户原本错误的做法作答，比人类参考答案更少引导用户转向真正有效的方案",
+    "数据来自Stack Overflow、Stack Exchange、人工整理样例与WikiHow生成问题四个来源，每题区分字面请求（Y）与意图请求（X），并剔除回答字面请求即可解决的样本"
+   ],
+   "topics": [
+    "eval",
+    "reasoning"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测"
+   ],
+   "horizon": "long",
+   "score": 84.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2609.06842"
+     ],
+     "links": [
+      "https://arxiv.org/abs/2609.06842",
+      "https://huggingface.co/datasets/allenai/XYBench-dataset",
+      "https://github.com/allenai/XYBench",
+      "https://www.datocms-assets.com/64837/1794335088-xybench-featured.png",
+      "https://www.datocms-assets.com/64837/1794335992-xybench-stackoverflow-results.png",
+      "https://www.datocms-assets.com/64837/1794336134-xybench-picking-vs-writing.png"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "5bf4951adbe9698d",
+   "url": "https://openai.com/index/introducing-chatgpt-wallet",
+   "title": "Introducing ChatGPT Wallet",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-13T15:00:00+00:00",
+   "summary_short": "ChatGPT Wallet 上线：代理可付款但不接触真实卡号，每笔需人脸或指纹确认",
+   "summary_long": "OpenAI 推出 ChatGPT Wallet，原文称其为首个让代理在无法访问用户真实卡号的情况下完成支付、且每笔购买都需通过安全验证的钱包，同时保留现有卡片的奖励与符合条件的争议保护。该产品与 American Express、Mastercard、Visa 合作构建，初期通过 dots 向美国 ChatGPT Pro 订阅用户开放。原文称每周有 12 亿人使用 ChatGPT，其中许多人用它研究商品、比较选项并决定购买，ChatGPT Wallet 意在帮助这些人完成购买，并让商家可用现有系统受理代理支付。使用流程为：用户一次性绑卡，每次购买前查看商品、金额与所选卡片，再以 Face ID 或指纹等安全验证批准，每次批准都会生成授权记录；随后支付网络提供一个替代真实卡信息的支付令牌（含卡号、安全码、有效期），款项计入所选卡片。用户与商家直接交易，商家保有客户关系及定价、履约、退货与客服控制权。原文还提到未来用户可通过消费限额、品类、时段等参数把购买完全委托给代理。此外，OpenAI 发布 Commerce Partner Playbook，指导商家让代理可访问、提供商品信息并与支付风控方协作减少误拒。",
+   "key_points": [
+    "ChatGPT Wallet 让代理无需接触用户真实卡信息即可付款，每笔购买都需安全验证，并保留卡片原有奖励与符合条件的争议保护",
+    "与 American Express、Mastercard、Visa 合作构建，初期通过 dots 面向美国 18 岁以上 ChatGPT Pro 订阅用户、使用美国发行卡片开放",
+    "支付通过支付网络提供的令牌完成，用户与商家直接交易，商家保留客户关系及定价、履约、退货和客服控制权"
+   ],
+   "topics": [
+    "product",
+    "agentic-commerce"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 82.9,
+   "status": "published",
+   "extra": {
+    "content_source": "reader",
+    "source_tags": [
+     "Product"
+    ],
     "summary_mode": "full"
    }
   },
@@ -151,75 +227,6 @@
       "https://huggingface.co/collections/sentence-transformers/multivectorencoder-integrations"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "7da1b2b4758f6148",
-   "url": "https://deepmind.google/blog/gemini-robotics-2-5-accelerates-real-world-physical-intelligence/",
-   "title": "Gemini Robotics 2.5 accelerates real-world general dexterity",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-11-09T19:51:47+00:00",
-   "summary_short": "谷歌发布Gemini Robotics 2.5视觉-语言-动作模型，任务成功率提升30%–100%、速度快20%–30%",
-   "summary_long": "原文于11月10日发布，介绍Gemini Robotics 2.5——其迄今能力最强的视觉-语言-动作（VLA）模型，既拓展了机器人可学习的技能范围，也提升了技能获得速度，并改善了灵巧性、可靠性与安全性，以帮助机器人走出实验室、进入更非结构化的真实环境。原文称，此前已将全身智能带给包括人形机器人在内的多种机器人，此次进展很大程度上得益于Gemini 4 Argon加速机器人研究的能力。团队在200多个不同任务上评测该模型，例如用夹子分餐、给礼盒系蝴蝶结、移液，这些任务涉及高级工具使用、可变形物体操作和精细易碎物体处理。相比此前基线，Gemini Robotics 2.5按任务类型成功率高出30%至100%，完成任务快20%至30%。它原生支持多种机器人形态，包括Apptronik的Apollo 2人形机器人（配五指、22自由度SharpaWave手）与使用两指平行夹爪的Franka Duo平台。原文还称，该模型正逐步向机器人合作伙伴开放；文末提到的可操控性与智能体安全性部分内容不完整，具体细节原文未详述。",
-   "key_points": [
-    "Gemini Robotics 2.5是原文所称其迄今最强的VLA模型，同时扩大技能广度与学习速度。",
-    "在200多个任务上评测，成功率比此前基线高30%–100%，速度快20%–30%。",
-    "原生适配多种机器人形态：Apptronik Apollo 2人形机器人（22自由度SharpaWave手）与Franka Duo平行夹爪平台。"
-   ],
-   "topics": [
-    "robotics",
-    "vla",
-    "dexterity"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 82.5,
-   "status": "published",
-   "extra": {
-    "content_source": "reader",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://developers.googleblog.com/gemini-4-argon-for-robotics?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content="
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "cfd4354afa14004f",
-   "url": "https://openai.com/index/measuring-how-ai-agents-handle-wet-lab-science",
-   "title": "Measuring how AI agents handle everyday wet-lab science",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-06T00:00:00+00:00",
-   "summary_short": "BioBasicsBench：100项湿实验室任务测AI代理解读原始实验数据",
-   "summary_long": "原文介绍 BioBasicsBench：现有基准多基于论文图表，可能漏掉湿实验室日常数据中的失败实验、模糊图像和冲突观察，而 AI 代理若误读图像或忽视对照问题，会导致错误结论并浪费时间。该基准与酶设计生物技术公司 Ligo 合作开发，含100项常规湿实验室任务，覆盖蛋白方法、成像与流式、定量与检测、核酸方法、分子克隆五类，输入包括凝胶/印迹、菌落平板、显微图像、测序读数和仪器导出等原始证据。任务由科学家用自身实验数据创建，配专家评分标准并多轮评审；代理需给出结构化结论、测量或建议及推理，按评分项得分。在 xhigh 设置下，GPT‑6 Astra 平均获得66.7%可用分数，GPT‑5.6 Sol 为43.8%，原文称常规实验室分析有进展，但在图像解读、对照检查和实验背景应用上仍需改进。",
-   "key_points": [
-    "现有基准多基于论文图表，可能遗漏真实湿实验室数据中的模糊与排错需求。",
-    "BioBasicsBench含100项任务，覆盖五类湿实验室工作，使用凝胶、平板、显微、测序、仪器读数等原始证据，并由专家评分。",
-    "xhigh设置下GPT‑6 Astra平均66.7%，GPT‑5.6 Sol 43.8%；原文指出图像解读、对照检查和实验背景应用仍有改进空间。"
-   ],
-   "topics": [
-    "eval"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测"
-   ],
-   "horizon": "long",
-   "score": 81.9,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Publication"
-    ],
     "summary_mode": "full"
    }
   }
@@ -287,6 +294,82 @@
    }
   },
   {
+   "id": "8400bdfe1e2afd49",
+   "url": "https://huggingface.co/blog/allenai/xybench",
+   "title": "XYBench: Helping with the problem behind the question",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-13T17:02:35+00:00",
+   "summary_short": "研究者发布XYBench：8千余道题测试AI能否识别用户问错了方向",
+   "summary_long": "真正有用的AI助手要能帮助提出错误问题的用户，而不只是提问精准的用户。研究者发布XYBench，一个含8000多道基于错误前提请求的基准，测试助手如何回应这类提问。提问方式与目标不匹配被称为XY问题：用户想达成X，假定做法Y可行，于是求助Y，比如问如何让总往下滑的糖霜变稠，真正问题是纸杯蛋糕还没凉透。XYBench与卡内基梅隆、NVIDIA、约翰霍普金斯的研究者合作开发，覆盖编程以及烹饪、家居维修等日常场景，衡量模型能否识别隐含误解并优先给出有效方案。在XYBench上评测的Claude Sonnet 4.6、GPT-5、Gemini 3.1 Pro、Qwen3.5-9B、DeepSeek-V4 Pro往往给出了解决方案，但回答仍集中在原本错误的做法上；与人类参考答案相比，五个模型都更少把用户从该做法引向符合其目标的方案。数据来自四个来源：Stack Overflow 1557题、Stack Exchange 184题、102道人工整理样例、6272道由WikiHow指南生成的问题；每题标注明确请求（Y）与可从上下文推断的意图请求（X），并过滤掉直接回答字面请求即足够的情况。该基准获EMNLP 2026最佳资源论文奖。",
+   "key_points": [
+    "XYBench含8115道真实问题，覆盖编程与烹饪、家居维修等日常场景，专门测试模型能否识别用户请求背后的错误前提（XY问题）",
+    "评测的Claude Sonnet 4.6、GPT-5、Gemini 3.1 Pro、Qwen3.5-9B、DeepSeek-V4 Pro多数仍围绕用户原本错误的做法作答，比人类参考答案更少引导用户转向真正有效的方案",
+    "数据来自Stack Overflow、Stack Exchange、人工整理样例与WikiHow生成问题四个来源，每题区分字面请求（Y）与意图请求（X），并剔除回答字面请求即可解决的样本"
+   ],
+   "topics": [
+    "eval",
+    "reasoning"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测"
+   ],
+   "horizon": "long",
+   "score": 84.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2609.06842"
+     ],
+     "links": [
+      "https://arxiv.org/abs/2609.06842",
+      "https://huggingface.co/datasets/allenai/XYBench-dataset",
+      "https://github.com/allenai/XYBench",
+      "https://www.datocms-assets.com/64837/1794335088-xybench-featured.png",
+      "https://www.datocms-assets.com/64837/1794335992-xybench-stackoverflow-results.png",
+      "https://www.datocms-assets.com/64837/1794336134-xybench-picking-vs-writing.png"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "5bf4951adbe9698d",
+   "url": "https://openai.com/index/introducing-chatgpt-wallet",
+   "title": "Introducing ChatGPT Wallet",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-13T15:00:00+00:00",
+   "summary_short": "ChatGPT Wallet 上线：代理可付款但不接触真实卡号，每笔需人脸或指纹确认",
+   "summary_long": "OpenAI 推出 ChatGPT Wallet，原文称其为首个让代理在无法访问用户真实卡号的情况下完成支付、且每笔购买都需通过安全验证的钱包，同时保留现有卡片的奖励与符合条件的争议保护。该产品与 American Express、Mastercard、Visa 合作构建，初期通过 dots 向美国 ChatGPT Pro 订阅用户开放。原文称每周有 12 亿人使用 ChatGPT，其中许多人用它研究商品、比较选项并决定购买，ChatGPT Wallet 意在帮助这些人完成购买，并让商家可用现有系统受理代理支付。使用流程为：用户一次性绑卡，每次购买前查看商品、金额与所选卡片，再以 Face ID 或指纹等安全验证批准，每次批准都会生成授权记录；随后支付网络提供一个替代真实卡信息的支付令牌（含卡号、安全码、有效期），款项计入所选卡片。用户与商家直接交易，商家保有客户关系及定价、履约、退货与客服控制权。原文还提到未来用户可通过消费限额、品类、时段等参数把购买完全委托给代理。此外，OpenAI 发布 Commerce Partner Playbook，指导商家让代理可访问、提供商品信息并与支付风控方协作减少误拒。",
+   "key_points": [
+    "ChatGPT Wallet 让代理无需接触用户真实卡信息即可付款，每笔购买都需安全验证，并保留卡片原有奖励与符合条件的争议保护",
+    "与 American Express、Mastercard、Visa 合作构建，初期通过 dots 面向美国 18 岁以上 ChatGPT Pro 订阅用户、使用美国发行卡片开放",
+    "支付通过支付网络提供的令牌完成，用户与商家直接交易，商家保留客户关系及定价、履约、退货和客服控制权"
+   ],
+   "topics": [
+    "product",
+    "agentic-commerce"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 82.9,
+   "status": "published",
+   "extra": {
+    "content_source": "reader",
+    "source_tags": [
+     "Product"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "5186d80b7eef5626",
    "url": "https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again",
    "title": "Claude Code's \"Don't Ask Again\" exposes passwords in 1,122 public GitHub files",
@@ -412,38 +495,6 @@
       "https://developers.googleblog.com/gemini-4-argon-for-robotics?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content="
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "cfd4354afa14004f",
-   "url": "https://openai.com/index/measuring-how-ai-agents-handle-wet-lab-science",
-   "title": "Measuring how AI agents handle everyday wet-lab science",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-06T00:00:00+00:00",
-   "summary_short": "BioBasicsBench：100项湿实验室任务测AI代理解读原始实验数据",
-   "summary_long": "原文介绍 BioBasicsBench：现有基准多基于论文图表，可能漏掉湿实验室日常数据中的失败实验、模糊图像和冲突观察，而 AI 代理若误读图像或忽视对照问题，会导致错误结论并浪费时间。该基准与酶设计生物技术公司 Ligo 合作开发，含100项常规湿实验室任务，覆盖蛋白方法、成像与流式、定量与检测、核酸方法、分子克隆五类，输入包括凝胶/印迹、菌落平板、显微图像、测序读数和仪器导出等原始证据。任务由科学家用自身实验数据创建，配专家评分标准并多轮评审；代理需给出结构化结论、测量或建议及推理，按评分项得分。在 xhigh 设置下，GPT‑6 Astra 平均获得66.7%可用分数，GPT‑5.6 Sol 为43.8%，原文称常规实验室分析有进展，但在图像解读、对照检查和实验背景应用上仍需改进。",
-   "key_points": [
-    "现有基准多基于论文图表，可能遗漏真实湿实验室数据中的模糊与排错需求。",
-    "BioBasicsBench含100项任务，覆盖五类湿实验室工作，使用凝胶、平板、显微、测序、仪器读数等原始证据，并由专家评分。",
-    "xhigh设置下GPT‑6 Astra平均66.7%，GPT‑5.6 Sol 43.8%；原文指出图像解读、对照检查和实验背景应用仍有改进空间。"
-   ],
-   "topics": [
-    "eval"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测"
-   ],
-   "horizon": "long",
-   "score": 81.9,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Publication"
-    ],
     "summary_mode": "full"
    }
   },
@@ -581,74 +632,6 @@
       "https://github.com/generative-computing/llmon/blob/main/llmon/examples/lora-finetuning/byo-vocab_LoRA_for_agents.ipynb",
       "https://arxiv.org/abs/2610.38120",
       "https://arxiv.org/abs/2603.22519"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "be1ba71e55b7f125",
-   "url": "https://huggingface.co/blog/allenai/toyblocks",
-   "title": "ToyBlocks: A controlled world for robot learning and evaluation",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-11-06T14:00:48+00:00",
-   "summary_short": "提出 FoundationWorlds 框架，首个受控仿真世界 ToyBlocks 用于机器人学习研究",
-   "summary_long": "原文指出，机器人正在学习叠衣、分拣零件、处理陌生物体，但这类演示往往范围狭窄，无法说明机器人学到了什么、为何失败。研究者因此提出 FoundationWorlds 框架：把针对特定环境的受控仿真世界，与自动生成任务和训练演示的工具、以及随时间测量机器人行为的指标配对。首个 FoundationWorld 名为 ToyBlocks，是围绕桌面机械臂与积木的开源仿真框架，场景刻意简单，但机器人仍需推理积木如何相互作用，并在推、翻、堆叠中完成排列。它可自动生成演示而无需耗时的人工遥操作，研究者能改变训练经验，并在未参与训练的任务上评估表现。ToyBlocks 按四项要求设计：真实物理与外观、规模化自动生成任务与演示、兼顾推理与灵巧性的挑战、覆盖领域内可能任务；开放式领域难以同时满足，窄范围使其可行。它建立在 MolmoAct 2、MolmoBot、MolmoSpaces 等工作之上，目标是扩展到更复杂环境。原文末尾提到使用强化学习（RL），但内容不完整。",
-   "key_points": [
-    "提出 FoundationWorlds 框架，将受控仿真世界、任务与演示自动生成工具、以及机器人行为指标结合，用于可控地做实验和验证假设",
-    "首个 ToyBlocks 围绕桌面机械臂与积木，可自动生成演示、免去人工遥操作，研究者可改变训练经验并在留出任务上评估",
-    "积木面印有图案和字母，支持搜索、排序、排列任务；域随机化改变积木尺寸、桌面高度等物理属性以测试泛化"
-   ],
-   "topics": [
-    "eval",
-    "open-source"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测"
-   ],
-   "horizon": "long",
-   "score": 80.7,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2503.20314",
-      "2504.16054",
-      "2509.01819",
-      "2512.11130",
-      "2603.19312"
-     ],
-     "links": [
-      "https://github.com/allenai/ToyBlocks",
-      "https://huggingface.co/datasets/allenai/toyblocks-data",
-      "https://huggingface.co/collections/allenai/toyblocks",
-      "https://allenai.github.io/ToyBlocks/docs/user_guide/index.html",
-      "https://www.datocms-assets.com/64837/1793826687-david-thumbnail-download-1.jpg",
-      "https://allenai.org/blog/molmoact2",
-      "https://allenai.org/blog/molmobot-robot-manipulation",
-      "https://allenai.org/blog/molmospaces",
-      "https://cdn-uploads.huggingface.co/production/uploads/638e39b249de7ae552d977b5/ov2i4rZoAkJw4z9FBaGfm.jpeg",
-      "https://www.datocms-assets.com/64837/1793917318-toyblocks-framework-current.png",
-      "https://www.datocms-assets.com/64837/1793904303-toyblocks-visual-08-ai2.png",
-      "https://arxiv.org/abs/2509.01819",
-      "https://arxiv.org/abs/2504.16054",
-      "https://www.datocms-assets.com/64837/1793904303-toyblocks-visual-09-ai2.png",
-      "https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro",
-      "https://proceedings.neurips.cc/paper_files/paper/2023/hash/7a92bcdede88c7afd108072faf5485c8-Abstract-Datasets_and_Benchmarks.html",
-      "https://openreview.net/forum?id=gxEC7M0oZj",
-      "https://www.datocms-assets.com/64837/1793911236-toyblocks-visual-10a-corrected.png",
-      "https://www.datocms-assets.com/64837/1793904303-toyblocks-visual-11-ai2.png",
-      "https://arxiv.org/abs/2503.20314",
-      "https://openai.com/index/gpt-6-astra/",
-      "https://arxiv.org/abs/2603.19312",
-      "https://www.datocms-assets.com/64837/1793919269-toyblocks-visual-12a-30-trials.png",
-      "https://arxiv.org/abs/2512.11130",
-      "https://www.datocms-assets.com/64837/1793811059-image2.jpg?ts=ae95e598",
-      "https://huggingface.co/allenai/Molmo2-4B-tb",
-      "https://huggingface.co/allenai/maniflow-tb"
      ]
     },
     "summary_mode": "full"
@@ -941,6 +924,49 @@
    }
   },
   {
+   "id": "1dba3a3e5ab0c862",
+   "url": "https://developer.apple.com/foundation-models-framework/",
+   "title": "Foundation Models framework",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-12T21:13:26+00:00",
+   "summary_short": "苹果 Foundation Models 框架：用一套 Swift API 接入任意大模型",
+   "summary_long": "原文介绍 Foundation Models 框架：它是一套原生 Swift API，可把任意大语言模型集成进应用，包括直接调用 Apple Foundation Models 的端侧模型与 Private Cloud Compute。框架内置引导生成、工具调用、图像理解与 Dynamic Profiles。图像理解支持多模态提示，把图像与文本一并传入，并集成 Vision 框架的 OCR 与条码读取，全部在端侧完成。模型支持方面，除端侧模型外，还通过同一套 Swift API 扩展至 Claude、Gemini 等服务端模型；任何模型提供方都可创建遵循 Language Model 协议的 Swift 包。加入 App Store 小企业计划且首次下载少于 200 万的开发者，可零云 API 成本使用 Private Cloud Compute 上的模型。Dynamic Profiles 让会话中的模型、工具与指令可动态切换，转录在各 profile 间共享。另有 Evaluations 框架用于测试提示词。",
+   "key_points": [
+    "原生 Swift API，可直接访问 Apple Foundation Models 的端侧模型与 Private Cloud Compute，内置引导生成、工具调用、图像理解、Dynamic Profiles",
+    "图像理解支持多模态提示，并集成 Vision 框架的 OCR 与条码读取，全部在端侧运行",
+    "同一套 Swift API 可接入 Claude、Gemini 等服务端模型，任何提供方都能创建遵循 Language Model 协议的 Swift 包"
+   ],
+   "topics": [
+    "tool-use",
+    "context-engineering"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 77.7,
+   "status": "published",
+   "extra": {
+    "hn_points": 264,
+    "hn_comments": 35,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/apple/coreai-models",
+      "https://github.com/ml-explore/mlx-swift-lm",
+      "https://github.com/anthropics/ClaudeForFoundationModels",
+      "https://github.com/firebase/firebase-ios-sdk",
+      "https://github.com/apple/foundation-models-utilities",
+      "https://github.com/apple/python-apple-fm-sdk"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "cce714811b519a82",
    "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
    "title": "Gemini Decisions API",
@@ -994,6 +1020,70 @@
       "https://opencode.ai/",
       "https://forms.gle/NFt1W6pL1gCY9FGM8",
       "https://policies.google.com/privacy"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "d096a8a420fb437e",
+   "url": "https://unemploymentlabs.com/checkpoint-forensics",
+   "title": "Chinese frontier AI models carry the fingerprint of export-controlled GPUs",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-12T21:56:11+00:00",
+   "summary_short": "取证分析发现，四个中国实验室的六个模型权重带有 Blackwell 硬件指纹",
+   "summary_long": "在美国限制 Blackwell 芯片对华出口的背景下，原文对公开发布的 AI 模型做取证分析，发现证据显示 DeepSeek、Moonshot AI、MiniMax 与蚂蚁集团已获得 NVIDIA Blackwell GPU，并用其制作模型。自 2026 年 4 月起，这四家发布的六个模型含有与 Blackwell 匹配的数值模式，而它们更早的模型匹配 Hopper 代际。此前美国官员与媒体报道已指称 DeepSeek 和 Moonshot AI 使用 Blackwell，但未公布技术证据；本文证据全部来自模型公开权重，而非泄密或内部人士。方法是恢复模型初始值的痕迹，再搜索能复现这些值的硬件配置与初始配置，并对 DeepSeek-V4-Flash 和 Kimi K3 在实体 Blackwell 芯片上确认匹配。作者指出，指纹识别的是权重如何生成，支持但不证明训练也在 Blackwell 上完成；特殊配置的 AMD 硬件是唯一已识别的替代方案，对 DeepSeek-V4-Flash 已排除，其余五个判定为极不可能。研究提供获取先进算力的技术证据，但未确定芯片所在地、获取方式或是否违反出口管制。",
+   "key_points": [
+    "硬件对应：DeepSeek-V4-Flash 与 MiniMax-M3 匹配 148 个 SM 的 B200/B300；DeepSeek-V4-Pro、Kimi K3、Kimi K3.1-Pro、Ling-3.1-flash 匹配 152 个 SM 的 GB200/GB300",
+    "时间线：DeepSeek 到 V3（2024 年 12 月）为 Hopper，V4（2026 年 4 月）起为 Blackwell；Moonshot AI 到 K2.5（2026 年 1 月）为 Hopper，K3（7 月）起为 Blackwell，Kimi K2.7-Code 介于两者之间；MiniMax 到 M2.7 为 Hopper，M3 起为 Blackwell；蚂蚁 Ling-3.0-flash 为 Hopper",
+    "方法与局限：指纹表明权重如何生成，支持但不证明 Blackwell 执行了训练；唯一已识别的替代方案是特殊配置的 AMD 硬件，对 DeepSeek-V4-Flash 已排除，其余五个认为极不可能；未确定芯片位置、获取方式或是否违反出口管制"
+   ],
+   "topics": [
+    "export-controls",
+    "compute",
+    "model-forensics"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 77.1,
+   "status": "published",
+   "extra": {
+    "hn_points": 355,
+    "hn_comments": 149,
+    "outbound": {
+     "arxiv": [
+      "2412.19437",
+      "2505.09343",
+      "2507.20534"
+     ],
+     "links": [
+      "https://github.com/macrogrants/checkpoint-forensics",
+      "https://news.bgov.com/tech-and-telecom-law/deepseek-has-used-banned-nvidia-chips-the-information-says-2",
+      "https://whbl.com/2026/02/23/exclusive-chinas-deepseek-trained-ai-model-on-nvidias-best-chip-despite-us-ban-official-says/",
+      "https://news.bgov.com/artificial-intelligence/white-house-official-says-moonshot-accessed-banned-nvidia-chips",
+      "https://www.thestandard.com.hk/finance/article/326579/",
+      "https://github.com/deepseek-ai/DeepGEMM/pull/112",
+      "https://github.com/inclusionAI/cuLA/blob/main/BENCHMARK_GB300.md",
+      "https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-742/section-742.6",
+      "https://arxiv.org/abs/2412.19437",
+      "https://arxiv.org/abs/2507.20534",
+      "https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Ultra-Technical-Report.pdf",
+      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
+      "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
+      "https://arxiv.org/abs/2505.09343",
+      "https://github.com/pytorch/pytorch/blob/main/aten/src/ATen/native/cuda/DistributionTemplates.h",
+      "https://huggingface.co/deepseek-ai/DeepSeek-V3-Base",
+      "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash",
+      "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+      "https://huggingface.co/moonshotai/Kimi-K3",
+      "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
+      "https://huggingface.co/MiniMaxAI/MiniMax-M3",
+      "https://huggingface.co/inclusionAI/Ling-3.1-flash"
      ]
     },
     "content_source": "direct",
