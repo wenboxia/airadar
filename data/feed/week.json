@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-14T00:21:20+00:00",
+ "generated_at": "2026-11-14T22:59:49+00:00",
  "top": [
   {
    "id": "594105e3c51985ed",
@@ -499,6 +499,53 @@
    }
   },
   {
+   "id": "2849eca9693ec9be",
+   "url": "https://arxiv.org/abs/2611.15049v1",
+   "title": "Science Prediction Universe",
+   "source": "论文（被提及）",
+   "tier": "A",
+   "published_at": "2026-11-11T05:23:11+00:00",
+   "summary_short": "SPU基准测试AGI实验预测能力，揭示瓶颈在科学判断而非工具执行",
+   "summary_long": "可靠预测实验结果被视为理解自然现象的核心检验。原文指出，若通用人工智能要超越人类科学能力，也必须比人类更可靠地预测实验结果。为此，研究提出Science Prediction Universe（SPU）基准：含化学、材料科学、生物与医学的100个公开验证任务，以及16个来自未发表湿实验的私有任务。智能体获得实验设置和候选条件后，可利用所需资源按测量结果排序候选。研究评估跨Codex与Claude Code两个框架、覆盖12个前沿模型的13种配置。公开基准上配置呈两个层级，任务校正Spearman相关系数从0.227到0.478，当前智能体远未饱和湿实验预测。对1,155条公开轨迹（227,103次工具调用）的分析显示，瓶颈在科学判断而非工具执行：智能体依赖共享单调先验，彼此一致度0.52高于与实验现实的0.33，且常计算不影响最终结果的简单代理量。",
+   "key_points": [
+    "SPU基准聚焦隐藏实验结果，包含化学、材料科学、生物与医学的100个公开验证任务，以及16个来自未发表湿实验的私有任务。",
+    "研究评估覆盖12个前沿模型、Codex与Claude Code两个框架的13种智能体配置；公开基准任务校正Spearman相关系数从0.227到0.478，配置分为两个层级。",
+    "对1,155条公开评分轨迹（227,103次工具调用）的分析表明，瓶颈在科学判断而非工具执行：智能体彼此一致度0.52高于与实验现实的0.33，且常计算不影响最终结果的简单物理或化学代理量。"
+   ],
+   "topics": [
+    "eval",
+    "tool-use",
+    "reasoning"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "Agent 与开发",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 81.9,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Zengji Tu",
+     "Xiang Liu",
+     "Jiarui Sun",
+     "Ruoyu Wu",
+     "Zhihui Qi",
+     "Chengda Wu",
+     "Yutao Zhou",
+     "Bo Yang"
+    ],
+    "author_count": 36,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "量子位"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "56dac742ff29ffe2",
    "url": "https://huggingface.co/blog/3d-lora-finetuning",
    "title": "The Definitive Fine-Tuning Guide for 3D Generation Models",
@@ -764,6 +811,53 @@
       "https://unsloth.ai/docs/basics/train-your-own-decision-model-with-unsloth"
      ]
     },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "ea0776201252f8c6",
+   "url": "https://haddyalchaer.com/jepa",
+   "title": "After 600 experiments, here's what I discovered about JEPA world models",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-13T17:55:28+00:00",
+   "summary_short": "600次实验：不重新训练，仅改规划方法就让 LeWM 长程任务成功率从 22% 升到 85%",
+   "summary_long": "AI 界正争论世界模型应该是什么：多数关注生成式世界模型，即用像素生成来预测未来；LeCun 等人认为多数像素对决策无用且不可预测，因此提出 JEPA 联合嵌入预测架构，它包含编码器、预测器、规划器，整个循环在嵌入空间运行。今年一个包括 LeCun 的团队发布 LeWM，主基准为 Push-T 机器人推块仿真。作者几个月内做了 600 次实验：把预测器换成仿真器的完美物理后，在 250 个目标距离 75 步的长程任务上，原版成功率 78%、真物理版 77%，说明在其训练过的路径类型上，LeWM 的预测已接近完美物理。瓶颈在于这套架构的使用方式：原版在 75 步目标上成功率仅 22%，25 步目标为 89.7%（真物理 90.5%）。在不重新训练模型的前提下，作者找到四种新规划方法：前两种把长程成功率从 22% 提到 85%，接近直接获得专家子目标的规划器；另两种把 LeWM 扩展到更难目标，其中仅改变目标打分方式一项就提升 60 个百分点，是换用完美物理收益的三倍。",
+   "key_points": [
+    "JEPA 由编码器、预测器、规划器三部分组成，整个循环在嵌入空间运行，只需学习对决策重要的场景部分",
+    "把预测器换成仿真器完美物理，长程任务成功率为 77%，原版为 78%，说明预测精度不是长程失败的主因",
+    "原版 LeWM 在 75 步目标上成功率 22%，在 25 步目标上为 89.7%，误差在长程中累积"
+   ],
+   "topics": [
+    "world-models",
+    "planning",
+    "jepa"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 79.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 286,
+    "hn_comments": 48,
+    "outbound": {
+     "arxiv": [
+      "2303.04137",
+      "2603.19312",
+      "2610.06805"
+     ],
+     "links": [
+      "https://x.com/haddyalchaer",
+      "https://openreview.net/pdf?id=BZ5a1r-kVsf",
+      "https://arxiv.org/abs/2603.19312",
+      "https://arxiv.org/abs/2303.04137",
+      "https://arxiv.org/abs/2610.06805"
+     ]
+    },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },

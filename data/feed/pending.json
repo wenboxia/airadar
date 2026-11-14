@@ -1,349 +1,141 @@
 {
- "generated_at": "2026-11-14T00:21:20+00:00",
+ "generated_at": "2026-11-14T22:59:49+00:00",
  "items": [
   {
-   "id": "2427bacb74a96b4b",
-   "url": "https://huggingface.co/blog/nvidia/simready-assets-robot-pick-and-place",
-   "title": "Build a Robot Pick-and-Place Simulation with SimReady Assets",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-11-13T18:00:39+00:00",
-   "summary_short": "Isaac Sim 中用 SimReady 资产搭建机械臂抓放仿真的完整流程",
-   "summary_long": "文章以易拉罐抓取放置为例，演示如何在 Isaac Sim 中用 UR17G 机械臂、Robotiq 2F-140 夹爪和易拉罐组装场景、检查行为，并借助 agent 生成的代码运行抓放任务。原文说明，SimReady 指 OpenUSD 资产已按某个既定仿真用例准备好碰撞、质量、关节和关节驱动等属性；SimReady Central 是托管在 Hugging Face 上的开放资产库，可复用带仿真属性与配置验证证据的机器人和物体资产。SimReady Foundation 的规范分 Profile、Feature、Requirement 三层，定义用例所需特性并做验证。资产包只包含模型与仿真设置，场景组装和任务代码（如机械臂与夹爪装配、工作面、起始位置、控制）需自行添加。运行前应检查关节限值与驱动、小幅运动、接触是否穿透，以及移动中罐体是否留在夹爪内。示例使用前沿 AI 模型生成并执行代码（示例为 GPT-6 Sol，代码与结果可能不同），需 Isaac Sim 6.2。",
+   "id": "bab1fcc2784e280c",
+   "url": "https://www.slopmanifesto.com/",
+   "title": "No AI Slop: A Manifesto",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-13T19:51:56+00:00",
+   "summary_short": "AIE Code Summit 2026 发布《No AI Slop》宣言，反对不负责任的 AI 产出",
+   "summary_long": "宣言由 AIE Code Summit 2026 的演讲者与参会者共同撰写；它仿照 2001 年在犹他州 Snowbird 诞生的敏捷宣言，针对 AI 越来越多参与写代码、文档、计划和消息的现状提出价值主张：成果优于产出、理解优于速度、自己的思考优于模型的初稿、更好的工作优于更轻松的工作、改进系统优于修补输出。文中称 AI 是多数人用过最有用的工具，但一群 agent 一天产出的工作量，可超过一个人一生能审阅的量；slop 是指在生产时投入的精力少于要求读者理解所花的精力；把 AI 输出原样转发、不对质量和读者体验负责，才会产生 slop；AI 只能放大而非替代人的判断；slop 还不对称——生成千行 PR、十页文档的成本趋近于零，审阅成本却不变，并会在知识库、聊天和代码中复利累积。决议包括：优化宝贵的人类时间与注意力；让系统更高效地表达人类意图；自己做思考；对交付物的意图和后果负责；标明 agent 所写内容并检查关键部分；友善提醒发 slop 的人；按风险审阅部分输出；以实际交付效果而非代码行数、PR 数或 token 衡量。",
    "key_points": [
-    "SimReady 指 OpenUSD 资产已按特定仿真用例准备好碰撞、质量、关节与关节驱动等属性",
-    "SimReady Central 是 Hugging Face 上的开放资产库；SimReady Foundation 以 Profile、Feature、Requirement 三层规范定义并验证这些设置",
-    "UR17G、Robotiq 2F-140 和易拉罐资产包只提供模型与仿真设置，场景组装和任务代码由用户添加"
+    "提出五组价值取向：成果优于产出、理解优于速度、自己的思考优于模型初稿、更好的工作优于更轻松的工作、改进系统优于修补输出",
+    "界定 slop：生产时投入的精力少于要求读者理解所花的精力；不经审查地转发 AI 输出、来自公司要求员工突破“人类极限”的压力、偏向“加”而非“减”的工具都是来源，且 slop 会复利累积，劣化沟通与质量",
+    "决议要求人对交付物的意图、品味和后果负责，标明 agent 所写内容并检查关键部分，按风险保留对部分输出的审阅，并以谁在使用、如何帮到人而非代码行数、合并 PR 数、消耗 token 数或并行 agent 数量衡量价值"
    ],
    "topics": [
-    "tool-use",
     "coding-agent",
-    "harness"
+    "ai-slop",
+    "human-oversight"
    ],
    "category": "Agent 与开发",
    "categories": [
     "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 72.3,
+   "score": 61.8,
    "status": "review",
    "extra": {
-    "content_source": "direct",
+    "hn_points": 216,
+    "hn_comments": 129,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://cdn-uploads.huggingface.co/production/uploads/6abfe9e7d7cf09a9b38ef308/NlngGWIKZEQ8kuWKZtoyM.gif",
-      "https://huggingface.co/datasets/TeradyneRobotics/UniversalRobots/blob/d5d8eb795a487a5c929909bc337ee4834d62b0da/ur17g_1300/simready_usd/ur17g_1300.usda",
-      "https://huggingface.co/datasets/Robotiq-Official/simready-assets/blob/9c6b0cedf0066efd474b3bf473e7eaf7ae7e569f/Robotiq_2F_85/simready_usd/Robotiq_2F_85.usda",
-      "https://huggingface.co/datasets/nvidia/simready-assets/blob/653d91e182011f357cf1644013cc94ddf194d349/food_beverage_can_n01/simready_usd/sm_food_beverage_can_n01_01.usd",
-      "https://www.nvidia.com/en-us/glossary/openusd/",
-      "https://huggingface.co/spaces/nvidia/simready-central",
-      "https://huggingface.co/blog/nvidia/simready-central-assets-robotics-ai-factories",
-      "https://nvidia.github.io/simready-foundation/",
-      "https://cdn-uploads.huggingface.co/production/uploads/6abfe9e7d7cf09a9b38ef308/J7YL_C3mUh7MWUNJ_pVtN.png",
-      "http://nvidia-simready-central.hf.space",
-      "https://docs.isaacsim.omniverse.nvidia.com/latest/introduction/quickstart_index.html",
-      "https://docs.isaacsim.omniverse.nvidia.com/6.2.0/development_tools/agent_skills.html",
-      "https://huggingface.co/docs/huggingface_hub/guides/cli",
-      "https://cdn-uploads.huggingface.co/production/uploads/6abfe9e7d7cf09a9b38ef308/FSec580RNJKj0DIXx9703.gif",
-      "https://cdn-uploads.huggingface.co/production/uploads/6abfe9e7d7cf09a9b38ef308/LJpqYrl3l5QkQ2T4JJzYd.gif",
-      "https://huggingface.co/datasets/TeradyneRobotics/UniversalRobots/blob/d5d8eb795a487a5c929909bc337ee4834d62b0da/ur17g_1300/.metadata/ur17g_1300_validation.json",
-      "https://huggingface.co/datasets/Robotiq-Official/simready-assets/blob/c7fa7615a353ebac03990208cbc2aa57426f4c48/Robotiq_2F_140/.metadata/Robotiq_2F_140_validation.json",
-      "https://nvidia.github.io/simready-foundation/latest/features/FET_022_PHYSX.html",
-      "https://docs.isaacsim.omniverse.nvidia.com/6.2.0/robot_setup/assemble_robots.html",
-      "https://cdn-uploads.huggingface.co/production/uploads/6abfe9e7d7cf09a9b38ef308/NcKj9Cbp2iBlXh65rUf0T.gif",
-      "https://docs.isaacsim.omniverse.nvidia.com/6.2.0/core_api_tutorials/tutorial_core_adding_manipulator.html",
-      "https://cdn-uploads.huggingface.co/production/uploads/6abfe9e7d7cf09a9b38ef308/TBsKTaclDU8oJvkXYCie8.gif",
-      "https://robotiq.com/hubfs/Product-sheets/Adaptive%20Grippers/Product-sheet-Adaptive-Grippers-EN.pdf",
-      "https://nvidia.github.io/simready-foundation/latest/",
-      "https://docs.isaacsim.omniverse.nvidia.com/6.2.0/robot_setup/assemble_robots.html#assembling-robots",
-      "https://developer.nvidia.com/blog/5-steps-to-create-simready-assets-for-robotics-with-frontier-ai-models/",
-      "https://github.com/NVIDIA-Omniverse/simready-central/blob/main/.agents/skills/submit-simready-assets/SKILL.md",
-      "https://lnkd.in/p/g3-5svW6",
-      "https://lnkd.in/p/gnxQ3YS8"
+      "https://agilemanifesto.org/",
+      "https://www.youtube.com/watch?v=IoiHI7p12Ao",
+      "https://tej.as/blog/please-stop-the-slop",
+      "https://www.arthropod.software/p/vibe-coding-our-way-to-disaster",
+      "https://github.com/ghostty-org/ghostty/blob/main/AI_POLICY.md",
+      "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/wsff.md",
+      "https://gist.github.com/dexhorthy/4cc96f01be5b1208519e75dad250a948",
+      "https://x.com/dexhorthy",
+      "https://x.com/philipkiely",
+      "https://x.com/BuiltByJustin",
+      "https://x.com/kentcdodds",
+      "https://x.com/poteto",
+      "https://x.com/TejasKumar_",
+      "https://x.com/franciscojarceo",
+      "https://x.com/nadetastic",
+      "https://x.com/ankitxg",
+      "https://x.com/jpoehnelt",
+      "https://x.com/dans_la_cuisine",
+      "https://x.com/dkundel",
+      "https://x.com/raw_works",
+      "https://www.linkedin.com/in/chinmaygoyal/",
+      "https://x.com/nightowl_coder",
+      "https://x.com/jtokash",
+      "https://x.com/andrewtorkbaker",
+      "https://x.com/nerding_io",
+      "https://x.com/wschenk",
+      "https://www.linkedin.com/in/jon-mcbee/",
+      "https://x.com/JaidevShah4",
+      "https://x.com/walk_hild",
+      "https://x.com/eduardomx",
+      "https://www.linkedin.com/in/marcos-sanz-grosson/",
+      "https://www.linkedin.com/in/jonlam92",
+      "https://x.com/kinglycrow",
+      "https://x.com/tomnagengast",
+      "https://x.com/altryne",
+      "https://every.one/chris.hart",
+      "https://x.com/nicknisi",
+      "https://x.com/heymikasagi",
+      "https://x.com/crucianijm",
+      "https://x.com/larsx2"
      ]
     },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "40e78db6601d46e6",
-   "url": "https://huggingface.co/blog/ggml-org/llama-cpp-v1",
-   "title": "llama.cpp v1.0.0 : A stronger foundation for the local AI ecosystem",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-11-13T14:05:22+00:00",
-   "summary_short": "llama.cpp与ggml发布v1.0.0，用语义化版本明确API/ABI边界",
-   "summary_long": "llama.cpp 让多模态 LLM 可在从消费级本机到高端企业服务器的广泛硬件上运行，通过量化、优化后端与可移植的 C/C++ 实现。项目诞生 3.5 年来，已有大量下游应用依赖其工作；随着本地 AI 与隐私日益重要，更多集成意味着更多开发者依赖其库接口，稳定而灵活的 API 至关重要。此次发布的 v1.0.0 包含 libllama 与 libggml 两个库，公开头文件分别在 llama.cpp/include/ 与 ggml/include/。今后 llama.cpp 与 ggml 都将以主版本号跃升反映 API 与 ABI 不兼容，并随采用增长更严格地向下游暴露这些边界。原文给出的语义化版本规则是：对 ./include 中公开 C API 的破坏性变更升 MAJOR，向后兼容的功能、后端更新、模型支持或 API 新增升 MINOR，无 API 变更的缺陷修复升 PATCH。分发渠道涵盖预发布产物、Docker、Debian、Homebrew、conda-forge、MacPorts、Winget 与 XCFramework。团队持续投入 CI 基础设施；ggml 后端可编译为动态库并在运行时可选加载，目前支持 150 多个架构变体及所有主流投机解码方法。",
+   "id": "67049349b50b855a",
+   "url": "https://www.qbitai.com/2026/11/510003.html",
+   "title": "突发！DeepSeek开放全家桶API",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-11-14T02:39:56+00:00",
+   "summary_short": "DeepSeek开放全家桶应用API，语音能力首次开放，识别一小时0.39元",
+   "summary_long": "DeepSeek宣布正式开放全家桶应用API：此前App内的联网搜索、深度思考搜索、文件上传、链接阅读等能力拆成独立接口，支持单独调用、分别计费，语音识别与语音合成也首次加入开放行列。官方称开发者可1:1复刻出完整的DeepSeek App，并开源了一套轻量级聊天前端Demo，支持导入DeepSeek历史对话。与10月17日开放的Search、Fetch接口不同，开发者打开联网搜索功能后，何时搜索、搜什么、读哪些网页由DeepSeek自动完成。V4.1-Flash模型已在Messages、Responses和Chat Completions三类接口下支持相关对话扩展功能。价格上，语音识别原价0.78元/小时，五折后0.39元；语音合成原价每万字符3元，现1.5元；搜索与网页抓取每1000次成功调用5元，OCR每1000页1.5元。原文对比OpenAI与Google Cloud的语音服务价格，称DeepSeek约为其1/4.6、1/3.1和1/16.5。原文还提到，DeepSeek称现有对话产品只是较为基础的一种形态。",
    "key_points": [
-    "同时发布 llama.cpp v1.0.0（libllama）与 ggml v1.0.0（libggml）两个库，公开头文件分别位于 llama.cpp/include/ 与 ggml/include/",
-    "明确语义化版本规则：公开 C API 破坏性变更升 MAJOR，向后兼容的功能/后端更新/模型支持/API 新增升 MINOR，无 API 变更的修复升 PATCH；今后以主版本号体现 API 与 ABI 不兼容",
-    "ggml 后端可编译为动态库并在运行时可选加载，llama.cpp 目前支持 150 多个架构变体及所有主流投机解码方法，分发覆盖预发布产物、Docker 与多个包管理器渠道"
+    "联网搜索、深度思考搜索、文件上传、链接阅读及ASR、TTS等能力拆为独立接口，可单独调用、分别计费，语音能力首次开放",
+    "官方称开发者可1:1复刻完整DeepSeek App，并开源轻量级聊天前端Demo，支持导入DeepSeek历史对话",
+    "语音识别五折后0.39元/小时、语音合成1.5元/万字符；搜索与网页抓取每1000次成功调用5元，OCR每1000页1.5元"
    ],
    "topics": [
+    "tool-use",
     "open-source"
    ],
    "category": "Agent 与开发",
    "categories": [
     "Agent 与开发"
    ],
-   "horizon": "long",
-   "score": 72.0,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/ggml-org/llama.cpp/commit/26c0846",
-      "https://github.com/ggml-org/llama.cpp",
-      "https://github.com/ggml-org/ggml",
-      "https://github.com/ggml-org/llama.cpp/releases/tag/v1.0.0",
-      "https://github.com/ggml-org/llama.cpp/blob/master/include/",
-      "https://github.com/ggml-org/ggml/releases/tag/v1.0.0",
-      "https://github.com/ggml-org/llama.cpp/blob/master/ggml/include/",
-      "https://huggingface.co/ggml-org",
-      "https://semver.org",
-      "https://github.com/ggml-org/ggml/discussions/1579",
-      "https://github.com/ggml-org/llama.cpp/releases",
-      "https://huggingface.co/docs/huggingface_hub/en/guides/buckets",
-      "https://huggingface.co/docs/huggingface_hub/en/guides/jobs",
-      "https://github.com/ggml-org/ggml/tree/master/src",
-      "https://github.com/ggml-org/llama.cpp/tree/master/src/models",
-      "https://github.com/ggml-org/llama.cpp/blob/master/CODEOWNERS",
-      "https://github.com/ggml-org/llama.cpp/graphs/contributors?from=8%2F8%2F2026",
-      "https://github.com/ggml-org/llama.cpp/tree/master/examples",
-      "https://github.com/ggml-org",
-      "https://llama.app/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "f980cc1f1e212524",
-   "url": "https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer",
-   "title": "Edge0-145B: Frontier AI Capabilities on Your Own Computer",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-12T23:06:17+00:00",
-   "summary_short": "开源Edge0-145B，145B端侧模型可在兼容笔记本本地运行，具备编码、推理与智能体能力",
-   "summary_long": "原文宣布开源 Edge0-145B 与 Edge0-120B，以及统一推理框架和部署工具。原文称 Edge0-145B 是全球首个开源的 1450 亿参数端侧 AI 模型，把编码、推理和智能体能力带到个人电脑，并与特定前沿云端模型作对比。原文给出的笔记本表现包括约 29GB 峰值内存、80+ tokens/s 解码、1100+ tokens/s 预填充、约 120W 典型功耗和 128K–256K 上下文；模型可规划、编写并运行代码、调试错误，并针对 3D 场景、游戏、硬件程序和 PCB 设计等项目目视检查结果。原文还称本地推理不产生对应的云端模型 token 或 API 费用，数据可留在电脑上，核心能力可离线工作，但硬件和电力仍有成本。另提到 Edge0-35B 手机版本在 iPhone 18 Pro Max 上以约 2.5GB 内存达到 37+ tokens/s。",
-   "key_points": [
-    "开源 Edge0-145B、Edge0-120B 及统一推理框架和部署工具；原文称 Edge0-145B 为全球首个开源 145B 端侧模型。",
-    "笔记本报告指标包括约 29GB 峰值内存、80+ tokens/s 解码、1100+ tokens/s 预填充、约 120W 典型功耗和 128K–256K 上下文。",
-    "模型可规划、编写并运行代码、调试错误，并针对 3D 场景、游戏、硬件程序和 PCB 设计等项目目视检查结果。"
-   ],
-   "topics": [
-    "open-source",
-    "reasoning",
-    "coding-agent"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
    "horizon": "short",
-   "score": 70.2,
-   "status": "review",
-   "extra": {
-    "hn_points": 338,
-    "hn_comments": 104,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://huggingface.co/Edge0",
-      "https://github.com/Edge0-AI/Edge0",
-      "https://github.com/Edge0-AI/Edge0/releases/tag/v0.2.0",
-      "https://huggingface.co/Edge0/Edge0-145B-NVFP4",
-      "https://huggingface.co/Edge0/Edge0-120B-NVFP4",
-      "https://discord.com/invite/Tg3W2FEuQ"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "9f0b516152c12ca0",
-   "url": "https://simonwillison.net/2026/Nov/12/llm-gemini/",
-   "title": "llm-gemini 0.37",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-11-12T22:55:19+00:00",
-   "summary_short": "Google 发布 Gemini 4 最便宜成员 Hydrogen，但价格仅比同门低 25%，定价令人费解",
-   "summary_long": "Google 发布了 Gemini 4 家族中成本最低的成员 Hydrogen。原文列出定价：Carbon 与 Argon 在 2026 年 11 月 30 日前均为输入 $2.00/百万 token、缓存输入 $0.10、输出 $10.00，12 月 1 日起翻倍为 $4.00/$0.20/$20.00；Hydrogen 为 $1.50/$0.075/$7.50。Carbon 与 Argon 定价完全相同且同时涨价，原文因此质疑为何要保留两个同价模型；Google 的说法是 Argon 提供 Gemini 4 的智能，同时响应更快、每轮 token 消耗更少。原文指出 Hydrogen 目前只比能力更强的同门便宜 25%，12 月 1 日之后才相当于 75% 折扣；但它仍远贵于 Claude Haiku 5.5 与 GPT-6 Luna 的 $0.10/$0.50，是后者的 15 倍。原文用“画骑自行车的鹈鹕”测试对比三款模型在三个 effort 档位的输出，认为在价格接近的情况下 Hydrogen 的鹈鹕质量差距相当明显。Google 将 Hydrogen 定位为可独立承担日常工作的模型，也可作为多模型流程中的高效执行引擎；它同时是新的免费层模型，并将为 Google 搜索中的 AI 功能提供支持。",
-   "key_points": [
-    "Hydrogen 定价为 $1.50/$0.075/$7.50，目前仅比 Carbon、Argon 低 25%，12 月 1 日二者涨价后才相当于 75% 折扣",
-    "Carbon 与 Argon 定价完全相同且同时在 12 月 1 日翻倍，Google 称差异在于 Argon 响应更快、每轮 token 消耗更少",
-    "Hydrogen 价格仍是 Claude Haiku 5.5 与 GPT-6 Luna（$0.10/$0.50）的 15 倍"
-   ],
-   "topics": [
-    "product",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 68.1,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "gemini",
-     "llm",
-     "google",
-     "pelican-riding-a-bicycle",
-     "llm-pricing"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/simonw/llm-gemini/releases/tag/0.37",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
-      "https://aistudio.google.com/docs/pricing",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Fce357e95149cd16f65ec7e7106ed4fed",
-      "https://static.simonwillison.net/static/2026/gemini-4-pelicans.html",
-      "https://simonwillison.net/tags/gemini",
-      "https://simonwillison.net/tags/llm",
-      "https://simonwillison.net/tags/google",
-      "https://simonwillison.net/tags/pelican-riding-a-bicycle",
-      "https://simonwillison.net/tags/llm-pricing",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/llms"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "aa189383f7bd2657",
-   "url": "https://www.qbitai.com/2026/11/509614.html",
-   "title": "中国机器人学会隔墙“递眼色”！成功率从0飙到100%，组队干活不烧心",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-11-13T06:29:23+00:00",
-   "summary_short": "星尘智能CoMind：机器人隔墙协作成功率从0%升至100%，通信量减八成",
-   "summary_long": "机器人组队干活时，中心化调度在精细动作配合上容易慢半拍，而把摄像头画面全部传给队友又会产生大量冗余数据。深圳具身智能公司星尘智能发布多机协同框架CoMind（Be My Eye），核心是去中心化的主动信息共享，以及任务关键信息的精选与压缩：机器人不传完整画面，只提取关键视觉特征和操作状态，并各自独立生成动作。框架分两阶段，先用上下文编码器从多路观测中筛选压缩关键信息并预测未来视觉变化，再把队友共享的上下文与自身观测、任务指令、本体状态一起输入视觉—语言—动作模型（VLA）生成动作；同时通过动作级反向传播，把队友的动作预测误差回传到信息编码器，让共享内容直接服务于队友的决策。六项真机实验中，两台机器人隔着挡板互不可见配合拿笔，成功率从0%提升到100%；盲盒置物准确率从完全不共享信息的38.9%、另一传输方案的72.2%，提升到88.9%，通信信息量减少约80%。",
-   "key_points": [
-    "CoMind采用去中心化设计，两台机器人都能主动提取、发送关键信息，也能接收队友上下文并独立生成动作，不依赖统一中心控制器",
-    "隔墙拿笔任务成功率从0%提升到100%；盲盒置物准确率从不共享信息的38.9%提升到88.9%，通信信息量减少约80%",
-    "动作级反向传播让队友的动作误差反向调整信息编码器，使信息共享与最终动作结果直接挂钩"
-   ],
-   "topics": [
-    "multi-agent",
-    "context-engineering"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 64.4,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "智能车参考",
-     "星尘智能"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/jessica",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/%e6%98%9f%e5%b0%98%e6%99%ba%e8%83%bd",
-      "https://www.qbitai.com/2026/11/509334.html",
-      "https://www.qbitai.com/2026/11/508629.html",
-      "https://www.qbitai.com/2026/11/507647.html",
-      "https://www.qbitai.com/2026/11/507473.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/509614.html&title=中国机器人学会隔墙“递眼色”！成功率从0飙到100%，组队干活不烧心&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2024/07/173552.html",
-      "https://www.qbitai.com/tag/ai%e6%9c%ba%e5%99%a8%e4%ba%ba",
-      "https://www.qbitai.com/2024/08/181108.html",
-      "https://www.qbitai.com/tag/%e4%ba%ba%e5%bd%a2%e6%9c%ba%e5%99%a8%e4%ba%ba",
-      "https://www.qbitai.com/tag/%e5%85%b7%e8%ba%ab%e6%99%ba%e8%83%bd",
-      "https://www.qbitai.com/2026/09/483097.html",
-      "https://www.qbitai.com/2026/09/484437.html",
-      "https://www.qbitai.com/2026/11/508264.html",
-      "https://www.qbitai.com/2026/11/508466.html",
-      "https://www.qbitai.com/2026/11/508449.html",
-      "https://www.qbitai.com/2026/11/508244.html",
-      "https://www.qbitai.com/2026/11/508694.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "ac6b5041cf84e88d",
-   "url": "https://www.qbitai.com/2026/11/509995.html",
-   "title": "黄仁勋辞职，英伟达33年首换帅，市值蒸发超3万亿",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-11-13T09:02:39+00:00",
-   "summary_short": "黄仁勋辞任英伟达CEO，CFO Kress临时接任，盘前一度跌13.58%",
-   "summary_long": "英伟达宣布，联合创办人黄仁勋已辞去总裁、首席执行官及董事职务，即刻生效。现任执行副总裁兼CFO Colette Kress出任临时CEO，并继续兼任原职，直至正式继任者获任命。董事会已启动CEO遴选，将同时考虑内部与外部候选人，并任命Harvey C. Jones为公司史上首位董事会主席；此前公司采用独立首席董事制度。黄仁勋1993年联合创办英伟达，掌舵33年。消息公布后，英伟达盘前股价一度跌至150.13美元，较前一交易日收盘跌约13.58%，开盘后跌幅仍超10%，发稿前收窄至-4.63%。原文并提及2025年1月27日DeepSeek引发市场对AI算力投入重新评估时，英伟达曾单日收跌约17%、市值蒸发约5930亿美元。Kress在英伟达任职超13年，此前曾在思科、微软、德州仪器担任财务职务。董事会预计公司运营、客户承诺及产品路线图不受中断，并将按原定安排于11月17日公布2027财年第三季度业绩。",
-   "key_points": [
-    "黄仁勋辞去总裁、CEO及董事职务，即刻生效，结束自1993年联合创办以来33年的掌舵",
-    "执行副总裁兼CFO Colette Kress出任临时CEO并保留原职，董事会启动考虑内外部候选人的正式遴选；Harvey C. Jones被任命为公司首位董事会主席，此前公司采用独立首席董事制度",
-    "消息公布后盘前股价一度跌至150.13美元、跌约13.58%，开盘后跌幅仍超10%，发稿前收窄至-4.63%；董事会称运营、客户承诺与产品路线图不受中断，11月17日财报安排不变"
-   ],
-   "topics": [
-    "product"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 63.3,
+   "score": 60.5,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
      "资讯",
-     "英伟达",
-     "黄仁勋"
+     "Deepseek"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.qbitai.com/author/henry",
+      "https://www.qbitai.com/author/yishui",
       "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/%e8%8b%b1%e4%bc%9f%e8%be%be",
-      "https://www.qbitai.com/tag/%e9%bb%84%e4%bb%81%e5%8b%8b",
-      "https://www.qbitai.com/2026/11/509381.html",
-      "https://www.qbitai.com/2026/11/509355.html",
-      "https://www.qbitai.com/2026/11/509032.html",
-      "https://www.qbitai.com/2026/11/507757.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/509995.html&title=黄仁勋辞职，英伟达33年首换帅，市值蒸发超3万亿&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2020/05/14689.html",
-      "https://www.qbitai.com/tag/%e6%b8%b8%e6%88%8f",
-      "https://www.qbitai.com/2020/02/11300.html",
-      "https://www.qbitai.com/tag/%e6%b8%b8%e6%88%8f%e4%ba%91%e5%b9%b3%e5%8f%b0",
-      "https://www.qbitai.com/2021/06/24841.html",
-      "https://www.qbitai.com/tag/ai%e5%85%ac%e5%bc%80%e8%af%be",
-      "https://www.qbitai.com/tag/%e5%9b%be%e5%83%8f%e8%af%86%e5%88%ab",
-      "https://www.qbitai.com/tag/huodong",
-      "https://www.qbitai.com/2025/12/366192.html",
-      "https://www.qbitai.com/2022/09/37896.html",
-      "https://www.qbitai.com/tag/%e6%8c%96%e7%9f%bf",
-      "https://www.qbitai.com/tag/%e6%98%be%e5%8d%a1",
-      "https://www.qbitai.com/tag/%e4%b8%96%e7%95%8c%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/tag/%e5%85%b7%e8%ba%ab%e6%99%ba%e8%83%bd",
-      "https://www.qbitai.com/2026/11/508264.html",
+      "https://www.qbitai.com/tag/deepseek",
+      "https://www.qbitai.com/2026/11/509224.html",
+      "https://www.qbitai.com/2026/11/510013.html",
+      "https://www.qbitai.com/2026/11/508107.html",
+      "https://www.qbitai.com/2026/10/505341.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/510003.html&title=突发！DeepSeek开放全家桶API&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2025/02/253095.html",
+      "https://www.qbitai.com/2025/02/257487.html",
+      "https://www.qbitai.com/tag/%e5%bc%80%e6%ba%90",
+      "https://www.qbitai.com/2026/06/437141.html",
+      "https://www.qbitai.com/tag/%e9%ad%94%e5%85%bd%e4%b8%96%e7%95%8c",
+      "https://www.qbitai.com/2025/12/358490.html",
+      "https://www.qbitai.com/2025/08/326310.html",
+      "https://www.qbitai.com/tag/bug",
+      "https://www.qbitai.com/tag/deepseek-v3-1",
+      "https://www.qbitai.com/2026/05/414316.html",
       "https://www.qbitai.com/2026/11/508466.html",
-      "https://www.qbitai.com/2026/11/508449.html",
-      "https://www.qbitai.com/2026/11/508244.html",
       "https://www.qbitai.com/2026/11/508694.html",
+      "https://www.qbitai.com/2026/11/508798.html",
+      "https://www.qbitai.com/2026/11/508828.html",
+      "https://www.qbitai.com/2026/11/509440.html",
       "https://weibo.com/qbitai?is_all=1",
       "https://www.zhihu.com/org/liang-zi-wei-48/activities",
       "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
@@ -354,186 +146,291 @@
    }
   },
   {
-   "id": "80a7173f8db2c112",
-   "url": "https://www.dwarkesh.com/p/rsi",
-   "title": "The avalanche that hit math is coming for AI development",
-   "source": "Dwarkesh Podcast",
-   "tier": "C",
-   "published_at": "2026-11-13T18:37:51+00:00",
-   "summary_short": "作者称距AI能比肩顶尖人类做AI研究仅剩数年，数学进展是预演",
-   "summary_long": "作者称自己年初还认为超级智能至少还要近十年，但过去三个月大幅更新判断：现在认为距\"在AI研究上比肩最强人类\"的AI只有几年、甚至可能只有几个月；并认为AI研究自动化会把大量进展压缩进一年之内，此后不久（2030年前，最早可能明年）就会出现各领域都不逊于顶尖人类专家的AI。原文给出的证据包括：独立评估机构METR在Anthropic内部驻场三个月后认为，其界定清晰任务的进展速度是一年前的两倍，其中大部分加速可能归因于Anthropic大量用AI做研发；OpenAI九月博文称其研究人员中用量最重的10%使用内部编码智能体的开销从夏初每天约1000美元升至8月底逾7000美元；Anthropic九月称截至八月Claude\"主导\"其超过26%的AI研发工作，而二月还不足1%。作者以数学为预演：AI在可验证领域快速产出数百项重要结果，他引用《伊甸之东》中\"神祇的坠落不是一点点，而是轰然碎裂\"，并指出进展仍偏向验证密集的部分、如寻找反例，而非提出新定理（原文在此处中断）。",
+   "id": "c481d3ae1bc13db1",
+   "url": "https://www.qbitai.com/2026/11/510232.html",
+   "title": "「史上最严」湿实验预测基准发布！推理拉满、算力翻5倍也白搭",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-11-14T09:58:22+00:00",
+   "summary_short": "UniPat AI牵头发布SPU湿实验预测基准，12款前沿模型最高仅0.486分",
+   "summary_long": "UniPat AI牵头推出新基准Science Prediction Universe（SPU），把AI自主研究与湿实验结果预测放在一起考。基准含116个任务、4207个湿实验，覆盖化学、材料科学、生物和医学共32个子领域；顾问与湿实验合作成员来自斯坦福、康奈尔、哈佛等高校及前沿科研机构、生物技术公司。其中100个公开任务取自85篇近期论文，16个私有任务来自四组未发表合作实验（VHH纳米抗体、反应条件、电解液和Magrolimab变体），以检验模型是否提前见过答案。评测中模型每次运行8小时，配8核CPU、16GiB内存和一块H20，可联网检索并安装科研软件，自行搜集证据后提交从低到高的预测排序；评分在断网容器中进行，用Spearman相关系数对照实测排序，并为每题生成4000份随机排序取第95百分位作为随机水平阈值。首轮覆盖12款前沿模型、13种配置，最高为Claude Opus 5.5的0.486分，仅一半任务超过随机水平，各配置超随机比例只有34%~52%。原文未详述末尾被截断的推理强度实验结论。",
    "key_points": [
-    "作者自述判断大幅改变：从\"至少近十年\"变为\"几年甚至几个月\"内出现比肩最强人类的AI研究者",
-    "METR驻场Anthropic三个月后认为其清晰任务进展速度翻倍，大部分加速可能来自用AI做研发",
-    "OpenAI称其用量最重的10%研究员每日内部编码智能体开销从约1000美元升至逾7000美元；Anthropic称Claude\"主导\"其逾26%的AI研发工作（二月不足1%）"
+    "SPU含116个任务、4207个湿实验，覆盖化学、材料、生物、医学32个子领域，16个私有任务来自未发表实验以防模型见过答案",
+    "首轮评测12款模型13种配置，最高分Claude Opus 5.5仅0.486，超过随机水平的任务比例只有34%~52%",
+    "同样8小时下把GPT-6 Astra从中等推理强度调到最高，运行时间中位数增至4.8倍、API成本增至5.3倍，预测得分几乎纹丝不动"
    ],
    "topics": [
-    "agi-timelines",
-    "ai-rd-automation",
-    "coding-agent"
+    "eval",
+    "reasoning"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测"
+   ],
+   "horizon": "short",
+   "score": 60.3,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "首页轮播",
+     "基准测试",
+     "湿实验",
+     "预测"
+    ],
+    "outbound": {
+     "arxiv": [
+      "2611.15049"
+     ],
+     "links": [
+      "https://www.qbitai.com/author/luyu",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95",
+      "https://www.qbitai.com/tag/%e6%b9%bf%e5%ae%9e%e9%aa%8c",
+      "https://www.qbitai.com/tag/%e9%a2%84%e6%b5%8b",
+      "https://www.qbitai.com/2026/11/510297.html",
+      "https://www.qbitai.com/2026/11/509796.html",
+      "https://www.qbitai.com/2026/11/507322.html",
+      "https://www.qbitai.com/2026/11/507150.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/510232.html&title=「史上最严」湿实验预测基准发布！推理拉满、算力翻5倍也白搭&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2025/03/268935.html",
+      "https://www.qbitai.com/tag/ai%e6%b8%b8%e6%88%8f",
+      "https://www.qbitai.com/2024/04/136831.html",
+      "https://www.qbitai.com/2019/10/7949.html",
+      "https://www.qbitai.com/tag/%e5%85%8d%e8%b4%b9%e5%b7%a5%e5%85%b7",
+      "https://www.qbitai.com/2025/05/288023.html",
+      "https://www.qbitai.com/2025/05/282165.html",
+      "https://www.qbitai.com/tag/llm",
+      "https://www.qbitai.com/tag/%e5%a5%96%e5%8a%b1%e6%a8%a1%e5%9e%8b",
+      "https://www.qbitai.com/2024/07/165587.html",
+      "https://www.qbitai.com/tag/%e5%a4%a7%e6%a8%a1%e5%9e%8b",
+      "https://www.qbitai.com/2026/11/508466.html",
+      "https://www.qbitai.com/2026/11/508449.html",
+      "https://www.qbitai.com/2026/11/508694.html",
+      "https://www.qbitai.com/2026/11/508798.html",
+      "https://www.qbitai.com/2026/11/508828.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "4f5b4ce8cb482577",
+   "url": "https://www.youtube.com/watch?v=IRK8h67ol7Q",
+   "title": "Jonathan Blow – If AI solved coding, why is my software still the same? [video]",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-13T15:08:44+00:00",
+   "summary_short": "原文简介为空，无内容可概括。",
+   "summary_long": "",
+   "key_points": [],
+   "topics": [
+    "coding-agent",
+    "product"
    ],
    "category": "行业动态",
    "categories": [
     "行业动态"
    ],
    "horizon": "long",
-   "score": 59.2,
+   "score": 56.1,
+   "status": "review",
+   "extra": {
+    "hn_points": 453,
+    "hn_comments": 656,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.youtube.com/about/",
+      "https://www.youtube.com/about/press/",
+      "https://www.youtube.com/about/copyright/",
+      "https://www.youtube.com/creators/",
+      "https://www.youtube.com/ads/",
+      "https://developers.google.com/youtube",
+      "https://www.youtube.com/about/policies/",
+      "https://www.youtube.com/howyoutubeworks?utm_campaign=ytgen&utm_source=ythp&utm_medium=LeftNav&utm_content=txt&u=https%3A%2F%2Fwww.youtube.com%2Fhowyoutubeworks%3Futm_source%3Dythp%26utm_medium%3DLeftNav%26utm_campaign%3Dytgen",
+      "https://tv.youtube.com/learn/nflsundayticket"
+     ]
+    },
+    "summary_mode": "brief"
+   }
+  },
+  {
+   "id": "be54405e42bc8186",
+   "url": "https://latent.space/p/ainews-the-no-ai-slop-manifesto/",
+   "title": "[AINews] The No AI Slop Manifesto",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-11-14T08:31:02+00:00",
+   "summary_short": "No AI Slop 宣言发布，意在作为职场讨论工具",
+   "summary_long": "本期标题新闻是「No AI Slop」宣言：它源自 AIE CODE 会议上的讨论，由 Dex 在闭幕主题演讲中介绍，此前已获得多位与会演讲者的联署；原文称它今天在 Hacker News 被投上首页。原文表示，发起这份宣言是为了给职场讨论提供一个有用的工具，并希望它被这样使用；完整宣言、联署、编辑与讨论都在 slopmanifesto.com 开放。其他消息方面，原文提到 llama.cpp 与 ggml 达到 1.0（宣布稳定，并从 llama.cpp 公共头文件中移除 35 个弃用函数），SGLang 也在近期 SGLang Summit 上宣布 1.0。AI Twitter 摘要部分涵盖：llama.cpp 1.0 允许用户为频繁使用的专家预留缓存；LangChain 的 C 轮融资由 CapitalG 领投；Gemini 4 Hydrogen 在 GitHub Copilot 应用、CLI 与 VS Code 中全面可用；Claude Fable 5.2 在 Agent Arena 长编码任务中排名第一；百度 ERNIE 5.5 Flash Preview 拥有 280B 总参数、14B 激活参数和 1M 令牌上下文。",
+   "key_points": [
+    "「No AI Slop」宣言源自 AIE CODE 会议讨论，由 Dex 在闭幕主题演讲中介绍，并获多位演讲者联署；原文称其登上 Hacker News 首页",
+    "原文称发起该宣言的目的是为职场讨论提供工具，完整文本、联署与讨论在 slopmanifesto.com 开放",
+    "llama.cpp 与 ggml 达到 1.0，宣布稳定并从公共头文件移除 35 个弃用函数；SGLang 也在 SGLang Summit 上宣布 1.0"
+   ],
+   "topics": [
+    "ai-slop",
+    "open-source",
+    "model-release"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态",
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 52.9,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "ainews: weekday roundups"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://huggingface.co/blog/ggml-org/llama-cpp-v1",
+      "https://github.com/ggml-org/ggml/releases/tag/v1.0.0",
+      "https://github.com/ggml-org/llama.cpp/releases/tag/v1.0.0",
+      "https://github.com/sgl-project/sglang/issues/50045",
+      "https://www.sglang.io/summit",
+      "https://www.slopmanifesto.com/",
+      "https://latent.space/p/ainews-building-aie-code-the-top-coding-agent-conference/",
+      "https://www.youtube.com/watch?v=y9JtCCZP2MQ",
+      "https://news.ycombinator.com/item?id=50488769",
+      "https://deepgram.com/?utm_source=latent-space&utm_medium=sponsored-newsletter&utm_campaign=fy26_q4_brand_campaign&utm_term=latent-space&utm_content=main-ad",
+      "https://www.backblaze.com/cloud-storage/landing/ad/ai?utm_source=latent_space&utm_medium=podcast&utm_campaign=podcast-promotion-11132026",
+      "https://x.com/ggerganov/status/2121246103312212124",
+      "https://x.com/danielhanchen/status/2121429376869007854",
+      "https://www.langchain.com/blog/series-c",
+      "https://capitalg.com/insights/doubling-down-on-langchain/",
+      "https://x.com/github/status/2121319695626518823",
+      "https://x.com/skalskip92/status/2121322414453694489",
+      "https://x.com/dzhng/status/2121288086101606828",
+      "https://x.com/sundarpichai/status/2121338095664808238",
+      "https://x.com/j_dekoninck/status/2121263753006374997",
+      "https://x.com/arena/status/2121333127419412501",
+      "https://x.com/arena/status/2121333119173468261",
+      "https://x.com/arena/status/2121333124923805786",
+      "https://x.com/ariG23498/status/2121123188608475255",
+      "https://x.com/arena/status/2121343732582904233",
+      "https://x.com/thinkymachines/status/2121353292878110868",
+      "https://x.com/jackcookjack/status/2121357249054691386",
+      "https://x.com/teortaxesTex/status/2121369856796967375",
+      "https://x.com/andrew_n_carr/status/2121108908999950729",
+      "https://x.com/omarsar0/status/2121254466104267098",
+      "https://x.com/RicursiveAI/status/2121375041640382737",
+      "https://x.com/ArtificialAnlys/status/2121339732026445859",
+      "https://x.com/deepseek_ai/status/2121247896918253875",
+      "https://x.com/deepseek_ai/status/2121247903603941471",
+      "https://x.com/TheRundownAI/status/2121269456479597049",
+      "https://x.com/ArtificialAnlys/status/2121393821955334328",
+      "https://x.com/ArtificialAnlys/status/2121393834336882914",
+      "https://x.com/ArtificialAnlys/status/2121137661180256653",
+      "https://x.com/jakubjurovych/status/2121256499552915586",
+      "https://x.com/joelniklaus/status/2121271926131974444"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "8479f47633fa8f96",
+   "url": "https://www.interconnects.ai/p/open-source-ai-without-jensen",
+   "title": "Open-source AI without Jensen",
+   "source": "Interconnects",
+   "tier": "A",
+   "published_at": "2026-11-14T12:23:15+00:00",
+   "summary_short": "Jensen辞任英伟达CEO：开放模型生态失去关键支持者，原作者解析其经济与监管风险",
+   "summary_long": "原文称 Nvidia CEO Jensen Huang 辞任，作者认为这对美国开放模型生态是重大挫折。Nvidia 财务上仍有支持开放模型的理由——避免权力集中在会自研芯片、压缩其利润的少数客户手中——但这是难解之题，需要解决的远不止工程层面。Nvidia 运营高度依赖 Jensen，外界共识是前路有挑战，包括芯片走私调查带来的高调离职与人才被挖；公司当前首要目标是稳住局面、未来24个月交付客户、防止崩盘。开放模型是 Jensen 的创始人式押注，其大举注资很可能枯竭。作者指出开放模型经济仍处萌芽期，这几年对确立用例、收入流与继续训练下一代模型的动机至关重要：上行面是抓住了“智能所有权”与企业后训练；下行面是算力短缺使真正商品化的智能遥不可及，推理创业公司也难获芯片，开放权重模型若以高推理利润率服务（如 DeepSeek 的 DeepInfer）便远非商品，规模经济与整合更强者将胜出。Jensen 的支持与保护为生态争取了解决问题的时间。作者最大近忧是州级再到国家级的草率监管，以及流行中国开放权重模型带来的网络安全风险。",
+   "key_points": [
+    "原文称 Nvidia CEO Jensen Huang 辞任；Nvidia 虽有财务动机继续支持开放模型，但公司运营高度依赖他，当前首要目标是稳住局面、24个月内交付客户、防止崩盘，其大举注资很可能枯竭。",
+    "作者认为开放模型经济仍在萌芽期：上行是企业后训练与“智能所有权”，下行是算力短缺下开放权重模型难以真正商品化（DeepSeek 的 DeepInfer 高推理利润率即为例证），规模经济与整合更强的闭源实验室将胜出。",
+    "作者最大近忧是州级再到国家级的草率监管；自夏天以来距离危机“只差一个强大的中国开放权重模型”，此类黑客攻击是时间问题；推倒开源多米诺容易，逆转下游权力集中与创新受抑则难得多。"
+   ],
+   "topics": [
+    "open-source",
+    "cybersecurity",
+    "policy-regulation"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 50.7,
    "status": "review",
    "extra": {
     "content_source": "rss",
     "outbound": {
-     "arxiv": [
-      "1706.03762",
-      "2203.03466",
-      "2303.08774",
-      "2506.06266",
-      "2609.19969"
-     ],
-     "links": [
-      "https://x.com/maxwellfarrens",
-      "https://www.linkedin.com/in/gabriel-fried-39ba35159/",
-      "https://x.com/thlarsen",
-      "https://youtu.be/1NHPDzpfR6Y",
-      "https://open.spotify.com/show/4JH4tybY1zX6e5hjCwU6gF?si=4cc51ecdb3184bf2",
-      "https://podcasts.apple.com/us/podcast/dwarkesh-podcast/id1516093381",
-      "https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment",
-      "https://openai.com/index/research-acceleration-view-inside-openai/",
-      "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
-      "https://substackcdn.com/image/fetch/$s_!-5us!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb6435cd9-2927-43d5-891f-ba9550a5c5ad_2048x870.png",
-      "https://youtu.be/Nlkk3glap_U?t=2135",
-      "https://openai.com/index/sharing-ai-progress-in-mathematics/",
-      "https://openai.com/index/ten-advances-in-mathematics/",
-      "https://openai.com/index/navier-stokes-solution/",
-      "https://www.tobyord.com/writing/mathematics-is-more-than-proof",
-      "https://openai.com/index/model-disproves-discrete-geometry-conjecture/",
-      "https://x.com/_sholtodouglas",
-      "https://arxiv.org/abs/1706.03762",
-      "https://x.com/ch402/status/1926753580762984730",
-      "https://www.planned-obsolescence.org/p/ai-is-dramatically-accelerating-ai",
-      "https://www.anthropic.com/research/formalizing-fermats-last-theorem",
-      "https://epoch.ai/publications/training-compute-of-frontier-ai-models-grows-by-4-5x-per-year",
-      "https://www.lesswrong.com/posts/KW3nw5GYfnF9oNyp4/trends-in-economic-inputs-to-ai",
-      "https://substackcdn.com/image/fetch/$s_!Mb5F!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2270adfd-690a-402d-81f4-8d4ec42c446f_2048x1391.png",
-      "https://x.com/ascinhiding/status/2097360365721911448",
-      "https://x.com/petergostev/status/2095596341422440714",
-      "https://x.com/builtbysketch/status/2098777028078211283",
-      "https://periodic.com/news/building-labs-that-learn",
-      "https://www.dwarkesh.com/p/the-next-paradigm",
-      "https://www.dwarkesh.com/i/224624765/sample-efficiency-and-online-learning",
-      "https://substackcdn.com/image/fetch/$s_!DeBn!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd77b03b4-be8f-4e09-9d03-d7b222438095_2048x1070.png",
-      "https://johnsalvatier.org/blog/2017/reality-has-a-surprising-amount-of-detail",
-      "https://epoch.ai/data-insights/ai-chip-production",
-      "https://www.forethought.org/research/three-types-of-intelligence-explosion",
-      "https://www.dwarkesh.com/p/the-sample-efficiency-black-hole",
-      "https://substackcdn.com/image/fetch/$s_!TPiL!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fcacaab6b-6c32-4d54-9b10-7f80e3650b06_2048x1131.png",
-      "https://github.com/kellerjordan/modded-nanogpt",
-      "https://youtu.be/GlYgs6v2YfU?si=z8VqNBJW56aUQwQV",
-      "https://magic.dev/blog/pretraining",
-      "https://edge-bench.org/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "d1318183fe172893",
-   "url": "https://openai.com/business/customer-stories/shield",
-   "title": "Shield helps technicians hand off legacy portal work with OpenAI",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-13T08:00:00+00:00",
-   "summary_short": "Shield用GPT-6 Astra让AI代理接管无API的老旧IT门户操作",
-   "summary_long": "Shield为IT服务商打造了AI操作系统Forge，把业务数据与客户上下文汇总到一起，帮助服务商端到端完成IT支持任务。但技术人员日常使用的许多工单、设备与软件许可门户没有API，AI代理此前常卡在无法访问的系统上，只能等技术员手动登录补完。Shield曾用更早的模型尝试computer use（读屏、点击、输入），但可靠性和速度都不够。接入OpenAI的GPT-6 Astra后，Forge的AI Engineer可把工作分派给computer-use代理，由其在界面上导航完成受支持的任务；哪些操作可自主执行、哪些需人工复核，由技术人员设定。Shield表示这些浏览器工作流已上线，每月在其IT服务商中运行数千次；电话、上门与远程桌面任务仍需人工。Shield技术负责人Mayank Jain称，GPT-6 Astra在computer-use任务上平均比旧模型快35-40%，用AI的工单客户满意度更高，执行更快、失败与超时更少，团队编写详细指令或协助代理的时间也更少。Shield正测试远程桌面工作流。",
-   "key_points": [
-    "Forge把浏览器端的受支持任务交给computer-use代理，代理可登录无API的老旧门户操作，人工负责判断与审批",
-    "此前用早期模型做computer use不可靠也不够快；GPT-6 Astra平均提速35-40%，失败与超时更少",
-    "浏览器工作流已上线、每月数千次运行；电话、上门、远程桌面仍需人工，远程桌面工作流在测试中"
-   ],
-   "topics": [
-    "tool-use",
-    "product"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 54.6,
-   "status": "review",
-   "extra": {
-    "content_source": "reader",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "e940fd9875725f16",
-   "url": "https://www.theguardian.com/science/2026/nov/13/kurt-godel-notebooks-ai-helps-unlock-hidden-discoveries-man-who-transformed-maths",
-   "title": "AI unlocks Gödel's notebooks, said to contain hundreds of proved theorems",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-13T17:30:10+00:00",
-   "summary_short": "AI（Claude）数日读完哥德尔1009页笔记，发现数百条无人知晓的已证定理",
-   "summary_long": "奥地利逻辑学家库尔特·哥德尔1931年发表的两条不完备定理改变了数学，并启发了图灵1936年开创现代计算理论的论文。他此后发表论文不多，未发表手稿却达数万页。自2017年起，芬兰逻辑学家Jan von Plato在赫尔辛基大学主持项目，解读哥德尔1940年代初写下的16本“工作笔记”，共1009页，文字密集，多用以当时已过时的德文速记Gabelsberger写成，进度约每周一页。今年9月，von Plato求助AI模型Claude，两天内便得到全部材料的完整提要，显示哥德尔曾证明数百条无人知晓的定理。von Plato称“目瞪口呆”，并说笔记中还有数十处对七十、八十年代才为人所知结果的预示，以及14个无人追索的逻辑主题，称哥德尔远远领先于他的时代。原文提到他获欧洲研究理事会250万欧元资助，自称是世界上仅六位能读该速记的人之一；他是在八月法国一场AI与定理证明会议上经计算机科学家建议后使用Claude的，所得650页解释需逐页核对。",
-   "key_points": [
-    "von Plato团队自2017年起解读哥德尔16本“工作笔记”，共1009页，多为已过时的德文速记Gabelsberger，此前进度仅每周约一页",
-    "AI模型Claude在约两天内给出全部材料的完整提要，显示哥德尔证明过数百条此前无人知晓的定理",
-    "von Plato称笔记含数十处对七十、八十年代才为人所知结果的预示，以及14个未被追索的逻辑主题"
-   ],
-   "topics": [
-    "ai-for-science",
-    "research-application"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 53.4,
-   "status": "review",
-   "extra": {
-    "hn_points": 310,
-    "hn_comments": 90,
-    "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.theguardian.com/science/2022/jan/10/can-you-solve-it-godels-incompleteness-theorem",
-      "https://www.theguardian.com/science/2022/jan/10/did-you-solve-it-godels-incompleteness-theorem",
-      "https://www.theguardian.com/world/austria",
-      "https://syndication.theguardian.com/?url=https%3A%2F%2Fwww.theguardian.com%2Fscience%2F2026%2Fnov%2F13%2Fkurt-godel-notebooks-ai-helps-unlock-hidden-discoveries-man-who-transformed-maths&type=article&internalpagecode=science/2026/nov/13/kurt-godel-notebooks-ai-helps-unlock-hidden-discoveries-man-who-transformed-maths"
+      "https://natolambert.com/slides/2026/fireworks/talk.html",
+      "https://www.youtube.com/watch?v=zsO5RktNB7k",
+      "https://www.theinformation.com/articles/ai-inference-startups-quietly-buying-chips",
+      "https://github.com/deepseek-ai/deepinfer",
+      "https://www.interconnects.ai/p/how-well-can-we-measure-open-model",
+      "https://www.axios.com/2026/10/14/ai-safety-regulation-election-spending-50-million",
+      "https://www.interconnects.ai/p/6-months-to-live-for-open-models",
+      "https://www.interconnects.ai/p/open-source-ai-without-jensen?utm_source=substack&utm_medium=email&utm_content=share&action=share",
+      "https://youtu.be/2jqSNHWdHEY?t=1737",
+      "https://huggingface.co/thinkingmachines/Inkling-2-Small"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "7ac7b8ca9e1eee3d",
-   "url": "https://www.theatlantic.com/books/2026/11/ai-literary-scams-amazon/689391/",
-   "title": "AI is destroying the trust between writers and readers",
+   "id": "c6caa4d4f0b0e545",
+   "url": "https://www.techpowerup.com/354814/nvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus",
+   "title": "Nvidia allegedly engineered scarcity by funding AI startups to buy its GPUs",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-11-13T11:13:46+00:00",
-   "summary_short": "ChatGPT误述小说情节，读者信以为真质问作者，作者忧心误导范围。",
-   "summary_long": "一位小说作者在签书时遇到一对中年夫妇，丈夫患帕金森病。他误以为作者小说《The Weight of Ink》中患帕金森病的角色Helen Watt选择协助自杀结束生命，并前来表达异议。作者震惊，因为她并未这样写，Helen Watt并没有结束自己的生命。她推测误解源于几周前她向ChatGPT询问自己的小说时，ChatGPT对Helen的情节线给出了错误描述。她此前就担心这种误述可能产生现实影响，如今似乎成真。她向夫妇解释网上信息不正确，同时思考还有多少人被类似误导。作者说，作家被批评是常态，她曾因角色自我挫败的关系决定、17世纪满月日期错误等细节被指摘，但这是第一次因自己没写过的东西被问责。",
+   "published_at": "2026-11-14T02:52:59+00:00",
+   "summary_short": "《华尔街日报》报道称英伟达通过投资AI初创公司买自家GPU来人为制造缺货假象",
+   "summary_long": "据《华尔街日报》报道（经Wccftech转述），已卸任CEO的Jensen Huang被指通过投资那些随后会购买英伟达GPU并建设数据中心的AI初创公司，人为加剧当前的GPU与内存短缺，目的是维持需求旺盛的市场印象，并消化来自台积电的芯片过剩供应。报道援引去年8月Huang与包括CFO兼代理CEO Colette Kress在内的高级财务团队的会议：Kress主张缩减循环融资安排、削减与OpenAI的2500亿美元交易，Huang据称斥其为“deer in the headlights”。报道称，Huang加大对小型云服务商的投资，背景是大型AI厂商正从采购标准部件转向定制方案；而英伟达当时面临台积电“雪崩式”的GPU供应，却缺乏即时买家。Kress还指出，这些被投资的小型云厂商根本买不起英伟达GPU，同样可能是财务死胡同。原文未详述报道的具体证据与英伟达方面的回应。",
    "key_points": [
-    "签书现场，患帕金森病的读者因误信小说角色选择协助自杀而来质问；作者称自己并未这样写，角色Helen Watt未结束生命。",
-    "作者怀疑误传来自几周前ChatGPT对其小说情节的错误回答，并担心过现实影响，如今似已发生。",
-    "作者认为批评作品是作家常态，但这是首次因未写过的内容被问责；她追问还有多少人被误导。"
+    "《华尔街日报》报道指英伟达投资AI初创公司，这些公司再购买其GPU并建数据中心，以维持高需求的市场观感并消化台积电过剩产能",
+    "报道引用8月会议：CFO兼代理CEO Colette Kress主张收缩循环融资、削减与OpenAI的2500亿美元交易，据称遭Huang当面斥责",
+    "报道称英伟达面临台积电“雪崩式”GPU供应却无即时买家，而被投小型云厂商无力购买GPU，同样可能是财务死胡同"
    ],
    "topics": [
-    "hallucination"
+    "open-source",
+    "product"
    ],
    "category": "行业动态",
    "categories": [
     "行业动态"
    ],
-   "horizon": "long",
-   "score": 52.7,
+   "horizon": "short",
+   "score": 50.1,
    "status": "review",
    "extra": {
-    "hn_points": 308,
-    "hn_comments": 193,
-    "content_source": "reader",
+    "hn_points": 1017,
+    "hn_comments": 611,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.techpowerup.com/354732/nvidia-co-founder-and-ceo-jensen-huang-officially-resigns",
+      "https://www.wsj.com/tech/jensen-huang-colette-kress-nvidia-ceo-eb289097?",
+      "https://wccftech.com/jensen-huang-financed-ai-startups-absorb-excess-silicon/",
+      "https://www.techpowerup.com/351120/nvidia-and-openai-reportedly-discuss-usd-250-billion-deal-for-10-gigawatt-ohio-data-center",
+      "https://www.techpowerup.com/img/ooCln2q3jkKNGHen.jpg",
+      "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.techpowerup.com%2F354814%2Fnvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus",
+      "https://x.com/intent/post?text=NVIDIA%20Allegedly%20Engineered%20Scarcity%20By%20Funding%20AI%20Startups%20To%20Buy%20Its%20GPUs%20http%3A%2F%2Fwww.techpowerup.com%2F354814%2Fnvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus%20via%20%40TechPowerUp",
+      "https://bsky.app/intent/compose?text=NVIDIA%20Allegedly%20Engineered%20Scarcity%20By%20Funding%20AI%20Startups%20To%20Buy%20Its%20GPUs%20http%3A%2F%2Fwww.techpowerup.com%2F354814%2Fnvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus",
+      "https://www.reddit.com/submit?url=http%3A%2F%2Fwww.techpowerup.com%2F354814%2Fnvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus&title=NVIDIA%20Allegedly%20Engineered%20Scarcity%20By%20Funding%20AI%20Startups%20To%20Buy%20Its%20GPUs",
+      "https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Fwww.techpowerup.com%2F354814%2Fnvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus",
+      "https://en.wiktionary.org/wiki/quelle_surprise"
+     ]
+    },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   }

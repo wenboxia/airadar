@@ -1,185 +1,96 @@
 {
- "generated_at": "2026-11-14T00:21:20+00:00",
+ "generated_at": "2026-11-14T22:59:49+00:00",
  "date": "2026-11-14",
- "run_id": "20261114-001953",
+ "run_id": "20261114-225828",
  "top": [
   {
-   "id": "8400bdfe1e2afd49",
-   "url": "https://huggingface.co/blog/allenai/xybench",
-   "title": "XYBench: Helping with the problem behind the question",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-11-13T17:02:35+00:00",
-   "summary_short": "研究者发布XYBench：8千余道题测试AI能否识别用户问错了方向",
-   "summary_long": "真正有用的AI助手要能帮助提出错误问题的用户，而不只是提问精准的用户。研究者发布XYBench，一个含8000多道基于错误前提请求的基准，测试助手如何回应这类提问。提问方式与目标不匹配被称为XY问题：用户想达成X，假定做法Y可行，于是求助Y，比如问如何让总往下滑的糖霜变稠，真正问题是纸杯蛋糕还没凉透。XYBench与卡内基梅隆、NVIDIA、约翰霍普金斯的研究者合作开发，覆盖编程以及烹饪、家居维修等日常场景，衡量模型能否识别隐含误解并优先给出有效方案。在XYBench上评测的Claude Sonnet 4.6、GPT-5、Gemini 3.1 Pro、Qwen3.5-9B、DeepSeek-V4 Pro往往给出了解决方案，但回答仍集中在原本错误的做法上；与人类参考答案相比，五个模型都更少把用户从该做法引向符合其目标的方案。数据来自四个来源：Stack Overflow 1557题、Stack Exchange 184题、102道人工整理样例、6272道由WikiHow指南生成的问题；每题标注明确请求（Y）与可从上下文推断的意图请求（X），并过滤掉直接回答字面请求即足够的情况。该基准获EMNLP 2026最佳资源论文奖。",
+   "id": "2849eca9693ec9be",
+   "url": "https://arxiv.org/abs/2611.15049v1",
+   "title": "Science Prediction Universe",
+   "source": "论文（被提及）",
+   "tier": "A",
+   "published_at": "2026-11-11T05:23:11+00:00",
+   "summary_short": "SPU基准测试AGI实验预测能力，揭示瓶颈在科学判断而非工具执行",
+   "summary_long": "可靠预测实验结果被视为理解自然现象的核心检验。原文指出，若通用人工智能要超越人类科学能力，也必须比人类更可靠地预测实验结果。为此，研究提出Science Prediction Universe（SPU）基准：含化学、材料科学、生物与医学的100个公开验证任务，以及16个来自未发表湿实验的私有任务。智能体获得实验设置和候选条件后，可利用所需资源按测量结果排序候选。研究评估跨Codex与Claude Code两个框架、覆盖12个前沿模型的13种配置。公开基准上配置呈两个层级，任务校正Spearman相关系数从0.227到0.478，当前智能体远未饱和湿实验预测。对1,155条公开轨迹（227,103次工具调用）的分析显示，瓶颈在科学判断而非工具执行：智能体依赖共享单调先验，彼此一致度0.52高于与实验现实的0.33，且常计算不影响最终结果的简单代理量。",
    "key_points": [
-    "XYBench含8115道真实问题，覆盖编程与烹饪、家居维修等日常场景，专门测试模型能否识别用户请求背后的错误前提（XY问题）",
-    "评测的Claude Sonnet 4.6、GPT-5、Gemini 3.1 Pro、Qwen3.5-9B、DeepSeek-V4 Pro多数仍围绕用户原本错误的做法作答，比人类参考答案更少引导用户转向真正有效的方案",
-    "数据来自Stack Overflow、Stack Exchange、人工整理样例与WikiHow生成问题四个来源，每题区分字面请求（Y）与意图请求（X），并剔除回答字面请求即可解决的样本"
+    "SPU基准聚焦隐藏实验结果，包含化学、材料科学、生物与医学的100个公开验证任务，以及16个来自未发表湿实验的私有任务。",
+    "研究评估覆盖12个前沿模型、Codex与Claude Code两个框架的13种智能体配置；公开基准任务校正Spearman相关系数从0.227到0.478，配置分为两个层级。",
+    "对1,155条公开评分轨迹（227,103次工具调用）的分析表明，瓶颈在科学判断而非工具执行：智能体彼此一致度0.52高于与实验现实的0.33，且常计算不影响最终结果的简单物理或化学代理量。"
    ],
    "topics": [
     "eval",
+    "tool-use",
     "reasoning"
    ],
    "category": "评测",
    "categories": [
-    "评测"
+    "评测",
+    "Agent 与开发",
+    "研究论文"
    ],
    "horizon": "long",
-   "score": 84.0,
+   "score": 81.9,
    "status": "published",
    "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2609.06842"
-     ],
-     "links": [
-      "https://arxiv.org/abs/2609.06842",
-      "https://huggingface.co/datasets/allenai/XYBench-dataset",
-      "https://github.com/allenai/XYBench",
-      "https://www.datocms-assets.com/64837/1794335088-xybench-featured.png",
-      "https://www.datocms-assets.com/64837/1794335992-xybench-stackoverflow-results.png",
-      "https://www.datocms-assets.com/64837/1794336134-xybench-picking-vs-writing.png"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "5bf4951adbe9698d",
-   "url": "https://openai.com/index/introducing-chatgpt-wallet",
-   "title": "Introducing ChatGPT Wallet",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-13T15:00:00+00:00",
-   "summary_short": "ChatGPT Wallet 上线：代理可付款但不接触真实卡号，每笔需人脸或指纹确认",
-   "summary_long": "OpenAI 推出 ChatGPT Wallet，原文称其为首个让代理在无法访问用户真实卡号的情况下完成支付、且每笔购买都需通过安全验证的钱包，同时保留现有卡片的奖励与符合条件的争议保护。该产品与 American Express、Mastercard、Visa 合作构建，初期通过 dots 向美国 ChatGPT Pro 订阅用户开放。原文称每周有 12 亿人使用 ChatGPT，其中许多人用它研究商品、比较选项并决定购买，ChatGPT Wallet 意在帮助这些人完成购买，并让商家可用现有系统受理代理支付。使用流程为：用户一次性绑卡，每次购买前查看商品、金额与所选卡片，再以 Face ID 或指纹等安全验证批准，每次批准都会生成授权记录；随后支付网络提供一个替代真实卡信息的支付令牌（含卡号、安全码、有效期），款项计入所选卡片。用户与商家直接交易，商家保有客户关系及定价、履约、退货与客服控制权。原文还提到未来用户可通过消费限额、品类、时段等参数把购买完全委托给代理。此外，OpenAI 发布 Commerce Partner Playbook，指导商家让代理可访问、提供商品信息并与支付风控方协作减少误拒。",
-   "key_points": [
-    "ChatGPT Wallet 让代理无需接触用户真实卡信息即可付款，每笔购买都需安全验证，并保留卡片原有奖励与符合条件的争议保护",
-    "与 American Express、Mastercard、Visa 合作构建，初期通过 dots 面向美国 18 岁以上 ChatGPT Pro 订阅用户、使用美国发行卡片开放",
-    "支付通过支付网络提供的令牌完成，用户与商家直接交易，商家保留客户关系及定价、履约、退货和客服控制权"
-   ],
-   "topics": [
-    "product",
-    "agentic-commerce"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 82.9,
-   "status": "published",
-   "extra": {
-    "content_source": "reader",
-    "source_tags": [
-     "Product"
+    "authors": [
+     "Zengji Tu",
+     "Xiang Liu",
+     "Jiarui Sun",
+     "Ruoyu Wu",
+     "Zhihui Qi",
+     "Chengda Wu",
+     "Yutao Zhou",
+     "Bo Yang"
+    ],
+    "author_count": 36,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "量子位"
     ],
     "summary_mode": "full"
    }
   },
   {
-   "id": "1dba3a3e5ab0c862",
-   "url": "https://developer.apple.com/foundation-models-framework/",
-   "title": "Foundation Models framework",
+   "id": "ea0776201252f8c6",
+   "url": "https://haddyalchaer.com/jepa",
+   "title": "After 600 experiments, here's what I discovered about JEPA world models",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-11-12T21:13:26+00:00",
-   "summary_short": "苹果 Foundation Models 框架：用一套 Swift API 接入任意大模型",
-   "summary_long": "原文介绍 Foundation Models 框架：它是一套原生 Swift API，可把任意大语言模型集成进应用，包括直接调用 Apple Foundation Models 的端侧模型与 Private Cloud Compute。框架内置引导生成、工具调用、图像理解与 Dynamic Profiles。图像理解支持多模态提示，把图像与文本一并传入，并集成 Vision 框架的 OCR 与条码读取，全部在端侧完成。模型支持方面，除端侧模型外，还通过同一套 Swift API 扩展至 Claude、Gemini 等服务端模型；任何模型提供方都可创建遵循 Language Model 协议的 Swift 包。加入 App Store 小企业计划且首次下载少于 200 万的开发者，可零云 API 成本使用 Private Cloud Compute 上的模型。Dynamic Profiles 让会话中的模型、工具与指令可动态切换，转录在各 profile 间共享。另有 Evaluations 框架用于测试提示词。",
+   "published_at": "2026-11-13T17:55:28+00:00",
+   "summary_short": "600次实验：不重新训练，仅改规划方法就让 LeWM 长程任务成功率从 22% 升到 85%",
+   "summary_long": "AI 界正争论世界模型应该是什么：多数关注生成式世界模型，即用像素生成来预测未来；LeCun 等人认为多数像素对决策无用且不可预测，因此提出 JEPA 联合嵌入预测架构，它包含编码器、预测器、规划器，整个循环在嵌入空间运行。今年一个包括 LeCun 的团队发布 LeWM，主基准为 Push-T 机器人推块仿真。作者几个月内做了 600 次实验：把预测器换成仿真器的完美物理后，在 250 个目标距离 75 步的长程任务上，原版成功率 78%、真物理版 77%，说明在其训练过的路径类型上，LeWM 的预测已接近完美物理。瓶颈在于这套架构的使用方式：原版在 75 步目标上成功率仅 22%，25 步目标为 89.7%（真物理 90.5%）。在不重新训练模型的前提下，作者找到四种新规划方法：前两种把长程成功率从 22% 提到 85%，接近直接获得专家子目标的规划器；另两种把 LeWM 扩展到更难目标，其中仅改变目标打分方式一项就提升 60 个百分点，是换用完美物理收益的三倍。",
    "key_points": [
-    "原生 Swift API，可直接访问 Apple Foundation Models 的端侧模型与 Private Cloud Compute，内置引导生成、工具调用、图像理解、Dynamic Profiles",
-    "图像理解支持多模态提示，并集成 Vision 框架的 OCR 与条码读取，全部在端侧运行",
-    "同一套 Swift API 可接入 Claude、Gemini 等服务端模型，任何提供方都能创建遵循 Language Model 协议的 Swift 包"
+    "JEPA 由编码器、预测器、规划器三部分组成，整个循环在嵌入空间运行，只需学习对决策重要的场景部分",
+    "把预测器换成仿真器完美物理，长程任务成功率为 77%，原版为 78%，说明预测精度不是长程失败的主因",
+    "原版 LeWM 在 75 步目标上成功率 22%，在 25 步目标上为 89.7%，误差在长程中累积"
    ],
    "topics": [
-    "tool-use",
-    "context-engineering"
+    "world-models",
+    "planning",
+    "jepa"
    ],
-   "category": "Agent 与开发",
+   "category": "模型",
    "categories": [
-    "Agent 与开发"
+    "模型"
    ],
-   "horizon": "short",
-   "score": 77.7,
+   "horizon": "long",
+   "score": 79.2,
    "status": "published",
    "extra": {
-    "hn_points": 264,
-    "hn_comments": 35,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/apple/coreai-models",
-      "https://github.com/ml-explore/mlx-swift-lm",
-      "https://github.com/anthropics/ClaudeForFoundationModels",
-      "https://github.com/firebase/firebase-ios-sdk",
-      "https://github.com/apple/foundation-models-utilities",
-      "https://github.com/apple/python-apple-fm-sdk"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "d096a8a420fb437e",
-   "url": "https://unemploymentlabs.com/checkpoint-forensics",
-   "title": "Chinese frontier AI models carry the fingerprint of export-controlled GPUs",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-12T21:56:11+00:00",
-   "summary_short": "取证分析发现，四个中国实验室的六个模型权重带有 Blackwell 硬件指纹",
-   "summary_long": "在美国限制 Blackwell 芯片对华出口的背景下，原文对公开发布的 AI 模型做取证分析，发现证据显示 DeepSeek、Moonshot AI、MiniMax 与蚂蚁集团已获得 NVIDIA Blackwell GPU，并用其制作模型。自 2026 年 4 月起，这四家发布的六个模型含有与 Blackwell 匹配的数值模式，而它们更早的模型匹配 Hopper 代际。此前美国官员与媒体报道已指称 DeepSeek 和 Moonshot AI 使用 Blackwell，但未公布技术证据；本文证据全部来自模型公开权重，而非泄密或内部人士。方法是恢复模型初始值的痕迹，再搜索能复现这些值的硬件配置与初始配置，并对 DeepSeek-V4-Flash 和 Kimi K3 在实体 Blackwell 芯片上确认匹配。作者指出，指纹识别的是权重如何生成，支持但不证明训练也在 Blackwell 上完成；特殊配置的 AMD 硬件是唯一已识别的替代方案，对 DeepSeek-V4-Flash 已排除，其余五个判定为极不可能。研究提供获取先进算力的技术证据，但未确定芯片所在地、获取方式或是否违反出口管制。",
-   "key_points": [
-    "硬件对应：DeepSeek-V4-Flash 与 MiniMax-M3 匹配 148 个 SM 的 B200/B300；DeepSeek-V4-Pro、Kimi K3、Kimi K3.1-Pro、Ling-3.1-flash 匹配 152 个 SM 的 GB200/GB300",
-    "时间线：DeepSeek 到 V3（2024 年 12 月）为 Hopper，V4（2026 年 4 月）起为 Blackwell；Moonshot AI 到 K2.5（2026 年 1 月）为 Hopper，K3（7 月）起为 Blackwell，Kimi K2.7-Code 介于两者之间；MiniMax 到 M2.7 为 Hopper，M3 起为 Blackwell；蚂蚁 Ling-3.0-flash 为 Hopper",
-    "方法与局限：指纹表明权重如何生成，支持但不证明 Blackwell 执行了训练；唯一已识别的替代方案是特殊配置的 AMD 硬件，对 DeepSeek-V4-Flash 已排除，其余五个认为极不可能；未确定芯片位置、获取方式或是否违反出口管制"
-   ],
-   "topics": [
-    "export-controls",
-    "compute",
-    "model-forensics"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 77.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 355,
-    "hn_comments": 149,
+    "hn_points": 286,
+    "hn_comments": 48,
     "outbound": {
      "arxiv": [
-      "2412.19437",
-      "2505.09343",
-      "2507.20534"
+      "2303.04137",
+      "2603.19312",
+      "2610.06805"
      ],
      "links": [
-      "https://github.com/macrogrants/checkpoint-forensics",
-      "https://news.bgov.com/tech-and-telecom-law/deepseek-has-used-banned-nvidia-chips-the-information-says-2",
-      "https://whbl.com/2026/02/23/exclusive-chinas-deepseek-trained-ai-model-on-nvidias-best-chip-despite-us-ban-official-says/",
-      "https://news.bgov.com/artificial-intelligence/white-house-official-says-moonshot-accessed-banned-nvidia-chips",
-      "https://www.thestandard.com.hk/finance/article/326579/",
-      "https://github.com/deepseek-ai/DeepGEMM/pull/112",
-      "https://github.com/inclusionAI/cuLA/blob/main/BENCHMARK_GB300.md",
-      "https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-742/section-742.6",
-      "https://arxiv.org/abs/2412.19437",
-      "https://arxiv.org/abs/2507.20534",
-      "https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Ultra-Technical-Report.pdf",
-      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
-      "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
-      "https://arxiv.org/abs/2505.09343",
-      "https://github.com/pytorch/pytorch/blob/main/aten/src/ATen/native/cuda/DistributionTemplates.h",
-      "https://huggingface.co/deepseek-ai/DeepSeek-V3-Base",
-      "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash",
-      "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
-      "https://huggingface.co/moonshotai/Kimi-K3",
-      "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
-      "https://huggingface.co/MiniMaxAI/MiniMax-M3",
-      "https://huggingface.co/inclusionAI/Ling-3.1-flash"
+      "https://x.com/haddyalchaer",
+      "https://openreview.net/pdf?id=BZ5a1r-kVsf",
+      "https://arxiv.org/abs/2603.19312",
+      "https://arxiv.org/abs/2303.04137",
+      "https://arxiv.org/abs/2610.06805"
      ]
     },
     "content_source": "direct",
@@ -189,182 +100,93 @@
  ],
  "items": [
   {
-   "id": "8400bdfe1e2afd49",
-   "url": "https://huggingface.co/blog/allenai/xybench",
-   "title": "XYBench: Helping with the problem behind the question",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-11-13T17:02:35+00:00",
-   "summary_short": "研究者发布XYBench：8千余道题测试AI能否识别用户问错了方向",
-   "summary_long": "真正有用的AI助手要能帮助提出错误问题的用户，而不只是提问精准的用户。研究者发布XYBench，一个含8000多道基于错误前提请求的基准，测试助手如何回应这类提问。提问方式与目标不匹配被称为XY问题：用户想达成X，假定做法Y可行，于是求助Y，比如问如何让总往下滑的糖霜变稠，真正问题是纸杯蛋糕还没凉透。XYBench与卡内基梅隆、NVIDIA、约翰霍普金斯的研究者合作开发，覆盖编程以及烹饪、家居维修等日常场景，衡量模型能否识别隐含误解并优先给出有效方案。在XYBench上评测的Claude Sonnet 4.6、GPT-5、Gemini 3.1 Pro、Qwen3.5-9B、DeepSeek-V4 Pro往往给出了解决方案，但回答仍集中在原本错误的做法上；与人类参考答案相比，五个模型都更少把用户从该做法引向符合其目标的方案。数据来自四个来源：Stack Overflow 1557题、Stack Exchange 184题、102道人工整理样例、6272道由WikiHow指南生成的问题；每题标注明确请求（Y）与可从上下文推断的意图请求（X），并过滤掉直接回答字面请求即足够的情况。该基准获EMNLP 2026最佳资源论文奖。",
+   "id": "2849eca9693ec9be",
+   "url": "https://arxiv.org/abs/2611.15049v1",
+   "title": "Science Prediction Universe",
+   "source": "论文（被提及）",
+   "tier": "A",
+   "published_at": "2026-11-11T05:23:11+00:00",
+   "summary_short": "SPU基准测试AGI实验预测能力，揭示瓶颈在科学判断而非工具执行",
+   "summary_long": "可靠预测实验结果被视为理解自然现象的核心检验。原文指出，若通用人工智能要超越人类科学能力，也必须比人类更可靠地预测实验结果。为此，研究提出Science Prediction Universe（SPU）基准：含化学、材料科学、生物与医学的100个公开验证任务，以及16个来自未发表湿实验的私有任务。智能体获得实验设置和候选条件后，可利用所需资源按测量结果排序候选。研究评估跨Codex与Claude Code两个框架、覆盖12个前沿模型的13种配置。公开基准上配置呈两个层级，任务校正Spearman相关系数从0.227到0.478，当前智能体远未饱和湿实验预测。对1,155条公开轨迹（227,103次工具调用）的分析显示，瓶颈在科学判断而非工具执行：智能体依赖共享单调先验，彼此一致度0.52高于与实验现实的0.33，且常计算不影响最终结果的简单代理量。",
    "key_points": [
-    "XYBench含8115道真实问题，覆盖编程与烹饪、家居维修等日常场景，专门测试模型能否识别用户请求背后的错误前提（XY问题）",
-    "评测的Claude Sonnet 4.6、GPT-5、Gemini 3.1 Pro、Qwen3.5-9B、DeepSeek-V4 Pro多数仍围绕用户原本错误的做法作答，比人类参考答案更少引导用户转向真正有效的方案",
-    "数据来自Stack Overflow、Stack Exchange、人工整理样例与WikiHow生成问题四个来源，每题区分字面请求（Y）与意图请求（X），并剔除回答字面请求即可解决的样本"
+    "SPU基准聚焦隐藏实验结果，包含化学、材料科学、生物与医学的100个公开验证任务，以及16个来自未发表湿实验的私有任务。",
+    "研究评估覆盖12个前沿模型、Codex与Claude Code两个框架的13种智能体配置；公开基准任务校正Spearman相关系数从0.227到0.478，配置分为两个层级。",
+    "对1,155条公开评分轨迹（227,103次工具调用）的分析表明，瓶颈在科学判断而非工具执行：智能体彼此一致度0.52高于与实验现实的0.33，且常计算不影响最终结果的简单物理或化学代理量。"
    ],
    "topics": [
     "eval",
+    "tool-use",
     "reasoning"
    ],
    "category": "评测",
    "categories": [
-    "评测"
+    "评测",
+    "Agent 与开发",
+    "研究论文"
    ],
    "horizon": "long",
-   "score": 84.0,
+   "score": 81.9,
    "status": "published",
    "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [
-      "2609.06842"
-     ],
-     "links": [
-      "https://arxiv.org/abs/2609.06842",
-      "https://huggingface.co/datasets/allenai/XYBench-dataset",
-      "https://github.com/allenai/XYBench",
-      "https://www.datocms-assets.com/64837/1794335088-xybench-featured.png",
-      "https://www.datocms-assets.com/64837/1794335992-xybench-stackoverflow-results.png",
-      "https://www.datocms-assets.com/64837/1794336134-xybench-picking-vs-writing.png"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "5bf4951adbe9698d",
-   "url": "https://openai.com/index/introducing-chatgpt-wallet",
-   "title": "Introducing ChatGPT Wallet",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-13T15:00:00+00:00",
-   "summary_short": "ChatGPT Wallet 上线：代理可付款但不接触真实卡号，每笔需人脸或指纹确认",
-   "summary_long": "OpenAI 推出 ChatGPT Wallet，原文称其为首个让代理在无法访问用户真实卡号的情况下完成支付、且每笔购买都需通过安全验证的钱包，同时保留现有卡片的奖励与符合条件的争议保护。该产品与 American Express、Mastercard、Visa 合作构建，初期通过 dots 向美国 ChatGPT Pro 订阅用户开放。原文称每周有 12 亿人使用 ChatGPT，其中许多人用它研究商品、比较选项并决定购买，ChatGPT Wallet 意在帮助这些人完成购买，并让商家可用现有系统受理代理支付。使用流程为：用户一次性绑卡，每次购买前查看商品、金额与所选卡片，再以 Face ID 或指纹等安全验证批准，每次批准都会生成授权记录；随后支付网络提供一个替代真实卡信息的支付令牌（含卡号、安全码、有效期），款项计入所选卡片。用户与商家直接交易，商家保有客户关系及定价、履约、退货与客服控制权。原文还提到未来用户可通过消费限额、品类、时段等参数把购买完全委托给代理。此外，OpenAI 发布 Commerce Partner Playbook，指导商家让代理可访问、提供商品信息并与支付风控方协作减少误拒。",
-   "key_points": [
-    "ChatGPT Wallet 让代理无需接触用户真实卡信息即可付款，每笔购买都需安全验证，并保留卡片原有奖励与符合条件的争议保护",
-    "与 American Express、Mastercard、Visa 合作构建，初期通过 dots 面向美国 18 岁以上 ChatGPT Pro 订阅用户、使用美国发行卡片开放",
-    "支付通过支付网络提供的令牌完成，用户与商家直接交易，商家保留客户关系及定价、履约、退货和客服控制权"
-   ],
-   "topics": [
-    "product",
-    "agentic-commerce"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 82.9,
-   "status": "published",
-   "extra": {
-    "content_source": "reader",
-    "source_tags": [
-     "Product"
+    "authors": [
+     "Zengji Tu",
+     "Xiang Liu",
+     "Jiarui Sun",
+     "Ruoyu Wu",
+     "Zhihui Qi",
+     "Chengda Wu",
+     "Yutao Zhou",
+     "Bo Yang"
+    ],
+    "author_count": 36,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "量子位"
     ],
     "summary_mode": "full"
    }
   },
   {
-   "id": "1dba3a3e5ab0c862",
-   "url": "https://developer.apple.com/foundation-models-framework/",
-   "title": "Foundation Models framework",
+   "id": "ea0776201252f8c6",
+   "url": "https://haddyalchaer.com/jepa",
+   "title": "After 600 experiments, here's what I discovered about JEPA world models",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-11-12T21:13:26+00:00",
-   "summary_short": "苹果 Foundation Models 框架：用一套 Swift API 接入任意大模型",
-   "summary_long": "原文介绍 Foundation Models 框架：它是一套原生 Swift API，可把任意大语言模型集成进应用，包括直接调用 Apple Foundation Models 的端侧模型与 Private Cloud Compute。框架内置引导生成、工具调用、图像理解与 Dynamic Profiles。图像理解支持多模态提示，把图像与文本一并传入，并集成 Vision 框架的 OCR 与条码读取，全部在端侧完成。模型支持方面，除端侧模型外，还通过同一套 Swift API 扩展至 Claude、Gemini 等服务端模型；任何模型提供方都可创建遵循 Language Model 协议的 Swift 包。加入 App Store 小企业计划且首次下载少于 200 万的开发者，可零云 API 成本使用 Private Cloud Compute 上的模型。Dynamic Profiles 让会话中的模型、工具与指令可动态切换，转录在各 profile 间共享。另有 Evaluations 框架用于测试提示词。",
+   "published_at": "2026-11-13T17:55:28+00:00",
+   "summary_short": "600次实验：不重新训练，仅改规划方法就让 LeWM 长程任务成功率从 22% 升到 85%",
+   "summary_long": "AI 界正争论世界模型应该是什么：多数关注生成式世界模型，即用像素生成来预测未来；LeCun 等人认为多数像素对决策无用且不可预测，因此提出 JEPA 联合嵌入预测架构，它包含编码器、预测器、规划器，整个循环在嵌入空间运行。今年一个包括 LeCun 的团队发布 LeWM，主基准为 Push-T 机器人推块仿真。作者几个月内做了 600 次实验：把预测器换成仿真器的完美物理后，在 250 个目标距离 75 步的长程任务上，原版成功率 78%、真物理版 77%，说明在其训练过的路径类型上，LeWM 的预测已接近完美物理。瓶颈在于这套架构的使用方式：原版在 75 步目标上成功率仅 22%，25 步目标为 89.7%（真物理 90.5%）。在不重新训练模型的前提下，作者找到四种新规划方法：前两种把长程成功率从 22% 提到 85%，接近直接获得专家子目标的规划器；另两种把 LeWM 扩展到更难目标，其中仅改变目标打分方式一项就提升 60 个百分点，是换用完美物理收益的三倍。",
    "key_points": [
-    "原生 Swift API，可直接访问 Apple Foundation Models 的端侧模型与 Private Cloud Compute，内置引导生成、工具调用、图像理解、Dynamic Profiles",
-    "图像理解支持多模态提示，并集成 Vision 框架的 OCR 与条码读取，全部在端侧运行",
-    "同一套 Swift API 可接入 Claude、Gemini 等服务端模型，任何提供方都能创建遵循 Language Model 协议的 Swift 包"
+    "JEPA 由编码器、预测器、规划器三部分组成，整个循环在嵌入空间运行，只需学习对决策重要的场景部分",
+    "把预测器换成仿真器完美物理，长程任务成功率为 77%，原版为 78%，说明预测精度不是长程失败的主因",
+    "原版 LeWM 在 75 步目标上成功率 22%，在 25 步目标上为 89.7%，误差在长程中累积"
    ],
    "topics": [
-    "tool-use",
-    "context-engineering"
+    "world-models",
+    "planning",
+    "jepa"
    ],
-   "category": "Agent 与开发",
+   "category": "模型",
    "categories": [
-    "Agent 与开发"
+    "模型"
    ],
-   "horizon": "short",
-   "score": 77.7,
+   "horizon": "long",
+   "score": 79.2,
    "status": "published",
    "extra": {
-    "hn_points": 264,
-    "hn_comments": 35,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/apple/coreai-models",
-      "https://github.com/ml-explore/mlx-swift-lm",
-      "https://github.com/anthropics/ClaudeForFoundationModels",
-      "https://github.com/firebase/firebase-ios-sdk",
-      "https://github.com/apple/foundation-models-utilities",
-      "https://github.com/apple/python-apple-fm-sdk"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "d096a8a420fb437e",
-   "url": "https://unemploymentlabs.com/checkpoint-forensics",
-   "title": "Chinese frontier AI models carry the fingerprint of export-controlled GPUs",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-12T21:56:11+00:00",
-   "summary_short": "取证分析发现，四个中国实验室的六个模型权重带有 Blackwell 硬件指纹",
-   "summary_long": "在美国限制 Blackwell 芯片对华出口的背景下，原文对公开发布的 AI 模型做取证分析，发现证据显示 DeepSeek、Moonshot AI、MiniMax 与蚂蚁集团已获得 NVIDIA Blackwell GPU，并用其制作模型。自 2026 年 4 月起，这四家发布的六个模型含有与 Blackwell 匹配的数值模式，而它们更早的模型匹配 Hopper 代际。此前美国官员与媒体报道已指称 DeepSeek 和 Moonshot AI 使用 Blackwell，但未公布技术证据；本文证据全部来自模型公开权重，而非泄密或内部人士。方法是恢复模型初始值的痕迹，再搜索能复现这些值的硬件配置与初始配置，并对 DeepSeek-V4-Flash 和 Kimi K3 在实体 Blackwell 芯片上确认匹配。作者指出，指纹识别的是权重如何生成，支持但不证明训练也在 Blackwell 上完成；特殊配置的 AMD 硬件是唯一已识别的替代方案，对 DeepSeek-V4-Flash 已排除，其余五个判定为极不可能。研究提供获取先进算力的技术证据，但未确定芯片所在地、获取方式或是否违反出口管制。",
-   "key_points": [
-    "硬件对应：DeepSeek-V4-Flash 与 MiniMax-M3 匹配 148 个 SM 的 B200/B300；DeepSeek-V4-Pro、Kimi K3、Kimi K3.1-Pro、Ling-3.1-flash 匹配 152 个 SM 的 GB200/GB300",
-    "时间线：DeepSeek 到 V3（2024 年 12 月）为 Hopper，V4（2026 年 4 月）起为 Blackwell；Moonshot AI 到 K2.5（2026 年 1 月）为 Hopper，K3（7 月）起为 Blackwell，Kimi K2.7-Code 介于两者之间；MiniMax 到 M2.7 为 Hopper，M3 起为 Blackwell；蚂蚁 Ling-3.0-flash 为 Hopper",
-    "方法与局限：指纹表明权重如何生成，支持但不证明 Blackwell 执行了训练；唯一已识别的替代方案是特殊配置的 AMD 硬件，对 DeepSeek-V4-Flash 已排除，其余五个认为极不可能；未确定芯片位置、获取方式或是否违反出口管制"
-   ],
-   "topics": [
-    "export-controls",
-    "compute",
-    "model-forensics"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 77.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 355,
-    "hn_comments": 149,
+    "hn_points": 286,
+    "hn_comments": 48,
     "outbound": {
      "arxiv": [
-      "2412.19437",
-      "2505.09343",
-      "2507.20534"
+      "2303.04137",
+      "2603.19312",
+      "2610.06805"
      ],
      "links": [
-      "https://github.com/macrogrants/checkpoint-forensics",
-      "https://news.bgov.com/tech-and-telecom-law/deepseek-has-used-banned-nvidia-chips-the-information-says-2",
-      "https://whbl.com/2026/02/23/exclusive-chinas-deepseek-trained-ai-model-on-nvidias-best-chip-despite-us-ban-official-says/",
-      "https://news.bgov.com/artificial-intelligence/white-house-official-says-moonshot-accessed-banned-nvidia-chips",
-      "https://www.thestandard.com.hk/finance/article/326579/",
-      "https://github.com/deepseek-ai/DeepGEMM/pull/112",
-      "https://github.com/inclusionAI/cuLA/blob/main/BENCHMARK_GB300.md",
-      "https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-742/section-742.6",
-      "https://arxiv.org/abs/2412.19437",
-      "https://arxiv.org/abs/2507.20534",
-      "https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Ultra-Technical-Report.pdf",
-      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
-      "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
-      "https://arxiv.org/abs/2505.09343",
-      "https://github.com/pytorch/pytorch/blob/main/aten/src/ATen/native/cuda/DistributionTemplates.h",
-      "https://huggingface.co/deepseek-ai/DeepSeek-V3-Base",
-      "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash",
-      "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
-      "https://huggingface.co/moonshotai/Kimi-K3",
-      "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
-      "https://huggingface.co/MiniMaxAI/MiniMax-M3",
-      "https://huggingface.co/inclusionAI/Ling-3.1-flash"
+      "https://x.com/haddyalchaer",
+      "https://openreview.net/pdf?id=BZ5a1r-kVsf",
+      "https://arxiv.org/abs/2603.19312",
+      "https://arxiv.org/abs/2303.04137",
+      "https://arxiv.org/abs/2610.06805"
      ]
     },
     "content_source": "direct",

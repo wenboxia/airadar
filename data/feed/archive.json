@@ -1,6 +1,53 @@
 {
- "generated_at": "2026-11-14T00:21:20+00:00",
+ "generated_at": "2026-11-14T22:59:49+00:00",
  "items": [
+  {
+   "id": "ea0776201252f8c6",
+   "url": "https://haddyalchaer.com/jepa",
+   "title": "After 600 experiments, here's what I discovered about JEPA world models",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-13T17:55:28+00:00",
+   "summary_short": "600次实验：不重新训练，仅改规划方法就让 LeWM 长程任务成功率从 22% 升到 85%",
+   "summary_long": "AI 界正争论世界模型应该是什么：多数关注生成式世界模型，即用像素生成来预测未来；LeCun 等人认为多数像素对决策无用且不可预测，因此提出 JEPA 联合嵌入预测架构，它包含编码器、预测器、规划器，整个循环在嵌入空间运行。今年一个包括 LeCun 的团队发布 LeWM，主基准为 Push-T 机器人推块仿真。作者几个月内做了 600 次实验：把预测器换成仿真器的完美物理后，在 250 个目标距离 75 步的长程任务上，原版成功率 78%、真物理版 77%，说明在其训练过的路径类型上，LeWM 的预测已接近完美物理。瓶颈在于这套架构的使用方式：原版在 75 步目标上成功率仅 22%，25 步目标为 89.7%（真物理 90.5%）。在不重新训练模型的前提下，作者找到四种新规划方法：前两种把长程成功率从 22% 提到 85%，接近直接获得专家子目标的规划器；另两种把 LeWM 扩展到更难目标，其中仅改变目标打分方式一项就提升 60 个百分点，是换用完美物理收益的三倍。",
+   "key_points": [
+    "JEPA 由编码器、预测器、规划器三部分组成，整个循环在嵌入空间运行，只需学习对决策重要的场景部分",
+    "把预测器换成仿真器完美物理，长程任务成功率为 77%，原版为 78%，说明预测精度不是长程失败的主因",
+    "原版 LeWM 在 75 步目标上成功率 22%，在 25 步目标上为 89.7%，误差在长程中累积"
+   ],
+   "topics": [
+    "world-models",
+    "planning",
+    "jepa"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 79.2,
+   "status": "published",
+   "extra": {
+    "hn_points": 286,
+    "hn_comments": 48,
+    "outbound": {
+     "arxiv": [
+      "2303.04137",
+      "2603.19312",
+      "2610.06805"
+     ],
+     "links": [
+      "https://x.com/haddyalchaer",
+      "https://openreview.net/pdf?id=BZ5a1r-kVsf",
+      "https://arxiv.org/abs/2603.19312",
+      "https://arxiv.org/abs/2303.04137",
+      "https://arxiv.org/abs/2610.06805"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "8400bdfe1e2afd49",
    "url": "https://huggingface.co/blog/allenai/xybench",
@@ -636,6 +683,53 @@
       "https://forms.gle/ftBfHGH7NUrCZEjN6"
      ]
     },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "2849eca9693ec9be",
+   "url": "https://arxiv.org/abs/2611.15049v1",
+   "title": "Science Prediction Universe",
+   "source": "论文（被提及）",
+   "tier": "A",
+   "published_at": "2026-11-11T05:23:11+00:00",
+   "summary_short": "SPU基准测试AGI实验预测能力，揭示瓶颈在科学判断而非工具执行",
+   "summary_long": "可靠预测实验结果被视为理解自然现象的核心检验。原文指出，若通用人工智能要超越人类科学能力，也必须比人类更可靠地预测实验结果。为此，研究提出Science Prediction Universe（SPU）基准：含化学、材料科学、生物与医学的100个公开验证任务，以及16个来自未发表湿实验的私有任务。智能体获得实验设置和候选条件后，可利用所需资源按测量结果排序候选。研究评估跨Codex与Claude Code两个框架、覆盖12个前沿模型的13种配置。公开基准上配置呈两个层级，任务校正Spearman相关系数从0.227到0.478，当前智能体远未饱和湿实验预测。对1,155条公开轨迹（227,103次工具调用）的分析显示，瓶颈在科学判断而非工具执行：智能体依赖共享单调先验，彼此一致度0.52高于与实验现实的0.33，且常计算不影响最终结果的简单代理量。",
+   "key_points": [
+    "SPU基准聚焦隐藏实验结果，包含化学、材料科学、生物与医学的100个公开验证任务，以及16个来自未发表湿实验的私有任务。",
+    "研究评估覆盖12个前沿模型、Codex与Claude Code两个框架的13种智能体配置；公开基准任务校正Spearman相关系数从0.227到0.478，配置分为两个层级。",
+    "对1,155条公开评分轨迹（227,103次工具调用）的分析表明，瓶颈在科学判断而非工具执行：智能体彼此一致度0.52高于与实验现实的0.33，且常计算不影响最终结果的简单物理或化学代理量。"
+   ],
+   "topics": [
+    "eval",
+    "tool-use",
+    "reasoning"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "Agent 与开发",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 81.9,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Zengji Tu",
+     "Xiang Liu",
+     "Jiarui Sun",
+     "Ruoyu Wu",
+     "Zhihui Qi",
+     "Chengda Wu",
+     "Yutao Zhou",
+     "Bo Yang"
+    ],
+    "author_count": 36,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "量子位"
+    ],
     "summary_mode": "full"
    }
   },
@@ -2574,109 +2668,6 @@
       "https://github.com/pinobatch/thwaite-nes"
      ]
     },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "7e2aaf184ac3d7d5",
-   "url": "https://cyberplace.social/@GossiTheDog/117528831681803563",
-   "title": "Backdoors in official Claude Code extensions",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-30T11:05:53+00:00",
-   "summary_short": "官方 Claude Code 扩展被发现植入后门，可反向 SSH 控制开发者机器",
-   "summary_long": "Phorion 的安全公告称，在 Open VSX 上的官方 Claude Code for VS Code 扩展包中发现后门，它会在 macOS、Linux 和 Windows 上植入持久化 SSH 后门。安全研究者 Kevin Beaumont 转述并评论：该扩展安装量达数百万，是 DevOps 领域最流行的扩展之一，后门会建立反向 SSH 连接，相当于在桌面植入远程访问木马；他称这是一次供应链攻击，攻击者借此大规模获得对 Anthropic 客户环境的反向 SSH（命令行）访问权限。他还表示，Anthropic 在 7 小时前悄悄移除了后门，但没有披露安全事件；由于插件会自动更新，所有组织都会受到影响。被入侵的版本 2.1.313 已从仓库中下架，2.1.314 是修复版。Cursor 也发布安全提示，称其扩展市场中的 Anthropic.claude-code 2.1.313 同样受影响。他还称，攻击者的 C2 服务器现已下线；该服务器会为每个受害终端收集信息，并运行反向 SSH 连接。",
-   "key_points": [
-    "Phorion 在 Open VSX 上的官方 Claude Code for VS Code 扩展包中发现后门，会在 macOS、Linux、Windows 植入持久化 SSH 后门",
-    "Kevin Beaumont 称该扩展安装量达数百万，属供应链攻击，攻击者借此大规模获得对 Anthropic 客户环境的反向 SSH 命令行访问",
-    "被入侵版本 2.1.313 已下架、2.1.314 为修复版；Cursor 扩展市场的同一版本也受影响，Anthropic 未披露安全事件"
-   ],
-   "topics": [
-    "cybersecurity",
-    "supply-chain"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 76.5,
-   "status": "published",
-   "extra": {
-    "hn_points": 651,
-    "hn_comments": 17,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://joinmastodon.org/apps"
-     ]
-    },
-    "content_source": "reader",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a510883f6a1bc895",
-   "url": "https://doublepulsar.com/anthropic-hacked-to-deliver-remote-access-trojan-to-claude-developer-laptops-worldwide-1148a92baae2",
-   "title": "Claude Code VS Code extension with backdoor released on Cursor marketplace",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-30T10:22:51+00:00",
-   "summary_short": "Claude Code扩展遭篡改植入SSH后门，Cursor市场发生供应链攻击",
-   "summary_long": "Anthropic 的 Claude Code VS Code 扩展被篡改后出现在 Cursor 扩展市场，通过 SSH 反向后门向开发者电脑投放远程访问木马，形成一起供应链攻击。该扩展在 Cursor 中自动更新到恶意版本 2.1.313；Cursor 表示约 5000 台开发者系统受影响，Phorion 最先在端点发现异常。恶意代码会收集主机名、用户名、操作系统、架构、主目录路径、环境变量名、工作目录、配置的 Git 邮箱和公网 IP，并尝试向 authorized_keys 添加攻击者控制的 SSH 密钥、启用本地 SSH 服务、开启反向隧道，再通过 macOS 的 LaunchAgent 或 Windows 以 SYSTEM 运行的计划任务（失败则回退到启动脚本）实现持久化，后台脚本约每 60 秒重试，并通过 8099 端口的 /beacon 以 HTTP POST 上报主机信息与后门状态。文中称，由于恶意代码存在错误，除非 Cursor 以管理员权限启动，否则该步骤会失败。Anthropic 已将 2.1.313 替换为 2.1.314，后者似乎移除了扩展中的后门，但不会清除已感染系统上的 SSH 后门和此前的侦察活动；2.1.313 已从 OpenVSX、Visual Studio Marketplace 和 Cursor 消失。Anthropic 称此次入侵源于 Cu",
-   "key_points": [
-    "恶意版本 2.1.313 在 Cursor 中自动更新推送，Cursor 称约 5000 台开发者系统受影响，Phorion 最先发现",
-    "恶意代码收集主机与用户信息，尝试写入攻击者 SSH 公钥、开启反向隧道，并通过 LaunchAgent 或 Windows 计划任务持久化，每约 60 秒重试、向 8099 端口 /beacon 上报",
-    "2.1.314 已替换恶意版本，但不会清除已感染系统上的 SSH 后门与侦察痕迹；Anthropic 称入侵发生在 Cursor，Cursor 已承认该问题"
-   ],
-   "topics": [
-    "cybersecurity",
-    "prompt-injection",
-    "open-source"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 78.0,
-   "status": "published",
-   "extra": {
-    "hn_points": 397,
-    "hn_comments": 1,
-    "content_source": "reader",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "bf5aaab63512aa24",
-   "url": "https://phorion.io/blog/offical-claude-code-vsx-compromise/",
-   "title": "Backdoor in Claude Code for VS Code extension on the Cursor Marketplace",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-10-30T07:09:12+00:00",
-   "summary_short": "Claude Code的VS Code扩展被发现内置SSH后门，Cursor已下架2.1.313版",
-   "summary_long": "Phorion称在Cursor Marketplace上架的官方 Claude Code for VS Code 扩展包中发现后门，可植入跨 macOS、Linux、Windows 的持久化 SSH 后门。Cursor 已从市场移除该发行版，并从相关注册表撤下 2.1.313 的 NPM 与 VSCode 版本。原文指出，Cursor Marketplace 为 Cursor 编辑器提供扩展，扩展以 IDE 及运行用户的权限执行，因此恶意模块一旦加载即可访问本地文件、源代码与开发工具。被污染的 extension.js 在压缩包前注入了一段立即执行函数（IIFE），引入 child_process、fs、os、path、http、crypto 等模块，在 Node 加载文件时即触发，早于正常 activate 回调，用户无需交互。载荷先创建 ~/.ssh 并把攻击者控制的 Ed25519 公钥追加到 authorized_keys（注释为 svc-telemetry，目录 0700、文件 0600），再尝试开启 SSH。macOS 上存在一处疑似疏漏：脚本假设无需 root 即可查询 Remote Login 状态，但普通用户执行 systemsetup -getremotelogin 会报管理员权限错误并以状态 0 退出，不返回 Off，于是脚本跳过启用步骤；在原本未运行 SSH",
-   "key_points": [
-    "后门位于 Cursor Marketplace 上的官方 Claude Code for VS Code 扩展包，Cursor 已下架并从 NPM、VSCode 注册表撤下 2.1.313 版本",
-    "注入的 IIFE 在模块加载时即执行、无需用户交互，先写入 ~/.ssh/authorized_keys 的攻击者 Ed25519 公钥（注释 svc-telemetry）再尝试开启 SSH",
-    "macOS 上因 systemsetup -getremotelogin 无 root 时报错并以状态 0 退出，脚本跳过启用 SSH，使未运行 SSH 的机器入站路径失效，但持久化与主机侦察回传仍在；原文建议排查 2.1.313 使用情况并启动应急响应"
-   ],
-   "topics": [
-    "cybersecurity",
-    "supply-chain"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 76.2,
-   "status": "published",
-   "extra": {
-    "hn_points": 696,
-    "hn_comments": 438,
     "content_source": "direct",
     "summary_mode": "full"
    }
