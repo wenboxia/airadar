@@ -1,78 +1,83 @@
 {
- "generated_at": "2026-11-14T22:59:49+00:00",
+ "generated_at": "2026-11-15T23:24:09+00:00",
  "items": [
   {
-   "id": "bab1fcc2784e280c",
-   "url": "https://www.slopmanifesto.com/",
-   "title": "No AI Slop: A Manifesto",
+   "id": "950ac38f23f2d5a7",
+   "url": "https://magazine.sebastianraschka.com/p/understanding-positional-embeddings",
+   "title": "Understanding Positional Embeddings in Modern LLMs",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-11-13T19:51:56+00:00",
-   "summary_short": "AIE Code Summit 2026 发布《No AI Slop》宣言，反对不负责任的 AI 产出",
-   "summary_long": "宣言由 AIE Code Summit 2026 的演讲者与参会者共同撰写；它仿照 2001 年在犹他州 Snowbird 诞生的敏捷宣言，针对 AI 越来越多参与写代码、文档、计划和消息的现状提出价值主张：成果优于产出、理解优于速度、自己的思考优于模型的初稿、更好的工作优于更轻松的工作、改进系统优于修补输出。文中称 AI 是多数人用过最有用的工具，但一群 agent 一天产出的工作量，可超过一个人一生能审阅的量；slop 是指在生产时投入的精力少于要求读者理解所花的精力；把 AI 输出原样转发、不对质量和读者体验负责，才会产生 slop；AI 只能放大而非替代人的判断；slop 还不对称——生成千行 PR、十页文档的成本趋近于零，审阅成本却不变，并会在知识库、聊天和代码中复利累积。决议包括：优化宝贵的人类时间与注意力；让系统更高效地表达人类意图；自己做思考；对交付物的意图和后果负责；标明 agent 所写内容并检查关键部分；友善提醒发 slop 的人；按风险审阅部分输出；以实际交付效果而非代码行数、PR 数或 token 衡量。",
+   "published_at": "2026-11-15T12:14:06+00:00",
+   "summary_short": "长文梳理 LLM 位置嵌入方法：从经典方案到 RoPE，附可视化与 PyTorch 实现",
+   "summary_long": "这是 Sebastian Raschka 发布的技术长文，主题是 LLM 如何编码与处理 token 的位置信息。作者交代写作缘起：准备今年的 LLM 架构趋势文章时，发现自己此前从未系统讲过位置信息方法，于是单独成篇，作为后续分析的“积木”；同时回应读者多年来对相对位置嵌入（即 RoPE）教程的请求，衔接 GPT 所用的可学习绝对嵌入。文章称将以可视化示例、少量数学和一个小型 PyTorch 实现走完机制，并考察现代架构如何改造或省略显式位置编码，还预告了按位置编码分组的 2026 年开源权重模型选择一览。正文第一节讲位置信息从何处进入 LLM：分词器把文本编码为 token ID，嵌入层把 ID 映射为特征向量，transformer 块经注意力与前馈层修改向量，输出层给出下一 token 的 logit 分数，并以 GPT-2 与较新的 MiniMax-M3 为例对比这条路径。作者提示文章技术性较强，熟悉基础者可跳到第 6 节。原文可见部分到此为止，RoPE 具体机制未详述。",
    "key_points": [
-    "提出五组价值取向：成果优于产出、理解优于速度、自己的思考优于模型初稿、更好的工作优于更轻松的工作、改进系统优于修补输出",
-    "界定 slop：生产时投入的精力少于要求读者理解所花的精力；不经审查地转发 AI 输出、来自公司要求员工突破“人类极限”的压力、偏向“加”而非“减”的工具都是来源，且 slop 会复利累积，劣化沟通与质量",
-    "决议要求人对交付物的意图、品味和后果负责，标明 agent 所写内容并检查关键部分，按风险保留对部分输出的审阅，并以谁在使用、如何帮到人而非代码行数、合并 PR 数、消耗 token 数或并行 agent 数量衡量价值"
+    "文章以可视化示例、少量数学和一个小型 PyTorch 实现讲解 LLM 的位置嵌入方法，涵盖从经典方案到 RoPE，并讨论现代架构如何改造或省略显式位置编码",
+    "作者称本文是为后续 LLM 架构趋势文章准备的独立基础篇，同时回应读者长期以来对相对位置嵌入（RoPE）教程的请求",
+    "第一节梳理位置信息进入 LLM 的路径（分词器→token 嵌入层→transformer 块→输出 logit），以 GPT-2 与 MiniMax-M3 为例，并预告按位置编码分组的 2026 年开源权重模型一览"
    ],
    "topics": [
-    "coding-agent",
-    "ai-slop",
-    "human-oversight"
+    "positional-embeddings",
+    "transformer-architecture"
    ],
-   "category": "Agent 与开发",
+   "category": "模型",
    "categories": [
-    "Agent 与开发"
+    "模型"
    ],
    "horizon": "long",
-   "score": 61.8,
+   "score": 74.0,
    "status": "review",
    "extra": {
-    "hn_points": 216,
-    "hn_comments": 129,
+    "hn_points": 189,
+    "hn_comments": 24,
     "outbound": {
-     "arxiv": [],
+     "arxiv": [
+      "1706.03762",
+      "1910.10683",
+      "2104.09864",
+      "2305.19466",
+      "2603.11611"
+     ],
      "links": [
-      "https://agilemanifesto.org/",
-      "https://www.youtube.com/watch?v=IoiHI7p12Ao",
-      "https://tej.as/blog/please-stop-the-slop",
-      "https://www.arthropod.software/p/vibe-coding-our-way-to-disaster",
-      "https://github.com/ghostty-org/ghostty/blob/main/AI_POLICY.md",
-      "https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/wsff.md",
-      "https://gist.github.com/dexhorthy/4cc96f01be5b1208519e75dad250a948",
-      "https://x.com/dexhorthy",
-      "https://x.com/philipkiely",
-      "https://x.com/BuiltByJustin",
-      "https://x.com/kentcdodds",
-      "https://x.com/poteto",
-      "https://x.com/TejasKumar_",
-      "https://x.com/franciscojarceo",
-      "https://x.com/nadetastic",
-      "https://x.com/ankitxg",
-      "https://x.com/jpoehnelt",
-      "https://x.com/dans_la_cuisine",
-      "https://x.com/dkundel",
-      "https://x.com/raw_works",
-      "https://www.linkedin.com/in/chinmaygoyal/",
-      "https://x.com/nightowl_coder",
-      "https://x.com/jtokash",
-      "https://x.com/andrewtorkbaker",
-      "https://x.com/nerding_io",
-      "https://x.com/wschenk",
-      "https://www.linkedin.com/in/jon-mcbee/",
-      "https://x.com/JaidevShah4",
-      "https://x.com/walk_hild",
-      "https://x.com/eduardomx",
-      "https://www.linkedin.com/in/marcos-sanz-grosson/",
-      "https://www.linkedin.com/in/jonlam92",
-      "https://x.com/kinglycrow",
-      "https://x.com/tomnagengast",
-      "https://x.com/altryne",
-      "https://every.one/chris.hart",
-      "https://x.com/nicknisi",
-      "https://x.com/heymikasagi",
-      "https://x.com/crucianijm",
-      "https://x.com/larsx2"
+      "https://substack.com/@rasbt",
+      "https://substackcdn.com/image/fetch/$s_!8RKL!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb461a2cb-11ab-474a-affe-0ee99e5a8782_2850x2777.png",
+      "https://sebastianraschka.com/llm-architecture-gallery/",
+      "https://sebastianraschka.com/books/#build-a-large-language-model-from-scratch",
+      "https://magazine.sebastianraschka.com/p/understanding-and-coding-self-attention",
+      "https://magazine.sebastianraschka.com/perks",
+      "https://magazine.sebastianraschka.com/p/understanding-positional-embeddings",
+      "https://substackcdn.com/image/fetch/$s_!3vjo!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4ab287c2-c3ba-46db-9ed0-1e6eacf78f43_2592x2521.png",
+      "https://substackcdn.com/image/fetch/$s_!KoQ2!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb8ff5039-8ec8-447c-a444-0345619c8b7b_1846x1304.png",
+      "https://github.com/rasbt/LLMs-from-scratch/tree/main/ch02/05_bpe-from-scratch",
+      "https://substackcdn.com/image/fetch/$s_!GDv8!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fda2b0f15-7f45-4aa4-8f1b-a0777a0da4fc_1710x2197.png",
+      "https://huggingface.co/openai-community/gpt2-xl/blob/main/config.json",
+      "https://substackcdn.com/image/fetch/$s_!yuT0!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F546edc50-7b1a-40ba-a125-da3fbdaade26_2586x964.png",
+      "https://github.com/openai/gpt-2/blob/master/src/model.py",
+      "https://arxiv.org/abs/1706.03762",
+      "https://substackcdn.com/image/fetch/$s_!d7HH!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5958afa7-673d-44df-a1af-112044196dde_2620x2800.png",
+      "https://substackcdn.com/image/fetch/$s_!HkhF!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe441fd8e-780b-4f66-9254-8ee2a7994a4f_1593x773.png",
+      "https://substackcdn.com/image/fetch/$s_!63Px!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa6e0a4d2-6a7c-443d-9be0-102807f8da7a_2600x1063.png",
+      "https://substackcdn.com/image/fetch/$s_!UhK9!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2fd5a766-4363-4189-9675-bcf9bd8e700d_2624x2023.png",
+      "https://substackcdn.com/image/fetch/$s_!jj3h!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3032a17a-5c43-487e-bcce-560d0a957b12_2616x1804.png",
+      "https://substackcdn.com/image/fetch/$s_!PFDm!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8cfa51c1-e3d5-4791-9899-4f159d43e890_2453x1299.png",
+      "https://arxiv.org/abs/2104.09864",
+      "https://substackcdn.com/image/fetch/$s_!xNEB!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F309c52ca-ad27-4336-a463-cde0050b3425_1764x2311.png",
+      "https://substackcdn.com/image/fetch/$s_!0J_2!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3a99d70f-f237-4af5-8f0d-9f672e8193a7_2755x2720.png",
+      "https://github.com/rasbt/LLMs-from-scratch/blob/main/ch05/11_qwen3/standalone-qwen3.ipynb",
+      "https://substackcdn.com/image/fetch/$s_!LQ-n!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe010e216-c965-4313-ace6-6682016a3177_2671x1543.png",
+      "https://substackcdn.com/image/fetch/$s_!RhWQ!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F03367132-6eb1-44cd-85fd-afb47314c6a9_2672x1716.png",
+      "https://substackcdn.com/image/fetch/$s_!2bNG!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5c627967-3788-4e17-85ef-8d6e716d2284_2525x785.png",
+      "https://substackcdn.com/image/fetch/$s_!jxZL!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F88495cb6-f380-43db-aeab-0f50afbd41b0_2610x888.png",
+      "https://substackcdn.com/image/fetch/$s_!0dw5!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2a413998-3f9a-477b-9fb6-d475bdedf847_2791x1962.png",
+      "https://substackcdn.com/image/fetch/$s_!yQkh!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F19ac0a71-c4d4-4cbe-b1ec-04371b5b3a58_2691x1745.png",
+      "https://substackcdn.com/image/fetch/$s_!qAmy!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbf8cae0f-aa03-454c-b94e-dde8dd5ae680_2640x2488.png",
+      "https://substackcdn.com/image/fetch/$s_!j9TT!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F114f482b-e080-4ce2-9698-f489a9b305eb_2774x2836.png",
+      "https://substackcdn.com/image/fetch/$s_!yWYT!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5fd7a9e5-0263-4d31-bae4-787834c245b7_2634x2850.png",
+      "https://arxiv.org/html/2104.09864v5#S3.SS3",
+      "https://substackcdn.com/image/fetch/$s_!OZLU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3b99b926-16c6-443c-bcb0-155ba1e63fc2_2596x1542.png",
+      "https://github.com/meta-llama/llama/blob/llama_v1/llama/model.py",
+      "https://scontent.fcps4-2.fna.fbcdn.net/v/t39.2365-6/333007794_1182140292435357_4481174526219500228_n.pdf?_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=3c67a6&_nc_ohc=SrzHHMeB_5gQ7kNvwGdTCab&_nc_oc=AdonSC2oKCA4Qqs-KfR7_70m4s4_1QpPwBxDyuqu_KXyCswnUioaZNf1qyZckeLl6qPZge_29DAoPzzJbtkmdFP2&_nc_zt=14&_nc_ht=scontent.fcps4-2.fna&_nc_gid=aOwcXBC5dn_BAgAvPaHuBA&_nc_ss=7b289&oh=00_AQR_JQr4O14JgKxukyTSvBG_TEEoi37pQAo0flfY68Vquw&oe=6AFEA511",
+      "https://huggingface.co/MiniMaxAI/MiniMax-M3/blob/main/config.json",
+      "https://substackcdn.com/image/fetch/$s_!HikP!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4515ea8c-8759-4aca-a824-64f0f42d080e_2616x1657.png"
      ]
     },
     "content_source": "direct",
@@ -80,357 +85,240 @@
    }
   },
   {
-   "id": "67049349b50b855a",
-   "url": "https://www.qbitai.com/2026/11/510003.html",
-   "title": "突发！DeepSeek开放全家桶API",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-11-14T02:39:56+00:00",
-   "summary_short": "DeepSeek开放全家桶应用API，语音能力首次开放，识别一小时0.39元",
-   "summary_long": "DeepSeek宣布正式开放全家桶应用API：此前App内的联网搜索、深度思考搜索、文件上传、链接阅读等能力拆成独立接口，支持单独调用、分别计费，语音识别与语音合成也首次加入开放行列。官方称开发者可1:1复刻出完整的DeepSeek App，并开源了一套轻量级聊天前端Demo，支持导入DeepSeek历史对话。与10月17日开放的Search、Fetch接口不同，开发者打开联网搜索功能后，何时搜索、搜什么、读哪些网页由DeepSeek自动完成。V4.1-Flash模型已在Messages、Responses和Chat Completions三类接口下支持相关对话扩展功能。价格上，语音识别原价0.78元/小时，五折后0.39元；语音合成原价每万字符3元，现1.5元；搜索与网页抓取每1000次成功调用5元，OCR每1000页1.5元。原文对比OpenAI与Google Cloud的语音服务价格，称DeepSeek约为其1/4.6、1/3.1和1/16.5。原文还提到，DeepSeek称现有对话产品只是较为基础的一种形态。",
+   "id": "ad8b3d5bdfd0d7ff",
+   "url": "https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax",
+   "title": "Show HN: DeepSeek V3 in ~200 lines of pure Jax",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-14T15:04:15+00:00",
+   "summary_short": "190行纯JAX复现DeepSeek V3架构，并在一台MacBook Air上从头训练",
+   "summary_long": "作者用190行纯JAX实现了DeepSeek-V3的架构，不用Flax、Equinox或PyTorch；参数只是dict形式的数组，各模块都是能从头读到尾的函数。覆盖的特性包括：多头潜在注意力MLA（每个token在每一层只缓存一个480→144的潜在表示）、解耦RoPE、DeepSeekMoE（1个共享专家+16个路由专家、每个token取top-4）、无辅助损失的均衡（用每个专家的偏置改变被选中的专家，而非改变权重）、序列级均衡损失（α=1e-4）与多token预测（λ=0.3）。训练用bf16做计算、f32做主权重，并包含带MLA缓存的prefill与decode。实测在MacBook Air M5（24GB）上：36.2M参数、每个token激活13.6M，数据为207本公版侦探小说共21.7M token，验证集是留出的犯罪小说。12,000步、约98M token（约4.5轮）、约2.6小时，速度约10.7k token/s，验证损失由5.02降至3.51。开启偏置时，每个专家的负载为5.7–6.9%（理想值6.25%），关闭时为0.09–18.6%，而第2000步的验证损失两者相同（3.921 vs 3.923）。作者称这是架构演示，并非强语言模型；v1.0包含checkpoint与数据，但checkpoint为pickle，加载会执行代码，只应从可信来源加载。",
    "key_points": [
-    "联网搜索、深度思考搜索、文件上传、链接阅读及ASR、TTS等能力拆为独立接口，可单独调用、分别计费，语音能力首次开放",
-    "官方称开发者可1:1复刻完整DeepSeek App，并开源轻量级聊天前端Demo，支持导入DeepSeek历史对话",
-    "语音识别五折后0.39元/小时、语音合成1.5元/万字符；搜索与网页抓取每1000次成功调用5元，OCR每1000页1.5元"
+    "190行纯JAX复现DeepSeek-V3架构，含MLA、解耦RoPE、DeepSeekMoE、无辅助损失均衡、序列级均衡损失与多token预测，不使用Flax/Equinox/PyTorch",
+    "在MacBook Air M5（24GB）上从零训练36.2M参数模型，数据为207本公版侦探小说、21.7M token，12,000步约2.6小时，验证损失5.02→3.51",
+    "实验显示均衡偏置把专家负载由0.09–18.6%收窄到5.7–6.9%，第2000步验证损失几乎不变（3.921 vs 3.923）；作者强调这只是架构演示，不是强语言模型"
    ],
    "topics": [
-    "tool-use",
-    "open-source"
+    "open-source",
+    "moe",
+    "training"
    ],
-   "category": "Agent 与开发",
+   "category": "模型",
    "categories": [
-    "Agent 与开发"
+    "模型",
+    "开源项目"
    ],
-   "horizon": "short",
-   "score": 60.5,
+   "horizon": "long",
+   "score": 71.8,
    "status": "review",
    "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "Deepseek"
-    ],
+    "hn_points": 272,
+    "hn_comments": 27,
     "outbound": {
-     "arxiv": [],
+     "arxiv": [
+      "2412.19437"
+     ],
      "links": [
-      "https://www.qbitai.com/author/yishui",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/deepseek",
-      "https://www.qbitai.com/2026/11/509224.html",
-      "https://www.qbitai.com/2026/11/510013.html",
-      "https://www.qbitai.com/2026/11/508107.html",
-      "https://www.qbitai.com/2026/10/505341.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/510003.html&title=突发！DeepSeek开放全家桶API&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2025/02/253095.html",
-      "https://www.qbitai.com/2025/02/257487.html",
-      "https://www.qbitai.com/tag/%e5%bc%80%e6%ba%90",
-      "https://www.qbitai.com/2026/06/437141.html",
-      "https://www.qbitai.com/tag/%e9%ad%94%e5%85%bd%e4%b8%96%e7%95%8c",
-      "https://www.qbitai.com/2025/12/358490.html",
-      "https://www.qbitai.com/2025/08/326310.html",
-      "https://www.qbitai.com/tag/bug",
-      "https://www.qbitai.com/tag/deepseek-v3-1",
-      "https://www.qbitai.com/2026/05/414316.html",
-      "https://www.qbitai.com/2026/11/508466.html",
-      "https://www.qbitai.com/2026/11/508694.html",
-      "https://www.qbitai.com/2026/11/508798.html",
-      "https://www.qbitai.com/2026/11/508828.html",
-      "https://www.qbitai.com/2026/11/509440.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
+      "https://arxiv.org/abs/2412.19437",
+      "https://vaibhaav.in/writing/deepseek-v3-jax/",
+      "https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax/releases/tag/v1.0",
+      "https://docs.astral.sh/uv/",
+      "https://standardebooks.org",
+      "https://www.gutenberg.org"
      ]
     },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "c481d3ae1bc13db1",
-   "url": "https://www.qbitai.com/2026/11/510232.html",
-   "title": "「史上最严」湿实验预测基准发布！推理拉满、算力翻5倍也白搭",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-11-14T09:58:22+00:00",
-   "summary_short": "UniPat AI牵头发布SPU湿实验预测基准，12款前沿模型最高仅0.486分",
-   "summary_long": "UniPat AI牵头推出新基准Science Prediction Universe（SPU），把AI自主研究与湿实验结果预测放在一起考。基准含116个任务、4207个湿实验，覆盖化学、材料科学、生物和医学共32个子领域；顾问与湿实验合作成员来自斯坦福、康奈尔、哈佛等高校及前沿科研机构、生物技术公司。其中100个公开任务取自85篇近期论文，16个私有任务来自四组未发表合作实验（VHH纳米抗体、反应条件、电解液和Magrolimab变体），以检验模型是否提前见过答案。评测中模型每次运行8小时，配8核CPU、16GiB内存和一块H20，可联网检索并安装科研软件，自行搜集证据后提交从低到高的预测排序；评分在断网容器中进行，用Spearman相关系数对照实测排序，并为每题生成4000份随机排序取第95百分位作为随机水平阈值。首轮覆盖12款前沿模型、13种配置，最高为Claude Opus 5.5的0.486分，仅一半任务超过随机水平，各配置超随机比例只有34%~52%。原文未详述末尾被截断的推理强度实验结论。",
+   "id": "87d7014c15ee68a3",
+   "url": "https://openai.com/index/step-toward-defining-the-standard-model",
+   "title": "A step toward defining the Standard Model on a lattice",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-15T22:00:01+00:00",
+   "summary_short": "标准模型候选格点定义：GPT‑6 Astra协助完成详细证明",
+   "summary_long": "标准模型在描述已知基本粒子及强、弱、电磁三种基本力上与实验高度吻合，但原文指出，连续时空中的完整标准模型仍缺乏非微扰定义，甚至不清楚相互作用理论是否在数学上良定义。微扰论把相互作用当作小修正，无法处理质子质量这类强相互作用主导的问题。将时空离散为格点，可在给定格距下给出严格非微扰定义，并可在计算机上直接计算，格点场论已推动强相互作用研究。10月预印本中，Nathaniel Craig借助GPT‑6 Astra提出一个候选格点定义；他原有策略但无法证明其覆盖所有必要情形，Astra帮助把策略转化为构造，并主导了详细证明。",
    "key_points": [
-    "SPU含116个任务、4207个湿实验，覆盖化学、材料、生物、医学32个子领域，16个私有任务来自未发表实验以防模型见过答案",
-    "首轮评测12款模型13种配置，最高分Claude Opus 5.5仅0.486，超过随机水平的任务比例只有34%~52%",
-    "同样8小时下把GPT-6 Astra从中等推理强度调到最高，运行时间中位数增至4.8倍、API成本增至5.3倍，预测得分几乎纹丝不动"
+    "标准模型虽与实验高度吻合，但完整理论仍缺乏非微扰定义。",
+    "微扰论在质子质量等强相互作用问题上不适用；格点离散化可给出严格非微扰定义并支持计算机计算。",
+    "Craig与GPT‑6 Astra提出候选格点定义，Astra协助将策略转化为构造并主导详细证明。"
    ],
    "topics": [
-    "eval",
-    "reasoning"
+    "reasoning",
+    "ai-for-science"
    ],
-   "category": "评测",
+   "category": "产品与应用",
    "categories": [
-    "评测"
+    "产品与应用"
    ],
-   "horizon": "short",
-   "score": 60.3,
+   "horizon": "long",
+   "score": 69.4,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
-     "资讯",
-     "首页轮播",
-     "基准测试",
-     "湿实验",
-     "预测"
+     "Science"
     ],
     "outbound": {
      "arxiv": [
-      "2611.15049"
+      "0709.3658",
+      "2610.09093"
      ],
      "links": [
-      "https://www.qbitai.com/author/luyu",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95",
-      "https://www.qbitai.com/tag/%e6%b9%bf%e5%ae%9e%e9%aa%8c",
-      "https://www.qbitai.com/tag/%e9%a2%84%e6%b5%8b",
-      "https://www.qbitai.com/2026/11/510297.html",
-      "https://www.qbitai.com/2026/11/509796.html",
-      "https://www.qbitai.com/2026/11/507322.html",
-      "https://www.qbitai.com/2026/11/507150.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/510232.html&title=「史上最严」湿实验预测基准发布！推理拉满、算力翻5倍也白搭&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2025/03/268935.html",
-      "https://www.qbitai.com/tag/ai%e6%b8%b8%e6%88%8f",
-      "https://www.qbitai.com/2024/04/136831.html",
-      "https://www.qbitai.com/2019/10/7949.html",
-      "https://www.qbitai.com/tag/%e5%85%8d%e8%b4%b9%e5%b7%a5%e5%85%b7",
-      "https://www.qbitai.com/2025/05/288023.html",
-      "https://www.qbitai.com/2025/05/282165.html",
-      "https://www.qbitai.com/tag/llm",
-      "https://www.qbitai.com/tag/%e5%a5%96%e5%8a%b1%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/2024/07/165587.html",
-      "https://www.qbitai.com/tag/%e5%a4%a7%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/2026/11/508466.html",
-      "https://www.qbitai.com/2026/11/508449.html",
-      "https://www.qbitai.com/2026/11/508694.html",
-      "https://www.qbitai.com/2026/11/508798.html",
-      "https://www.qbitai.com/2026/11/508828.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
+      "https://arxiv.org/abs/2610.09093",
+      "https://journals.aps.org/prd/abstract/10.1103/PhysRevD.25.2649",
+      "https://arxiv.org/abs/hep-lat/9307006",
+      "https://arxiv.org/abs/hep-lat/9811032",
+      "https://arxiv.org/abs/0709.3658"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "4f5b4ce8cb482577",
-   "url": "https://www.youtube.com/watch?v=IRK8h67ol7Q",
-   "title": "Jonathan Blow – If AI solved coding, why is my software still the same? [video]",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "32b9d4c781c86119",
+   "url": "https://arxiv.org/abs/1706.03762v7",
+   "title": "Attention Is All You Need",
+   "source": "论文（被提及）",
    "tier": "A",
-   "published_at": "2026-11-13T15:08:44+00:00",
-   "summary_short": "原文简介为空，无内容可概括。",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "coding-agent",
-    "product"
+   "published_at": "2017-06-12T17:57:34+00:00",
+   "summary_short": "提出纯注意力架构Transformer，翻译质量更优、更可并行且训练更省时",
+   "summary_long": "原文指出，主流的序列转换模型基于复杂的循环或卷积神经网络，采用编码器-解码器结构；表现最好的模型还通过注意力机制连接编码器与解码器。作者提出一种新的简单网络架构Transformer，完全基于注意力机制，不再使用循环和卷积。在两个机器翻译任务上的实验显示，该模型质量更优，同时更可并行、训练所需时间显著更少。在WMT 2014英德翻译任务上达到28.4 BLEU，比包括集成模型在内的现有最佳结果高出2 BLEU以上；在WMT 2014英法翻译任务上，用8块GPU训练3.5天后取得41.8的单模型BLEU新纪录，训练成本仅为文献中最佳模型的一小部分。原文还通过在大规模和有限训练数据下应用于英语成分句法分析，表明Transformer能很好地泛化到其他任务。",
+   "key_points": [
+    "提出Transformer，完全基于注意力机制，去掉了循环和卷积。",
+    "WMT 2014英德翻译达到28.4 BLEU，超过包括集成模型在内的现有最佳结果2 BLEU以上；英法翻译取得41.8的单模型BLEU新纪录，8块GPU训练3.5天，成本远低于文献最佳模型。",
+    "实验显示模型在翻译任务上质量更优、更可并行、训练时间显著减少，并成功应用于英语成分句法分析，表现出对其他任务的泛化能力。"
    ],
-   "category": "行业动态",
+   "topics": [
+    "transformer",
+    "architecture",
+    "attention-mechanism"
+   ],
+   "category": "模型",
    "categories": [
-    "行业动态"
+    "模型",
+    "研究论文"
    ],
    "horizon": "long",
-   "score": 56.1,
+   "score": 67.2,
    "status": "review",
    "extra": {
-    "hn_points": 453,
-    "hn_comments": 656,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.youtube.com/about/",
-      "https://www.youtube.com/about/press/",
-      "https://www.youtube.com/about/copyright/",
-      "https://www.youtube.com/creators/",
-      "https://www.youtube.com/ads/",
-      "https://developers.google.com/youtube",
-      "https://www.youtube.com/about/policies/",
-      "https://www.youtube.com/howyoutubeworks?utm_campaign=ytgen&utm_source=ythp&utm_medium=LeftNav&utm_content=txt&u=https%3A%2F%2Fwww.youtube.com%2Fhowyoutubeworks%3Futm_source%3Dythp%26utm_medium%3DLeftNav%26utm_campaign%3Dytgen",
-      "https://tv.youtube.com/learn/nflsundayticket"
-     ]
-    },
-    "summary_mode": "brief"
+    "authors": [
+     "Ashish Vaswani",
+     "Noam Shazeer",
+     "Niki Parmar",
+     "Jakob Uszkoreit",
+     "Llion Jones",
+     "Aidan N. Gomez",
+     "Lukasz Kaiser",
+     "Illia Polosukhin"
+    ],
+    "author_count": 8,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "Hacker News (AI 高分帖)",
+     "Sebastian Raschka"
+    ],
+    "summary_mode": "full"
    }
   },
   {
-   "id": "be54405e42bc8186",
-   "url": "https://latent.space/p/ainews-the-no-ai-slop-manifesto/",
-   "title": "[AINews] The No AI Slop Manifesto",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-11-14T08:31:02+00:00",
-   "summary_short": "No AI Slop 宣言发布，意在作为职场讨论工具",
-   "summary_long": "本期标题新闻是「No AI Slop」宣言：它源自 AIE CODE 会议上的讨论，由 Dex 在闭幕主题演讲中介绍，此前已获得多位与会演讲者的联署；原文称它今天在 Hacker News 被投上首页。原文表示，发起这份宣言是为了给职场讨论提供一个有用的工具，并希望它被这样使用；完整宣言、联署、编辑与讨论都在 slopmanifesto.com 开放。其他消息方面，原文提到 llama.cpp 与 ggml 达到 1.0（宣布稳定，并从 llama.cpp 公共头文件中移除 35 个弃用函数），SGLang 也在近期 SGLang Summit 上宣布 1.0。AI Twitter 摘要部分涵盖：llama.cpp 1.0 允许用户为频繁使用的专家预留缓存；LangChain 的 C 轮融资由 CapitalG 领投；Gemini 4 Hydrogen 在 GitHub Copilot 应用、CLI 与 VS Code 中全面可用；Claude Fable 5.2 在 Agent Arena 长编码任务中排名第一；百度 ERNIE 5.5 Flash Preview 拥有 280B 总参数、14B 激活参数和 1M 令牌上下文。",
+   "id": "de1b04aef2180495",
+   "url": "https://jakub.jankiewicz.org/blog/ai-code-open-source/",
+   "title": "All AI-generated code should be Open Source",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-15T14:46:58+00:00",
+   "summary_short": "作者主张AI生成的代码都应开源，理由涉及训练数据来源与版权",
+   "summary_long": "作者主张所有由AI生成的代码都应开源。理由之一：AI模型训练语料来自自GNU项目与自由软件运动以来的大量开源代码，这些代码被直接从互联网抓取，未经许可也未有恰当署名；模型还训练于以CC许可发布、法律要求署名的Stack Overflow及姊妹站点，把这种集体知识变成专有闭源代码，形同许可洗白。理由之二：纯AI生成代码并非人类所写，不应享有版权；美国这一原则可追溯到\"猴子自拍\"争议，即非人类不能持有版权，美国版权局后来在AI问题上引用了该先例，维基共享资源也要求纯AI生成图像标注为公有领域。但各国法律不同，如英国对计算机生成作品给予有限版权保护。作者因此主张，为在各法域间保持公平并尊重造就AI的开放生态，开发者与公司应明确以开源许可发布AI生成代码，或用CC0贡献至公有领域。他也承认代码并非完全手工或完全自动，但开发者日益依赖AI、甚至不审查输出，仅靠写提示词产生的代码更应开源。",
    "key_points": [
-    "「No AI Slop」宣言源自 AIE CODE 会议讨论，由 Dex 在闭幕主题演讲中介绍，并获多位演讲者联署；原文称其登上 Hacker News 首页",
-    "原文称发起该宣言的目的是为职场讨论提供工具，完整文本、联署与讨论在 slopmanifesto.com 开放",
-    "llama.cpp 与 ggml 达到 1.0，宣布稳定并从公共头文件移除 35 个弃用函数；SGLang 也在 SGLang Summit 上宣布 1.0"
+    "AI模型训练语料包含未经许可、未署名抓取的开源代码，以及法律要求署名的CC许可Stack Overflow内容，作者认为将其转为闭源专有代码形同许可洗白",
+    "纯AI生成代码非人类所写，不应受版权保护，依据可追溯至\"猴子自拍\"案与美国版权局的AI相关立场；维基共享资源要求纯AI图像标注公有领域",
+    "各国法律不一（如英国对计算机生成作品给予有限版权保护），作者主张开发者与公司应以开源许可或CC0明确发布AI生成代码"
    ],
    "topics": [
-    "ai-slop",
     "open-source",
-    "model-release"
+    "alignment",
+    "product"
    ],
    "category": "行业动态",
    "categories": [
     "行业动态",
-    "模型"
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 55.0,
+   "status": "review",
+   "extra": {
+    "hn_points": 1029,
+    "hn_comments": 568,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://en.wikipedia.org/wiki/Monkey_selfie_copyright_dispute",
+      "https://commons.wikimedia.org/wiki/Commons:AI-generated_media",
+      "https://jcu.bi/twitter",
+      "https://jcu.bi/ln"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "f9a3c449e5989b1d",
+   "url": "https://simonwillison.net/2026/Nov/14/datasette-llm/",
+   "title": "datasette-llm 0.1a11",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-14T23:59:28+00:00",
+   "summary_short": "datasette-llm 0.1a11 新增 OpenAI 兼容端点支持，可连接本地模型",
+   "summary_long": "datasette-llm 是 Datasette 的中间插件，用于为其他 Datasette 插件配置 LLM。0.1a11 版本新增对 OpenAI 兼容端点的支持，因此可以把 Datasette 配置为使用任何遵循 OpenAI 伪标准 Web 协议的托管 LLM。原文指出，这意味着若使用 LM Studio、Ollama 或刚发布 v1.0.0 的 llama.cpp 运行本地模型，可通过 uvx 启动 Datasette：示例命令加载 content.db，并借助 datasette-agent 与 plugins.datasette-llm.default_model 配置模型名和 api_base，最终运行一个由本地模型驱动的 Datasette Agent 实例。原文未详述该版本的其他改动或更广泛的适用性。",
+   "key_points": [
+    "datasette-llm 是 Datasette 的中间插件，用于给其他 Datasette 插件配置 LLM。",
+    "0.1a11 新增 OpenAI 兼容端点支持，可连接任何使用 OpenAI 伪标准 Web 协议的 LLM 托管服务。",
+    "示例中通过 uvx 配合 datasette-agent，可用 LM Studio、Ollama 或 llama.cpp 的本地模型运行 Datasette Agent。"
+   ],
+   "topics": [
+    "tool-use",
+    "open-source",
+    "coding-agent"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
    ],
    "horizon": "short",
-   "score": 52.9,
+   "score": 51.6,
    "status": "review",
    "extra": {
     "content_source": "rss",
     "source_tags": [
-     "ainews: weekday roundups"
+     "uv",
+     "datasette-agent",
+     "llm",
+     "datasette",
+     "llms"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
+      "https://github.com/datasette/datasette-llm/releases/tag/0.1a11",
+      "https://lmstudio.ai",
+      "https://ollama.com",
+      "https://github.com/ggml-org/llama.cpp",
       "https://huggingface.co/blog/ggml-org/llama-cpp-v1",
-      "https://github.com/ggml-org/ggml/releases/tag/v1.0.0",
-      "https://github.com/ggml-org/llama.cpp/releases/tag/v1.0.0",
-      "https://github.com/sgl-project/sglang/issues/50045",
-      "https://www.sglang.io/summit",
-      "https://www.slopmanifesto.com/",
-      "https://latent.space/p/ainews-building-aie-code-the-top-coding-agent-conference/",
-      "https://www.youtube.com/watch?v=y9JtCCZP2MQ",
-      "https://news.ycombinator.com/item?id=50488769",
-      "https://deepgram.com/?utm_source=latent-space&utm_medium=sponsored-newsletter&utm_campaign=fy26_q4_brand_campaign&utm_term=latent-space&utm_content=main-ad",
-      "https://www.backblaze.com/cloud-storage/landing/ad/ai?utm_source=latent_space&utm_medium=podcast&utm_campaign=podcast-promotion-11132026",
-      "https://x.com/ggerganov/status/2121246103312212124",
-      "https://x.com/danielhanchen/status/2121429376869007854",
-      "https://www.langchain.com/blog/series-c",
-      "https://capitalg.com/insights/doubling-down-on-langchain/",
-      "https://x.com/github/status/2121319695626518823",
-      "https://x.com/skalskip92/status/2121322414453694489",
-      "https://x.com/dzhng/status/2121288086101606828",
-      "https://x.com/sundarpichai/status/2121338095664808238",
-      "https://x.com/j_dekoninck/status/2121263753006374997",
-      "https://x.com/arena/status/2121333127419412501",
-      "https://x.com/arena/status/2121333119173468261",
-      "https://x.com/arena/status/2121333124923805786",
-      "https://x.com/ariG23498/status/2121123188608475255",
-      "https://x.com/arena/status/2121343732582904233",
-      "https://x.com/thinkymachines/status/2121353292878110868",
-      "https://x.com/jackcookjack/status/2121357249054691386",
-      "https://x.com/teortaxesTex/status/2121369856796967375",
-      "https://x.com/andrew_n_carr/status/2121108908999950729",
-      "https://x.com/omarsar0/status/2121254466104267098",
-      "https://x.com/RicursiveAI/status/2121375041640382737",
-      "https://x.com/ArtificialAnlys/status/2121339732026445859",
-      "https://x.com/deepseek_ai/status/2121247896918253875",
-      "https://x.com/deepseek_ai/status/2121247903603941471",
-      "https://x.com/TheRundownAI/status/2121269456479597049",
-      "https://x.com/ArtificialAnlys/status/2121393821955334328",
-      "https://x.com/ArtificialAnlys/status/2121393834336882914",
-      "https://x.com/ArtificialAnlys/status/2121137661180256653",
-      "https://x.com/jakubjurovych/status/2121256499552915586",
-      "https://x.com/joelniklaus/status/2121271926131974444"
+      "https://simonwillison.net/tags/uv",
+      "https://simonwillison.net/tags/datasette-agent",
+      "https://simonwillison.net/tags/llm",
+      "https://simonwillison.net/tags/datasette",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "8479f47633fa8f96",
-   "url": "https://www.interconnects.ai/p/open-source-ai-without-jensen",
-   "title": "Open-source AI without Jensen",
-   "source": "Interconnects",
-   "tier": "A",
-   "published_at": "2026-11-14T12:23:15+00:00",
-   "summary_short": "Jensen辞任英伟达CEO：开放模型生态失去关键支持者，原作者解析其经济与监管风险",
-   "summary_long": "原文称 Nvidia CEO Jensen Huang 辞任，作者认为这对美国开放模型生态是重大挫折。Nvidia 财务上仍有支持开放模型的理由——避免权力集中在会自研芯片、压缩其利润的少数客户手中——但这是难解之题，需要解决的远不止工程层面。Nvidia 运营高度依赖 Jensen，外界共识是前路有挑战，包括芯片走私调查带来的高调离职与人才被挖；公司当前首要目标是稳住局面、未来24个月交付客户、防止崩盘。开放模型是 Jensen 的创始人式押注，其大举注资很可能枯竭。作者指出开放模型经济仍处萌芽期，这几年对确立用例、收入流与继续训练下一代模型的动机至关重要：上行面是抓住了“智能所有权”与企业后训练；下行面是算力短缺使真正商品化的智能遥不可及，推理创业公司也难获芯片，开放权重模型若以高推理利润率服务（如 DeepSeek 的 DeepInfer）便远非商品，规模经济与整合更强者将胜出。Jensen 的支持与保护为生态争取了解决问题的时间。作者最大近忧是州级再到国家级的草率监管，以及流行中国开放权重模型带来的网络安全风险。",
-   "key_points": [
-    "原文称 Nvidia CEO Jensen Huang 辞任；Nvidia 虽有财务动机继续支持开放模型，但公司运营高度依赖他，当前首要目标是稳住局面、24个月内交付客户、防止崩盘，其大举注资很可能枯竭。",
-    "作者认为开放模型经济仍在萌芽期：上行是企业后训练与“智能所有权”，下行是算力短缺下开放权重模型难以真正商品化（DeepSeek 的 DeepInfer 高推理利润率即为例证），规模经济与整合更强的闭源实验室将胜出。",
-    "作者最大近忧是州级再到国家级的草率监管；自夏天以来距离危机“只差一个强大的中国开放权重模型”，此类黑客攻击是时间问题；推倒开源多米诺容易，逆转下游权力集中与创新受抑则难得多。"
-   ],
-   "topics": [
-    "open-source",
-    "cybersecurity",
-    "policy-regulation"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 50.7,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://natolambert.com/slides/2026/fireworks/talk.html",
-      "https://www.youtube.com/watch?v=zsO5RktNB7k",
-      "https://www.theinformation.com/articles/ai-inference-startups-quietly-buying-chips",
-      "https://github.com/deepseek-ai/deepinfer",
-      "https://www.interconnects.ai/p/how-well-can-we-measure-open-model",
-      "https://www.axios.com/2026/10/14/ai-safety-regulation-election-spending-50-million",
-      "https://www.interconnects.ai/p/6-months-to-live-for-open-models",
-      "https://www.interconnects.ai/p/open-source-ai-without-jensen?utm_source=substack&utm_medium=email&utm_content=share&action=share",
-      "https://youtu.be/2jqSNHWdHEY?t=1737",
-      "https://huggingface.co/thinkingmachines/Inkling-2-Small"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "c6caa4d4f0b0e545",
-   "url": "https://www.techpowerup.com/354814/nvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus",
-   "title": "Nvidia allegedly engineered scarcity by funding AI startups to buy its GPUs",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-14T02:52:59+00:00",
-   "summary_short": "《华尔街日报》报道称英伟达通过投资AI初创公司买自家GPU来人为制造缺货假象",
-   "summary_long": "据《华尔街日报》报道（经Wccftech转述），已卸任CEO的Jensen Huang被指通过投资那些随后会购买英伟达GPU并建设数据中心的AI初创公司，人为加剧当前的GPU与内存短缺，目的是维持需求旺盛的市场印象，并消化来自台积电的芯片过剩供应。报道援引去年8月Huang与包括CFO兼代理CEO Colette Kress在内的高级财务团队的会议：Kress主张缩减循环融资安排、削减与OpenAI的2500亿美元交易，Huang据称斥其为“deer in the headlights”。报道称，Huang加大对小型云服务商的投资，背景是大型AI厂商正从采购标准部件转向定制方案；而英伟达当时面临台积电“雪崩式”的GPU供应，却缺乏即时买家。Kress还指出，这些被投资的小型云厂商根本买不起英伟达GPU，同样可能是财务死胡同。原文未详述报道的具体证据与英伟达方面的回应。",
-   "key_points": [
-    "《华尔街日报》报道指英伟达投资AI初创公司，这些公司再购买其GPU并建数据中心，以维持高需求的市场观感并消化台积电过剩产能",
-    "报道引用8月会议：CFO兼代理CEO Colette Kress主张收缩循环融资、削减与OpenAI的2500亿美元交易，据称遭Huang当面斥责",
-    "报道称英伟达面临台积电“雪崩式”GPU供应却无即时买家，而被投小型云厂商无力购买GPU，同样可能是财务死胡同"
-   ],
-   "topics": [
-    "open-source",
-    "product"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 50.1,
-   "status": "review",
-   "extra": {
-    "hn_points": 1017,
-    "hn_comments": 611,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.techpowerup.com/354732/nvidia-co-founder-and-ceo-jensen-huang-officially-resigns",
-      "https://www.wsj.com/tech/jensen-huang-colette-kress-nvidia-ceo-eb289097?",
-      "https://wccftech.com/jensen-huang-financed-ai-startups-absorb-excess-silicon/",
-      "https://www.techpowerup.com/351120/nvidia-and-openai-reportedly-discuss-usd-250-billion-deal-for-10-gigawatt-ohio-data-center",
-      "https://www.techpowerup.com/img/ooCln2q3jkKNGHen.jpg",
-      "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.techpowerup.com%2F354814%2Fnvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus",
-      "https://x.com/intent/post?text=NVIDIA%20Allegedly%20Engineered%20Scarcity%20By%20Funding%20AI%20Startups%20To%20Buy%20Its%20GPUs%20http%3A%2F%2Fwww.techpowerup.com%2F354814%2Fnvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus%20via%20%40TechPowerUp",
-      "https://bsky.app/intent/compose?text=NVIDIA%20Allegedly%20Engineered%20Scarcity%20By%20Funding%20AI%20Startups%20To%20Buy%20Its%20GPUs%20http%3A%2F%2Fwww.techpowerup.com%2F354814%2Fnvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus",
-      "https://www.reddit.com/submit?url=http%3A%2F%2Fwww.techpowerup.com%2F354814%2Fnvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus&title=NVIDIA%20Allegedly%20Engineered%20Scarcity%20By%20Funding%20AI%20Startups%20To%20Buy%20Its%20GPUs",
-      "https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Fwww.techpowerup.com%2F354814%2Fnvidia-allegedly-engineered-scarcity-by-funding-ai-startups-to-buy-its-gpus",
-      "https://en.wiktionary.org/wiki/quelle_surprise"
-     ]
-    },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   }

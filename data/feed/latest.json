@@ -1,195 +1,365 @@
 {
- "generated_at": "2026-11-14T22:59:49+00:00",
- "date": "2026-11-14",
- "run_id": "20261114-225828",
+ "generated_at": "2026-11-15T23:24:09+00:00",
+ "date": "2026-11-15",
+ "run_id": "20261115-232323",
  "top": [
   {
-   "id": "2849eca9693ec9be",
-   "url": "https://arxiv.org/abs/2611.15049v1",
-   "title": "Science Prediction Universe",
+   "id": "4e32eec5c32a12cc",
+   "url": "https://arxiv.org/abs/2104.09864v5",
+   "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding",
    "source": "论文（被提及）",
    "tier": "A",
-   "published_at": "2026-11-11T05:23:11+00:00",
-   "summary_short": "SPU基准测试AGI实验预测能力，揭示瓶颈在科学判断而非工具执行",
-   "summary_long": "可靠预测实验结果被视为理解自然现象的核心检验。原文指出，若通用人工智能要超越人类科学能力，也必须比人类更可靠地预测实验结果。为此，研究提出Science Prediction Universe（SPU）基准：含化学、材料科学、生物与医学的100个公开验证任务，以及16个来自未发表湿实验的私有任务。智能体获得实验设置和候选条件后，可利用所需资源按测量结果排序候选。研究评估跨Codex与Claude Code两个框架、覆盖12个前沿模型的13种配置。公开基准上配置呈两个层级，任务校正Spearman相关系数从0.227到0.478，当前智能体远未饱和湿实验预测。对1,155条公开轨迹（227,103次工具调用）的分析显示，瓶颈在科学判断而非工具执行：智能体依赖共享单调先验，彼此一致度0.52高于与实验现实的0.33，且常计算不影响最终结果的简单代理量。",
+   "published_at": "2021-04-20T09:54:06+00:00",
+   "summary_short": "提出旋转位置编码RoPE及RoFormer，长文本分类实验持续优于对比方法",
+   "summary_long": "位置编码近期在Transformer架构中显示出有效性，可为序列中不同位置元素之间的依赖建模提供监督信号。原文先考察将位置信息融入基于Transformer的语言模型学习过程的各种方法，随后提出Rotary Position Embedding（RoPE）。该方法用旋转矩阵编码绝对位置，同时在自注意力公式中纳入显式的相对位置依赖。原文指出RoPE具备序列长度灵活性、随相对距离增加而衰减的token间依赖，以及让线性自注意力具备相对位置编码的能力。原文在多种长文本分类基准数据集上评估使用RoPE增强的Transformer（即RoFormer），实验显示其持续优于对比方法；原文还提供理论分析解释部分实验结果，并说明RoFormer已集成到Huggingface。",
    "key_points": [
-    "SPU基准聚焦隐藏实验结果，包含化学、材料科学、生物与医学的100个公开验证任务，以及16个来自未发表湿实验的私有任务。",
-    "研究评估覆盖12个前沿模型、Codex与Claude Code两个框架的13种智能体配置；公开基准任务校正Spearman相关系数从0.227到0.478，配置分为两个层级。",
-    "对1,155条公开评分轨迹（227,103次工具调用）的分析表明，瓶颈在科学判断而非工具执行：智能体彼此一致度0.52高于与实验现实的0.33，且常计算不影响最终结果的简单物理或化学代理量。"
+    "原文先梳理将位置信息融入Transformer语言模型学习的多种方法，再提出RoPE。",
+    "RoPE用旋转矩阵编码绝对位置，并在自注意力公式中显式纳入相对位置依赖，具备序列长度灵活性、依赖随相对距离衰减、可装备线性自注意力等特性。",
+    "在多种长文本分类基准上，RoFormer持续优于对比方法；原文给出理论分析解释部分结果，并称RoFormer已集成到Huggingface。"
    ],
    "topics": [
-    "eval",
-    "tool-use",
-    "reasoning"
+    "position-encoding",
+    "long-context",
+    "open-source"
    ],
-   "category": "评测",
+   "category": "模型",
    "categories": [
-    "评测",
-    "Agent 与开发",
+    "模型",
     "研究论文"
    ],
    "horizon": "long",
-   "score": 81.9,
+   "score": 87.2,
    "status": "published",
    "extra": {
     "authors": [
-     "Zengji Tu",
-     "Xiang Liu",
-     "Jiarui Sun",
-     "Ruoyu Wu",
-     "Zhihui Qi",
-     "Chengda Wu",
-     "Yutao Zhou",
-     "Bo Yang"
+     "Jianlin Su",
+     "Yu Lu",
+     "Shengfeng Pan",
+     "Ahmed Murtadha",
+     "Bo Wen",
+     "Yunfeng Liu"
     ],
-    "author_count": 36,
+    "author_count": 6,
     "arxiv_via": "mention",
     "mentioned_by": [
-     "量子位"
+     "Hacker News (AI 高分帖)",
+     "Sebastian Raschka"
     ],
     "summary_mode": "full"
    }
   },
   {
-   "id": "ea0776201252f8c6",
-   "url": "https://haddyalchaer.com/jepa",
-   "title": "After 600 experiments, here's what I discovered about JEPA world models",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "59fbbb86f801d0b6",
+   "url": "https://arxiv.org/abs/2305.19466v2",
+   "title": "The Impact of Positional Encoding on Length Generalization in Transformers",
+   "source": "论文（被提及）",
    "tier": "A",
-   "published_at": "2026-11-13T17:55:28+00:00",
-   "summary_short": "600次实验：不重新训练，仅改规划方法就让 LeWM 长程任务成功率从 22% 升到 85%",
-   "summary_long": "AI 界正争论世界模型应该是什么：多数关注生成式世界模型，即用像素生成来预测未来；LeCun 等人认为多数像素对决策无用且不可预测，因此提出 JEPA 联合嵌入预测架构，它包含编码器、预测器、规划器，整个循环在嵌入空间运行。今年一个包括 LeCun 的团队发布 LeWM，主基准为 Push-T 机器人推块仿真。作者几个月内做了 600 次实验：把预测器换成仿真器的完美物理后，在 250 个目标距离 75 步的长程任务上，原版成功率 78%、真物理版 77%，说明在其训练过的路径类型上，LeWM 的预测已接近完美物理。瓶颈在于这套架构的使用方式：原版在 75 步目标上成功率仅 22%，25 步目标为 89.7%（真物理 90.5%）。在不重新训练模型的前提下，作者找到四种新规划方法：前两种把长程成功率从 22% 提到 85%，接近直接获得专家子目标的规划器；另两种把 LeWM 扩展到更难目标，其中仅改变目标打分方式一项就提升 60 个百分点，是换用完美物理收益的三倍。",
+   "published_at": "2023-05-31T00:29:55+00:00",
+   "summary_short": "仅解码器 Transformer 长度泛化：NoPE 无需位置编码却优于 APE、ALiBi、Rotary",
+   "summary_long": "长度泛化指从较小训练上下文泛化到更大上下文的能力，是 Transformer 语言模型的关键挑战。位置编码被视为影响长度泛化的主要因素，但不同方案在下游任务外推中的作用仍不清楚。本文比较仅解码器 Transformer 的五种方案：APE、T5 相对位置编码、ALiBi、Rotary 和不使用位置编码的 NoPE，并在多项推理与数学任务上评估。结果显示，常用的 ALiBi、Rotary 和 APE 不适合下游长度泛化；NoPE 反而优于其他显式位置编码，且不增加额外计算。研究理论上说明 NoPE 可表示绝对和相对位置编码，但在 SGD 训练下其注意力模式最接近 T5 相对位置编码。研究还发现 scratchpad 并非总有助于长度泛化，其格式会显著影响表现。整体而言，显式位置嵌入对仅解码器 Transformer 泛化到更长序列并非必需。",
    "key_points": [
-    "JEPA 由编码器、预测器、规划器三部分组成，整个循环在嵌入空间运行，只需学习对决策重要的场景部分",
-    "把预测器换成仿真器完美物理，长程任务成功率为 77%，原版为 78%，说明预测精度不是长程失败的主因",
-    "原版 LeWM 在 75 步目标上成功率 22%，在 25 步目标上为 89.7%，误差在长程中累积"
+    "比较五种方案：APE、T5 相对位置编码、ALiBi、Rotary 和不使用位置编码的 NoPE，在多项推理与数学任务上评估长度泛化。",
+    "常用的 ALiBi、Rotary 和 APE 不适合下游任务的长度泛化；NoPE 表现更好且不增加额外计算。",
+    "研究理论上说明 NoPE 可表示绝对和相对位置编码，SGD 训练下其注意力模式最接近 T5 相对位置编码；scratchpad 并非总有用，且格式显著影响表现。"
    ],
    "topics": [
-    "world-models",
-    "planning",
-    "jepa"
+    "reasoning",
+    "eval"
    ],
    "category": "模型",
    "categories": [
-    "模型"
+    "模型",
+    "评测",
+    "研究论文"
    ],
    "horizon": "long",
-   "score": 79.2,
+   "score": 80.7,
    "status": "published",
    "extra": {
-    "hn_points": 286,
-    "hn_comments": 48,
-    "outbound": {
-     "arxiv": [
-      "2303.04137",
-      "2603.19312",
-      "2610.06805"
-     ],
-     "links": [
-      "https://x.com/haddyalchaer",
-      "https://openreview.net/pdf?id=BZ5a1r-kVsf",
-      "https://arxiv.org/abs/2603.19312",
-      "https://arxiv.org/abs/2303.04137",
-      "https://arxiv.org/abs/2610.06805"
-     ]
-    },
-    "content_source": "direct",
+    "authors": [
+     "Amirhossein Kazemnejad",
+     "Inkit Padhi",
+     "Karthikeyan Natesan Ramamurthy",
+     "Payel Das",
+     "Siva Reddy"
+    ],
+    "author_count": 5,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "Hacker News (AI 高分帖)",
+     "Sebastian Raschka"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "fda887a769963d6a",
+   "url": "https://arxiv.org/abs/1910.10683v4",
+   "title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
+   "source": "论文（被提及）",
+   "tier": "A",
+   "published_at": "2019-10-23T17:37:36+00:00",
+   "summary_short": "提出统一文本到文本框架，系统比较迁移学习要素并刷新多项基准",
+   "summary_long": "迁移学习——先在大数据量的任务上预训练，再在下游任务上微调——已成为自然语言处理中一项有效的技术，并衍生出多种方法与实践。本文提出一个统一框架，把所有基于文本的语言问题转换为文本到文本格式，借此系统考察NLP迁移学习的技术图景。研究在数十个语言理解任务上比较了预训练目标、架构、无标注数据集、迁移方式等因素。作者将探索所得与规模以及新的“Colossal Clean Crawled Corpus”数据集结合，在涵盖摘要、问答、文本分类等多项基准上取得当前最优结果。为便于后续迁移学习研究，作者公开了数据集、预训练模型与代码。",
+   "key_points": [
+    "提出统一框架，将所有基于文本的语言问题转换为文本到文本格式",
+    "在数十个语言理解任务上系统比较预训练目标、架构、无标注数据集与迁移方法等因素",
+    "结合规模与新建的Colossal Clean Crawled Corpus，在摘要、问答、文本分类等基准上取得当前最优结果，并公开数据集、预训练模型与代码"
+   ],
+   "topics": [
+    "pretraining",
+    "transfer-learning",
+    "open-source"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 80.1,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Colin Raffel",
+     "Noam Shazeer",
+     "Adam Roberts",
+     "Katherine Lee",
+     "Sharan Narang",
+     "Michael Matena",
+     "Yanqi Zhou",
+     "Wei Li"
+    ],
+    "author_count": 9,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "Hacker News (AI 高分帖)",
+     "Sebastian Raschka"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "2eef3c25f2aa3ef9",
+   "url": "https://arxiv.org/abs/2603.11611v2",
+   "title": "Fractional Rotation, Full Potential? Investigating Performance and Convergence of Partial RoPE",
+   "source": "论文（被提及）",
+   "tier": "A",
+   "published_at": "2026-03-12T07:05:13+00:00",
+   "summary_short": "部分RoPE用约10%维度匹配全RoPE收敛，缓存内存最多省10倍。",
+   "summary_long": "RoPE广泛用于Transformer编码相对位置信息，但仅对部分隐藏维度施加RoPE的效果仍缺乏系统研究；原文指出这一设计在长上下文下可显著降低内存。原文报告，部分RoPE相比标准RoPE缓存最多节省10倍内存，同时最终损失相当。研究跨架构、模型规模、序列长度和数据集考察其对训练动态与收敛的影响。结果显示：仅对约10%的维度施加RoPE即可匹配全RoPE的收敛；这些趋势在不同设置下保持一致；无位置编码（NoPE）可能出现损失尖峰，而极少量RoPE或使用QK-Norm可缓解。总体而言，原文将部分RoPE视为效率与稳定性之间的有效折中。",
+   "key_points": [
+    "部分RoPE相比标准RoPE缓存最多节省10倍内存，同时最终损失保持相当。",
+    "仅对约10%维度施加RoPE即可达到与全RoPE相当的收敛，且跨架构、模型规模、序列长度和数据集的趋势一致。",
+    "NoPE可能产生损失尖峰，少量RoPE或QK-Norm可缓解；部分RoPE是效率与稳定性的折中。"
+   ],
+   "topics": [
+    "rope",
+    "positional-encoding",
+    "training-efficiency"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 76.5,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Mohammad Aflah Khan",
+     "Krishna P. Gummadi",
+     "Manish Gupta",
+     "Abhilasha Ravichander"
+    ],
+    "author_count": 4,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "Hacker News (AI 高分帖)",
+     "Sebastian Raschka"
+    ],
     "summary_mode": "full"
    }
   }
  ],
  "items": [
   {
-   "id": "2849eca9693ec9be",
-   "url": "https://arxiv.org/abs/2611.15049v1",
-   "title": "Science Prediction Universe",
+   "id": "4e32eec5c32a12cc",
+   "url": "https://arxiv.org/abs/2104.09864v5",
+   "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding",
    "source": "论文（被提及）",
    "tier": "A",
-   "published_at": "2026-11-11T05:23:11+00:00",
-   "summary_short": "SPU基准测试AGI实验预测能力，揭示瓶颈在科学判断而非工具执行",
-   "summary_long": "可靠预测实验结果被视为理解自然现象的核心检验。原文指出，若通用人工智能要超越人类科学能力，也必须比人类更可靠地预测实验结果。为此，研究提出Science Prediction Universe（SPU）基准：含化学、材料科学、生物与医学的100个公开验证任务，以及16个来自未发表湿实验的私有任务。智能体获得实验设置和候选条件后，可利用所需资源按测量结果排序候选。研究评估跨Codex与Claude Code两个框架、覆盖12个前沿模型的13种配置。公开基准上配置呈两个层级，任务校正Spearman相关系数从0.227到0.478，当前智能体远未饱和湿实验预测。对1,155条公开轨迹（227,103次工具调用）的分析显示，瓶颈在科学判断而非工具执行：智能体依赖共享单调先验，彼此一致度0.52高于与实验现实的0.33，且常计算不影响最终结果的简单代理量。",
+   "published_at": "2021-04-20T09:54:06+00:00",
+   "summary_short": "提出旋转位置编码RoPE及RoFormer，长文本分类实验持续优于对比方法",
+   "summary_long": "位置编码近期在Transformer架构中显示出有效性，可为序列中不同位置元素之间的依赖建模提供监督信号。原文先考察将位置信息融入基于Transformer的语言模型学习过程的各种方法，随后提出Rotary Position Embedding（RoPE）。该方法用旋转矩阵编码绝对位置，同时在自注意力公式中纳入显式的相对位置依赖。原文指出RoPE具备序列长度灵活性、随相对距离增加而衰减的token间依赖，以及让线性自注意力具备相对位置编码的能力。原文在多种长文本分类基准数据集上评估使用RoPE增强的Transformer（即RoFormer），实验显示其持续优于对比方法；原文还提供理论分析解释部分实验结果，并说明RoFormer已集成到Huggingface。",
    "key_points": [
-    "SPU基准聚焦隐藏实验结果，包含化学、材料科学、生物与医学的100个公开验证任务，以及16个来自未发表湿实验的私有任务。",
-    "研究评估覆盖12个前沿模型、Codex与Claude Code两个框架的13种智能体配置；公开基准任务校正Spearman相关系数从0.227到0.478，配置分为两个层级。",
-    "对1,155条公开评分轨迹（227,103次工具调用）的分析表明，瓶颈在科学判断而非工具执行：智能体彼此一致度0.52高于与实验现实的0.33，且常计算不影响最终结果的简单物理或化学代理量。"
+    "原文先梳理将位置信息融入Transformer语言模型学习的多种方法，再提出RoPE。",
+    "RoPE用旋转矩阵编码绝对位置，并在自注意力公式中显式纳入相对位置依赖，具备序列长度灵活性、依赖随相对距离衰减、可装备线性自注意力等特性。",
+    "在多种长文本分类基准上，RoFormer持续优于对比方法；原文给出理论分析解释部分结果，并称RoFormer已集成到Huggingface。"
    ],
    "topics": [
-    "eval",
-    "tool-use",
-    "reasoning"
+    "position-encoding",
+    "long-context",
+    "open-source"
    ],
-   "category": "评测",
+   "category": "模型",
    "categories": [
-    "评测",
-    "Agent 与开发",
+    "模型",
     "研究论文"
    ],
    "horizon": "long",
-   "score": 81.9,
+   "score": 87.2,
    "status": "published",
    "extra": {
     "authors": [
-     "Zengji Tu",
-     "Xiang Liu",
-     "Jiarui Sun",
-     "Ruoyu Wu",
-     "Zhihui Qi",
-     "Chengda Wu",
-     "Yutao Zhou",
-     "Bo Yang"
+     "Jianlin Su",
+     "Yu Lu",
+     "Shengfeng Pan",
+     "Ahmed Murtadha",
+     "Bo Wen",
+     "Yunfeng Liu"
     ],
-    "author_count": 36,
+    "author_count": 6,
     "arxiv_via": "mention",
     "mentioned_by": [
-     "量子位"
+     "Hacker News (AI 高分帖)",
+     "Sebastian Raschka"
     ],
     "summary_mode": "full"
    }
   },
   {
-   "id": "ea0776201252f8c6",
-   "url": "https://haddyalchaer.com/jepa",
-   "title": "After 600 experiments, here's what I discovered about JEPA world models",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "59fbbb86f801d0b6",
+   "url": "https://arxiv.org/abs/2305.19466v2",
+   "title": "The Impact of Positional Encoding on Length Generalization in Transformers",
+   "source": "论文（被提及）",
    "tier": "A",
-   "published_at": "2026-11-13T17:55:28+00:00",
-   "summary_short": "600次实验：不重新训练，仅改规划方法就让 LeWM 长程任务成功率从 22% 升到 85%",
-   "summary_long": "AI 界正争论世界模型应该是什么：多数关注生成式世界模型，即用像素生成来预测未来；LeCun 等人认为多数像素对决策无用且不可预测，因此提出 JEPA 联合嵌入预测架构，它包含编码器、预测器、规划器，整个循环在嵌入空间运行。今年一个包括 LeCun 的团队发布 LeWM，主基准为 Push-T 机器人推块仿真。作者几个月内做了 600 次实验：把预测器换成仿真器的完美物理后，在 250 个目标距离 75 步的长程任务上，原版成功率 78%、真物理版 77%，说明在其训练过的路径类型上，LeWM 的预测已接近完美物理。瓶颈在于这套架构的使用方式：原版在 75 步目标上成功率仅 22%，25 步目标为 89.7%（真物理 90.5%）。在不重新训练模型的前提下，作者找到四种新规划方法：前两种把长程成功率从 22% 提到 85%，接近直接获得专家子目标的规划器；另两种把 LeWM 扩展到更难目标，其中仅改变目标打分方式一项就提升 60 个百分点，是换用完美物理收益的三倍。",
+   "published_at": "2023-05-31T00:29:55+00:00",
+   "summary_short": "仅解码器 Transformer 长度泛化：NoPE 无需位置编码却优于 APE、ALiBi、Rotary",
+   "summary_long": "长度泛化指从较小训练上下文泛化到更大上下文的能力，是 Transformer 语言模型的关键挑战。位置编码被视为影响长度泛化的主要因素，但不同方案在下游任务外推中的作用仍不清楚。本文比较仅解码器 Transformer 的五种方案：APE、T5 相对位置编码、ALiBi、Rotary 和不使用位置编码的 NoPE，并在多项推理与数学任务上评估。结果显示，常用的 ALiBi、Rotary 和 APE 不适合下游长度泛化；NoPE 反而优于其他显式位置编码，且不增加额外计算。研究理论上说明 NoPE 可表示绝对和相对位置编码，但在 SGD 训练下其注意力模式最接近 T5 相对位置编码。研究还发现 scratchpad 并非总有助于长度泛化，其格式会显著影响表现。整体而言，显式位置嵌入对仅解码器 Transformer 泛化到更长序列并非必需。",
    "key_points": [
-    "JEPA 由编码器、预测器、规划器三部分组成，整个循环在嵌入空间运行，只需学习对决策重要的场景部分",
-    "把预测器换成仿真器完美物理，长程任务成功率为 77%，原版为 78%，说明预测精度不是长程失败的主因",
-    "原版 LeWM 在 75 步目标上成功率 22%，在 25 步目标上为 89.7%，误差在长程中累积"
+    "比较五种方案：APE、T5 相对位置编码、ALiBi、Rotary 和不使用位置编码的 NoPE，在多项推理与数学任务上评估长度泛化。",
+    "常用的 ALiBi、Rotary 和 APE 不适合下游任务的长度泛化；NoPE 表现更好且不增加额外计算。",
+    "研究理论上说明 NoPE 可表示绝对和相对位置编码，SGD 训练下其注意力模式最接近 T5 相对位置编码；scratchpad 并非总有用，且格式显著影响表现。"
    ],
    "topics": [
-    "world-models",
-    "planning",
-    "jepa"
+    "reasoning",
+    "eval"
    ],
    "category": "模型",
    "categories": [
-    "模型"
+    "模型",
+    "评测",
+    "研究论文"
    ],
    "horizon": "long",
-   "score": 79.2,
+   "score": 80.7,
    "status": "published",
    "extra": {
-    "hn_points": 286,
-    "hn_comments": 48,
-    "outbound": {
-     "arxiv": [
-      "2303.04137",
-      "2603.19312",
-      "2610.06805"
-     ],
-     "links": [
-      "https://x.com/haddyalchaer",
-      "https://openreview.net/pdf?id=BZ5a1r-kVsf",
-      "https://arxiv.org/abs/2603.19312",
-      "https://arxiv.org/abs/2303.04137",
-      "https://arxiv.org/abs/2610.06805"
-     ]
-    },
-    "content_source": "direct",
+    "authors": [
+     "Amirhossein Kazemnejad",
+     "Inkit Padhi",
+     "Karthikeyan Natesan Ramamurthy",
+     "Payel Das",
+     "Siva Reddy"
+    ],
+    "author_count": 5,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "Hacker News (AI 高分帖)",
+     "Sebastian Raschka"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "fda887a769963d6a",
+   "url": "https://arxiv.org/abs/1910.10683v4",
+   "title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
+   "source": "论文（被提及）",
+   "tier": "A",
+   "published_at": "2019-10-23T17:37:36+00:00",
+   "summary_short": "提出统一文本到文本框架，系统比较迁移学习要素并刷新多项基准",
+   "summary_long": "迁移学习——先在大数据量的任务上预训练，再在下游任务上微调——已成为自然语言处理中一项有效的技术，并衍生出多种方法与实践。本文提出一个统一框架，把所有基于文本的语言问题转换为文本到文本格式，借此系统考察NLP迁移学习的技术图景。研究在数十个语言理解任务上比较了预训练目标、架构、无标注数据集、迁移方式等因素。作者将探索所得与规模以及新的“Colossal Clean Crawled Corpus”数据集结合，在涵盖摘要、问答、文本分类等多项基准上取得当前最优结果。为便于后续迁移学习研究，作者公开了数据集、预训练模型与代码。",
+   "key_points": [
+    "提出统一框架，将所有基于文本的语言问题转换为文本到文本格式",
+    "在数十个语言理解任务上系统比较预训练目标、架构、无标注数据集与迁移方法等因素",
+    "结合规模与新建的Colossal Clean Crawled Corpus，在摘要、问答、文本分类等基准上取得当前最优结果，并公开数据集、预训练模型与代码"
+   ],
+   "topics": [
+    "pretraining",
+    "transfer-learning",
+    "open-source"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 80.1,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Colin Raffel",
+     "Noam Shazeer",
+     "Adam Roberts",
+     "Katherine Lee",
+     "Sharan Narang",
+     "Michael Matena",
+     "Yanqi Zhou",
+     "Wei Li"
+    ],
+    "author_count": 9,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "Hacker News (AI 高分帖)",
+     "Sebastian Raschka"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "2eef3c25f2aa3ef9",
+   "url": "https://arxiv.org/abs/2603.11611v2",
+   "title": "Fractional Rotation, Full Potential? Investigating Performance and Convergence of Partial RoPE",
+   "source": "论文（被提及）",
+   "tier": "A",
+   "published_at": "2026-03-12T07:05:13+00:00",
+   "summary_short": "部分RoPE用约10%维度匹配全RoPE收敛，缓存内存最多省10倍。",
+   "summary_long": "RoPE广泛用于Transformer编码相对位置信息，但仅对部分隐藏维度施加RoPE的效果仍缺乏系统研究；原文指出这一设计在长上下文下可显著降低内存。原文报告，部分RoPE相比标准RoPE缓存最多节省10倍内存，同时最终损失相当。研究跨架构、模型规模、序列长度和数据集考察其对训练动态与收敛的影响。结果显示：仅对约10%的维度施加RoPE即可匹配全RoPE的收敛；这些趋势在不同设置下保持一致；无位置编码（NoPE）可能出现损失尖峰，而极少量RoPE或使用QK-Norm可缓解。总体而言，原文将部分RoPE视为效率与稳定性之间的有效折中。",
+   "key_points": [
+    "部分RoPE相比标准RoPE缓存最多节省10倍内存，同时最终损失保持相当。",
+    "仅对约10%维度施加RoPE即可达到与全RoPE相当的收敛，且跨架构、模型规模、序列长度和数据集的趋势一致。",
+    "NoPE可能产生损失尖峰，少量RoPE或QK-Norm可缓解；部分RoPE是效率与稳定性的折中。"
+   ],
+   "topics": [
+    "rope",
+    "positional-encoding",
+    "training-efficiency"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 76.5,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Mohammad Aflah Khan",
+     "Krishna P. Gummadi",
+     "Manish Gupta",
+     "Abhilasha Ravichander"
+    ],
+    "author_count": 4,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "Hacker News (AI 高分帖)",
+     "Sebastian Raschka"
+    ],
     "summary_mode": "full"
    }
   }

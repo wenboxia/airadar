@@ -1,67 +1,6 @@
 {
- "generated_at": "2026-11-14T22:59:49+00:00",
+ "generated_at": "2026-11-15T23:24:09+00:00",
  "top": [
-  {
-   "id": "594105e3c51985ed",
-   "url": "https://www.anthropic.com/research/components-of-agent-memory",
-   "title": "The Components of Agent Memory",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-07T06:39:04+00:00",
-   "summary_short": "智能体记忆组件：用“做梦”在空闲时反思日志、整理笔记",
-   "summary_long": "原文借人类记忆机制讨论 AI 智能体的记忆设计：海马体在当下快速捕获经历，但只有部分经历会在离线时（睡眠、静息）被重放，并逐渐巩固进新皮层，成为长期知识。智能体同样把大量工作留在日志或对话记录里；Letta 与 UC Berkeley 的研究者提出 sleep-time compute，让模型利用交互之间的空闲时间重整已有上下文，这一思路可用于让智能体反思日志以修正错误、生成笔记和新的记忆表征，原文称这一过程为 dreaming，并称它帮助 Claude 获得了有效记忆。原文将智能体记忆定义为 Claude 从经验（与用户的交互、被分配的任务）中获得、跨会话保留、并以可读取上下文形式保存的知识，明确排除权重变化、上下文内学习与 compaction。此外还讨论了：在事件发生时标记显著事件或写入记忆笔记；写记忆本身是对未来需求的预测；以及在 CL-Bench 1.0 的数据库问答任务上用 Claude Managed Agents 探索“记录失败—提出假设—验证—形成规则”的学习循环（原文此处截断，未给出结果）。",
-   "key_points": [
-    "人类记忆的分工是当下快速编码加上离线重放巩固，被标记为重要的事件在离线期被重放得更多；智能体可对应地在会话日志中标记显著事件或写入记忆笔记。",
-    "dreaming：智能体利用交互间的空闲时间反思日志，可修正错误、生成笔记、构建新的记忆表征，或决定预先加载进未来会话的内容。",
-    "原文界定智能体记忆为跨会话保留、可读取的上下文，不含权重更新、上下文内学习与 compaction。"
-   ],
-   "topics": [
-    "memory",
-    "context-engineering",
-    "agent-loop"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 84.9,
-   "status": "published",
-   "extra": {
-    "hn_points": 173,
-    "hn_comments": 99,
-    "outbound": {
-     "arxiv": [
-      "2504.13171"
-     ],
-     "links": [
-      "https://stanford.edu/~jlmcc/papers/McCMcNaughtonOReilly95.pdf",
-      "https://www.science.org/doi/10.1126/science.adk8261?referrer=https%3A%2F%2Fwww.google.com%2F",
-      "https://www.nature.com/articles/s41467-018-06213-1",
-      "https://www.nature.com/articles/s41593-019-0467-3",
-      "https://arxiv.org/abs/2504.13171",
-      "https://platform.claude.com/docs/en/managed-agents/dreams",
-      "https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/",
-      "https://www.anthropic.com/research/in-context-learning-and-induction-heads",
-      "https://platform.claude.com/docs/en/build-with-claude/compaction",
-      "https://www.nature.com/articles/385533a0",
-      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool",
-      "https://continual-learning-bench.com/news/cl-bench-1-0/",
-      "https://platform.claude.com/docs/en/managed-agents/overview",
-      "https://platform.claude.com/docs/en/managed-agents/memory",
-      "https://www.youtube.com/watch?v=CXhYDOvgpuU",
-      "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
-      "https://github.com/harveyai/harvey-labs",
-      "https://code.claude.com/docs/en/memory",
-      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet",
-      "https://platform.claude.com/cookbook/managed-agents-cma-dreaming-with-a-dynamic-workflow",
-      "https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/knowledge-wiki"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
   {
    "id": "8400bdfe1e2afd49",
    "url": "https://huggingface.co/blog/allenai/xybench",
@@ -135,38 +74,6 @@
     "source_tags": [
      "Product"
     ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "5186d80b7eef5626",
-   "url": "https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again",
-   "title": "Claude Code's \"Don't Ask Again\" exposes passwords in 1,122 public GitHub files",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-07T20:45:32+00:00",
-   "summary_short": "Claude Code 的\"不再询问\"把含密码的命令写进项目内设置文件，致 1,122 个公开 GitHub 文件泄露真实密钥。",
-   "summary_long": "开发机本地存着数据库连接串、云密钥、API token。让 Claude Code 检查数据库或调用 API 时，它提出的命令会带上配置中的密钥；执行前它会询问，若选择\"是，且不再询问\"，它就把这条含密钥的完整命令写入项目文件夹内的 .claude/settings.local.json，且该文件没有任何私有标记，于是随代码一起被提交。原文称，GitHub 上 104,185 份该文件的公开副本中有 1,122 份含真实密钥，另有 1,160 个出现在 git 历史、团队有意提交的共享 settings.json 及仓库内的 agent 聊天记录中；Apiiro 研究在 1,994 个公开仓库发现 2,539 个真实密钥，涉及 63 个组织。Claude Code 只把该文件加入开发者的全局 gitignore，不写进仓库自身的 .gitignore，覆盖不了后来才成为仓库的文件夹、其他机器上的克隆或已被提交的文件；文件已被 git 跟踪时用户不会被告知。Anthropic 的 Claude Code 负责人 Boris Cherny 回应称，团队正研究防范办法，计划试点让 auto mode 捕获该问题并内置基础密钥扫描。",
-   "key_points": [
-    "选\"是，且不再询问\"后，Claude Code 把含密钥的完整命令写入项目内 .claude/settings.local.json，该文件无私有标记，会随代码提交",
-    "原文数据：104,185 份公开副本中 1,122 份含真实密钥；Apiiro 在 1,994 个公开仓库发现 2,539 个真实密钥，涉及 63 个组织，包括生产 Azure Postgres 密码、Square 生产 token、医疗记录数据库的 owner 密码",
-    "防护缺口：文件只被加入开发者全局 gitignore，不进仓库 .gitignore；已被 git 跟踪时用户不会被告知，1,105 个含密钥仓库中 539 个有 Claude 共同署名的提交改动了该文件"
-   ],
-   "topics": [
-    "cybersecurity",
-    "privacy"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 82.7,
-   "status": "published",
-   "extra": {
-    "hn_points": 570,
-    "hn_comments": 387,
-    "content_source": "reader",
     "summary_mode": "full"
    }
   },
@@ -229,70 +136,93 @@
     },
     "summary_mode": "full"
    }
-  }
- ],
- "items": [
+  },
   {
-   "id": "594105e3c51985ed",
-   "url": "https://www.anthropic.com/research/components-of-agent-memory",
-   "title": "The Components of Agent Memory",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-07T06:39:04+00:00",
-   "summary_short": "智能体记忆组件：用“做梦”在空闲时反思日志、整理笔记",
-   "summary_long": "原文借人类记忆机制讨论 AI 智能体的记忆设计：海马体在当下快速捕获经历，但只有部分经历会在离线时（睡眠、静息）被重放，并逐渐巩固进新皮层，成为长期知识。智能体同样把大量工作留在日志或对话记录里；Letta 与 UC Berkeley 的研究者提出 sleep-time compute，让模型利用交互之间的空闲时间重整已有上下文，这一思路可用于让智能体反思日志以修正错误、生成笔记和新的记忆表征，原文称这一过程为 dreaming，并称它帮助 Claude 获得了有效记忆。原文将智能体记忆定义为 Claude 从经验（与用户的交互、被分配的任务）中获得、跨会话保留、并以可读取上下文形式保存的知识，明确排除权重变化、上下文内学习与 compaction。此外还讨论了：在事件发生时标记显著事件或写入记忆笔记；写记忆本身是对未来需求的预测；以及在 CL-Bench 1.0 的数据库问答任务上用 Claude Managed Agents 探索“记录失败—提出假设—验证—形成规则”的学习循环（原文此处截断，未给出结果）。",
+   "id": "7da1b2b4758f6148",
+   "url": "https://deepmind.google/blog/gemini-robotics-2-5-accelerates-real-world-physical-intelligence/",
+   "title": "Gemini Robotics 2.5 accelerates real-world general dexterity",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-11-09T19:51:47+00:00",
+   "summary_short": "谷歌发布Gemini Robotics 2.5视觉-语言-动作模型，任务成功率提升30%–100%、速度快20%–30%",
+   "summary_long": "原文于11月10日发布，介绍Gemini Robotics 2.5——其迄今能力最强的视觉-语言-动作（VLA）模型，既拓展了机器人可学习的技能范围，也提升了技能获得速度，并改善了灵巧性、可靠性与安全性，以帮助机器人走出实验室、进入更非结构化的真实环境。原文称，此前已将全身智能带给包括人形机器人在内的多种机器人，此次进展很大程度上得益于Gemini 4 Argon加速机器人研究的能力。团队在200多个不同任务上评测该模型，例如用夹子分餐、给礼盒系蝴蝶结、移液，这些任务涉及高级工具使用、可变形物体操作和精细易碎物体处理。相比此前基线，Gemini Robotics 2.5按任务类型成功率高出30%至100%，完成任务快20%至30%。它原生支持多种机器人形态，包括Apptronik的Apollo 2人形机器人（配五指、22自由度SharpaWave手）与使用两指平行夹爪的Franka Duo平台。原文还称，该模型正逐步向机器人合作伙伴开放；文末提到的可操控性与智能体安全性部分内容不完整，具体细节原文未详述。",
    "key_points": [
-    "人类记忆的分工是当下快速编码加上离线重放巩固，被标记为重要的事件在离线期被重放得更多；智能体可对应地在会话日志中标记显著事件或写入记忆笔记。",
-    "dreaming：智能体利用交互间的空闲时间反思日志，可修正错误、生成笔记、构建新的记忆表征，或决定预先加载进未来会话的内容。",
-    "原文界定智能体记忆为跨会话保留、可读取的上下文，不含权重更新、上下文内学习与 compaction。"
+    "Gemini Robotics 2.5是原文所称其迄今最强的VLA模型，同时扩大技能广度与学习速度。",
+    "在200多个任务上评测，成功率比此前基线高30%–100%，速度快20%–30%。",
+    "原生适配多种机器人形态：Apptronik Apollo 2人形机器人（22自由度SharpaWave手）与Franka Duo平行夹爪平台。"
    ],
    "topics": [
-    "memory",
-    "context-engineering",
-    "agent-loop"
+    "robotics",
+    "vla",
+    "dexterity"
    ],
-   "category": "Agent 与开发",
+   "category": "模型",
    "categories": [
-    "Agent 与开发"
+    "模型"
    ],
-   "horizon": "long",
-   "score": 84.9,
+   "horizon": "short",
+   "score": 82.5,
    "status": "published",
    "extra": {
-    "hn_points": 173,
-    "hn_comments": 99,
+    "content_source": "reader",
     "outbound": {
-     "arxiv": [
-      "2504.13171"
-     ],
+     "arxiv": [],
      "links": [
-      "https://stanford.edu/~jlmcc/papers/McCMcNaughtonOReilly95.pdf",
-      "https://www.science.org/doi/10.1126/science.adk8261?referrer=https%3A%2F%2Fwww.google.com%2F",
-      "https://www.nature.com/articles/s41467-018-06213-1",
-      "https://www.nature.com/articles/s41593-019-0467-3",
-      "https://arxiv.org/abs/2504.13171",
-      "https://platform.claude.com/docs/en/managed-agents/dreams",
-      "https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/",
-      "https://www.anthropic.com/research/in-context-learning-and-induction-heads",
-      "https://platform.claude.com/docs/en/build-with-claude/compaction",
-      "https://www.nature.com/articles/385533a0",
-      "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool",
-      "https://continual-learning-bench.com/news/cl-bench-1-0/",
-      "https://platform.claude.com/docs/en/managed-agents/overview",
-      "https://platform.claude.com/docs/en/managed-agents/memory",
-      "https://www.youtube.com/watch?v=CXhYDOvgpuU",
-      "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
-      "https://github.com/harveyai/harvey-labs",
-      "https://code.claude.com/docs/en/memory",
-      "https://support.claude.com/en/articles/17631495-get-started-with-claude-duet",
-      "https://platform.claude.com/cookbook/managed-agents-cma-dreaming-with-a-dynamic-workflow",
-      "https://github.com/anthropics/claude-quickstarts/tree/main/managed-agents/knowledge-wiki"
+      "https://developers.googleblog.com/gemini-4-argon-for-robotics?utm_source=deepmind.google&utm_medium=referral&utm_campaign=gdm&utm_content="
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
+  {
+   "id": "2849eca9693ec9be",
+   "url": "https://arxiv.org/abs/2611.15049v1",
+   "title": "Science Prediction Universe",
+   "source": "论文（被提及）",
+   "tier": "A",
+   "published_at": "2026-11-11T05:23:11+00:00",
+   "summary_short": "SPU基准测试AGI实验预测能力，揭示瓶颈在科学判断而非工具执行",
+   "summary_long": "可靠预测实验结果被视为理解自然现象的核心检验。原文指出，若通用人工智能要超越人类科学能力，也必须比人类更可靠地预测实验结果。为此，研究提出Science Prediction Universe（SPU）基准：含化学、材料科学、生物与医学的100个公开验证任务，以及16个来自未发表湿实验的私有任务。智能体获得实验设置和候选条件后，可利用所需资源按测量结果排序候选。研究评估跨Codex与Claude Code两个框架、覆盖12个前沿模型的13种配置。公开基准上配置呈两个层级，任务校正Spearman相关系数从0.227到0.478，当前智能体远未饱和湿实验预测。对1,155条公开轨迹（227,103次工具调用）的分析显示，瓶颈在科学判断而非工具执行：智能体依赖共享单调先验，彼此一致度0.52高于与实验现实的0.33，且常计算不影响最终结果的简单代理量。",
+   "key_points": [
+    "SPU基准聚焦隐藏实验结果，包含化学、材料科学、生物与医学的100个公开验证任务，以及16个来自未发表湿实验的私有任务。",
+    "研究评估覆盖12个前沿模型、Codex与Claude Code两个框架的13种智能体配置；公开基准任务校正Spearman相关系数从0.227到0.478，配置分为两个层级。",
+    "对1,155条公开评分轨迹（227,103次工具调用）的分析表明，瓶颈在科学判断而非工具执行：智能体彼此一致度0.52高于与实验现实的0.33，且常计算不影响最终结果的简单物理或化学代理量。"
+   ],
+   "topics": [
+    "eval",
+    "tool-use",
+    "reasoning"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "Agent 与开发",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 81.9,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Zengji Tu",
+     "Xiang Liu",
+     "Jiarui Sun",
+     "Ruoyu Wu",
+     "Zhihui Qi",
+     "Chengda Wu",
+     "Yutao Zhou",
+     "Bo Yang"
+    ],
+    "author_count": 36,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "量子位"
+    ],
+    "summary_mode": "full"
+   }
+  }
+ ],
+ "items": [
   {
    "id": "8400bdfe1e2afd49",
    "url": "https://huggingface.co/blog/allenai/xybench",
@@ -366,38 +296,6 @@
     "source_tags": [
      "Product"
     ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "5186d80b7eef5626",
-   "url": "https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again",
-   "title": "Claude Code's \"Don't Ask Again\" exposes passwords in 1,122 public GitHub files",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-07T20:45:32+00:00",
-   "summary_short": "Claude Code 的\"不再询问\"把含密码的命令写进项目内设置文件，致 1,122 个公开 GitHub 文件泄露真实密钥。",
-   "summary_long": "开发机本地存着数据库连接串、云密钥、API token。让 Claude Code 检查数据库或调用 API 时，它提出的命令会带上配置中的密钥；执行前它会询问，若选择\"是，且不再询问\"，它就把这条含密钥的完整命令写入项目文件夹内的 .claude/settings.local.json，且该文件没有任何私有标记，于是随代码一起被提交。原文称，GitHub 上 104,185 份该文件的公开副本中有 1,122 份含真实密钥，另有 1,160 个出现在 git 历史、团队有意提交的共享 settings.json 及仓库内的 agent 聊天记录中；Apiiro 研究在 1,994 个公开仓库发现 2,539 个真实密钥，涉及 63 个组织。Claude Code 只把该文件加入开发者的全局 gitignore，不写进仓库自身的 .gitignore，覆盖不了后来才成为仓库的文件夹、其他机器上的克隆或已被提交的文件；文件已被 git 跟踪时用户不会被告知。Anthropic 的 Claude Code 负责人 Boris Cherny 回应称，团队正研究防范办法，计划试点让 auto mode 捕获该问题并内置基础密钥扫描。",
-   "key_points": [
-    "选\"是，且不再询问\"后，Claude Code 把含密钥的完整命令写入项目内 .claude/settings.local.json，该文件无私有标记，会随代码提交",
-    "原文数据：104,185 份公开副本中 1,122 份含真实密钥；Apiiro 在 1,994 个公开仓库发现 2,539 个真实密钥，涉及 63 个组织，包括生产 Azure Postgres 密码、Square 生产 token、医疗记录数据库的 owner 密码",
-    "防护缺口：文件只被加入开发者全局 gitignore，不进仓库 .gitignore；已被 git 跟踪时用户不会被告知，1,105 个含密钥仓库中 539 个有 Claude 共同署名的提交改动了该文件"
-   ],
-   "topics": [
-    "cybersecurity",
-    "privacy"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 82.7,
-   "status": "published",
-   "extra": {
-    "hn_points": 570,
-    "hn_comments": 387,
-    "content_source": "reader",
     "summary_mode": "full"
    }
   },
