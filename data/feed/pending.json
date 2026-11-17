@@ -1,322 +1,799 @@
 {
- "generated_at": "2026-11-15T23:24:09+00:00",
+ "generated_at": "2026-11-17T02:30:05+00:00",
  "items": [
   {
-   "id": "950ac38f23f2d5a7",
-   "url": "https://magazine.sebastianraschka.com/p/understanding-positional-embeddings",
-   "title": "Understanding Positional Embeddings in Modern LLMs",
+   "id": "81bd7f76e2a9d5f3",
+   "url": "https://xusheng.dev/posts/windows-coding-agent-telemetry/",
+   "title": "Windows 11 Is Collecting Data on Which Coding Agents and Developer Tools You Use",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-11-15T12:14:06+00:00",
-   "summary_short": "长文梳理 LLM 位置嵌入方法：从经典方案到 RoPE，附可视化与 PyTorch 实现",
-   "summary_long": "这是 Sebastian Raschka 发布的技术长文，主题是 LLM 如何编码与处理 token 的位置信息。作者交代写作缘起：准备今年的 LLM 架构趋势文章时，发现自己此前从未系统讲过位置信息方法，于是单独成篇，作为后续分析的“积木”；同时回应读者多年来对相对位置嵌入（即 RoPE）教程的请求，衔接 GPT 所用的可学习绝对嵌入。文章称将以可视化示例、少量数学和一个小型 PyTorch 实现走完机制，并考察现代架构如何改造或省略显式位置编码，还预告了按位置编码分组的 2026 年开源权重模型选择一览。正文第一节讲位置信息从何处进入 LLM：分词器把文本编码为 token ID，嵌入层把 ID 映射为特征向量，transformer 块经注意力与前馈层修改向量，输出层给出下一 token 的 logit 分数，并以 GPT-2 与较新的 MiniMax-M3 为例对比这条路径。作者提示文章技术性较强，熟悉基础者可跳到第 6 节。原文可见部分到此为止，RoPE 具体机制未详述。",
+   "published_at": "2026-11-16T22:58:20+00:00",
+   "summary_short": "逆向发现 Win11 组件记录并上报你使用的编程 Agent 与开发工具",
+   "summary_long": "作者借助 AI 翻查最新的 Windows 二进制文件，在 MissionControlAggregator.dll 里发现一串内嵌的可执行文件名：codex.exe、claude.exe、copilot.exe、cursor.exe 等编程 Agent，以及 python.exe、dotnet.exe、gcc.exe、clang.exe、code.exe 等开发工具。追踪引用后确认，这些名称被用于字符串比较：四个 CLI Agent 槽位分别检查 copilot、claude、codex 与 agy（还有 WSL 路径下不带扩展名的对应项），五个桌面 Agent 槽位检查 github、claude、codex、cursor 与 antigravity；对应特性名为 CLICodingAgentUsage，特性 ID 为 62580080。部分检查还会校验发布者，涉及 Node.js Foundation、Python Software Foundation 与微软。该组件本身不扫描运行中的进程，而是订阅 KernelProcess.AppStateChangeSummary、Win32kTraceLogging.AppInteractivitySummary 及 WSL 的 Lxss Manager Exec/ExecCritical 事件，把其中的应用标识或 imageNam",
    "key_points": [
-    "文章以可视化示例、少量数学和一个小型 PyTorch 实现讲解 LLM 的位置嵌入方法，涵盖从经典方案到 RoPE，并讨论现代架构如何改造或省略显式位置编码",
-    "作者称本文是为后续 LLM 架构趋势文章准备的独立基础篇，同时回应读者长期以来对相对位置嵌入（RoPE）教程的请求",
-    "第一节梳理位置信息进入 LLM 的路径（分词器→token 嵌入层→transformer 块→输出 logit），以 GPT-2 与 MiniMax-M3 为例，并预告按位置编码分组的 2026 年开源权重模型一览"
+    "MissionControlAggregator.dll 内嵌 codex.exe、claude.exe、copilot.exe、cursor.exe 等编程 Agent，以及 python.exe、gcc.exe、code.exe 等开发工具的可执行文件名，用于字符串匹配",
+    "相关特性名为 CLICodingAgentUsage（ID 62580080）；CLI 与桌面 Agent 各设槽位，部分槽位还校验发布者（Node.js Foundation、Python Software Foundation、微软）",
+    "组件不自行扫描进程，而是订阅 AppStateChangeSummary、AppInteractivitySummary 及 WSL Exec/ExecCritical 等 Windows 事件获取应用标识；结果本地保存并上报 Windows 诊断，默认设置下上传至微软"
    ],
    "topics": [
-    "positional-embeddings",
-    "transformer-architecture"
+    "privacy",
+    "coding-agent"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 74.7,
+   "status": "review",
+   "extra": {
+    "hn_points": 268,
+    "hn_comments": 148,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://xusheng.dev/posts/windows-coding-agent-telemetry/",
+      "https://x.com/CrackmesOne/status/2122147747390468384",
+      "https://binary.ninja/",
+      "https://learn.microsoft.com/en-us/windows/win32/etw/event-tracing-portal",
+      "https://support.microsoft.com/en-us/windows/privacy/diagnostics-feedback-and-privacy-in-windows"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "b0ded74e06b06613",
+   "url": "https://openai.com/index/advancing-computer-use-for-healthcare-teams",
+   "title": "Advancing computer-use agents for healthcare teams",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-16T06:00:00+00:00",
+   "summary_short": "医疗场景 computer-use agent 评测：325 项任务 99% 评为安全",
+   "summary_long": "原文指出医疗信息分散，团队常需手工在系统间搬运信息——例如医生建议做 MRI 后，仍需有人从病历取出保险方所需信息，填入另一个门户才能完成授权申请。computer-use agent 通过点击、输入、跨应用切换来执行多步骤流程，让 AI 在团队现有软件中处理重复工作。原文公布了在临床与行政流程中衡量模型性能、安全与成本的新结果，以及与 Abridge、Ambience、Cigna Healthcare、CVS Health 等机构在授权申请、转诊、出院规划、就诊间随访上的合作。演示使用合成数据：agent 查阅病历、物理治疗记录与既往影像，起草 MRI 医嘱、就诊记录和患者回复供医生审核，再用同样记录在保险方门户准备预授权申请供授权专员审核。评估中，GPT‑6 Astra 在 325 项经审核的 EHR 收件箱任务里 99% 被评为安全，646 次评估中 93% 被评为“非常有帮助”或“极其有帮助”。在斯坦福研究者发布的独立基准 HealthAdminBench 上，Astra 得 94.3% 的可用评分点，Luna 得 91.8%，但每任务 8.5 美分、成本低 98%。",
+   "key_points": [
+    "医疗信息分散，团队需手工跨系统搬运信息；computer-use agent 通过点击、输入、切换应用完成多步骤流程，在既有软件中处理重复工作",
+    "GPT‑6 Astra 在 325 项经审核的 EHR 收件箱任务中 99% 被评为临床安全，646 次评估中 93% 被评为“非常有帮助”或“极其有帮助”",
+    "在 HealthAdminBench 上 Astra 得 94.3% 评分点、Luna 得 91.8%，Luna 每任务 8.5 美分、成本低 98%，两者均在最大推理强度下评测"
+   ],
+   "topics": [
+    "product",
+    "eval",
+    "tool-use"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "评测"
+   ],
+   "horizon": "short",
+   "score": 74.5,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Product"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://som-shahlab.github.io/health-admin-bench-website/",
+      "https://github.com/cvs-health/cua-agent-kit",
+      "https://www.abridge.com/blog/learning-health-system",
+      "https://openai.com/contact-sales/",
+      "https://chatgpt.com/plans/clinicians/",
+      "https://developers.openai.com/api/docs/quickstart",
+      "https://developers.openai.com/api/docs/guides/tools-computer-use"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "f891bd93f3d21469",
+   "url": "https://openai.com/index/science-at-the-frontier",
+   "title": "Science at the Frontier: How scientists use ChatGPT",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-16T12:00:00+00:00",
+   "summary_short": "OpenAI研究1819名科学家如何使用ChatGPT，98%预期加速本领域发现",
+   "summary_long": "OpenAI经济研究团队分析了「ChatGPT for Academic Researchers」夏季试点中1,819名科学家的逾58万条科研消息，并调查了251名参与者。科学家在研究全流程中使用ChatGPT，从文献综述到证据分析、思路开发。受访者估计，若无AI，同等质量的工作需多花1.9倍时间；在回答发现时间线问题的受访者中，98%预期AI将加速本领域发现。68%的科学家用它发展研究想法，其中35%由科学家带着具体问题主导、36%与ChatGPT共同打磨、23%由ChatGPT建议研究问题。研究团队用自动分类器按活动类型归类消息，可看到类别但不阅读消息原文或ChatGPT回复；默认不使用参与者数据训练模型。原文指出，这些预期能否转化为更快的发现仍需更多研究，也取决于资金、人员和实验能力。",
+   "key_points": [
+    "OpenAI经济研究团队分析1,819名科学家的逾58万条消息并调查251人，覆盖文献综述、代码编写、数据分析、思路开发等环节",
+    "受访者估计同等质量工作无AI需多花1.9倍时间，98%回答该问题的科学家预期AI会加速本领域发现",
+    "加速原因中52%为更快完成研究、23%为找到更有前景的研究问题、14%为探索更广的问题范围；原文强调预期能否兑现尚待研究"
+   ],
+   "topics": [
+    "product",
+    "eval"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 69.2,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Research"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://cdn.openai.com/pdf/28615567-15d1-4e4c-907e-f837a1f2b2f4/Science%20at%20the%20Frontier-%20How%20Scientists%20Use%20ChatGPT.pdf",
+      "https://cdn.openai.com/pdf/0e4b2466-0be0-4326-8bf7-117d809e14d2/Science%20at%20the%20Frontier.pdf",
+      "https://openai.com/index/expanding-chatgpt-for-academic-researchers/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "cfcc7acb02e9ca79",
+   "url": "https://openai.com/index/more-ways-to-move-care-forward-with-chatgpt-for-healthcare",
+   "title": "More ways to move care forward with ChatGPT for Healthcare",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-16T06:00:00+00:00",
+   "summary_short": "ChatGPT医疗版新增计算机操作智能体、临床检索升级与20余个插件",
+   "summary_long": "原文介绍 ChatGPT for Healthcare 的三项更新。一是计算机操作智能体（computer-use agents）的进展：智能体可在医疗机构现有软件中读取屏幕、点击、输入并在应用间切换，完成多步骤工作，并提供访问控制与审计日志；原文提到与 Abridge、Ambience、Cigna Healthcare、CVS Health 等机构合作，用于处理转诊、跨系统流转文档与汇总信息。演示中，临床医生用 ChatGPT 应用中的语音功能请求跟进 MRI 申请，智能体查阅病历并起草医嘱与患者回复供人工审核。组织可先设定跨应用工作流、智能体可访问的应用以及需人工复核的步骤；涉及受保护健康信息须使用其 BAA 覆盖的合规服务并配置安全与留存设置，共享内容不用于训练模型。二是改进可信临床搜索，帮助找到、评估并引用医学证据。三是新增 20 多个医疗插件，覆盖临床诊疗、护理协调与业务运营，可通过 ChartGPT 进入 EHR 工作流。原文称在超 1300 次盲评中，医生在全部八个维度上评分更高。",
+   "key_points": [
+    "原文介绍 ChatGPT for Healthcare 更新：计算机操作智能体、改进的可信临床搜索、新增 20 多个医疗插件",
+    "智能体可读取屏幕、点击、输入并跨应用多步骤执行，配有访问控制与审计日志；原文提到与 Abridge、Ambience、Cigna Healthcare、CVS Health 等合作处理转诊、跨系统文档流转与信息汇总",
+    "临床搜索更新强调查找、评估并引用医学证据、引用可核查；原文称超 1300 次盲评中医生在全部八个维度（含事实正确性、安全性、可操作性、来源权威性）评分更高"
+   ],
+   "topics": [
+    "coding-agent",
+    "product",
+    "tool-use"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 66.6,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Product"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://openai.com/index/advancing-computer-use-for-healthcare-teams/",
+      "https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources/",
+      "https://chatgpt.com/plans/clinicians/",
+      "https://openai.com/contact-sales/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "735df09c2ed1f9d3",
+   "url": "https://latent.space/p/bfl/",
+   "title": "Building Visual Intelligence — Andreas Blattmann & Dustin Podell, Black Forest Labs",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-11-16T21:38:03+00:00",
+   "summary_short": "BFL谈FLUX 3：以图像、视频与音频联合训练视觉智能",
+   "summary_long": "这期对话围绕Black Forest Labs（BFL）的视觉智能思路展开。Andreas Blattmann与Dustin Podell回顾：Stability AI的核心图像生成团队在公司瓦解后，由Anj Midha帮助分拆成立BFL，并推出Flux系列图像生成模型。原文重点讨论BFL为何转向视频与世界模型：Andreas用接球例子说明，人能在写出轨迹前就移动手，这种知识不是单张静止图像能表达的；静止图像显示球在哪里，视频显示它如何到达，撞击声则提示何时碰到东西，因此BFL主张把三种信号一起用于训练FLUX 3。原文还谈到移动镜头能提供物体其他角度的证据，但并未判定模型是否“理解物理”；工程上，视频上采样需要时间一致性，否则逐帧增强后播放会闪烁。团队也讨论自回归与扩散各自的优势，以及Kontext从数小时小实验到数月数据与模型投入的过程。最后提到用户用FLUX修复老旧家庭照片。",
+   "key_points": [
+    "BFL主张FLUX 3联合训练图像、视频与音频三种信号，以学习接球预测这类“视觉智能”。",
+    "原文讨论移动镜头可提供物体其他角度证据，但未判定模型是否理解物理；视频上采样需保持时间一致性，避免逐帧增强后闪烁。",
+    "团队比较自回归与扩散的优势，并用Kontext小实验说明先小规模验证、再投入数月数据与模型；用户用FLUX修复老照片是Dustin未预料到的用途。"
+   ],
+   "topics": [
+    "video-generation",
+    "world-models",
+    "diffusion"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
    "horizon": "long",
-   "score": 74.0,
+   "score": 66.2,
    "status": "review",
    "extra": {
-    "hn_points": 189,
-    "hn_comments": 24,
+    "content_source": "rss",
     "outbound": {
      "arxiv": [
-      "1706.03762",
-      "1910.10683",
-      "2104.09864",
-      "2305.19466",
-      "2603.11611"
+      "2307.01952",
+      "2506.15742"
      ],
      "links": [
-      "https://substack.com/@rasbt",
-      "https://substackcdn.com/image/fetch/$s_!8RKL!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb461a2cb-11ab-474a-affe-0ee99e5a8782_2850x2777.png",
-      "https://sebastianraschka.com/llm-architecture-gallery/",
-      "https://sebastianraschka.com/books/#build-a-large-language-model-from-scratch",
-      "https://magazine.sebastianraschka.com/p/understanding-and-coding-self-attention",
-      "https://magazine.sebastianraschka.com/perks",
-      "https://magazine.sebastianraschka.com/p/understanding-positional-embeddings",
-      "https://substackcdn.com/image/fetch/$s_!3vjo!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4ab287c2-c3ba-46db-9ed0-1e6eacf78f43_2592x2521.png",
-      "https://substackcdn.com/image/fetch/$s_!KoQ2!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb8ff5039-8ec8-447c-a444-0345619c8b7b_1846x1304.png",
-      "https://github.com/rasbt/LLMs-from-scratch/tree/main/ch02/05_bpe-from-scratch",
-      "https://substackcdn.com/image/fetch/$s_!GDv8!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fda2b0f15-7f45-4aa4-8f1b-a0777a0da4fc_1710x2197.png",
-      "https://huggingface.co/openai-community/gpt2-xl/blob/main/config.json",
-      "https://substackcdn.com/image/fetch/$s_!yuT0!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F546edc50-7b1a-40ba-a125-da3fbdaade26_2586x964.png",
-      "https://github.com/openai/gpt-2/blob/master/src/model.py",
-      "https://arxiv.org/abs/1706.03762",
-      "https://substackcdn.com/image/fetch/$s_!d7HH!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5958afa7-673d-44df-a1af-112044196dde_2620x2800.png",
-      "https://substackcdn.com/image/fetch/$s_!HkhF!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe441fd8e-780b-4f66-9254-8ee2a7994a4f_1593x773.png",
-      "https://substackcdn.com/image/fetch/$s_!63Px!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa6e0a4d2-6a7c-443d-9be0-102807f8da7a_2600x1063.png",
-      "https://substackcdn.com/image/fetch/$s_!UhK9!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2fd5a766-4363-4189-9675-bcf9bd8e700d_2624x2023.png",
-      "https://substackcdn.com/image/fetch/$s_!jj3h!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3032a17a-5c43-487e-bcce-560d0a957b12_2616x1804.png",
-      "https://substackcdn.com/image/fetch/$s_!PFDm!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8cfa51c1-e3d5-4791-9899-4f159d43e890_2453x1299.png",
-      "https://arxiv.org/abs/2104.09864",
-      "https://substackcdn.com/image/fetch/$s_!xNEB!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F309c52ca-ad27-4336-a463-cde0050b3425_1764x2311.png",
-      "https://substackcdn.com/image/fetch/$s_!0J_2!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3a99d70f-f237-4af5-8f0d-9f672e8193a7_2755x2720.png",
-      "https://github.com/rasbt/LLMs-from-scratch/blob/main/ch05/11_qwen3/standalone-qwen3.ipynb",
-      "https://substackcdn.com/image/fetch/$s_!LQ-n!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe010e216-c965-4313-ace6-6682016a3177_2671x1543.png",
-      "https://substackcdn.com/image/fetch/$s_!RhWQ!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F03367132-6eb1-44cd-85fd-afb47314c6a9_2672x1716.png",
-      "https://substackcdn.com/image/fetch/$s_!2bNG!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5c627967-3788-4e17-85ef-8d6e716d2284_2525x785.png",
-      "https://substackcdn.com/image/fetch/$s_!jxZL!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F88495cb6-f380-43db-aeab-0f50afbd41b0_2610x888.png",
-      "https://substackcdn.com/image/fetch/$s_!0dw5!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2a413998-3f9a-477b-9fb6-d475bdedf847_2791x1962.png",
-      "https://substackcdn.com/image/fetch/$s_!yQkh!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F19ac0a71-c4d4-4cbe-b1ec-04371b5b3a58_2691x1745.png",
-      "https://substackcdn.com/image/fetch/$s_!qAmy!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fbf8cae0f-aa03-454c-b94e-dde8dd5ae680_2640x2488.png",
-      "https://substackcdn.com/image/fetch/$s_!j9TT!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F114f482b-e080-4ce2-9698-f489a9b305eb_2774x2836.png",
-      "https://substackcdn.com/image/fetch/$s_!yWYT!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5fd7a9e5-0263-4d31-bae4-787834c245b7_2634x2850.png",
-      "https://arxiv.org/html/2104.09864v5#S3.SS3",
-      "https://substackcdn.com/image/fetch/$s_!OZLU!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3b99b926-16c6-443c-bcb0-155ba1e63fc2_2596x1542.png",
-      "https://github.com/meta-llama/llama/blob/llama_v1/llama/model.py",
-      "https://scontent.fcps4-2.fna.fbcdn.net/v/t39.2365-6/333007794_1182140292435357_4481174526219500228_n.pdf?_nc_cat=101&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=3c67a6&_nc_ohc=SrzHHMeB_5gQ7kNvwGdTCab&_nc_oc=AdonSC2oKCA4Qqs-KfR7_70m4s4_1QpPwBxDyuqu_KXyCswnUioaZNf1qyZckeLl6qPZge_29DAoPzzJbtkmdFP2&_nc_zt=14&_nc_ht=scontent.fcps4-2.fna&_nc_gid=aOwcXBC5dn_BAgAvPaHuBA&_nc_ss=7b289&oh=00_AQR_JQr4O14JgKxukyTSvBG_TEEoi37pQAo0flfY68Vquw&oe=6AFEA511",
-      "https://huggingface.co/MiniMaxAI/MiniMax-M3/blob/main/config.json",
-      "https://substackcdn.com/image/fetch/$s_!HikP!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F4515ea8c-8759-4aca-a824-64f0f42d080e_2616x1657.png"
+      "https://deepgram.com/contextiseverything?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://latent.space/p/multiverse-not-metaverse/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=dCX4PE2HxMs&t=1s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://bfl.ai/blog/flux-3?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://bfl.ai/blog/flux-3-video?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://bfl.ai/models/flux-kontext?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://raais.co/speakers-2025-andreas-blattmann-black-forest-labs?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://ommer-lab.com/research/latent-diffusion-models/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://dustinpodell.com/about/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://arxiv.org/abs/2506.15742?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://arxiv.org/abs/2307.01952?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=0s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=219s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=263s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=563s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=1024s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=1658s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=2039s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=2397s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=2817s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=3036s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=3103s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=3298s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=3795s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=4052s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=4392s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=4850s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=5408s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=5536s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "ad8b3d5bdfd0d7ff",
-   "url": "https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax",
-   "title": "Show HN: DeepSeek V3 in ~200 lines of pure Jax",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-14T15:04:15+00:00",
-   "summary_short": "190行纯JAX复现DeepSeek V3架构，并在一台MacBook Air上从头训练",
-   "summary_long": "作者用190行纯JAX实现了DeepSeek-V3的架构，不用Flax、Equinox或PyTorch；参数只是dict形式的数组，各模块都是能从头读到尾的函数。覆盖的特性包括：多头潜在注意力MLA（每个token在每一层只缓存一个480→144的潜在表示）、解耦RoPE、DeepSeekMoE（1个共享专家+16个路由专家、每个token取top-4）、无辅助损失的均衡（用每个专家的偏置改变被选中的专家，而非改变权重）、序列级均衡损失（α=1e-4）与多token预测（λ=0.3）。训练用bf16做计算、f32做主权重，并包含带MLA缓存的prefill与decode。实测在MacBook Air M5（24GB）上：36.2M参数、每个token激活13.6M，数据为207本公版侦探小说共21.7M token，验证集是留出的犯罪小说。12,000步、约98M token（约4.5轮）、约2.6小时，速度约10.7k token/s，验证损失由5.02降至3.51。开启偏置时，每个专家的负载为5.7–6.9%（理想值6.25%），关闭时为0.09–18.6%，而第2000步的验证损失两者相同（3.921 vs 3.923）。作者称这是架构演示，并非强语言模型；v1.0包含checkpoint与数据，但checkpoint为pickle，加载会执行代码，只应从可信来源加载。",
-   "key_points": [
-    "190行纯JAX复现DeepSeek-V3架构，含MLA、解耦RoPE、DeepSeekMoE、无辅助损失均衡、序列级均衡损失与多token预测，不使用Flax/Equinox/PyTorch",
-    "在MacBook Air M5（24GB）上从零训练36.2M参数模型，数据为207本公版侦探小说、21.7M token，12,000步约2.6小时，验证损失5.02→3.51",
-    "实验显示均衡偏置把专家负载由0.09–18.6%收窄到5.7–6.9%，第2000步验证损失几乎不变（3.921 vs 3.923）；作者强调这只是架构演示，不是强语言模型"
-   ],
-   "topics": [
-    "open-source",
-    "moe",
-    "training"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "开源项目"
-   ],
-   "horizon": "long",
-   "score": 71.8,
-   "status": "review",
-   "extra": {
-    "hn_points": 272,
-    "hn_comments": 27,
-    "outbound": {
-     "arxiv": [
-      "2412.19437"
-     ],
-     "links": [
-      "https://arxiv.org/abs/2412.19437",
-      "https://vaibhaav.in/writing/deepseek-v3-jax/",
-      "https://github.com/Vaibhaav-Tiwari/deepseek-v3-jax/releases/tag/v1.0",
-      "https://docs.astral.sh/uv/",
-      "https://standardebooks.org",
-      "https://www.gutenberg.org"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "87d7014c15ee68a3",
-   "url": "https://openai.com/index/step-toward-defining-the-standard-model",
-   "title": "A step toward defining the Standard Model on a lattice",
+   "id": "b1c71d07875ac772",
+   "url": "https://openai.com/index/strengthening-online-child-safety",
+   "title": "Strengthening the fight against online child sexual abuse with new tools and support",
    "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-11-15T22:00:01+00:00",
-   "summary_short": "标准模型候选格点定义：GPT‑6 Astra协助完成详细证明",
-   "summary_long": "标准模型在描述已知基本粒子及强、弱、电磁三种基本力上与实验高度吻合，但原文指出，连续时空中的完整标准模型仍缺乏非微扰定义，甚至不清楚相互作用理论是否在数学上良定义。微扰论把相互作用当作小修正，无法处理质子质量这类强相互作用主导的问题。将时空离散为格点，可在给定格距下给出严格非微扰定义，并可在计算机上直接计算，格点场论已推动强相互作用研究。10月预印本中，Nathaniel Craig借助GPT‑6 Astra提出一个候选格点定义；他原有策略但无法证明其覆盖所有必要情形，Astra帮助把策略转化为构造，并主导了详细证明。",
+   "published_at": "2026-11-16T17:00:00+00:00",
+   "summary_short": "OpenAI发布可检测AI生成CSAM的图像分类器，向审核组织免费开放",
+   "summary_long": "原文发布于2026年11月16日，OpenAI宣布推出检测儿童性虐待材料（CSAM）的新工具，同时发布用于中断有害行为并引导求助的干预措施、面向开发者的实用资源，以及对儿童安全执法调查人员的支持，这些都以Child Safety Blueprint为基础。核心是一个新的图像分类器，可检测潜在CSAM，包括AI生成内容：它寻找虐待的视觉信号，帮助识别此前未见的新图像，并返回分数供审核人员判断处理优先级。原文称这是首个广泛可用、能专门提示CSAM是否可能由AI生成的分类器。该分类器在NCMEC协助下训练、评估和设计，通过OpenAI API向经审核的组织免费开放。OpenAI还与Tech Coalition、ROOST合作分发该工具，并参与Tech Coalition的Lantern项目以跨平台共享相关信号。早期测试显示，相比现有工具，新分类器预计少标记48%的图像，发现的虐待图像数量大致相当，被标记图像含虐待内容的概率约为两倍；fal测试中人工复核确认72%的高置信标记为新型CSAM，invideo AI测试中四分之一被标记案例导致封禁。原文在此处中断。",
    "key_points": [
-    "标准模型虽与实验高度吻合，但完整理论仍缺乏非微扰定义。",
-    "微扰论在质子质量等强相互作用问题上不适用；格点离散化可给出严格非微扰定义并支持计算机计算。",
-    "Craig与GPT‑6 Astra提出候选格点定义，Astra协助将策略转化为构造并主导详细证明。"
+    "新图像分类器可检测潜在CSAM（含AI生成内容），返回分数帮助审核人员排定优先级，被称为首个广泛可用且能专门提示CSAM是否可能由AI生成的分类器",
+    "该分类器在NCMEC协助下训练与评估，通过OpenAI API向经审核的组织免费开放，并与Tech Coalition、ROOST合作分发，同时参与Lantern项目共享跨平台信号",
+    "早期测试中，新分类器预计比现有工具少标记48%图像而发现的虐待图像数量大致相当，被标记图像含虐待内容概率约两倍；fal复核确认72%高置信标记为新型CSAM，invideo AI四分之一被标记案例导致封禁"
    ],
    "topics": [
-    "reasoning",
-    "ai-for-science"
+    "child-safety",
+    "csam-detection",
+    "content-moderation"
    ],
-   "category": "产品与应用",
+   "category": "安全",
    "categories": [
-    "产品与应用"
+    "安全"
    ],
-   "horizon": "long",
-   "score": 69.4,
+   "horizon": "short",
+   "score": 66.0,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
-     "Science"
+     "Safety"
     ],
-    "outbound": {
-     "arxiv": [
-      "0709.3658",
-      "2610.09093"
-     ],
-     "links": [
-      "https://arxiv.org/abs/2610.09093",
-      "https://journals.aps.org/prd/abstract/10.1103/PhysRevD.25.2649",
-      "https://arxiv.org/abs/hep-lat/9307006",
-      "https://arxiv.org/abs/hep-lat/9811032",
-      "https://arxiv.org/abs/0709.3658"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "32b9d4c781c86119",
-   "url": "https://arxiv.org/abs/1706.03762v7",
-   "title": "Attention Is All You Need",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2017-06-12T17:57:34+00:00",
-   "summary_short": "提出纯注意力架构Transformer，翻译质量更优、更可并行且训练更省时",
-   "summary_long": "原文指出，主流的序列转换模型基于复杂的循环或卷积神经网络，采用编码器-解码器结构；表现最好的模型还通过注意力机制连接编码器与解码器。作者提出一种新的简单网络架构Transformer，完全基于注意力机制，不再使用循环和卷积。在两个机器翻译任务上的实验显示，该模型质量更优，同时更可并行、训练所需时间显著更少。在WMT 2014英德翻译任务上达到28.4 BLEU，比包括集成模型在内的现有最佳结果高出2 BLEU以上；在WMT 2014英法翻译任务上，用8块GPU训练3.5天后取得41.8的单模型BLEU新纪录，训练成本仅为文献中最佳模型的一小部分。原文还通过在大规模和有限训练数据下应用于英语成分句法分析，表明Transformer能很好地泛化到其他任务。",
-   "key_points": [
-    "提出Transformer，完全基于注意力机制，去掉了循环和卷积。",
-    "WMT 2014英德翻译达到28.4 BLEU，超过包括集成模型在内的现有最佳结果2 BLEU以上；英法翻译取得41.8的单模型BLEU新纪录，8块GPU训练3.5天，成本远低于文献最佳模型。",
-    "实验显示模型在翻译任务上质量更优、更可并行、训练时间显著减少，并成功应用于英语成分句法分析，表现出对其他任务的泛化能力。"
-   ],
-   "topics": [
-    "transformer",
-    "architecture",
-    "attention-mechanism"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "研究论文"
-   ],
-   "horizon": "long",
-   "score": 67.2,
-   "status": "review",
-   "extra": {
-    "authors": [
-     "Ashish Vaswani",
-     "Noam Shazeer",
-     "Niki Parmar",
-     "Jakob Uszkoreit",
-     "Llion Jones",
-     "Aidan N. Gomez",
-     "Lukasz Kaiser",
-     "Illia Polosukhin"
-    ],
-    "author_count": 8,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "Hacker News (AI 高分帖)",
-     "Sebastian Raschka"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "de1b04aef2180495",
-   "url": "https://jakub.jankiewicz.org/blog/ai-code-open-source/",
-   "title": "All AI-generated code should be Open Source",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-15T14:46:58+00:00",
-   "summary_short": "作者主张AI生成的代码都应开源，理由涉及训练数据来源与版权",
-   "summary_long": "作者主张所有由AI生成的代码都应开源。理由之一：AI模型训练语料来自自GNU项目与自由软件运动以来的大量开源代码，这些代码被直接从互联网抓取，未经许可也未有恰当署名；模型还训练于以CC许可发布、法律要求署名的Stack Overflow及姊妹站点，把这种集体知识变成专有闭源代码，形同许可洗白。理由之二：纯AI生成代码并非人类所写，不应享有版权；美国这一原则可追溯到\"猴子自拍\"争议，即非人类不能持有版权，美国版权局后来在AI问题上引用了该先例，维基共享资源也要求纯AI生成图像标注为公有领域。但各国法律不同，如英国对计算机生成作品给予有限版权保护。作者因此主张，为在各法域间保持公平并尊重造就AI的开放生态，开发者与公司应明确以开源许可发布AI生成代码，或用CC0贡献至公有领域。他也承认代码并非完全手工或完全自动，但开发者日益依赖AI、甚至不审查输出，仅靠写提示词产生的代码更应开源。",
-   "key_points": [
-    "AI模型训练语料包含未经许可、未署名抓取的开源代码，以及法律要求署名的CC许可Stack Overflow内容，作者认为将其转为闭源专有代码形同许可洗白",
-    "纯AI生成代码非人类所写，不应受版权保护，依据可追溯至\"猴子自拍\"案与美国版权局的AI相关立场；维基共享资源要求纯AI图像标注公有领域",
-    "各国法律不一（如英国对计算机生成作品给予有限版权保护），作者主张开发者与公司应以开源许可或CC0明确发布AI生成代码"
-   ],
-   "topics": [
-    "open-source",
-    "alignment",
-    "product"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "安全"
-   ],
-   "horizon": "long",
-   "score": 55.0,
-   "status": "review",
-   "extra": {
-    "hn_points": 1029,
-    "hn_comments": 568,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://en.wikipedia.org/wiki/Monkey_selfie_copyright_dispute",
-      "https://commons.wikimedia.org/wiki/Commons:AI-generated_media",
-      "https://jcu.bi/twitter",
-      "https://jcu.bi/ln"
+      "https://www.esafety.gov.au/sites/default/files/2026-02/Designing-for-Safety_Preventing-child-sexual-exploitation-and-abuse-online_CSEA-toolkit.pdf",
+      "https://technologycoalition.org/programs/lantern/",
+      "https://www.missingkids.org/",
+      "https://technologycoalition.org/",
+      "https://roost.tools/",
+      "https://safer.io/",
+      "https://fal.ai/",
+      "https://invideo.io/",
+      "https://www.safetykit.com/",
+      "https://deploymentsafety.openai.com/csam-image-classifier",
+      "https://openai.com/form/csam-classifier-intake/",
+      "https://www.suojellaanlapsia.fi/en",
+      "https://www.lucyfaithfull.org.uk/",
+      "https://www.utas.edu.au/about/news-and-stories/articles/2024/pioneering-chatbot-reduces-searches-for-illegal-sexual-images-of-children",
+      "https://developers.openai.com/api/docs/guides/csam-guidance",
+      "https://www.thorn.org/",
+      "https://www.missingkids.org/home",
+      "https://www.iwf.org.uk/",
+      "https://developers.openai.com/api/docs/guides/moderation",
+      "https://roost.tools/coop/",
+      "https://technologycoalition.org/resources/responding-to-child-sexual-abuse-disclosures-in-ai-systems/",
+      "https://forum.openai.com/public/videos/event-replay-using-ai-to-protect-children-online-in-conversation-with-thorn-2026-02-11"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "f9a3c449e5989b1d",
-   "url": "https://simonwillison.net/2026/Nov/14/datasette-llm/",
-   "title": "datasette-llm 0.1a11",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-11-14T23:59:28+00:00",
-   "summary_short": "datasette-llm 0.1a11 新增 OpenAI 兼容端点支持，可连接本地模型",
-   "summary_long": "datasette-llm 是 Datasette 的中间插件，用于为其他 Datasette 插件配置 LLM。0.1a11 版本新增对 OpenAI 兼容端点的支持，因此可以把 Datasette 配置为使用任何遵循 OpenAI 伪标准 Web 协议的托管 LLM。原文指出，这意味着若使用 LM Studio、Ollama 或刚发布 v1.0.0 的 llama.cpp 运行本地模型，可通过 uvx 启动 Datasette：示例命令加载 content.db，并借助 datasette-agent 与 plugins.datasette-llm.default_model 配置模型名和 api_base，最终运行一个由本地模型驱动的 Datasette Agent 实例。原文未详述该版本的其他改动或更广泛的适用性。",
+   "id": "cc9d9dbd1b4e109a",
+   "url": "https://www.dwarkesh.com/p/paul-christiano-2",
+   "title": "Paul Christiano – We could be 12 months away from AIs that can overthrow the government",
+   "source": "Dwarkesh Podcast",
+   "tier": "C",
+   "published_at": "2026-11-16T17:46:28+00:00",
+   "summary_short": "Christiano：一年内出现可推翻政府超级智能的概率为1/3",
+   "summary_long": "Paul Christiano 现任 Alignment Research Center 负责人，此前任美国 AI 安全研究所 AI 安全主管、OpenAI 对齐团队负责人并发明了 RLHF，近期加入 OpenAI 董事会（节目中他以个人身份发言）。他认为，按当前轨迹且不作任何放缓，一年内有三分之一概率出现强大到足以推翻政府的超级智能。他主张实验室应暂停进一步的算法进展，直到能确保模型权重与研究机密的安全；否则中国可能在智能爆炸中途直接窃取超级智能，届时实验室即使发现模型失控也无法放慢速度。他还解释了智能爆炸期间 AI 将如何被训练，以及为何完全在数据中心内训练的系统也可能具备一种能力特征，使人类几乎没有机会与它竞争或控制它。在对齐方面，他认为修复 reward hack、构建更好的评分器只能支撑接下来几代模型，目前没有任何单一方法能在控制超级智能上具备超过五成的把握，希望在于 AI 能在智能爆炸期间自行找到解法。",
    "key_points": [
-    "datasette-llm 是 Datasette 的中间插件，用于给其他 Datasette 插件配置 LLM。",
-    "0.1a11 新增 OpenAI 兼容端点支持，可连接任何使用 OpenAI 伪标准 Web 协议的 LLM 托管服务。",
-    "示例中通过 uvx 配合 datasette-agent，可用 LM Studio、Ollama 或 llama.cpp 的本地模型运行 Datasette Agent。"
+    "他估计按当前轨迹、若无任何放缓，一年内有三分之一概率出现足以推翻政府的超级智能（原文称他描述了一个具体情景，但文字稿未展开该情景细节）",
+    "他主张实验室暂停进一步算法进展，直到能保障模型权重与研究机密安全，否则中国可能在智能爆炸中途窃取超级智能，使实验室失去减速能力",
+    "对齐方面：修复 reward hack 和改进评分器只能撑到接下来几代模型，没有单一现有方法控制超级智能的把握超过五成，希望寄托于 AI 在智能爆炸中自行找到解法"
    ],
    "topics": [
-    "tool-use",
-    "open-source",
-    "coding-agent"
+    "alignment",
+    "cybersecurity"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 65.4,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [
+      "2605.11086",
+      "2607.18966"
+     ],
+     "links": [
+      "https://paulfchristiano.com/",
+      "https://youtu.be/SyHM5hNPAEo",
+      "https://podcasts.apple.com/us/podcast/paul-christiano-we-could-be-12-months-away-from-ais/id1516093381?i=1000802319734",
+      "https://open.spotify.com/episode/4fOvEHIR2JnBfghmp1j3EF?si=uqA_XkbHRmyHLOrnfiRiPQ",
+      "https://janestreet.com/dwarkesh",
+      "https://antithesis.com/dwarkesh",
+      "https://workos.com/authkit",
+      "https://substack.com/@paulfchristiano",
+      "https://alignment.org",
+      "https://openai.com/index/paul-christiano-joins-openai-foundation-board/",
+      "https://www.nist.gov/caisi",
+      "https://en.wikipedia.org/wiki/Technological_singularity",
+      "https://en.wikipedia.org/wiki/Superintelligence",
+      "https://www.rand.org/pubs/research_briefs/RBA2849-1.html",
+      "https://en.wikipedia.org/wiki/AI_takeover",
+      "https://newsletter.forethought.org/p/will-ai-r-and-d-automation-cause",
+      "https://en.wikipedia.org/wiki/Recursive_self-improvement",
+      "https://en.wikipedia.org/wiki/Machine_learning",
+      "https://en.wikipedia.org/wiki/OpenAI_bulk_release_of_mathematical_papers",
+      "https://www.wsj.com/tech/ai/ai-math-riemann-hypothesis-anthropic-openai-22f98a87",
+      "https://www.forethought.org/research/will-compute-bottlenecks-prevent-a-software-intelligence-explosion",
+      "https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/",
+      "https://www.databricks.com/blog/llm-pre-training-and-custom-llms",
+      "https://en.wikipedia.org/wiki/Perplexity",
+      "https://en.wikipedia.org/wiki/Reinforcement_learning",
+      "https://en.wikipedia.org/wiki/Production_function",
+      "https://hai.stanford.edu/ai-definitions/what-are-weights",
+      "https://aiimpacts.org/soft-takeoff-can-still-lead-to-decisive-strategic-advantage/",
+      "https://epoch.ai/blog/algorithmic-progress-in-language-models",
+      "https://en.wikipedia.org/wiki/Neural_scaling_law",
+      "https://arxiv.org/abs/2607.18966",
+      "https://www.alignmentforum.org/posts/inALbAqdx63KTaGgs/benchmarks-for-detecting-measurement-tampering-redwood",
+      "https://www.dwarkesh.com/p/openai-huggingface",
+      "https://metr.org/hugging-face-incident-report-aug-2026.pdf",
+      "https://arxiv.org/abs/2605.11086",
+      "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+      "https://sentinelone.com/cybersecurity-101/threat-intelligence/lateral-movement",
+      "https://openai.com/index/chain-of-thought-monitoring/",
+      "https://www.emergentmind.com/topics/model-weight-exfiltration",
+      "https://en.wikipedia.org/wiki/Xi_Jinping"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "4b4d48f19f03e283",
+   "url": "https://simonwillison.net/2026/Nov/15/datasette-maplibre/",
+   "title": "datasette-maplibre 0.1a0",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-15T23:58:36+00:00",
+   "summary_short": "新版 Datasette 地理插件：融合 MapLibre GL 与 OpenFreeMap",
+   "summary_long": "datasette-maplibre 0.1a0 发布，原文称这是隔了相当一段时间后 Datasette 生态里首个新的地理空间插件。它把 MapLibre GL 库与 Zsolt Ero 运营的免费矢量地图服务 OpenFreeMap 结合起来。作者表示大部分功能由给 Claude Fable 5.2 的一条提示词完成：先参考 datasette-cluster-map 与 datasette-leaflet-geojson 两个插件以及本地 openfreemap-demo.html，再构建一个融合两者特性、并被要求“跳出框框”的新插件。这一要求带来了几个想法，作者最喜欢的是：先显示 GeoJSON 形状的 SVG 预览，只有当其滚动进入视野时才加载 WebGL 预览。此外还用 Claude 生成了一个可在最新 Datasette Lite 中运行的完整演示，通过 Pyodide 与 WebAssembly 在浏览器里加载插件和演示数据库；演示页可在同一张地图上同时展示 GeoJSON 形状与经纬度点位。",
+   "key_points": [
+    "插件将 MapLibre GL 与 OpenFreeMap（Zsolt Ero 运营的免费矢量地图服务器）结合使用",
+    "大部分功能由一条发给 Claude Fable 5.2 的提示词生成，参考了 datasette-cluster-map 与 datasette-leaflet-geojson",
+    "作者最喜欢的特性是 GeoJSON 形状先显示 SVG 预览，滚动进入视野后才加载 WebGL 预览；另有可在 Datasette Lite 中通过 Pyodide/WebAssembly 运行的演示"
+   ],
+   "topics": [
+    "coding-agent",
+    "open-source"
    ],
    "category": "Agent 与开发",
    "categories": [
     "Agent 与开发"
    ],
    "horizon": "short",
-   "score": 51.6,
+   "score": 62.2,
    "status": "review",
    "extra": {
     "content_source": "rss",
     "source_tags": [
-     "uv",
-     "datasette-agent",
-     "llm",
-     "datasette",
-     "llms"
+     "visualization",
+     "generative-ai",
+     "datasette-lite",
+     "claude-mythos-fable",
+     "ai"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/datasette/datasette-llm/releases/tag/0.1a11",
-      "https://lmstudio.ai",
-      "https://ollama.com",
-      "https://github.com/ggml-org/llama.cpp",
-      "https://huggingface.co/blog/ggml-org/llama-cpp-v1",
-      "https://simonwillison.net/tags/uv",
-      "https://simonwillison.net/tags/datasette-agent",
-      "https://simonwillison.net/tags/llm",
-      "https://simonwillison.net/tags/datasette",
-      "https://simonwillison.net/tags/llms",
+      "https://github.com/datasette/datasette-maplibre/releases/tag/0.1a0",
+      "https://maplibre.org/maplibre-gl-js/docs/",
+      "https://openfreemap.org",
+      "https://github.com/sponsors/hyperknot",
+      "https://lite.datasette.io/?install=datasette-maplibre&url=https://gist.githubusercontent.com/simonw/39fa5d399465766039549912e2b3d291/raw/f6dfba99a75cbb8b5d9386223220eb52272767ee/demo.db&metadata=https://gist.githubusercontent.com/simonw/39fa5d399465766039549912e2b3d291/raw/f6dfba99a75cbb8b5d9386223220eb52272767ee/metadata.yml",
+      "https://lite.datasette.io/?install=datasette-maplibre&url=https://gist.githubusercontent.com/simonw/39fa5d399465766039549912e2b3d291/raw/f6dfba99a75cbb8b5d9386223220eb52272767ee/demo.db&metadata=https://gist.githubusercontent.com/simonw/39fa5d399465766039549912e2b3d291/raw/f6dfba99a75cbb8b5d9386223220eb52272767ee/metadata.yml#/demo/capitals_and_countries%23map=0/4.2/180&color=continent",
+      "https://simonwillison.net/tags/visualization",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/datasette-lite",
+      "https://simonwillison.net/tags/claude-mythos-fable",
       "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai"
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/geospatial",
+      "https://simonwillison.net/tags/openstreetmap",
+      "https://simonwillison.net/tags/datasette"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "9ae934d441da1a71",
+   "url": "https://simonwillison.net/2026/Nov/15/datasette-apps/",
+   "title": "datasette-apps 0.4a0",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-15T04:02:45+00:00",
+   "summary_short": "datasette-apps 0.4a0 发布，新增应用间 URL 链接与片段支持",
+   "summary_long": "datasette-apps 发布 0.4a0 版本。据原文介绍，Datasette Apps 是运行在 Datasette 内部的沙箱化 HTML 与 JavaScript 应用，定位类似 Claude Artifacts，区别在于这些应用可以对用户的数据执行 SQL 查询。0.4a0 的核心变化是加入链接支持：用户可以通过 URL 中的 #fragments 链接到某个应用，应用能够读取并使用这些片段；同时，受支持的 URL scheme 会被回报给 Datasette Agent，使其在协助编写应用时可以让应用之间互相链接。原文给出的例子是：一个应用展示某条具体记录的详情，另一个完全独立的应用负责搜索这些记录，并链接到第一个应用中对应该记录的表现形式。原文未详述该版本的其他改动。",
+   "key_points": [
+    "Datasette Apps 是运行在 Datasette 内的沙箱化 HTML/JavaScript 应用，可对数据执行 SQL 查询",
+    "0.4a0 支持通过 URL 中的 #fragments 链接到应用，应用可读取并使用这些片段",
+    "受支持的 URL scheme 会回报给 Datasette Agent，便于其协助编写可互相链接的应用"
+   ],
+   "topics": [
+    "tool-use",
+    "product"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 61.5,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "datasette-agent",
+     "datasette-apps",
+     "datasette",
+     "urls"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/datasette/datasette-apps/releases/tag/0.4a0",
+      "https://simonwillison.net/tags/datasette-agent",
+      "https://simonwillison.net/tags/datasette-apps",
+      "https://simonwillison.net/tags/datasette",
+      "https://simonwillison.net/tags/urls"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "853b24ff0d6ecd3f",
+   "url": "https://huggingface.co/blog/openrouter",
+   "title": "Hugging Face and OpenRouter join forces to make open-weight models easy to run",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-16T00:00:00+00:00",
+   "summary_short": "HF 推理服务改用 OpenRouter 路由，开源权重模型凭同一 HF token 走同一 API 调用",
+   "summary_long": "Hugging Face 与 OpenRouter 合作：主要开源权重模型都发布在 Hugging Face Hub 上，OpenRouter 则通过 80 多家供应商，按实时测量结果以规模化方式提供这些模型的服务。即日起，Hugging Face 的 Inference Providers 从自建路由器切换到 OpenRouter 的路由；语言模型的请求改由 OpenRouter 按实时价格、速度和可靠性，为每次调用挑选供应商；如果第一家失败，会自动改用另一家重试，用户代码无需改动。该路由器对任意聊天模型支持 OpenAI 的 Chat Completions、Responses API 与 Anthropic 的 Messages API，并提供 Claude Code、Codex、OpenCode、Pi、Hermes Agent 的配置步骤；同一个 HF token 还可用于 Storage Buckets、Jobs 和 Inference Endpoints，PRO、Team、Enterprise 方案含每月计算与推理额度。原文数据：开源权重模型在 OpenRouter 的 token 占比从 2025 年 10 月的 26.8% 升至 2026 年 9 月底的 71.7%（7 月峰值 77.5%），周用量增长逾 60 倍；新路由使容量错误减少 46%，首 token 时间",
+   "key_points": [
+    "Hugging Face 的 Inference Providers 从自建路由器改为 OpenRouter 路由：按实时价格、速度和可靠性选供应商，失败自动换一家重试，用户代码不变",
+    "支持 OpenAI Chat Completions/Responses 与 Anthropic Messages API，模型 id 可用 :fastest、:cheapest 或指定供应商后缀，路由还会感知并保持提示词缓存",
+    "原文数据：开源权重模型 token 占比 26.8%→71.7%、周用量增逾 60 倍、均价约为闭源的四分之一；新路由容量错误降 46%、首 token 时间改善 16.9%、吞吐提升 16.3%"
+   ],
+   "topics": [
+    "model-serving",
+    "open-source",
+    "product"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 60.8,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/huggingface/blog/blob/main/openrouter.md",
+      "https://openrouter.ai",
+      "https://huggingface.co/docs/inference-providers",
+      "https://huggingface.co/docs/inference-providers/integrations/claude-code",
+      "https://huggingface.co/docs/inference-providers/integrations/codex",
+      "https://huggingface.co/docs/inference-providers/integrations/opencode",
+      "https://huggingface.co/docs/inference-providers/integrations/pi",
+      "https://huggingface.co/docs/inference-providers/integrations/hermes-agent",
+      "https://huggingface.co/storage",
+      "https://huggingface.co/docs/hub/jobs-overview",
+      "https://huggingface.co/docs/inference-endpoints",
+      "https://openrouter.ai/blog/insights/open-weight-vs-closed-weight-models/",
+      "https://openrouter.ai/rankings",
+      "https://artificialanalysis.ai/leaderboards/models",
+      "https://openrouter.ai/blog/announcements/how-we-rebuilt-provider-routing/",
+      "https://huggingface.co/docs/inference-providers/prompt-caching",
+      "https://huggingface.co/docs/inference-providers/pricing",
+      "https://huggingface.co/models?inference_provider=all&pipeline_tag=text-to-image&other=lora",
+      "https://huggingface.co/settings/inference-providers/overview",
+      "https://huggingface.co/settings/inference-providers",
+      "https://huggingface.co/models?inference_provider=all&sort=trending&other=conversational"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "764198fc49a3e15f",
+   "url": "https://simonwillison.net/2026/Nov/16/llm/",
+   "title": "llm 0.37.3",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-16T23:57:26+00:00",
+   "summary_short": "llm 0.37.3 修复 Homebrew 所带 SQLite 3.54.1 破坏其日志代码的问题",
+   "summary_long": "llm 0.37.3 是一个 bug 修复版本，主要用于应对最新 Homebrew 包带来的问题：Homebrew 现在打包的是最新版 SQLite 3.54.1，而该版本中的一项修复破坏了 LLM 的日志代码。原文给出的具体表现是：在 SQLite 3.54.0 中，语句 select json_object('a', (select json_array(1))) 返回 {\"a\":[1]}；在 3.54.1 中，同一语句返回 {\"a\":\"[1]\"}。D. Richard Hipp 表示这是对 bug 的修复：按照文档，(SELECT json_array(...)) 返回的是 SQL 文本而不是 JSON，所以 3.54.1 的行为是正确的，3.54.0 才是 bug。给出的变通写法是 select json_object('a', json((select json_array(1))))。原文未详述该版本的其他改动。",
+   "key_points": [
+    "0.37.3 是 bug 修复版本，主要应对最新 Homebrew 包的问题",
+    "Homebrew 现打包 SQLite 3.54.1，其中的修复破坏了 LLM 的日志代码",
+    "D. Richard Hipp 确认 3.54.1 行为正确：子查询 json_array 返回 SQL 文本而非 JSON，需在外层用 json() 包裹"
+   ],
+   "topics": [
+    "open-source"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 59.2,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "llm",
+     "webassembly",
+     "sqlite",
+     "generative-ai",
+     "ai"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/simonw/llm/releases/tag/0.37.3",
+      "https://llm.datasette.io",
+      "https://www.sqlite.org/releaselog/3_54_1.html",
+      "https://sqlite.org/bugs/info/2026-10-12T13:52:22Z",
+      "https://github.com/simonw/llm/issues/1879",
+      "https://sqlite.org/forum/forumpost/dff1a343157e422f",
+      "https://simonwillison.net/tags/llm",
+      "https://simonwillison.net/tags/webassembly",
+      "https://simonwillison.net/tags/sqlite",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/d-richard-hipp"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "498022c4a5fab2dc",
+   "url": "https://github.com/hitkeeen/blender-ai-mcp-addon",
+   "title": "hitkeeen/blender-ai-mcp-addon — AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with ChatGPT/GPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon, copilot for 3D, bpy Python scripting, MCP integration.",
+   "source": "GitHub Trending (AI)",
+   "tier": "B",
+   "published_at": "2026-11-12T14:32:15+00:00",
+   "summary_short": "面向 Blender 的 AI 助手与 MCP 服务器，支持可视化聊天、场景工具与多智能体工作流",
+   "summary_long": "",
+   "key_points": [
+    "是 Blender 的 AI 助手与 MCP 服务器",
+    "提供可视化聊天、场景工具、多智能体工作流",
+    "可与 ChatGPT/GPT、Claude、Gemini、Ollama、OpenCode 配合使用"
+   ],
+   "topics": [
+    "mcp",
+    "tool-use",
+    "multi-agent"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "开源项目"
+   ],
+   "horizon": "long",
+   "score": 57.3,
+   "status": "review",
+   "extra": {
+    "stars": 2229,
+    "language": null,
+    "summary_mode": "brief"
+   }
+  },
+  {
+   "id": "93489cde676affd2",
+   "url": "https://www.qbitai.com/2026/11/510486.html",
+   "title": "阿里正式发布Qwen4，智能体及编程能力进阶，迈向真实全场景",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-11-16T07:51:57+00:00",
+   "summary_short": "阿里发布Qwen4-Max基座大模型：2.4T总参数，编程与智能体能力进阶，单任务成本降近6成",
+   "summary_long": "11月16日，阿里巴巴发布新一代基座大模型Qwen4-Max，总参数2.4T，具备原生视觉能力，支持百万上下文，采用基于Qwen稀疏注意力（QSA）的全新MoE架构，2.4T总参数仅激活71B，每Token激活参数较上代少25%。在Terminal-Bench 4.0同为Xhigh思考档位下，每次尝试平均Token用量从289K降至151K、减少近50%，得分从38.9提升至48.5。CodeArena前端编程全球盲测位列第6，ALE取得46.7分、较上代提升18.8分，JobBench得分68.5。模型内置持续交付（Live Delivery）机制，可先生成可用首版并逐版扩展，也能自主编排智能体处理长周期任务。在覆盖721个细分领域的Work360体系评测中得分52.69，较上代提升超10%；已用于汽车制造工件加工编程（人工用时从475分钟降至24分钟）、金融投研调用90个MCP工具，以及材料与药物发现。Qwen4-Max已上线千问AI平台提供API，缓存命中每百万Tokens低至0.5元，单任务平均费用较上代降低58%，中小尺寸模型将陆续开源。",
+   "key_points": [
+    "Qwen4-Max总参数2.4T、仅激活71B，采用QSA稀疏注意力MoE架构，原生视觉、支持百万上下文",
+    "CodeArena前端编程全球第6，ALE 46.7分较上代提升18.8分，Terminal-Bench 4.0得分从38.9升至48.5且Token用量减少近50%",
+    "Work360全场景721个细分领域得分52.69、较上代提升超10%，已在汽车制造、金融投研、材料与药物发现等场景落地"
+   ],
+   "topics": [
+    "post-training",
+    "coding-agent",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 53.3,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "阿里巴巴"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/qbitai",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/%e9%98%bf%e9%87%8c%e5%b7%b4%e5%b7%b4",
+      "https://www.qbitai.com/2026/11/510542.html",
+      "https://www.qbitai.com/2026/11/510526.html",
+      "https://www.qbitai.com/2026/11/510493.html",
+      "https://www.qbitai.com/2026/11/510382.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/510486.html&title=阿里正式发布Qwen4，智能体及编程能力进阶，迈向真实全场景&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2022/07/35830.html",
+      "https://www.qbitai.com/tag/gartner",
+      "https://www.qbitai.com/tag/%e8%af%ad%e9%9f%b3%e8%af%86%e5%88%ab",
+      "https://www.qbitai.com/tag/%e8%af%ad%e9%9f%b3%e8%af%ad%e4%b9%89",
+      "https://www.qbitai.com/2026/05/418491.html",
+      "https://www.qbitai.com/2020/04/13101.html",
+      "https://www.qbitai.com/tag/%e6%95%b0%e5%ad%a6%e7%ab%9e%e8%b5%9b",
+      "https://www.qbitai.com/2026/08/466998.html",
+      "https://www.qbitai.com/2024/01/111489.html",
+      "https://www.qbitai.com/tag/animateanyone",
+      "https://www.qbitai.com/tag/%e5%a4%9a%e6%a8%a1%e6%80%81%e5%a4%a7%e6%a8%a1%e5%9e%8b",
+      "https://www.qbitai.com/tag/%e9%80%9a%e4%b9%89%e5%8d%83%e9%97%ae",
+      "https://www.qbitai.com/2020/09/18479.html",
+      "https://www.qbitai.com/tag/%e5%b0%8f%e8%9b%ae%e9%a9%b4",
+      "https://www.qbitai.com/tag/%e7%89%a9%e6%b5%81%e6%9c%ba%e5%99%a8%e4%ba%ba",
+      "https://www.qbitai.com/tag/%e7%8e%8b%e5%88%9a",
+      "https://www.qbitai.com/tag/%e8%87%aa%e5%8a%a8%e9%a9%be%e9%a9%b6",
+      "https://www.qbitai.com/tag/%e8%be%be%e6%91%a9%e9%99%a2",
+      "https://www.qbitai.com/2026/11/510003.html",
+      "https://www.qbitai.com/2026/11/509440.html",
+      "https://www.qbitai.com/2026/11/508828.html",
+      "https://www.qbitai.com/2026/11/508798.html",
+      "https://www.qbitai.com/2026/11/509224.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "3899b6e8ee3cc1f1",
+   "url": "https://openai.com/business/customer-stories/holiday-extras-dots",
+   "title": "At Holiday Extras, dots get to work before anyone asks",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-16T00:00:00+00:00",
+   "summary_short": "Holiday Extras 员工的自定义 AI 助理会主动送报告、提前发现问题",
+   "summary_long": "Holiday Extras 是英国旅行科技公司，帮助旅客预订机场停车、酒店、休息室与接送等服务。原文介绍该公司为员工提供 ChatGPT Enterprise、Codex 以及被称作 dots 的 AI 助理，并讲述两位高管的使用方式。公司 VP of AI Innovation Liam Thompson 的 dot 名为 Beast：应用新功能上线次日，Beast 未经请求就察觉这次发布，通过 ChatGPT 插件从 Google BigQuery 拉取数据并送来表现报告；Liam 还让 Beast 接入 Slack、收件箱、Drive 和笔记本电脑，每天早晚用双向语音与它对话至少两小时，并让它借助 After Effects 和 Rive 为应用中的 3D 角色做动画，他估计原本需要数天的工作约十分钟完成。Director of Innovation & Growth David Lee 的 dot 名为 Brian：他在通勤路上与 Brian 讨论当天会议并让它用公司数据生成报告，到办公室时报告已就绪；在部分 API key 需要停用时，Brian 主动提示，并从邮件中找出可能受影响的人员名单。原文未详述 dots 的技术实现与部署规模，文末内容亦被截断。",
+   "key_points": [
+    "Liam Thompson 的 dot「Beast」在应用新功能上线后未经请求，就通过 ChatGPT 插件从 Google BigQuery 取数并交付表现报告",
+    "David Lee 的 dot「Brian」在通勤时与他讨论当天会议并生成报告，还主动提示待停用的 API key，并从邮件中整理出可能受影响的人员名单",
+    "Liam 让 Beast 接入 Slack、收件箱、Drive 与笔记本电脑，每天用双向语音与它对话至少两小时；他曾试过 OpenClaw 和 Hermes，但不愿向它们提供太多信息"
+   ],
+   "topics": [
+    "product",
+    "tool-use"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 51.0,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://chatgpt.com/business/",
+      "https://www.holidayextras.com/",
+      "https://openai.com/index/introducing-dots/",
+      "https://openai.com/policies/privacy-policy/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "41b364560b3242b8",
+   "url": "https://jack-clark.net/2026/11/16/import-ai-481-ai-sub-contractors-a-wet-lab-for-ai-and-subterfuge-during-development/",
+   "title": "Import AI 481: AI sub-contractors; a wet lab for AI; and subterfuge during development",
+   "source": "Import AI",
+   "tier": "C",
+   "published_at": "2026-11-16T14:01:15+00:00",
+   "summary_short": "FrontierML 基准：AI 能把预算变成自身性能提升，接近人类研究员",
+   "summary_long": "研究者提出 FrontierML 基准，用来衡量智能体能否把资金转化为模型性能。它包含 21 个长周期任务，灵感来自前沿实验室、neolabs 与学术机构的真实工作，覆盖 LLM 训练、效率、视觉与音频、计算机使用、应用 NLP、数学与游戏六类。每个任务给智能体相同条件：12 小时 CPU 沙箱、装有 10/50/200 美元的钱包、少量验证样本与任务描述。任务开放且端到端，智能体可自选架构、找数据、实现训练、申请算力、评估检查点并优化推理；28% 的轨迹中，它们给预训练模型加上新训练部件或从零训练模型。评测要求提交在隔离 H100 上运行的推理服务器，并用未向智能体展示的大规模分布外测试集防过拟合。结果显示更强智能体能把更多资金可靠转化为更好成绩：人类研究员基准拿到 10 美元提升 56 分、200 美元提升 66.1 分；最佳系统 Opus 5.5 为 45.4 与 58.8，最强开源权重模型 Kimi K3.1 Pro 为 25.5 与 29.6。原文认为这表明 AI 已能创造性地“外包”工作，指向机器经济。原文另提到 YC 创业公司 Petrichor 建设面向 AI 实验室的湿实验室，但文本在此截断，原文未详述。",
+   "key_points": [
+    "FrontierML 含 21 个长周期端到端任务，每任务配 12 小时 CPU 沙箱与 10/50/200 美元预算，可自选架构、数据、算力与推理优化",
+    "更强智能体能把更多资金可靠转化为性能提升：人类研究员 56/66.1 分，Opus 5.5 为 45.4/58.8，Kimi K3.1 Pro 为 25.5/29.6",
+    "28% 的轨迹中智能体给预训练模型加新训练部件或从零训练；评测用隔离 H100 上的推理服务器与未展示的分布外测试集防过拟合"
+   ],
+   "topics": [
+    "eval",
+    "agent-loop",
+    "coding-agent"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 50.7,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "Uncategorized"
+    ],
+    "outbound": {
+     "arxiv": [
+      "2610.27735",
+      "2611.09476",
+      "2611.09490"
+     ],
+     "links": [
+      "https://importai.substack.com/subscribe?",
+      "https://www.frontierml.org/blog/",
+      "https://petrichorbio.com/",
+      "https://jack-clark.net/2026/07/20/import-ai-465-open-vs-closed-gaps-kimi-k3-demis-big-policy-plan/",
+      "https://arxiv.org/abs/2610.27735",
+      "https://jack-clark.net/2026/03/23/import-ai-450-chinas-electronic-warfare-model-traumatized-llms-and-a-scaling-law-for-cyberattacks/",
+      "https://arxiv.org/abs/2611.09476",
+      "https://github.com/N1rv4n4/LEMMO",
+      "https://arxiv.org/abs/2611.09490"
      ]
     },
     "summary_mode": "full"

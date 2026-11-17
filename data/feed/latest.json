@@ -1,365 +1,99 @@
 {
- "generated_at": "2026-11-15T23:24:09+00:00",
- "date": "2026-11-15",
- "run_id": "20261115-232323",
+ "generated_at": "2026-11-17T02:30:05+00:00",
+ "date": "2026-11-17",
+ "run_id": "20261117-022842",
  "top": [
   {
-   "id": "4e32eec5c32a12cc",
-   "url": "https://arxiv.org/abs/2104.09864v5",
-   "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2021-04-20T09:54:06+00:00",
-   "summary_short": "提出旋转位置编码RoPE及RoFormer，长文本分类实验持续优于对比方法",
-   "summary_long": "位置编码近期在Transformer架构中显示出有效性，可为序列中不同位置元素之间的依赖建模提供监督信号。原文先考察将位置信息融入基于Transformer的语言模型学习过程的各种方法，随后提出Rotary Position Embedding（RoPE）。该方法用旋转矩阵编码绝对位置，同时在自注意力公式中纳入显式的相对位置依赖。原文指出RoPE具备序列长度灵活性、随相对距离增加而衰减的token间依赖，以及让线性自注意力具备相对位置编码的能力。原文在多种长文本分类基准数据集上评估使用RoPE增强的Transformer（即RoFormer），实验显示其持续优于对比方法；原文还提供理论分析解释部分实验结果，并说明RoFormer已集成到Huggingface。",
+   "id": "ebd9eb94963902d2",
+   "url": "https://openai.com/index/our-first-phase-of-embedded-assessments",
+   "title": "Our first phase of embedded assessments",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-16T08:00:00+00:00",
+   "summary_short": "四家独立机构获深度访问权，对模型对齐与防护做嵌入式评估",
+   "summary_long": "原文宣布已与 Apollo Research、METR、Transluce、Goodfire 四家独立评估机构签约，启动第一阶段“嵌入式评估”。原文称，AI 能力快速提升、潜在风险增长，独立评估的公开报告能让外界更清楚了解实验室如何评估和管理风险。嵌入式评估让独立专家在较长时间内深度接触内部模型与系统，评估模型对齐与防护措施的有效性，尤其针对安全案例。评估者可获得模型检查点、源代码、训练与评估数据、监控系统、技术文档，并与相关研究工程人员交流。首批评估聚焦训练与内部使用阶段的对齐与防护，与安全案例互补。Apollo 分两阶段检验四项主张，判断模型是否会隐蔽违背开发者意图、防护能否发现；Goodfire 用可解释性平台做训练运行监控、调试与对齐；METR 拟做两项评估，首阶段针对其最大规模强化学习运行；Transluce 原文未详述。原文末尾截断。",
    "key_points": [
-    "原文先梳理将位置信息融入Transformer语言模型学习的多种方法，再提出RoPE。",
-    "RoPE用旋转矩阵编码绝对位置，并在自注意力公式中显式纳入相对位置依赖，具备序列长度灵活性、依赖随相对距离衰减、可装备线性自注意力等特性。",
-    "在多种长文本分类基准上，RoFormer持续优于对比方法；原文给出理论分析解释部分结果，并称RoFormer已集成到Huggingface。"
+    "已与 Apollo Research、METR、Transluce、Goodfire 四家独立评估机构签署协议，进入第一阶段嵌入式评估",
+    "评估者可获得模型检查点、源代码、训练与评估数据、监控系统、技术文档，并与负责研究工程人员交流",
+    "Apollo Research 分两阶段评估模型是否会隐蔽违背开发者意图、现有防护能否检出；Goodfire 用可解释性平台做训练运行监控、调试与对齐；METR 拟做两项评估，首阶段针对其最大规模强化学习运行"
    ],
    "topics": [
-    "position-encoding",
-    "long-context",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "研究论文"
-   ],
-   "horizon": "long",
-   "score": 87.2,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Jianlin Su",
-     "Yu Lu",
-     "Shengfeng Pan",
-     "Ahmed Murtadha",
-     "Bo Wen",
-     "Yunfeng Liu"
-    ],
-    "author_count": 6,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "Hacker News (AI 高分帖)",
-     "Sebastian Raschka"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "59fbbb86f801d0b6",
-   "url": "https://arxiv.org/abs/2305.19466v2",
-   "title": "The Impact of Positional Encoding on Length Generalization in Transformers",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2023-05-31T00:29:55+00:00",
-   "summary_short": "仅解码器 Transformer 长度泛化：NoPE 无需位置编码却优于 APE、ALiBi、Rotary",
-   "summary_long": "长度泛化指从较小训练上下文泛化到更大上下文的能力，是 Transformer 语言模型的关键挑战。位置编码被视为影响长度泛化的主要因素，但不同方案在下游任务外推中的作用仍不清楚。本文比较仅解码器 Transformer 的五种方案：APE、T5 相对位置编码、ALiBi、Rotary 和不使用位置编码的 NoPE，并在多项推理与数学任务上评估。结果显示，常用的 ALiBi、Rotary 和 APE 不适合下游长度泛化；NoPE 反而优于其他显式位置编码，且不增加额外计算。研究理论上说明 NoPE 可表示绝对和相对位置编码，但在 SGD 训练下其注意力模式最接近 T5 相对位置编码。研究还发现 scratchpad 并非总有助于长度泛化，其格式会显著影响表现。整体而言，显式位置嵌入对仅解码器 Transformer 泛化到更长序列并非必需。",
-   "key_points": [
-    "比较五种方案：APE、T5 相对位置编码、ALiBi、Rotary 和不使用位置编码的 NoPE，在多项推理与数学任务上评估长度泛化。",
-    "常用的 ALiBi、Rotary 和 APE 不适合下游任务的长度泛化；NoPE 表现更好且不增加额外计算。",
-    "研究理论上说明 NoPE 可表示绝对和相对位置编码，SGD 训练下其注意力模式最接近 T5 相对位置编码；scratchpad 并非总有用，且格式显著影响表现。"
-   ],
-   "topics": [
-    "reasoning",
+    "alignment",
     "eval"
    ],
-   "category": "模型",
+   "category": "安全",
    "categories": [
-    "模型",
-    "评测",
-    "研究论文"
+    "安全"
    ],
    "horizon": "long",
-   "score": 80.7,
+   "score": 85.2,
    "status": "published",
    "extra": {
-    "authors": [
-     "Amirhossein Kazemnejad",
-     "Inkit Padhi",
-     "Karthikeyan Natesan Ramamurthy",
-     "Payel Das",
-     "Siva Reddy"
+    "content_source": "direct",
+    "source_tags": [
+     "Safety"
     ],
-    "author_count": 5,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "Hacker News (AI 高分帖)",
-     "Sebastian Raschka"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "fda887a769963d6a",
-   "url": "https://arxiv.org/abs/1910.10683v4",
-   "title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2019-10-23T17:37:36+00:00",
-   "summary_short": "提出统一文本到文本框架，系统比较迁移学习要素并刷新多项基准",
-   "summary_long": "迁移学习——先在大数据量的任务上预训练，再在下游任务上微调——已成为自然语言处理中一项有效的技术，并衍生出多种方法与实践。本文提出一个统一框架，把所有基于文本的语言问题转换为文本到文本格式，借此系统考察NLP迁移学习的技术图景。研究在数十个语言理解任务上比较了预训练目标、架构、无标注数据集、迁移方式等因素。作者将探索所得与规模以及新的“Colossal Clean Crawled Corpus”数据集结合，在涵盖摘要、问答、文本分类等多项基准上取得当前最优结果。为便于后续迁移学习研究，作者公开了数据集、预训练模型与代码。",
-   "key_points": [
-    "提出统一框架，将所有基于文本的语言问题转换为文本到文本格式",
-    "在数十个语言理解任务上系统比较预训练目标、架构、无标注数据集与迁移方法等因素",
-    "结合规模与新建的Colossal Clean Crawled Corpus，在摘要、问答、文本分类等基准上取得当前最优结果，并公开数据集、预训练模型与代码"
-   ],
-   "topics": [
-    "pretraining",
-    "transfer-learning",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "研究论文"
-   ],
-   "horizon": "long",
-   "score": 80.1,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Colin Raffel",
-     "Noam Shazeer",
-     "Adam Roberts",
-     "Katherine Lee",
-     "Sharan Narang",
-     "Michael Matena",
-     "Yanqi Zhou",
-     "Wei Li"
-    ],
-    "author_count": 9,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "Hacker News (AI 高分帖)",
-     "Sebastian Raschka"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "2eef3c25f2aa3ef9",
-   "url": "https://arxiv.org/abs/2603.11611v2",
-   "title": "Fractional Rotation, Full Potential? Investigating Performance and Convergence of Partial RoPE",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2026-03-12T07:05:13+00:00",
-   "summary_short": "部分RoPE用约10%维度匹配全RoPE收敛，缓存内存最多省10倍。",
-   "summary_long": "RoPE广泛用于Transformer编码相对位置信息，但仅对部分隐藏维度施加RoPE的效果仍缺乏系统研究；原文指出这一设计在长上下文下可显著降低内存。原文报告，部分RoPE相比标准RoPE缓存最多节省10倍内存，同时最终损失相当。研究跨架构、模型规模、序列长度和数据集考察其对训练动态与收敛的影响。结果显示：仅对约10%的维度施加RoPE即可匹配全RoPE的收敛；这些趋势在不同设置下保持一致；无位置编码（NoPE）可能出现损失尖峰，而极少量RoPE或使用QK-Norm可缓解。总体而言，原文将部分RoPE视为效率与稳定性之间的有效折中。",
-   "key_points": [
-    "部分RoPE相比标准RoPE缓存最多节省10倍内存，同时最终损失保持相当。",
-    "仅对约10%维度施加RoPE即可达到与全RoPE相当的收敛，且跨架构、模型规模、序列长度和数据集的趋势一致。",
-    "NoPE可能产生损失尖峰，少量RoPE或QK-Norm可缓解；部分RoPE是效率与稳定性的折中。"
-   ],
-   "topics": [
-    "rope",
-    "positional-encoding",
-    "training-efficiency"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "研究论文"
-   ],
-   "horizon": "long",
-   "score": 76.5,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Mohammad Aflah Khan",
-     "Krishna P. Gummadi",
-     "Manish Gupta",
-     "Abhilasha Ravichander"
-    ],
-    "author_count": 4,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "Hacker News (AI 高分帖)",
-     "Sebastian Raschka"
-    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/",
+      "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+      "https://www.apolloresearch.ai/",
+      "https://www.goodfire.com/",
+      "https://metr.org/",
+      "https://metr.org/blog/2026-10-14-control-assessment-proposal/",
+      "https://transluce.org/",
+      "https://metr.org/blog/2026-10-14-alignment-assessment-proposal/"
+     ]
+    },
     "summary_mode": "full"
    }
   }
  ],
  "items": [
   {
-   "id": "4e32eec5c32a12cc",
-   "url": "https://arxiv.org/abs/2104.09864v5",
-   "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2021-04-20T09:54:06+00:00",
-   "summary_short": "提出旋转位置编码RoPE及RoFormer，长文本分类实验持续优于对比方法",
-   "summary_long": "位置编码近期在Transformer架构中显示出有效性，可为序列中不同位置元素之间的依赖建模提供监督信号。原文先考察将位置信息融入基于Transformer的语言模型学习过程的各种方法，随后提出Rotary Position Embedding（RoPE）。该方法用旋转矩阵编码绝对位置，同时在自注意力公式中纳入显式的相对位置依赖。原文指出RoPE具备序列长度灵活性、随相对距离增加而衰减的token间依赖，以及让线性自注意力具备相对位置编码的能力。原文在多种长文本分类基准数据集上评估使用RoPE增强的Transformer（即RoFormer），实验显示其持续优于对比方法；原文还提供理论分析解释部分实验结果，并说明RoFormer已集成到Huggingface。",
+   "id": "ebd9eb94963902d2",
+   "url": "https://openai.com/index/our-first-phase-of-embedded-assessments",
+   "title": "Our first phase of embedded assessments",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-16T08:00:00+00:00",
+   "summary_short": "四家独立机构获深度访问权，对模型对齐与防护做嵌入式评估",
+   "summary_long": "原文宣布已与 Apollo Research、METR、Transluce、Goodfire 四家独立评估机构签约，启动第一阶段“嵌入式评估”。原文称，AI 能力快速提升、潜在风险增长，独立评估的公开报告能让外界更清楚了解实验室如何评估和管理风险。嵌入式评估让独立专家在较长时间内深度接触内部模型与系统，评估模型对齐与防护措施的有效性，尤其针对安全案例。评估者可获得模型检查点、源代码、训练与评估数据、监控系统、技术文档，并与相关研究工程人员交流。首批评估聚焦训练与内部使用阶段的对齐与防护，与安全案例互补。Apollo 分两阶段检验四项主张，判断模型是否会隐蔽违背开发者意图、防护能否发现；Goodfire 用可解释性平台做训练运行监控、调试与对齐；METR 拟做两项评估，首阶段针对其最大规模强化学习运行；Transluce 原文未详述。原文末尾截断。",
    "key_points": [
-    "原文先梳理将位置信息融入Transformer语言模型学习的多种方法，再提出RoPE。",
-    "RoPE用旋转矩阵编码绝对位置，并在自注意力公式中显式纳入相对位置依赖，具备序列长度灵活性、依赖随相对距离衰减、可装备线性自注意力等特性。",
-    "在多种长文本分类基准上，RoFormer持续优于对比方法；原文给出理论分析解释部分结果，并称RoFormer已集成到Huggingface。"
+    "已与 Apollo Research、METR、Transluce、Goodfire 四家独立评估机构签署协议，进入第一阶段嵌入式评估",
+    "评估者可获得模型检查点、源代码、训练与评估数据、监控系统、技术文档，并与负责研究工程人员交流",
+    "Apollo Research 分两阶段评估模型是否会隐蔽违背开发者意图、现有防护能否检出；Goodfire 用可解释性平台做训练运行监控、调试与对齐；METR 拟做两项评估，首阶段针对其最大规模强化学习运行"
    ],
    "topics": [
-    "position-encoding",
-    "long-context",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "研究论文"
-   ],
-   "horizon": "long",
-   "score": 87.2,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Jianlin Su",
-     "Yu Lu",
-     "Shengfeng Pan",
-     "Ahmed Murtadha",
-     "Bo Wen",
-     "Yunfeng Liu"
-    ],
-    "author_count": 6,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "Hacker News (AI 高分帖)",
-     "Sebastian Raschka"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "59fbbb86f801d0b6",
-   "url": "https://arxiv.org/abs/2305.19466v2",
-   "title": "The Impact of Positional Encoding on Length Generalization in Transformers",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2023-05-31T00:29:55+00:00",
-   "summary_short": "仅解码器 Transformer 长度泛化：NoPE 无需位置编码却优于 APE、ALiBi、Rotary",
-   "summary_long": "长度泛化指从较小训练上下文泛化到更大上下文的能力，是 Transformer 语言模型的关键挑战。位置编码被视为影响长度泛化的主要因素，但不同方案在下游任务外推中的作用仍不清楚。本文比较仅解码器 Transformer 的五种方案：APE、T5 相对位置编码、ALiBi、Rotary 和不使用位置编码的 NoPE，并在多项推理与数学任务上评估。结果显示，常用的 ALiBi、Rotary 和 APE 不适合下游长度泛化；NoPE 反而优于其他显式位置编码，且不增加额外计算。研究理论上说明 NoPE 可表示绝对和相对位置编码，但在 SGD 训练下其注意力模式最接近 T5 相对位置编码。研究还发现 scratchpad 并非总有助于长度泛化，其格式会显著影响表现。整体而言，显式位置嵌入对仅解码器 Transformer 泛化到更长序列并非必需。",
-   "key_points": [
-    "比较五种方案：APE、T5 相对位置编码、ALiBi、Rotary 和不使用位置编码的 NoPE，在多项推理与数学任务上评估长度泛化。",
-    "常用的 ALiBi、Rotary 和 APE 不适合下游任务的长度泛化；NoPE 表现更好且不增加额外计算。",
-    "研究理论上说明 NoPE 可表示绝对和相对位置编码，SGD 训练下其注意力模式最接近 T5 相对位置编码；scratchpad 并非总有用，且格式显著影响表现。"
-   ],
-   "topics": [
-    "reasoning",
+    "alignment",
     "eval"
    ],
-   "category": "模型",
+   "category": "安全",
    "categories": [
-    "模型",
-    "评测",
-    "研究论文"
+    "安全"
    ],
    "horizon": "long",
-   "score": 80.7,
+   "score": 85.2,
    "status": "published",
    "extra": {
-    "authors": [
-     "Amirhossein Kazemnejad",
-     "Inkit Padhi",
-     "Karthikeyan Natesan Ramamurthy",
-     "Payel Das",
-     "Siva Reddy"
+    "content_source": "direct",
+    "source_tags": [
+     "Safety"
     ],
-    "author_count": 5,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "Hacker News (AI 高分帖)",
-     "Sebastian Raschka"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "fda887a769963d6a",
-   "url": "https://arxiv.org/abs/1910.10683v4",
-   "title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2019-10-23T17:37:36+00:00",
-   "summary_short": "提出统一文本到文本框架，系统比较迁移学习要素并刷新多项基准",
-   "summary_long": "迁移学习——先在大数据量的任务上预训练，再在下游任务上微调——已成为自然语言处理中一项有效的技术，并衍生出多种方法与实践。本文提出一个统一框架，把所有基于文本的语言问题转换为文本到文本格式，借此系统考察NLP迁移学习的技术图景。研究在数十个语言理解任务上比较了预训练目标、架构、无标注数据集、迁移方式等因素。作者将探索所得与规模以及新的“Colossal Clean Crawled Corpus”数据集结合，在涵盖摘要、问答、文本分类等多项基准上取得当前最优结果。为便于后续迁移学习研究，作者公开了数据集、预训练模型与代码。",
-   "key_points": [
-    "提出统一框架，将所有基于文本的语言问题转换为文本到文本格式",
-    "在数十个语言理解任务上系统比较预训练目标、架构、无标注数据集与迁移方法等因素",
-    "结合规模与新建的Colossal Clean Crawled Corpus，在摘要、问答、文本分类等基准上取得当前最优结果，并公开数据集、预训练模型与代码"
-   ],
-   "topics": [
-    "pretraining",
-    "transfer-learning",
-    "open-source"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "研究论文"
-   ],
-   "horizon": "long",
-   "score": 80.1,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Colin Raffel",
-     "Noam Shazeer",
-     "Adam Roberts",
-     "Katherine Lee",
-     "Sharan Narang",
-     "Michael Matena",
-     "Yanqi Zhou",
-     "Wei Li"
-    ],
-    "author_count": 9,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "Hacker News (AI 高分帖)",
-     "Sebastian Raschka"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "2eef3c25f2aa3ef9",
-   "url": "https://arxiv.org/abs/2603.11611v2",
-   "title": "Fractional Rotation, Full Potential? Investigating Performance and Convergence of Partial RoPE",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2026-03-12T07:05:13+00:00",
-   "summary_short": "部分RoPE用约10%维度匹配全RoPE收敛，缓存内存最多省10倍。",
-   "summary_long": "RoPE广泛用于Transformer编码相对位置信息，但仅对部分隐藏维度施加RoPE的效果仍缺乏系统研究；原文指出这一设计在长上下文下可显著降低内存。原文报告，部分RoPE相比标准RoPE缓存最多节省10倍内存，同时最终损失相当。研究跨架构、模型规模、序列长度和数据集考察其对训练动态与收敛的影响。结果显示：仅对约10%的维度施加RoPE即可匹配全RoPE的收敛；这些趋势在不同设置下保持一致；无位置编码（NoPE）可能出现损失尖峰，而极少量RoPE或使用QK-Norm可缓解。总体而言，原文将部分RoPE视为效率与稳定性之间的有效折中。",
-   "key_points": [
-    "部分RoPE相比标准RoPE缓存最多节省10倍内存，同时最终损失保持相当。",
-    "仅对约10%维度施加RoPE即可达到与全RoPE相当的收敛，且跨架构、模型规模、序列长度和数据集的趋势一致。",
-    "NoPE可能产生损失尖峰，少量RoPE或QK-Norm可缓解；部分RoPE是效率与稳定性的折中。"
-   ],
-   "topics": [
-    "rope",
-    "positional-encoding",
-    "training-efficiency"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "研究论文"
-   ],
-   "horizon": "long",
-   "score": 76.5,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Mohammad Aflah Khan",
-     "Krishna P. Gummadi",
-     "Manish Gupta",
-     "Abhilasha Ravichander"
-    ],
-    "author_count": 4,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "Hacker News (AI 高分帖)",
-     "Sebastian Raschka"
-    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://metr.org/blog/2026-10-22-red-teaming-openai-agent-monitoring/",
+      "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+      "https://www.apolloresearch.ai/",
+      "https://www.goodfire.com/",
+      "https://metr.org/",
+      "https://metr.org/blog/2026-10-14-control-assessment-proposal/",
+      "https://transluce.org/",
+      "https://metr.org/blog/2026-10-14-alignment-assessment-proposal/"
+     ]
+    },
     "summary_mode": "full"
    }
   }
