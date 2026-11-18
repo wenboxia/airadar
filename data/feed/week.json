@@ -1,6 +1,60 @@
 {
- "generated_at": "2026-11-17T02:30:05+00:00",
+ "generated_at": "2026-11-18T01:40:01+00:00",
  "top": [
+  {
+   "id": "964aca3f2d3b92c6",
+   "url": "https://github.blog/engineering/engineering-principles/building-the-agent-host-protocol-for-sessions-that-continue-across-devices/",
+   "title": "Building the Agent Host Protocol for sessions that continue across devices",
+   "source": "GitHub Blog (AI)",
+   "tier": "S",
+   "published_at": "2026-11-17T18:20:40+00:00",
+   "summary_short": "GitHub Copilot 的跨设备会话连续性依托开放标准 AHP：在一处开始，任意设备继续。",
+   "summary_long": "原文指出，模型已能自主工作数小时甚至数天，用户不必全程盯着，但需要能随时查看；agent 不应只存在于一个应用里，关闭窗口或换设备后工作应继续。GitHub Copilot 支持在一处开始 agent 会话、在另一处继续，这依赖 Agent Host Protocol（AHP），它是先在 VS Code 中构建、并被 GitHub 各产品采用的开放标准。旧做法的问题在于：Copilot 最初是 VS Code 扩展并自带 harness，agent 生命周期绑定单个编辑器窗口，关闭窗口后 agent 就消失，升级并重启会中断所有 agent，连接远程机器则会得到一个锁定在该 VS Code workbench 版本上的全新扩展宿主；同时 Copilot 应用与 iOS、Android 移动端各自做独立集成，只解决单个产品的问题，开发者无法把 agent 接入自建工作流。AHP 要求多客户端共享同一批 agent，容忍网络中断、重连与并发变更，但不描述 agent 行为，只定义交互方式，并保持核心最小。协议以 URI 标识的 channel 为功能单元，root、session、chat 为必备，终端、MCP、OTel 等可选；通道内是基于 reducer 的状态对象，服务器是状态仲裁者，客户端发送 actions 以改变状态或触发副作用，从而简化弱网重连重放与调试。",
+   "key_points": [
+    "AHP 是先在 VS Code 构建、被 GitHub 采用的开放标准，支撑 Copilot 在 VS Code、Copilot 应用与移动端之间接续同一 agent 会话。",
+    "旧架构下 agent 绑定单个 VS Code 窗口，关窗、升级重启或连接远程都会中断；各产品各自定制集成无法覆盖开发者自建客户端。",
+    "协议以 URI 标识的 channel 为功能单元，root、session、chat 必备，终端、MCP、OTel 可选；通道内用 reducer 状态，服务器仲裁状态，客户端提交 actions。"
+   ],
+   "topics": [
+    "agent-loop",
+    "mcp",
+    "context-engineering"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 85.2,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "Engineering",
+     "Engineering principles",
+     "GitHub Copilot",
+     "VS Code"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/features/ai/github-app",
+      "https://docs.github.com/copilot/concepts/copilot-surfaces/copilot-on-github",
+      "https://microsoft.github.io/language-server-protocol/",
+      "https://microsoft.github.io/debug-adapter-protocol/",
+      "https://microsoft.github.io/agent-host-protocol/",
+      "https://aka.ms/copilot-sdk/blog-2.0",
+      "https://code.visualstudio.com/docs/remote/vscode-server",
+      "https://github.blog/changelog/2026-10-28-work-from-anywhere-with-a-new-connected-copilot-cloud-experience/",
+      "https://github.com/microsoft/agent-host-protocol-samples/",
+      "https://github.com/microsoft/agent-host-protocol",
+      "https://github.blog/engineering/engineering-principles/building-the-agent-host-protocol-for-sessions-that-continue-across-devices/",
+      "https://github.blog"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "ebd9eb94963902d2",
    "url": "https://openai.com/index/our-first-phase-of-embedded-assessments",
@@ -42,6 +96,68 @@
       "https://metr.org/blog/2026-10-14-control-assessment-proposal/",
       "https://transluce.org/",
       "https://metr.org/blog/2026-10-14-alignment-assessment-proposal/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "c60558e98558e0e7",
+   "url": "https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/",
+   "title": "External sandboxes for coding agents",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-17T22:52:29+00:00",
+   "summary_short": "提出“外部沙箱”模式并给出三个实现，隔离代理执行的代码",
+   "summary_long": "原文为寻找更安全的方式沙箱化代理执行的代码，重点是在试用本地模型时，不必担心一次误操作或提示注入就让机器被做出破坏性操作。作者与 Prime Radiant 合作推进该项目，并在其博客文章中介绍“外部沙箱”模式：代理本身运行在沙箱之外，代理要执行的代码则放进专门的沙箱里运行。为演示这一模式，原文发布了三个沙箱服务器实现：external-sandbox-v86 运行 Node.js 服务器，再用 v86 在 WebAssembly 内运行 Alpine Linux；external-sandbox-container 是一个 Python Web 服务器，在 Apple Containers 实例中运行 Alpine Linux 沙箱；external-sandbox-quicksand 同样是 Python Web 服务器，使用微软的 Quicksand 沙箱库，该库把 QEMU 与 Alpine Linux 打包进一个 Python 包。三者提供相同的 localhost API，可将 Pi、Claude Code 或 Codex 配置为在需要执行代码时向该沙箱发起 API 调用。沙箱还包含可选的 HTTP/HTTPS 允许列表代理，用于精确控制代理代码可通信的主机，并提供凭据替换机制，使带认证的 API 调用无需把密钥交给代理；原文还展示了可在沙箱运行期间重新配置该代理的界面",
+   "key_points": [
+    "外部沙箱模式：代理位于沙箱之外，其执行的代码在专用沙箱内运行",
+    "三个实现 external-sandbox-v86、external-sandbox-container、external-sandbox-quicksand 分别基于 v86/WebAssembly、Apple Containers、微软 Quicksand 库，均提供相同的 localhost API",
+    "沙箱附带可选的 HTTP/HTTPS 允许列表代理与凭据替换机制，并提供运行时可重配代理的界面"
+   ],
+   "topics": [
+    "coding-agent",
+    "harness",
+    "prompt-injection"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 84.2,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "sandboxing",
+     "security",
+     "ai",
+     "webassembly",
+     "generative-ai"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://blog.primeradiant.com/external-sandboxes-for-coding-agents/",
+      "https://primeradiant.com",
+      "https://github.com/orgs/prime-radiant-inc/repositories",
+      "https://github.com/prime-radiant-inc/external-sandbox-v86",
+      "https://github.com/copy/v86",
+      "https://github.com/prime-radiant-inc/external-sandbox-container",
+      "https://github.com/prime-radiant-inc/external-sandbox-quicksand",
+      "https://github.com/microsoft/quicksand",
+      "https://simonwillison.net/tags/sandboxing",
+      "https://simonwillison.net/tags/security",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/webassembly",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/coding-agents",
+      "https://simonwillison.net/tags/claude-code",
+      "https://simonwillison.net/tags/codex",
+      "https://simonwillison.net/tags/pi"
      ]
     },
     "summary_mode": "full"
@@ -91,148 +207,113 @@
    }
   },
   {
-   "id": "5bf4951adbe9698d",
-   "url": "https://openai.com/index/introducing-chatgpt-wallet",
-   "title": "Introducing ChatGPT Wallet",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-13T15:00:00+00:00",
-   "summary_short": "ChatGPT Wallet 上线：代理可付款但不接触真实卡号，每笔需人脸或指纹确认",
-   "summary_long": "OpenAI 推出 ChatGPT Wallet，原文称其为首个让代理在无法访问用户真实卡号的情况下完成支付、且每笔购买都需通过安全验证的钱包，同时保留现有卡片的奖励与符合条件的争议保护。该产品与 American Express、Mastercard、Visa 合作构建，初期通过 dots 向美国 ChatGPT Pro 订阅用户开放。原文称每周有 12 亿人使用 ChatGPT，其中许多人用它研究商品、比较选项并决定购买，ChatGPT Wallet 意在帮助这些人完成购买，并让商家可用现有系统受理代理支付。使用流程为：用户一次性绑卡，每次购买前查看商品、金额与所选卡片，再以 Face ID 或指纹等安全验证批准，每次批准都会生成授权记录；随后支付网络提供一个替代真实卡信息的支付令牌（含卡号、安全码、有效期），款项计入所选卡片。用户与商家直接交易，商家保有客户关系及定价、履约、退货与客服控制权。原文还提到未来用户可通过消费限额、品类、时段等参数把购买完全委托给代理。此外，OpenAI 发布 Commerce Partner Playbook，指导商家让代理可访问、提供商品信息并与支付风控方协作减少误拒。",
+   "id": "069078b2b4e3b49a",
+   "url": "https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/",
+   "title": "How the Claude Code team thinks about verification",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-17T10:20:40+00:00",
+   "summary_short": "Claude Code团队用端到端等测试让编程agent凭证据验证工作，支撑大规模并行。",
+   "summary_long": "Claude Code 团队称其约90%的代码由 Claude 编写和审查。原文指出，验证循环是扩大委派规模的关键：没有验证只能同时运行一两个 Claude，有了验证可并行数十到数百个。内部结构化文件生成测试显示，用独立评分器按 rubric 检查 Claude 的工作，比标准提示循环成功率最高提升10个百分点，难题收益最大。测试、基准、规格和真实端到端运行过去验证昂贵，现在可让 agent 快速生成并作为软件频繁运行，且能用结果改进 agent，例如反复因日志含用户数据失败时，增加 hook 或 CLAUDE.md 明确规则。原文还强调避免不稳定和过慢测试，重测试宜在提交前运行，并重点介绍端到端、属性与差分测试；提供内容中详述了 E2E 和属性测试，差分部分未展开。",
    "key_points": [
-    "ChatGPT Wallet 让代理无需接触用户真实卡信息即可付款，每笔购买都需安全验证，并保留卡片原有奖励与符合条件的争议保护",
-    "与 American Express、Mastercard、Visa 合作构建，初期通过 dots 面向美国 18 岁以上 ChatGPT Pro 订阅用户、使用美国发行卡片开放",
-    "支付通过支付网络提供的令牌完成，用户与商家直接交易，商家保留客户关系及定价、履约、退货和客服控制权"
+    "团队约90%代码由Claude编写和审查；验证循环让可并行运行的Claude从一两个扩展到数十上百个。",
+    "内部测试中，独立评分器按rubric检查Claude输出，较标准提示循环成功率最高提升10个百分点，难题收益最大。",
+    "原文强调避免flaky和慢测试、重测试放在提交前，并称最值得投入的是端到端、属性和差分测试；提供内容详述E2E难被糊弄、属性测试补边缘案例，差分部分未展开。"
    ],
    "topics": [
-    "product",
-    "agentic-commerce"
+    "coding-agent",
+    "harness",
+    "eval"
    ],
-   "category": "产品与应用",
+   "category": "Agent 与开发",
    "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 82.9,
-   "status": "published",
-   "extra": {
-    "content_source": "reader",
-    "source_tags": [
-     "Product"
-    ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "d2296a64c0dc3b89",
-   "url": "https://huggingface.co/blog/token-pooling",
-   "title": "Token Pooling-Aware Training for Multi-Vector Embedding Models",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-11-11T00:00:00+00:00",
-   "summary_short": "池化感知训练让多向量嵌入在4倍压缩下保留97.8%的未池化检索质量",
-   "summary_long": "原文讨论多向量嵌入模型在检索中表达力强、但文档向量数量庞大的存储问题，并介绍 token pooling 与池化感知训练。多向量模型为每个查询 token 保留匹配机会，文档侧会积累大量向量；即使使用 Fast-PLAID 的 2-bit/4-bit 残差量化，百万文档仍可能达到 12.8 GB，把每篇文档池化到 50 个向量可降至 3.2 GB。Token pooling 用 Ward 层次聚类合并相似 token 向量，以组均值表示并重新归一化，供 MaxSim 打分。池化越激进越容易丢失有用信息，池化感知训练让编码器在向量被合并时保留重要信息。原文给出的结果：pool_factor=4 时，常规训练模型保留未池化 NanoBEIR nDCG@10 的 94.6%，文档向量减少 4 倍；池化感知训练在同一存储预算下把保留率提高到 97.8%。文章还用 Sentence Transformers 给出可复现示例，并讨论质量与存储权衡。",
-   "key_points": [
-    "多向量模型为每个查询 token 保留匹配机会，表达力强，但文档向量数量会快速膨胀；Fast-PLAID 量化下，200 个 128 维向量每文档需 12.8 KB，百万文档达 12.8 GB。",
-    "Token pooling 用 Ward 层次聚类合并相似 token 向量，按组均值表示并归一化，以适配 MaxSim 打分；压缩越强越可能丢失有用信息。",
-    "池化感知训练让编码器在合并时保留重要信息；pool_factor=4 时，常规模型保留 94.6% 未池化 NanoBEIR nDCG@10，池化感知训练提升到 97.8%，且文档向量减少 4 倍。"
-   ],
-   "topics": [
-    "post-training",
-    "rag"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
+    "Agent 与开发",
+    "评测"
    ],
    "horizon": "long",
-   "score": 82.5,
+   "score": 83.4,
    "status": "published",
    "extra": {
-    "content_source": "direct",
+    "hn_points": 262,
+    "hn_comments": 205,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/token-pooling.md",
-      "https://stefan-jo.github.io/learn-to-pool/downloads/paper.pdf",
-      "https://huggingface.co/blog/lightonai/lateon-hpool-regularization",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/token-pooling/mve_token_pooling_results.png",
-      "https://huggingface.co/blog/multi-vector-encoder",
-      "https://github.com/lightonai/fast-plaid",
-      "https://sbert.net/docs/package_reference/multi_vector_encoder/modules.html#hierarchicaltokenpooling",
-      "https://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering",
-      "https://huggingface.co/blog/matryoshka",
-      "https://sbert.net/docs/package_reference/multi_vector_encoder/losses.html#multivectortokenpoolingloss",
-      "https://github.com/huggingface/sentence-transformers/blob/main/examples/multi_vector_encoder/training/token_pooling/training_cached_contrastive.py",
-      "https://docs.astral.sh/uv/getting-started/installation/",
-      "https://huggingface.co/docs/hub/jobs-quickstart",
-      "https://sbert.net/docs/multi_vector_encoder/usage/kernels.html",
-      "https://huggingface.co/kernels/sentence-transformers/late-interaction-kernels",
-      "https://huggingface.co/kernels/sentence-transformers/ward-clustering",
-      "https://huggingface.co/tomaarsen/mve-ModernBERT-base-token-pooling-baseline",
-      "https://huggingface.co/tomaarsen/mve-ModernBERT-base-token-pooling",
-      "https://sbert.net/examples/multi_vector_encoder/training/matryoshka/README.html",
-      "https://sbert.net/examples/multi_vector_encoder/training/token_pooling/README.html",
-      "https://github.com/huggingface/sentence-transformers/blob/main/examples/multi_vector_encoder/training/token_pooling/evaluate_token_pooling.py",
-      "https://stefan-jo.github.io/learn-to-pool",
-      "https://huggingface.co/papers/2409.14683",
-      "https://huggingface.co/papers/2101.06983",
-      "https://huggingface.co/collections/sentence-transformers/multivectorencoder-integrations"
+      "https://claude.dev/blog/solving-code-review-at-anthropic/",
+      "https://claude.com/blog/building-verification-loops-in-claude-code-with-skills",
+      "https://claude.com/blog/claude-managed-agents",
+      "https://chromedevtools.github.io/devtools-protocol/",
+      "https://fast-check.dev/",
+      "https://hypothesis.readthedocs.io/en/latest/",
+      "https://proptest-rs.github.io/proptest/",
+      "https://claude.com/resources/articles/ai-code-migration",
+      "https://code.claude.com/docs/en/code-review-customize",
+      "https://code.claude.com/docs/en/hooks",
+      "https://code.claude.com/docs/en/goal",
+      "https://code.claude.com/docs/en/code-review-pull-requests"
      ]
     },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "2849eca9693ec9be",
-   "url": "https://arxiv.org/abs/2611.15049v1",
-   "title": "Science Prediction Universe",
-   "source": "论文（被提及）",
-   "tier": "A",
-   "published_at": "2026-11-11T05:23:11+00:00",
-   "summary_short": "SPU基准测试AGI实验预测能力，揭示瓶颈在科学判断而非工具执行",
-   "summary_long": "可靠预测实验结果被视为理解自然现象的核心检验。原文指出，若通用人工智能要超越人类科学能力，也必须比人类更可靠地预测实验结果。为此，研究提出Science Prediction Universe（SPU）基准：含化学、材料科学、生物与医学的100个公开验证任务，以及16个来自未发表湿实验的私有任务。智能体获得实验设置和候选条件后，可利用所需资源按测量结果排序候选。研究评估跨Codex与Claude Code两个框架、覆盖12个前沿模型的13种配置。公开基准上配置呈两个层级，任务校正Spearman相关系数从0.227到0.478，当前智能体远未饱和湿实验预测。对1,155条公开轨迹（227,103次工具调用）的分析显示，瓶颈在科学判断而非工具执行：智能体依赖共享单调先验，彼此一致度0.52高于与实验现实的0.33，且常计算不影响最终结果的简单代理量。",
-   "key_points": [
-    "SPU基准聚焦隐藏实验结果，包含化学、材料科学、生物与医学的100个公开验证任务，以及16个来自未发表湿实验的私有任务。",
-    "研究评估覆盖12个前沿模型、Codex与Claude Code两个框架的13种智能体配置；公开基准任务校正Spearman相关系数从0.227到0.478，配置分为两个层级。",
-    "对1,155条公开评分轨迹（227,103次工具调用）的分析表明，瓶颈在科学判断而非工具执行：智能体彼此一致度0.52高于与实验现实的0.33，且常计算不影响最终结果的简单物理或化学代理量。"
-   ],
-   "topics": [
-    "eval",
-    "tool-use",
-    "reasoning"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测",
-    "Agent 与开发",
-    "研究论文"
-   ],
-   "horizon": "long",
-   "score": 81.9,
-   "status": "published",
-   "extra": {
-    "authors": [
-     "Zengji Tu",
-     "Xiang Liu",
-     "Jiarui Sun",
-     "Ruoyu Wu",
-     "Zhihui Qi",
-     "Chengda Wu",
-     "Yutao Zhou",
-     "Bo Yang"
-    ],
-    "author_count": 36,
-    "arxiv_via": "mention",
-    "mentioned_by": [
-     "量子位"
-    ],
+    "content_source": "direct",
     "summary_mode": "full"
    }
   }
  ],
  "items": [
   {
+   "id": "964aca3f2d3b92c6",
+   "url": "https://github.blog/engineering/engineering-principles/building-the-agent-host-protocol-for-sessions-that-continue-across-devices/",
+   "title": "Building the Agent Host Protocol for sessions that continue across devices",
+   "source": "GitHub Blog (AI)",
+   "tier": "S",
+   "published_at": "2026-11-17T18:20:40+00:00",
+   "summary_short": "GitHub Copilot 的跨设备会话连续性依托开放标准 AHP：在一处开始，任意设备继续。",
+   "summary_long": "原文指出，模型已能自主工作数小时甚至数天，用户不必全程盯着，但需要能随时查看；agent 不应只存在于一个应用里，关闭窗口或换设备后工作应继续。GitHub Copilot 支持在一处开始 agent 会话、在另一处继续，这依赖 Agent Host Protocol（AHP），它是先在 VS Code 中构建、并被 GitHub 各产品采用的开放标准。旧做法的问题在于：Copilot 最初是 VS Code 扩展并自带 harness，agent 生命周期绑定单个编辑器窗口，关闭窗口后 agent 就消失，升级并重启会中断所有 agent，连接远程机器则会得到一个锁定在该 VS Code workbench 版本上的全新扩展宿主；同时 Copilot 应用与 iOS、Android 移动端各自做独立集成，只解决单个产品的问题，开发者无法把 agent 接入自建工作流。AHP 要求多客户端共享同一批 agent，容忍网络中断、重连与并发变更，但不描述 agent 行为，只定义交互方式，并保持核心最小。协议以 URI 标识的 channel 为功能单元，root、session、chat 为必备，终端、MCP、OTel 等可选；通道内是基于 reducer 的状态对象，服务器是状态仲裁者，客户端发送 actions 以改变状态或触发副作用，从而简化弱网重连重放与调试。",
+   "key_points": [
+    "AHP 是先在 VS Code 构建、被 GitHub 采用的开放标准，支撑 Copilot 在 VS Code、Copilot 应用与移动端之间接续同一 agent 会话。",
+    "旧架构下 agent 绑定单个 VS Code 窗口，关窗、升级重启或连接远程都会中断；各产品各自定制集成无法覆盖开发者自建客户端。",
+    "协议以 URI 标识的 channel 为功能单元，root、session、chat 必备，终端、MCP、OTel 可选；通道内用 reducer 状态，服务器仲裁状态，客户端提交 actions。"
+   ],
+   "topics": [
+    "agent-loop",
+    "mcp",
+    "context-engineering"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 85.2,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "Engineering",
+     "Engineering principles",
+     "GitHub Copilot",
+     "VS Code"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/features/ai/github-app",
+      "https://docs.github.com/copilot/concepts/copilot-surfaces/copilot-on-github",
+      "https://microsoft.github.io/language-server-protocol/",
+      "https://microsoft.github.io/debug-adapter-protocol/",
+      "https://microsoft.github.io/agent-host-protocol/",
+      "https://aka.ms/copilot-sdk/blog-2.0",
+      "https://code.visualstudio.com/docs/remote/vscode-server",
+      "https://github.blog/changelog/2026-10-28-work-from-anywhere-with-a-new-connected-copilot-cloud-experience/",
+      "https://github.com/microsoft/agent-host-protocol-samples/",
+      "https://github.com/microsoft/agent-host-protocol",
+      "https://github.blog/engineering/engineering-principles/building-the-agent-host-protocol-for-sessions-that-continue-across-devices/",
+      "https://github.blog"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "ebd9eb94963902d2",
    "url": "https://openai.com/index/our-first-phase-of-embedded-assessments",
    "title": "Our first phase of embedded assessments",
@@ -273,6 +354,68 @@
       "https://metr.org/blog/2026-10-14-control-assessment-proposal/",
       "https://transluce.org/",
       "https://metr.org/blog/2026-10-14-alignment-assessment-proposal/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "c60558e98558e0e7",
+   "url": "https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/",
+   "title": "External sandboxes for coding agents",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-17T22:52:29+00:00",
+   "summary_short": "提出“外部沙箱”模式并给出三个实现，隔离代理执行的代码",
+   "summary_long": "原文为寻找更安全的方式沙箱化代理执行的代码，重点是在试用本地模型时，不必担心一次误操作或提示注入就让机器被做出破坏性操作。作者与 Prime Radiant 合作推进该项目，并在其博客文章中介绍“外部沙箱”模式：代理本身运行在沙箱之外，代理要执行的代码则放进专门的沙箱里运行。为演示这一模式，原文发布了三个沙箱服务器实现：external-sandbox-v86 运行 Node.js 服务器，再用 v86 在 WebAssembly 内运行 Alpine Linux；external-sandbox-container 是一个 Python Web 服务器，在 Apple Containers 实例中运行 Alpine Linux 沙箱；external-sandbox-quicksand 同样是 Python Web 服务器，使用微软的 Quicksand 沙箱库，该库把 QEMU 与 Alpine Linux 打包进一个 Python 包。三者提供相同的 localhost API，可将 Pi、Claude Code 或 Codex 配置为在需要执行代码时向该沙箱发起 API 调用。沙箱还包含可选的 HTTP/HTTPS 允许列表代理，用于精确控制代理代码可通信的主机，并提供凭据替换机制，使带认证的 API 调用无需把密钥交给代理；原文还展示了可在沙箱运行期间重新配置该代理的界面",
+   "key_points": [
+    "外部沙箱模式：代理位于沙箱之外，其执行的代码在专用沙箱内运行",
+    "三个实现 external-sandbox-v86、external-sandbox-container、external-sandbox-quicksand 分别基于 v86/WebAssembly、Apple Containers、微软 Quicksand 库，均提供相同的 localhost API",
+    "沙箱附带可选的 HTTP/HTTPS 允许列表代理与凭据替换机制，并提供运行时可重配代理的界面"
+   ],
+   "topics": [
+    "coding-agent",
+    "harness",
+    "prompt-injection"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 84.2,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "sandboxing",
+     "security",
+     "ai",
+     "webassembly",
+     "generative-ai"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://blog.primeradiant.com/external-sandboxes-for-coding-agents/",
+      "https://primeradiant.com",
+      "https://github.com/orgs/prime-radiant-inc/repositories",
+      "https://github.com/prime-radiant-inc/external-sandbox-v86",
+      "https://github.com/copy/v86",
+      "https://github.com/prime-radiant-inc/external-sandbox-container",
+      "https://github.com/prime-radiant-inc/external-sandbox-quicksand",
+      "https://github.com/microsoft/quicksand",
+      "https://simonwillison.net/tags/sandboxing",
+      "https://simonwillison.net/tags/security",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/webassembly",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/coding-agents",
+      "https://simonwillison.net/tags/claude-code",
+      "https://simonwillison.net/tags/codex",
+      "https://simonwillison.net/tags/pi"
      ]
     },
     "summary_mode": "full"
@@ -322,6 +465,90 @@
    }
   },
   {
+   "id": "069078b2b4e3b49a",
+   "url": "https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/",
+   "title": "How the Claude Code team thinks about verification",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-17T10:20:40+00:00",
+   "summary_short": "Claude Code团队用端到端等测试让编程agent凭证据验证工作，支撑大规模并行。",
+   "summary_long": "Claude Code 团队称其约90%的代码由 Claude 编写和审查。原文指出，验证循环是扩大委派规模的关键：没有验证只能同时运行一两个 Claude，有了验证可并行数十到数百个。内部结构化文件生成测试显示，用独立评分器按 rubric 检查 Claude 的工作，比标准提示循环成功率最高提升10个百分点，难题收益最大。测试、基准、规格和真实端到端运行过去验证昂贵，现在可让 agent 快速生成并作为软件频繁运行，且能用结果改进 agent，例如反复因日志含用户数据失败时，增加 hook 或 CLAUDE.md 明确规则。原文还强调避免不稳定和过慢测试，重测试宜在提交前运行，并重点介绍端到端、属性与差分测试；提供内容中详述了 E2E 和属性测试，差分部分未展开。",
+   "key_points": [
+    "团队约90%代码由Claude编写和审查；验证循环让可并行运行的Claude从一两个扩展到数十上百个。",
+    "内部测试中，独立评分器按rubric检查Claude输出，较标准提示循环成功率最高提升10个百分点，难题收益最大。",
+    "原文强调避免flaky和慢测试、重测试放在提交前，并称最值得投入的是端到端、属性和差分测试；提供内容详述E2E难被糊弄、属性测试补边缘案例，差分部分未展开。"
+   ],
+   "topics": [
+    "coding-agent",
+    "harness",
+    "eval"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "评测"
+   ],
+   "horizon": "long",
+   "score": 83.4,
+   "status": "published",
+   "extra": {
+    "hn_points": 262,
+    "hn_comments": 205,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://claude.dev/blog/solving-code-review-at-anthropic/",
+      "https://claude.com/blog/building-verification-loops-in-claude-code-with-skills",
+      "https://claude.com/blog/claude-managed-agents",
+      "https://chromedevtools.github.io/devtools-protocol/",
+      "https://fast-check.dev/",
+      "https://hypothesis.readthedocs.io/en/latest/",
+      "https://proptest-rs.github.io/proptest/",
+      "https://claude.com/resources/articles/ai-code-migration",
+      "https://code.claude.com/docs/en/code-review-customize",
+      "https://code.claude.com/docs/en/hooks",
+      "https://code.claude.com/docs/en/goal",
+      "https://code.claude.com/docs/en/code-review-pull-requests"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "549a77347d5e1e5f",
+   "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+   "title": "Introducing GPT-6.2 Astra and Sol",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-17T17:45:00+00:00",
+   "summary_short": "GPT‑6.2 Astra 与 Sol 发布：难任务更强，输出 token 更少、成本更低",
+   "summary_long": "原文介绍两款新模型：面向最艰难项目的 GPT‑6.2 Astra，以及面向日常工作的 GPT‑6.2 Sol。两者在高要求任务上结果更好、输出 token 更少，用户可在同一用量额度内完成更多工作；对企业和开发者而言，意味着可规模化的前沿性能。Astra 生成的幻灯片、表格和文档更贴近用户提供的模板与行业惯例，代码更干净，网站、游戏和 3D 设计前端表现更好。Agents' Last Exam 上它比 GPT‑6 Astra 高 5.2 分、成本不到三分之一，比 Claude Fable 5.2 高 5.5 分、成本仅 5%；Terminal‑Bench‑Science 0.1 上高 9 个百分点、成本不到三分之一，并在 Vals Science Index 创新高。API 输入输出价格比 GPT‑6 Astra 低 20%，缓存输入享 60% 折扣（每百万 token：输入 8 美元、缓存输入 0.40 美元、输出 40 美元）。Sol 维持 GPT‑6.1 Sol 的 API 价格，FrontierCode 2.0 上比 Astra 低不到 0.5 分、成本约五分之一；LifeVal 上超过 GPT‑6 Astra，成本约七分之一。原文称 Astra 在 Harvey LAB‑AA v1.1 创下新纪录，但文末内容截断。",
+   "key_points": [
+    "发布 GPT‑6.2 Astra（面向最难项目的前沿模型）与 GPT‑6.2 Sol（高效通用的日常模型），二者均以更少输出 token 获得更好结果。",
+    "Astra 在 Agents' Last Exam 上比 GPT‑6 Astra 高 5.2 分、成本不到三分之一；比 Claude Fable 5.2 高 5.5 分、成本仅 5%。",
+    "Astra 的 API 输入输出价格比 GPT‑6 Astra 低 20%，缓存输入享 60% 折扣；Sol 维持 GPT‑6.1 Sol 的 API 价格。"
+   ],
+   "topics": [
+    "product",
+    "reasoning"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 82.9,
+   "status": "published",
+   "extra": {
+    "content_source": "reader",
+    "source_tags": [
+     "Product"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
    "id": "5bf4951adbe9698d",
    "url": "https://openai.com/index/introducing-chatgpt-wallet",
    "title": "Introducing ChatGPT Wallet",
@@ -351,6 +578,53 @@
     "source_tags": [
      "Product"
     ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "715137d9352475f8",
+   "url": "https://runta.com/blog/introducing-frontierharness-eval-v1-1/",
+   "title": "What is the best harness for each model?",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-17T14:53:43+00:00",
+   "summary_short": "大规模评测显示：换模型时或需换harness，各模型最佳性价比harness不同",
+   "summary_long": "原文介绍 FrontierHarness Eval v1.1：与 Baseten 合作，用 83B tokens、27,280 次 agent 运行构建 harness 排行榜，回答换模型时是否也该换 harness、每个模型的最佳 harness 是什么。v1.1 覆盖 22 个 harness 配置、5 个模型、62 个终端任务、每任务 4 次尝试，规模为 v1.0 的 76 倍。结果显示，各模型的最佳性价比 harness 不同：GLM-5.3 配 Codex CLI，GLM-5.3 Flash 配 Pi，DeepSeek V4.1 Flash 1017 配 ZCode，Muse 配 Oh My Pi，Kimi-K3 配 Alma。成本排名跨模型变化很大，按每任务成本，harness 中位数移动 11/22 位；Codex CLI 从 GLM-5.3 下第 1 降至 Kimi-K3 下第 16。总体上 OpenCode v2 每任务成本最低（$0.561），Pi、Codex CLI、ZCode 通过率最高（61.9%）。原文据此建议，换模型时应考虑换 harness。",
+   "key_points": [
+    "测试规模：22 个 harness 配置 × 5 个模型 × 62 个任务 × 4 次尝试，共 83B tokens、27,280 次运行，为 v1.0 的 76 倍。",
+    "各模型最佳性价比 harness 不同；原文建议换模型时考虑换 harness。",
+    "成本排名跨模型大幅变动：按每任务成本，harness 中位数移动 11/22 位，Codex CLI 从 GLM-5.3 下第 1 到 Kimi-K3 下第 16。"
+   ],
+   "topics": [
+    "eval",
+    "harness",
+    "coding-agent"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "Agent 与开发"
+   ],
+   "horizon": "short",
+   "score": 82.8,
+   "status": "published",
+   "extra": {
+    "hn_points": 335,
+    "hn_comments": 115,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.baseten.co/",
+      "https://frontierharness.org/",
+      "https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/src/core/system-prompt.ts#L64-L114",
+      "https://github.com/harbor-framework/harbor",
+      "https://hub.harborframework.com/",
+      "https://www.baseten.co/products/model-apis/",
+      "https://runta.com/docs/integrations/harbor/",
+      "https://runta.com/pricing/"
+     ]
+    },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -643,54 +917,6 @@
    }
   },
   {
-   "id": "3229de0d919212c3",
-   "url": "https://huggingface.co/blog/decision",
-   "title": "Decision Models in Hugging Face",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-11-10T00:00:00+00:00",
-   "summary_short": "Hugging Face 介绍决策模型：不生成文本，直接对既定选项给出概率",
-   "summary_long": "原文以客服工单为例：让 LLM 返回 JSON 虽可行，但提出另一种做法——模型直接评估候选答案并返回概率分布，不生成任何文本。文中给出 pipeline(\"decision\", model=\"autotrust/GEV-26B-Decide\") 示例，输入 state 与带 criteria 的 questions，输出 department 的 choice 为 billing，confidence 约 0.9974。原文定义决策模型：接收输入上下文（state），评估带一组预定义可能答案（primitives）的问题，返回结构化决策及概率；基本接口为 State + Questions + Allowed Answers → Decisions + Probabilities。名称上，TypeSafe AI 提出 Jev 并称其为 System One 模型，社区最终采用 decision model 一词，因其描述模型的计算角色而非某种认知理论。原文列出的不用 LLM 的理由：不保证遵循 schema，可能产出非法 JSON、多余键或选项外答案；Outlines、XGrammar 等约束解码可强制结构但仍有额外开销；生成整段回答并无必要（原文此处截断）。",
-   "key_points": [
-    "决策模型的基本接口是 State + Questions + Allowed Answers → Decisions + Probabilities，即对预设选项打分而非逐 token 生成文本。",
-    "示例用 transformers 的 pipeline(\"decision\") 调用 autotrust/GEV-26B-Decide，输出选项、confidence 以及各选项的概率分布。",
-    "原文指出直接用 LLM 的问题：schema 不保证被遵循、约束解码（Outlines、XGrammar）带来额外开销、生成整段回答没有必要；术语源自 TypeSafe AI 的 Jev（System One 模型），社区改用 decision model。"
-   ],
-   "topics": [
-    "decision-model",
-    "structured-output"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 79.5,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/decision.md",
-      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/decision/decision-models.png",
-      "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
-      "https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow",
-      "https://x.com/ariG23498/status/2113220513158009022",
-      "https://github.com/dottxt-ai/outlines",
-      "https://github.com/mlc-ai/xgrammar",
-      "https://huggingface.co/tasks/zero-shot-classification",
-      "https://huggingface.co/docs/transformers/main/en/serve-cli/serving#v1systemone",
-      "https://huggingface.co/blog/ggml-org/decision-models-in-llamacpp",
-      "https://huggingface.co/models?other=decision-model&sort=trending",
-      "https://github.com/huggingface/trl/pull/8040",
-      "https://unsloth.ai/docs/basics/train-your-own-decision-model-with-unsloth"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "ea0776201252f8c6",
    "url": "https://haddyalchaer.com/jepa",
    "title": "After 600 experiments, here's what I discovered about JEPA world models",
@@ -738,51 +964,86 @@
    }
   },
   {
-   "id": "ae3c6c28ceab44c4",
-   "url": "https://www.vulncheck.com/blog/anthropic-glasswing-november-update",
-   "title": "Tracking Anthropic-discovered vulnerabilities",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-10T22:17:56+00:00",
-   "summary_short": "442个Anthropic相关CVE中仅2个在野利用",
-   "summary_long": "Project Glasswing启动七个月后，VulnCheck更新追踪：可归因于Anthropic的CVE共442个，约占今年已发布93,450个CVE的0.5%，其中仅2个被发现在野利用。Anthropic自身账本列出37,966项发现，仅7,349项（19.4%）公开、217项标记修复；自9月以来新增近12,000项发现，仅多15项修复，发现与修复差距扩大。约1,654项（4.4%）被标为重复，接近修复数的八倍，另有419项撤回。其宣称的真实正例率从90.8%升至94.2%，原文称这引发如何计入重复和撤回发现的疑问。OSS Scanner把验证工作转移给维护者；curl将34份已发布报告中的19份拒为漏洞，确认6份为低危，另有9份待评估。",
+   "id": "dfa52e89374f249c",
+   "url": "https://github.blog/open-source/maintainers/maintainers-dont-need-more-ai-bug-reports-they-need-fixes/",
+   "title": "Maintainers don’t need more AI bug reports. They need fixes.",
+   "source": "GitHub Blog (AI)",
+   "tier": "S",
+   "published_at": "2026-11-17T18:29:29+00:00",
+   "summary_short": "GitHub 与微软试点：让 AI 给开源维护者送修复而不是漏洞报告",
+   "summary_long": "AI 让发现漏洞又快又便宜，但修复仍依赖人的判断，开源项目中这项工作由维护者承担。许多维护者已被 AI 生成的安全报告淹没，包括重复项和并非漏洞的报告；Log4j 维护者 Christian Grobmeier 称，防御开源的 AI 必须强于攻击开源的 AI。为此 GitHub 与微软试点：用微软多模型智能体扫描框架 Codename MDASH 查找并修复广泛使用的开源软件中的漏洞。流程是：用 MAI Cyber 模型扫描并给出修复建议，GitHub Security Lab 的 AI 分诊智能体去重核验，微软 FORGE Lab 研究人员逐条人工复核，再经 GitHub 私有漏洞报告附概念验证与建议修复交给维护者，由维护者决定如何修。六个项目中被标记数千个可能问题，最终形成 99 份私有报告，截至 11 月 15 日已修复 55 个，14 个已进入发布。原文称样本小，属早期经验。",
    "key_points": [
-    "七个月追踪到442个可归因于Anthropic的CVE，约占今年全部CVE的0.5%，仅2个被发现在野利用。",
-    "Anthropic账本37,966项发现中仅7,349项公开（19.4%）、217项修复；9月以来新增近12,000项发现仅增15项修复。",
-    "约1,654项被标为重复、419项撤回；宣称真实正例率升至94.2%引发疑问；curl将34份报告中19份拒为漏洞。"
+    "维护者已被 AI 生成的安全报告淹没，其中含重复项与并非漏洞的报告；试点的两个目标是只发送真正重要的发现，且绝不向维护者发送未经核实的发现。",
+    "六个项目中被标记数千个可能问题，经 AI 分诊与七名 Microsoft FORGE Lab 研究人员人工复核后，维护者收到 99 份私有报告，截至 11 月 15 日修复 55 个，其中 14 个已进入发布版本。",
+    "原文总结的早期经验：修复比发现更耗维护者时间，首批发货的修复在初次扫描约一周后出现，Caddy 一周内修完全部 22 份报告，AutoGPT 一天内写出修复、不到一周上线；Express、Caddy、FastMCP、ImageMagick 维护者反馈这些报告质量高于以往的扫描结果。"
    ],
    "topics": [
-    "cybersecurity"
+    "cybersecurity",
+    "multi-agent",
+    "agent-loop"
    ],
    "category": "安全",
    "categories": [
-    "安全"
+    "安全",
+    "Agent 与开发"
    ],
    "horizon": "short",
-   "score": 78.9,
+   "score": 78.3,
    "status": "published",
    "extra": {
-    "hn_points": 447,
-    "hn_comments": 218,
+    "content_source": "rss",
+    "source_tags": [
+     "Maintainers",
+     "Open Source",
+     "AI security",
+     "GitHub Security Lab",
+     "maintainers"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://console.vulncheck.com/signin",
-      "https://www.vulncheck.com/blog/anthropic-glasswing-cves",
-      "https://www.vulncheck.com/blog/anthropic-ledger",
-      "https://www.vulncheck.com/blog/state-of-exploitation-1h-2026#has-anthropic-glasswing-lived-up-to-the-hype-it-brought-this-year",
-      "https://www.vulncheck.com/blog/anthropic-glasswing-receipts",
-      "https://github.com/patrickmgarrity/Anthropic-Credited-CVEs",
-      "https://red.anthropic.com/2026/cvd/ledger/",
-      "https://www.anthropic.com/research/launching-opt-in-vuln-finding-service-for-open-source",
-      "https://github.com/anthropics/oss-scanner",
-      "https://www.linkedin.com/in/danielstenberg/",
-      "https://www.linkedin.com/feed/update/urn:li:share:7524224297595269120/",
-      "https://daniel.haxx.se/blog/2026/05/11/mythos-finds-a-curl-vulnerability/",
-      "https://vulncheck.com/product/exploit-intelligence"
+      "https://youtu.be/t74ClffSUW0?si=WYa9E6mKPSVhOW1O&t=1815",
+      "https://learn.microsoft.com/en-us/security-exposure-management/ai-code-security-overview",
+      "https://www.microsoft.com/en-us/security/blog/2026/05/12/defense-at-ai-speed-microsofts-new-multi-model-agentic-security-system-tops-leading-industry-benchmark/",
+      "https://microsoft.ai/models/mai-cyber-1-1-flash/",
+      "https://github.blog/security/ai-supported-vulnerability-triage-with-the-github-security-lab-taskflow-agent/",
+      "https://forge-blog.github.io/",
+      "https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configure-for-a-repository",
+      "https://gh.io/gh-secure",
+      "https://docs.github.com/code-security/concepts/supply-chain-security/dependabot-alerts",
+      "https://docs.github.com/en/enterprise-cloud@latest/code-security/concepts/code-scanning/autofix-for-code-scanning#using-agentic-autofix",
+      "https://aka.ms/introducing-mai-cyber-2-flash",
+      "https://github.com/open-source/github-secure-open-source-fund",
+      "https://github.com/features/copilot/plans",
+      "https://github.com/open-source/sponsors",
+      "https://azure.microsoft.com/en-us",
+      "https://www.microsoft.com/en-us/startups",
+      "https://blogs.microsoft.com/on-the-issues/2025/06/04/microsoft-launches-new-european-security-program/",
+      "https://www.microsoft.com/en-us/trust-center/security/secure-future-initiative",
+      "https://github.com/aipotheosis-labs/aci",
+      "https://github.com/albumentations-team/AlbumentationsX",
+      "https://github.com/arviz-devs/arviz",
+      "https://github.com/Significant-Gravitas/gravitasml",
+      "https://github.com/camel-ai/camel",
+      "https://github.com/Garudex-Labs/Caracal",
+      "https://github.com/cocoindex-io/cocoindex",
+      "https://github.com/vitali87/code-graph-rag",
+      "https://github.com/mlco2/codecarbon",
+      "https://github.com/topoteretes/cognee",
+      "https://github.com/langchain-ai/deepagents",
+      "https://github.com/dipy/dipy",
+      "https://github.com/arc53/DocsGPT",
+      "https://github.com/PrefectHQ/fastmcp",
+      "https://github.com/jupyter",
+      "https://github.com/LadybugDB/ladybug",
+      "https://github.com/langchain-ai/langchain",
+      "https://github.com/matplotlib/matplotlib",
+      "https://github.com/czlonkowski/n8n-mcp",
+      "https://github.com/Nasiko-Labs/nasiko",
+      "https://github.com/numpy/numpy",
+      "https://github.com/ollama/ollama"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
@@ -1117,55 +1378,6 @@
    }
   },
   {
-   "id": "6f6fff482120edaf",
-   "url": "https://simonwillison.net/2026/Nov/10/prompting-claude-fable-52/",
-   "title": "Quoting Prompting Claude Fable 5.2",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-11-10T05:34:14+00:00",
-   "summary_short": "Anthropic文档：声明“代码是你的”可让模型更愿合并重复代码",
-   "summary_long": "Anthropic 在 Claude Fable 5.2 的提示文档中指出，模型会明显受到提示中“它写的代码归谁所有”这一说法的影响。在 Anthropic 针对小型编程任务的测试中，如果提示没有提到代码归属，或者把代码库描述成别人的，模型倾向于在既有结构上继续追加代码，即使这样会重复已有的代码。文档建议，如果希望模型在写代码的同时改进结构，就要明确说明代码库属于它自己，并给出了一句示范提示：“This codebase is yours: what it's for and how it's built are your call, and you'll keep building on it.”测试数据显示，使用这句话时，模型约有一半的尝试会合并重复代码；不使用这句话时，这一比例不到十分之一。原文未详述测试任务的具体规模、适用边界，以及该结论是否适用于更大规模的代码库。",
-   "key_points": [
-    "提示中是否交代代码归属，会影响 Claude Fable 5.2 在小型编程任务中的写法",
-    "未提及归属或把代码库说成他人所有时，模型倾向于在既有结构上追加代码，即使重复已有代码",
-    "明确声明该代码库属于模型自己并让其决定用途与构建方式时，约半数尝试合并了重复代码；无此句时不足十分之一"
-   ],
-   "topics": [
-    "context-engineering",
-    "coding-agent"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 76.5,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "prompt-engineering",
-     "anthropic",
-     "generative-ai",
-     "ai",
-     "llms"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2#say-who-owns-the-code",
-      "https://simonwillison.net/tags/prompt-engineering",
-      "https://simonwillison.net/tags/anthropic",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/claude-mythos-fable"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "01b49a7c7dde8d3e",
    "url": "https://github.blog/ai-and-ml/github-copilot/build-once-run-on-any-agent-a-practical-guide-to-agent-skills/",
    "title": "Build once, run on any agent: A practical guide to agent skills",
@@ -1211,126 +1423,6 @@
       "https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills",
       "https://github.blog/ai-and-ml/github-copilot/build-once-run-on-any-agent-a-practical-guide-to-agent-skills/",
       "https://github.blog"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "fc6b6a56df7b3650",
-   "url": "https://deepmind.google/blog/gemini-4-carbon-is-now-available/",
-   "title": "Gemini 4 Carbon is now available",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-11-10T16:03:47+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "model-release",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 75.4,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://twitter.com/intent/tweet?text=Gemini%204%20Carbon%20is%20now%20available%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
-      "https://www.facebook.com/sharer/sharer.php?caption=Gemini%204%20Carbon%20is%20now%20available&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/&title=Gemini%204%20Carbon%20is%20now%20available",
-      "https://blog.google/authors/koray-kavukcuoglu/",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
-      "https://deepmind.google/fairwind-program/",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
-      "https://cursor.com/cursorbench",
-      "https://www.perplexity.ai/hub/blog/wandr-benchmark-evaluating-research-agents-that-must-search-wide-and-deep",
-      "https://zapier.com/benchmarks",
-      "http://antigravity.google/blog/gemini-4-carbon-in-google-antigravity/",
-      "https://aistudio.google.com/prompts/new_chat?model=gemini-4-carbon",
-      "https://cloud.google.com/gemini-enterprise",
-      "https://aistudio.google.com/docs/pricing",
-      "https://one.google.com/about/google-ai-plans",
-      "https://antigravity.google/",
-      "http://gemini.google.com/",
-      "http://aimode.google/",
-      "https://artificialanalysis.ai/evaluations/mka",
-      "https://aistudio.google.com/apps/bundled/pelican-campus-quest",
-      "https://aistudio.google.com/apps/bundled/gemini-supply",
-      "https://github.com/google-gemini/demolab",
-      "https://aistudio.google.com/apps/bundled/koerner-hall",
-      "https://cloud.google.com/transform/how-google-does-it-using-agents-help-find-track-and-fix-vulnerabilities",
-      "https://www.wiz.io/blog/php2shell-php-rce",
-      "https://www.wiz.io/blog/scan-for-good-critical-ai-exposures",
-      "https://deepmind.google/blog/introducing-alphaproof-code",
-      "https://forms.gle/WvmBbPvRbpKG1BPn9",
-      "https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security/",
-      "https://storage.googleapis.com/deepmind-media/gemini/gemini_4_carbon_safety_report.pdf",
-      "https://developer.android.com/studio",
-      "http://gemini.google.com",
-      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Carbon-Model-Card.pdf",
-      "https://aistudio.google.com/learn/gemini-4-carbon-developer-guide",
-      "https://aistudio.google.com/docs/whats-new-gemini-4-carbon",
-      "https://policies.google.com/privacy"
-     ]
-    }
-   }
-  },
-  {
-   "id": "9656e9adb8553921",
-   "url": "https://blog.modelcontextprotocol.io/posts/exploring-file-uploads-and-downloads-in-mcp/",
-   "title": "Exploring File Uploads and Downloads in MCP",
-   "source": "MCP Official Blog",
-   "tier": "S",
-   "published_at": "2026-11-10T09:00:00+00:00",
-   "summary_short": "MCP 发布实验性文件上传/下载扩展草案，公开征求意见",
-   "summary_long": "MCP 最初只是把模型连接到工具的简单方式，但过去两年社区项目野心渐长，许多 MCP 服务器项目需要处理文件：把对话中的 PDF 存进云存储、把大 CSV 拉进代码沙箱都是常见需求，目前却要靠大量定制的工具约定和传输机制。原文称，因客户讨论中该需求反复出现，其启动了 File Uploads 工作组，用一个月时间拿出粗略的扩展定义，希望开发者试用。该工作仍属实验性质：形态已勾勒，但尚无参考实现，作者预计与云存储、数据库导入导出等第三方服务集成后内部机制会有较大变化；扩展保持可选，不支持的客户端与服务器无需改动，目标年底前定稿并稳定。设计上模型无需逐字节读取文件，文件直接送往目的地；扩展标识为 io.modelcontextprotocol/files，服务器在 server/discover 中声明 upload 与 maxInlineBytes，工具参数用 x-mcp-file 标记。",
-   "key_points": [
-    "MCP 服务器处理文件的需求（PDF 存云存储、大 CSV 进沙箱）此前需大量定制约定，因此启动了 File Uploads 工作组",
-    "扩展草案仍属实验性，尚无参考实现，与第三方文件服务集成后内部机制可能大改，目标年底前定稿并稳定",
-    "扩展保持可选：不支持它的客户端与服务器无需任何改动"
-   ],
-   "topics": [
-    "mcp",
-    "tool-use"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 75.3,
-   "status": "published",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://modelcontextprotocol.io/community/working-groups/file-uploads",
-      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/blob/main/specification/draft/file-uploads.md",
-      "https://modelcontextprotocol.io/specification/2026-07-28/server/tools#x-mcp-header",
-      "https://modelcontextprotocol.io/specification/2026-07-28/basic#statelessness",
-      "https://modelcontextprotocol.io/specification/2026-07-28/basic/patterns/mrtr",
-      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/blob/main/specification/draft/file-uploads.md#open-questions",
-      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/blob/main/specification/draft/file-uploads.md#security-implications",
-      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads",
-      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/issues",
-      "https://discord.com/channels/1358869848138059966/1497669234564661438",
-      "https://modelcontextprotocol.io/community/communication",
-      "https://github.com/jayzuccarelli",
-      "https://github.com/kevklam",
-      "https://github.com/kziemski",
-      "https://github.com/kurtisvg",
-      "https://github.com/meastes",
-      "https://github.com/patrick-rodgers",
-      "https://github.com/tsarlandie-oai",
-      "https://github.com/modelcontextprotocol/modelcontextprotocol/discussions?discussions_q=Files+Working+Group+Meeting+in%3Atitle"
      ]
     },
     "summary_mode": "full"

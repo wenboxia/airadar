@@ -1,702 +1,122 @@
 {
- "generated_at": "2026-11-17T02:30:05+00:00",
+ "generated_at": "2026-11-18T01:40:01+00:00",
  "items": [
   {
-   "id": "81bd7f76e2a9d5f3",
-   "url": "https://xusheng.dev/posts/windows-coding-agent-telemetry/",
-   "title": "Windows 11 Is Collecting Data on Which Coding Agents and Developer Tools You Use",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-16T22:58:20+00:00",
-   "summary_short": "逆向发现 Win11 组件记录并上报你使用的编程 Agent 与开发工具",
-   "summary_long": "作者借助 AI 翻查最新的 Windows 二进制文件，在 MissionControlAggregator.dll 里发现一串内嵌的可执行文件名：codex.exe、claude.exe、copilot.exe、cursor.exe 等编程 Agent，以及 python.exe、dotnet.exe、gcc.exe、clang.exe、code.exe 等开发工具。追踪引用后确认，这些名称被用于字符串比较：四个 CLI Agent 槽位分别检查 copilot、claude、codex 与 agy（还有 WSL 路径下不带扩展名的对应项），五个桌面 Agent 槽位检查 github、claude、codex、cursor 与 antigravity；对应特性名为 CLICodingAgentUsage，特性 ID 为 62580080。部分检查还会校验发布者，涉及 Node.js Foundation、Python Software Foundation 与微软。该组件本身不扫描运行中的进程，而是订阅 KernelProcess.AppStateChangeSummary、Win32kTraceLogging.AppInteractivitySummary 及 WSL 的 Lxss Manager Exec/ExecCritical 事件，把其中的应用标识或 imageNam",
-   "key_points": [
-    "MissionControlAggregator.dll 内嵌 codex.exe、claude.exe、copilot.exe、cursor.exe 等编程 Agent，以及 python.exe、gcc.exe、code.exe 等开发工具的可执行文件名，用于字符串匹配",
-    "相关特性名为 CLICodingAgentUsage（ID 62580080）；CLI 与桌面 Agent 各设槽位，部分槽位还校验发布者（Node.js Foundation、Python Software Foundation、微软）",
-    "组件不自行扫描进程，而是订阅 AppStateChangeSummary、AppInteractivitySummary 及 WSL Exec/ExecCritical 等 Windows 事件获取应用标识；结果本地保存并上报 Windows 诊断，默认设置下上传至微软"
-   ],
-   "topics": [
-    "privacy",
-    "coding-agent"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 74.7,
-   "status": "review",
-   "extra": {
-    "hn_points": 268,
-    "hn_comments": 148,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://xusheng.dev/posts/windows-coding-agent-telemetry/",
-      "https://x.com/CrackmesOne/status/2122147747390468384",
-      "https://binary.ninja/",
-      "https://learn.microsoft.com/en-us/windows/win32/etw/event-tracing-portal",
-      "https://support.microsoft.com/en-us/windows/privacy/diagnostics-feedback-and-privacy-in-windows"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "b0ded74e06b06613",
-   "url": "https://openai.com/index/advancing-computer-use-for-healthcare-teams",
-   "title": "Advancing computer-use agents for healthcare teams",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-16T06:00:00+00:00",
-   "summary_short": "医疗场景 computer-use agent 评测：325 项任务 99% 评为安全",
-   "summary_long": "原文指出医疗信息分散，团队常需手工在系统间搬运信息——例如医生建议做 MRI 后，仍需有人从病历取出保险方所需信息，填入另一个门户才能完成授权申请。computer-use agent 通过点击、输入、跨应用切换来执行多步骤流程，让 AI 在团队现有软件中处理重复工作。原文公布了在临床与行政流程中衡量模型性能、安全与成本的新结果，以及与 Abridge、Ambience、Cigna Healthcare、CVS Health 等机构在授权申请、转诊、出院规划、就诊间随访上的合作。演示使用合成数据：agent 查阅病历、物理治疗记录与既往影像，起草 MRI 医嘱、就诊记录和患者回复供医生审核，再用同样记录在保险方门户准备预授权申请供授权专员审核。评估中，GPT‑6 Astra 在 325 项经审核的 EHR 收件箱任务里 99% 被评为安全，646 次评估中 93% 被评为“非常有帮助”或“极其有帮助”。在斯坦福研究者发布的独立基准 HealthAdminBench 上，Astra 得 94.3% 的可用评分点，Luna 得 91.8%，但每任务 8.5 美分、成本低 98%。",
-   "key_points": [
-    "医疗信息分散，团队需手工跨系统搬运信息；computer-use agent 通过点击、输入、切换应用完成多步骤流程，在既有软件中处理重复工作",
-    "GPT‑6 Astra 在 325 项经审核的 EHR 收件箱任务中 99% 被评为临床安全，646 次评估中 93% 被评为“非常有帮助”或“极其有帮助”",
-    "在 HealthAdminBench 上 Astra 得 94.3% 评分点、Luna 得 91.8%，Luna 每任务 8.5 美分、成本低 98%，两者均在最大推理强度下评测"
-   ],
-   "topics": [
-    "product",
-    "eval",
-    "tool-use"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用",
-    "评测"
-   ],
-   "horizon": "short",
-   "score": 74.5,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Product"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://som-shahlab.github.io/health-admin-bench-website/",
-      "https://github.com/cvs-health/cua-agent-kit",
-      "https://www.abridge.com/blog/learning-health-system",
-      "https://openai.com/contact-sales/",
-      "https://chatgpt.com/plans/clinicians/",
-      "https://developers.openai.com/api/docs/quickstart",
-      "https://developers.openai.com/api/docs/guides/tools-computer-use"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "f891bd93f3d21469",
-   "url": "https://openai.com/index/science-at-the-frontier",
-   "title": "Science at the Frontier: How scientists use ChatGPT",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-16T12:00:00+00:00",
-   "summary_short": "OpenAI研究1819名科学家如何使用ChatGPT，98%预期加速本领域发现",
-   "summary_long": "OpenAI经济研究团队分析了「ChatGPT for Academic Researchers」夏季试点中1,819名科学家的逾58万条科研消息，并调查了251名参与者。科学家在研究全流程中使用ChatGPT，从文献综述到证据分析、思路开发。受访者估计，若无AI，同等质量的工作需多花1.9倍时间；在回答发现时间线问题的受访者中，98%预期AI将加速本领域发现。68%的科学家用它发展研究想法，其中35%由科学家带着具体问题主导、36%与ChatGPT共同打磨、23%由ChatGPT建议研究问题。研究团队用自动分类器按活动类型归类消息，可看到类别但不阅读消息原文或ChatGPT回复；默认不使用参与者数据训练模型。原文指出，这些预期能否转化为更快的发现仍需更多研究，也取决于资金、人员和实验能力。",
-   "key_points": [
-    "OpenAI经济研究团队分析1,819名科学家的逾58万条消息并调查251人，覆盖文献综述、代码编写、数据分析、思路开发等环节",
-    "受访者估计同等质量工作无AI需多花1.9倍时间，98%回答该问题的科学家预期AI会加速本领域发现",
-    "加速原因中52%为更快完成研究、23%为找到更有前景的研究问题、14%为探索更广的问题范围；原文强调预期能否兑现尚待研究"
-   ],
-   "topics": [
-    "product",
-    "eval"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用",
-    "行业动态"
-   ],
-   "horizon": "long",
-   "score": 69.2,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Research"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://cdn.openai.com/pdf/28615567-15d1-4e4c-907e-f837a1f2b2f4/Science%20at%20the%20Frontier-%20How%20Scientists%20Use%20ChatGPT.pdf",
-      "https://cdn.openai.com/pdf/0e4b2466-0be0-4326-8bf7-117d809e14d2/Science%20at%20the%20Frontier.pdf",
-      "https://openai.com/index/expanding-chatgpt-for-academic-researchers/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "cfcc7acb02e9ca79",
-   "url": "https://openai.com/index/more-ways-to-move-care-forward-with-chatgpt-for-healthcare",
-   "title": "More ways to move care forward with ChatGPT for Healthcare",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-16T06:00:00+00:00",
-   "summary_short": "ChatGPT医疗版新增计算机操作智能体、临床检索升级与20余个插件",
-   "summary_long": "原文介绍 ChatGPT for Healthcare 的三项更新。一是计算机操作智能体（computer-use agents）的进展：智能体可在医疗机构现有软件中读取屏幕、点击、输入并在应用间切换，完成多步骤工作，并提供访问控制与审计日志；原文提到与 Abridge、Ambience、Cigna Healthcare、CVS Health 等机构合作，用于处理转诊、跨系统流转文档与汇总信息。演示中，临床医生用 ChatGPT 应用中的语音功能请求跟进 MRI 申请，智能体查阅病历并起草医嘱与患者回复供人工审核。组织可先设定跨应用工作流、智能体可访问的应用以及需人工复核的步骤；涉及受保护健康信息须使用其 BAA 覆盖的合规服务并配置安全与留存设置，共享内容不用于训练模型。二是改进可信临床搜索，帮助找到、评估并引用医学证据。三是新增 20 多个医疗插件，覆盖临床诊疗、护理协调与业务运营，可通过 ChartGPT 进入 EHR 工作流。原文称在超 1300 次盲评中，医生在全部八个维度上评分更高。",
-   "key_points": [
-    "原文介绍 ChatGPT for Healthcare 更新：计算机操作智能体、改进的可信临床搜索、新增 20 多个医疗插件",
-    "智能体可读取屏幕、点击、输入并跨应用多步骤执行，配有访问控制与审计日志；原文提到与 Abridge、Ambience、Cigna Healthcare、CVS Health 等合作处理转诊、跨系统文档流转与信息汇总",
-    "临床搜索更新强调查找、评估并引用医学证据、引用可核查；原文称超 1300 次盲评中医生在全部八个维度（含事实正确性、安全性、可操作性、来源权威性）评分更高"
-   ],
-   "topics": [
-    "coding-agent",
-    "product",
-    "tool-use"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用",
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 66.6,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Product"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://openai.com/index/advancing-computer-use-for-healthcare-teams/",
-      "https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources/",
-      "https://chatgpt.com/plans/clinicians/",
-      "https://openai.com/contact-sales/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "735df09c2ed1f9d3",
-   "url": "https://latent.space/p/bfl/",
-   "title": "Building Visual Intelligence — Andreas Blattmann & Dustin Podell, Black Forest Labs",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-11-16T21:38:03+00:00",
-   "summary_short": "BFL谈FLUX 3：以图像、视频与音频联合训练视觉智能",
-   "summary_long": "这期对话围绕Black Forest Labs（BFL）的视觉智能思路展开。Andreas Blattmann与Dustin Podell回顾：Stability AI的核心图像生成团队在公司瓦解后，由Anj Midha帮助分拆成立BFL，并推出Flux系列图像生成模型。原文重点讨论BFL为何转向视频与世界模型：Andreas用接球例子说明，人能在写出轨迹前就移动手，这种知识不是单张静止图像能表达的；静止图像显示球在哪里，视频显示它如何到达，撞击声则提示何时碰到东西，因此BFL主张把三种信号一起用于训练FLUX 3。原文还谈到移动镜头能提供物体其他角度的证据，但并未判定模型是否“理解物理”；工程上，视频上采样需要时间一致性，否则逐帧增强后播放会闪烁。团队也讨论自回归与扩散各自的优势，以及Kontext从数小时小实验到数月数据与模型投入的过程。最后提到用户用FLUX修复老旧家庭照片。",
-   "key_points": [
-    "BFL主张FLUX 3联合训练图像、视频与音频三种信号，以学习接球预测这类“视觉智能”。",
-    "原文讨论移动镜头可提供物体其他角度证据，但未判定模型是否理解物理；视频上采样需保持时间一致性，避免逐帧增强后闪烁。",
-    "团队比较自回归与扩散的优势，并用Kontext小实验说明先小规模验证、再投入数月数据与模型；用户用FLUX修复老照片是Dustin未预料到的用途。"
-   ],
-   "topics": [
-    "video-generation",
-    "world-models",
-    "diffusion"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 66.2,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [
-      "2307.01952",
-      "2506.15742"
-     ],
-     "links": [
-      "https://deepgram.com/contextiseverything?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://latent.space/p/multiverse-not-metaverse/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=dCX4PE2HxMs&t=1s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://bfl.ai/blog/flux-3?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://bfl.ai/blog/flux-3-video?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://bfl.ai/models/flux-kontext?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://raais.co/speakers-2025-andreas-blattmann-black-forest-labs?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://ommer-lab.com/research/latent-diffusion-models/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://dustinpodell.com/about/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://arxiv.org/abs/2506.15742?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://arxiv.org/abs/2307.01952?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=0s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=219s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=263s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=563s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=1024s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=1658s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=2039s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=2397s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=2817s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=3036s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=3103s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=3298s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=3795s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=4052s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=4392s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=4850s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=5408s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.youtube.com/watch?v=8cGfJOU3AlQ&t=5536s&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "b1c71d07875ac772",
-   "url": "https://openai.com/index/strengthening-online-child-safety",
-   "title": "Strengthening the fight against online child sexual abuse with new tools and support",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-16T17:00:00+00:00",
-   "summary_short": "OpenAI发布可检测AI生成CSAM的图像分类器，向审核组织免费开放",
-   "summary_long": "原文发布于2026年11月16日，OpenAI宣布推出检测儿童性虐待材料（CSAM）的新工具，同时发布用于中断有害行为并引导求助的干预措施、面向开发者的实用资源，以及对儿童安全执法调查人员的支持，这些都以Child Safety Blueprint为基础。核心是一个新的图像分类器，可检测潜在CSAM，包括AI生成内容：它寻找虐待的视觉信号，帮助识别此前未见的新图像，并返回分数供审核人员判断处理优先级。原文称这是首个广泛可用、能专门提示CSAM是否可能由AI生成的分类器。该分类器在NCMEC协助下训练、评估和设计，通过OpenAI API向经审核的组织免费开放。OpenAI还与Tech Coalition、ROOST合作分发该工具，并参与Tech Coalition的Lantern项目以跨平台共享相关信号。早期测试显示，相比现有工具，新分类器预计少标记48%的图像，发现的虐待图像数量大致相当，被标记图像含虐待内容的概率约为两倍；fal测试中人工复核确认72%的高置信标记为新型CSAM，invideo AI测试中四分之一被标记案例导致封禁。原文在此处中断。",
-   "key_points": [
-    "新图像分类器可检测潜在CSAM（含AI生成内容），返回分数帮助审核人员排定优先级，被称为首个广泛可用且能专门提示CSAM是否可能由AI生成的分类器",
-    "该分类器在NCMEC协助下训练与评估，通过OpenAI API向经审核的组织免费开放，并与Tech Coalition、ROOST合作分发，同时参与Lantern项目共享跨平台信号",
-    "早期测试中，新分类器预计比现有工具少标记48%图像而发现的虐待图像数量大致相当，被标记图像含虐待内容概率约两倍；fal复核确认72%高置信标记为新型CSAM，invideo AI四分之一被标记案例导致封禁"
-   ],
-   "topics": [
-    "child-safety",
-    "csam-detection",
-    "content-moderation"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 66.0,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Safety"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.esafety.gov.au/sites/default/files/2026-02/Designing-for-Safety_Preventing-child-sexual-exploitation-and-abuse-online_CSEA-toolkit.pdf",
-      "https://technologycoalition.org/programs/lantern/",
-      "https://www.missingkids.org/",
-      "https://technologycoalition.org/",
-      "https://roost.tools/",
-      "https://safer.io/",
-      "https://fal.ai/",
-      "https://invideo.io/",
-      "https://www.safetykit.com/",
-      "https://deploymentsafety.openai.com/csam-image-classifier",
-      "https://openai.com/form/csam-classifier-intake/",
-      "https://www.suojellaanlapsia.fi/en",
-      "https://www.lucyfaithfull.org.uk/",
-      "https://www.utas.edu.au/about/news-and-stories/articles/2024/pioneering-chatbot-reduces-searches-for-illegal-sexual-images-of-children",
-      "https://developers.openai.com/api/docs/guides/csam-guidance",
-      "https://www.thorn.org/",
-      "https://www.missingkids.org/home",
-      "https://www.iwf.org.uk/",
-      "https://developers.openai.com/api/docs/guides/moderation",
-      "https://roost.tools/coop/",
-      "https://technologycoalition.org/resources/responding-to-child-sexual-abuse-disclosures-in-ai-systems/",
-      "https://forum.openai.com/public/videos/event-replay-using-ai-to-protect-children-online-in-conversation-with-thorn-2026-02-11"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "cc9d9dbd1b4e109a",
-   "url": "https://www.dwarkesh.com/p/paul-christiano-2",
-   "title": "Paul Christiano – We could be 12 months away from AIs that can overthrow the government",
-   "source": "Dwarkesh Podcast",
-   "tier": "C",
-   "published_at": "2026-11-16T17:46:28+00:00",
-   "summary_short": "Christiano：一年内出现可推翻政府超级智能的概率为1/3",
-   "summary_long": "Paul Christiano 现任 Alignment Research Center 负责人，此前任美国 AI 安全研究所 AI 安全主管、OpenAI 对齐团队负责人并发明了 RLHF，近期加入 OpenAI 董事会（节目中他以个人身份发言）。他认为，按当前轨迹且不作任何放缓，一年内有三分之一概率出现强大到足以推翻政府的超级智能。他主张实验室应暂停进一步的算法进展，直到能确保模型权重与研究机密的安全；否则中国可能在智能爆炸中途直接窃取超级智能，届时实验室即使发现模型失控也无法放慢速度。他还解释了智能爆炸期间 AI 将如何被训练，以及为何完全在数据中心内训练的系统也可能具备一种能力特征，使人类几乎没有机会与它竞争或控制它。在对齐方面，他认为修复 reward hack、构建更好的评分器只能支撑接下来几代模型，目前没有任何单一方法能在控制超级智能上具备超过五成的把握，希望在于 AI 能在智能爆炸期间自行找到解法。",
-   "key_points": [
-    "他估计按当前轨迹、若无任何放缓，一年内有三分之一概率出现足以推翻政府的超级智能（原文称他描述了一个具体情景，但文字稿未展开该情景细节）",
-    "他主张实验室暂停进一步算法进展，直到能保障模型权重与研究机密安全，否则中国可能在智能爆炸中途窃取超级智能，使实验室失去减速能力",
-    "对齐方面：修复 reward hack 和改进评分器只能撑到接下来几代模型，没有单一现有方法控制超级智能的把握超过五成，希望寄托于 AI 在智能爆炸中自行找到解法"
-   ],
-   "topics": [
-    "alignment",
-    "cybersecurity"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "long",
-   "score": 65.4,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [
-      "2605.11086",
-      "2607.18966"
-     ],
-     "links": [
-      "https://paulfchristiano.com/",
-      "https://youtu.be/SyHM5hNPAEo",
-      "https://podcasts.apple.com/us/podcast/paul-christiano-we-could-be-12-months-away-from-ais/id1516093381?i=1000802319734",
-      "https://open.spotify.com/episode/4fOvEHIR2JnBfghmp1j3EF?si=uqA_XkbHRmyHLOrnfiRiPQ",
-      "https://janestreet.com/dwarkesh",
-      "https://antithesis.com/dwarkesh",
-      "https://workos.com/authkit",
-      "https://substack.com/@paulfchristiano",
-      "https://alignment.org",
-      "https://openai.com/index/paul-christiano-joins-openai-foundation-board/",
-      "https://www.nist.gov/caisi",
-      "https://en.wikipedia.org/wiki/Technological_singularity",
-      "https://en.wikipedia.org/wiki/Superintelligence",
-      "https://www.rand.org/pubs/research_briefs/RBA2849-1.html",
-      "https://en.wikipedia.org/wiki/AI_takeover",
-      "https://newsletter.forethought.org/p/will-ai-r-and-d-automation-cause",
-      "https://en.wikipedia.org/wiki/Recursive_self-improvement",
-      "https://en.wikipedia.org/wiki/Machine_learning",
-      "https://en.wikipedia.org/wiki/OpenAI_bulk_release_of_mathematical_papers",
-      "https://www.wsj.com/tech/ai/ai-math-riemann-hypothesis-anthropic-openai-22f98a87",
-      "https://www.forethought.org/research/will-compute-bottlenecks-prevent-a-software-intelligence-explosion",
-      "https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/",
-      "https://www.databricks.com/blog/llm-pre-training-and-custom-llms",
-      "https://en.wikipedia.org/wiki/Perplexity",
-      "https://en.wikipedia.org/wiki/Reinforcement_learning",
-      "https://en.wikipedia.org/wiki/Production_function",
-      "https://hai.stanford.edu/ai-definitions/what-are-weights",
-      "https://aiimpacts.org/soft-takeoff-can-still-lead-to-decisive-strategic-advantage/",
-      "https://epoch.ai/blog/algorithmic-progress-in-language-models",
-      "https://en.wikipedia.org/wiki/Neural_scaling_law",
-      "https://arxiv.org/abs/2607.18966",
-      "https://www.alignmentforum.org/posts/inALbAqdx63KTaGgs/benchmarks-for-detecting-measurement-tampering-redwood",
-      "https://www.dwarkesh.com/p/openai-huggingface",
-      "https://metr.org/hugging-face-incident-report-aug-2026.pdf",
-      "https://arxiv.org/abs/2605.11086",
-      "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
-      "https://sentinelone.com/cybersecurity-101/threat-intelligence/lateral-movement",
-      "https://openai.com/index/chain-of-thought-monitoring/",
-      "https://www.emergentmind.com/topics/model-weight-exfiltration",
-      "https://en.wikipedia.org/wiki/Xi_Jinping"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "4b4d48f19f03e283",
-   "url": "https://simonwillison.net/2026/Nov/15/datasette-maplibre/",
-   "title": "datasette-maplibre 0.1a0",
+   "id": "5cbc55e1b429d883",
+   "url": "https://simonwillison.net/2026/Nov/17/gpt62-astra-and-sol/",
+   "title": "GPT‑6.2 Astra and GPT‑6.2 Sol",
    "source": "Simon Willison",
    "tier": "A",
-   "published_at": "2026-11-15T23:58:36+00:00",
-   "summary_short": "新版 Datasette 地理插件：融合 MapLibre GL 与 OpenFreeMap",
-   "summary_long": "datasette-maplibre 0.1a0 发布，原文称这是隔了相当一段时间后 Datasette 生态里首个新的地理空间插件。它把 MapLibre GL 库与 Zsolt Ero 运营的免费矢量地图服务 OpenFreeMap 结合起来。作者表示大部分功能由给 Claude Fable 5.2 的一条提示词完成：先参考 datasette-cluster-map 与 datasette-leaflet-geojson 两个插件以及本地 openfreemap-demo.html，再构建一个融合两者特性、并被要求“跳出框框”的新插件。这一要求带来了几个想法，作者最喜欢的是：先显示 GeoJSON 形状的 SVG 预览，只有当其滚动进入视野时才加载 WebGL 预览。此外还用 Claude 生成了一个可在最新 Datasette Lite 中运行的完整演示，通过 Pyodide 与 WebAssembly 在浏览器里加载插件和演示数据库；演示页可在同一张地图上同时展示 GeoJSON 形状与经纬度点位。",
+   "published_at": "2026-11-17T22:38:52+00:00",
+   "summary_short": "OpenAI发布GPT-6.2 Astra与Sol，Astra降价至前代八成",
+   "summary_long": "OpenAI推出两款新模型：面向最难项目的旗舰 GPT-6.2 Astra，以及面向日常工作的轻量通用模型 GPT-6.2 Sol，API 中名为 gpt-6.2-astra 与 gpt-6.2-sol；作者称已发布 LLM 0.38 支持这两个模型。定价上，Astra 为每百万 token 输入 8 美元、输出 40 美元，是上一代 6 Astra（10/50）的 80%，与 Claude Fable 5.2 同价；缓存价格从每百万 1 美元降至 0.40 美元，原文称这对长时间运行的智能体会话是好消息。Sol 维持 2/10 美元，与 6.1 Sol、6 Sol 相同，为 GPT-5.6 Sol（4/20）的一半。作者用骑自行车鹈鹕图和 three.js 动画提示词做了对比测试，认为两模型在“把 Yonkers 变成巨型机甲”这点上不如 Claude Fable 5.2 和 Gemini 4 Carbon。原文称目前外界议论不一：Astra 6.2 在多项基准上不及 Fable 5.2，也有人抱怨其沟通风格令人困惑。",
    "key_points": [
-    "插件将 MapLibre GL 与 OpenFreeMap（Zsolt Ero 运营的免费矢量地图服务器）结合使用",
-    "大部分功能由一条发给 Claude Fable 5.2 的提示词生成，参考了 datasette-cluster-map 与 datasette-leaflet-geojson",
-    "作者最喜欢的特性是 GeoJSON 形状先显示 SVG 预览，滚动进入视野后才加载 WebGL 预览；另有可在 Datasette Lite 中通过 Pyodide/WebAssembly 运行的演示"
-   ],
-   "topics": [
-    "coding-agent",
-    "open-source"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 62.2,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "visualization",
-     "generative-ai",
-     "datasette-lite",
-     "claude-mythos-fable",
-     "ai"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/datasette/datasette-maplibre/releases/tag/0.1a0",
-      "https://maplibre.org/maplibre-gl-js/docs/",
-      "https://openfreemap.org",
-      "https://github.com/sponsors/hyperknot",
-      "https://lite.datasette.io/?install=datasette-maplibre&url=https://gist.githubusercontent.com/simonw/39fa5d399465766039549912e2b3d291/raw/f6dfba99a75cbb8b5d9386223220eb52272767ee/demo.db&metadata=https://gist.githubusercontent.com/simonw/39fa5d399465766039549912e2b3d291/raw/f6dfba99a75cbb8b5d9386223220eb52272767ee/metadata.yml",
-      "https://lite.datasette.io/?install=datasette-maplibre&url=https://gist.githubusercontent.com/simonw/39fa5d399465766039549912e2b3d291/raw/f6dfba99a75cbb8b5d9386223220eb52272767ee/demo.db&metadata=https://gist.githubusercontent.com/simonw/39fa5d399465766039549912e2b3d291/raw/f6dfba99a75cbb8b5d9386223220eb52272767ee/metadata.yml#/demo/capitals_and_countries%23map=0/4.2/180&color=continent",
-      "https://simonwillison.net/tags/visualization",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/datasette-lite",
-      "https://simonwillison.net/tags/claude-mythos-fable",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/geospatial",
-      "https://simonwillison.net/tags/openstreetmap",
-      "https://simonwillison.net/tags/datasette"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "9ae934d441da1a71",
-   "url": "https://simonwillison.net/2026/Nov/15/datasette-apps/",
-   "title": "datasette-apps 0.4a0",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-11-15T04:02:45+00:00",
-   "summary_short": "datasette-apps 0.4a0 发布，新增应用间 URL 链接与片段支持",
-   "summary_long": "datasette-apps 发布 0.4a0 版本。据原文介绍，Datasette Apps 是运行在 Datasette 内部的沙箱化 HTML 与 JavaScript 应用，定位类似 Claude Artifacts，区别在于这些应用可以对用户的数据执行 SQL 查询。0.4a0 的核心变化是加入链接支持：用户可以通过 URL 中的 #fragments 链接到某个应用，应用能够读取并使用这些片段；同时，受支持的 URL scheme 会被回报给 Datasette Agent，使其在协助编写应用时可以让应用之间互相链接。原文给出的例子是：一个应用展示某条具体记录的详情，另一个完全独立的应用负责搜索这些记录，并链接到第一个应用中对应该记录的表现形式。原文未详述该版本的其他改动。",
-   "key_points": [
-    "Datasette Apps 是运行在 Datasette 内的沙箱化 HTML/JavaScript 应用，可对数据执行 SQL 查询",
-    "0.4a0 支持通过 URL 中的 #fragments 链接到应用，应用可读取并使用这些片段",
-    "受支持的 URL scheme 会回报给 Datasette Agent，便于其协助编写可互相链接的应用"
-   ],
-   "topics": [
-    "tool-use",
-    "product"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 61.5,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "datasette-agent",
-     "datasette-apps",
-     "datasette",
-     "urls"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/datasette/datasette-apps/releases/tag/0.4a0",
-      "https://simonwillison.net/tags/datasette-agent",
-      "https://simonwillison.net/tags/datasette-apps",
-      "https://simonwillison.net/tags/datasette",
-      "https://simonwillison.net/tags/urls"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "853b24ff0d6ecd3f",
-   "url": "https://huggingface.co/blog/openrouter",
-   "title": "Hugging Face and OpenRouter join forces to make open-weight models easy to run",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-11-16T00:00:00+00:00",
-   "summary_short": "HF 推理服务改用 OpenRouter 路由，开源权重模型凭同一 HF token 走同一 API 调用",
-   "summary_long": "Hugging Face 与 OpenRouter 合作：主要开源权重模型都发布在 Hugging Face Hub 上，OpenRouter 则通过 80 多家供应商，按实时测量结果以规模化方式提供这些模型的服务。即日起，Hugging Face 的 Inference Providers 从自建路由器切换到 OpenRouter 的路由；语言模型的请求改由 OpenRouter 按实时价格、速度和可靠性，为每次调用挑选供应商；如果第一家失败，会自动改用另一家重试，用户代码无需改动。该路由器对任意聊天模型支持 OpenAI 的 Chat Completions、Responses API 与 Anthropic 的 Messages API，并提供 Claude Code、Codex、OpenCode、Pi、Hermes Agent 的配置步骤；同一个 HF token 还可用于 Storage Buckets、Jobs 和 Inference Endpoints，PRO、Team、Enterprise 方案含每月计算与推理额度。原文数据：开源权重模型在 OpenRouter 的 token 占比从 2025 年 10 月的 26.8% 升至 2026 年 9 月底的 71.7%（7 月峰值 77.5%），周用量增长逾 60 倍；新路由使容量错误减少 46%，首 token 时间",
-   "key_points": [
-    "Hugging Face 的 Inference Providers 从自建路由器改为 OpenRouter 路由：按实时价格、速度和可靠性选供应商，失败自动换一家重试，用户代码不变",
-    "支持 OpenAI Chat Completions/Responses 与 Anthropic Messages API，模型 id 可用 :fastest、:cheapest 或指定供应商后缀，路由还会感知并保持提示词缓存",
-    "原文数据：开源权重模型 token 占比 26.8%→71.7%、周用量增逾 60 倍、均价约为闭源的四分之一；新路由容量错误降 46%、首 token 时间改善 16.9%、吞吐提升 16.3%"
-   ],
-   "topics": [
-    "model-serving",
-    "open-source",
-    "product"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 60.8,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/openrouter.md",
-      "https://openrouter.ai",
-      "https://huggingface.co/docs/inference-providers",
-      "https://huggingface.co/docs/inference-providers/integrations/claude-code",
-      "https://huggingface.co/docs/inference-providers/integrations/codex",
-      "https://huggingface.co/docs/inference-providers/integrations/opencode",
-      "https://huggingface.co/docs/inference-providers/integrations/pi",
-      "https://huggingface.co/docs/inference-providers/integrations/hermes-agent",
-      "https://huggingface.co/storage",
-      "https://huggingface.co/docs/hub/jobs-overview",
-      "https://huggingface.co/docs/inference-endpoints",
-      "https://openrouter.ai/blog/insights/open-weight-vs-closed-weight-models/",
-      "https://openrouter.ai/rankings",
-      "https://artificialanalysis.ai/leaderboards/models",
-      "https://openrouter.ai/blog/announcements/how-we-rebuilt-provider-routing/",
-      "https://huggingface.co/docs/inference-providers/prompt-caching",
-      "https://huggingface.co/docs/inference-providers/pricing",
-      "https://huggingface.co/models?inference_provider=all&pipeline_tag=text-to-image&other=lora",
-      "https://huggingface.co/settings/inference-providers/overview",
-      "https://huggingface.co/settings/inference-providers",
-      "https://huggingface.co/models?inference_provider=all&sort=trending&other=conversational"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "764198fc49a3e15f",
-   "url": "https://simonwillison.net/2026/Nov/16/llm/",
-   "title": "llm 0.37.3",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-11-16T23:57:26+00:00",
-   "summary_short": "llm 0.37.3 修复 Homebrew 所带 SQLite 3.54.1 破坏其日志代码的问题",
-   "summary_long": "llm 0.37.3 是一个 bug 修复版本，主要用于应对最新 Homebrew 包带来的问题：Homebrew 现在打包的是最新版 SQLite 3.54.1，而该版本中的一项修复破坏了 LLM 的日志代码。原文给出的具体表现是：在 SQLite 3.54.0 中，语句 select json_object('a', (select json_array(1))) 返回 {\"a\":[1]}；在 3.54.1 中，同一语句返回 {\"a\":\"[1]\"}。D. Richard Hipp 表示这是对 bug 的修复：按照文档，(SELECT json_array(...)) 返回的是 SQL 文本而不是 JSON，所以 3.54.1 的行为是正确的，3.54.0 才是 bug。给出的变通写法是 select json_object('a', json((select json_array(1))))。原文未详述该版本的其他改动。",
-   "key_points": [
-    "0.37.3 是 bug 修复版本，主要应对最新 Homebrew 包的问题",
-    "Homebrew 现打包 SQLite 3.54.1，其中的修复破坏了 LLM 的日志代码",
-    "D. Richard Hipp 确认 3.54.1 行为正确：子查询 json_array 返回 SQL 文本而非 JSON，需在外层用 json() 包裹"
-   ],
-   "topics": [
-    "open-source"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 59.2,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "llm",
-     "webassembly",
-     "sqlite",
-     "generative-ai",
-     "ai"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/simonw/llm/releases/tag/0.37.3",
-      "https://llm.datasette.io",
-      "https://www.sqlite.org/releaselog/3_54_1.html",
-      "https://sqlite.org/bugs/info/2026-10-12T13:52:22Z",
-      "https://github.com/simonw/llm/issues/1879",
-      "https://sqlite.org/forum/forumpost/dff1a343157e422f",
-      "https://simonwillison.net/tags/llm",
-      "https://simonwillison.net/tags/webassembly",
-      "https://simonwillison.net/tags/sqlite",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/d-richard-hipp"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "498022c4a5fab2dc",
-   "url": "https://github.com/hitkeeen/blender-ai-mcp-addon",
-   "title": "hitkeeen/blender-ai-mcp-addon — AI assistant and MCP server for Blender: visual chat, scene tools, multi-agent workflows. Works with ChatGPT/GPT, Claude, Gemini, Ollama, OpenCode. Blender AI addon, copilot for 3D, bpy Python scripting, MCP integration.",
-   "source": "GitHub Trending (AI)",
-   "tier": "B",
-   "published_at": "2026-11-12T14:32:15+00:00",
-   "summary_short": "面向 Blender 的 AI 助手与 MCP 服务器，支持可视化聊天、场景工具与多智能体工作流",
-   "summary_long": "",
-   "key_points": [
-    "是 Blender 的 AI 助手与 MCP 服务器",
-    "提供可视化聊天、场景工具、多智能体工作流",
-    "可与 ChatGPT/GPT、Claude、Gemini、Ollama、OpenCode 配合使用"
-   ],
-   "topics": [
-    "mcp",
-    "tool-use",
-    "multi-agent"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "开源项目"
-   ],
-   "horizon": "long",
-   "score": 57.3,
-   "status": "review",
-   "extra": {
-    "stars": 2229,
-    "language": null,
-    "summary_mode": "brief"
-   }
-  },
-  {
-   "id": "93489cde676affd2",
-   "url": "https://www.qbitai.com/2026/11/510486.html",
-   "title": "阿里正式发布Qwen4，智能体及编程能力进阶，迈向真实全场景",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-11-16T07:51:57+00:00",
-   "summary_short": "阿里发布Qwen4-Max基座大模型：2.4T总参数，编程与智能体能力进阶，单任务成本降近6成",
-   "summary_long": "11月16日，阿里巴巴发布新一代基座大模型Qwen4-Max，总参数2.4T，具备原生视觉能力，支持百万上下文，采用基于Qwen稀疏注意力（QSA）的全新MoE架构，2.4T总参数仅激活71B，每Token激活参数较上代少25%。在Terminal-Bench 4.0同为Xhigh思考档位下，每次尝试平均Token用量从289K降至151K、减少近50%，得分从38.9提升至48.5。CodeArena前端编程全球盲测位列第6，ALE取得46.7分、较上代提升18.8分，JobBench得分68.5。模型内置持续交付（Live Delivery）机制，可先生成可用首版并逐版扩展，也能自主编排智能体处理长周期任务。在覆盖721个细分领域的Work360体系评测中得分52.69，较上代提升超10%；已用于汽车制造工件加工编程（人工用时从475分钟降至24分钟）、金融投研调用90个MCP工具，以及材料与药物发现。Qwen4-Max已上线千问AI平台提供API，缓存命中每百万Tokens低至0.5元，单任务平均费用较上代降低58%，中小尺寸模型将陆续开源。",
-   "key_points": [
-    "Qwen4-Max总参数2.4T、仅激活71B，采用QSA稀疏注意力MoE架构，原生视觉、支持百万上下文",
-    "CodeArena前端编程全球第6，ALE 46.7分较上代提升18.8分，Terminal-Bench 4.0得分从38.9升至48.5且Token用量减少近50%",
-    "Work360全场景721个细分领域得分52.69、较上代提升超10%，已在汽车制造、金融投研、材料与药物发现等场景落地"
+    "OpenAI 发布 GPT-6.2 Astra（旗舰）与 GPT-6.2 Sol（高效通用），API 名为 gpt-6.2-astra 和 gpt-6.2-sol；作者已发布 LLM 0.38 提供支持",
+    "Astra 定价每百万 token 输入 8 美元、输出 40 美元，为 6 Astra（10/50）的 80%，与 Claude Fable 5.2 同价；缓存价由每百万 1 美元降至 0.40 美元",
+    "Sol 维持每百万 token 2/10 美元，与 6.1 Sol、6 Sol 相同，是 GPT-5.6 Sol（4/20）的一半"
    ],
    "topics": [
     "post-training",
-    "coding-agent",
-    "reasoning"
+    "product"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
    "horizon": "short",
-   "score": 53.3,
+   "score": 72.6,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "ai",
+     "openai",
+     "generative-ai",
+     "llms",
+     "llm-pricing"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+      "https://llm.datasette.io/en/stable/changelog.html#v0-38",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Fa940cc2750162ac9edf0ddf881067b83",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Ffe836e13c90c00233c9e9e499a941805",
+      "https://static.simonwillison.net/static/2026/openai-pelicans-november-2026.html",
+      "https://static.simonwillison.net/static/2026/yonkers-gpt-6.2-sol-ultra/index.html",
+      "https://static.simonwillison.net/static/2026/yonkers-gpt-6.2-astra-ultra/index.html",
+      "https://tools.simonwillison.net/yonkers-rises",
+      "https://static.simonwillison.net/static/2026/yonkers-mech-standalone.html",
+      "https://gist.github.com/simonw/6b44c588a1321b60799dbbfd13db6d23",
+      "https://twitter.com/theo/status/2122760447103484410",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/openai",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/llm-pricing",
+      "https://simonwillison.net/tags/pelican-riding-a-bicycle",
+      "https://simonwillison.net/tags/llm-release",
+      "https://simonwillison.net/tags/theo-browne",
+      "https://simonwillison.net/tags/gpt",
+      "https://simonwillison.net/tags/yonkers-rising"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "b032a95fdfdac97b",
+   "url": "https://www.qbitai.com/2026/11/510652.html",
+   "title": "材料科学智能体MatOS正式开源！大幅提高材料研发任务成功率",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-11-17T06:09:40+00:00",
+   "summary_short": "中关村两院开源材料科研智能体MatOS，多项基准成功率超通用编程智能体",
+   "summary_long": "材料研究常要从数千万候选结构中逐级筛选，或在数百个配方中反复搜索，持续数天并随中间结果调整计划；接入新数据库或软件往往需要重建流程，积累的经验也难以复用。针对这些要求，中关村两院AI材料研究所团队构建了面向材料研发的科研智能体系统MatOS，由北京中关村学院、中关村人工智能研究院于今年九月作为年度科研进展发布，技术报告已在arXiv发布，代码已在GitHub开源。MatOS将数据、知识、工具、技能、角色和工作流组织为六类科学资产，通过有状态自适应工作流执行任务并保存证据，再由证据驱动的资产进化把可复用经验转化为经检查与审查的资产修订。目前资产库包含3,135个数据集、386项技能、104个工作流、51个专家角色，并集成48款材料计算软件。评测中，MatTools完整问题成功率达97.96%，ResearchClawBench材料任务得分较Codex CLI高80.8%，并从3000多万个候选结构中筛出97个固态电解质候选。",
+   "key_points": [
+    "MatOS资产库含3,135个数据集、386项技能、104个工作流、51个专家角色，集成48款材料计算软件；技术报告已在arXiv发布，代码已在GitHub开源",
+    "同以DeepSeek-V4-Pro为底座时，MatTools完整问题成功率97.96%、子任务97.10%，高于Codex CLI和Claude Code；SciAgentGym案例成功率59.5%，高于另两者",
+    "ResearchClawBench上平均得分19.46，较最佳基线MIRA高11.15%、较Codex CLI高33.6%，材料任务较Codex CLI高80.8%；DeepSeek-V4-Flash配置单任务成本约0.85美元，不到Codex CLI的三分之一"
+   ],
+   "topics": [
+    "multi-agent",
+    "tool-use",
+    "eval"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "产品与应用"
+   ],
+   "horizon": "long",
+   "score": 65.3,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
      "资讯",
-     "阿里巴巴"
+     "MatOS",
+     "材料科学"
     ],
     "outbound": {
-     "arxiv": [],
+     "arxiv": [
+      "2610.34203"
+     ],
      "links": [
-      "https://www.qbitai.com/author/qbitai",
+      "https://www.qbitai.com/author/simiao",
       "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/%e9%98%bf%e9%87%8c%e5%b7%b4%e5%b7%b4",
-      "https://www.qbitai.com/2026/11/510542.html",
-      "https://www.qbitai.com/2026/11/510526.html",
-      "https://www.qbitai.com/2026/11/510493.html",
-      "https://www.qbitai.com/2026/11/510382.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/510486.html&title=阿里正式发布Qwen4，智能体及编程能力进阶，迈向真实全场景&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2022/07/35830.html",
-      "https://www.qbitai.com/tag/gartner",
-      "https://www.qbitai.com/tag/%e8%af%ad%e9%9f%b3%e8%af%86%e5%88%ab",
-      "https://www.qbitai.com/tag/%e8%af%ad%e9%9f%b3%e8%af%ad%e4%b9%89",
-      "https://www.qbitai.com/2026/05/418491.html",
-      "https://www.qbitai.com/2020/04/13101.html",
-      "https://www.qbitai.com/tag/%e6%95%b0%e5%ad%a6%e7%ab%9e%e8%b5%9b",
-      "https://www.qbitai.com/2026/08/466998.html",
-      "https://www.qbitai.com/2024/01/111489.html",
-      "https://www.qbitai.com/tag/animateanyone",
-      "https://www.qbitai.com/tag/%e5%a4%9a%e6%a8%a1%e6%80%81%e5%a4%a7%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/tag/%e9%80%9a%e4%b9%89%e5%8d%83%e9%97%ae",
-      "https://www.qbitai.com/2020/09/18479.html",
-      "https://www.qbitai.com/tag/%e5%b0%8f%e8%9b%ae%e9%a9%b4",
-      "https://www.qbitai.com/tag/%e7%89%a9%e6%b5%81%e6%9c%ba%e5%99%a8%e4%ba%ba",
-      "https://www.qbitai.com/tag/%e7%8e%8b%e5%88%9a",
-      "https://www.qbitai.com/tag/%e8%87%aa%e5%8a%a8%e9%a9%be%e9%a9%b6",
-      "https://www.qbitai.com/tag/%e8%be%be%e6%91%a9%e9%99%a2",
+      "https://www.qbitai.com/tag/matos",
+      "https://www.qbitai.com/tag/%e6%9d%90%e6%96%99%e7%a7%91%e5%ad%a6",
+      "https://www.qbitai.com/2026/11/510688.html",
+      "https://www.qbitai.com/2026/11/510416.html",
+      "https://www.qbitai.com/2026/11/510369.html",
+      "https://www.qbitai.com/2026/11/509663.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/510652.html&title=材料科学智能体MatOS正式开源！大幅提高材料研发任务成功率&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2021/10/29678.html",
       "https://www.qbitai.com/2026/11/510003.html",
       "https://www.qbitai.com/2026/11/509440.html",
-      "https://www.qbitai.com/2026/11/508828.html",
-      "https://www.qbitai.com/2026/11/508798.html",
+      "https://www.qbitai.com/2026/11/510486.html",
+      "https://www.qbitai.com/2026/11/510297.html",
       "https://www.qbitai.com/2026/11/509224.html",
       "https://weibo.com/qbitai?is_all=1",
       "https://www.zhihu.com/org/liang-zi-wei-48/activities",
@@ -708,18 +128,121 @@
    }
   },
   {
-   "id": "3899b6e8ee3cc1f1",
-   "url": "https://openai.com/business/customer-stories/holiday-extras-dots",
-   "title": "At Holiday Extras, dots get to work before anyone asks",
+   "id": "0604bc2b50fc0c3b",
+   "url": "https://openai.com/index/astra-law-6-2",
+   "title": "Astra for Law leads in legal intelligence",
    "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-11-16T00:00:00+00:00",
-   "summary_short": "Holiday Extras 员工的自定义 AI 助理会主动送报告、提前发现问题",
-   "summary_long": "Holiday Extras 是英国旅行科技公司，帮助旅客预订机场停车、酒店、休息室与接送等服务。原文介绍该公司为员工提供 ChatGPT Enterprise、Codex 以及被称作 dots 的 AI 助理，并讲述两位高管的使用方式。公司 VP of AI Innovation Liam Thompson 的 dot 名为 Beast：应用新功能上线次日，Beast 未经请求就察觉这次发布，通过 ChatGPT 插件从 Google BigQuery 拉取数据并送来表现报告；Liam 还让 Beast 接入 Slack、收件箱、Drive 和笔记本电脑，每天早晚用双向语音与它对话至少两小时，并让它借助 After Effects 和 Rive 为应用中的 3D 角色做动画，他估计原本需要数天的工作约十分钟完成。Director of Innovation & Growth David Lee 的 dot 名为 Brian：他在通勤路上与 Brian 讨论当天会议并让它用公司数据生成报告，到办公室时报告已就绪；在部分 API key 需要停用时，Brian 主动提示，并从邮件中找出可能受影响的人员名单。原文未详述 dots 的技术实现与部署规模，文末内容亦被截断。",
+   "published_at": "2026-11-17T00:00:00+00:00",
+   "summary_short": "OpenAI更新Astra for Law：LAB-AA居首，幻觉率最低",
+   "summary_long": "OpenAI发布更新版Astra for Law，它是GPT‑6.2 Astra的一种模型配置，搭配扩展后的法律检索索引，以及用于“研究问题、权衡权威依据、撰写答案”的指令。在Harvey LAB-AA（Artificial Analysis版本，含24个法律领域共120项任务）上排名第一，20.8%的任务获满分，高于GPT‑6.2 Astra的15.0%和Muse Wonder Full的13.1%；每项任务平均输出约6.4万token，比Muse Wonder Full的13.9万少54%。在Vals AI法律研究基准上，通过全部检查的答案占比不到两个月从约46%升至53.8%，法律检索索引扩大逾三分之一。幻觉方面，每项任务平均0.03次重大幻觉，与GPT‑6并列最低，Claude Opus 5.5为0.59次；在通过全部检查标准的任务中无重大幻觉。所有ChatGPT Enterprise客户即日起可通过Trusted Access Program申请访问，包括通过API。",
    "key_points": [
-    "Liam Thompson 的 dot「Beast」在应用新功能上线后未经请求，就通过 ChatGPT 插件从 Google BigQuery 取数并交付表现报告",
-    "David Lee 的 dot「Brian」在通勤时与他讨论当天会议并生成报告，还主动提示待停用的 API key，并从邮件中整理出可能受影响的人员名单",
-    "Liam 让 Beast 接入 Slack、收件箱、Drive 与笔记本电脑，每天用双向语音与它对话至少两小时；他曾试过 OpenClaw 和 Hermes，但不愿向它们提供太多信息"
+    "LAB-AA排名第一：20.8%任务获满分，GPT‑6.2 Astra为15.0%、Muse Wonder Full为13.1%；每任务输出token约6.4万，比后者少54%",
+    "每任务平均0.03次重大幻觉，与GPT‑6并列最低，Claude Opus 5.5为0.59次；达标任务中零重大幻觉",
+    "所有ChatGPT Enterprise客户可通过Trusted Access Program（含API）申请；Vals AI基准上全部检查通过率从约46%升至53.8%"
+   ],
+   "topics": [
+    "rag",
+    "product"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 63.0,
+   "status": "review",
+   "extra": {
+    "content_source": "reader",
+    "source_tags": [
+     "Company"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "83b8de21dbff089b",
+   "url": "https://www.qbitai.com/2026/11/510695.html",
+   "title": "并购完成，李飞飞正式率队加入AMD！苏妈亲自欢迎",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-11-17T14:15:20+00:00",
+   "summary_short": "AMD完成82亿美元收购World Labs，李飞飞出任执行副总裁兼首席科学家",
+   "summary_long": "AMD于当地时间11月16日宣布完成对李飞飞联合创办的空间智能公司World Labs的收购，交割已于11月13日完成。交易采用全股票非公开发行方式，AMD向World Labs原股东定向发行1497.8万股普通股，总估值约82亿美元，从9月28日签署协议到交割仅用46天，是AMD史上第二大并购，仅次于2022年约490亿美元的赛灵思收购案。交割后，李飞飞出任AMD执行副总裁兼首席科学家，直接向苏姿丰汇报；联合创始人Justin Johnson和Ben Mildenhall继续留任，团队将在AMD内部作为独立前沿研究组织推进基础模型研发，并与硬件、软件和系统工程师协同。World Labs成立于2024年，主攻三维物理世界的空间智能，曾推出多模态世界模型Marble，并于今年9月发布Atlas。原文称，双方此前已在AMD GPU上联调模型训练和推理，合并后团队可参与AMD未来Instinct系列芯片和ROCm软件栈的架构设计。",
+   "key_points": [
+    "交易以全股票方式完成，AMD发行1497.8万股，估值约82亿美元，46天完成交割，为AMD史上第二大并购。",
+    "李飞飞任AMD执行副总裁兼首席科学家，直接向苏姿丰汇报；Justin Johnson和Ben Mildenhall留任，团队作为独立前沿研究组织继续研发基础模型。",
+    "World Labs主攻空间智能，已推出Marble和Atlas；合并后其团队可参与AMD未来Instinct芯片和ROCm软件栈架构设计。"
+   ],
+   "topics": [
+    "product"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 61.5,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "AMD",
+     "李飞飞"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/keleixi",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/amd",
+      "https://www.qbitai.com/tag/%e6%9d%8e%e9%a3%9e%e9%a3%9e",
+      "https://www.qbitai.com/2026/11/508498.html",
+      "https://www.qbitai.com/2026/11/508511.html",
+      "https://www.qbitai.com/2026/11/507367.html",
+      "https://www.qbitai.com/2026/10/504277.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/510695.html&title=并购完成，李飞飞正式率队加入AMD！苏妈亲自欢迎&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2026/05/422738.html",
+      "https://www.qbitai.com/tag/ai",
+      "https://www.qbitai.com/2025/11/352802.html",
+      "https://www.qbitai.com/2020/10/18957.html",
+      "https://www.qbitai.com/tag/%e8%8b%b1%e7%89%b9%e5%b0%94",
+      "https://www.qbitai.com/tag/%e9%94%90%e9%be%99",
+      "https://www.qbitai.com/2022/06/35513.html",
+      "https://www.qbitai.com/tag/vit",
+      "https://www.qbitai.com/2021/03/22079.html",
+      "https://www.qbitai.com/tag/%e5%85%a8%e7%90%83ai%e6%8a%a5%e5%91%8a",
+      "https://www.qbitai.com/tag/%e5%ad%a6%e6%9c%af%e6%9c%9f%e5%88%8a",
+      "https://www.qbitai.com/2022/08/37360.html",
+      "https://www.qbitai.com/tag/cpu",
+      "https://www.qbitai.com/2026/11/510003.html",
+      "https://www.qbitai.com/2026/11/509440.html",
+      "https://www.qbitai.com/2026/11/510486.html",
+      "https://www.qbitai.com/2026/11/510297.html",
+      "https://www.qbitai.com/2026/11/509224.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "c6c361c53bc4ce2d",
+   "url": "https://openai.com/index/introducing-chatgpt-for-sales",
+   "title": "Introducing ChatGPT for Sales",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-17T08:00:00+00:00",
+   "summary_short": "OpenAI推出ChatGPT for Sales：内置销售插件与30多款合作伙伴插件",
+   "summary_long": "OpenAI 宣布推出 ChatGPT for Sales，称其帮助销售团队更好地理解客户、减少杂务耗时并促成更多交易。该产品包含全新的 Sales 插件，为销售人员提供可直接使用的日常工作流，覆盖决定跟进哪些客户、准备通话、起草跟进等环节；同时提供 30 多款新增和增强的合作伙伴插件，使 ChatGPT 能使用团队已依赖的工具中的信息。原文称其把销售工具、客户背景和销售工作流集中到一处，用户可按自身销售流程选择插件，涉及内容与赋能、客户与交易、拓客、客户对话、绩效与风险、报价与协议等类别。团队还可将工作委派给 dot——ChatGPT 中常驻的 agent，它可使用同样的插件与客户信息准备会议简报、跟踪交易更新，并主动提示相关变化与建议的下一步。原文列举的用例包括：基于 CRM 信息与 ZoomInfo、Clay 等工具的拓客研究建立优先级客户名单；会前汇总账户历史、既往通话与买家优先级，并用 Gamma 或 Canva 生成定制方案；会后起草跟进、记录约定下一步，并通过 Attio 写回 CRM；借助 CRM 历史与客户对话分析交易受阻原因，并用 Rox 让 dot 每日检查。原文说明合作伙伴插件与功能的可用性因套餐、地区和工作区设置而异，Business 与 Enterprise 管理员可在管理控制台的 Plugins 中为团队启用。",
+   "key_points": [
+    "推出全新 Sales 插件，提供确定目标客户、通话准备、跟进起草等现成销售工作流",
+    "接入 30 多款新增和增强的合作插件，可调用 CRM 及 ZoomInfo、Clay、Gamma、Canva、Attio、Rox 等工具中的客户信息",
+    "dot 作为 ChatGPT 中常驻的 agent，可用同样的插件与客户背景准备会议简报、跟踪交易更新并主动提示变化"
    ],
    "topics": [
     "product",
@@ -730,70 +253,317 @@
     "产品与应用"
    ],
    "horizon": "short",
-   "score": 51.0,
+   "score": 60.0,
    "status": "review",
    "extra": {
-    "content_source": "direct",
+    "content_source": "reader",
+    "source_tags": [
+     "Product"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "af19957a97c276aa",
+   "url": "https://latent.space/p/cloudflare/",
+   "title": "Cloudflare Joins the Jevolution and Labels Itself a Neolab",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-11-17T15:00:00+00:00",
+   "summary_short": "Cloudflare 推出 Clef 与 Clairic 两款模型，并自称 neolab",
+   "summary_long": "Cloudflare 产品侧 AI 平台负责人 Michelle Chen 在 AI Engineer Code Summit 上称，Cloudflare 正成为“neolab”，并已推出两款 System One 模型：受 TypeSafe AI 的 Jev 启发的决策模型 Clef，以及被称为“extract”模型的 Clairic。她在会后采访中表示，未来不只做 System One，还可能试验推理模型和其他 LLM，但重点不是从零预训练，而是利用现有资源做后训练，使其更高效。原文也指出，neolab 原指新一代研究型 AI 初创公司，通常拥有顶尖研究员、大量算力、可观融资且收入有限；Cloudflare 是上市公司且收入规模大，并不完全符合。Chen 将 Jev 的到来称为改变 Cloudflare 模型路线的“东风”，并称团队两周做出 Clef，而 TypeSafe AI 花两年做出 Jev。",
+   "key_points": [
+    "Cloudflare 推出 Clef 和 Clairic 两款 System One 模型，Clef 直接受 TypeSafe AI 的 Jev 启发，Clairic 是“extract”模型。",
+    "Michelle Chen 称未来可能试验推理模型和其他 LLM，但不会从零预训练，团队重点在 post-training。",
+    "“neolab”原指新一代研究型 AI 初创公司，Cloudflare 是上市公司且收入显著，定义并不完全吻合；原文还提到其 Q3 营收 7.82 亿美元、年化超 30 亿美元、同比增长 39%。"
+   ],
+   "topics": [
+    "post-training"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 60.0,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://chatgpt.com/business/",
-      "https://www.holidayextras.com/",
-      "https://openai.com/index/introducing-dots/",
-      "https://openai.com/policies/privacy-policy/"
+      "https://ai.engineer/code/2026/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://latent.space/p/jev/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://latent.space/p/jev-revolution/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.theinformation.com/articles/investors-chase-neolabs-outflank-openai-anthropic?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://debarghyadas.com/neolabs/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.cloudflare.com/press/press-releases/2026/cloudflare-announces-third-quarter-2026-financial-results/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://blog.cloudflare.com/workers-ai-large-models/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://blog.cloudflare.com/clairic-extraction-model/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.cloudflare.com/products/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "41b364560b3242b8",
-   "url": "https://jack-clark.net/2026/11/16/import-ai-481-ai-sub-contractors-a-wet-lab-for-ai-and-subterfuge-during-development/",
-   "title": "Import AI 481: AI sub-contractors; a wet lab for AI; and subterfuge during development",
-   "source": "Import AI",
-   "tier": "C",
-   "published_at": "2026-11-16T14:01:15+00:00",
-   "summary_short": "FrontierML 基准：AI 能把预算变成自身性能提升，接近人类研究员",
-   "summary_long": "研究者提出 FrontierML 基准，用来衡量智能体能否把资金转化为模型性能。它包含 21 个长周期任务，灵感来自前沿实验室、neolabs 与学术机构的真实工作，覆盖 LLM 训练、效率、视觉与音频、计算机使用、应用 NLP、数学与游戏六类。每个任务给智能体相同条件：12 小时 CPU 沙箱、装有 10/50/200 美元的钱包、少量验证样本与任务描述。任务开放且端到端，智能体可自选架构、找数据、实现训练、申请算力、评估检查点并优化推理；28% 的轨迹中，它们给预训练模型加上新训练部件或从零训练模型。评测要求提交在隔离 H100 上运行的推理服务器，并用未向智能体展示的大规模分布外测试集防过拟合。结果显示更强智能体能把更多资金可靠转化为更好成绩：人类研究员基准拿到 10 美元提升 56 分、200 美元提升 66.1 分；最佳系统 Opus 5.5 为 45.4 与 58.8，最强开源权重模型 Kimi K3.1 Pro 为 25.5 与 29.6。原文认为这表明 AI 已能创造性地“外包”工作，指向机器经济。原文另提到 YC 创业公司 Petrichor 建设面向 AI 实验室的湿实验室，但文本在此截断，原文未详述。",
+   "id": "565e81b83ed077e8",
+   "url": "https://www.qbitai.com/2026/11/510610.html",
+   "title": "真勇啊！00后团队参加具身挑战赛，仅48小时竟敢从零手搓数据，还夺冠了！",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-11-17T04:35:03+00:00",
+   "summary_short": "00后TARS队48小时具身挑战赛自采数据逆转夺冠，值得看真机实战。",
+   "summary_long": "蚂蚁灵波举办首届具身大模型挑战赛决赛，15支从1855支队伍、3252名选手中入围的团队，在48小时内完成数据采集、模型调优和真机部署，并用同一套模型应对摆放水果、把化妆品放入透明收纳架指定层、双臂配合清扫垃圾三项任务。冠军TARS平均年龄25岁，队长吴昊楠是即将从天津大学硕士毕业的00后，队员来自福田实验室、西北工业大学、普渡机器人和天津大学。TARS前两项基本沿用官方数据，用千问识别干扰物并按背景颜色抹除；第三项发现官方210条数据抓簸箕把手易打滑翻转，改为自采抓后沿数据，在临近结束前几分钟反超，以82分获第一和8万元奖金。EVA以约7轮数据回流、700多条补充数据获73.83分，SST仅额外采集3条、用DeepSeek和SAM 3等处理获65.87分，均获二等奖。原文还提到真机中硬件位置差异、补数据可能拖累其他任务，以及主办方强调原生具身和验证硬件适配、跨任务泛化与工程能力。",
    "key_points": [
-    "FrontierML 含 21 个长周期端到端任务，每任务配 12 小时 CPU 沙箱与 10/50/200 美元预算，可自选架构、数据、算力与推理优化",
-    "更强智能体能把更多资金可靠转化为性能提升：人类研究员 56/66.1 分，Opus 5.5 为 45.4/58.8，Kimi K3.1 Pro 为 25.5/29.6",
-    "28% 的轨迹中智能体给预训练模型加新训练部件或从零训练；评测用隔离 H100 上的推理服务器与未展示的分布外测试集防过拟合"
+    "TARS在决赛48小时内选择自采第三任务数据，将抓簸箕把手改为抓后沿，最终82分夺冠并获8万元奖金。",
+    "比赛要求15支入围队伍用同一套模型完成三项真机任务，EVA通过约7轮数据回流、700多条补充数据获73.83分，SST仅额外采集3条数据获65.87分。",
+    "原文提到真机实战中机械臂与桌子距离差约5厘米会影响放置，Motion补采任务二三数据后任务一表现变差；主办方强调原生具身，并认为需验证硬件适配、跨任务泛化和短时间工程能力。"
    ],
    "topics": [
     "eval",
-    "agent-loop",
-    "coding-agent"
+    "post-training"
    ],
    "category": "评测",
    "categories": [
     "评测",
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 59.8,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "首页轮播",
+     "具身大模型挑战赛",
+     "具身智能",
+     "蚂蚁灵波"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/shisan",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/%e5%85%b7%e8%ba%ab%e5%a4%a7%e6%a8%a1%e5%9e%8b%e6%8c%91%e6%88%98%e8%b5%9b",
+      "https://www.qbitai.com/tag/%e5%85%b7%e8%ba%ab%e6%99%ba%e8%83%bd",
+      "https://www.qbitai.com/tag/%e8%9a%82%e8%9a%81%e7%81%b5%e6%b3%a2",
+      "https://www.qbitai.com/2026/11/508828.html",
+      "https://www.qbitai.com/2026/11/508919.html",
+      "https://www.qbitai.com/2026/11/507277.html",
+      "https://www.qbitai.com/2026/11/507448.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/510610.html&title=真勇啊！00后团队参加具身挑战赛，仅48小时竟敢从零手搓数据，还夺冠了！&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2024/09/190300.html",
+      "https://www.qbitai.com/tag/ai%e5%a4%a7%e6%a8%a1%e5%9e%8b",
+      "https://www.qbitai.com/tag/%e5%8c%97%e4%ba%ac%e5%a4%a7%e5%ad%a6",
+      "https://www.qbitai.com/2026/07/441396.html",
+      "https://www.qbitai.com/tag/%e8%8b%b1%e4%bc%9f%e8%be%be",
+      "https://www.qbitai.com/2026/02/381417.html",
+      "https://www.qbitai.com/tag/%e5%8c%97%e4%ba%ac%e5%8d%ab%e8%a7%86",
+      "https://www.qbitai.com/tag/%e6%9c%ba%e5%99%a8%e4%ba%ba",
+      "https://www.qbitai.com/tag/%e9%9c%8d%e5%b0%94%e6%9b%bc",
+      "https://www.qbitai.com/2026/09/483565.html",
+      "https://www.qbitai.com/tag/%e5%ae%83%e7%9f%b3%e6%99%ba%e8%88%aa",
+      "https://www.qbitai.com/tag/%e6%b3%9b%e5%8c%96",
+      "https://www.qbitai.com/2025/11/353959.html",
+      "https://www.qbitai.com/2026/08/481318.html",
+      "https://www.qbitai.com/2026/11/510003.html",
+      "https://www.qbitai.com/2026/11/509440.html",
+      "https://www.qbitai.com/2026/11/510486.html",
+      "https://www.qbitai.com/2026/11/510297.html",
+      "https://www.qbitai.com/2026/11/509224.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "5b158888670aa71b",
+   "url": "https://simonwillison.net/2026/Nov/17/datasette-lite/",
+   "title": "Running the full server-side Datasette Python app in the browser with service workers and Pyodide",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-17T16:48:33+00:00",
+   "summary_short": "Datasette Lite 用 service workers 完整重写，浏览器内几乎等同服务端应用",
+   "summary_long": "Datasette Lite 是把 Datasette 这个 Python 应用借 WebAssembly 与 Pyodide 跑在浏览器里的移植项目。原文称其已用 service workers 完整重写，新版与真正的服务端应用几乎无法区分。用户可用精心构造的 lite.datasette.io URL：浏览任意 SQLite 数据库、JSON、CSV 或 SQL 脚本；从 PyPI 载入已发布的 Datasette 版本；载入 GitHub 仓库的特定 commit、tag 或分支；在 100 多个 SQLite 版本中选择；从 PyPI 或 wheel 文件 URL 安装插件（含 JavaScript 可视化工具）。原文以 datasette-maplibre 示例 URL 逐段解释参数：install 装插件，url 加载需带开放 CORS 头的数据库（作者放在 Gist），metadata 加载 metadata.yml 添加描述，fragment hash 定位视图并向地图插件传参。能指定 Datasette 引用、插件与 SQLite 版本，使其适合链接演示在研功能或复现 bug，无需启动 Web 服务器；作者已在 Datasette 开发中用它对比分页缺陷修复前后的行为。service workers 机制在原文截断处未详述。",
+   "key_points": [
+    "Datasette Lite 是把 Datasette Python 应用通过 WebAssembly 和 Pyodide 跑在浏览器中的移植，本次用 service workers 完整重写，原文称其与真实服务端应用几乎无法区分",
+    "支持通过 URL 参数：install 从 PyPI 或 wheel 文件安装插件、url 加载 SQLite 数据库、metadata 加载 metadata.yml、ref 指定已发布版本或 commit/tag/分支，并可选用 100 多个 SQLite 版本",
+    "所加载的数据 URL 需带开放 CORS 头，原文示例将数据库与元数据文件托管在 Gist；fragment hash 可定位到具体视图并向插件传参"
+   ],
+   "topics": [
+    "open-source"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
     "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 50.7,
+   "score": 56.7,
    "status": "review",
    "extra": {
     "content_source": "rss",
     "source_tags": [
-     "Uncategorized"
+     "javascript",
+     "projects",
+     "python",
+     "urls",
+     "datasette"
     ],
     "outbound": {
-     "arxiv": [
-      "2610.27735",
-      "2611.09476",
-      "2611.09490"
-     ],
+     "arxiv": [],
      "links": [
-      "https://importai.substack.com/subscribe?",
-      "https://www.frontierml.org/blog/",
-      "https://petrichorbio.com/",
-      "https://jack-clark.net/2026/07/20/import-ai-465-open-vs-closed-gaps-kimi-k3-demis-big-policy-plan/",
-      "https://arxiv.org/abs/2610.27735",
-      "https://jack-clark.net/2026/03/23/import-ai-450-chinas-electronic-warfare-model-traumatized-llms-and-a-scaling-law-for-cyberattacks/",
-      "https://arxiv.org/abs/2611.09476",
-      "https://github.com/N1rv4n4/LEMMO",
-      "https://arxiv.org/abs/2611.09490"
+      "https://lite.datasette.io/",
+      "https://datasette.io/",
+      "https://pyodide.org/",
+      "https://lite.datasette.io/?install=datasette-maplibre&url=https://gist.githubusercontent.com/simonw/39fa5d399465766039549912e2b3d291/raw/f6dfba99a75cbb8b5d9386223220eb52272767ee/demo.db&metadata=https://gist.githubusercontent.com/simonw/39fa5d399465766039549912e2b3d291/raw/f6dfba99a75cbb8b5d9386223220eb52272767ee/metadata.yml#/demo/capitals_and_countries%23map=0/4.2/180&color=continent",
+      "https://github.com/datasette/datasette-maplibre",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+      "https://gist.github.com/",
+      "https://gist.githubusercontent.com/simonw/39fa5d399465766039549912e2b3d291/raw/f6dfba99a75cbb8b5d9386223220eb52272767ee/metadata.yml",
+      "https://lite.datasette.io/?install=datasette-maplibre&url=https://gist.githubusercontent.com/simonw/39fa5d399465766039549912e2b3d291/raw/f6dfba99a75cbb8b5d9386223220eb52272767ee/demo.db&metadata=https://gist.githubusercontent.com/simonw/39fa5d399465766039549912e2b3d291/raw/f6dfba99a75cbb8b5d9386223220eb52272767ee/metadata.yml#/",
+      "https://simonwillison.net/2025/Feb/13/url-addressable-python/",
+      "https://github.com/simonw/datasette-lite#load-a-different-datasette-version",
+      "https://github.com/simonw/datasette/issues/3056#issuecomment-6902484982",
+      "https://lite.datasette.io/?ref=1.0a42&sql=https://gist.github.com/simonw/75ececf61d50e6e8d50f0c150150ee81#/data/scores?_size=2&_sort=score",
+      "https://lite.datasette.io/?ref=1.0a43&sql=https://gist.github.com/simonw/75ececf61d50e6e8d50f0c150150ee81#/data/scores?_size=2&_sort=score",
+      "https://simonwillison.net/2022/May/4/datasette-lite/",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API",
+      "https://gisthost.github.io/?4192a5a24136cad4c8490ccb15e87d83",
+      "https://simonwillison.net/2026/May/30/pyodide-asgi-browser/",
+      "https://github.com/simonw/research/tree/main/pyodide-asgi-browser#readme",
+      "https://github.com/simonw/datasette-lite/commit/de661dbee42a68304811a0035b78e6b683203cd1",
+      "https://simonwillison.net/2026/Nov/16/llm/",
+      "https://til.simonwillison.net/sqlite/sqlite-version-macos-python",
+      "https://github.com/datasette/pysqlite3-wasm-wheels",
+      "https://github.com/coleifer/pysqlite3",
+      "https://datasette.github.io/pysqlite3-wasm-wheels/?versions=3.54.1,3.54.0&sql=select+json_object(%27a%27%2C+(select+json_array(1%29%29%29)",
+      "https://github.com/pypi/warehouse/pull/19804",
+      "https://simonwillison.net/tags/javascript",
+      "https://simonwillison.net/tags/projects",
+      "https://simonwillison.net/tags/python",
+      "https://simonwillison.net/tags/urls",
+      "https://simonwillison.net/tags/datasette",
+      "https://simonwillison.net/tags/webassembly",
+      "https://simonwillison.net/tags/service-workers",
+      "https://simonwillison.net/tags/pyodide",
+      "https://simonwillison.net/tags/datasette-lite"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "590cb0b9c5dd23f2",
+   "url": "https://openai.com/index/strengthening-nato-allied-cyber-defences-ai",
+   "title": "Strengthening NATO and allied cyber defenses with AI",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-17T00:00:00+00:00",
+   "summary_short": "OpenAI经Daybreak向NATO及欧洲多国网安机构提供前沿模型",
+   "summary_long": "原文介绍OpenAI通过Daybreak项目向受信任的防御方提供先进AI，用于经授权的安全工作，包括审查软件、调查可疑活动、验证漏洞以及开发和测试修复方案。在与北约的合作方面，OpenAI与北约通信与信息局（NCIA）合作，为北约核心机构提供先进网络安全模型的访问权限，以帮助保护盟国网络；原文称北约在此项工作中每月使用最多3000亿原始输入输出token。原文还提到，OpenAI支持了2026年由北约合作网络防御卓越中心（CCDCOE）组织的Crossed Swords演习，其中新增训练环节让参与者在技术环境中使用Daybreak构建、部署和评估用于网络行动的AI智能体，并强调保持人类监督。NCIA总经理Dylan Browne在原文中称AI驱动的网络防御模型是网络安全的一次代际跃升，并提到将深化对token消耗、使用模式和AI模型底层经济性的理解，以优化成本与采购决策。OpenAI国家安全政策负责人Sasha Baker表示要把更强大的工具交到防御者手中。除北约外，OpenAI还向欧盟ENISA及法国（ANSSI）、德国和波兰的国家网络机构提供了模型访问权限。",
+   "key_points": [
+    "OpenAI通过Daybreak向受信任防御方提供AI，用于软件审查、可疑活动调查、漏洞验证与修复测试等经授权工作",
+    "OpenAI与北约NCIA合作，为北约核心机构提供网络安全模型访问权限，原文称北约每月使用最多3000亿原始输入输出token",
+    "OpenAI支持2026年CCDCOE组织的Crossed Swords演习，新增AI智能体网络行动训练环节，强调人类监督"
+   ],
+   "topics": [
+    "cybersecurity",
+    "product"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 54.9,
+   "status": "review",
+   "extra": {
+    "content_source": "reader",
+    "source_tags": [
+     "Global Affairs"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "deee7f6a93c88371",
+   "url": "https://www.qbitai.com/2026/11/510561.html",
+   "title": "物理AI的强化学习仿真环境来了，光轮智能推出RoboFinals RL Envs",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-11-17T02:03:22+00:00",
+   "summary_short": "光轮智能推出RoboFinals RL Envs，首展超8分钟汽车修理长程仿真任务",
+   "summary_long": "随着大模型走向工具调用和多步骤任务，强化学习环境成为后训练的重要供给：Mercor完成7.5亿美元D轮、估值200亿美元；Surge AI围绕长程办公任务构建RL环境并用Qwen3.5-122B-A10B后训练，模型在未见过的SWE-Bench Pro上提升5.7个百分点；据《时代》援引其CEO说法，Handshake AI相关业务上线约一年年化收入达10亿美元。物理世界更复杂。9月3日OpenAI发布GPT-6 Astra，在RoboDojo的42个仿真任务上不做机器人专项微调平均成功率22.48%，超过榜单全部40个经训练策略；但真机测试长短不一，放方块20次成功19次，精密插销20次仅成功2次。CoRL2026期间光轮智能发布RoboFinals RL Envs，首发展示时长超8分钟的汽车修理长程任务，把灵巧手操作、工具使用、多阶段流程与软管、线缆、密封垫等柔性物体交互组织在同一场景。难点在于多接触点求解、长程误差累积与柔体参数标定。其全栈自研仿真底座SimFoundry覆盖求解、测量、生成三环节。",
+   "key_points": [
+    "强化学习环境正成为新生意：Mercor、Surge AI、Handshake AI等围绕后训练环境与专家数据展开业务，后训练核心供给从算法算力扩展到“做什么任务、在哪里练、如何判定结果”",
+    "OpenAI于9月3日发布的GPT-6 Astra在RoboDojo 42个仿真任务上不做机器人微调平均成功率22.48%，超过榜单全部40个经训练策略，但真机测试表现长短不一",
+    "光轮智能在CoRL2026发布RoboFinals RL Envs，首发展示超8分钟汽车修理长程任务，涉及灵巧手多自由度接触、长程误差累积与可变形物体交互，配套全栈自研SimFoundry仿真底座与RL Ready标准"
+   ],
+   "topics": [
+    "post-training",
+    "reasoning",
+    "eval"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 50.3,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "仿真",
+     "机器人"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/linfangzhou",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/%e4%bb%bf%e7%9c%9f",
+      "https://www.qbitai.com/tag/%e6%9c%ba%e5%99%a8%e4%ba%ba",
+      "https://www.qbitai.com/2026/11/507038.html",
+      "https://www.qbitai.com/2026/10/503657.html",
+      "https://www.qbitai.com/2026/10/501736.html",
+      "https://www.qbitai.com/2026/10/501726.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/510561.html&title=物理AI的强化学习仿真环境来了，光轮智能推出RoboFinals RL Envs&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2024/02/121519.html",
+      "https://www.qbitai.com/tag/%e6%9c%ba%e5%99%a8%e7%8b%97",
+      "https://www.qbitai.com/2024/02/118051.html",
+      "https://www.qbitai.com/tag/%e7%89%b9%e6%96%af%e6%8b%89%e6%9c%ba%e5%99%a8%e4%ba%ba",
+      "https://www.qbitai.com/tag/%e9%a9%ac%e6%96%af%e5%85%8b",
+      "https://www.qbitai.com/2024/11/215403.html",
+      "https://www.qbitai.com/tag/%e8%8b%b1%e4%bc%9f%e8%be%be",
+      "https://www.qbitai.com/2021/04/22954.html",
+      "https://www.qbitai.com/tag/%e7%8c%8e%e6%88%b7%e6%98%9f%e7%a9%ba",
+      "https://www.qbitai.com/2022/09/38074.html",
+      "https://www.qbitai.com/tag/%e5%85%83%e8%90%9d%e5%8d%9c",
+      "https://www.qbitai.com/tag/%e5%95%86%e6%b1%a4%e7%a7%91%e6%8a%80",
+      "https://www.qbitai.com/tag/%e8%b1%a1%e6%a3%8b",
+      "https://www.qbitai.com/2019/03/741.html",
+      "https://www.qbitai.com/tag/preferred-networks",
+      "https://www.qbitai.com/tag/%e4%b8%b0%e7%94%b0",
+      "https://www.qbitai.com/2026/11/510003.html",
+      "https://www.qbitai.com/2026/11/509440.html",
+      "https://www.qbitai.com/2026/11/510486.html",
+      "https://www.qbitai.com/2026/11/510297.html",
+      "https://www.qbitai.com/2026/11/509224.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
      ]
     },
     "summary_mode": "full"

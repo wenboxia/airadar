@@ -1,0 +1,110 @@
+{
+ "run_id": "20261118-013703",
+ "started": "2026-11-18T01:37:03+00:00",
+ "finished": "2026-11-18T01:40:01+00:00",
+ "mode": "LLM 模式 | 降级链 primary(deepseek-flash) → fallback(glm-5.3)",
+ "stats": {
+  "fetch": {
+   "arxiv_mentions": {
+    "error": "HTTPError"
+   },
+   "total": 49,
+   "per_source": {
+    "Anthropic News": 0,
+    "GitHub Blog (AI)": 2,
+    "Hugging Face Blog": 0,
+    "Google DeepMind Blog": 0,
+    "MCP Official Blog": 0,
+    "Lilian Weng": 0,
+    "Andrej Karpathy": 0,
+    "Interconnects": 0,
+    "Simon Willison": 5,
+    "Eugene Yan": 0,
+    "Sebastian Raschka": 0,
+    "Hacker News (AI 高分帖)": 4,
+    "Latent Space": 3,
+    "Dwarkesh Podcast": 1,
+    "Import AI": 1,
+    "OpenAI News": 13,
+    "AI Snake Oil": 0,
+    "Ethan Mollick": 0,
+    "GitHub Trending (AI)": 10,
+    "量子位": 10
+   }
+  },
+  "timing": {
+   "fetch": 31.1,
+   "dedupe": 0.0,
+   "triage": 27.3,
+   "summarize": 106.7,
+   "classify": 12.1,
+   "publish": 0.1
+  },
+  "dedupe": {
+   "kept": 23,
+   "dropped_already_in_db": 25,
+   "dropped_dup_url": 1,
+   "dropped_dup_title": 0
+  },
+  "llm_calls": 60,
+  "llm_tokens": 116359,
+  "llm_prompt_tokens": 76230,
+  "llm_completion_tokens": 40129,
+  "calls_by_provider": {
+   "primary": 58,
+   "fallback": 2
+  },
+  "triage": {
+   "published": 6,
+   "review": 10,
+   "discarded": 7,
+   "llm_scored": 23,
+   "degraded": 0,
+   "capped": 0,
+   "by_kind": {
+    "一手发布": 9,
+    "营销通稿": 2,
+    "开源项目": 2,
+    "从业者判断": 3,
+    "二手转述": 5,
+    "公司动态": 2
+   }
+  },
+  "summarize": {
+   "summarized": 16,
+   "brief_mode": 0,
+   "hallucination_flagged": 0,
+   "degraded_title_only": 0
+  },
+  "classify": {
+   "classified": 16,
+   "degraded_heuristic": 0
+  },
+  "publish": {
+   "published": 6,
+   "pending": 10,
+   "db_totals": {
+    "discarded": 601,
+    "published": 525,
+    "review": 869
+   }
+  },
+  "budget": {
+   "tokens_used": 116359,
+   "calls_made": 60,
+   "token_limit": 400000,
+   "call_limit": 260
+  },
+  "memory": {
+   "topics": 55,
+   "span_days": 2582,
+   "lifecycle_ready": true
+  }
+ },
+ "errors": [
+  {
+   "where": "fetch",
+   "error": "arxiv_mentions: 429 Client Error: Too Many Requests for url: https://export.arxiv.org/api/query?id_list=2611.09490,2611.09476,2610.34203,2610.27735,2607.18966,2605.11086,2506.15742,2307.01952&max_results=8"
+  }
+ ]
+}
