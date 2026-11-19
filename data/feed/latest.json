@@ -1,26 +1,25 @@
 {
- "generated_at": "2026-11-18T01:40:01+00:00",
- "date": "2026-11-18",
- "run_id": "20261118-013703",
+ "generated_at": "2026-11-19T01:17:18+00:00",
+ "date": "2026-11-19",
+ "run_id": "20261119-011325",
  "top": [
   {
-   "id": "964aca3f2d3b92c6",
-   "url": "https://github.blog/engineering/engineering-principles/building-the-agent-host-protocol-for-sessions-that-continue-across-devices/",
-   "title": "Building the Agent Host Protocol for sessions that continue across devices",
-   "source": "GitHub Blog (AI)",
+   "id": "53f2a14376dda94d",
+   "url": "https://openai.com/index/inside-the-codex-sandbox",
+   "title": "Inside the Codex sandbox",
+   "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-11-17T18:20:40+00:00",
-   "summary_short": "GitHub Copilot 的跨设备会话连续性依托开放标准 AHP：在一处开始，任意设备继续。",
-   "summary_long": "原文指出，模型已能自主工作数小时甚至数天，用户不必全程盯着，但需要能随时查看；agent 不应只存在于一个应用里，关闭窗口或换设备后工作应继续。GitHub Copilot 支持在一处开始 agent 会话、在另一处继续，这依赖 Agent Host Protocol（AHP），它是先在 VS Code 中构建、并被 GitHub 各产品采用的开放标准。旧做法的问题在于：Copilot 最初是 VS Code 扩展并自带 harness，agent 生命周期绑定单个编辑器窗口，关闭窗口后 agent 就消失，升级并重启会中断所有 agent，连接远程机器则会得到一个锁定在该 VS Code workbench 版本上的全新扩展宿主；同时 Copilot 应用与 iOS、Android 移动端各自做独立集成，只解决单个产品的问题，开发者无法把 agent 接入自建工作流。AHP 要求多客户端共享同一批 agent，容忍网络中断、重连与并发变更，但不描述 agent 行为，只定义交互方式，并保持核心最小。协议以 URI 标识的 channel 为功能单元，root、session、chat 为必备，终端、MCP、OTel 等可选；通道内是基于 reducer 的状态对象，服务器是状态仲裁者，客户端发送 actions 以改变状态或触发副作用，从而简化弱网重连重放与调试。",
+   "published_at": "2026-11-18T08:00:00+00:00",
+   "summary_short": "介绍 Codex 如何在本机运行命令，并落实你设定的文件系统与网络限制",
+   "summary_long": "",
    "key_points": [
-    "AHP 是先在 VS Code 构建、被 GitHub 采用的开放标准，支撑 Copilot 在 VS Code、Copilot 应用与移动端之间接续同一 agent 会话。",
-    "旧架构下 agent 绑定单个 VS Code 窗口，关窗、升级重启或连接远程都会中断；各产品各自定制集成无法覆盖开发者自建客户端。",
-    "协议以 URI 标识的 channel 为功能单元，root、session、chat 必备，终端、MCP、OTel 可选；通道内用 reducer 状态，服务器仲裁状态，客户端提交 actions。"
+    "Codex 在你的机器上运行命令",
+    "同时执行由你控制的文件系统与网络限制",
+    "覆盖 macOS、Linux 和 Windows"
    ],
    "topics": [
-    "agent-loop",
-    "mcp",
-    "context-engineering"
+    "coding-agent",
+    "harness"
    ],
    "category": "Agent 与开发",
    "categories": [
@@ -32,244 +31,216 @@
    "extra": {
     "content_source": "rss",
     "source_tags": [
-     "Engineering",
-     "Engineering principles",
-     "GitHub Copilot",
-     "VS Code"
+     "Engineering"
     ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/features/ai/github-app",
-      "https://docs.github.com/copilot/concepts/copilot-surfaces/copilot-on-github",
-      "https://microsoft.github.io/language-server-protocol/",
-      "https://microsoft.github.io/debug-adapter-protocol/",
-      "https://microsoft.github.io/agent-host-protocol/",
-      "https://aka.ms/copilot-sdk/blog-2.0",
-      "https://code.visualstudio.com/docs/remote/vscode-server",
-      "https://github.blog/changelog/2026-10-28-work-from-anywhere-with-a-new-connected-copilot-cloud-experience/",
-      "https://github.com/microsoft/agent-host-protocol-samples/",
-      "https://github.com/microsoft/agent-host-protocol",
-      "https://github.blog/engineering/engineering-principles/building-the-agent-host-protocol-for-sessions-that-continue-across-devices/",
-      "https://github.blog"
-     ]
-    },
-    "summary_mode": "full"
+    "summary_mode": "brief"
    }
   },
   {
-   "id": "c60558e98558e0e7",
-   "url": "https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/",
-   "title": "External sandboxes for coding agents",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-11-17T22:52:29+00:00",
-   "summary_short": "提出“外部沙箱”模式并给出三个实现，隔离代理执行的代码",
-   "summary_long": "原文为寻找更安全的方式沙箱化代理执行的代码，重点是在试用本地模型时，不必担心一次误操作或提示注入就让机器被做出破坏性操作。作者与 Prime Radiant 合作推进该项目，并在其博客文章中介绍“外部沙箱”模式：代理本身运行在沙箱之外，代理要执行的代码则放进专门的沙箱里运行。为演示这一模式，原文发布了三个沙箱服务器实现：external-sandbox-v86 运行 Node.js 服务器，再用 v86 在 WebAssembly 内运行 Alpine Linux；external-sandbox-container 是一个 Python Web 服务器，在 Apple Containers 实例中运行 Alpine Linux 沙箱；external-sandbox-quicksand 同样是 Python Web 服务器，使用微软的 Quicksand 沙箱库，该库把 QEMU 与 Alpine Linux 打包进一个 Python 包。三者提供相同的 localhost API，可将 Pi、Claude Code 或 Codex 配置为在需要执行代码时向该沙箱发起 API 调用。沙箱还包含可选的 HTTP/HTTPS 允许列表代理，用于精确控制代理代码可通信的主机，并提供凭据替换机制，使带认证的 API 调用无需把密钥交给代理；原文还展示了可在沙箱运行期间重新配置该代理的界面",
+   "id": "9fa731b0ef6c1da9",
+   "url": "https://openai.com/index/research-acceleration-jagged-frontier",
+   "title": "Research acceleration: The jagged frontier",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-18T08:00:00+00:00",
+   "summary_short": "OpenAI衡量编程智能体加速AI研究的程度、表现不均之处及对递归自我改进的启示",
+   "summary_long": "",
    "key_points": [
-    "外部沙箱模式：代理位于沙箱之外，其执行的代码在专用沙箱内运行",
-    "三个实现 external-sandbox-v86、external-sandbox-container、external-sandbox-quicksand 分别基于 v86/WebAssembly、Apple Containers、微软 Quicksand 库，均提供相同的 localhost API",
-    "沙箱附带可选的 HTTP/HTTPS 允许列表代理与凭据替换机制，并提供运行时可重配代理的界面"
+    "OpenAI衡量编程智能体如何加速AI研究",
+    "编程智能体的表现仍不均衡",
+    "原文探讨这一情况对递归自我改进意味着什么"
    ],
    "topics": [
-    "coding-agent",
-    "harness",
-    "prompt-injection"
+    "eval",
+    "coding-agent"
    ],
-   "category": "Agent 与开发",
+   "category": "评测",
    "categories": [
-    "Agent 与开发",
-    "安全"
+    "评测"
    ],
    "horizon": "long",
-   "score": 84.2,
+   "score": 84.6,
    "status": "published",
    "extra": {
     "content_source": "rss",
     "source_tags": [
-     "sandboxing",
-     "security",
-     "ai",
-     "webassembly",
-     "generative-ai"
+     "Research"
     ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://blog.primeradiant.com/external-sandboxes-for-coding-agents/",
-      "https://primeradiant.com",
-      "https://github.com/orgs/prime-radiant-inc/repositories",
-      "https://github.com/prime-radiant-inc/external-sandbox-v86",
-      "https://github.com/copy/v86",
-      "https://github.com/prime-radiant-inc/external-sandbox-container",
-      "https://github.com/prime-radiant-inc/external-sandbox-quicksand",
-      "https://github.com/microsoft/quicksand",
-      "https://simonwillison.net/tags/sandboxing",
-      "https://simonwillison.net/tags/security",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/webassembly",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/coding-agents",
-      "https://simonwillison.net/tags/claude-code",
-      "https://simonwillison.net/tags/codex",
-      "https://simonwillison.net/tags/pi"
-     ]
-    },
-    "summary_mode": "full"
+    "summary_mode": "brief"
    }
   },
   {
-   "id": "069078b2b4e3b49a",
-   "url": "https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/",
-   "title": "How the Claude Code team thinks about verification",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-17T10:20:40+00:00",
-   "summary_short": "Claude Code团队用端到端等测试让编程agent凭证据验证工作，支撑大规模并行。",
-   "summary_long": "Claude Code 团队称其约90%的代码由 Claude 编写和审查。原文指出，验证循环是扩大委派规模的关键：没有验证只能同时运行一两个 Claude，有了验证可并行数十到数百个。内部结构化文件生成测试显示，用独立评分器按 rubric 检查 Claude 的工作，比标准提示循环成功率最高提升10个百分点，难题收益最大。测试、基准、规格和真实端到端运行过去验证昂贵，现在可让 agent 快速生成并作为软件频繁运行，且能用结果改进 agent，例如反复因日志含用户数据失败时，增加 hook 或 CLAUDE.md 明确规则。原文还强调避免不稳定和过慢测试，重测试宜在提交前运行，并重点介绍端到端、属性与差分测试；提供内容中详述了 E2E 和属性测试，差分部分未展开。",
-   "key_points": [
-    "团队约90%代码由Claude编写和审查；验证循环让可并行运行的Claude从一两个扩展到数十上百个。",
-    "内部测试中，独立评分器按rubric检查Claude输出，较标准提示循环成功率最高提升10个百分点，难题收益最大。",
-    "原文强调避免flaky和慢测试、重测试放在提交前，并称最值得投入的是端到端、属性和差分测试；提供内容详述E2E难被糊弄、属性测试补边缘案例，差分部分未展开。"
-   ],
-   "topics": [
-    "coding-agent",
-    "harness",
-    "eval"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "评测"
-   ],
-   "horizon": "long",
-   "score": 83.4,
-   "status": "published",
-   "extra": {
-    "hn_points": 262,
-    "hn_comments": 205,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://claude.dev/blog/solving-code-review-at-anthropic/",
-      "https://claude.com/blog/building-verification-loops-in-claude-code-with-skills",
-      "https://claude.com/blog/claude-managed-agents",
-      "https://chromedevtools.github.io/devtools-protocol/",
-      "https://fast-check.dev/",
-      "https://hypothesis.readthedocs.io/en/latest/",
-      "https://proptest-rs.github.io/proptest/",
-      "https://claude.com/resources/articles/ai-code-migration",
-      "https://code.claude.com/docs/en/code-review-customize",
-      "https://code.claude.com/docs/en/hooks",
-      "https://code.claude.com/docs/en/goal",
-      "https://code.claude.com/docs/en/code-review-pull-requests"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "549a77347d5e1e5f",
-   "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
-   "title": "Introducing GPT-6.2 Astra and Sol",
-   "source": "OpenAI News",
+   "id": "f689168723dc030d",
+   "url": "https://huggingface.co/blog/RadixArk/daisyrose-27b-pushing-the-frontier-of-post-trainin",
+   "title": "DaisyRose-27B: Pushing the Frontier of Post-Training Efficiency",
+   "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-11-17T17:45:00+00:00",
-   "summary_short": "GPT‑6.2 Astra 与 Sol 发布：难任务更强，输出 token 更少、成本更低",
-   "summary_long": "原文介绍两款新模型：面向最艰难项目的 GPT‑6.2 Astra，以及面向日常工作的 GPT‑6.2 Sol。两者在高要求任务上结果更好、输出 token 更少，用户可在同一用量额度内完成更多工作；对企业和开发者而言，意味着可规模化的前沿性能。Astra 生成的幻灯片、表格和文档更贴近用户提供的模板与行业惯例，代码更干净，网站、游戏和 3D 设计前端表现更好。Agents' Last Exam 上它比 GPT‑6 Astra 高 5.2 分、成本不到三分之一，比 Claude Fable 5.2 高 5.5 分、成本仅 5%；Terminal‑Bench‑Science 0.1 上高 9 个百分点、成本不到三分之一，并在 Vals Science Index 创新高。API 输入输出价格比 GPT‑6 Astra 低 20%，缓存输入享 60% 折扣（每百万 token：输入 8 美元、缓存输入 0.40 美元、输出 40 美元）。Sol 维持 GPT‑6.1 Sol 的 API 价格，FrontierCode 2.0 上比 Astra 低不到 0.5 分、成本约五分之一；LifeVal 上超过 GPT‑6 Astra，成本约七分之一。原文称 Astra 在 Harvey LAB‑AA v1.1 创下新纪录，但文末内容截断。",
+   "published_at": "2026-11-18T19:54:56+00:00",
+   "summary_short": "RadixArk发布DaisyRose-27B：18天1200条任务做强化学习，终端任务基准翻倍",
+   "summary_long": "RadixArk 发布其首个模型 DaisyRose-27B，基于 Qwen3.8-27B，用其开源强化学习框架 Miles 训练。训练面向长程 agent 任务，单次会话最长 1M token，仅用约 1200 条精选任务、18 天、144 张 H200 完成。效果上，Terminal-Bench 4.1 pass@1 从 5.6% 提升到 12.0%，并在 Terminal Bench 2.1、DeepSWE v1.1、SWE Bench Pro v2、HLE（纯文本）、IFBench、GPQA Diamond 上均高于原模型。模型保留原架构、tokenizer、聊天模板、图像理解与 256K 上下文，checkpoint 以 Apache 2.0 提供 BF16、FP8、NVFP4 三种格式，推荐用 SGLang 配合 DSpark 投机解码部署，默认先思考、推理内容在 reasoning_content 返回。原文称训练关键在于三部分：与 Eigent AI 合作设计的任务、高效训练后端（Miles 全异步，agent 持续工作而模型同时学习）、可靠沙箱；原文在此处截断，后端与沙箱细节未详述。",
    "key_points": [
-    "发布 GPT‑6.2 Astra（面向最难项目的前沿模型）与 GPT‑6.2 Sol（高效通用的日常模型），二者均以更少输出 token 获得更好结果。",
-    "Astra 在 Agents' Last Exam 上比 GPT‑6 Astra 高 5.2 分、成本不到三分之一；比 Claude Fable 5.2 高 5.5 分、成本仅 5%。",
-    "Astra 的 API 输入输出价格比 GPT‑6 Astra 低 20%，缓存输入享 60% 折扣；Sol 维持 GPT‑6.1 Sol 的 API 价格。"
+    "RadixArk 首个模型，基于 Qwen3.8-27B 用 Miles 做强化学习，约 1200 条任务、18 天、144 张 H200，会话最长 1M token。",
+    "Terminal-Bench 4.1 pass@1 由 5.6% 升至 12.0%，其余多项基准全面提升；分数取 BF16 与 FP8 两次评测中较高者，两者相差不到 1 分。",
+    "保留原架构、tokenizer、聊天模板、图像理解与 256K 上下文；Apache 2.0 发布 BF16/FP8/NVFP4 checkpoint，推荐 SGLang + DSpark 部署。"
    ],
    "topics": [
-    "product",
-    "reasoning"
+    "post-training",
+    "coding-agent",
+    "open-source"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
-   "horizon": "short",
-   "score": 82.9,
+   "horizon": "long",
+   "score": 83.2,
    "status": "published",
    "extra": {
-    "content_source": "reader",
-    "source_tags": [
-     "Product"
-    ],
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.radixark.com/images/daisyrose-27b/hero.png",
+      "https://miles.radixark.com/",
+      "https://huggingface.co/RadixArk/DaisyRose-27B",
+      "https://huggingface.co/RadixArk/DaisyRose-27B-FP8",
+      "https://huggingface.co/RadixArk/DaisyRose-27B-NVFP4",
+      "https://docs.sglang.io/cookbook/autoregressive/RadixArk/DaisyRose-27B",
+      "https://huggingface.co/RadixArk/DaisyRose-27B#3-getting-started",
+      "https://www.radixark.com/images/daisyrose-27b/benchmarks.png",
+      "https://huggingface.co/RadixArk/DaisyRose-27B#2-evaluations",
+      "https://www.eigent.ai/",
+      "https://www.radixark.com/images/daisyrose-27b/gpu-efficiency.png",
+      "https://www.radixark.com/images/daisyrose-27b/training-speed.png",
+      "https://www.radixark.com/images/daisyrose-27b/training-stability.png",
+      "https://github.com/kvcache-ai/AgentENV",
+      "https://www.radixark.com/images/daisyrose-27b/sandboxes.png",
+      "https://www.sglang.io/",
+      "https://www.radixark.com/blog/daisyrose-27b"
+     ]
+    },
     "summary_mode": "full"
    }
   },
   {
-   "id": "715137d9352475f8",
-   "url": "https://runta.com/blog/introducing-frontierharness-eval-v1-1/",
-   "title": "What is the best harness for each model?",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "569017a70fd8b933",
+   "url": "https://simonwillison.net/2026/Nov/18/daniel-stenberg/",
+   "title": "Quoting Daniel Stenberg",
+   "source": "Simon Willison",
    "tier": "A",
-   "published_at": "2026-11-17T14:53:43+00:00",
-   "summary_short": "大规模评测显示：换模型时或需换harness，各模型最佳性价比harness不同",
-   "summary_long": "原文介绍 FrontierHarness Eval v1.1：与 Baseten 合作，用 83B tokens、27,280 次 agent 运行构建 harness 排行榜，回答换模型时是否也该换 harness、每个模型的最佳 harness 是什么。v1.1 覆盖 22 个 harness 配置、5 个模型、62 个终端任务、每任务 4 次尝试，规模为 v1.0 的 76 倍。结果显示，各模型的最佳性价比 harness 不同：GLM-5.3 配 Codex CLI，GLM-5.3 Flash 配 Pi，DeepSeek V4.1 Flash 1017 配 ZCode，Muse 配 Oh My Pi，Kimi-K3 配 Alma。成本排名跨模型变化很大，按每任务成本，harness 中位数移动 11/22 位；Codex CLI 从 GLM-5.3 下第 1 降至 Kimi-K3 下第 16。总体上 OpenCode v2 每任务成本最低（$0.561），Pi、Codex CLI、ZCode 通过率最高（61.9%）。原文据此建议，换模型时应考虑换 harness。",
+   "published_at": "2026-11-18T15:58:27+00:00",
+   "summary_short": "curl 作者 Daniel Stenberg 披露：AI 智能体用三周把 18.5 万行 C 代码转成 34 万行 Rust，同期真实 curl 项目合并 3",
+   "summary_long": "这是 curl 作者 Daniel Stenberg 的一段引述，讨论 AI 编码智能体对 curl 的 Rust 重写。他给出的对比数字是：这些智能体在约三周多的时间里，把 185,000 行 C 代码转换成 340,000 行 Rust 代码，期间真实的 curl 项目合并了 300 多个提交。他强调，这三周多里 curl 本身也得到了改进，实际修复了 200 多个 bug，而这些 bug 修复并不存在于那些 Rust 重写版本中；此外还修复了几个漏洞。再过一个月，他们又完成了 200 个修复，可能还修复了更多漏洞。他最后提出的问题是：这些克隆版本能跟上吗？原文未详述具体是哪些智能体、重写项目如何运作，也未给出“克隆版本”的进一步说明。该引述的价值在于用具体数字对比了 AI 代码移植与上游真实维护之间的进度差距。",
    "key_points": [
-    "测试规模：22 个 harness 配置 × 5 个模型 × 62 个任务 × 4 次尝试，共 83B tokens、27,280 次运行，为 v1.0 的 76 倍。",
-    "各模型最佳性价比 harness 不同；原文建议换模型时考虑换 harness。",
-    "成本排名跨模型大幅变动：按每任务成本，harness 中位数移动 11/22 位，Codex CLI 从 GLM-5.3 下第 1 到 Kimi-K3 下第 16。"
+    "智能体约三周多将 185,000 行 curl C 代码转为 340,000 行 Rust",
+    "同期真实 curl 项目合并 300 多个提交",
+    "三周多内实际修复 200 多个 bug 及若干漏洞，这些修复不在 Rust 重写版本中"
    ],
    "topics": [
-    "eval",
-    "harness",
-    "coding-agent"
+    "coding-agent",
+    "open-source"
    ],
-   "category": "评测",
+   "category": "产品与应用",
    "categories": [
-    "评测",
+    "产品与应用",
     "Agent 与开发"
    ],
-   "horizon": "short",
-   "score": 82.8,
+   "horizon": "long",
+   "score": 81.3,
    "status": "published",
    "extra": {
-    "hn_points": 335,
-    "hn_comments": 115,
+    "content_source": "rss",
+    "source_tags": [
+     "daniel-stenberg",
+     "curl",
+     "rust",
+     "security",
+     "coding-agents"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.baseten.co/",
-      "https://frontierharness.org/",
-      "https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/src/core/system-prompt.ts#L64-L114",
-      "https://github.com/harbor-framework/harbor",
-      "https://hub.harborframework.com/",
-      "https://www.baseten.co/products/model-apis/",
-      "https://runta.com/docs/integrations/harbor/",
-      "https://runta.com/pricing/"
+      "https://daniel.haxx.se/blog/2026/11/17/actual-curl-rewrites-in-rust/",
+      "https://simonwillison.net/tags/daniel-stenberg",
+      "https://simonwillison.net/tags/curl",
+      "https://simonwillison.net/tags/rust",
+      "https://simonwillison.net/tags/security",
+      "https://simonwillison.net/tags/coding-agents",
+      "https://simonwillison.net/tags/c",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/vibe-porting"
      ]
     },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "75623b38e68bd27d",
+   "url": "https://huggingface.co/blog/Dharma-AI/predicting-fine-tuning-time",
+   "title": "Why your fine-tuning job takes longer than the FLOPs say",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-18T18:53:43+00:00",
+   "summary_short": "272个真实微调任务：FLOP估算R²仅0.31，调度前特征模型达0.98",
+   "summary_long": "在共享GPU集群上，任务耗时估计直接决定排程质量：估早了GPU空转，估晚了后面所有任务顺延。团队用生产池中272个真实监督微调（SFT）任务（NVIDIA H200，合计约7,382 GPU小时），对比常用的FLOP解析式与学习型预测器。FLOP估算只能解释观测结果的一小部分（R²=0.31，MAE 12.41小时）；只用调度前即可获知的信息训练的CatBoost回归器，在5折交叉验证下达到R²=0.98、平均绝对误差1.71小时、中位误差0.51小时。原文归因于两点：模型能看到评估频率、checkpoint策略、单卡负载、微调类型等训练相关信号，并学到它们之间的非线性交互。原文还指出，FLOP公式只覆盖优化循环，而任务还包含环境搭建、模型下载与加载、分词、周期性评估、checkpoint上传、最终模型写入对象存储，以及多租户下争抢网络与存储I/O的开销，这些开销与配置相关且不随规模线性变化。原文为即将发布论文的预览，方法介绍在原文截断处结束。",
+   "key_points": [
+    "用生产池272个真实SFT任务（NVIDIA H200，约7,382 GPU小时）对比FLOP解析式与学习型预测器，预测目标是从任务拿到GPU到结束的实际耗时，不含排队时间。",
+    "FLOP估算R²=0.31、MAE 12.41小时；仅用调度前可得信息训练的CatBoost回归器在5折交叉验证下达到R²=0.98、MAE 1.71小时、中位误差0.51小时。",
+    "原文称差距来自回归器能看到评估频率、checkpoint策略、单卡负载、微调类型等信号并学习其非线性交互；FLOP公式只描述优化循环，未涵盖环境搭建、模型加载、评估、checkpoint上传与存储/网络I/O等配置相关开销，基线已将评估token计入并对MFU做宽范围扫描。"
+   ],
+   "topics": [
+    "post-training",
+    "gpu-scheduling"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 80.4,
+   "status": "published",
+   "extra": {
     "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/uD4Td4N-bvoPStQBNx8yy.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/MHyGZSFJZ6HXmwAUCTAnF.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/gQbjzLv37ag5kX7nZuuMh.png",
+      "https://huggingface.co/blog/Dharma-AI/gpu-management",
+      "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
+      "https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization",
+      "https://huggingface.co/blog/Dharma-AI/specialization-beats-scale",
+      "https://huggingface.co/blog/Dharma-AI/why-specialization-is-inevitable",
+      "https://huggingface.co/blog/Dharma-AI/newer-models-same-advantages",
+      "https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots",
+      "https://huggingface.co/blog/Dharma-AI/text-degeneration-a-production-failure-mode"
+     ]
+    },
     "summary_mode": "full"
    }
   }
  ],
  "items": [
   {
-   "id": "964aca3f2d3b92c6",
-   "url": "https://github.blog/engineering/engineering-principles/building-the-agent-host-protocol-for-sessions-that-continue-across-devices/",
-   "title": "Building the Agent Host Protocol for sessions that continue across devices",
-   "source": "GitHub Blog (AI)",
+   "id": "53f2a14376dda94d",
+   "url": "https://openai.com/index/inside-the-codex-sandbox",
+   "title": "Inside the Codex sandbox",
+   "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-11-17T18:20:40+00:00",
-   "summary_short": "GitHub Copilot 的跨设备会话连续性依托开放标准 AHP：在一处开始，任意设备继续。",
-   "summary_long": "原文指出，模型已能自主工作数小时甚至数天，用户不必全程盯着，但需要能随时查看；agent 不应只存在于一个应用里，关闭窗口或换设备后工作应继续。GitHub Copilot 支持在一处开始 agent 会话、在另一处继续，这依赖 Agent Host Protocol（AHP），它是先在 VS Code 中构建、并被 GitHub 各产品采用的开放标准。旧做法的问题在于：Copilot 最初是 VS Code 扩展并自带 harness，agent 生命周期绑定单个编辑器窗口，关闭窗口后 agent 就消失，升级并重启会中断所有 agent，连接远程机器则会得到一个锁定在该 VS Code workbench 版本上的全新扩展宿主；同时 Copilot 应用与 iOS、Android 移动端各自做独立集成，只解决单个产品的问题，开发者无法把 agent 接入自建工作流。AHP 要求多客户端共享同一批 agent，容忍网络中断、重连与并发变更，但不描述 agent 行为，只定义交互方式，并保持核心最小。协议以 URI 标识的 channel 为功能单元，root、session、chat 为必备，终端、MCP、OTel 等可选；通道内是基于 reducer 的状态对象，服务器是状态仲裁者，客户端发送 actions 以改变状态或触发副作用，从而简化弱网重连重放与调试。",
+   "published_at": "2026-11-18T08:00:00+00:00",
+   "summary_short": "介绍 Codex 如何在本机运行命令，并落实你设定的文件系统与网络限制",
+   "summary_long": "",
    "key_points": [
-    "AHP 是先在 VS Code 构建、被 GitHub 采用的开放标准，支撑 Copilot 在 VS Code、Copilot 应用与移动端之间接续同一 agent 会话。",
-    "旧架构下 agent 绑定单个 VS Code 窗口，关窗、升级重启或连接远程都会中断；各产品各自定制集成无法覆盖开发者自建客户端。",
-    "协议以 URI 标识的 channel 为功能单元，root、session、chat 必备，终端、MCP、OTel 可选；通道内用 reducer 状态，服务器仲裁状态，客户端提交 actions。"
+    "Codex 在你的机器上运行命令",
+    "同时执行由你控制的文件系统与网络限制",
+    "覆盖 macOS、Linux 和 Windows"
    ],
    "topics": [
-    "agent-loop",
-    "mcp",
-    "context-engineering"
+    "coding-agent",
+    "harness"
    ],
    "category": "Agent 与开发",
    "categories": [
@@ -281,138 +252,257 @@
    "extra": {
     "content_source": "rss",
     "source_tags": [
-     "Engineering",
-     "Engineering principles",
-     "GitHub Copilot",
-     "VS Code"
+     "Engineering"
     ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/features/ai/github-app",
-      "https://docs.github.com/copilot/concepts/copilot-surfaces/copilot-on-github",
-      "https://microsoft.github.io/language-server-protocol/",
-      "https://microsoft.github.io/debug-adapter-protocol/",
-      "https://microsoft.github.io/agent-host-protocol/",
-      "https://aka.ms/copilot-sdk/blog-2.0",
-      "https://code.visualstudio.com/docs/remote/vscode-server",
-      "https://github.blog/changelog/2026-10-28-work-from-anywhere-with-a-new-connected-copilot-cloud-experience/",
-      "https://github.com/microsoft/agent-host-protocol-samples/",
-      "https://github.com/microsoft/agent-host-protocol",
-      "https://github.blog/engineering/engineering-principles/building-the-agent-host-protocol-for-sessions-that-continue-across-devices/",
-      "https://github.blog"
-     ]
-    },
-    "summary_mode": "full"
+    "summary_mode": "brief"
    }
   },
   {
-   "id": "c60558e98558e0e7",
-   "url": "https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/",
-   "title": "External sandboxes for coding agents",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-11-17T22:52:29+00:00",
-   "summary_short": "提出“外部沙箱”模式并给出三个实现，隔离代理执行的代码",
-   "summary_long": "原文为寻找更安全的方式沙箱化代理执行的代码，重点是在试用本地模型时，不必担心一次误操作或提示注入就让机器被做出破坏性操作。作者与 Prime Radiant 合作推进该项目，并在其博客文章中介绍“外部沙箱”模式：代理本身运行在沙箱之外，代理要执行的代码则放进专门的沙箱里运行。为演示这一模式，原文发布了三个沙箱服务器实现：external-sandbox-v86 运行 Node.js 服务器，再用 v86 在 WebAssembly 内运行 Alpine Linux；external-sandbox-container 是一个 Python Web 服务器，在 Apple Containers 实例中运行 Alpine Linux 沙箱；external-sandbox-quicksand 同样是 Python Web 服务器，使用微软的 Quicksand 沙箱库，该库把 QEMU 与 Alpine Linux 打包进一个 Python 包。三者提供相同的 localhost API，可将 Pi、Claude Code 或 Codex 配置为在需要执行代码时向该沙箱发起 API 调用。沙箱还包含可选的 HTTP/HTTPS 允许列表代理，用于精确控制代理代码可通信的主机，并提供凭据替换机制，使带认证的 API 调用无需把密钥交给代理；原文还展示了可在沙箱运行期间重新配置该代理的界面",
+   "id": "9fa731b0ef6c1da9",
+   "url": "https://openai.com/index/research-acceleration-jagged-frontier",
+   "title": "Research acceleration: The jagged frontier",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-18T08:00:00+00:00",
+   "summary_short": "OpenAI衡量编程智能体加速AI研究的程度、表现不均之处及对递归自我改进的启示",
+   "summary_long": "",
    "key_points": [
-    "外部沙箱模式：代理位于沙箱之外，其执行的代码在专用沙箱内运行",
-    "三个实现 external-sandbox-v86、external-sandbox-container、external-sandbox-quicksand 分别基于 v86/WebAssembly、Apple Containers、微软 Quicksand 库，均提供相同的 localhost API",
-    "沙箱附带可选的 HTTP/HTTPS 允许列表代理与凭据替换机制，并提供运行时可重配代理的界面"
+    "OpenAI衡量编程智能体如何加速AI研究",
+    "编程智能体的表现仍不均衡",
+    "原文探讨这一情况对递归自我改进意味着什么"
    ],
    "topics": [
-    "coding-agent",
-    "harness",
-    "prompt-injection"
+    "eval",
+    "coding-agent"
    ],
-   "category": "Agent 与开发",
+   "category": "评测",
    "categories": [
-    "Agent 与开发",
-    "安全"
+    "评测"
    ],
    "horizon": "long",
-   "score": 84.2,
+   "score": 84.6,
    "status": "published",
    "extra": {
     "content_source": "rss",
     "source_tags": [
-     "sandboxing",
-     "security",
-     "ai",
-     "webassembly",
-     "generative-ai"
+     "Research"
     ],
+    "summary_mode": "brief"
+   }
+  },
+  {
+   "id": "f689168723dc030d",
+   "url": "https://huggingface.co/blog/RadixArk/daisyrose-27b-pushing-the-frontier-of-post-trainin",
+   "title": "DaisyRose-27B: Pushing the Frontier of Post-Training Efficiency",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-18T19:54:56+00:00",
+   "summary_short": "RadixArk发布DaisyRose-27B：18天1200条任务做强化学习，终端任务基准翻倍",
+   "summary_long": "RadixArk 发布其首个模型 DaisyRose-27B，基于 Qwen3.8-27B，用其开源强化学习框架 Miles 训练。训练面向长程 agent 任务，单次会话最长 1M token，仅用约 1200 条精选任务、18 天、144 张 H200 完成。效果上，Terminal-Bench 4.1 pass@1 从 5.6% 提升到 12.0%，并在 Terminal Bench 2.1、DeepSWE v1.1、SWE Bench Pro v2、HLE（纯文本）、IFBench、GPQA Diamond 上均高于原模型。模型保留原架构、tokenizer、聊天模板、图像理解与 256K 上下文，checkpoint 以 Apache 2.0 提供 BF16、FP8、NVFP4 三种格式，推荐用 SGLang 配合 DSpark 投机解码部署，默认先思考、推理内容在 reasoning_content 返回。原文称训练关键在于三部分：与 Eigent AI 合作设计的任务、高效训练后端（Miles 全异步，agent 持续工作而模型同时学习）、可靠沙箱；原文在此处截断，后端与沙箱细节未详述。",
+   "key_points": [
+    "RadixArk 首个模型，基于 Qwen3.8-27B 用 Miles 做强化学习，约 1200 条任务、18 天、144 张 H200，会话最长 1M token。",
+    "Terminal-Bench 4.1 pass@1 由 5.6% 升至 12.0%，其余多项基准全面提升；分数取 BF16 与 FP8 两次评测中较高者，两者相差不到 1 分。",
+    "保留原架构、tokenizer、聊天模板、图像理解与 256K 上下文；Apache 2.0 发布 BF16/FP8/NVFP4 checkpoint，推荐 SGLang + DSpark 部署。"
+   ],
+   "topics": [
+    "post-training",
+    "coding-agent",
+    "open-source"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 83.2,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://blog.primeradiant.com/external-sandboxes-for-coding-agents/",
-      "https://primeradiant.com",
-      "https://github.com/orgs/prime-radiant-inc/repositories",
-      "https://github.com/prime-radiant-inc/external-sandbox-v86",
-      "https://github.com/copy/v86",
-      "https://github.com/prime-radiant-inc/external-sandbox-container",
-      "https://github.com/prime-radiant-inc/external-sandbox-quicksand",
-      "https://github.com/microsoft/quicksand",
-      "https://simonwillison.net/tags/sandboxing",
-      "https://simonwillison.net/tags/security",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/webassembly",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/coding-agents",
-      "https://simonwillison.net/tags/claude-code",
-      "https://simonwillison.net/tags/codex",
-      "https://simonwillison.net/tags/pi"
+      "https://www.radixark.com/images/daisyrose-27b/hero.png",
+      "https://miles.radixark.com/",
+      "https://huggingface.co/RadixArk/DaisyRose-27B",
+      "https://huggingface.co/RadixArk/DaisyRose-27B-FP8",
+      "https://huggingface.co/RadixArk/DaisyRose-27B-NVFP4",
+      "https://docs.sglang.io/cookbook/autoregressive/RadixArk/DaisyRose-27B",
+      "https://huggingface.co/RadixArk/DaisyRose-27B#3-getting-started",
+      "https://www.radixark.com/images/daisyrose-27b/benchmarks.png",
+      "https://huggingface.co/RadixArk/DaisyRose-27B#2-evaluations",
+      "https://www.eigent.ai/",
+      "https://www.radixark.com/images/daisyrose-27b/gpu-efficiency.png",
+      "https://www.radixark.com/images/daisyrose-27b/training-speed.png",
+      "https://www.radixark.com/images/daisyrose-27b/training-stability.png",
+      "https://github.com/kvcache-ai/AgentENV",
+      "https://www.radixark.com/images/daisyrose-27b/sandboxes.png",
+      "https://www.sglang.io/",
+      "https://www.radixark.com/blog/daisyrose-27b"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "069078b2b4e3b49a",
-   "url": "https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/",
-   "title": "How the Claude Code team thinks about verification",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "569017a70fd8b933",
+   "url": "https://simonwillison.net/2026/Nov/18/daniel-stenberg/",
+   "title": "Quoting Daniel Stenberg",
+   "source": "Simon Willison",
    "tier": "A",
-   "published_at": "2026-11-17T10:20:40+00:00",
-   "summary_short": "Claude Code团队用端到端等测试让编程agent凭证据验证工作，支撑大规模并行。",
-   "summary_long": "Claude Code 团队称其约90%的代码由 Claude 编写和审查。原文指出，验证循环是扩大委派规模的关键：没有验证只能同时运行一两个 Claude，有了验证可并行数十到数百个。内部结构化文件生成测试显示，用独立评分器按 rubric 检查 Claude 的工作，比标准提示循环成功率最高提升10个百分点，难题收益最大。测试、基准、规格和真实端到端运行过去验证昂贵，现在可让 agent 快速生成并作为软件频繁运行，且能用结果改进 agent，例如反复因日志含用户数据失败时，增加 hook 或 CLAUDE.md 明确规则。原文还强调避免不稳定和过慢测试，重测试宜在提交前运行，并重点介绍端到端、属性与差分测试；提供内容中详述了 E2E 和属性测试，差分部分未展开。",
+   "published_at": "2026-11-18T15:58:27+00:00",
+   "summary_short": "curl 作者 Daniel Stenberg 披露：AI 智能体用三周把 18.5 万行 C 代码转成 34 万行 Rust，同期真实 curl 项目合并 3",
+   "summary_long": "这是 curl 作者 Daniel Stenberg 的一段引述，讨论 AI 编码智能体对 curl 的 Rust 重写。他给出的对比数字是：这些智能体在约三周多的时间里，把 185,000 行 C 代码转换成 340,000 行 Rust 代码，期间真实的 curl 项目合并了 300 多个提交。他强调，这三周多里 curl 本身也得到了改进，实际修复了 200 多个 bug，而这些 bug 修复并不存在于那些 Rust 重写版本中；此外还修复了几个漏洞。再过一个月，他们又完成了 200 个修复，可能还修复了更多漏洞。他最后提出的问题是：这些克隆版本能跟上吗？原文未详述具体是哪些智能体、重写项目如何运作，也未给出“克隆版本”的进一步说明。该引述的价值在于用具体数字对比了 AI 代码移植与上游真实维护之间的进度差距。",
    "key_points": [
-    "团队约90%代码由Claude编写和审查；验证循环让可并行运行的Claude从一两个扩展到数十上百个。",
-    "内部测试中，独立评分器按rubric检查Claude输出，较标准提示循环成功率最高提升10个百分点，难题收益最大。",
-    "原文强调避免flaky和慢测试、重测试放在提交前，并称最值得投入的是端到端、属性和差分测试；提供内容详述E2E难被糊弄、属性测试补边缘案例，差分部分未展开。"
+    "智能体约三周多将 185,000 行 curl C 代码转为 340,000 行 Rust",
+    "同期真实 curl 项目合并 300 多个提交",
+    "三周多内实际修复 200 多个 bug 及若干漏洞，这些修复不在 Rust 重写版本中"
    ],
    "topics": [
     "coding-agent",
-    "harness",
-    "eval"
+    "open-source"
    ],
-   "category": "Agent 与开发",
+   "category": "产品与应用",
    "categories": [
-    "Agent 与开发",
-    "评测"
+    "产品与应用",
+    "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 83.4,
+   "score": 81.3,
    "status": "published",
    "extra": {
-    "hn_points": 262,
-    "hn_comments": 205,
+    "content_source": "rss",
+    "source_tags": [
+     "daniel-stenberg",
+     "curl",
+     "rust",
+     "security",
+     "coding-agents"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://claude.dev/blog/solving-code-review-at-anthropic/",
-      "https://claude.com/blog/building-verification-loops-in-claude-code-with-skills",
-      "https://claude.com/blog/claude-managed-agents",
-      "https://chromedevtools.github.io/devtools-protocol/",
-      "https://fast-check.dev/",
-      "https://hypothesis.readthedocs.io/en/latest/",
-      "https://proptest-rs.github.io/proptest/",
-      "https://claude.com/resources/articles/ai-code-migration",
-      "https://code.claude.com/docs/en/code-review-customize",
-      "https://code.claude.com/docs/en/hooks",
-      "https://code.claude.com/docs/en/goal",
-      "https://code.claude.com/docs/en/code-review-pull-requests"
+      "https://daniel.haxx.se/blog/2026/11/17/actual-curl-rewrites-in-rust/",
+      "https://simonwillison.net/tags/daniel-stenberg",
+      "https://simonwillison.net/tags/curl",
+      "https://simonwillison.net/tags/rust",
+      "https://simonwillison.net/tags/security",
+      "https://simonwillison.net/tags/coding-agents",
+      "https://simonwillison.net/tags/c",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/vibe-porting"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "75623b38e68bd27d",
+   "url": "https://huggingface.co/blog/Dharma-AI/predicting-fine-tuning-time",
+   "title": "Why your fine-tuning job takes longer than the FLOPs say",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-18T18:53:43+00:00",
+   "summary_short": "272个真实微调任务：FLOP估算R²仅0.31，调度前特征模型达0.98",
+   "summary_long": "在共享GPU集群上，任务耗时估计直接决定排程质量：估早了GPU空转，估晚了后面所有任务顺延。团队用生产池中272个真实监督微调（SFT）任务（NVIDIA H200，合计约7,382 GPU小时），对比常用的FLOP解析式与学习型预测器。FLOP估算只能解释观测结果的一小部分（R²=0.31，MAE 12.41小时）；只用调度前即可获知的信息训练的CatBoost回归器，在5折交叉验证下达到R²=0.98、平均绝对误差1.71小时、中位误差0.51小时。原文归因于两点：模型能看到评估频率、checkpoint策略、单卡负载、微调类型等训练相关信号，并学到它们之间的非线性交互。原文还指出，FLOP公式只覆盖优化循环，而任务还包含环境搭建、模型下载与加载、分词、周期性评估、checkpoint上传、最终模型写入对象存储，以及多租户下争抢网络与存储I/O的开销，这些开销与配置相关且不随规模线性变化。原文为即将发布论文的预览，方法介绍在原文截断处结束。",
+   "key_points": [
+    "用生产池272个真实SFT任务（NVIDIA H200，约7,382 GPU小时）对比FLOP解析式与学习型预测器，预测目标是从任务拿到GPU到结束的实际耗时，不含排队时间。",
+    "FLOP估算R²=0.31、MAE 12.41小时；仅用调度前可得信息训练的CatBoost回归器在5折交叉验证下达到R²=0.98、MAE 1.71小时、中位误差0.51小时。",
+    "原文称差距来自回归器能看到评估频率、checkpoint策略、单卡负载、微调类型等信号并学习其非线性交互；FLOP公式只描述优化循环，未涵盖环境搭建、模型加载、评估、checkpoint上传与存储/网络I/O等配置相关开销，基线已将评估token计入并对MFU做宽范围扫描。"
+   ],
+   "topics": [
+    "post-training",
+    "gpu-scheduling"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 80.4,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/uD4Td4N-bvoPStQBNx8yy.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/MHyGZSFJZ6HXmwAUCTAnF.png",
+      "https://cdn-uploads.huggingface.co/production/uploads/6a725daa5ca641a21ab61956/gQbjzLv37ag5kX7nZuuMh.png",
+      "https://huggingface.co/blog/Dharma-AI/gpu-management",
+      "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
+      "https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization",
+      "https://huggingface.co/blog/Dharma-AI/specialization-beats-scale",
+      "https://huggingface.co/blog/Dharma-AI/why-specialization-is-inevitable",
+      "https://huggingface.co/blog/Dharma-AI/newer-models-same-advantages",
+      "https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots",
+      "https://huggingface.co/blog/Dharma-AI/text-degeneration-a-production-failure-mode"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "6e090bb95c89cabb",
+   "url": "https://complexdiscovery.com/harvard-researchers-find-ai-coding-agents-shifted-the-bottleneck-to-code-review/",
+   "title": "Harvard researchers find AI coding agents shifted the bottleneck to code review",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-17T21:16:12+00:00",
+   "summary_short": "哈佛工作论文：AI编程代理使代码量增约30%，评审时间却增49%",
+   "summary_long": "哈佛大学博士生 Fiona Chen 与 James Stratton 的工作论文（原文未标明已完成同行评审）使用 Jellyfish 的工程活动数据，并将其与 Revelio Labs 收集的 LinkedIn 就业记录连接，覆盖 718 家公司、725,938 名员工，样本期为 2021 年 1 月至 2026 年 3 月，采用交错双重差分比较。结果显示，采用 AI 编程代理的公司代码量增加约 30%，但完成的工作没有可测量的增长，代码通过评审的时间延长 49%，瓶颈转移到评审。作者称采用时点主要取决于企业获知工具的时间与采购流程长短，采购审批从约一天到 6 至 12 个月不等。文章据此对比本月两项法律 AI 消息：Harvey 的驳回动议工作流，以及 Cooley 与 Google Cloud 合作开发中的涂黑代理；二者都在相近环节保留律师，但均未报告该评审环节的度量。原文并提醒该研究考察的是软件，而非法律工作。",
+   "key_points": [
+    "采用 AI 编程代理的公司代码量增加约 30%，但完成的工作未出现可测量上升，代码通过评审的时间延长 49%，评审成为瓶颈。",
+    "数据来自 Jellyfish 的工程活动数据与 Revelio Labs 收集的 LinkedIn 就业记录，覆盖 718 家公司、725,938 名员工，样本为 2021 年 1 月至 2026 年 3 月；论文表格列出 6830 万条 Jira 事项、2.009 亿次提交、4910 万个拉取请求和 2130 万条日历事件，其中仅 213 家公司提供日历数据。",
+    "作者称采用时点主要取决于企业获知工具的时间与采购流程（采购、法务与安全审批及试点）的长短，审批从约一天到 6 至 12 个月不等，并承认存在规模较大的公司更早采用这一已知不平衡。"
+   ],
+   "topics": [
+    "coding-agent",
+    "productivity"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 80.4,
+   "status": "published",
+   "extra": {
+    "hn_points": 319,
+    "hn_comments": 439,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://fion.ac/jellyfish.pdf",
+      "https://fion.ac/",
+      "https://www.economics.harvard.edu/people/james-stratton",
+      "https://www.nber.org/papers/w35275",
+      "https://www.law.cornell.edu/rules/frcp/rule_11",
+      "https://www.harvey.ai/blog/motion-to-dismiss-workflow-lexisnexis",
+      "https://www.cooley.com/news/coverage/2026/2026-10-08-cooley-collaborates-with-google-cloud-to-develop-ai-agent-for-complex-litigation",
+      "https://jellyfish.co/newsroom/jellyfish-reveals-ais-real-impact-on-engineering-teams/",
+      "https://jellyfish.co/blog/harvard-jellyfish-ai-is-making-developers-faster/",
+      "https://jellyfish.co/blog/does-ai-assistance-mean-engineers-are-doing-less-coding-work-maybe-not/",
+      "https://ediscoverytoday.com/2026/10/12/ai-coding-agents-productivity-gains-offset-by-human-review-artificial-intelligence-trends/",
+      "https://complexdiscovery.com/cooley-and-google-cloud-are-building-a-court-filing-redaction-agent-without-a-published-error-rate/",
+      "https://edrm.net/",
+      "https://complexdiscovery.com/generative-artificial-intelligence-and-large-language-model-policy/",
+      "https://complexdiscovery.com/monstercloud-indictment-exposes-the-ransom-payment-a-victims-own-file-may-not-record/",
+      "https://complexdiscovery.com/wikimedia-publishes-its-own-account-of-suspected-openai-agent-activity-on-its-wikis/",
+      "https://complexdiscovery.com/cyber-law-toolkit-tests-ai-deception-cyber-torture-and-peacetime-cyber-duties/",
+      "https://complexdiscovery.com/enisa-threat-landscape-2026-finds-ddos-leads-incident-counts-while-ransomware-stays-most-impactful-in-the-short-term/",
+      "https://complexdiscovery.com/cyber-resilience-act-reporting-starts-sept-11-on-an-unfinished-platform/",
+      "https://complexdiscovery.com/europes-draft-cloud-rule-would-put-vendor-ownership-in-the-audit-file/",
+      "https://complexdiscovery.com/the-eight-hour-clock-starts-today-eu-e-evidence-orders-now-land-on-covered-u-s-providers-eu-addressees/",
+      "https://complexdiscovery.com/californias-ai-transparency-act-arrives-alongside-europes-article-50/",
+      "https://complexdiscovery.com/federal-magistrate-judge-treats-linkedins-relativity-air-workflow-as-tar/",
+      "https://complexdiscovery.com/one-benchmark-three-directions-2026-legal-rates-rise-flatten-and-fall-at-once/#",
+      "https://complexdiscovery.com/confidence-cools-commitment-holds-full-results-from-the-1h-2026-ediscovery-business-confidence-survey/",
+      "https://complexdiscovery.com/complete-look-complexdiscovery-ous-2025-to-2030-ediscovery-market-size-mashup/#",
+      "https://complexdiscovery.com/the-workstream-of-ediscovery-considering-processes-and-tasks/",
+      "https://webforms.pipedrive.com/f/32PRx6mv1PRcKCGLcAVhcfHFcJNYjUtyOEdyYTTx8tMJxzIIlP9kwG8wBwB3quOgX",
+      "http://ComplexDiscovery.com"
      ]
     },
     "content_source": "direct",
@@ -420,164 +510,260 @@
    }
   },
   {
-   "id": "549a77347d5e1e5f",
-   "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
-   "title": "Introducing GPT-6.2 Astra and Sol",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-17T17:45:00+00:00",
-   "summary_short": "GPT‑6.2 Astra 与 Sol 发布：难任务更强，输出 token 更少、成本更低",
-   "summary_long": "原文介绍两款新模型：面向最艰难项目的 GPT‑6.2 Astra，以及面向日常工作的 GPT‑6.2 Sol。两者在高要求任务上结果更好、输出 token 更少，用户可在同一用量额度内完成更多工作；对企业和开发者而言，意味着可规模化的前沿性能。Astra 生成的幻灯片、表格和文档更贴近用户提供的模板与行业惯例，代码更干净，网站、游戏和 3D 设计前端表现更好。Agents' Last Exam 上它比 GPT‑6 Astra 高 5.2 分、成本不到三分之一，比 Claude Fable 5.2 高 5.5 分、成本仅 5%；Terminal‑Bench‑Science 0.1 上高 9 个百分点、成本不到三分之一，并在 Vals Science Index 创新高。API 输入输出价格比 GPT‑6 Astra 低 20%，缓存输入享 60% 折扣（每百万 token：输入 8 美元、缓存输入 0.40 美元、输出 40 美元）。Sol 维持 GPT‑6.1 Sol 的 API 价格，FrontierCode 2.0 上比 Astra 低不到 0.5 分、成本约五分之一；LifeVal 上超过 GPT‑6 Astra，成本约七分之一。原文称 Astra 在 Harvey LAB‑AA v1.1 创下新纪录，但文末内容截断。",
+   "id": "d6eb17d8782592ab",
+   "url": "https://arxiv.org/abs/2604.06802v3",
+   "title": "Riemann-Bench: A Benchmark for Moonshot Mathematics",
+   "source": "论文（被提及）",
+   "tier": "A",
+   "published_at": "2026-04-08T08:16:37+00:00",
+   "summary_short": "Riemann-Bench私有基准：前沿模型研究级数学得分均低于10%",
+   "summary_long": "近期AI系统在国际数学奥林匹克上已达到金牌水平，但竞赛数学只覆盖数学推理的一小部分：题目领域有限、所需高等工具少，往往靠技巧取胜而非深厚理论。为此作者提出Riemann-Bench，一个私有基准，题目由常春藤盟校数学教授、研究生及拥有博士学位的IMO奖牌得主编写，作者本人往往需数周才能解出。每题由两位独立领域专家从零求解做双盲验证，并有唯一闭式解，由程序化验证器评定。评测把前沿模型当作不受限的研究智能体，允许使用编程工具、搜索与开放式推理，每题独立运行100次并用无偏统计估计量计算。结果显示所有前沿模型得分均低于10%，暴露出竞赛级解题与研究级数学推理之间的明显差距；基准完全私有，以确保成绩反映真实数学能力而非对训练数据的记忆。",
    "key_points": [
-    "发布 GPT‑6.2 Astra（面向最难项目的前沿模型）与 GPT‑6.2 Sol（高效通用的日常模型），二者均以更少输出 token 获得更好结果。",
-    "Astra 在 Agents' Last Exam 上比 GPT‑6 Astra 高 5.2 分、成本不到三分之一；比 Claude Fable 5.2 高 5.5 分、成本仅 5%。",
-    "Astra 的 API 输入输出价格比 GPT‑6 Astra 低 20%，缓存输入享 60% 折扣；Sol 维持 GPT‑6.1 Sol 的 API 价格。"
+    "题目由常春藤盟校数学教授、研究生及拥有博士学位的IMO奖牌得主编写，作者独立求解常需数周",
+    "每题由两位独立领域专家从零求解进行双盲验证，并具有唯一闭式解，由程序化验证器评估",
+    "评测将前沿模型视为不受限的研究智能体，可使用编程工具、搜索与开放式推理，每题运行100次并用无偏统计估计量计算"
    ],
    "topics": [
-    "product",
-    "reasoning"
+    "eval",
+    "reasoning",
+    "hallucination"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "研究论文"
+   ],
+   "horizon": "long",
+   "score": 80.4,
+   "status": "published",
+   "extra": {
+    "authors": [
+     "Suhaas Garre",
+     "Erik Knutsen",
+     "Sushant Mehta",
+     "Edwin Chen"
+    ],
+    "author_count": 4,
+    "arxiv_via": "mention",
+    "mentioned_by": [
+     "Google DeepMind Blog",
+     "Hacker News (AI 高分帖)"
+    ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "679cee5ea1466f1f",
+   "url": "https://huggingface.co/blog/rumble-2-flash",
+   "title": "Rumble-2-Flash: an open 0.5B speech model for 40+ languages",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-18T00:00:00+00:00",
+   "summary_short": "0.5B 开源语音识别模型 Rumble-2-Flash，支持 40+ 语言，批次填满时速度超 7000 RTFx",
+   "summary_long": "Rumble-2-Flash 以 Apache 2.0 许可开源，是一个 0.5B 参数的语音识别模型，覆盖 40 多种语言，原文称它可与体积为自身 3–60 倍的模型竞争。它原生支持 🤗 Transformers 与 vLLM，无需自定义代码或 trust_remote_code；具备自动语种检测，并可控制数字输出为阿拉伯数字或文字、填充词、逐字重复以及强制指定语言。速度上，原文称批次填满时可达 7000 以上 RTFx，约半秒处理一小时音频。准确率上，在 Open ASR Leaderboard 多语种赛道（中、德、法、意、西、葡、印地、荷、英）平均错误率 6.96%，优于体积大 15 倍的 Meta omniASR-LLM 7B，并领先 Whisper large-v3；英语赛道平均 WER 6.6%。在 AppTek 302 小时、14 种英语口音的呼叫中心基准上 WER 为 7.86%，与 NVIDIA Nemotron 3.5 Transcribe（30B）的 7.78% 相当，领先同族的 Qwen3-ASR 0.6B（8.7%）。构建上采用 Qwen3-ASR 架构，并以 on-policy 蒸馏从更大的生产模型 Rumble-2 迁移，用 GOLD 处理师生 tokenizer 不一致。",
+   "key_points": [
+    "Apache 2.0 开源，0.5B 参数，支持 40+ 语言，原文称可与 3–60 倍大的模型竞争",
+    "原生支持 Transformers 与 vLLM，批次填满时超 7000 RTFx，约半秒处理一小时音频",
+    "Open ASR Leaderboard 多语种平均错误率 6.96%，英语赛道平均 WER 6.6%"
+   ],
+   "topics": [
+    "post-training",
+    "open-source"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
    "horizon": "short",
-   "score": 82.9,
+   "score": 79.8,
    "status": "published",
    "extra": {
-    "content_source": "reader",
-    "source_tags": [
-     "Product"
-    ],
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/huggingface/blog/blob/main/rumble-2-flash.md",
+      "https://huggingface.co/Reson8/Rumble-2-Flash",
+      "https://huggingface.co/spaces/HuggingFaceH4/on-policy-distillation",
+      "https://huggingface.co/spaces/hf-audio/open_asr_leaderboard?languages=Reson8%2FRumble-2-Flash&proprietary=false",
+      "https://huggingface.co/spaces/hf-audio/open_asr_leaderboard",
+      "https://huggingface.co/datasets/apptek-com/apptek_callcenter_dialogues",
+      "https://www.reson8.dev",
+      "https://huggingface.co/Reson8/Rumble-2-Flash/discussions"
+     ]
+    },
     "summary_mode": "full"
    }
   },
   {
-   "id": "715137d9352475f8",
-   "url": "https://runta.com/blog/introducing-frontierharness-eval-v1-1/",
-   "title": "What is the best harness for each model?",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-17T14:53:43+00:00",
-   "summary_short": "大规模评测显示：换模型时或需换harness，各模型最佳性价比harness不同",
-   "summary_long": "原文介绍 FrontierHarness Eval v1.1：与 Baseten 合作，用 83B tokens、27,280 次 agent 运行构建 harness 排行榜，回答换模型时是否也该换 harness、每个模型的最佳 harness 是什么。v1.1 覆盖 22 个 harness 配置、5 个模型、62 个终端任务、每任务 4 次尝试，规模为 v1.0 的 76 倍。结果显示，各模型的最佳性价比 harness 不同：GLM-5.3 配 Codex CLI，GLM-5.3 Flash 配 Pi，DeepSeek V4.1 Flash 1017 配 ZCode，Muse 配 Oh My Pi，Kimi-K3 配 Alma。成本排名跨模型变化很大，按每任务成本，harness 中位数移动 11/22 位；Codex CLI 从 GLM-5.3 下第 1 降至 Kimi-K3 下第 16。总体上 OpenCode v2 每任务成本最低（$0.561），Pi、Codex CLI、ZCode 通过率最高（61.9%）。原文据此建议，换模型时应考虑换 harness。",
+   "id": "af1852b4c46dc30e",
+   "url": "https://huggingface.co/blog/moe-expert-streaming",
+   "title": "180B Parameters, 32GB of RAM: Pushing MoE Inference to the Limit with Transformers",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-18T00:00:00+00:00",
+   "summary_short": "32GB 内存运行 180B MoE 模型：Strata 与 llama.cpp、vLLM、Transformers 的专家卸载实测对比",
+   "summary_long": "作者 Tarek Ziadé 希望减少对在线模型的依赖，在本地运行更大的模型。他的工作机是 32G 统一内存的 MacBook M5，家中 PC（双 RTX 4090，Windows 11）也不便随身携带，于是关注到 Strata：这是一个面向 Qwen 等 MoE 模型的推理引擎，只把“热专家”留在显存，其余专家放在内存甚至磁盘；专家占 MoE 模型权重的 90% 以上，因此 180B 模型也能在显存小得多的 GPU 上运行。有人用它在 32GB Mac M4 上跑 Qwen3.8-Flash-Next，速度达 13.5 tok/s，快于 llama.cpp，但作者认为这对编码智能体仍太慢。为决定是否采用 Strata，作者拆解了三类引擎的卸载机制：llama.cpp 用 mmap 并将专家留在 CPU 计算，仅在 RAM 放不下时才受限；vLLM 把权重放在固定内存（pinned RAM）里由 kernel 跨 PCIe 就地读取，但没有缓存，也没有磁盘层；Transformers 通过 Accelerate 按模块整体搬运，对 MoE 而言每次都会拷贝整层专家却只用其中少数几个，且 Mac 上 CPU 与 GPU 共享内存，卸载到 CPU 并不能释放内存。作者用 Qwen3.6-35B-A3B 在单张 24GB A10G 上实测：Strata 为 82–88 tok/s，ll",
    "key_points": [
-    "测试规模：22 个 harness 配置 × 5 个模型 × 62 个任务 × 4 次尝试，共 83B tokens、27,280 次运行，为 v1.0 的 76 倍。",
-    "各模型最佳性价比 harness 不同；原文建议换模型时考虑换 harness。",
-    "成本排名跨模型大幅变动：按每任务成本，harness 中位数移动 11/22 位，Codex CLI 从 GLM-5.3 下第 1 到 Kimi-K3 下第 16。"
+    "Strata 只将热专家（hot experts）保留在显存，其余专家置于内存或磁盘；由于专家占 MoE 权重的 90% 以上，180B 模型得以在小显存 GPU 上运行。",
+    "llama.cpp 把专家留在 CPU 计算，vLLM 从固定内存跨 PCIe 就地读取专家且无缓存，Transformers 经 Accelerate 按整层专家搬运，因此每次都会拷贝整层专家却只用少数几个。",
+    "在单张 24GB A10G 上以 Qwen3.6-35B-A3B 实测：Strata 82–88 tok/s，llama.cpp 63–64，vLLM 最高 20.1，Transformers + Accelerate 仅 0.16 tok/s。"
    ],
    "topics": [
-    "eval",
-    "harness",
-    "coding-agent"
+    "moe-inference",
+    "inference-acceleration",
+    "model-deployment"
    ],
-   "category": "评测",
+   "category": "模型",
    "categories": [
-    "评测",
-    "Agent 与开发"
+    "模型"
    ],
-   "horizon": "short",
-   "score": 82.8,
+   "horizon": "long",
+   "score": 79.5,
    "status": "published",
    "extra": {
-    "hn_points": 335,
-    "hn_comments": 115,
+    "content_source": "direct",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.baseten.co/",
-      "https://frontierharness.org/",
-      "https://github.com/earendil-works/pi/blob/v1.4.0/packages/coding-agent/src/core/system-prompt.ts#L64-L114",
-      "https://github.com/harbor-framework/harbor",
-      "https://hub.harborframework.com/",
-      "https://www.baseten.co/products/model-apis/",
-      "https://runta.com/docs/integrations/harbor/",
-      "https://runta.com/pricing/"
+      "https://github.com/huggingface/blog/blob/main/moe-expert-streaming.md",
+      "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "https://llama.app/",
+      "https://pi.dev/",
+      "https://github.com/niko1221/strata",
+      "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+      "https://modelfit.io/blog/strata-qwen38-flash-next-mac/",
+      "https://github.com/ggml-org/llama.cpp",
+      "https://github.com/vllm-project/vllm",
+      "https://github.com/huggingface/transformers",
+      "https://github.com/huggingface/accelerate",
+      "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+      "https://huggingface.co/spaces/tarekziade/moe-expert-streaming",
+      "https://huggingface.co/allenai/OLMoE-1B-7B-0924",
+      "https://github.com/huggingface/transformers/pull/50717",
+      "https://huggingface.co/tarekziade/Qwen3.8-Flash-Next-expert-streaming",
+      "https://github.com/tarekziade/moe-expert-streaming#readme",
+      "https://github.com/huggingface/transformers/pull/50245",
+      "https://github.com/tarekziade/moe-expert-streaming",
+      "https://tarekziade-moe-expert-streaming.static.hf.space/details.html",
+      "https://github.com/vllm-project/vllm-metal",
+      "https://github.com/pytorch/pytorch",
+      "https://huggingface.co/ISTA-DASLab/Qwen3.8-Flash-Next-GSQ-RCO-GGUF",
+      "https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/moe-expert-streaming/expert-streaming.svg",
+      "https://huggingface.co/kernels-community",
+      "https://tarekziade-moe-expert-streaming.static.hf.space/details.html#published-kernels"
      ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "6fc8c039af460fdf",
+   "url": "https://energy-based-reasoners.github.io/",
+   "title": "Energy-Based Reasoners: 385x more efficient inference",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-18T09:29:32+00:00",
+   "summary_short": "能量函数引导循环推理：Sudoku-Extreme 达 99.9%，推理算力省 345 倍",
+   "summary_long": "原文提出 Energy-Based Reasoners（EBRs），在潜推理状态上学习能量函数，并把循环块的迭代更新表述为对该能量的梯度下降：能量评分反映推理状态与初始题目的兼容度，梯度提供改进方向，梯度范数低于阈值即停止，多个候选中取能量最低者。为有效训练，作者引入基于探索的训练，以发现更多模式并在更广状态集上塑造能量地形。在四个算法推理基准上，EBRs 匹配或超过此前的循环推理模型：Sudoku-Extreme 单样本准确率 99.4%（1.8M 参数），5 次采样达 99.9%，比次优模型少用 345 倍推理算力，训练算力相当；自适应停止相比固定深度 EBR 减少 10.9 倍 FLOPs 仍保持 99.9%。测试时扩展方面，以 7 倍更少迭代、43 倍更少样本达到 EqR 的最佳准确率。多解基准上取得不同合法解覆盖率的当前最优，同时保持近 100% 单样本准确率。",
+   "key_points": [
+    "能量函数为潜状态打分，梯度同时承担改进方向、停止判据与多解选择三重作用",
+    "Sudoku-Extreme 单样本 99.4%、5 次采样 99.9%，参数 1.8M，推理算力比次优模型少 345 倍",
+    "自适应停止按每条轨迹的梯度阈值结束，比固定深度 EBR 省 10.9 倍 FLOPs 且保持 99.9% 准确率"
+   ],
+   "topics": [
+    "reasoning",
+    "post-training",
+    "eval"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "评测"
+   ],
+   "horizon": "long",
+   "score": 78.5,
+   "status": "published",
+   "extra": {
+    "hn_points": 300,
+    "hn_comments": 52,
+    "outbound": {
+     "arxiv": [
+      "2611.08977"
+     ],
+     "links": []
     },
     "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "dfa52e89374f249c",
-   "url": "https://github.blog/open-source/maintainers/maintainers-dont-need-more-ai-bug-reports-they-need-fixes/",
-   "title": "Maintainers don’t need more AI bug reports. They need fixes.",
-   "source": "GitHub Blog (AI)",
+   "id": "b898a1b2127c5756",
+   "url": "https://deepmind.google/blog/introducing-gemini-4-neon/",
+   "title": "Introducing Gemini 4 Neon",
+   "source": "Google DeepMind Blog",
    "tier": "S",
-   "published_at": "2026-11-17T18:29:29+00:00",
-   "summary_short": "GitHub 与微软试点：让 AI 给开源维护者送修复而不是漏洞报告",
-   "summary_long": "AI 让发现漏洞又快又便宜，但修复仍依赖人的判断，开源项目中这项工作由维护者承担。许多维护者已被 AI 生成的安全报告淹没，包括重复项和并非漏洞的报告；Log4j 维护者 Christian Grobmeier 称，防御开源的 AI 必须强于攻击开源的 AI。为此 GitHub 与微软试点：用微软多模型智能体扫描框架 Codename MDASH 查找并修复广泛使用的开源软件中的漏洞。流程是：用 MAI Cyber 模型扫描并给出修复建议，GitHub Security Lab 的 AI 分诊智能体去重核验，微软 FORGE Lab 研究人员逐条人工复核，再经 GitHub 私有漏洞报告附概念验证与建议修复交给维护者，由维护者决定如何修。六个项目中被标记数千个可能问题，最终形成 99 份私有报告，截至 11 月 15 日已修复 55 个，14 个已进入发布。原文称样本小，属早期经验。",
+   "published_at": "2026-11-18T21:35:43+00:00",
+   "summary_short": "Gemini 4 Neon 发布：主打复杂软件工程、知识工作与科研任务的快速端到端完成",
+   "summary_long": "Google 于 2026 年 11 月 18 日发布 Gemini 4 Neon，称其在复杂软件工程、知识工作与科学流程中提供前沿级智能、快速端到端完成任务。Artificial Analysis 智能指数 xhigh 级别得 61 分、总排名第 3；Vals Index 第 2 并落在帕累托前沿；Agent Arena Index 可引导性第 2，并在 4200+ 真实智能体会话中全球第 2（1336 分）；内部 Google Antigravity 测试编造率创新低。定价每百万输入 token 3 美元（缓存输入 0.15 美元）、输出 15 美元，上下文窗口 100 万 token。企业场景可在单一上下文内综合表格、PDF、图表、音频与视频并产出结构化交付物，在 Legal Research Bench、Tax Agent Bench、Zapier AutomationBench、Andon Labs Vending-Bench 2 登顶。科学推理上 Terminal-Bench Science 70.5%、RiemannBench 84.0%、HLE-Diamond 71.3% 为同类最佳；代码上可作 Orchestrator 调度并行 Hydrogen 子智能体，Artificial Analysis Coding Agent Index 第 1（58.6）。原文在 S",
    "key_points": [
-    "维护者已被 AI 生成的安全报告淹没，其中含重复项与并非漏洞的报告；试点的两个目标是只发送真正重要的发现，且绝不向维护者发送未经核实的发现。",
-    "六个项目中被标记数千个可能问题，经 AI 分诊与七名 Microsoft FORGE Lab 研究人员人工复核后，维护者收到 99 份私有报告，截至 11 月 15 日修复 55 个，其中 14 个已进入发布版本。",
-    "原文总结的早期经验：修复比发现更耗维护者时间，首批发货的修复在初次扫描约一周后出现，Caddy 一周内修完全部 22 份报告，AutoGPT 一天内写出修复、不到一周上线；Express、Caddy、FastMCP、ImageMagick 维护者反馈这些报告质量高于以往的扫描结果。"
+    "排名：Artificial Analysis 智能指数 xhigh 级别 61 分、总排名第 3，落后于更大更慢的模型；Vals Index 第 2 且位于帕累托前沿；Agent Arena Index 全球第 2（1336 分）、可引导性第 2。",
+    "规格与定价：100 万 token 上下文窗口，每百万输入 token 3 美元（缓存输入 0.15 美元，95% 折扣）、输出 15 美元。",
+    "场景与上线：在 Legal Research Bench、Tax Agent Bench、Zapier AutomationBench、Andon Labs Vending-Bench 2 及多项科学推理基准为同类最佳，可调度并行 Hydrogen 子智能体；当日起在 Gemini API（Google AI Studio）、Gemini for business、Google Antigravity 和 Gemini 应用上线。"
    ],
    "topics": [
-    "cybersecurity",
-    "multi-agent",
-    "agent-loop"
+    "reasoning",
+    "coding-agent",
+    "eval"
    ],
-   "category": "安全",
+   "category": "模型",
    "categories": [
-    "安全",
-    "Agent 与开发"
+    "模型"
    ],
    "horizon": "short",
-   "score": 78.3,
+   "score": 75.4,
    "status": "published",
    "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "Maintainers",
-     "Open Source",
-     "AI security",
-     "GitHub Security Lab",
-     "maintainers"
-    ],
+    "content_source": "direct",
     "outbound": {
-     "arxiv": [],
+     "arxiv": [
+      "2604.06802"
+     ],
      "links": [
-      "https://youtu.be/t74ClffSUW0?si=WYa9E6mKPSVhOW1O&t=1815",
-      "https://learn.microsoft.com/en-us/security-exposure-management/ai-code-security-overview",
-      "https://www.microsoft.com/en-us/security/blog/2026/05/12/defense-at-ai-speed-microsofts-new-multi-model-agentic-security-system-tops-leading-industry-benchmark/",
-      "https://microsoft.ai/models/mai-cyber-1-1-flash/",
-      "https://github.blog/security/ai-supported-vulnerability-triage-with-the-github-security-lab-taskflow-agent/",
-      "https://forge-blog.github.io/",
-      "https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configure-for-a-repository",
-      "https://gh.io/gh-secure",
-      "https://docs.github.com/code-security/concepts/supply-chain-security/dependabot-alerts",
-      "https://docs.github.com/en/enterprise-cloud@latest/code-security/concepts/code-scanning/autofix-for-code-scanning#using-agentic-autofix",
-      "https://aka.ms/introducing-mai-cyber-2-flash",
-      "https://github.com/open-source/github-secure-open-source-fund",
-      "https://github.com/features/copilot/plans",
-      "https://github.com/open-source/sponsors",
-      "https://azure.microsoft.com/en-us",
-      "https://www.microsoft.com/en-us/startups",
-      "https://blogs.microsoft.com/on-the-issues/2025/06/04/microsoft-launches-new-european-security-program/",
-      "https://www.microsoft.com/en-us/trust-center/security/secure-future-initiative",
-      "https://github.com/aipotheosis-labs/aci",
-      "https://github.com/albumentations-team/AlbumentationsX",
-      "https://github.com/arviz-devs/arviz",
-      "https://github.com/Significant-Gravitas/gravitasml",
-      "https://github.com/camel-ai/camel",
-      "https://github.com/Garudex-Labs/Caracal",
-      "https://github.com/cocoindex-io/cocoindex",
-      "https://github.com/vitali87/code-graph-rag",
-      "https://github.com/mlco2/codecarbon",
-      "https://github.com/topoteretes/cognee",
-      "https://github.com/langchain-ai/deepagents",
-      "https://github.com/dipy/dipy",
-      "https://github.com/arc53/DocsGPT",
-      "https://github.com/PrefectHQ/fastmcp",
-      "https://github.com/jupyter",
-      "https://github.com/LadybugDB/ladybug",
-      "https://github.com/langchain-ai/langchain",
-      "https://github.com/matplotlib/matplotlib",
-      "https://github.com/czlonkowski/n8n-mcp",
-      "https://github.com/Nasiko-Labs/nasiko",
-      "https://github.com/numpy/numpy",
-      "https://github.com/ollama/ollama"
+      "https://twitter.com/intent/tweet?text=Introducing%20Gemini%204%20Neon%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
+      "https://www.facebook.com/sharer/sharer.php?caption=Introducing%20Gemini%204%20Neon&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
+      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/&title=Introducing%20Gemini%204%20Neon",
+      "https://blog.google/authors/koray-kavukcuoglu/",
+      "https://artificialanalysis.ai/",
+      "https://www.vals.ai/benchmarks/vals_index",
+      "https://arena.ai/leaderboard/agent?utm_source=social&utm_medium=x&utm_campaign=lbreboot&utm_content=announcement",
+      "https://aistudio.google.com/prompts/new_chat?model=gemini-4-neon",
+      "https://cloud.google.com/gemini-enterprise",
+      "https://antigravity.google/",
+      "http://gemini.google/",
+      "https://www.vals.ai/benchmarks/legal_research",
+      "https://www.vals.ai/benchmarks/tax_agent_bench",
+      "https://surgehq.ai/benchmarks",
+      "https://agents-last-exam.org/leaderboard",
+      "https://zapier.com/benchmarks",
+      "https://andonlabs.com/evals/vending-bench-2",
+      "https://arena.ai/leaderboard/agent",
+      "https://www.terminal-bench-science.ai/",
+      "https://arxiv.org/abs/2604.06802",
+      "https://lastexam.ai/blog/hle-diamond",
+      "https://artificialanalysis.ai/agents/coding-agents#coding-agents-index",
+      "https://www.tbench.ai/",
+      "https://cognition.com/blog/frontier-code-2.0",
+      "https://baxbench.com/autobaxbuilder/",
+      "https://agentcyberrange.io/",
+      "https://sec-bench.github.io/",
+      "https://cwe-bench.com/v2",
+      "https://deepmind.google/fairwind-program/",
+      "https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security/",
+      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Neon-Model-Card.pdf",
+      "https://developer.android.com/studio",
+      "http://gemini.google.com/",
+      "https://policies.google.com/privacy"
      ]
     },
     "summary_mode": "full"
