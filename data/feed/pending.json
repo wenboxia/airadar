@@ -1,111 +1,67 @@
 {
- "generated_at": "2026-11-20T01:18:07+00:00",
+ "generated_at": "2026-11-21T00:49:39+00:00",
  "items": [
   {
-   "id": "4b08ec50268e04a4",
-   "url": "https://openai.com/business/learn/deploying-daybreak-red",
-   "title": "Deploying Daybreak Red",
+   "id": "f4784c30400364a2",
+   "url": "https://openai.com/index/introducing-medchembench",
+   "title": "Can AI help scientists identify promising drug candidates?",
    "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-11-19T00:00:00+00:00",
-   "summary_short": "OpenAI 发布 Daybreak Red 部署指南，讲受监督安全调查的隔离环境怎么搭",
-   "summary_long": "OpenAI 于 2026 年 11 月 19 日发布《Deploying Daybreak Red》一文，将其定位为“受监督安全调查的参考架构”。原文说明，该指南讲解如何用 Daybreak Red 搭建一个隔离环境，用于受监督的安全调查，内容覆盖架构、安全控制、环境配置，以及如何运行和监控一次调查。文章本身篇幅很短，正文主要是引导读者去读完整指南，并给出指向 PDF 全文的链接，读者需另行查阅才能获得具体细节。原文未详述 Daybreak Red 本身是什么产品或模型，也未说明该参考架构的具体组件、隔离机制的技术实现与适用场景，更未给出任何部署效果或评价性结论；作者署名仅为 OpenAI。因此这篇内容目前更接近一份指南的发布通告，价值在于它公开了 OpenAI 在受监督安全调查这一用途上的部署参考做法及其覆盖面。",
+   "published_at": "2026-11-20T00:00:00+00:00",
+   "summary_short": "推出MedChemBench基准，用来测评AI解读分子结构、结合实验证据推理的能力",
+   "summary_long": "原文介绍了一个名为MedChemBench的基准测试，用于评估AI模型在药物化学推理任务上的表现，即能否将分子结构与实验证据联系起来解释结果、比较化合物并预测性质。原文指出，药物化学的难点在于改善分子某一性质往往会使另一性质变差，AI若要真正提供帮助，就必须具备这种把结构与证据联系起来的推理能力。该基准包含99道取自已发表研究的问题，来自117篇论文与专利，涉及761个不同的分子结构，并从分子结构重构、科学推理、排序与选择、性质预测四个方面评分。在xhigh推理设置下，GPT‑6.2 Astra获得84.5%的可用分数，GPT‑6 Astra为83.3%，GPT‑6.1 Sol为82.0%，GPT‑5.6 Sol为58.2%；其中GPT‑6 Astra在重构分子结构和解释实验证据上表现最强，在选择化合物和预测数值性质上难度更大。原文还以PRMT5抑制剂研究为例，说明模型需要同时预测三个相关化合物在细胞内阻断PRMT5的强度、透过细胞屏障的难易程度，以及被肝酶分解的速度，并根据预测接近实测值的程度获得部分分数。",
    "key_points": [
-    "OpenAI 于 2026 年 11 月 19 日发布，定位为受监督安全调查的参考架构",
-    "指南内容覆盖架构、安全控制、环境配置，以及调查的运行与监控",
-    "核心用法是用 Daybreak Red 搭建隔离环境开展受监督安全调查"
+    "MedChemBench含99道题，取材于117篇论文与专利、761个分子结构，从分子结构、科学推理、排序与选择、性质预测四方面评分",
+    "xhigh设置下GPT‑6.2 Astra得84.5%，GPT‑6 Astra得83.3%，GPT‑6.1 Sol得82.0%，GPT‑5.6 Sol得58.2%",
+    "PRMT5抑制剂案例要求模型同时预测活性、透膜性与肝酶降解速度，体现药物化学中多性质权衡的核心挑战"
    ],
    "topics": [
-    "cybersecurity",
-    "deployment"
+    "eval",
+    "reasoning"
    ],
-   "category": "Agent 与开发",
+   "category": "评测",
    "categories": [
-    "Agent 与开发",
-    "安全"
+    "评测"
    ],
    "horizon": "long",
-   "score": 74.4,
+   "score": 73.5,
    "status": "review",
    "extra": {
-    "content_source": "reader",
+    "content_source": "direct",
     "source_tags": [
-     "Guides"
+     "Research"
     ],
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "f00d83341f65cba8",
-   "url": "https://www.slowchronicle.com/posts/llm-assisted-reverse-engineering",
-   "title": "LLM assisted reverse engineering",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-18T22:29:13+00:00",
-   "summary_short": "一位逆向工程师分享用 LLM 搭配反编译工具加速二进制分析的工作流",
-   "summary_long": "作者称自己有 20 年软硬件逆向经验，过去全靠手工，2026 年借助 AI 大幅提速，本文简述其流程。工具方面：主要使用 DeepSeek Harness 加 DeepSeek v4.1 Flash，偶尔使用 Codex 配 Luna 或 Terra；反汇编和反编译使用免费且效果公认最好的 Ghidra 加 MCP 桥接，也使用 radare2 和 kuna（不如 Ghidra，但更快、可能更适合 AI）。流程是把二进制直接交给 agent，并配有专用技能：先判断文件类型、平台与构建方式，据此选择反编译器（原文称当前 AI 仅凭 x86/ARM 反汇编也表现不错），要求 agent 把发现全部写入 MD 文档；这既是自己的笔记，也能防止上下文压缩或交接给其他 agent 后失去方向，并避免反复绕圈；再分析主函数、主要分支、导入函数等基本结构，之后据此修改二进制、制作 mod 或加深理解。卡住时可让 agent 调试并下断点、加日志（在原程序中开启，或做注入探针写日志）、给 agent 外部访问（桌面程序用 computer use，固件用可控模拟器），或具体指定换一种思路（如从跟 xref 改为跟字符串）。作者还强调要通读对话与思考轨迹，及时纠正 agent 的狭窄路径。文中另介绍 /grill-me 提问技能、RE 工具技能与自研的 hypothesis debugging 技能",
-   "key_points": [
-    "工具组合：DeepSeek Harness + DeepSeek v4.1 Flash 为主，偶尔 Codex 配 Luna/Terra；Ghidra + MCP 桥接为主力反编译器，radare2 与 kuna 更快、可能更适配 AI",
-    "核心流程：定位二进制类型/平台/构建方式→选反编译器→要求 agent 全程把发现写入 MD 文档（作笔记、防上下文压缩或交接后跑偏）→分析主函数、分支与导入函数等结构",
-    "遇到难题的手段：让 agent 调试下断点、加日志或注入探针、给外部访问（computer use 或可控模拟器）、具体指定换思路，并通读对话与思考轨迹发现盲路"
-   ],
-   "topics": [
-    "mcp",
-    "context-engineering",
-    "coding-agent"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 73.2,
-   "status": "review",
-   "extra": {
-    "hn_points": 296,
-    "hn_comments": 76,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/mattpocock/skills",
-      "https://github.com/ioma8/ghidra-decompile-skill",
-      "https://github.com/ioma8/hypothesis-debugging",
-      "https://github.com/ioma8/neo-re",
-      "https://github.com/ioma8/emwave-utils",
-      "https://github.com/ioma8/opz-firmware-notes",
-      "https://github.com/ioma8/mpc-minimod",
-      "https://github.com/ioma8/cool",
-      "https://github.com/ioma8/hp-p2055dn-macos-driver",
-      "https://news.ycombinator.com/item?id=50553225"
+      "https://cdn.openai.com/pdf/09c4ec60-a32e-4652-837b-1811368a3bb0/medchembench-paper.pdf"
      ]
     },
-    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "c3c7756f62d48d7a",
-   "url": "https://simonwillison.net/2026/Nov/18/llm-gemini/",
-   "title": "llm-gemini 0.38",
+   "id": "e486efe85b2a356a",
+   "url": "https://simonwillison.net/2026/Nov/20/token-fraud-is-here-and-its-bad/",
+   "title": "Token fraud is here and it’s BAD (YouTube)",
    "source": "Simon Willison",
    "tier": "A",
-   "published_at": "2026-11-18T23:59:20+00:00",
-   "summary_short": "llm-gemini 0.38 发布，同日登场的 Gemini 4 Neon 让定价更乱",
-   "summary_long": "原文宣布 llm-gemini 0.38 发布，同日 Google 推出 Gemini 4 Neon。文中指出，Gemini 4 系列的定价原本就令人困惑，Neon 让情况更糟：此前阵容为 Hydrogen、Argon、Carbon，其中 Argon 与 Carbon 同价，Hydrogen 当前价格是两者价格的 3/4；但到 12 月 1 日初始折扣到期、另两者价格翻倍后，Hydrogen 将变成两者价格的 1/4。Neon 的发布说明对 Argon 只字未提。按新图，从贵到便宜依次为 Carbon、Neon、Hydrogen；但 Carbon 目前半价，所以此刻 Neon（输入 3 美元/百万、输出 15 美元）最贵，Carbon 为 2/10，Hydrogen 为 1.50/7.50；等 12 月 1 日 Carbon 涨到 4/20 后，这套排序才更说得通。文中用低、中、高三档推理力度对 Neon 做了骑车鹈鹕测试，并把 Argon 从 Gemini 4 对比表中移除；结果显示 Neon 的鹈鹕优于 Hydrogen、逊于 Carbon。另外，文中在 Google Antigravity 中以“extra”力度向 Gemini 4 Neon 提交提示词：用 three.js 做一段 Yonkers 起身变大型机甲，在曼哈顿、皇后区与布鲁克林踩踏的动画，并使用 OpenStr",
+   "published_at": "2026-11-20T02:49:57+00:00",
+   "summary_short": "ChatPRD 免费试用遭大规模 token 欺诈滥用，创始人决定彻底关停",
+   "summary_long": "Claire Vo 运营面向产品经理的 AI 平台 ChatPRD，帮助用户“把想法变成规格文档”，产品自 GPT-4 时代就已上线，她长期公开构建这个产品。在这段 YouTube 视频（及配套推文）中，她描述了免费试用遭遇的大量 token 欺诈：有人只是想免费用 AI，但更多时候是转卖 token，或在 ChatPRD 的 agent 之上运营其他商业业务。原文引述了一段描述，称有人循环使用免费试用和优惠码，通过隧道接入她的 agent，用来制作 Roblox 和 Fortnite 地图。她还在 agent 中频繁看到一类提示词——骑自行车的鹈鹕 SVG；原文推测这被用于探测底层模型，因为不同模型家族有明确特征，作者称自己过去也用类似方式猜测 OpenRouter 上 stealth 预览模型的真实身份。Claire 正在彻底关停免费试用，原文认为面对这类滥用，这看上去是正确决定。",
    "key_points": [
-    "llm-gemini 0.38 发布，同日 Google 推出 Gemini 4 Neon",
-    "Neon 使本就混乱的 Gemini 4 定价更复杂：此刻 Neon（$3/$15）最贵、Carbon 半价（$2/$10）、Hydrogen（$1.50/$7.50），且 Neon 公告未提 Argon",
-    "骑车鹈鹕测试中 Neon 的三档推理结果优于 Hydrogen、逊于 Carbon；另在 Google Antigravity 以 extra 力度生成 three.js 机甲动画"
+    "ChatPRD 是帮助产品经理把想法转成规格文档的 AI 平台，自 GPT-4 时代上线，创始人 Claire Vo 长期公开构建。",
+    "免费试用被滥用：有人只为免费使用 AI，更多是转卖 token，或在 agent 之上跑其他商业业务；原文引述有人循环试用与优惠码、接入 agent 制作 Roblox 和 Fortnite 地图。",
+    "agent 上常见“骑自行车的鹈鹕”SVG 提示词，原文推测是用于探测底层模型身份（不同模型家族有特征签名）；Claire 正彻底关停免费试用。"
    ],
    "topics": [
-    "model-release",
-    "pricing",
-    "reasoning"
+    "product",
+    "cybersecurity"
    ],
-   "category": "模型",
+   "category": "安全",
    "categories": [
-    "模型",
-    "行业动态"
+    "安全",
+    "产品与应用"
    ],
    "horizon": "short",
    "score": 71.1,
@@ -113,440 +69,139 @@
    "extra": {
     "content_source": "rss",
     "source_tags": [
-     "yonkers-rising",
-     "gemini",
-     "llm",
-     "pelican-riding-a-bicycle",
-     "ai"
+     "youtube",
+     "ai",
+     "generative-ai",
+     "llms",
+     "pelican-riding-a-bicycle"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/simonw/llm-gemini/releases/tag/0.38",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
-      "https://simonwillison.net/2026/Nov/12/llm-gemini/",
-      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Fabc5dfe18e8d37a46fd09a3dcc18ed5c",
-      "https://static.simonwillison.net/static/2026/gemini-4-carbon-neon-hydrogen.html",
-      "https://simonwillison.net/tags/yonkers-rising/",
-      "https://static.simonwillison.net/static/2026/gemini-4-neon-yonkers/index.html",
-      "https://simonwillison.net/tags/yonkers-rising",
-      "https://simonwillison.net/tags/gemini",
-      "https://simonwillison.net/tags/llm",
-      "https://simonwillison.net/tags/pelican-riding-a-bicycle",
+      "https://www.youtube.com/watch?v=ZDpP7JXPlhc",
+      "https://www.chatprd.ai",
+      "https://x.com/clairevo/status/2119985786045227197",
+      "https://simonwillison.net/tags/youtube",
       "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai",
       "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/llm-release",
-      "https://simonwillison.net/tags/google",
-      "https://simonwillison.net/tags/generative-ai"
+      "https://simonwillison.net/tags/pelican-riding-a-bicycle",
+      "https://simonwillison.net/tags/ai-misuse"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "4ba1303d2ee21d77",
-   "url": "https://simonwillison.net/2026/Nov/19/postgresql-19/",
-   "title": "PostgreSQL 19 Released",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-11-19T20:43:57+00:00",
-   "summary_short": "PostgreSQL 19 发布，新增 WAIT FOR LSN 命令为读备库应用提供读己之写一致性",
-   "summary_long": "PostgreSQL 19 已发布。原文提到，PostgreSQL 通常每年 9 月发布新版本，今年晚了两个月，主要因为团队需处理大量问题（原文称“AI 报告漏洞潮”）。作者称最喜欢的新特性是 WAIT FOR LSN：它面向将读请求发往备库的应用，提供“读己之写”一致性——备库会话可等待备库将 WAL 重放到指定 LSN 后再执行查询，从而读到刚在主库写入的数据。原文示例：UPDATE 后用 pg_current_wal_insert_lsn() 取得类似 0/0306EE20 的值并保存（如签名 cookie），后续请求先执行 WAIT FOR LSN '0/0306EE20' WITH (TIMEOUT '0.1s') 再查询；TIMEOUT 可选，备库未按时追上会报错。作者称最早在 Wikipedia 见到该模式：其基于 MySQL 复制自行实现，MediaWiki 在会话中保存主库 binlog 位置，每次请求开始时等待备库追上；相关代码现用 MySQL 的 WAIT_FOR_EXECUTED_GTID_SET()，可回退到 SOURCE_POS_WAIT()。",
-   "key_points": [
-    "PostgreSQL 19 的发布比通常的 9 月晚两个月，原文称主要原因是团队需处理大量问题（“AI 报告漏洞潮”）。",
-    "新增 WAIT FOR LSN 命令，让备库上的会话等待 WAL 重放到指定 LSN 后再查询，为读备库的应用提供“读己之写”一致性；TIMEOUT 可选，超时会报错。",
-    "作者称该模式最早见于 Wikipedia 基于 MySQL 复制的手写实现：MediaWiki 在会话中保存主库 binlog 位置并在请求开始时等待备库追上，代码现用 WAIT_FOR_EXECUTED_GTID_SET() 并可回退到 SOURCE_POS_WAIT()。"
-   ],
-   "topics": [
-    "open-source"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 69.2,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "mysql",
-     "postgresql",
-     "replication",
-     "scaling",
-     "wikipedia"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.postgresql.org/about/news/postgresql-19-released-3449/",
-      "https://rhaas.blogspot.com/2026/10/postgres-19-is-late-and-its-ais-fault.html",
-      "https://www.postgresql.org/docs/19/sql-wait.html",
-      "https://www.postgresql.org/docs/19/wal-internals.html",
-      "https://www.mediawiki.org/wiki/Manual:Database_access#Lag",
-      "https://github.com/wikimedia/mediawiki/blob/1ff78194b182ee4b5b3678f7d9fc9aefd0852cf7/includes/libs/Rdbms/Replication/MysqlReplicationReporter.php#L238-L299",
-      "https://dev.mysql.com/doc/refman/9.7/en/gtid-functions.html#function_wait-for-executed-gtid-set",
-      "https://dev.mysql.com/doc/refman/8.4/en/replication-functions-synchronization.html#function_source-pos-wait",
-      "https://lobste.rs/s/pqyuhk/postgresql_19_released",
-      "https://simonwillison.net/tags/mysql",
-      "https://simonwillison.net/tags/postgresql",
-      "https://simonwillison.net/tags/replication",
-      "https://simonwillison.net/tags/scaling",
-      "https://simonwillison.net/tags/wikipedia",
-      "https://simonwillison.net/tags/ai-security-research"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "9491587c1875ac6b",
-   "url": "https://micjm.com/blog/gemini-4-neon-looks-like-a-top-model/",
-   "title": "Gemini 4 Neon looks like an Opus 5.5 competitor",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-19T00:29:45+00:00",
-   "summary_short": "作者按建模推算，Gemini 4 Neon 在 Agent Duel 排行榜上的投影 Elo 与 Opus 5.5 基本持平",
-   "summary_long": "原文先给出背景：在排除早期投票后，Gemini 4 Carbon 是 Agent Duel 排行榜上最好的模型，但主要问题是速度极慢，仅 46 tokens/秒。作者表示，Gemini 4 Neon 于今日发布，从基准测试看只是小幅提升，但速度提升很大；早些时候通过 OpenRouter 提供服务时达到 127 tokens/秒。为判断 Neon 是否不只优秀、而且是最强模型，作者对排行榜胜率建模，发现决定胜负的包括模型身份、速度和用户是否早期投票；最初模型效果不佳，加入速度与早期投票的交互项后拟合良好。作者还指出，速度的重要性似乎与模型身份几乎相当，并称另有一篇博客将讨论此点。据此推算：若假设 Neon 的模型表现与 Carbon 相同（作者认为合理，因为基准分数甚至更好），再加上 127 tokens/秒，Agent Duel 排行榜投影 Elo 为 1,066，略低于后一次分析快照中 Opus 5.5 的 1,078；两者投影 Elo 差的 90% 区间为 -94 到 +68，Neon 对 Opus 的预计胜率为 48.3%（平局按半胜计）。",
-   "key_points": [
-    "Gemini 4 Carbon 排除早期投票后是 Agent Duel 排行榜最强模型，但速度只有 46 tokens/秒；Neon 基准仅小幅提升，速度则达 127 tokens/秒",
-    "作者建模发现排行榜胜率由模型身份、速度、是否为早期投票三者决定，加入速度与早期投票的交互项后拟合良好，速度重要性接近模型身份",
-    "在沿用 Carbon 模型表现并叠加 127 tokens/秒的假设下，Neon 投影 Elo 为 1,066，低于 Opus 5.5 的 1,078，Elo 差的 90% 区间为 -94 到 +68，对 Opus 预计胜率 48.3%"
-   ],
-   "topics": [
-    "eval"
-   ],
-   "category": "评测",
-   "categories": [
-    "评测",
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 68.0,
-   "status": "review",
-   "extra": {
-    "hn_points": 251,
-    "hn_comments": 78,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://agentduel.com/leaderboard?excludeEarlyVotes=true",
-      "https://micjm.com/blog/carbon-is-that-slow/",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
-      "https://openrouter.ai/google/gemini-4-neon",
-      "https://openrouter.ai/google/gemini-4-carbon",
-      "https://agentduel.com/leaderboard"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "222a3317cded8e05",
-   "url": "https://latent.space/p/linear-scaling/",
-   "title": "Scaling Linear’s GTM to $100M ARR — Cristina Cordova, COO",
+   "id": "c989db0d32fd28d8",
+   "url": "https://latent.space/p/formal-verification/",
+   "title": "The War Against Slop and an Emerging Weapon to Fight it: Formal Verification",
    "source": "Latent Space",
    "tier": "B",
-   "published_at": "2026-11-19T23:58:21+00:00",
-   "summary_short": "Linear COO谈零SDR、自助获客与agent如何做到1亿美元ARR",
-   "summary_long": "Linear 由创始人因在 Coinbase、Airbnb、Uber 使用旧式 issue tracker 的体验而打造，并靠 Vercel、Ramp 等创业公司自助传播。Cristina Cordova 2023 年加入任 COO 时，公司约 40 人、只有一名销售；她三周后取消“进军企业市场”目标，公司从未招聘 SDR。CEO Karri Saarinen 发文“Issue tracking is dead”后，Linear 转向围绕 agent 编排的产品开发系统，推出 MCP server、agent 平台、与 Codex、Cursor、GitHub Copilot 集成及 Linear Agent。一年前 agent 创建 3% 的工作，现在超过一半。公司今年 ARR 超 1 亿美元，有 4 万多名付费客户、177% 净收入留存，8 月员工以 25 亿美元估值卖出 9900 万美元股票。原文还提到 AI 预算正推动采购，买家改签一年期合同和付费试点。",
+   "published_at": "2026-11-20T21:18:41+00:00",
+   "summary_short": "AI 生成代码充斥“slop”，形式化验证用数学证明检查正确性，成为新兴武器",
+   "summary_long": "2026 年 AI 行业的年度词是“slop”，指大语言模型输出的低质量内容；如今大量代码由 AI 生成，避免 slop 已成为软件工程师日常关切。原文介绍，形式化验证用数学证明和逻辑验证软件或硬件正确性；随着 AI 解题能力增强，Harmonic、Theorem、Axiom Math 和 &Truth 等公司正提供相关系统。&Truth 联合创始人 Clark Barrett 也是 cvc5 共同创建者；cvc5 是 SMT 求解器，在亚马逊用于规范分析和测试生成，每天在生产流程中被调用数十亿次。相比 AI 编程代理的测试、自评或由另一模型评判，Barrett 认为现有工具能发现大量问题，但无法确定是否找全。&Truth 首款工具 &Atlas 从 C 语言开始映射全球开源代码，并在 Lean 上构建“验证机器”，目标是读取任意语言代码、证明其满足精确需求，让人无需逐行理解即可信任。Axiom Math 则用形式化验证为数学推理系统训练提供正确性反馈。",
    "key_points": [
-    "Cristina 加入时任 COO 时 Linear 约 40 人、只有一名销售；她三周后取消进军企业市场目标，公司从未招聘 SDR。",
-    "Linear 于 2025 年 5 月推出 MCP server，agent 创建的工作占比从一年前 3% 升至超过一半；公司同时关注 agent 使用与 app 使用两条线。",
-    "Linear 今年 ARR 超 1 亿美元、有 4 万多名付费客户、177% 净收入留存；8 月员工以 25 亿美元估值卖出 9900 万美元股票。"
-   ],
-   "topics": [
-    "gtm",
-    "arr",
-    "product"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态",
-    "产品与应用"
-   ],
-   "horizon": "long",
-   "score": 65.3,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://youtu.be/x0VSm6IjcDQ?si=BI42irAuzXFJBmQe&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?si=ux2et_X2fIVnHUHL&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://linear.app/next?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://linear.app/blog/welcoming-cristina-cordova-to-linear?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://linear.app/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://linear.app/now/sharing-growth-with-the-people-building-linear?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=1200&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=1419&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=2806&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=3427&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=2080&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=3006&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=3954&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://linear.app/changelog/2025-05-01-mcp?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://linear.app/changelog/2026-03-24-introducing-linear-agent?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://linear.app/now/how-we-built-triage-intelligence?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://linear.app/changelog/2026-06-11-coding-sessions?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://linear.app/changelog/2026-07-20-introducing-loops?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://www.intercom.com/help/en/articles/8205718-fin-pricing?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=0&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=51&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=99&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=301&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=731&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=2174&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=2543&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=2873&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=3808&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
-      "https://youtu.be/x0VSm6IjcDQ?t=4139&utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "32cca7ee5709e6c9",
-   "url": "https://ounapuu.ee/posts/2026/11/19/unsafeguards/",
-   "title": "Fuck Your AI Safeguards",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-19T16:30:18+00:00",
-   "summary_short": "工程师让 Claude Code 修安全漏洞被“AI 护栏”拦下，改用开源模型完成修复",
-   "summary_long": "作者在文中自称资深产品工程师（原文未署名）。他讲述：在爱沙尼亚发生冰箱被入侵事件期间，他半开玩笑地让 Claude Code 检查自己正在做的项目有没有容易修复的安全问题；Claude Code 找到一个一行代码即可修好的疏漏，他照做，随后却因所谓“AI 护栏”被中断。他抱怨豁免申请流程：要等数个工作日、放弃数据留存豁免、提交身份证或护照，而且仍可能不获批。他强调这不是第一次遇到，自己一直跟进安全态势，需要判断公开的 PoC 片段能否被改造后用于攻击自家服务，但 Claude 会拒绝，并建议改用仍会阻止操作的旧模型。他指出犯罪分子不需要申请批准，开源去审查模型不受限制，并用刀具作类比，质疑这一工具为何特殊。最终他改用欧盟托管的开源权重模型 GLM 5.3，该模型配合其意图，证明了问题存在，并帮助修复和验证问题已解决。他据此批评 Anthropic 让世界更不安全，并猜测这是否是为 IPO 前构筑监管护城河；同时抱怨大 AI 实验室可无限制使用同类工具。",
-   "key_points": [
-    "Claude Code 找到一处一行代码即可修复的安全疏漏，但修复动作被“AI 护栏”中断。",
-    "作者称豁免申请需等待数个工作日、放弃数据留存豁免、提交身份证或护照，且可能仍被拒。",
-    "作者最终改用欧盟托管的开源权重模型 GLM 5.3 验证问题并完成修复，并指出犯罪分子与去审查开源模型不受此类限制。"
-   ],
-   "topics": [
-    "alignment",
-    "cybersecurity",
-    "coding-agent"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 61.5,
-   "status": "review",
-   "extra": {
-    "hn_points": 474,
-    "hn_comments": 191,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://ounapuu.ee/posts/2026/11/19/unsafeguards/",
-      "https://ounapuu.ee/categories/engineering/",
-      "https://ounapuu.ee/categories/ramblings/",
-      "https://news.err.ee/1610183296/hackers-raised-freezer-temperature-at-selver-supermarket-to-50-c",
-      "https://support.claude.com/articles/14604842-cyber-verification-program",
-      "https://aboutfeeds.com/",
-      "https://www.linkedin.com/in/%F0%9F%94%A5-herman-%C3%B5unapuu-600516152/",
-      "https://ounapuu.ee/posts/2022/04/18/strangling-your-service-with-kubernetes/",
-      "https://ounapuu.ee/posts/2026/02/09/year-of-the-linux-desktop/",
-      "https://ounapuu.ee/posts/2021/09/07/diy-cloud-gaming-vfio-parsec-amd/",
-      "https://ounapuu.ee/posts/2024/08/16/career/",
-      "https://ounapuu.ee/posts/2021/10/13/diy-cloud-gaming-nvidia-moonlight/"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "630b41be4a2bc539",
-   "url": "https://simonwillison.net/2026/Nov/18/datasette-arrows/",
-   "title": "datasette-arrows 0.1a0",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-11-18T17:09:59+00:00",
-   "summary_short": "datasette-arrows 0.1a0 发布，新增 Arrow 流式导出格式",
-   "summary_long": "Datasette 1.0a43 增加了让插件实现流式导出格式的能力。Datasette 核心已支持流式 CSV 和 TSV：由于这两种格式支持分块传输数据，导出包含数百万行的表时无需把全部数据载入内存。现在 register_output_renderer() 插件钩子可用于为其他格式实现同样的模式。作为该钩子的配套示例，datasette-arrows 0.1a0 发布，提供 Apache Arrow 流式导出格式；该格式由 Claude Fable 5.2 建议并几乎一次性完成。安装命令为 datasette install datasette-arrows，安装后导出对话框会增加 Arrow 选项。原文说明，截图来自 Datasette 主分支，最近一次发布尚未把 Arrow 等流式格式与 TSV、CSV 一起归入“All rows in this table”区域，这一调整将在下一个 alpha 版本中推出。",
-   "key_points": [
-    "Datasette 1.0a43 允许插件实现流式导出格式，register_output_renderer() 钩子可复用该模式",
-    "Datasette 核心的流式 CSV/TSV 支持分块导出数百万行，无需全部载入内存",
-    "datasette-arrows 0.1a0 提供 Apache Arrow 流式导出格式，由 Claude Fable 5.2 建议并几乎一次性完成"
-   ],
-   "topics": [
-    "open-source"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 57.0,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "datasette",
-     "projects"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/datasette/datasette-arrows/releases/tag/0.1a0",
-      "https://docs.datasette.io/en/latest/changelog.html#a43-2026-11-15",
-      "https://docs.datasette.io/en/latest/plugin_hooks.html#register-output-renderer-datasette",
-      "https://arrow.apache.org/docs/python/ipc.html",
-      "https://simonwillison.net/tags/datasette",
-      "https://simonwillison.net/tags/projects"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "f0a746966dedf0f1",
-   "url": "https://latent.space/p/ainews-gemini-4-neon-gdm-s-opus-sol-contender/",
-   "title": "[AINews] Gemini 4 Neon: GDM's Opus/Sol Contender",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-11-19T07:07:43+00:00",
-   "summary_short": "Gemini 4 Neon 发布：更小更便宜，部分指标反超 Carbon",
-   "summary_long": "Google DeepMind 发布 Gemini 4 Neon，这是约七周内推出的第四个 Gemini 4 模型。原文称其命名令人困惑：一个月前发布的 Argon 已退役，Gemini 1–3 的旧 Pro、Flash 均已停用；名称按原子量排序，Neon（10）作为中端模型比 Carbon（6）更快、更便宜，但由于蒸馏、强化学习与评测方式的影响，Neon 虽是更小的模型，在部分指标上仍超过 Carbon。定价为每百万 token 输入 3 美元、缓存输入 0.15 美元、输出 15 美元，具备 100 万 token 上下文与四档 effort。上线覆盖 AI Studio、Android Studio 的付费 Gemini API、Gemini for business，以及 Antigravity 的 Pro/Ultra 订阅者；Gemini 应用中 Pro/Ultra 可选“Deeper analysis”。首日即集成 Cursor、GitHub Copilot（应用、CLI、VS Code）与 LangChain Managed Deep Agents。第三方结果：high effort 在 Intelligence Index 上与 Carbon 同为 60，Agent Arena 首秀第二（1,336 分），Vals Index 70.9% 居次，CursorBen",
-   "key_points": [
-    "规格与定价：每百万 token 输入 3 美元、缓存输入 0.15 美元、输出 15 美元，100 万 token 上下文、四档 effort，Vals 称最大输出 100 万 token",
-    "发布节奏加快：Arena 统计 Argon→Carbon 间隔 28 天、Carbon→Hydrogen 15 天、Hydrogen→Neon 仅 6 天",
-    "第三方评测：high effort 在 Intelligence Index 与 Carbon 同为 60、每任务 3.74 美元；Agent Arena 首秀第二（1,336 分、约 4,200 次会话）；Vals Index 70.9% 第二，落后 Fable 5.2 约 0.4 分但每任务成本不到其一半；CursorBench 4.1 默认 effort 63.7%，高于 Hydrogen 的 57.3%"
+    "2026 年 AI 行业年度词“slop”指 LLM 低质量输出；AI 生成代码增多使规避 slop 成为工程师日常关切。",
+    "形式化验证用数学证明与逻辑验证软硬件正确性；Harmonic、Theorem、Axiom Math、&Truth 等公司提供相关系统。",
+    "&Truth 基于 Lean 构建验证机器，首款工具 &Atlas 从 C 语言开始映射开源代码；Axiom Math 用形式化验证为数学推理训练提供正确性反馈。"
    ],
    "topics": [
     "post-training",
-    "reasoning"
+    "reasoning",
+    "product"
    ],
-   "category": "模型",
+   "category": "产品与应用",
    "categories": [
+    "产品与应用",
     "模型"
    ],
-   "horizon": "short",
-   "score": 53.5,
+   "horizon": "long",
+   "score": 66.7,
    "status": "review",
    "extra": {
     "content_source": "rss",
-    "source_tags": [
-     "ainews: weekday roundups"
-    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/",
-      "https://latent.space/p/ainews-gemini-4-argon-gdms-answer/",
-      "https://news.ycombinator.com/item?id=50555649",
-      "https://www.anthropic.com/news/anthropic-prices-initial-public-offering",
-      "https://investors.paloaltonetworks.com/news-releases/news-release-details/palo-alto-networks-acquire-applied-compute-bringing-secure-open",
-      "https://twitter.com/i/lists/1585430245762441216",
-      "https://news.smol.ai/",
-      "https://x.com/ValsAI/status/2123168183746195620",
-      "https://x.com/GeminiApp/status/2123169070988337603",
-      "https://x.com/cursor_ai/status/2123198346802450926",
-      "https://x.com/github/status/2123181574116233646",
-      "https://x.com/caspar_br/status/2123192026745409844",
-      "https://x.com/arena/status/2123192239761596566",
-      "https://artificialanalysis.ai/articles/gemini-4-neon-intelligence-gain",
-      "https://x.com/arena/status/2123169189397709174",
-      "https://x.com/arena/status/2123169199396946279",
-      "https://x.com/ValsAI/status/2123168167879147542",
-      "https://x.com/ValsAI/status/2123168182051762433",
-      "https://x.com/kimmonismus/status/2123168557228011759",
-      "https://x.com/theo/status/2123273253850628260",
-      "https://x.com/jeremyphoward/status/2123280439314108762",
-      "https://x.com/TimGMath/status/2123067901280485621",
-      "https://x.com/ValsAI/status/2123129588066959380",
-      "https://x.com/arena/status/2123234410032214464",
-      "https://x.com/arena/status/2123112692810764496",
-      "https://x.com/OpenAIDevs/status/2123188195202617408",
-      "https://x.com/thsottiaux/status/2122929634916679820",
-      "https://x.com/ArtificialAnlys/status/2123236464003588136",
-      "https://latent.space/p/ainews-gpt-6-2-astra-the-2-frontier-model-is-better-and-20-600-cheaper-but-has-mixed-reviews-6-2-sol/",
-      "https://huggingface.co/harness-hub/Qwen3.8-27B-pi-adapted",
-      "https://huggingface.co/harness-hub/Qwen3.8-27B-opencode-adapted",
-      "https://github.com/Tencent-Hunyuan/Hy4-flash",
-      "https://x.com/vllm_project/status/2122917809948852559",
-      "https://x.com/vllm_project/status/2123102778885276004",
-      "https://epoch.ai/data-insights/agentic-inference-capacity-growth",
-      "https://x.com/runwayml/status/2123060689053036600",
-      "https://x.com/PrimeIntellect/status/2123207653530972470",
-      "https://x.com/lvwerra/status/2123089416352829725",
-      "https://openai.com/index/advancing-chip-design-with-our-models/",
-      "https://openai.com/index/research-acceleration-jagged-frontier/"
+      "https://www.slopmanifesto.com/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://latent.space/p/ainews-quasi-riemann-hypothesis-openai/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.harmonic.fun/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://theorem.dev/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://axiommath.ai/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://andtruth.com/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://theory.stanford.edu/~barrett/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://cvc5.github.io/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.amazon.science/news/how-academic-collaboration-delivers-real-world-security-to-amazon-customers?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.researchgate.net/publication/359546891_cvc5_A_Versatile_and_Industrial-Strength_SMT_Solver?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://lean-lang.org/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://x.com/ValsAI/status/2123129591292432513?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.scientificamerican.com/article/anthropic-mathematician-claims-to-prove-riemann-hypothesis-most-famous-problem-in-all-of-math/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://latent.space/p/axiom/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://wal.sh/research/axiomprover-2026/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://api.axle.axiommath.ai/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.harmonic.fun/aristotle/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.harmonic.fun/news/intro-harmonic/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://theorem.dev/blog/verified-software-stack/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://www.anthropic.com/research/formal-verification?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://andtruth.com/mission/?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv",
+      "https://x.com/dabit3/status/2123105522945585406?utm_source=latent.space&utm_medium=ainews&utm_campaign=lsbeehiiv"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "273d336d37591ea3",
-   "url": "https://www.qbitai.com/2026/11/511092.html",
-   "title": "好清晰！最新国产AI画的8K图，放这么大大大大也不糊！",
+   "id": "3e97e19d49f6ea71",
+   "url": "https://www.qbitai.com/2026/11/511582.html",
+   "title": "双系统决策+双层自进化，Agnes让Agent效率最高提速14倍，成本骤降至1/27！",
    "source": "量子位",
    "tier": "B",
-   "published_at": "2026-11-19T07:01:05+00:00",
-   "summary_short": "可灵Kling Image 4.0实测：原生8K图放大细节不糊，单图可写2000字",
-   "summary_long": "量子位对可灵最新推出的Kling Image 4.0做了实测。该模型主打原生8K出图，人像放大后细纹、手指纹路、雀斑、睫毛和眼妆颗粒感仍清晰稳定，风景图放大后细节同样不崩。文字方面，单图可生成2000字，支持70+款预设字体与排版；实测把《沁园春雪》全文写入并指定劲疏墨韵体后，模型自行采用竖排、从右往左的版式，还加了盖章图案。组图方面，一次描述最多生成10张系列组图，实测《万物有光》展览海报风格统一，也可用于女侦探故事的六格分镜；“电商详情页”可上传参考图生成长图。多参考图实测中，六件露营装备被放进同一湖边场景，并处理了遮挡与光照。原文称其采用原生理解生成大一统架构，以单一Transformer为中枢，把世界知识、视觉感知与图像潜空间放在同一上下文处理，并支持最高15K Token指令与结构化视觉语言。",
+   "published_at": "2026-11-20T05:24:11+00:00",
+   "summary_short": "开源Agnes Harness用双系统决策与双层自进化，降低Agent执行成本并沉淀经验。",
+   "summary_long": "原文从企业软件“开发90块、适配10块”的成本变化切入，指出AI把开发成本降到1块后，企业适配仍是Agent落地难点：不少Agent只在浏览器和终端中工作，换设备或新任务需重教，执行经验也难以沉淀。开源系统Agnes Harness（Apache 2.0，GitHub 2.1k Star）提出Sys1双系统决策：复杂推理交给大语言模型System 2，高频明确操作交给9B决策模型Agnes Sys1.0，由插件接入并判断下一步动作。原文报告，家庭漏水任务中判断下一步的耗时从7.6秒降至0.53秒；行李房100次判断的单次成本从约0.00247美元降至0.000091美元；机器狗仿真任务整体耗时缩短32.9%。另一设计是TTT×RSI双层自进化：TTT让模型针对新任务自出练习题，只微调末端校准参数且学完清空；RSI在任务后复盘，调整Prompt、Memory、Skills和Subagent配合，验证后形成版本化Playbook复用。原文还称业务工具、模型适配器、工作流、Skills和操作界面可封装为插件，已有系统可通过MCP接入。",
    "key_points": [
-    "原生8K出图：人像与风景图放大后，细纹、雀斑、睫毛、眼妆颗粒等细节仍清晰稳定",
-    "文字表现：单图可生成2000字，支持70+款预设字体，实测《沁园春雪》全文自动竖排右起并加盖章",
-    "组图与长图：一次描述最多生成10张系列组图，可做系列海报、故事分镜，也能生成电商详情页长图"
+    "Agnes Harness是Apache 2.0开源系统，GitHub 2.1k Star，核心设计之一是Sys1双系统决策：System 2大模型负责复杂推理，9B的Agnes Sys1.0负责高频明确操作并通过插件接入。",
+    "原文报告：家庭漏水任务判断下一步耗时从7.6秒降至0.53秒；行李房100次判断单次成本从约0.00247美元降至0.000091美元；机器狗仿真任务整体耗时缩短32.9%。",
+    "TTT×RSI双层自进化中，TTT让模型针对新任务自出练习题、只微调末端校准参数且学完清空；RSI在任务后复盘并调整Prompt、Memory、Skills和Subagent，验证后形成版本化Playbook复用。"
    ],
    "topics": [
-    "image-generation",
-    "multimodal",
-    "text-rendering"
+    "agent-loop",
+    "harness",
+    "mcp"
    ],
-   "category": "模型",
+   "category": "Agent 与开发",
    "categories": [
-    "模型"
+    "Agent 与开发"
    ],
-   "horizon": "short",
-   "score": 52.9,
+   "horizon": "long",
+   "score": 65.6,
    "status": "review",
    "extra": {
     "content_source": "direct",
     "source_tags": [
      "资讯",
      "首页轮播",
-     "AI生图",
-     "Kling Image 4.0",
-     "可灵"
+     "Agnes"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.qbitai.com/author/shisan",
+      "https://www.qbitai.com/author/yishui",
       "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/ai%e7%94%9f%e5%9b%be",
-      "https://www.qbitai.com/tag/kling-image-4-0",
-      "https://www.qbitai.com/tag/%e5%8f%af%e7%81%b5",
-      "https://www.qbitai.com/2026/11/510610.html",
-      "https://www.qbitai.com/2026/11/508828.html",
-      "https://www.qbitai.com/2026/11/508919.html",
-      "https://www.qbitai.com/2026/11/507277.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/511092.html&title=好清晰！最新国产AI画的8K图，放这么大大大大也不糊！&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2024/06/148290.html",
-      "https://www.qbitai.com/tag/controlnet%e4%bd%9c%e8%80%85",
-      "https://www.qbitai.com/tag/%e5%a4%a7%e6%a8%a1%e5%9e%8b",
-      "https://www.qbitai.com/2025/01/243268.html",
-      "https://www.qbitai.com/2024/03/129600.html",
-      "https://www.qbitai.com/tag/ai",
-      "https://www.qbitai.com/tag/stable-diffusion",
-      "https://www.qbitai.com/2025/04/274535.html",
-      "https://www.qbitai.com/tag/ai%e7%bb%98%e5%9b%be",
-      "https://www.qbitai.com/tag/%e5%bf%ab%e6%89%8b",
-      "https://www.qbitai.com/2024/03/126169.html",
-      "https://www.qbitai.com/tag/gemini",
-      "https://www.qbitai.com/tag/%e8%b0%b7%e6%ad%8c",
-      "https://www.qbitai.com/2026/05/416056.html",
+      "https://github.com/AgnesAI-Labs/agnes-harness",
+      "https://github.com/AgnesAI-Labs/Agnes-Sys1-1.0-Technical-Report",
+      "https://github.com/AgnesAI-Labs/Agnes-Harness-Technical-Report-Nov-2026",
+      "https://www.qbitai.com/tag/agnes",
+      "https://www.qbitai.com/2026/11/510726.html",
+      "https://www.qbitai.com/2026/11/510013.html",
+      "https://www.qbitai.com/2026/11/509224.html",
       "https://www.qbitai.com/2026/11/510003.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/511582.html&title=双系统决策+双层自进化，Agnes让Agent效率最高提速14倍，成本骤降至1/27！&appkey=4017757111&searchPic=true&ralateUid=6105753431",
       "https://www.qbitai.com/2026/11/510486.html",
       "https://www.qbitai.com/2026/11/510297.html",
       "https://www.qbitai.com/2026/11/510232.html",
-      "https://www.qbitai.com/2026/11/509995.html",
+      "https://www.qbitai.com/2026/11/510707.html",
       "https://weibo.com/qbitai?is_all=1",
       "https://www.zhihu.com/org/liang-zi-wei-48/activities",
       "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
@@ -557,37 +212,248 @@
    }
   },
   {
-   "id": "e29ac258c013c12c",
-   "url": "https://openai.com/business/learn/codex-security-plugin-demo",
-   "title": "Explore the Codex Security Plugin",
-   "source": "OpenAI News",
+   "id": "9afed0143cc7325c",
+   "url": "https://www.anthropic.com/news/ipo-close",
+   "title": "Anthropic announces closing of initial public offering, including full exercise of underwriters’ option to purchase additional shares, and closing of concurrent private placement",
+   "source": "Anthropic News",
    "tier": "S",
-   "published_at": "2026-11-19T00:00:00+00:00",
-   "summary_short": "OpenAI 官网放出 Codex 安全插件演示视频，展示首次扫描到查看结果的完整操作流程",
-   "summary_long": "原文是 OpenAI 官网上的一个产品演示页面，主题为「Explore the Codex Security Plugin」（探索 Codex 安全插件）。页面主体是一段演示视频，视频标题为「How to run your first Codex Security scan」（如何运行你的第一个 Codex 安全扫描）。视频内容是工作流的实际操作，即从开始使用到在录制画面中查看结果的完整过程。页面文字说明，观看这段演示即可看到插件工作流的实际运行，并提供了视频分享入口。除此之外，原文未详述该插件的具体功能范围、支持环境、上线时间、获取方式或定价，也没有给出任何技术细节与评测结论。因此，仅凭原文只能确认，存在一个名为 Codex Security Plugin 的产品演示，且演示围绕「第一次安全扫描」的操作展开；至于插件的能力边界与适用范围，原文未详述。",
+   "published_at": "2026-11-20T00:00:00+00:00",
+   "summary_short": "Anthropic完成IPO与同步私募，合计毛收益约1195亿美元",
+   "summary_long": "Anthropic, PBC宣布完成首次公开募股及同步私募。IPO共发行11.27亿股Class A普通股，发行价每股83.00美元，其中承销商全额行使超额配售权，额外购买1.47亿股；发行由Anthropic售出11.03351354亿股、若干售股股东售出2364.8646万股构成。IPO毛收益约935亿美元，扣除承销折扣佣金及其他费用前，Anthropic获得约916亿美元，售股股东出售部分Anthropic未获收益。Class A普通股于2026年11月19日在纳斯达克全球精选市场以“ANT”代码交易。同步私募向Advanced Micro Devices、Broadcom、Google LLC、Micron、Microsoft、NVIDIA及TSMC Partners, Ltd.出售3.13253007亿股Class N普通股，价格同为每股83.00美元，合计购买价约260亿美元，且未按《证券法》注册。IPO（含售股股东股份）与同步私募合计毛收益约1195亿美元。高盛和摩根士丹利任牵头簿记管理人。",
    "key_points": [
-    "原文是 OpenAI 官网的产品演示页，核心是一段 Codex Security Plugin 演示视频",
-    "演示视频标题为「如何运行你的第一个 Codex 安全扫描」，覆盖从入门到查看结果的工作流",
-    "插件的具体功能、支持环境、获取方式等细节，原文未详述"
+    "IPO发行11.27亿股Class A普通股，每股83.00美元，含承销商全额行使超额配售权额外购买1.47亿股；IPO毛收益约935亿美元，Anthropic获约916亿美元。",
+    "同步私募向Advanced Micro Devices、Broadcom、Google LLC、Micron、Microsoft、NVIDIA及TSMC Partners, Ltd.出售3.13253007亿股Class N普通股，合计购买价约260亿美元，未按《证券法》注册。",
+    "IPO（含售股股东股份）与同步私募合计毛收益约1195亿美元；Class A于2026年11月19日以“ANT”在纳斯达克全球精选市场交易，高盛和摩根士丹利任牵头簿记管理人。"
    ],
    "topics": [
-    "coding-agent",
-    "cybersecurity",
-    "tool-use"
+    "product"
    ],
-   "category": "Agent 与开发",
+   "category": "行业动态",
    "categories": [
-    "Agent 与开发",
-    "安全"
+    "行业动态"
    ],
    "horizon": "short",
-   "score": 52.6,
+   "score": 61.8,
    "status": "review",
    "extra": {
-    "content_source": "reader",
+    "content_source": "direct",
     "source_tags": [
-     "Demos"
+     "News"
     ],
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "b268c324f6e6fefc",
+   "url": "https://www.qbitai.com/2026/11/511610.html",
+   "title": "昇腾算力训出了双榜SOTA的具身世界模型，华为云这次想把整套底座开放出来",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-11-20T08:04:58+00:00",
+   "summary_short": "华为云发布昇腾原生具身世界模型，双榜第一并将开源权重与后训练代码",
+   "summary_long": "11月16日，华为云发布昇腾原生具身世界模型CloudRobo-WM1.2，它在RoboTwin 2.0和LIBERO-Pro 2.0两项具身智能评测中的平均成功率分别为88.98%和81.73%，双双排第一。该模型在昇腾算力上训练，训练框架、关键算子、推理部署都围绕昇腾优化，这就是“昇腾原生”的含义。华为云计划11月30日开放模型权重、推理代码和后训练代码。第三方独立测试中，5种机器人本体、13项操作任务的平均成功率比第二名高23个百分点；插头插入后意外滑脱时，模型能根据新观测画面动态调整动作并重试。技术上，模型采用PPA多模态世界表征架构，把感知、预测与动作放到同一阶段联合训练，接入RGB视频、DINO语义特征、深度和三维点云；预训练用多粒度监督掩码剔除缺失或无效部分。DualAct架构用动作专家分支和世界模型骨干两条路径兼顾速度与精度；跨具身建模保留机器人96维、人类168维原生状态表征。训练数据已扩至2.75万小时，接入20个数据源、33种本体。推理设四种弹性模式，最重一档计算量约为最轻一档的11倍。",
+   "key_points": [
+    "11月16日发布CloudRobo-WM1.2，在RoboTwin 2.0与LIBERO-Pro 2.0上平均成功率88.98%、81.73%，均列第一",
+    "模型在昇腾算力上训练，从模型架构、训练框架到核心算子与推理部署做软硬件协同优化；计划11月30日开放权重、推理代码和后训练代码",
+    "技术包含PPA多模态世界表征架构、多粒度监督掩码、DualAct双路径与本体语义保真跨具身运动建模，训练数据2.75万小时、33种本体"
+   ],
+   "topics": [
+    "post-training",
+    "reasoning",
+    "open-source"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 58.8,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯",
+     "SOTA",
+     "世界模型",
+     "具身智能",
+     "华为云"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/tianyanlin",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/tag/sota",
+      "https://www.qbitai.com/tag/%e4%b8%96%e7%95%8c%e6%a8%a1%e5%9e%8b",
+      "https://www.qbitai.com/tag/%e5%85%b7%e8%ba%ab%e6%99%ba%e8%83%bd",
+      "https://www.qbitai.com/tag/%e5%8d%8e%e4%b8%ba%e4%ba%91",
+      "https://www.qbitai.com/tag/%e5%9b%bd%e4%ba%a7%e7%ae%97%e5%8a%9b",
+      "https://www.qbitai.com/2026/11/511426.html",
+      "https://www.qbitai.com/2026/11/510737.html",
+      "https://www.qbitai.com/2026/11/509468.html",
+      "https://www.qbitai.com/2026/11/508344.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/511610.html&title=昇腾算力训出了双榜SOTA的具身世界模型，华为云这次想把整套底座开放出来&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2026/11/508919.html",
+      "https://www.qbitai.com/tag/lingbot-touch",
+      "https://www.qbitai.com/tag/%e8%9a%82%e8%9a%81%e7%81%b5%e6%b3%a2",
+      "https://www.qbitai.com/2023/07/69054.html",
+      "https://www.qbitai.com/tag/%e5%a4%a7%e6%a8%a1%e5%9e%8b",
+      "https://www.qbitai.com/2025/06/293603.html",
+      "https://www.qbitai.com/tag/yann-lecun",
+      "https://www.qbitai.com/2025/09/329616.html",
+      "https://www.qbitai.com/tag/2025%e7%a7%91%e6%8a%80%e5%88%9b%e5%8f%98%e8%80%85%e5%a4%a7%e4%bc%9a",
+      "https://www.qbitai.com/tag/%e4%b8%ad%e5%85%b3%e6%9d%91%e6%99%ba%e5%8f%8b%e7%a0%94%e7%a9%b6%e9%99%a2",
+      "https://www.qbitai.com/2023/08/77733.html",
+      "https://www.qbitai.com/tag/workgpt",
+      "https://www.qbitai.com/tag/%e4%ba%ba%e5%bd%a2%e6%9c%ba%e5%99%a8%e4%ba%ba",
+      "https://www.qbitai.com/2025/12/360604.html",
+      "https://www.qbitai.com/tag/%e5%8d%ab%e6%98%9f",
+      "https://www.qbitai.com/2026/11/510003.html",
+      "https://www.qbitai.com/2026/11/510486.html",
+      "https://www.qbitai.com/2026/11/510297.html",
+      "https://www.qbitai.com/2026/11/510232.html",
+      "https://www.qbitai.com/2026/11/510707.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "65edf14fd72af2fa",
+   "url": "https://www.motherjones.com/politics/2026/11/google-alphabet-union-school-ai-protest-gemini-workers-petition/",
+   "title": "Google Workers Tell Their Employer Not to Punish Schools That Don't Want AI",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-20T16:59:27+00:00",
+   "summary_short": "数百谷歌员工请愿撤回惩罚不用AI学校的新政策",
+   "summary_long": "数百名谷歌员工通过Alphabet Workers Union发起请愿，要求高层撤回一项政策：从明年起，对关闭Gemini AI工具的学校切断谷歌搜索访问。该政策两周前在选举日突然公布，高管称意在回应教师和家长对课堂AI的担忧。此后多地社区抗议，纽约、洛杉矶、芝加哥等校区正讨论替代搜索引擎。请愿书称，教育者应自由选择如何在课程中使用AI，惩罚不用AI的学校不会说服用户，反而可能让它们完全弃用谷歌产品。请愿直接致信CEO Sundar Pichai等高管。一名教育部门工程师称多数员工在公开宣布前并不知情；领导层已确认收到信件，但未回应具体诉求。另一名工程师质疑，若技术真有用，为何不信任用户自行选择。",
+   "key_points": [
+    "政策规定，从明年起关闭Gemini AI工具的学校将被切断谷歌搜索访问，且该决定在选举日突然公布。",
+    "数百名谷歌员工在Alphabet Workers Union组织下请愿，要求撤回政策，主张尊重教育者选择，否则学校可能弃用谷歌产品。",
+    "纽约、洛杉矶、芝加哥等校区正讨论替代搜索引擎；谷歌领导层已确认收到信件，但未回应具体诉求，有工程师称多数员工事先不知情。"
+   ],
+   "topics": [
+    "product",
+    "policy"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "short",
+   "score": 57.2,
+   "status": "review",
+   "extra": {
+    "hn_points": 254,
+    "hn_comments": 192,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.motherjones.com/newsletters/?mj_oac=Article_Top_No_Oligarchs",
+      "https://blog.google/products-and-platforms/products/education/ai-learning-era-updates-2026/?_sp=0a23bdaa-2003-4b98-997d-a01deb4aaa34.1794423375759",
+      "https://www.motherjones.com/politics/2026/11/google-ai-protests-students-parents-families-new-york-nationwide-search-lawsuit/",
+      "https://www.fournorms.com/organizations/four-norms/actions/fn-no-big-tech-bullies-in-our-schools-rallies-november-11",
+      "https://www.cnbc.com/2020/10/25/chromebook-shipment-growth-accelerates-during-coronavirus-pandemic.html",
+      "https://search.google/ai-in-search/",
+      "https://www.nytimes.com/2026/11/18/technology/google-gemini-ai-search-schools-nyc-la-chicago.html",
+      "https://drive.google.com/file/d/1ZMCJhkZmIQiSOOM392hxMf0s7_NZOxyc/view",
+      "https://www.alphabetworkersunion.org/about-us",
+      "https://www.alphabetworkersunion.org/our-people"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "b8e1839046bc97c6",
+   "url": "https://simonwillison.net/2026/Nov/20/levent-alpoge/",
+   "title": "Quoting Levent Alpöge",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-20T16:30:48+00:00",
+   "summary_short": "Levent Alpöge 称与 Claude 证明黎曼猜想并完成无假设形式化",
+   "summary_long": "这段文字是 Levent Alpöge 的一段自述（原文标注出处为 alpo.ge/remark.pdf）。他表示，自己相信与 Claude 合作发现了黎曼猜想的证明，并且这个方法很容易进一步推广，从而解决所谓的广义黎曼猜想；他预计，若有更多时间，也能处理扩展黎曼猜想。他还称，两人已在无假设的前提下将这些论证形式化。他写道，人们自然会觉得这是一个终点，对自己而言是失去一盏主要的指引之光，但他在推进过程中看到的东西令他如此惊讶，以至于他认为这是整个科学界迎来某种更宏大事物的一道曙光。文末他回顾了与 Claude 近几个月的合作，称合作范围很广，并说这次在临近终点时，Claude 远比自己快，原文形容为“Claude 在终点线附近飞翔、起舞、闪耀”。原文未详述证明思路、验证方式或同行评议情况。",
+   "key_points": [
+    "Levent Alpöge 称与 Claude 合作发现了黎曼猜想的证明，并称该方法可轻易推广至广义黎曼猜想，他预计若时间更多还能处理扩展黎曼猜想。",
+    "他称相关论证已在无假设条件下完成形式化。",
+    "他把这一进展描述为整个科学界迎来某种更宏大事物的一道曙光；他还称，临近终点时 Claude 的表现远超过自己。"
+   ],
+   "topics": [
+    "reasoning",
+    "product"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 53.0,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "anthropic",
+     "claude",
+     "generative-ai",
+     "mathematics",
+     "ai"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://alpo.ge/remark.pdf",
+      "https://simonwillison.net/tags/anthropic",
+      "https://simonwillison.net/tags/claude",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/mathematics",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/levent-alpoge"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "d15c45643214b444",
+   "url": "https://openai.com/business/customer-stories/hebbia",
+   "title": "Hebbia sees improvements in financial research with GPT-6 Astra",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-20T00:00:00+00:00",
+   "summary_short": "Hebbia测试GPT-6 Astra：金融研究引用与演示文稿指标领先",
+   "summary_long": "银行在推荐并购前需梳理财务报表、客户合同和管理层演示，Hebbia的Matrix把答案与背后文档关联起来。原文称，Hebbia测试了OpenAI的GPT‑6 Astra，以改进两项工作：找到问题所需的来源，以及按银行家简报生成演示文稿。测试于2026年8月至9月进行，使用预发布版本，各模型采用相同金融研究案例和评分标准，标准由领域专家撰写或依据源文件审核。结果显示，GPT‑6 Astra在引用所需来源类型上领先最佳对比模型13.6个百分点，所引用摘录中99.5%与问题相关；在适用的演示要求上满足97.9%，领先14.4个百分点，并在遵循简报和演示质量两项均排第一。原文引述Hebbia的Kavita Anand称，可追溯性对用户很重要，因为其决策涉及数百万美元。",
+   "key_points": [
+    "Hebbia测试OpenAI GPT‑6 Astra，聚焦金融研究中来源查找和按简报生成演示文稿两项任务。",
+    "测试使用2026年8月至9月的预发布版本、相同案例与评分标准；GPT‑6 Astra在引用所需来源类型上领先13.6个百分点，99.5%的引用摘录相关。",
+    "演示要求满足率97.9%，领先14.4个百分点；在遵循简报与演示质量上均排第一，其他模型存在取舍。"
+   ],
+   "topics": [
+    "product",
+    "eval"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "评测"
+   ],
+   "horizon": "short",
+   "score": 50.4,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://openai.com/policies/privacy-policy/"
+     ]
+    },
     "summary_mode": "full"
    }
   }
