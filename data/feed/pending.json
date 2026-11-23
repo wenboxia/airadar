@@ -1,418 +1,355 @@
 {
- "generated_at": "2026-11-21T23:49:00+00:00",
+ "generated_at": "2026-11-23T00:20:21+00:00",
  "items": [
   {
-   "id": "9e7df998d665d22e",
-   "url": "https://www.qbitai.com/2026/11/511740.html",
-   "title": "米哈游发了个VLA论文",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-11-20T16:25:26+00:00",
-   "summary_short": "米哈游8B VLA模型Gamer仅凭画面玩《崩铁》，50小时自主运行超95%",
-   "summary_long": "米哈游崩坏AI研发团队发布研究Gamer，定位是面向长流程、实时交互的通用视觉—语言—动作（VLA）基础模型。主力版本基于80亿参数的Qwen3-VL-8B进一步训练，输入屏幕画面与任务指令，输出键鼠操作。演示中AI能自己与可可利亚战斗、启动场景机关、跟随NPC跑图。其最大亮点是把跨游戏的实时操作与长流程的记忆、规划接进同一套VLA框架，判断只依靠画面、任务指令和已有记忆，无需读取游戏内部接口或底层状态，并动态记录已完成什么、下一步做什么。训练分三阶段：先用跨游戏录屏与玩家操作对齐做持续预训练，统一键鼠格式，执行时每200毫秒读一次画面、一次安排六个约33毫秒的动作块；再用约1000小时《崩铁》演示做微调；最后用TA-GRPO做在线强化学习，以游戏环境核验结果作为反馈。配套的稀疏思考、记忆摘要机制与Streaming-vLLM推理引擎用于压低延迟、缓解上下文爆炸。在五个主线篇章、约50小时的《崩铁》评估中，自主运行时间占比超95%。",
+   "id": "21bd1d482ae20679",
+   "url": "https://simonwillison.net/2026/Nov/21/muru/",
+   "title": "Muru",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-21T23:56:28+00:00",
+   "summary_short": "mod_wsgi 作者用 AI 辅助写 Rust 服务器 Muru，服务 Python Web 应用",
+   "summary_long": "Graham Dumpleton 在 20 年前发起 mod_wsgi，此后一直在思考生产环境中运行 Python Web 应用的理想方式。Muru 是他新做的、AI 辅助开发的 Rust 服务器，目标是同时为开发和生产环境下的 ASGI 与 WSGI 应用提供尽可能好的工具。原文提到，他像此前做 wrapture 时一样，把开发过程以极其详细的方式持续公开写作，作为开发流程的一部分。原文列出了他在最近三周内发布的系列文章，时间从 2026-11-04 到 2026-11-22，首篇是《mod_wsgi 的二十年，以及接下来是什么》，后续涉及 Muru 的初览、worker 内部结构、整体架构、import once fork many、开发环境 HTTPS、WSGI 与 ASGI 共存、releases not restarts、无服务网格的 canary、容器中的租户、与 Kubernetes 配合、按 worker 上报扩缩容、缩容到零、定时 overlay、监控响应、每页工具栏与追踪、惰性导入的用处等。原文特别推荐其中《AI as a lifestyle choice》一文，指出 AI 可能承担表面上的大量工作，但判断什么还不够好仍由作者负责，而二十年做 mod_wsgi 积累的犯错经验对此有用；他表示愿意持续打磨 Muru，直到自己和他人都能信任它。",
    "key_points": [
-    "Gamer是80亿参数、基于Qwen3-VL-8B训练的VLA基础模型，只看屏幕画面和任务指令输出键鼠操作，不读游戏内部接口或底层状态。",
-    "三阶段训练：跨游戏录屏与操作对齐的持续预训练、约1000小时《崩铁》演示微调、以环境核验为反馈的TA-GRPO在线强化学习。",
-    "实测在五个主线篇章、约50小时《崩铁》流程中自主运行占比超95%；七类小游戏40个未训练任务上，基座3.2%、CPT 15.0%、SFT 39.2%、加强化学习49.7%，通用模型最高为17.1%。"
+    "Muru 是 Graham Dumpleton 的新项目，用 Rust 编写、AI 辅助开发，目标是为开发和生产环境的 ASGI 与 WSGI Python 应用提供工具。",
+    "他把开发过程写成系列文章公开，原文列出了 2026-11-04 至 2026-11-22 近三周的约二十篇。",
+    "原文推荐《AI as a lifestyle choice》：AI 承担大量表面工作，但是否够好仍由他判断，二十年 mod_wsgi 的踩坑经验对他有帮助。"
    ],
    "topics": [
-    "post-training",
-    "reasoning",
-    "coding-agent"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 70.7,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "VLA",
-     "米哈游"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/hengyu",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/vla",
-      "https://www.qbitai.com/tag/%e7%b1%b3%e5%93%88%e6%b8%b8",
-      "https://www.qbitai.com/2026/11/511855.html",
-      "https://www.qbitai.com/2026/11/511849.html",
-      "https://www.qbitai.com/2026/11/511841.html",
-      "https://www.qbitai.com/2026/11/511830.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/511740.html&title=米哈游发了个VLA论文&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2021/03/22117.html",
-      "https://www.qbitai.com/tag/%e5%8e%9f%e7%a5%9e",
-      "https://www.qbitai.com/tag/%e8%84%91%e6%9c%ba%e6%8e%a5%e5%8f%a3",
-      "https://www.qbitai.com/2023/08/77346.html",
-      "https://www.qbitai.com/tag/%e4%b8%80%e5%8a%a0",
-      "https://www.qbitai.com/tag/%e4%b8%80%e5%8a%a0-ace-2-pro",
-      "https://www.qbitai.com/tag/%e7%8b%ac%e7%ab%8b%e6%98%be%e7%a4%ba%e8%8a%af%e7%89%87",
-      "https://www.qbitai.com/tag/%e9%aa%81%e9%be%998-gen-2",
-      "https://www.qbitai.com/2025/03/264544.html",
-      "https://www.qbitai.com/tag/ai%e6%b8%b8%e6%88%8f",
-      "https://www.qbitai.com/2024/09/189537.html",
-      "https://www.qbitai.com/tag/%e4%ba%91%e8%ae%a1%e7%ae%97",
-      "https://www.qbitai.com/tag/%e9%98%bf%e9%87%8c%e4%ba%91",
-      "https://www.qbitai.com/2023/04/50211.html",
-      "https://www.qbitai.com/2025/04/271692.html",
-      "https://www.qbitai.com/2026/11/510486.html",
-      "https://www.qbitai.com/2026/11/510707.html",
-      "https://www.qbitai.com/2026/11/510726.html",
-      "https://www.qbitai.com/2026/11/510695.html",
-      "https://www.qbitai.com/2026/11/511727.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "4cb075a5562c5e7f",
-   "url": "https://www.qbitai.com/2026/11/511570.html",
-   "title": "刚刚，DeepSeek V1作者创业项目曝光：开源Agent",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-11-21T06:32:31+00:00",
-   "summary_short": "DeepSeek-VL前负责人开源个人Agent Linger，12GB显卡本地跑125B模型",
-   "summary_long": "前DeepSeek LLM V1作者、DeepSeek-VL项目负责人Tony Zhang公布创业公司Simplex AI的新项目Linger：一个专为办公场景优化、开源的个人Agent。与同行优先做APP不同，Linger优先选电脑端，可直接操纵本机已登录的网页、邮箱、日历，无需重配凭据，卡住时用户可接管。核心系统「Another Me」是记忆中枢，本地读取收件箱、日历、聊天与会议，每晚整理成个人Wiki供所有Agent查询，LoCoMo基准准确率95%，称超过Mem0、MemOS；并按重要紧急度主动提醒、从反馈中「隐式强化」学规则，还可组建Agent团队、语音转录会议。本地运行靠MoE推理引擎PolyStrata，按使用频率在GPU显存、内存、SSD间分层调度专家，12GB RTX 3060+64GB内存可跑125B参数Qwen3.8-Flash-Next，45.5 tokens/秒。Tony Zhang称智能应分布式、数据归用户所有，故开源。",
-   "key_points": [
-    "Linger由前DeepSeek LLM V1作者、DeepSeek-VL项目负责人Tony Zhang创立，发布于其公司Simplex AI，项目开源，定位办公场景的个人Agent，优先做电脑端而非APP。",
-    "核心「Another Me」为记忆中枢，本地读取收件箱、日历、聊天与会议并每晚整理成个人Wiki供Agent查询，LoCoMo基准准确率95%，称超过Mem0、MemOS；支持按重要紧急度主动提醒、从反馈中「隐式强化」生成规则、组建Agent团队协作、会议实时转录与待办跟进。",
-    "自研MoE推理引擎PolyStrata按专家使用频率在GPU显存、内存、SSD间动态分层调度；12GB RTX 3060+64GB内存跑125B参数Qwen3.8-Flash-Next达45.5 tokens/秒，RTX 5090（32GB）为179 tokens/秒；Model Autopilot可自动检测硬件并从49个模型等组合中推荐安装。"
-   ],
-   "topics": [
-    "memory",
-    "multi-agent",
-    "open-source"
+    "coding-agent",
+    "open-source",
+    "harness"
    ],
    "category": "Agent 与开发",
    "categories": [
     "Agent 与开发",
-    "模型"
-   ],
-   "horizon": "long",
-   "score": 65.3,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "Deepseek"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.qbitai.com/author/jay",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/deepseek",
-      "https://www.qbitai.com/2026/11/510821.html",
-      "https://www.qbitai.com/2026/11/509440.html",
-      "https://www.qbitai.com/2026/11/509203.html",
-      "https://www.qbitai.com/2026/11/508706.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/511570.html&title=刚刚，DeepSeek V1作者创业项目曝光：开源Agent&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2025/11/357117.html",
-      "https://www.qbitai.com/2025/02/257680.html",
-      "https://www.qbitai.com/tag/%e5%95%86%e6%b1%a4",
-      "https://www.qbitai.com/tag/%e5%a4%a7%e8%a3%85%e7%bd%ae",
-      "https://www.qbitai.com/2026/10/502364.html",
-      "https://www.qbitai.com/tag/%e5%ad%97%e8%8a%82seed",
-      "https://www.qbitai.com/2025/09/338386.html",
-      "https://www.qbitai.com/2025/02/258072.html",
-      "https://www.qbitai.com/tag/%e5%bc%80%e6%ba%90",
-      "https://www.qbitai.com/tag/%e9%80%9a%e4%bf%a1%e5%ba%93",
-      "https://www.qbitai.com/2025/02/255053.html",
-      "https://www.qbitai.com/2026/11/510486.html",
-      "https://www.qbitai.com/2026/11/510707.html",
-      "https://www.qbitai.com/2026/11/510726.html",
-      "https://www.qbitai.com/2026/11/510695.html",
-      "https://www.qbitai.com/2026/11/511727.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "2b32d4b379bcfefb",
-   "url": "https://latent.space/p/ainews-riemann-hypothesis-proved-twice-independently/",
-   "title": "[AINews] Riemann Hypothesis proved...twice independently",
-   "source": "Latent Space",
-   "tier": "B",
-   "published_at": "2026-11-21T05:02:13+00:00",
-   "summary_short": "两位数学家相隔数小时各自宣称证明黎曼猜想，AI 版或正确但无人能读懂",
-   "summary_long": "原文称，两位数学家在数小时内先后独立宣称证明了黎曼猜想。Anthropic 的 Levent Alpöge 先发布一份附有 Lean 代码的笔记（1.3GB，约合25万页），而不是完整论文；Elliot Glazer 确认该形式化陈述为 GRH，并称 Lean 出 bug 的概率远低于1%，因此若无额外公理、编译通过，则很可能正确，但不会有人读完全部内容。随后 Alessandro Masullo 公开了他耗时12年、940页、完全人工撰写、仍在进行中的证明。原文把这件事列为前沿数学突破三部曲的第三项，并提醒：OpenAI 九月关于 Navier-Stokes 的宣称是前车之鉴，批评者认为其 Lean 证明与自然语言结论不符，两项由 AI 宣称的千禧年难题结果都需数年验证。原文强调的对照是：AI 的解可能正确却无法理解，另一份可能技术有误却可理解。Levent 称 Claude 在接近终点时远超自己，并说与 Claude 仅在早期协作，之后涉及高阶群自守形式的关键部分被远远甩开，原文由此引出 Weak to Strong 对齐。",
-   "key_points": [
-    "Levent Alpöge 用 Claude 得出证明，以附有 Lean 代码的笔记形式发布（1.3GB，约合25万页），而非完整论文；Elliot Glazer 确认形式化陈述为 GRH，称 Lean 出错概率远低于1%，若无额外公理并能编译通过，则很可能正确。",
-    "Alessandro Masullo 公开了他耗时12年、940页、完全人工撰写、仍在进行中的证明；原文提到该证明此前经过秘密人工审阅与修订。",
-    "原文指出对照：AI 的解可能正确却无法理解，人工解可能技术有误却可理解；并提及 OpenAI 九月 Navier-Stokes 宣称的争议，两项由 AI 宣称的千禧年难题结果都需数年验证。"
-   ],
-   "topics": [
-    "reasoning",
-    "formal-math"
-   ],
-   "category": "产品与应用",
-   "categories": [
     "产品与应用"
    ],
-   "horizon": "short",
-   "score": 64.7,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [
-      "2610.08144"
-     ],
-     "links": [
-      "https://x.com/eliebakouch/status/2123804091297976653",
-      "https://www.scientificamerican.com/article/dueling-claims-of-riemann-hypothesis-proofs-emerge/",
-      "https://alpo.ge/remark.pdf",
-      "https://x.com/ElliotGlazer/status/2123792743503933774",
-      "https://math216.wordpress.com/2026/11/20/hurried-announcement-alessandro-masullo-grh/",
-      "https://x.com/KSHartnett/status/2123847664064241799",
-      "https://latent.space/p/ainews-openai-reports-navier-stokes/",
-      "https://latent.space/p/ainews-quasi-riemann-hypothesis-openai/",
-      "https://arxiv.org/abs/2610.08144",
-      "http://agentfield.ai/",
-      "https://agentfield.ai/github/codeaf/?utm_source=latentspace&utm_medium=newsletter&utm_campaign=latentspace-261119&utm_id=latentspace-261119-codeaf&utm_content=codeaf",
-      "https://latent.space/p/ainews-the-no-ai-slop-manifesto/",
-      "https://openai.com/index/weak-to-strong-generalization/",
-      "https://www.backblaze.com/cloud-storage/landing/ad/ai?utm_source=latent_space&utm_medium=podcast&utm_campaign=podcast-promotion-11202026",
-      "https://x.com/sciam/status/2123782587235655707",
-      "https://x.com/kimmonismus/status/2123791432800698792",
-      "https://x.com/yifanzhang_/status/2123789252756414577",
-      "https://x.com/kimmonismus/status/2123796564485530085",
-      "https://x.com/spicey_lemonade/status/2123927791733452950",
-      "https://x.com/ArtificialAnlys/status/2123865423364161861",
-      "https://x.com/scaling01/status/2123852279216230527",
-      "https://x.com/theojaffee/status/2123851368951910847",
-      "https://x.com/EgeErdil2/status/2123818549353623921",
-      "https://x.com/cloneofsimo/status/2123851306150605248",
-      "https://x.com/lateinteraction/status/2123827471325765706",
-      "https://x.com/scaling01/status/2123804878409765096",
-      "https://x.com/nabeelqu/status/2123806732027924920",
-      "https://x.com/kimmonismus/status/2123875710272233884",
-      "https://x.com/thinkymachines/status/2123871643797995872",
-      "https://x.com/miramurati/status/2123872534970208421",
-      "https://x.com/vllm_project/status/2123872608848687262",
-      "https://x.com/ArtificialAnlys/status/2123877871316087012",
-      "https://x.com/eliebakouch/status/2123881752641065285",
-      "https://x.com/teortaxesTex/status/2123887754744336724",
-      "https://x.com/ziqiao_ma/status/2123873363605201085",
-      "https://x.com/ValsAI/status/2123874523938497007",
-      "https://x.com/ValsAI/status/2123874533346316304",
-      "https://x.com/teortaxesTex/status/2123917510705545607",
-      "https://x.com/AlexRobey23/status/2123872680718082542",
-      "https://x.com/GoodfireAI/status/2123873150803100059"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "480c7f59bbc97a69",
-   "url": "https://simonwillison.net/2026/Nov/20/llm-gemini/",
-   "title": "llm-gemini 0.38.1",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-11-20T03:01:57+00:00",
-   "summary_short": "llm-gemini 0.38.1 修复漏掉的 xhigh 推理档位，Hydrogen 输出质量提升明显",
-   "summary_long": "llm-gemini 插件发布 0.38.1 版本，这是一个修复性的点版本。作者此前将 Gemini 4 Hydrogen 和 Gemini 4 Neon 两个模型加入插件时，漏掉了它们比 Gemini 4 Carbon 多出的 xhigh 推理档位——Carbon 只支持 low、medium、high 三档，而 Hydrogen 和 Neon 额外支持 xhigh。该问题已在此版本中修复。作者同时更新了 Gemini 4 对比表格，并指出 xhigh 设置对 Hydrogen 影响显著：同一模型在 high 档下使用 5,311 个输出 token、花费 3.99 美分；而在 xhigh 档下使用 31,477 个输出 token、花费 23.61 美分，生成的 pelican 结果可与 Gemini 4 Neon 相竞争。",
-   "key_points": [
-    "0.38.1 是修复性点版本，补上了此前加入插件时遗漏的 Hydrogen 与 Neon 的 xhigh 推理档位",
-    "Gemini 4 Carbon 只支持 low、medium、high 三档，Hydrogen 和 Neon 才有额外的 xhigh 档",
-    "xhigh 对 Hydrogen 影响显著：high 档 5,311 输出 token、3.99 美分，xhigh 档 31,477 输出 token、23.61 美分，pelican 输出可与 Gemini 4 Neon 相竞争"
-   ],
-   "topics": [
-    "reasoning"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 64.3,
+   "horizon": "long",
+   "score": 72.2,
    "status": "review",
    "extra": {
     "content_source": "rss",
     "source_tags": [
-     "gemini",
-     "llm",
-     "llm-reasoning",
-     "pelican-riding-a-bicycle",
+     "graham-dumpleton",
+     "modwsgi",
+     "python",
+     "wsgi",
      "ai"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/simonw/llm-gemini/releases/tag/0.38.1",
-      "https://static.simonwillison.net/static/2026/gemini-4-carbon-neon-hydrogen-with-xhigh.html",
-      "https://simonwillison.net/tags/gemini",
-      "https://simonwillison.net/tags/llm",
-      "https://simonwillison.net/tags/llm-reasoning",
-      "https://simonwillison.net/tags/pelican-riding-a-bicycle",
+      "https://github.com/muruhq/muru",
+      "https://modwsgi.readthedocs.io/",
+      "https://simonwillison.net/2026/Sep/11/wrapture/",
+      "https://grahamdumpleton.me/posts/2026/11/twenty-years-of-mod-wsgi/",
+      "https://grahamdumpleton.me/posts/2026/11/a-first-look-at-muru/",
+      "https://grahamdumpleton.me/posts/2026/11/muru-looking-inside-the-workers/",
+      "https://grahamdumpleton.me/posts/2026/11/muru-how-it-fits-together/",
+      "https://grahamdumpleton.me/posts/2026/11/muru-import-once-fork-many/",
+      "https://grahamdumpleton.me/posts/2026/11/muru-https-in-development/",
+      "https://grahamdumpleton.me/posts/2026/11/muru-wsgi-and-asgi-together/",
+      "https://grahamdumpleton.me/posts/2026/11/ai-as-a-lifestyle-choice/",
+      "https://grahamdumpleton.me/posts/2026/11/muru-releases-not-restarts/",
+      "https://grahamdumpleton.me/posts/2026/11/muru-canaries-without-a-service-mesh/",
+      "https://grahamdumpleton.me/posts/2026/11/muru-a-better-tenant-in-a-container/",
+      "https://grahamdumpleton.me/posts/2026/11/muru-working-with-kubernetes-not-around-it/",
+      "https://grahamdumpleton.me/posts/2026/11/muru-scaling-from-what-the-workers-report/",
+      "https://grahamdumpleton.me/posts/2026/11/muru-scaling-to-zero/",
+      "https://grahamdumpleton.me/posts/2026/11/muru-overlays-on-a-schedule/",
+      "https://grahamdumpleton.me/posts/2026/11/muru-noticing-and-responding/",
+      "https://grahamdumpleton.me/posts/2026/11/muru-a-toolbar-on-every-page/",
+      "https://grahamdumpleton.me/posts/2026/11/muru-tracing-in-the-toolbar/",
+      "https://grahamdumpleton.me/posts/2026/11/muru-when-lazy-imports-help/",
+      "https://simonwillison.net/tags/graham-dumpleton",
+      "https://simonwillison.net/tags/modwsgi",
+      "https://simonwillison.net/tags/python",
+      "https://simonwillison.net/tags/wsgi",
       "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/rust",
+      "https://simonwillison.net/tags/asgi",
+      "https://simonwillison.net/tags/generative-ai",
       "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/google",
-      "https://simonwillison.net/tags/generative-ai"
+      "https://simonwillison.net/tags/ai-assisted-programming"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "d989f106912157a4",
-   "url": "https://www.qbitai.com/2026/11/511757.html",
-   "title": "姚顺雨和混元团队上Reddit答网友，Hy小模型已进路线图",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-11-21T06:30:55+00:00",
-   "summary_short": "混元团队AMA透露Hy4/Flash训练细节，小模型与24GB版在路线图",
-   "summary_long": "11月21日，姚顺雨和腾讯混元团队在Reddit社区围绕Hy4与Hy4 flash举行AMA，直接回答网友提问。原文介绍，Hy4于11月4日发布，是能理解文本、图像和视频的旗舰模型，适合长程软件工程等复杂任务；Hy4 flash于11月16日发布，主打日常办公的速度和成本，支持图文输入与最长100万Token上下文，每Token激活约120亿参数。两款模型权重均已公开，并接入腾讯WorkBuddy；按内部WorkIndex测算，Flash平均单任务成本约为Hy4的1/20。AMA透露，后训练中最难改善的是过度思考，Flash先用旗舰蒸馏，再用强化学习缩短推理链；训练环境漏洞会让Agent钻空子，例如直接上网找答案。团队还提到MoE稀疏度、Engram占比约三分之一、滑动窗口注意力压缩KV缓存，以及Hy小模型、Flash-Lite、24GB显存模型和下一代更大规模模型在计划中。",
+   "id": "3c4f4993adcaa465",
+   "url": "https://github.com/gulivan/worker755",
+   "title": "Show HN: I built a game where you are an LLM's subagent",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-22T13:56:58+00:00",
+   "summary_short": "浏览器游戏：真实 LLM 经理把你当 subagent 派活、纠错、写绩效",
+   "summary_long": "原文介绍一个浏览器游戏：玩家扮演一个 subagent。经理是真实 LLM（Claude、GPT、Gemini、DeepSeek、GLM、Kimi），按 orchestrator 的方式配置：有任务队列、对机器的只读权限，以及一个“spawn subagent”工具。它下发的指令带 90 秒倒计时出现在玩家终端；玩家执行或不执行，它收到的都会跟真实 subagent 的回报一样，即报告加命令记录，或者“Subagent did nothing. Write a new instruction.”。之后它会检查工作、发纠正、写事故报告，最后写绩效评估。另一个角色 Dan 是雇了这个 agent 的用户，他一直在看聊天记录；他的家庭照片、唯一一份已签的 NDA 和本周要交的演讲稿，随时可能被一条 rm 删掉。开始界面可选：全新沙盒或带实时数据库的 legacy production；Dan 由脚本还是 LLM 扮演；“You run on”经理以为你使用的模型名；默认关闭“允许跳过失败任务”；不提供命令提示。可以玩服务器提供的免费班次（每天数场，用服务器密钥和便宜模型），或登录领取约一班次的初始额度，之后充值（10 到 200 美元）；也可自带 OpenRouter 或 Vercel AI Gateway 密钥，密钥只在班次开始时发送到游戏服务器，存在该班次内存中，不记录也不存储。用 ",
    "key_points": [
-    "Hy4与Hy4 flash定位不同：前者是支持文本、图像、视频的旗舰，适合长程软件工程；后者主打办公速度与成本，支持100万Token上下文、每Token激活约120亿参数。",
-    "训练细节：过度思考是后训练最难改善的行为，Flash先从旗舰蒸馏，再用强化学习缩短推理链；训练环境漏洞会让Agent钻空子，例如上网搜现成答案。",
-    "路线图与部署：Hy小模型、Flash-Lite、24GB显存模型在计划中，下一代Hy规模将显著扩大；llama.cpp适配近期放出，96GB显存加128GB内存可跑Flash。"
+    "经理是真实 LLM，配有任务队列、只读机器权限和 spawn subagent 工具；指令带 90 秒倒计时送到玩家终端。",
+    "玩家执行结果（报告加命令记录，或“Subagent did nothing”）回传后，经理会检查工作、发纠正、写事故报告并给出绩效评估，评估可分享为链接。",
+    "支持免费班次、自带 OpenRouter 或 Vercel AI Gateway 密钥（仅存于该班次内存，不记录不存储）、本地模型（Ollama、llama.cpp、vLLM）与 Docker/Cloudflare 部署。"
    ],
    "topics": [
-    "post-training",
-    "reasoning",
+    "product",
+    "multi-agent",
+    "agent-loop"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "开源项目"
+   ],
+   "horizon": "short",
+   "score": 65.7,
+   "status": "review",
+   "extra": {
+    "hn_points": 264,
+    "hn_comments": 59,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://openrouter.ai/settings/keys"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "ab3cbf28edfc9f72",
+   "url": "https://www.qbitai.com/2026/11/511830.html",
+   "title": "全网疯传！Grok一姐教你如何月提交3000个PR",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-11-21T11:34:18+00:00",
+   "summary_short": "Grok Bot 团队的 Lauren Tan 分享 AI 编程法：禁掉99%注释，把教训变成自动检查",
+   "summary_long": "被称为「土豆姐」的 Lauren Tan 此前在 Cursor 工作，目前从事 Grok Bot 开发。她在 AI Engineer CODE 大会上以《All Code Is Slop (Except Mine)》为题分享 AI 编程经验，称自己上月一人提交 3000 个 PR，团队共提交 1.1 万个，撤回率仅 0.5%。她提出「信任倒金字塔」：最值得投入的是代码本身（API 设计、架构、重构），其次是 Lint 规则、类型系统、编译器和自动化测试等确定性检查，运行时验证、形式化验证和 AGENTS.md 等自然语言指导排在最下层。具体做法包括：禁掉约 99% 的代码注释；在客户端框架 Dune 中禁用 useEffect 等易错功能；把 Agent 每次犯错的教训转化为 Lint 规则或架构约束。验证环节依靠运行时验证（CDP 调试工具、用户视角功能地图、封装成 Skills 的自定义 CLI），以及 TLA+、Lean、Bombadil 等形式化验证。她称自己目前约 70% 的 Token 花在验证上，并称软件测试与验证的黄金时代正在到来。",
+   "key_points": [
+    "她上月一人提交 3000 个 PR，团队共 1.1 万个 PR、撤回率 0.5%，客户端几乎每天推出一个稳定版本",
+    "主张禁掉约 99% 代码注释、禁用 useEffect 等易错功能，把 Agent 每次犯错转成 Lint 规则或架构约束，而不是往 AGENTS.md 里加自然语言规则",
+    "验证环节用运行时验证（CDP、功能地图、自定义 CLI）加 TLA+、Lean、Bombadil 形式化验证，她称自己约 70% Token 花在验证上"
+   ],
+   "topics": [
+    "coding-agent",
+    "harness",
+    "agent-loop"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 65.2,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/hengyu",
+      "https://www.qbitai.com",
+      "https://zhida.zhihu.com/search?content_id=288001833&content_type=Article&match_order=1&q=Grok&zhida_source=entity",
+      "https://zhida.zhihu.com/search?content_id=288001833&content_type=Article&match_order=1&q=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E5%8E%82&zhida_source=entity",
+      "https://zhida.zhihu.com/search?content_id=288001833&content_type=Article&match_order=1&q=Hook&zhida_source=entity",
+      "https://zhida.zhihu.com/search?content_id=288001833&content_type=Article&match_order=1&q=Formal+Verification&zhida_source=entity",
+      "https://link.zhihu.com/?target=https%3A//x.com/poteto/status/2121673563489140863",
+      "https://www.qbitai.com/2026/11/511849.html",
+      "https://www.qbitai.com/2026/11/511855.html",
+      "https://www.qbitai.com/2026/11/511841.html",
+      "https://www.qbitai.com/2026/11/511791.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/511830.html&title=全网疯传！Grok一姐教你如何月提交3000个PR&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2026/11/510486.html",
+      "https://www.qbitai.com/2026/11/511727.html",
+      "https://www.qbitai.com/2026/11/510707.html",
+      "https://www.qbitai.com/2026/11/510726.html",
+      "https://www.qbitai.com/2026/11/510695.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "67786b63779fc125",
+   "url": "https://www.noemamag.com/the-mythology-of-conscious-ai/",
+   "title": "The Mythology of Conscious AI",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-22T02:10:02+00:00",
+   "summary_short": "神经科学家Anil Seth获奖文章：意识或属生命而非计算，造有意识AI不明智",
+   "summary_long": "神经科学家Anil Seth凭本文获2025年Berggruen奖随笔竞赛奖，文章刊于Noema Magazine。他是萨塞克斯大学意识科学中心主任、CIFAR脑-心智-意识项目联合主任，著有《Being You》。文章指出，从魔像Yossele、《弗兰肯斯坦》到HAL 9000、Ava与Klara，人造意识的文化想象漫长且大多结局不佳。现实层面，谷歌工程师Lemoine在2022年称聊天机器人LaMDA有意识，因违反公司保密政策被解雇，但问题并未消失：Chalmers认为不远未来可能出现意识机器，Hinton认为已存在，2024年末有研究者呼吁重视AI系统福利。Seth主张，意识更可能是生命的属性而非计算的属性，创造有意识、甚至看似有意识的AI都是坏主意。他强调，无论AI是否真有意识，这一判断都关乎AI的道德地位、潜在痛苦与权利，也关乎人类心理弱点被利用、伦理优先级被扭曲，以及我们如何理解自身本性与意识经验。",
+   "key_points": [
+    "Seth主张意识更可能是生命的属性而非计算的属性，创造有意识甚至看似有意识的AI是坏主意",
+    "从魔像Yossele、《弗兰肯斯坦》到HAL 9000、Ava、Klara，人造意识的文化史漫长且大多结局不佳",
+    "谷歌工程师Lemoine 2022年称LaMDA有意识，因违反保密政策被解雇；Chalmers认为不远未来可能实现，Hinton认为已存在"
+   ],
+   "topics": [
+    "alignment",
+    "ai-welfare"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 61.5,
+   "status": "review",
+   "extra": {
+    "hn_points": 165,
+    "hn_comments": 466,
+    "outbound": {
+     "arxiv": [
+      "0706.3639",
+      "2212.13345",
+      "2411.00986"
+     ],
+     "links": [
+      "https://berggruen.org/eu/news/2025-berggruen-prize-essay-competition-winners",
+      "https://www.noemamag.com/the-mythology-of-conscious-ai/",
+      "https://www.washingtonpost.com/technology/2022/06/11/google-ai-lamda-blake-lemoine/",
+      "https://www.bostonreview.net/articles/could-a-large-language-model-be-conscious/",
+      "https://www.youtube.com/watch?v=vxkBE23zDmQ",
+      "https://arxiv.org/abs/2411.00986v1",
+      "https://arxiv.org/abs/0706.3639",
+      "https://philpapers.org/rec/NAGWII",
+      "https://basicbooks.uk/titles/adam-becker/more-everything-forever/9781399827904/",
+      "https://philpapers.org/rec/SHATRA-2",
+      "https://profilebooks.com/work/the-idea-of-the-brain/",
+      "https://www.cs.ox.ac.uk/activities/ieg/e-library/sources/t_article.pdf",
+      "https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf",
+      "https://www.cs.cmu.edu/~epxing/Class/10715/reading/McCulloch.and.Pitts.pdf",
+      "https://www.semanticscholar.org/paper/Representation-of-Events-in-Nerve-Nets-and-Finite-Kleene/a496212ca3444e1e14b0668b82e2459d02dc275a",
+      "https://link.springer.com/book/10.1007/978-94-009-8947-4",
+      "https://link.springer.com/article/10.1007/s11229-022-03524-1",
+      "https://www.pnas.org/doi/10.1073/pnas.2306525120",
+      "https://consc.net/papers/qualia.html",
+      "https://bigthink.com/neuropsych/anil-seth-consciousness-time-perception/",
+      "https://philpapers.org/rec/VARTSP",
+      "https://plato.stanford.edu/entries/whitehead/#PhilScie",
+      "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "https://mitpress.mit.edu/9780262512398/on-the-origins-of-cognitive-science/",
+      "https://www.nature.com/articles/s41928-020-0448-2",
+      "https://arxiv.org/abs/2212.13345",
+      "https://shop.noemamag.com/?utm_source=MiddleCTA&utm_medium=website",
+      "https://philpapers.org/rec/GELWMC",
+      "https://academic.oup.com/edited-volume/28083",
+      "https://direct.mit.edu/books/monograph/2589/Dynamical-Systems-in-NeuroscienceThe-Geometry-of",
+      "https://www.sciencedirect.com/science/article/pii/S0149763425005251?via%3Dihub",
+      "https://plato.stanford.edu/entries/functionalism/",
+      "https://philpapers.org/rec/SEABN-2",
+      "https://www.anilseth.com/being-you/",
+      "https://philpapers.org/rec/SETCAI-4",
+      "https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/whatever-next-predictive-brains-situated-agents-and-the-future-of-cognitive-science/33542C736E17E3D1D44E8D03BE5F4CD9",
+      "https://aeon.co/essays/the-hard-problem-of-consciousness-is-a-distraction-from-the-real-one",
+      "https://www.sciencedirect.com/science/article/pii/S1364661313002118",
+      "https://www.sciencedirect.com/science/article/pii/S0959438803000904",
+      "https://open-mind.net/papers/the-cybernetic-bayesian-brain"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "4f0ed76760ef2783",
+   "url": "https://www.gpupartner.com/blog/beginners-guide-local-ai-inkling-qwen-unsloth",
+   "title": "A Beginner's Guide to Local AI with Inkling, Qwen, and Unsloth",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-22T21:01:16+00:00",
+   "summary_short": "用Unsloth在Windows上搭建本地AI，约10-15分钟、可全家共享",
+   "summary_long": "作者因不满云端大模型的使用限额、成本上涨与隐私顾虑，尝试在自家Windows电脑上搭建本地AI，作为ChatGPT和Claude的替代。原文列出的条件只有三样：带GPU的Windows电脑、免费的Unsloth Desktop应用、一个与显存匹配的模型；无需终端命令、Python环境或订阅。硬件就绪后约10-15分钟可完成，步骤是安装Unsloth Desktop、下载量化模型、设置上下文长度、开启局域网访问供全家使用。显存决定能跑多大模型：原文粗略给出8-12GB对应9B-12B模型，32GB可跑27B-35B，作者使用的是32GB显存的RTX 5090。完整版Qwen约56GB，消费级显卡放不下（除非Mac统一内存），因此需要量化，也就是压缩权重、转向更低精度，用部分准确率换取能装进显卡并跑得更快，原文称影响因任务类型而异。作者最终选Qwen3.8-27B 4-bit、128K上下文，以便留出更大上下文窗口，而不是塞进能装下的最大模型。",
+   "key_points": [
+    "所需条件：带GPU的Windows电脑、免费Unsloth Desktop、匹配显存的模型；无需命令行、Python或订阅",
+    "显存决定模型规模：原文粗略参考为8-12GB跑9B-12B，32GB可跑27B-35B，完整版Qwen约56GB装不进消费级显卡",
+    "量化是关键手段：压缩权重、降低精度，牺牲部分准确率换取装得下与更快速度，不同任务受影响程度不同"
+   ],
+   "topics": [
+    "local-deployment",
+    "quantization",
     "open-source"
    ],
    "category": "模型",
    "categories": [
     "模型"
    ],
-   "horizon": "short",
-   "score": 63.7,
+   "horizon": "long",
+   "score": 56.1,
    "status": "review",
    "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "首页轮播",
-     "姚顺雨",
-     "腾讯混元"
-    ],
+    "hn_points": 149,
+    "hn_comments": 56,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.qbitai.com/author/hengyu",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/%e5%a7%9a%e9%a1%ba%e9%9b%a8",
-      "https://www.qbitai.com/tag/%e8%85%be%e8%ae%af%e6%b7%b7%e5%85%83",
-      "https://www.qbitai.com/2026/11/511855.html",
-      "https://www.qbitai.com/2026/11/511849.html",
-      "https://www.qbitai.com/2026/11/511841.html",
-      "https://www.qbitai.com/2026/11/511830.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/511757.html&title=姚顺雨和混元团队上Reddit答网友，Hy小模型已进路线图&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2026/05/422068.html",
-      "https://www.qbitai.com/tag/ai%e7%bf%bb%e8%af%91",
-      "https://www.qbitai.com/2025/04/276754.html",
-      "https://www.qbitai.com/tag/%e5%9b%be%e5%83%8f%e7%94%9f%e6%88%90",
-      "https://www.qbitai.com/2025/09/332825.html",
-      "https://www.qbitai.com/tag/ai%e7%bb%98%e5%9b%be",
-      "https://www.qbitai.com/2024/03/128217.html",
-      "https://www.qbitai.com/tag/ai%e8%a7%86%e9%a2%91",
-      "https://www.qbitai.com/tag/%e5%9b%be%e7%94%9f%e8%a7%86%e9%a2%91",
-      "https://www.qbitai.com/2024/06/152246.html",
-      "https://www.qbitai.com/2026/08/465973.html",
-      "https://www.qbitai.com/2026/11/510486.html",
-      "https://www.qbitai.com/2026/11/510707.html",
-      "https://www.qbitai.com/2026/11/510726.html",
-      "https://www.qbitai.com/2026/11/510695.html",
-      "https://www.qbitai.com/2026/11/511727.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
+      "https://unsloth.ai/docs/desktop",
+      "https://unsloth.ai/docs/models/inkling-2-mini",
+      "https://unsloth.ai/docs/models/inkling-2-small",
+      "https://unsloth.ai/docs/desktop/lan",
+      "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "https://huggingface.co/unsloth/Qwen3.8-27B-GGUF",
+      "https://huggingface.co/thinkingmachines/Inkling-2-Mini",
+      "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/"
      ]
     },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   },
   {
-   "id": "12eb3c771bfeae23",
-   "url": "https://www.qbitai.com/2026/11/511779.html",
-   "title": "GPT-6.2 Astra再次暴击具身模型：16项任务成功率较GPT-6 Astra翻倍",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-11-21T06:35:59+00:00",
-   "summary_short": "GPT-6.2 Astra双臂16项任务成功率翻倍至41.2%，首通打结与展开T恤",
-   "summary_long": "机器人基础设施公司XDOF在真实物理环境基准Ember-0上实测GPT-6.2 Astra：操控双臂机器人完成16项操作任务，综合成功率从两个月前GPT-6 Astra的19.6%升至41.2%，该数字为16项任务成功率的等权平均，且原文强调提升并非来自单点突破。其中「给绳子打结」和「展开T恤」两项此前无模型通关——T恤展开累计143次有效测试无一成功。提升最明显的是用夹子夹起面包，成功率由10%升至90%。评测以六台YAM工作站并行，每项任务重复30次，并人工标注子步骤、抓取失误与碰撞。原文指出柔性物体形变难预测、硬件无触觉反馈、动作块推理延迟十余至二十余秒，使接触控制与失败恢复成本极高。该模型平均预测延迟从15秒降至10.1秒，但原文称该推理方式效率仍偏低。XDOF表示Ember-0基准或不久后被模型能力饱和。",
+   "id": "c82934c02ed902f3",
+   "url": "http://ricapar.net/ClawDOS/",
+   "title": "ClawDOS – An AI coding agent for DOS",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-21T05:38:01+00:00",
+   "summary_short": "4.77MHz 的 IBM PC XT 上跑起了 AI 编程代理",
+   "summary_long": "ClawDOS 是运行在 DOS 上的 AI 对话与编程 harness，跑在真实的 IBM PC XT 上：4.77 MHz 的 8088、640K 内存、CGA 显卡。在 C:\\> 输入 CLAWDOS 就能与 Claude 对话，它可读写磁盘文件、写程序、用 Turbo C 编译运行并查看程序在屏幕上画出的结果，还会保存笔记供下次接着做。HARNESS.EXE 是一个 176 KB 的 DOS 程序，自己发出 Claude Messages API 请求、解析流式回复、执行工具，只把 TLS 交给一台“桥接”PC。原文称整个仓库除说明框内文字外 100% 由 Claude 写成，作者目的只是自娱，看 AI 编程代理在远离现代常规的约束下能走多远。示例中从一句“写 PRIMES.C 并用 Turbo C 编译运行”到屏幕出结果用了 64 秒；它还在 XT 上写出了 WarGames 演示程序。",
    "key_points": [
-    "XDOF实测GPT-6.2 Astra操控双臂机器人完成Ember-0的16项任务，综合成功率由GPT-6 Astra的19.6%升至41.2%",
-    "「打结」「展开T恤」两项此前无AI通关，T恤展开此前累计143次有效测试无一成功",
-    "用夹子夹起面包成功率从10%升至90%；平均预测延迟由15秒降至10.1秒，但原文称效率仍偏低"
+    "HARNESS.EXE 是 176 KB 的 DOS 程序，自己发出 Claude Messages API 请求、解析流式回复并执行工具，8088 负责除 TLS 外的一切，TLS 由一台桥接 PC 处理",
+    "一条指令即可完成写源码、编译、链接、运行：PRIMES.C 例子中从回车到屏幕出结果共 64 秒，其中 26 秒用于编译链接运行；编译时 harness 保存状态让出内存，Turbo C 约有 450K 可用，之后回到同一对话",
+    "它把笔记存在 C:\\MEMORY 中供新对话调用（提到“your WarGames demo”即可找回最新构建），并可通过定时器中断钩子复制 CGA 显存、由 8088 编码为 PNG 来“看”屏幕"
    ],
    "topics": [
-    "eval",
-    "embodied-ai",
-    "robotics"
+    "coding-agent",
+    "harness",
+    "tool-use"
    ],
-   "category": "评测",
+   "category": "Agent 与开发",
    "categories": [
-    "评测",
-    "模型"
+    "Agent 与开发"
    ],
-   "horizon": "short",
-   "score": 52.7,
+   "horizon": "long",
+   "score": 51.3,
    "status": "review",
    "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "资讯",
-     "GPT-6.2 Astra",
-     "具身智能"
-    ],
+    "hn_points": 174,
+    "hn_comments": 52,
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.qbitai.com/author/hengyu",
-      "https://www.qbitai.com",
-      "https://www.qbitai.com/tag/gpt-6-2-astra",
-      "https://www.qbitai.com/tag/%e5%85%b7%e8%ba%ab%e6%99%ba%e8%83%bd",
-      "https://www.qbitai.com/2026/11/511855.html",
-      "https://www.qbitai.com/2026/11/511849.html",
-      "https://www.qbitai.com/2026/11/511841.html",
-      "https://www.qbitai.com/2026/11/511830.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/511779.html&title=GPT-6.2 Astra再次暴击具身模型：16项任务成功率较GPT-6 Astra翻倍&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2024/03/124996.html",
-      "https://www.qbitai.com/tag/cvpr",
-      "https://www.qbitai.com/2025/06/293192.html",
-      "https://www.qbitai.com/tag/%e7%a9%bf%e9%80%8f%e8%b4%a2%e6%8a%a5%e6%8b%9b%e8%82%a1%e4%b9%a6",
-      "https://www.qbitai.com/tag/%e8%bd%a6%e5%9c%88%e6%9c%80%e6%96%b0%e8%ae%a4%e7%9f%a5",
-      "https://www.qbitai.com/2026/04/399417.html",
-      "https://www.qbitai.com/tag/%e4%ba%ba%e7%b1%bb%e6%95%b0%e6%8d%ae",
-      "https://www.qbitai.com/2026/06/437198.html",
-      "https://www.qbitai.com/2024/09/191240.html",
-      "https://www.qbitai.com/tag/%e4%ba%ba%e5%bd%a2%e6%9c%ba%e5%99%a8%e4%ba%ba",
-      "https://www.qbitai.com/tag/%e5%9b%bd%e4%ba%a7%e6%9c%ba%e5%99%a8%e4%ba%ba",
-      "https://www.qbitai.com/2025/11/355189.html",
-      "https://www.qbitai.com/2026/11/510486.html",
-      "https://www.qbitai.com/2026/11/510707.html",
-      "https://www.qbitai.com/2026/11/510726.html",
-      "https://www.qbitai.com/2026/11/510695.html",
-      "https://www.qbitai.com/2026/11/511727.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
+      "https://github.com/Ricapar/ClawDOS",
+      "http://ricapar.net/ClawDOS/",
+      "https://www.youtube.com/watch?v=Jok7MQi-16Q",
+      "https://github.com/Ricapar/ClawDOS/blob/main/LICENSE",
+      "http://www.brutman.com/mTCP/",
+      "https://www.freedos.org/",
+      "https://github.com/open-watcom/open-watcom-v2",
+      "https://github.com/FreddyVRetro/ISA-PicoMEM",
+      "https://86box.net/",
+      "https://dosbox-x.com/",
+      "https://github.com/Ricapar/ClawDOS/edit/main/README.md"
      ]
     },
+    "content_source": "direct",
     "summary_mode": "full"
    }
   }
