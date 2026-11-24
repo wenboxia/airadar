@@ -1,6 +1,292 @@
 {
- "generated_at": "2026-11-23T00:20:21+00:00",
+ "generated_at": "2026-11-24T04:18:49+00:00",
  "items": [
+  {
+   "id": "ef3910f6a7af585b",
+   "url": "https://simonwillison.net/2026/Nov/23/glm-54/",
+   "title": "GLM-5.4: Toward Generalized Coding with Our First Loop Transformer",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-23T23:40:49+00:00",
+   "summary_short": "Z.ai 发布 GLM-5.4：其首个循环 Transformer 模型，不增参数即可加深网络",
+   "summary_long": "GLM-5.4 已由中国 AI 实验室 Z.ai 发布，是该机构首个采用循环 Transformer（Loop Transformer）架构的模型。原文解释：标准 Transformer 中每层在前向传播时只运行一次；循环 Transformer 让一组共享权重的层多次迭代运行，反复细化上一轮的隐藏状态，从而在不增加参数量的前提下得到更深的网络。原文称这是过去一周内第二次看到循环 Transformer，第一次是 Thinking Machines Lab 于 11 月 20 日发布的 Inkling 2 Mini——它对每个 token 把中间层运行三次，以便用更少 token 完成更多推理，尤其在依赖推理质量的 agentic coding 任务上。GLM 5.4 目前（尚未？）以开放权重形式提供。作者通过 Z.ai API 试用，因 5.4 暂不能经常规 API 访问而订阅了 Coding Plan；两者共用 OpenAI 兼容的 Responses API。作者先自建 llm-glm 插件，随后发现已有 llm-zai，仅因后者尚未支持新模型才发布自己的版本。pelicans 测试中 5.3 与 5.4 质量相近，且风格比 5.1/5.2 更接近 OpenAI 或 Anthropic 模型。",
+   "key_points": [
+    "GLM-5.4 是 Z.ai 首个循环 Transformer 模型：一组共享权重的层多次迭代、细化隐藏状态，在不增加参数量的情况下加深网络",
+    "原文提到一周内第二次出现循环 Transformer，前一次是 Thinking Machines Lab 11 月 20 日发布的 Inkling 2 Mini，其每个 token 将中间层运行三次以减少推理所需 token",
+    "GLM 5.4 目前（尚未？）提供开放权重，且暂不能通过常规 API 访问，需订阅 Coding Plan；两者共用 OpenAI 兼容的 Responses API"
+   ],
+   "topics": [
+    "post-training",
+    "coding-agent",
+    "open-source"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "short",
+   "score": 76.8,
+   "status": "published",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "ai",
+     "generative-ai",
+     "llms",
+     "llm",
+     "pelican-riding-a-bicycle"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://z.ai/blog/glm-5.4",
+      "https://thinkingmachines.ai/news/inkling-2-mini/",
+      "https://docs.z.ai/devpack/overview",
+      "https://github.com/simonw/llm-glm",
+      "https://github.com/irthomasthomas/llm-zai",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Fae838c5a6837ca0a602c180c07ac0887",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F8826d1366dcc98783c7cbc593f6a6e77",
+      "https://simonwillison.net/2026/Apr/7/glm-51/",
+      "https://simonwillison.net/2026/Jun/17/glm-52/#excellent-pelican-disappointing-opossum",
+      "https://static.simonwillison.net/static/2026/glm-pelican-comparison.html",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/llm",
+      "https://simonwillison.net/tags/pelican-riding-a-bicycle",
+      "https://simonwillison.net/tags/llm-release",
+      "https://simonwillison.net/tags/ai-in-china",
+      "https://simonwillison.net/tags/glm"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "1d0c151fefed0dea",
+   "url": "https://openai.com/index/introducing-shirudo",
+   "title": "OpenAI and Cisco introduce Shirudo",
+   "source": "OpenAI News",
+   "tier": "S",
+   "published_at": "2026-11-23T21:20:00+00:00",
+   "summary_short": "OpenAI与Cisco发布开源运行时Shirudo，用eBPF在不停机的情况下临时防护漏洞",
+   "summary_long": "OpenAI与Cisco宣布推出Shirudo，一个开源运行时，用于在团队推送补丁期间保护Linux系统。原文称，测试和部署补丁仍可能耗时数天或数周；漏洞利用与合法请求可能依赖同一个Linux操作，完全阻断该操作可能导致服务下线。Shirudo（日语“盾”）让团队测试名为shield的临时防护能否只阻断暴露漏洞的行为、放行合法请求，经操作员批准后即可在服务运行中部署。它基于eBPF，围绕四项能力设计：不停机阻断脆弱代码路径的实时防护、让代理自动调查漏洞并生成验证shield的机器速度防御、经加密签名与eBPF验证器校验的可信部署、基于TPM的硬件级验证。受控测试中，由Codex生成的shield无需重启即阻止了针对运行中Elasticsearch的Java4Shell利用尝试。OpenAI总裁兼联合创始人Greg Brockman表示正与Cisco紧密合作推进该项目，并称这类工具应在开放环境中构建；项目邀请开发者、安全研究人员与基础设施运营者参与。",
+   "key_points": [
+    "Shirudo是OpenAI与Cisco联合推出的开源运行时，目标是在补丁尚未上线时保护运行中的Linux系统",
+    "基于eBPF，围绕四项核心能力设计：实时防护、机器速度防御、可信部署（加密签名与验证器校验）、基于TPM的硬件级验证",
+    "在受控测试中，用Codex生成的shield在无需重启的情况下拦截了针对运行中Elasticsearch服务的Java4Shell利用尝试"
+   ],
+   "topics": [
+    "cybersecurity",
+    "open-source"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "安全"
+   ],
+   "horizon": "short",
+   "score": 81.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "Security"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://isovalent.com/blog/post/cisco-openai-shirudo/",
+      "https://lpc.events/event/20/contributions/2437/",
+      "https://www.youtube.com/watch?v=4v2xA_NJHt0",
+      "https://github.com/shirudo-dev/shirudo",
+      "https://docs.shirudo.dev/start/quickstart.html",
+      "https://labs.isovalent.com/#/lab/shirudo-getting-started",
+      "https://isovalent.site/4t8Pjxc",
+      "https://docs.shirudo.dev/index.html",
+      "https://docs.shirudo.dev/contribute/support.html"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "ca38829e73128713",
+   "url": "https://huggingface.co/blog/allenai/robotrack",
+   "title": "RoboTrack: Point tracking for real-world robotic manipulation",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-23T17:20:37+00:00",
+   "summary_short": "RoboTrack：机器人点追踪基准与合成训练数据，现有追踪器实测掉分",
+   "summary_long": "机器人要在真实环境中完成操作，需要在整个交互过程中持续跟踪夹爪与物体的位置。点追踪的思路是：给定视频某一帧中的一个位置，估计同一个点在后续帧、被遮挡期间以及重新出现时的位置，这些轨迹可帮助机器人从演示中学习、规划并引导动作、建模物体对动作的响应。现有追踪器在既有机器人基准上得分很高，研究团队想检验这些结果在真实场景的多样视角、杂乱环境与遮挡下是否依然成立。为此他们发布 RoboTrack：RoboTrack-Bench 包含来自 DROID、Ego-Exo4D、MolmoAct 2、EgoVerse 的 307 段人工标注视频，共 2522 条人工核验点轨迹，覆盖不同机器人、人手、杂乱场景与第一/第三人称视角；同时扩展 MolmoSpaces 仿真生态，从仿真操作轨迹生成稠密点轨迹，形成 RoboTrack-15M 合成训练集。评测显示，领先追踪器在 RoboTrack-Bench 上的得分远低于现有机器人基准；将 RoboTrack-15M 加入训练可提升真实操作视频上的表现，增益还延伸到其他追踪基准。团队还在真实机器人上用所得追踪器辅助湿实验室移液管操作，并发布 RoboTracker 与 RoboTracker-Warp 两个模型及论文。",
+   "key_points": [
+    "RoboTrack-Bench 含 307 段视频、2522 条人工核验点轨迹，来自 DROID、Ego-Exo4D、MolmoAct 2、EgoVerse，覆盖不同机器人、人手、杂乱场景与第一/第三人称视角",
+    "RoboTrack-15M 通过扩展 MolmoSpaces 仿真生态，从仿真机器人操作轨迹生成稠密点轨迹，作为面向操作任务的合成训练数据",
+    "评测显示领先追踪器在 RoboTrack-Bench 上得分远低于现有机器人基准；加入 RoboTrack-15M 训练可提升真实操作视频上的追踪表现，增益延伸至其他追踪基准"
+   ],
+   "topics": [
+    "eval",
+    "robotics",
+    "point-tracking"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 81.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2308.15975"
+     ],
+     "links": [
+      "https://huggingface.co/collections/allenai/robotrack",
+      "https://allenai.org/papers/robotrack",
+      "https://huggingface.co/datasets/allenai/RoboTrack-15M",
+      "https://github.com/allenai/robotrack",
+      "https://robotrack.allen.ai/",
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench",
+      "https://www.datocms-assets.com/64837/1795407244-robotrack-blog-draft-google-docs-image-1.png",
+      "https://allenai.org/blog/molmoact2",
+      "https://allenai.org/blog/molmospaces",
+      "https://www.datocms-assets.com/64837/1795407698-robotrack-blog-draft-google-docs-image-2.png",
+      "https://www.datocms-assets.com/64837/1795407981-robotrack-blog-draft-google-docs-image-3-1.png",
+      "https://arxiv.org/abs/2308.15975",
+      "https://www.datocms-assets.com/64837/1795408316-robotrack-blog-draft-google-docs-image-4.png",
+      "https://github.com/google-research/kubric",
+      "https://www.datocms-assets.com/64837/1795408512-robotrack-blog-draft-google-docs-image-5.png",
+      "https://www.datocms-assets.com/64837/1795408662-robotrack-blog-draft-google-docs-image-6.png",
+      "https://www.datocms-assets.com/64837/1795408710-robotrack-blog-draft-google-docs-image-7.png",
+      "https://www.datocms-assets.com/64837/1795408926-robotrack-blog-draft-google-docs-image-8.png",
+      "https://www.datocms-assets.com/64837/1795409178-robotrack-blog-draft-google-docs-image-9-4.png",
+      "https://www.datocms-assets.com/64837/1795408826-robotrack-blog-draft-google-docs-image-9.png"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "61dcf1169479ac82",
+   "url": "https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/",
+   "title": "Finding faster quantum algorithms with agents and formal verification",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-11-23T16:59:40+00:00",
+   "summary_short": "所提供的原文只有网站导航菜单，没有正文，无法概括其实质内容",
+   "summary_long": "本次提供的【原文】不是文章正文，而是网站页面的导航与菜单文本：其中包括各类模型名称（Gemini、Veo、Lyria、Genie、Gemma 等）的入口、研究／出版物／责任／安全等栏目链接，以及大量图片链接和跳转地址。全文没有出现任何关于研究背景、方法、实验、数据或结论的陈述，也没有署名作者或机构信息；仅在导航文本中出现 Google DeepMind 字样。这些链接文字只是指向其他页面的标题，本身不构成可引用的论述。因此，无法依据原文提炼该主题的核心内容、技术细节及其意义，原文未详述任何可供报道的具体信息。要生成符合要求的摘要，需要提供包含实际正文段落的原文。",
+   "key_points": [
+    "原文是网站导航菜单和图片链接，不含任何正文段落",
+    "文中没有研究背景、方法、实验数据或结论等实质信息",
+    "原文无作者署名，导航文本中仅出现 Google DeepMind 字样"
+   ],
+   "topics": [
+    "multi-agent",
+    "reasoning"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 75.0,
+   "status": "published",
+   "extra": {
+    "content_source": "reader",
+    "outbound": {
+     "arxiv": [
+      "2611.09822"
+     ],
+     "links": []
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "6fd4c32fe34a4cba",
+   "url": "https://huggingface.co/blog/agentic-evals",
+   "title": "How to build and maintain an agentic evaluation",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-23T00:00:00+00:00",
+   "summary_short": "智能体评测构建维护指南：八步流程、基准纠错与开源取舍",
+   "summary_long": "原文讨论如何构建和维护智能体评测。AI评测通过给系统任务、检查答案或动作并评分，帮助决定系统被构建、采用和信任的方式；做好评测需定义体现领域专长的任务、可靠评分，并核对结果是否支持所声称的结论。方法与代码、数据不公开时，他人更难审查或复用；开源有助于构建更强、更新更频繁、更可比较的评测及基础设施。现有任务、环境和工具可作起点，让建设者把精力放在领域专长与验证上，分享构建过程（包括出错之处）也便于他人发现和改进。原文提到 Hugging Face hub 托管约3500个评测排行榜，过去一年评测数据集增长约16倍至约17000个，并已支持 Traces、Benchmarks、Environments 等智能体抽象。指南涵盖评测的三个阶段、从主张到报告分数的八步流程、基准错误如何发现和纠正，以及哪些组件应开放、哪些可保护的表格。",
+   "key_points": [
+    "评测设计从问答基准、智能体基准发展到团队/群体基准；每一步都增加可能改变分数的软件。",
+    "原文以单个任务走完从主张到报告分数的八个步骤，完整命令见附录A，并讨论任务与评分器常见错误如何被发现和纠正。",
+    "开源可提升评测的可审查、可复用和可比性；原文用表格逐组件说明哪些应分享、哪些可保持保护，并附术语表应对术语不一致。"
+   ],
+   "topics": [
+    "eval",
+    "agent-loop",
+    "open-source"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测"
+   ],
+   "horizon": "long",
+   "score": 77.5,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "1306.5856",
+      "2609.13009",
+      "2610.07763",
+      "2611.03494"
+     ],
+     "links": [
+      "https://github.com/huggingface/blog/blob/main/agentic-evals.md",
+      "https://huggingface.co/spaces/huggingface/hub-stats",
+      "https://huggingface.co/docs/hub/en/agent-traces",
+      "https://huggingface.co/datasets?benchmark=benchmark%3Aofficial",
+      "https://huggingface.co/blog/rl-environments",
+      "https://ai.scal.ing/p/evals-intro-1",
+      "https://huggingface.co/papers/2009.03300",
+      "https://huggingface.co/papers/2311.12022",
+      "https://huggingface.co/papers/2310.06770",
+      "https://huggingface.co/papers/2307.13854",
+      "https://huggingface.co/papers/2505.04364",
+      "https://aclanthology.org/2026.findings-emnlp.662/",
+      "https://arxiv.org/abs/2610.07763",
+      "https://claude.ai/artifact/22cBPJt6Aos6bYpjmB1BHw#distribution",
+      "https://icml.cc/virtual/2026/82793",
+      "https://huggingface.co/papers/2606.09809",
+      "https://huggingface.co/papers/2503.16861",
+      "https://x.com/ArtificialAnlys/status/2115265133467635877",
+      "https://deepmind.google/blog/piloting-the-worlds-first-double-blind-ai-evaluations/",
+      "https://docs.harborframework.com/",
+      "https://hub.harborframework.com/tasks/terminal-bench/raman-fitting",
+      "https://docs.harborframework.com/agents/pre-integrated-agents",
+      "https://huggingface.co/openai/gpt-oss-120b",
+      "https://huggingface.co/datasets/burtenshaw/raman-lab",
+      "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash",
+      "https://huggingface.co/papers/2507.02825",
+      "https://www.tbench.ai/news/terminal-bench-2-1",
+      "https://arxiv.org/abs/2609.13009",
+      "https://artificialanalysis.ai/evaluations/critpt-v2",
+      "https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/",
+      "https://openai.com/index/separating-signal-from-noise-coding-evaluations/",
+      "https://huggingface.co/papers/2511.04703",
+      "https://arxiv.org/abs/2611.03494",
+      "https://huggingface.co/papers/2602.16763",
+      "https://arcprize.org/arc-agi/2",
+      "https://mlcommons.org/ailuminate/faq/",
+      "https://huggingface.co/datasets/harborframework/terminal-bench-2.1/blob/main/tasks/raman-fitting/solution/solve.sh",
+      "https://huggingface.co/docs/hub/datasets-cards"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "38c61351fe0dc3e7",
    "url": "https://betterdatacenterproject.com/2026/11/16/how-ai-is-powered-a-breakdown-of-byop-and-grid-power/",

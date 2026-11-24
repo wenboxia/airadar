@@ -1,465 +1,579 @@
 {
- "generated_at": "2026-11-23T00:20:21+00:00",
- "date": "2026-11-23",
- "run_id": "20261123-001903",
+ "generated_at": "2026-11-24T04:18:49+00:00",
+ "date": "2026-11-24",
+ "run_id": "20261124-041733",
  "top": [
   {
-   "id": "de5cd1a6d51dc917",
-   "url": "https://openai.com/index/perplexity-and-intelligence",
-   "title": "Perplexity and Intelligence",
+   "id": "1d0c151fefed0dea",
+   "url": "https://openai.com/index/introducing-shirudo",
+   "title": "OpenAI and Cisco introduce Shirudo",
    "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-11-22T00:00:00+00:00",
-   "summary_short": "OpenAI首席科学家主张用困惑度作为跨机构共享的安全比较指标，并公开内部数据",
-   "summary_long": "OpenAI 首席科学家 Jakub Pachocki 在文中提出，应把困惑度（等价于交叉熵损失）确立为可跨模型开发者比较的指标，以支撑行业共享的安全标准。他指出，现代 AI 并非从零设计，而主要是靠在超大规模数据上训练一个压缩器（预测器）来获得智能，因此追踪“训练更好压缩器”的进展是理解 AI 发展轨迹的关键。为此 OpenAI 公开了内部预训练困惑度测量；作者承认这会让竞争对手更清楚其位置，但认为建立行业共享安全措施的紧迫性更重要。文中给出的轨迹是：GPT-2 首次能稳定写出连贯段落；GPT-3 具备上下文学习能力；GPT-3.5 在当前主评测集上对数困惑度约 0.99，可流畅对话并成为初代 ChatGPT 的基础；GPT-4 约 0.91，善于有效运用思维链推理；如今损失降至 0.8 以下，网络安全与数学等领域出现变革性能力。他强调这些能力事先无法预料，是该单一指标进步带来的涌现能力。",
+   "published_at": "2026-11-23T21:20:00+00:00",
+   "summary_short": "OpenAI与Cisco发布开源运行时Shirudo，用eBPF在不停机的情况下临时防护漏洞",
+   "summary_long": "OpenAI与Cisco宣布推出Shirudo，一个开源运行时，用于在团队推送补丁期间保护Linux系统。原文称，测试和部署补丁仍可能耗时数天或数周；漏洞利用与合法请求可能依赖同一个Linux操作，完全阻断该操作可能导致服务下线。Shirudo（日语“盾”）让团队测试名为shield的临时防护能否只阻断暴露漏洞的行为、放行合法请求，经操作员批准后即可在服务运行中部署。它基于eBPF，围绕四项能力设计：不停机阻断脆弱代码路径的实时防护、让代理自动调查漏洞并生成验证shield的机器速度防御、经加密签名与eBPF验证器校验的可信部署、基于TPM的硬件级验证。受控测试中，由Codex生成的shield无需重启即阻止了针对运行中Elasticsearch的Java4Shell利用尝试。OpenAI总裁兼联合创始人Greg Brockman表示正与Cisco紧密合作推进该项目，并称这类工具应在开放环境中构建；项目邀请开发者、安全研究人员与基础设施运营者参与。",
    "key_points": [
-    "主张把困惑度（交叉熵损失）作为模型开发者之间可比较、可支撑共享安全标准的指标",
-    "OpenAI 公开内部预训练困惑度测量，作者称会不利于竞争，但认为行业共享安全措施的紧迫性更重要",
-    "对数困惑度轨迹：约 0.99 对应 GPT-3.5、约 0.91 对应 GPT-4，低于 0.8 后网络安全与数学出现变革性能力，作者称这些是事先无法预料的涌现能力"
+    "Shirudo是OpenAI与Cisco联合推出的开源运行时，目标是在补丁尚未上线时保护运行中的Linux系统",
+    "基于eBPF，围绕四项核心能力设计：实时防护、机器速度防御、可信部署（加密签名与验证器校验）、基于TPM的硬件级验证",
+    "在受控测试中，用Codex生成的shield在无需重启的情况下拦截了针对运行中Elasticsearch服务的Java4Shell利用尝试"
    ],
    "topics": [
-    "eval"
+    "cybersecurity",
+    "open-source"
    ],
-   "category": "评测",
+   "category": "产品与应用",
    "categories": [
-    "评测",
+    "产品与应用",
     "安全"
    ],
-   "horizon": "long",
-   "score": 87.0,
+   "horizon": "short",
+   "score": 81.0,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "source_tags": [
-     "Research"
+     "Security"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://en.wikipedia.org/wiki/Shannon%27s_source_coding_theorem",
-      "https://darioamodei.com/post/we-must-pace-the-frontier",
-      "https://openai.com/index/an-alien-mind/",
-      "https://alignment.openai.com/cot-monitorability-model-lifecycle",
-      "https://openai.com/index/research-acceleration-jagged-frontier/#where-big-ideas-come-from"
+      "https://isovalent.com/blog/post/cisco-openai-shirudo/",
+      "https://lpc.events/event/20/contributions/2437/",
+      "https://www.youtube.com/watch?v=4v2xA_NJHt0",
+      "https://github.com/shirudo-dev/shirudo",
+      "https://docs.shirudo.dev/start/quickstart.html",
+      "https://labs.isovalent.com/#/lab/shirudo-getting-started",
+      "https://isovalent.site/4t8Pjxc",
+      "https://docs.shirudo.dev/index.html",
+      "https://docs.shirudo.dev/contribute/support.html"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "38c61351fe0dc3e7",
-   "url": "https://betterdatacenterproject.com/2026/11/16/how-ai-is-powered-a-breakdown-of-byop-and-grid-power/",
-   "title": "87% of the Anthropic power will come from gas and 11% from coal in 2028",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-22T08:57:34+00:00",
-   "summary_short": "测算：Anthropic 2028年电力87%靠气、11%靠煤，排放或超加州发电",
-   "summary_long": "原文以Anthropic为案例，分析AI数据中心自建电源（BYOP）及并网化石电源扩张。原文称已识别177GW计划中的BYOP天然气容量，并估计到2032年相关提案中可再生电源占比不足20%；另有200GW新化石电厂并网，很大程度由数据中心需求推动。Anthropic在美国没有直接可再生能源承诺，公开承诺仅在挪威和加拿大；其近期购买1.7GW重型天然气发电机承诺。按现场天然气和边际并网电源测算，2028年其电力约87%来自天然气、11%来自煤，排放可达1700万至3800万吨CO2e/年，中案3200万吨，可能超过加州全部发电排放及Meta、微软、谷歌2025年合计范围二排放。",
+   "id": "ca38829e73128713",
+   "url": "https://huggingface.co/blog/allenai/robotrack",
+   "title": "RoboTrack: Point tracking for real-world robotic manipulation",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-23T17:20:37+00:00",
+   "summary_short": "RoboTrack：机器人点追踪基准与合成训练数据，现有追踪器实测掉分",
+   "summary_long": "机器人要在真实环境中完成操作，需要在整个交互过程中持续跟踪夹爪与物体的位置。点追踪的思路是：给定视频某一帧中的一个位置，估计同一个点在后续帧、被遮挡期间以及重新出现时的位置，这些轨迹可帮助机器人从演示中学习、规划并引导动作、建模物体对动作的响应。现有追踪器在既有机器人基准上得分很高，研究团队想检验这些结果在真实场景的多样视角、杂乱环境与遮挡下是否依然成立。为此他们发布 RoboTrack：RoboTrack-Bench 包含来自 DROID、Ego-Exo4D、MolmoAct 2、EgoVerse 的 307 段人工标注视频，共 2522 条人工核验点轨迹，覆盖不同机器人、人手、杂乱场景与第一/第三人称视角；同时扩展 MolmoSpaces 仿真生态，从仿真操作轨迹生成稠密点轨迹，形成 RoboTrack-15M 合成训练集。评测显示，领先追踪器在 RoboTrack-Bench 上的得分远低于现有机器人基准；将 RoboTrack-15M 加入训练可提升真实操作视频上的表现，增益还延伸到其他追踪基准。团队还在真实机器人上用所得追踪器辅助湿实验室移液管操作，并发布 RoboTracker 与 RoboTracker-Warp 两个模型及论文。",
    "key_points": [
-    "原文识别177GW计划中的BYOP天然气容量，并称到2032年当前提案中可再生发电占比不足20%；另有200GW新化石电厂为数据中心等新增需求并网。",
-    "Anthropic截至2026年10月签约15GW算力，其中5.9–9.6GW落到具体数据中心；美国无直接可再生能源承诺，公开承诺仅在挪威和加拿大，并购买1.7GW重型天然气发电机承诺（34亿美元）。",
-    "测算2028年Anthropic电力约87%天然气、11%煤；排放1700万–3800万吨CO2e/年，中案3200万吨，可能超加州全部发电排放及Meta、微软、谷歌2025年合计范围二排放。"
-   ],
-   "topics": [
-    "data-center-energy",
-    "emissions",
-    "ai-infrastructure"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 78.0,
-   "status": "published",
-   "extra": {
-    "hn_points": 861,
-    "hn_comments": 868,
-    "outbound": {
-     "arxiv": [
-      "2411.09786"
-     ],
-     "links": [
-      "https://betterdatacenterproject.com/2026/10/08/the-ai-gas-rush/",
-      "https://globalenergymonitor.org/projects/global-oil-gas-plant-tracker?popup=2638",
-      "https://docs.google.com/spreadsheets/d/1XSqa0lJFJs6pQcmcTlBwUqLsQBEtDybNhjEiFGj-vbE/edit?gid=880500164#gid=880500164",
-      "https://www.anthropic.com/policy/infrastructure",
-      "https://marketwise.com/investing/bitdeer-4-7-billion-ai-data-center-lease-tied-to-anthropic-who-benefits/",
-      "https://www.globenewswire.com/news-release/2026/10/16/3382650/0/en/everwind-announces-10-billion-investment-in-point-tupper-data-centre-campus-and-renewable-energy-portfolio-across-nova-scotia.html",
-      "https://www.ft.com/content/41bf5c6a-9735-4f1a-a8e3-2bcccad58ba0?syn-25a6b1a6=1",
-      "https://www.theinformation.com/articles/anthropic-clinched-517-billion-compute-deals-11-months",
-      "https://www.ferc.gov/understanding-and-participating-california-iso-caiso-processes",
-      "https://docs.google.com/spreadsheets/d/1XSqa0lJFJs6pQcmcTlBwUqLsQBEtDybNhjEiFGj-vbE/edit?gid=1671585594#gid=1671585594",
-      "https://www.eia.gov/state/seds/sep_co2/total/pdf/co2_CA.pdf",
-      "https://www.artemis.ai/anthropic-thesis",
-      "https://sustainability.atmeta.com/wp-content/uploads/2025/10/Meta_2025-Environmental-Data-Index.pdf",
-      "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/msc/documents/presentations/CSR/2026-Microsoft-Environmental-Data-Fact-Sheet-PDF.pdf",
-      "https://sustainability.google/files/google-2026-environmental-report.pdf",
-      "https://arxiv.org/abs/2411.09786",
-      "https://www.eia.gov/environment/emissions/carbon/",
-      "https://www.epa.gov/egrid/summary-data",
-      "https://www.epa.gov/benmap/sector-based-pm25-and-ozone-benefit-ton-estimates",
-      "https://www.sec.gov/Archives/edgar/data/1181412/000162828026040364/spaceexplorationtechnologib.htm",
-      "https://www.selc.org/news/xai-built-an-illegal-power-plant-to-power-its-data-center/",
-      "https://www.bloomberg.com/news/articles/2026-08-26/anthropic-to-pay-nscale-45-billion-for-ai-computing-power",
-      "https://www.bloomberg.com/news/articles/2026-10-19/nscale-anthropic-in-talks-for-45-billion-cloud-computing-deal",
-      "https://oilandgaswatch.org/facility/cdf08f90-5579-4a86-97ae-0204faa2976f",
-      "https://epoch.ai/data/ai-data-centers",
-      "https://www.anthropic.com/news/higher-limits-spacex",
-      "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
-      "https://www.aboutamazon.com/news/aws/aws-project-rainier-ai-trainium-chips-compute-cluster",
-      "https://www.semafor.com/article/10/29/2025/aws-massive-multi-state-ai-data-center-is-powering-anthropics-claude",
-      "https://www.gem.wiki/Schahfer_Generating_Station",
-      "https://www.powermag.com/entergy-mississippi-adding-third-gas-fired-power-plant-to-superpower-strategy/",
-      "https://www.epa.gov/avert",
-      "https://datacenters.lbl.gov/sites/default/files/WP49-PUE%20A%20Comprehensive%20Examination%20of%20the%20Metric_v6.pdf",
-      "https://escholarship.org/uc/item/32d6m0d1",
-      "https://robonomics.substack.com/p/spacex-s-1-full-analysis",
-      "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
-      "https://www.sec.gov/Archives/edgar/data/1181412/000162828026041150/spacexagreementfwp.htm",
-      "https://www.iea.org/reports/energy-and-ai/executive-summary%20",
-      "https://www.mckinsey.com/industries/electric-power-and-natural-gas/our-insights/powering-ai-how-real-is-the-risk-of-overbuilding#/",
-      "https://watttime.org/news-and-insights/the-emissions-risks-of-ai-data-center-buildout/"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "7f1a3b20b9252d49",
-   "url": "https://www.qbitai.com/2026/11/511841.html",
-   "title": "8万条群聊消息做成考卷：腾讯元宝×KCL发布首个基于群聊构建的Agent记忆基准",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-11-21T11:40:11+00:00",
-   "summary_short": "腾讯元宝×KCL发布群聊Agent记忆基准，用8万条真实消息考'记得住'到'用得好'",
-   "summary_long": "真实群聊中，AI助手常“记住”了历史却未真正服务好用户：出行日期已改，购票提醒仍按旧日期发出。腾讯元宝与伦敦国王学院NLP团队联合推出GroupAssistBench，基于50个真实群聊、80,299条历史消息构建2,395道题，分L1记忆召回（1,374道）与L2开放式服务（1,021道），并按单条记忆、多记忆整合、更新与冲突处理划分依赖类型。14组配置中，EverMemOS的L1得分0.621高于完整上下文0.570，L2却仅0.247，低于完整上下文的0.431。数据用记忆锚点定位、设历史截止点并做隐私审查，抽样核验95.8%题目有效；L2以含Grounding、Service、Penalty的定制Rubric评分，自动评判与人工多数票一致率89.3%。497条配对记忆显示，L1已召回但L2未有效使用的记忆中约36%未进入L2模型输入，其余约64%进入输入却未被应用。团队提出RER与ACB两种干预，组合后LightMem、xMemory、EverMemOS的L2分数较各自基线分别提高7.03、4.64、4.43个百分点。",
-   "key_points": [
-    "GroupAssistBench基于50个真实群聊、80,299条历史消息构建2,395道题：L1考事实召回，L2考开放式服务，依赖类型分单记忆、多记忆整合、更新与冲突处理。",
-    "14组配置对比出现反差：EverMemOS的L1召回0.621高于完整上下文0.570，L2服务0.247却低于完整上下文0.431，即更会回忆不必然更会服务。",
-    "497条配对记忆追踪发现：L1已召回但L2未被判定有效使用的记忆中约36%未进入L2模型输入，约64%进入输入却未被应用；RER与ACB组合使LightMem、xMemory、EverMemOS的L2分数较基线分别提高7.03、4.64、4.43个百分点。"
+    "RoboTrack-Bench 含 307 段视频、2522 条人工核验点轨迹，来自 DROID、Ego-Exo4D、MolmoAct 2、EgoVerse，覆盖不同机器人、人手、杂乱场景与第一/第三人称视角",
+    "RoboTrack-15M 通过扩展 MolmoSpaces 仿真生态，从仿真机器人操作轨迹生成稠密点轨迹，作为面向操作任务的合成训练数据",
+    "评测显示领先追踪器在 RoboTrack-Bench 上得分远低于现有机器人基准；加入 RoboTrack-15M 训练可提升真实操作视频上的追踪表现，增益延伸至其他追踪基准"
    ],
    "topics": [
     "eval",
-    "memory"
+    "robotics",
+    "point-tracking"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 81.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2308.15975"
+     ],
+     "links": [
+      "https://huggingface.co/collections/allenai/robotrack",
+      "https://allenai.org/papers/robotrack",
+      "https://huggingface.co/datasets/allenai/RoboTrack-15M",
+      "https://github.com/allenai/robotrack",
+      "https://robotrack.allen.ai/",
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench",
+      "https://www.datocms-assets.com/64837/1795407244-robotrack-blog-draft-google-docs-image-1.png",
+      "https://allenai.org/blog/molmoact2",
+      "https://allenai.org/blog/molmospaces",
+      "https://www.datocms-assets.com/64837/1795407698-robotrack-blog-draft-google-docs-image-2.png",
+      "https://www.datocms-assets.com/64837/1795407981-robotrack-blog-draft-google-docs-image-3-1.png",
+      "https://arxiv.org/abs/2308.15975",
+      "https://www.datocms-assets.com/64837/1795408316-robotrack-blog-draft-google-docs-image-4.png",
+      "https://github.com/google-research/kubric",
+      "https://www.datocms-assets.com/64837/1795408512-robotrack-blog-draft-google-docs-image-5.png",
+      "https://www.datocms-assets.com/64837/1795408662-robotrack-blog-draft-google-docs-image-6.png",
+      "https://www.datocms-assets.com/64837/1795408710-robotrack-blog-draft-google-docs-image-7.png",
+      "https://www.datocms-assets.com/64837/1795408926-robotrack-blog-draft-google-docs-image-8.png",
+      "https://www.datocms-assets.com/64837/1795409178-robotrack-blog-draft-google-docs-image-9-4.png",
+      "https://www.datocms-assets.com/64837/1795408826-robotrack-blog-draft-google-docs-image-9.png"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "6fd4c32fe34a4cba",
+   "url": "https://huggingface.co/blog/agentic-evals",
+   "title": "How to build and maintain an agentic evaluation",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-23T00:00:00+00:00",
+   "summary_short": "智能体评测构建维护指南：八步流程、基准纠错与开源取舍",
+   "summary_long": "原文讨论如何构建和维护智能体评测。AI评测通过给系统任务、检查答案或动作并评分，帮助决定系统被构建、采用和信任的方式；做好评测需定义体现领域专长的任务、可靠评分，并核对结果是否支持所声称的结论。方法与代码、数据不公开时，他人更难审查或复用；开源有助于构建更强、更新更频繁、更可比较的评测及基础设施。现有任务、环境和工具可作起点，让建设者把精力放在领域专长与验证上，分享构建过程（包括出错之处）也便于他人发现和改进。原文提到 Hugging Face hub 托管约3500个评测排行榜，过去一年评测数据集增长约16倍至约17000个，并已支持 Traces、Benchmarks、Environments 等智能体抽象。指南涵盖评测的三个阶段、从主张到报告分数的八步流程、基准错误如何发现和纠正，以及哪些组件应开放、哪些可保护的表格。",
+   "key_points": [
+    "评测设计从问答基准、智能体基准发展到团队/群体基准；每一步都增加可能改变分数的软件。",
+    "原文以单个任务走完从主张到报告分数的八个步骤，完整命令见附录A，并讨论任务与评分器常见错误如何被发现和纠正。",
+    "开源可提升评测的可审查、可复用和可比性；原文用表格逐组件说明哪些应分享、哪些可保持保护，并附术语表应对术语不一致。"
+   ],
+   "topics": [
+    "eval",
+    "agent-loop",
+    "open-source"
    ],
    "category": "评测",
    "categories": [
     "评测"
    ],
    "horizon": "long",
-   "score": 77.0,
+   "score": 77.5,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "source_tags": [
-     "资讯"
-    ],
     "outbound": {
      "arxiv": [
-      "2611.0486",
-      "2611.04867"
+      "1306.5856",
+      "2609.13009",
+      "2610.07763",
+      "2611.03494"
      ],
      "links": [
-      "https://www.qbitai.com/author/hengyu",
-      "https://www.qbitai.com",
-      "https://link.zhihu.com/?target=https%3A//arxiv.org/abs/2611.04867",
-      "https://link.zhihu.com/?target=https%3A//huggingface.co/papers/2611.04867",
-      "https://link.zhihu.com/?target=https%3A//github.com/Tencent/GroupAssistBench",
-      "https://link.zhihu.com/?target=https%3A//huggingface.co/datasets/tencent/GroupAssistBench",
-      "https://link.zhihu.com/?target=https%3A//zhanghao-groupassisbench.github.io/",
-      "https://www.qbitai.com/2026/11/511849.html",
-      "https://www.qbitai.com/2026/11/511855.html",
-      "https://www.qbitai.com/2026/11/511830.html",
-      "https://www.qbitai.com/2026/11/511791.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/511841.html&title=8万条群聊消息做成考卷：腾讯元宝×KCL发布首个基于群聊构建的Agent记忆基准&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2026/11/510486.html",
-      "https://www.qbitai.com/2026/11/511727.html",
-      "https://www.qbitai.com/2026/11/510707.html",
-      "https://www.qbitai.com/2026/11/510726.html",
-      "https://www.qbitai.com/2026/11/510695.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
+      "https://github.com/huggingface/blog/blob/main/agentic-evals.md",
+      "https://huggingface.co/spaces/huggingface/hub-stats",
+      "https://huggingface.co/docs/hub/en/agent-traces",
+      "https://huggingface.co/datasets?benchmark=benchmark%3Aofficial",
+      "https://huggingface.co/blog/rl-environments",
+      "https://ai.scal.ing/p/evals-intro-1",
+      "https://huggingface.co/papers/2009.03300",
+      "https://huggingface.co/papers/2311.12022",
+      "https://huggingface.co/papers/2310.06770",
+      "https://huggingface.co/papers/2307.13854",
+      "https://huggingface.co/papers/2505.04364",
+      "https://aclanthology.org/2026.findings-emnlp.662/",
+      "https://arxiv.org/abs/2610.07763",
+      "https://claude.ai/artifact/22cBPJt6Aos6bYpjmB1BHw#distribution",
+      "https://icml.cc/virtual/2026/82793",
+      "https://huggingface.co/papers/2606.09809",
+      "https://huggingface.co/papers/2503.16861",
+      "https://x.com/ArtificialAnlys/status/2115265133467635877",
+      "https://deepmind.google/blog/piloting-the-worlds-first-double-blind-ai-evaluations/",
+      "https://docs.harborframework.com/",
+      "https://hub.harborframework.com/tasks/terminal-bench/raman-fitting",
+      "https://docs.harborframework.com/agents/pre-integrated-agents",
+      "https://huggingface.co/openai/gpt-oss-120b",
+      "https://huggingface.co/datasets/burtenshaw/raman-lab",
+      "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash",
+      "https://huggingface.co/papers/2507.02825",
+      "https://www.tbench.ai/news/terminal-bench-2-1",
+      "https://arxiv.org/abs/2609.13009",
+      "https://artificialanalysis.ai/evaluations/critpt-v2",
+      "https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/",
+      "https://openai.com/index/separating-signal-from-noise-coding-evaluations/",
+      "https://huggingface.co/papers/2511.04703",
+      "https://arxiv.org/abs/2611.03494",
+      "https://huggingface.co/papers/2602.16763",
+      "https://arcprize.org/arc-agi/2",
+      "https://mlcommons.org/ailuminate/faq/",
+      "https://huggingface.co/datasets/harborframework/terminal-bench-2.1/blob/main/tasks/raman-fitting/solution/solve.sh",
+      "https://huggingface.co/docs/hub/datasets-cards"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "381628060ea95e20",
-   "url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
-   "title": "Data Processing Incidents on Inference Providers",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "ef3910f6a7af585b",
+   "url": "https://simonwillison.net/2026/Nov/23/glm-54/",
+   "title": "GLM-5.4: Toward Generalized Coding with Our First Loop Transformer",
+   "source": "Simon Willison",
    "tier": "A",
-   "published_at": "2026-11-22T02:14:14+00:00",
-   "summary_short": "OpenRouter 下架 3 家推理提供商，并取消 125 个端点的零数据保留资格",
-   "summary_long": "OpenRouter 于 11/22/2026 发布公告称，本周早些时候有安全研究人员报告，部分推理提供商存在数据被泄露的情况，或有证据显示这些提供商未遵守其数据政策。OpenRouter 表示一直与研究人员及各提供商密切合作以理解这些发现并推动整改，同时强调这些发现未显示 OpenRouter 本身遭到入侵或未经授权访问。基于调查结果，OpenRouter 已采取三项行动：下架三家提供商；将 125 个端点从零数据保留（ZDR）资格名单中移除，其中既包括被研究人员标记的提供商，也包括作为预防措施额外移除的端点；通知所有可能受影响的客户。正在进行的工作包括：改造研究人员的测试方法以便常态化开展此类检查；对网络路径做技术核验，以识别请求与响应可能被转发给第三方的情形；在恢复任何被移除端点的 ZDR 资格前，要求提供适当保证与验证。原文还提到感谢 Dragos 报告，并列出部分提供商的安全公告（Atlas Cloud、Novita、Phala、Together），其中 Together 涉及 2026 年 6 月至 7 月请求的提示词泄露。原文称并非所有受影响提供商都已公开说明，但无论是否有公开声明，均已通知受影响用户，并鼓励各提供商撰写事件报告。",
+   "published_at": "2026-11-23T23:40:49+00:00",
+   "summary_short": "Z.ai 发布 GLM-5.4：其首个循环 Transformer 模型，不增参数即可加深网络",
+   "summary_long": "GLM-5.4 已由中国 AI 实验室 Z.ai 发布，是该机构首个采用循环 Transformer（Loop Transformer）架构的模型。原文解释：标准 Transformer 中每层在前向传播时只运行一次；循环 Transformer 让一组共享权重的层多次迭代运行，反复细化上一轮的隐藏状态，从而在不增加参数量的前提下得到更深的网络。原文称这是过去一周内第二次看到循环 Transformer，第一次是 Thinking Machines Lab 于 11 月 20 日发布的 Inkling 2 Mini——它对每个 token 把中间层运行三次，以便用更少 token 完成更多推理，尤其在依赖推理质量的 agentic coding 任务上。GLM 5.4 目前（尚未？）以开放权重形式提供。作者通过 Z.ai API 试用，因 5.4 暂不能经常规 API 访问而订阅了 Coding Plan；两者共用 OpenAI 兼容的 Responses API。作者先自建 llm-glm 插件，随后发现已有 llm-zai，仅因后者尚未支持新模型才发布自己的版本。pelicans 测试中 5.3 与 5.4 质量相近，且风格比 5.1/5.2 更接近 OpenAI 或 Anthropic 模型。",
    "key_points": [
-    "安全研究人员报告部分推理提供商数据被泄露或数据政策未落实，OpenRouter 称未发现自身被入侵或未授权访问",
-    "OpenRouter 下架三家提供商、移除 125 个端点的零数据保留资格（含被标记者与预防性移除），并通知可能受影响客户",
-    "后续将常态化运行类似测试、核验网络路径是否向第三方转发请求与响应，并在恢复 ZDR 资格前要求保证与验证"
+    "GLM-5.4 是 Z.ai 首个循环 Transformer 模型：一组共享权重的层多次迭代、细化隐藏状态，在不增加参数量的情况下加深网络",
+    "原文提到一周内第二次出现循环 Transformer，前一次是 Thinking Machines Lab 11 月 20 日发布的 Inkling 2 Mini，其每个 token 将中间层运行三次以减少推理所需 token",
+    "GLM 5.4 目前（尚未？）提供开放权重，且暂不能通过常规 API 访问，需订阅 Coding Plan；两者共用 OpenAI 兼容的 Responses API"
    ],
    "topics": [
-    "privacy",
-    "cybersecurity",
-    "prompt-injection"
+    "post-training",
+    "coding-agent",
+    "open-source"
    ],
-   "category": "安全",
+   "category": "模型",
    "categories": [
-    "安全",
-    "行业动态"
+    "模型"
    ],
    "horizon": "short",
-   "score": 76.2,
+   "score": 76.8,
    "status": "published",
    "extra": {
-    "hn_points": 279,
-    "hn_comments": 96,
+    "content_source": "rss",
+    "source_tags": [
+     "ai",
+     "generative-ai",
+     "llms",
+     "llm",
+     "pelican-riding-a-bicycle"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens",
-      "https://www.atlascloud.ai/blog/ai-updates/security-and-privacy-commitment",
-      "https://novita.ai/blog/minimax-requests-privacy-notice/",
-      "https://phala.com/posts/phala-november-preliminary-incident-report",
-      "https://www.together.ai/blog/security-event-prompt-leakage-for-requests-in-june-and-july-of-2026"
+      "https://z.ai/blog/glm-5.4",
+      "https://thinkingmachines.ai/news/inkling-2-mini/",
+      "https://docs.z.ai/devpack/overview",
+      "https://github.com/simonw/llm-glm",
+      "https://github.com/irthomasthomas/llm-zai",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Fae838c5a6837ca0a602c180c07ac0887",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F8826d1366dcc98783c7cbc593f6a6e77",
+      "https://simonwillison.net/2026/Apr/7/glm-51/",
+      "https://simonwillison.net/2026/Jun/17/glm-52/#excellent-pelican-disappointing-opossum",
+      "https://static.simonwillison.net/static/2026/glm-pelican-comparison.html",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/llm",
+      "https://simonwillison.net/tags/pelican-riding-a-bicycle",
+      "https://simonwillison.net/tags/llm-release",
+      "https://simonwillison.net/tags/ai-in-china",
+      "https://simonwillison.net/tags/glm"
      ]
     },
-    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "61dcf1169479ac82",
+   "url": "https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/",
+   "title": "Finding faster quantum algorithms with agents and formal verification",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-11-23T16:59:40+00:00",
+   "summary_short": "所提供的原文只有网站导航菜单，没有正文，无法概括其实质内容",
+   "summary_long": "本次提供的【原文】不是文章正文，而是网站页面的导航与菜单文本：其中包括各类模型名称（Gemini、Veo、Lyria、Genie、Gemma 等）的入口、研究／出版物／责任／安全等栏目链接，以及大量图片链接和跳转地址。全文没有出现任何关于研究背景、方法、实验、数据或结论的陈述，也没有署名作者或机构信息；仅在导航文本中出现 Google DeepMind 字样。这些链接文字只是指向其他页面的标题，本身不构成可引用的论述。因此，无法依据原文提炼该主题的核心内容、技术细节及其意义，原文未详述任何可供报道的具体信息。要生成符合要求的摘要，需要提供包含实际正文段落的原文。",
+   "key_points": [
+    "原文是网站导航菜单和图片链接，不含任何正文段落",
+    "文中没有研究背景、方法、实验数据或结论等实质信息",
+    "原文无作者署名，导航文本中仅出现 Google DeepMind 字样"
+   ],
+   "topics": [
+    "multi-agent",
+    "reasoning"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 75.0,
+   "status": "published",
+   "extra": {
+    "content_source": "reader",
+    "outbound": {
+     "arxiv": [
+      "2611.09822"
+     ],
+     "links": []
+    },
     "summary_mode": "full"
    }
   }
  ],
  "items": [
   {
-   "id": "de5cd1a6d51dc917",
-   "url": "https://openai.com/index/perplexity-and-intelligence",
-   "title": "Perplexity and Intelligence",
+   "id": "1d0c151fefed0dea",
+   "url": "https://openai.com/index/introducing-shirudo",
+   "title": "OpenAI and Cisco introduce Shirudo",
    "source": "OpenAI News",
    "tier": "S",
-   "published_at": "2026-11-22T00:00:00+00:00",
-   "summary_short": "OpenAI首席科学家主张用困惑度作为跨机构共享的安全比较指标，并公开内部数据",
-   "summary_long": "OpenAI 首席科学家 Jakub Pachocki 在文中提出，应把困惑度（等价于交叉熵损失）确立为可跨模型开发者比较的指标，以支撑行业共享的安全标准。他指出，现代 AI 并非从零设计，而主要是靠在超大规模数据上训练一个压缩器（预测器）来获得智能，因此追踪“训练更好压缩器”的进展是理解 AI 发展轨迹的关键。为此 OpenAI 公开了内部预训练困惑度测量；作者承认这会让竞争对手更清楚其位置，但认为建立行业共享安全措施的紧迫性更重要。文中给出的轨迹是：GPT-2 首次能稳定写出连贯段落；GPT-3 具备上下文学习能力；GPT-3.5 在当前主评测集上对数困惑度约 0.99，可流畅对话并成为初代 ChatGPT 的基础；GPT-4 约 0.91，善于有效运用思维链推理；如今损失降至 0.8 以下，网络安全与数学等领域出现变革性能力。他强调这些能力事先无法预料，是该单一指标进步带来的涌现能力。",
+   "published_at": "2026-11-23T21:20:00+00:00",
+   "summary_short": "OpenAI与Cisco发布开源运行时Shirudo，用eBPF在不停机的情况下临时防护漏洞",
+   "summary_long": "OpenAI与Cisco宣布推出Shirudo，一个开源运行时，用于在团队推送补丁期间保护Linux系统。原文称，测试和部署补丁仍可能耗时数天或数周；漏洞利用与合法请求可能依赖同一个Linux操作，完全阻断该操作可能导致服务下线。Shirudo（日语“盾”）让团队测试名为shield的临时防护能否只阻断暴露漏洞的行为、放行合法请求，经操作员批准后即可在服务运行中部署。它基于eBPF，围绕四项能力设计：不停机阻断脆弱代码路径的实时防护、让代理自动调查漏洞并生成验证shield的机器速度防御、经加密签名与eBPF验证器校验的可信部署、基于TPM的硬件级验证。受控测试中，由Codex生成的shield无需重启即阻止了针对运行中Elasticsearch的Java4Shell利用尝试。OpenAI总裁兼联合创始人Greg Brockman表示正与Cisco紧密合作推进该项目，并称这类工具应在开放环境中构建；项目邀请开发者、安全研究人员与基础设施运营者参与。",
    "key_points": [
-    "主张把困惑度（交叉熵损失）作为模型开发者之间可比较、可支撑共享安全标准的指标",
-    "OpenAI 公开内部预训练困惑度测量，作者称会不利于竞争，但认为行业共享安全措施的紧迫性更重要",
-    "对数困惑度轨迹：约 0.99 对应 GPT-3.5、约 0.91 对应 GPT-4，低于 0.8 后网络安全与数学出现变革性能力，作者称这些是事先无法预料的涌现能力"
+    "Shirudo是OpenAI与Cisco联合推出的开源运行时，目标是在补丁尚未上线时保护运行中的Linux系统",
+    "基于eBPF，围绕四项核心能力设计：实时防护、机器速度防御、可信部署（加密签名与验证器校验）、基于TPM的硬件级验证",
+    "在受控测试中，用Codex生成的shield在无需重启的情况下拦截了针对运行中Elasticsearch服务的Java4Shell利用尝试"
    ],
    "topics": [
-    "eval"
+    "cybersecurity",
+    "open-source"
    ],
-   "category": "评测",
+   "category": "产品与应用",
    "categories": [
-    "评测",
+    "产品与应用",
     "安全"
    ],
-   "horizon": "long",
-   "score": 87.0,
+   "horizon": "short",
+   "score": 81.0,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "source_tags": [
-     "Research"
+     "Security"
     ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://en.wikipedia.org/wiki/Shannon%27s_source_coding_theorem",
-      "https://darioamodei.com/post/we-must-pace-the-frontier",
-      "https://openai.com/index/an-alien-mind/",
-      "https://alignment.openai.com/cot-monitorability-model-lifecycle",
-      "https://openai.com/index/research-acceleration-jagged-frontier/#where-big-ideas-come-from"
+      "https://isovalent.com/blog/post/cisco-openai-shirudo/",
+      "https://lpc.events/event/20/contributions/2437/",
+      "https://www.youtube.com/watch?v=4v2xA_NJHt0",
+      "https://github.com/shirudo-dev/shirudo",
+      "https://docs.shirudo.dev/start/quickstart.html",
+      "https://labs.isovalent.com/#/lab/shirudo-getting-started",
+      "https://isovalent.site/4t8Pjxc",
+      "https://docs.shirudo.dev/index.html",
+      "https://docs.shirudo.dev/contribute/support.html"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "38c61351fe0dc3e7",
-   "url": "https://betterdatacenterproject.com/2026/11/16/how-ai-is-powered-a-breakdown-of-byop-and-grid-power/",
-   "title": "87% of the Anthropic power will come from gas and 11% from coal in 2028",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-22T08:57:34+00:00",
-   "summary_short": "测算：Anthropic 2028年电力87%靠气、11%靠煤，排放或超加州发电",
-   "summary_long": "原文以Anthropic为案例，分析AI数据中心自建电源（BYOP）及并网化石电源扩张。原文称已识别177GW计划中的BYOP天然气容量，并估计到2032年相关提案中可再生电源占比不足20%；另有200GW新化石电厂并网，很大程度由数据中心需求推动。Anthropic在美国没有直接可再生能源承诺，公开承诺仅在挪威和加拿大；其近期购买1.7GW重型天然气发电机承诺。按现场天然气和边际并网电源测算，2028年其电力约87%来自天然气、11%来自煤，排放可达1700万至3800万吨CO2e/年，中案3200万吨，可能超过加州全部发电排放及Meta、微软、谷歌2025年合计范围二排放。",
+   "id": "ca38829e73128713",
+   "url": "https://huggingface.co/blog/allenai/robotrack",
+   "title": "RoboTrack: Point tracking for real-world robotic manipulation",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-23T17:20:37+00:00",
+   "summary_short": "RoboTrack：机器人点追踪基准与合成训练数据，现有追踪器实测掉分",
+   "summary_long": "机器人要在真实环境中完成操作，需要在整个交互过程中持续跟踪夹爪与物体的位置。点追踪的思路是：给定视频某一帧中的一个位置，估计同一个点在后续帧、被遮挡期间以及重新出现时的位置，这些轨迹可帮助机器人从演示中学习、规划并引导动作、建模物体对动作的响应。现有追踪器在既有机器人基准上得分很高，研究团队想检验这些结果在真实场景的多样视角、杂乱环境与遮挡下是否依然成立。为此他们发布 RoboTrack：RoboTrack-Bench 包含来自 DROID、Ego-Exo4D、MolmoAct 2、EgoVerse 的 307 段人工标注视频，共 2522 条人工核验点轨迹，覆盖不同机器人、人手、杂乱场景与第一/第三人称视角；同时扩展 MolmoSpaces 仿真生态，从仿真操作轨迹生成稠密点轨迹，形成 RoboTrack-15M 合成训练集。评测显示，领先追踪器在 RoboTrack-Bench 上的得分远低于现有机器人基准；将 RoboTrack-15M 加入训练可提升真实操作视频上的表现，增益还延伸到其他追踪基准。团队还在真实机器人上用所得追踪器辅助湿实验室移液管操作，并发布 RoboTracker 与 RoboTracker-Warp 两个模型及论文。",
    "key_points": [
-    "原文识别177GW计划中的BYOP天然气容量，并称到2032年当前提案中可再生发电占比不足20%；另有200GW新化石电厂为数据中心等新增需求并网。",
-    "Anthropic截至2026年10月签约15GW算力，其中5.9–9.6GW落到具体数据中心；美国无直接可再生能源承诺，公开承诺仅在挪威和加拿大，并购买1.7GW重型天然气发电机承诺（34亿美元）。",
-    "测算2028年Anthropic电力约87%天然气、11%煤；排放1700万–3800万吨CO2e/年，中案3200万吨，可能超加州全部发电排放及Meta、微软、谷歌2025年合计范围二排放。"
-   ],
-   "topics": [
-    "data-center-energy",
-    "emissions",
-    "ai-infrastructure"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 78.0,
-   "status": "published",
-   "extra": {
-    "hn_points": 861,
-    "hn_comments": 868,
-    "outbound": {
-     "arxiv": [
-      "2411.09786"
-     ],
-     "links": [
-      "https://betterdatacenterproject.com/2026/10/08/the-ai-gas-rush/",
-      "https://globalenergymonitor.org/projects/global-oil-gas-plant-tracker?popup=2638",
-      "https://docs.google.com/spreadsheets/d/1XSqa0lJFJs6pQcmcTlBwUqLsQBEtDybNhjEiFGj-vbE/edit?gid=880500164#gid=880500164",
-      "https://www.anthropic.com/policy/infrastructure",
-      "https://marketwise.com/investing/bitdeer-4-7-billion-ai-data-center-lease-tied-to-anthropic-who-benefits/",
-      "https://www.globenewswire.com/news-release/2026/10/16/3382650/0/en/everwind-announces-10-billion-investment-in-point-tupper-data-centre-campus-and-renewable-energy-portfolio-across-nova-scotia.html",
-      "https://www.ft.com/content/41bf5c6a-9735-4f1a-a8e3-2bcccad58ba0?syn-25a6b1a6=1",
-      "https://www.theinformation.com/articles/anthropic-clinched-517-billion-compute-deals-11-months",
-      "https://www.ferc.gov/understanding-and-participating-california-iso-caiso-processes",
-      "https://docs.google.com/spreadsheets/d/1XSqa0lJFJs6pQcmcTlBwUqLsQBEtDybNhjEiFGj-vbE/edit?gid=1671585594#gid=1671585594",
-      "https://www.eia.gov/state/seds/sep_co2/total/pdf/co2_CA.pdf",
-      "https://www.artemis.ai/anthropic-thesis",
-      "https://sustainability.atmeta.com/wp-content/uploads/2025/10/Meta_2025-Environmental-Data-Index.pdf",
-      "https://cdn-dynmedia-1.microsoft.com/is/content/microsoftcorp/microsoft/msc/documents/presentations/CSR/2026-Microsoft-Environmental-Data-Fact-Sheet-PDF.pdf",
-      "https://sustainability.google/files/google-2026-environmental-report.pdf",
-      "https://arxiv.org/abs/2411.09786",
-      "https://www.eia.gov/environment/emissions/carbon/",
-      "https://www.epa.gov/egrid/summary-data",
-      "https://www.epa.gov/benmap/sector-based-pm25-and-ozone-benefit-ton-estimates",
-      "https://www.sec.gov/Archives/edgar/data/1181412/000162828026040364/spaceexplorationtechnologib.htm",
-      "https://www.selc.org/news/xai-built-an-illegal-power-plant-to-power-its-data-center/",
-      "https://www.bloomberg.com/news/articles/2026-08-26/anthropic-to-pay-nscale-45-billion-for-ai-computing-power",
-      "https://www.bloomberg.com/news/articles/2026-10-19/nscale-anthropic-in-talks-for-45-billion-cloud-computing-deal",
-      "https://oilandgaswatch.org/facility/cdf08f90-5579-4a86-97ae-0204faa2976f",
-      "https://epoch.ai/data/ai-data-centers",
-      "https://www.anthropic.com/news/higher-limits-spacex",
-      "https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm",
-      "https://www.aboutamazon.com/news/aws/aws-project-rainier-ai-trainium-chips-compute-cluster",
-      "https://www.semafor.com/article/10/29/2025/aws-massive-multi-state-ai-data-center-is-powering-anthropics-claude",
-      "https://www.gem.wiki/Schahfer_Generating_Station",
-      "https://www.powermag.com/entergy-mississippi-adding-third-gas-fired-power-plant-to-superpower-strategy/",
-      "https://www.epa.gov/avert",
-      "https://datacenters.lbl.gov/sites/default/files/WP49-PUE%20A%20Comprehensive%20Examination%20of%20the%20Metric_v6.pdf",
-      "https://escholarship.org/uc/item/32d6m0d1",
-      "https://robonomics.substack.com/p/spacex-s-1-full-analysis",
-      "https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm",
-      "https://www.sec.gov/Archives/edgar/data/1181412/000162828026041150/spacexagreementfwp.htm",
-      "https://www.iea.org/reports/energy-and-ai/executive-summary%20",
-      "https://www.mckinsey.com/industries/electric-power-and-natural-gas/our-insights/powering-ai-how-real-is-the-risk-of-overbuilding#/",
-      "https://watttime.org/news-and-insights/the-emissions-risks-of-ai-data-center-buildout/"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "7f1a3b20b9252d49",
-   "url": "https://www.qbitai.com/2026/11/511841.html",
-   "title": "8万条群聊消息做成考卷：腾讯元宝×KCL发布首个基于群聊构建的Agent记忆基准",
-   "source": "量子位",
-   "tier": "B",
-   "published_at": "2026-11-21T11:40:11+00:00",
-   "summary_short": "腾讯元宝×KCL发布群聊Agent记忆基准，用8万条真实消息考'记得住'到'用得好'",
-   "summary_long": "真实群聊中，AI助手常“记住”了历史却未真正服务好用户：出行日期已改，购票提醒仍按旧日期发出。腾讯元宝与伦敦国王学院NLP团队联合推出GroupAssistBench，基于50个真实群聊、80,299条历史消息构建2,395道题，分L1记忆召回（1,374道）与L2开放式服务（1,021道），并按单条记忆、多记忆整合、更新与冲突处理划分依赖类型。14组配置中，EverMemOS的L1得分0.621高于完整上下文0.570，L2却仅0.247，低于完整上下文的0.431。数据用记忆锚点定位、设历史截止点并做隐私审查，抽样核验95.8%题目有效；L2以含Grounding、Service、Penalty的定制Rubric评分，自动评判与人工多数票一致率89.3%。497条配对记忆显示，L1已召回但L2未有效使用的记忆中约36%未进入L2模型输入，其余约64%进入输入却未被应用。团队提出RER与ACB两种干预，组合后LightMem、xMemory、EverMemOS的L2分数较各自基线分别提高7.03、4.64、4.43个百分点。",
-   "key_points": [
-    "GroupAssistBench基于50个真实群聊、80,299条历史消息构建2,395道题：L1考事实召回，L2考开放式服务，依赖类型分单记忆、多记忆整合、更新与冲突处理。",
-    "14组配置对比出现反差：EverMemOS的L1召回0.621高于完整上下文0.570，L2服务0.247却低于完整上下文0.431，即更会回忆不必然更会服务。",
-    "497条配对记忆追踪发现：L1已召回但L2未被判定有效使用的记忆中约36%未进入L2模型输入，约64%进入输入却未被应用；RER与ACB组合使LightMem、xMemory、EverMemOS的L2分数较基线分别提高7.03、4.64、4.43个百分点。"
+    "RoboTrack-Bench 含 307 段视频、2522 条人工核验点轨迹，来自 DROID、Ego-Exo4D、MolmoAct 2、EgoVerse，覆盖不同机器人、人手、杂乱场景与第一/第三人称视角",
+    "RoboTrack-15M 通过扩展 MolmoSpaces 仿真生态，从仿真机器人操作轨迹生成稠密点轨迹，作为面向操作任务的合成训练数据",
+    "评测显示领先追踪器在 RoboTrack-Bench 上得分远低于现有机器人基准；加入 RoboTrack-15M 训练可提升真实操作视频上的追踪表现，增益延伸至其他追踪基准"
    ],
    "topics": [
     "eval",
-    "memory"
+    "robotics",
+    "point-tracking"
+   ],
+   "category": "评测",
+   "categories": [
+    "评测",
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 81.0,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [
+      "2308.15975"
+     ],
+     "links": [
+      "https://huggingface.co/collections/allenai/robotrack",
+      "https://allenai.org/papers/robotrack",
+      "https://huggingface.co/datasets/allenai/RoboTrack-15M",
+      "https://github.com/allenai/robotrack",
+      "https://robotrack.allen.ai/",
+      "https://huggingface.co/datasets/allenai/RoboTrack-Bench",
+      "https://www.datocms-assets.com/64837/1795407244-robotrack-blog-draft-google-docs-image-1.png",
+      "https://allenai.org/blog/molmoact2",
+      "https://allenai.org/blog/molmospaces",
+      "https://www.datocms-assets.com/64837/1795407698-robotrack-blog-draft-google-docs-image-2.png",
+      "https://www.datocms-assets.com/64837/1795407981-robotrack-blog-draft-google-docs-image-3-1.png",
+      "https://arxiv.org/abs/2308.15975",
+      "https://www.datocms-assets.com/64837/1795408316-robotrack-blog-draft-google-docs-image-4.png",
+      "https://github.com/google-research/kubric",
+      "https://www.datocms-assets.com/64837/1795408512-robotrack-blog-draft-google-docs-image-5.png",
+      "https://www.datocms-assets.com/64837/1795408662-robotrack-blog-draft-google-docs-image-6.png",
+      "https://www.datocms-assets.com/64837/1795408710-robotrack-blog-draft-google-docs-image-7.png",
+      "https://www.datocms-assets.com/64837/1795408926-robotrack-blog-draft-google-docs-image-8.png",
+      "https://www.datocms-assets.com/64837/1795409178-robotrack-blog-draft-google-docs-image-9-4.png",
+      "https://www.datocms-assets.com/64837/1795408826-robotrack-blog-draft-google-docs-image-9.png"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "6fd4c32fe34a4cba",
+   "url": "https://huggingface.co/blog/agentic-evals",
+   "title": "How to build and maintain an agentic evaluation",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-23T00:00:00+00:00",
+   "summary_short": "智能体评测构建维护指南：八步流程、基准纠错与开源取舍",
+   "summary_long": "原文讨论如何构建和维护智能体评测。AI评测通过给系统任务、检查答案或动作并评分，帮助决定系统被构建、采用和信任的方式；做好评测需定义体现领域专长的任务、可靠评分，并核对结果是否支持所声称的结论。方法与代码、数据不公开时，他人更难审查或复用；开源有助于构建更强、更新更频繁、更可比较的评测及基础设施。现有任务、环境和工具可作起点，让建设者把精力放在领域专长与验证上，分享构建过程（包括出错之处）也便于他人发现和改进。原文提到 Hugging Face hub 托管约3500个评测排行榜，过去一年评测数据集增长约16倍至约17000个，并已支持 Traces、Benchmarks、Environments 等智能体抽象。指南涵盖评测的三个阶段、从主张到报告分数的八步流程、基准错误如何发现和纠正，以及哪些组件应开放、哪些可保护的表格。",
+   "key_points": [
+    "评测设计从问答基准、智能体基准发展到团队/群体基准；每一步都增加可能改变分数的软件。",
+    "原文以单个任务走完从主张到报告分数的八个步骤，完整命令见附录A，并讨论任务与评分器常见错误如何被发现和纠正。",
+    "开源可提升评测的可审查、可复用和可比性；原文用表格逐组件说明哪些应分享、哪些可保持保护，并附术语表应对术语不一致。"
+   ],
+   "topics": [
+    "eval",
+    "agent-loop",
+    "open-source"
    ],
    "category": "评测",
    "categories": [
     "评测"
    ],
    "horizon": "long",
-   "score": 77.0,
+   "score": 77.5,
    "status": "published",
    "extra": {
     "content_source": "direct",
-    "source_tags": [
-     "资讯"
-    ],
     "outbound": {
      "arxiv": [
-      "2611.0486",
-      "2611.04867"
+      "1306.5856",
+      "2609.13009",
+      "2610.07763",
+      "2611.03494"
      ],
      "links": [
-      "https://www.qbitai.com/author/hengyu",
-      "https://www.qbitai.com",
-      "https://link.zhihu.com/?target=https%3A//arxiv.org/abs/2611.04867",
-      "https://link.zhihu.com/?target=https%3A//huggingface.co/papers/2611.04867",
-      "https://link.zhihu.com/?target=https%3A//github.com/Tencent/GroupAssistBench",
-      "https://link.zhihu.com/?target=https%3A//huggingface.co/datasets/tencent/GroupAssistBench",
-      "https://link.zhihu.com/?target=https%3A//zhanghao-groupassisbench.github.io/",
-      "https://www.qbitai.com/2026/11/511849.html",
-      "https://www.qbitai.com/2026/11/511855.html",
-      "https://www.qbitai.com/2026/11/511830.html",
-      "https://www.qbitai.com/2026/11/511791.html",
-      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/511841.html&title=8万条群聊消息做成考卷：腾讯元宝×KCL发布首个基于群聊构建的Agent记忆基准&appkey=4017757111&searchPic=true&ralateUid=6105753431",
-      "https://www.qbitai.com/2026/11/510486.html",
-      "https://www.qbitai.com/2026/11/511727.html",
-      "https://www.qbitai.com/2026/11/510707.html",
-      "https://www.qbitai.com/2026/11/510726.html",
-      "https://www.qbitai.com/2026/11/510695.html",
-      "https://weibo.com/qbitai?is_all=1",
-      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
-      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
-      "https://beian.miit.gov.cn/"
+      "https://github.com/huggingface/blog/blob/main/agentic-evals.md",
+      "https://huggingface.co/spaces/huggingface/hub-stats",
+      "https://huggingface.co/docs/hub/en/agent-traces",
+      "https://huggingface.co/datasets?benchmark=benchmark%3Aofficial",
+      "https://huggingface.co/blog/rl-environments",
+      "https://ai.scal.ing/p/evals-intro-1",
+      "https://huggingface.co/papers/2009.03300",
+      "https://huggingface.co/papers/2311.12022",
+      "https://huggingface.co/papers/2310.06770",
+      "https://huggingface.co/papers/2307.13854",
+      "https://huggingface.co/papers/2505.04364",
+      "https://aclanthology.org/2026.findings-emnlp.662/",
+      "https://arxiv.org/abs/2610.07763",
+      "https://claude.ai/artifact/22cBPJt6Aos6bYpjmB1BHw#distribution",
+      "https://icml.cc/virtual/2026/82793",
+      "https://huggingface.co/papers/2606.09809",
+      "https://huggingface.co/papers/2503.16861",
+      "https://x.com/ArtificialAnlys/status/2115265133467635877",
+      "https://deepmind.google/blog/piloting-the-worlds-first-double-blind-ai-evaluations/",
+      "https://docs.harborframework.com/",
+      "https://hub.harborframework.com/tasks/terminal-bench/raman-fitting",
+      "https://docs.harborframework.com/agents/pre-integrated-agents",
+      "https://huggingface.co/openai/gpt-oss-120b",
+      "https://huggingface.co/datasets/burtenshaw/raman-lab",
+      "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash",
+      "https://huggingface.co/papers/2507.02825",
+      "https://www.tbench.ai/news/terminal-bench-2-1",
+      "https://arxiv.org/abs/2609.13009",
+      "https://artificialanalysis.ai/evaluations/critpt-v2",
+      "https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/",
+      "https://openai.com/index/separating-signal-from-noise-coding-evaluations/",
+      "https://huggingface.co/papers/2511.04703",
+      "https://arxiv.org/abs/2611.03494",
+      "https://huggingface.co/papers/2602.16763",
+      "https://arcprize.org/arc-agi/2",
+      "https://mlcommons.org/ailuminate/faq/",
+      "https://huggingface.co/datasets/harborframework/terminal-bench-2.1/blob/main/tasks/raman-fitting/solution/solve.sh",
+      "https://huggingface.co/docs/hub/datasets-cards"
      ]
     },
     "summary_mode": "full"
    }
   },
   {
-   "id": "381628060ea95e20",
-   "url": "https://openrouter.ai/blog/announcements/data-processing-incidents-on-inference-providers/",
-   "title": "Data Processing Incidents on Inference Providers",
-   "source": "Hacker News (AI 高分帖)",
+   "id": "ef3910f6a7af585b",
+   "url": "https://simonwillison.net/2026/Nov/23/glm-54/",
+   "title": "GLM-5.4: Toward Generalized Coding with Our First Loop Transformer",
+   "source": "Simon Willison",
    "tier": "A",
-   "published_at": "2026-11-22T02:14:14+00:00",
-   "summary_short": "OpenRouter 下架 3 家推理提供商，并取消 125 个端点的零数据保留资格",
-   "summary_long": "OpenRouter 于 11/22/2026 发布公告称，本周早些时候有安全研究人员报告，部分推理提供商存在数据被泄露的情况，或有证据显示这些提供商未遵守其数据政策。OpenRouter 表示一直与研究人员及各提供商密切合作以理解这些发现并推动整改，同时强调这些发现未显示 OpenRouter 本身遭到入侵或未经授权访问。基于调查结果，OpenRouter 已采取三项行动：下架三家提供商；将 125 个端点从零数据保留（ZDR）资格名单中移除，其中既包括被研究人员标记的提供商，也包括作为预防措施额外移除的端点；通知所有可能受影响的客户。正在进行的工作包括：改造研究人员的测试方法以便常态化开展此类检查；对网络路径做技术核验，以识别请求与响应可能被转发给第三方的情形；在恢复任何被移除端点的 ZDR 资格前，要求提供适当保证与验证。原文还提到感谢 Dragos 报告，并列出部分提供商的安全公告（Atlas Cloud、Novita、Phala、Together），其中 Together 涉及 2026 年 6 月至 7 月请求的提示词泄露。原文称并非所有受影响提供商都已公开说明，但无论是否有公开声明，均已通知受影响用户，并鼓励各提供商撰写事件报告。",
+   "published_at": "2026-11-23T23:40:49+00:00",
+   "summary_short": "Z.ai 发布 GLM-5.4：其首个循环 Transformer 模型，不增参数即可加深网络",
+   "summary_long": "GLM-5.4 已由中国 AI 实验室 Z.ai 发布，是该机构首个采用循环 Transformer（Loop Transformer）架构的模型。原文解释：标准 Transformer 中每层在前向传播时只运行一次；循环 Transformer 让一组共享权重的层多次迭代运行，反复细化上一轮的隐藏状态，从而在不增加参数量的前提下得到更深的网络。原文称这是过去一周内第二次看到循环 Transformer，第一次是 Thinking Machines Lab 于 11 月 20 日发布的 Inkling 2 Mini——它对每个 token 把中间层运行三次，以便用更少 token 完成更多推理，尤其在依赖推理质量的 agentic coding 任务上。GLM 5.4 目前（尚未？）以开放权重形式提供。作者通过 Z.ai API 试用，因 5.4 暂不能经常规 API 访问而订阅了 Coding Plan；两者共用 OpenAI 兼容的 Responses API。作者先自建 llm-glm 插件，随后发现已有 llm-zai，仅因后者尚未支持新模型才发布自己的版本。pelicans 测试中 5.3 与 5.4 质量相近，且风格比 5.1/5.2 更接近 OpenAI 或 Anthropic 模型。",
    "key_points": [
-    "安全研究人员报告部分推理提供商数据被泄露或数据政策未落实，OpenRouter 称未发现自身被入侵或未授权访问",
-    "OpenRouter 下架三家提供商、移除 125 个端点的零数据保留资格（含被标记者与预防性移除），并通知可能受影响客户",
-    "后续将常态化运行类似测试、核验网络路径是否向第三方转发请求与响应，并在恢复 ZDR 资格前要求保证与验证"
+    "GLM-5.4 是 Z.ai 首个循环 Transformer 模型：一组共享权重的层多次迭代、细化隐藏状态，在不增加参数量的情况下加深网络",
+    "原文提到一周内第二次出现循环 Transformer，前一次是 Thinking Machines Lab 11 月 20 日发布的 Inkling 2 Mini，其每个 token 将中间层运行三次以减少推理所需 token",
+    "GLM 5.4 目前（尚未？）提供开放权重，且暂不能通过常规 API 访问，需订阅 Coding Plan；两者共用 OpenAI 兼容的 Responses API"
    ],
    "topics": [
-    "privacy",
-    "cybersecurity",
-    "prompt-injection"
+    "post-training",
+    "coding-agent",
+    "open-source"
    ],
-   "category": "安全",
+   "category": "模型",
    "categories": [
-    "安全",
-    "行业动态"
+    "模型"
    ],
    "horizon": "short",
-   "score": 76.2,
+   "score": 76.8,
    "status": "published",
    "extra": {
-    "hn_points": 279,
-    "hn_comments": 96,
+    "content_source": "rss",
+    "source_tags": [
+     "ai",
+     "generative-ai",
+     "llms",
+     "llm",
+     "pelican-riding-a-bicycle"
+    ],
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens",
-      "https://www.atlascloud.ai/blog/ai-updates/security-and-privacy-commitment",
-      "https://novita.ai/blog/minimax-requests-privacy-notice/",
-      "https://phala.com/posts/phala-november-preliminary-incident-report",
-      "https://www.together.ai/blog/security-event-prompt-leakage-for-requests-in-june-and-july-of-2026"
+      "https://z.ai/blog/glm-5.4",
+      "https://thinkingmachines.ai/news/inkling-2-mini/",
+      "https://docs.z.ai/devpack/overview",
+      "https://github.com/simonw/llm-glm",
+      "https://github.com/irthomasthomas/llm-zai",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2Fae838c5a6837ca0a602c180c07ac0887",
+      "https://tools.simonwillison.net/markdown-svg-renderer?url=https%3A%2F%2Fgist.github.com%2Fsimonw%2F8826d1366dcc98783c7cbc593f6a6e77",
+      "https://simonwillison.net/2026/Apr/7/glm-51/",
+      "https://simonwillison.net/2026/Jun/17/glm-52/#excellent-pelican-disappointing-opossum",
+      "https://static.simonwillison.net/static/2026/glm-pelican-comparison.html",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/llm",
+      "https://simonwillison.net/tags/pelican-riding-a-bicycle",
+      "https://simonwillison.net/tags/llm-release",
+      "https://simonwillison.net/tags/ai-in-china",
+      "https://simonwillison.net/tags/glm"
      ]
     },
-    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "61dcf1169479ac82",
+   "url": "https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/",
+   "title": "Finding faster quantum algorithms with agents and formal verification",
+   "source": "Google DeepMind Blog",
+   "tier": "S",
+   "published_at": "2026-11-23T16:59:40+00:00",
+   "summary_short": "所提供的原文只有网站导航菜单，没有正文，无法概括其实质内容",
+   "summary_long": "本次提供的【原文】不是文章正文，而是网站页面的导航与菜单文本：其中包括各类模型名称（Gemini、Veo、Lyria、Genie、Gemma 等）的入口、研究／出版物／责任／安全等栏目链接，以及大量图片链接和跳转地址。全文没有出现任何关于研究背景、方法、实验、数据或结论的陈述，也没有署名作者或机构信息；仅在导航文本中出现 Google DeepMind 字样。这些链接文字只是指向其他页面的标题，本身不构成可引用的论述。因此，无法依据原文提炼该主题的核心内容、技术细节及其意义，原文未详述任何可供报道的具体信息。要生成符合要求的摘要，需要提供包含实际正文段落的原文。",
+   "key_points": [
+    "原文是网站导航菜单和图片链接，不含任何正文段落",
+    "文中没有研究背景、方法、实验数据或结论等实质信息",
+    "原文无作者署名，导航文本中仅出现 Google DeepMind 字样"
+   ],
+   "topics": [
+    "multi-agent",
+    "reasoning"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 75.0,
+   "status": "published",
+   "extra": {
+    "content_source": "reader",
+    "outbound": {
+     "arxiv": [
+      "2611.09822"
+     ],
+     "links": []
+    },
     "summary_mode": "full"
    }
   }
