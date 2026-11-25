@@ -1,0 +1,109 @@
+{
+ "run_id": "20261125-030210",
+ "started": "2026-11-25T03:02:10+00:00",
+ "finished": "2026-11-25T03:04:28+00:00",
+ "mode": "LLM 模式 | 降级链 primary(deepseek-flash) → fallback(glm-5.3)",
+ "stats": {
+  "fetch": {
+   "arxiv_mentions": {
+    "seen": 5,
+    "fetched": 5,
+    "kept": 0,
+    "stale_reports": 1,
+    "not_requested": 0
+   },
+   "total": 50,
+   "per_source": {
+    "Anthropic News": 0,
+    "MCP Official Blog": 1,
+    "Simon Willison": 6,
+    "GitHub Blog (AI)": 1,
+    "Lilian Weng": 0,
+    "Hugging Face Blog": 2,
+    "Andrej Karpathy": 0,
+    "Eugene Yan": 0,
+    "Google DeepMind Blog": 1,
+    "Interconnects": 0,
+    "OpenAI News": 8,
+    "Sebastian Raschka": 0,
+    "Latent Space": 1,
+    "Dwarkesh Podcast": 1,
+    "Hacker News (AI 高分帖)": 7,
+    "Import AI": 1,
+    "GitHub Trending (AI)": 10,
+    "AI Snake Oil": 1,
+    "Ethan Mollick": 0,
+    "量子位": 10
+   }
+  },
+  "timing": {
+   "fetch": 6.9,
+   "dedupe": 0.0,
+   "triage": 31.5,
+   "summarize": 83.1,
+   "classify": 17.1,
+   "publish": 0.1
+  },
+  "dedupe": {
+   "kept": 29,
+   "dropped_already_in_db": 21,
+   "dropped_dup_url": 0,
+   "dropped_dup_title": 0
+  },
+  "llm_calls": 58,
+  "llm_tokens": 98910,
+  "llm_prompt_tokens": 66088,
+  "llm_completion_tokens": 32822,
+  "calls_by_provider": {
+   "primary": 56,
+   "fallback": 2
+  },
+  "triage": {
+   "published": 4,
+   "review": 9,
+   "discarded": 16,
+   "llm_scored": 29,
+   "degraded": 0,
+   "capped": 0,
+   "by_kind": {
+    "一手发布": 7,
+    "营销通稿": 12,
+    "从业者判断": 4,
+    "二手转述": 3,
+    "公司动态": 2,
+    "开源项目": 1
+   }
+  },
+  "summarize": {
+   "summarized": 11,
+   "brief_mode": 1,
+   "hallucination_flagged": 1,
+   "degraded_title_only": 2
+  },
+  "classify": {
+   "classified": 13,
+   "degraded_heuristic": 0
+  },
+  "publish": {
+   "published": 4,
+   "pending": 9,
+   "db_totals": {
+    "discarded": 669,
+    "published": 558,
+    "review": 932
+   }
+  },
+  "budget": {
+   "tokens_used": 98910,
+   "calls_made": 58,
+   "token_limit": 400000,
+   "call_limit": 260
+  },
+  "memory": {
+   "topics": 58,
+   "span_days": 2589,
+   "lifecycle_ready": true
+  }
+ },
+ "errors": []
+}
