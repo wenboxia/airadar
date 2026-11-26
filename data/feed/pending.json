@@ -1,441 +1,24 @@
 {
- "generated_at": "2026-11-25T03:04:28+00:00",
+ "generated_at": "2026-11-26T02:14:13+00:00",
  "items": [
   {
-   "id": "bbef1e94d167ddf6",
-   "url": "https://news.ycombinator.com/item?id=50630809",
-   "title": "Ask HN: Anthropic is accusing my company of distilling. How can I prove I'm not?",
+   "id": "197dc8b3ac4dbd20",
+   "url": "https://github.com/sous-labs/songe",
+   "title": "A training engine for your local model, using your idle compute",
    "source": "Hacker News (AI 高分帖)",
    "tier": "A",
-   "published_at": "2026-11-24T16:45:44+00:00",
-   "summary_short": "HN求助：被Anthropic指蒸馏，24小时内如何自证清白",
-   "summary_long": "Hacker News 用户 weli 发帖称，Anthropic 指控其公司利用其 API 进行蒸馏，并给出 24 小时自证期限。weli 否认蒸馏，称公司不训练自有模型；唯一可能触发标记的用法是每次调整 AI 设置时运行自动化回归基准测试，并质疑这是否违反政策。他询问是否有人遇到类似情况，以及如何在不让用户隐私受损的情况下证明未蒸馏。评论区有人建议把准备提交的证据交给 Claude 判断是否充分，或用另一个会话做对抗性审查；也有人批评让用户在不具体指控下自证的不对称，并提醒依赖单一供应商的风险。原文未包含 Anthropic 的具体指控细节或回应。",
+   "published_at": "2026-11-24T15:03:40+00:00",
+   "summary_short": "Songe：在本地模型与 agent 之间充当代理，趁空闲微调 LoRA 适配器",
+   "summary_long": "Songe 是面向本地已运行模型的训练引擎。它以 OpenAI 兼容代理的身份位于 agent 与模型服务器之间（127.0.0.1:7613），记录模型每次动作的结果，并在 agent 空闲时据此微调 LoRA 适配器；新版本只有在明显优于在用版本时才会启用；除非开启可选的云端学习，否则所有数据都留在本机。它提供两种 Dream：Quick Dream 几分钟内把用户陈述或表现出的偏好写入模型指令；Deep Dream 则用这些经验生成练习并训练 LoRA，耗时一小时以上。默认安全：可一键回退到任一旧版本；仅在 agent 安静、内存空闲、电量充足时运行；无账号、无遥测；开启 songe cloud 后，夜间 Dream 可调用用户指定的云模型，敏感信息脱敏并设夜间预算；Songe 从不运行用户的工具。训练需 Apple Silicon（MLX）或 NVIDIA/AMD GPU（PyTorch），无 GPU 时只代理和记录。安装需 Python 3.11+，用 uv 或 pipx，执行 songe init 自动发现模型服务器与 agent；支持 LM Studio、vLLM、Ollama、llama.cpp、mlx-lm 等服务端，agent 端支持 opencode、pi 及任意 OpenAI 兼容工具。",
    "key_points": [
-    "发帖者称公司不训练自有模型，唯一可疑用法是自动化回归基准测试",
-    "Anthropic 给出 24 小时举证期限，发帖者求助如何在不侵犯用户隐私下自证",
-    "评论建议用 Claude 及对抗性审查完善证据，也有人质疑指控不具体和供应商风险"
+    "作为 OpenAI 兼容代理夹在 agent 与本地模型服务器之间，记录每次动作的结果，并在 agent 空闲时用这些记录训练 LoRA 适配器",
+    "Quick Dream 几分钟内把偏好写入模型指令；Deep Dream 生成练习并微调模型本身，耗时一小时以上",
+    "新版只有在自己对话上表现更好才启用，可一键回退到任一旧版本；无 GPU 的机器只代理与记录、不训练"
    ],
    "topics": [
-    "model-distillation",
-    "privacy"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 69.6,
-   "status": "review",
-   "extra": {
-    "hn_points": 228,
-    "hn_comments": 166,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://news.ycombinator.com",
-      "https://hn.algolia.com/?query=Ask%20HN%3A%20Anthropic%20is%20accusing%20my%20company%20of%20distilling.%20How%20can%20I%20prove%20I%27m%20not%3F&type=story&dateRange=all&sort=byDate&storyText=false&prefix&page=0",
-      "https://support.claude.com/en/articles/15425695-covered-models",
-      "https://www.bbc.com/news/articles/c6j9k1l72wkgo",
-      "https://twitter.com/daniel_mac8/status/2123413769808138523",
-      "https://pbs.twimg.com/media/HXfhhwnXMAA3O9I?format=jpg&name=4096x4096",
-      "https://www.trendingtopics.eu/openai-anthropic-researchers-idea-theft/",
-      "https://archive.is/ZAxaB",
-      "https://archive.org/details/tednelsonjunkmail?sort=-downloads",
-      "https://news.ycombinator.com/newsguidelines.html",
-      "https://github.com/HackerNews/API",
-      "https://www.ycombinator.com/legal/",
-      "https://www.ycombinator.com/apply/"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "f796e127a00ba54d",
-   "url": "https://simonwillison.net/2026/Nov/24/astra-historical-mystery/",
-   "title": "GPT 6.2 Astra Solves a Historical Mystery",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-11-24T16:53:59+00:00",
-   "summary_short": "GPT-6.2 Astra 用22分钟自主考据出1808年匿名画册的作者",
-   "summary_long": "历史学教授 Mark Humphries 分享了一个用 GPT-6.2 Astra 做历史研究的案例：在极少的提示下，该模型自主辨认出耶鲁 Beinecke 图书馆所藏一部 1808 年匿名画册的作者，全程仅用 22 分钟，且只依赖公开的一手与二手资料。它在一处论文档案中发现了少为人知的材料，预测查阅该材料可验证其假设，结果确实如此。它找到一条日记记载：德沙博子爵（vicomte de Chabot）曾在画册提及的附近河流某日期前五天到访，并据此提出，只能向克利夫兰州立大学订购的沙博旅行日记或可证明画册出自其手。这份新史料本身也被视为一项重大发现，对加拿大史与毛皮贸易史研究者有重要意义。Humphries 认为历史学界不会像数学界那样遭遇剧烈冲击：历史学家不断以变化的当下重释过去，并不追求单一普遍真理，其著作更接近哲学与文学作品。",
-   "key_points": [
-    "GPT-6.2 Astra 在极少提示下、仅用 22 分钟、只凭公开的一手与二手资料，自主判定耶鲁 Beinecke 图书馆 1808 年匿名画册的作者",
-    "它从论文档案中发现一份少为人知的材料，预测查阅后可验证假设，并据此指向德沙博子爵的旅行日记（需向克利夫兰州立大学订购）",
-    "Humphries 认为这份新史料本身即是重大发现，对加拿大史与毛皮贸易史研究者有重要意义；他预计历史学界只会出现较数学界温和的“信心危机”"
-   ],
-   "topics": [
-    "product",
-    "reasoning"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 65.2,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "history",
-     "ai",
-     "generative-ai",
-     "llms",
-     "ai-assisted-search"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://generativehistory.substack.com/p/gpt-62-astra-solves-a-historical",
-      "https://beinecke.library.yale.edu/",
-      "https://collections.library.yale.edu/catalog/32369099",
-      "https://simonwillison.net/tags/deep-blue/",
-      "https://simonwillison.net/tags/history",
-      "https://simonwillison.net/tags/ai",
-      "https://simonwillison.net/tags/generative-ai",
-      "https://simonwillison.net/tags/llms",
-      "https://simonwillison.net/tags/ai-assisted-search",
-      "https://simonwillison.net/tags/deep-blue",
-      "https://simonwillison.net/tags/gpt-6-astra"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "f3aa9260f1094b37",
-   "url": "https://openai.com/index/searching-for-distant-planets-with-astra",
-   "title": "Searching for distant planets with Astra",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-24T11:00:00+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
-   "topics": [
-    "product",
-    "science"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 64.5,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "source_tags": [
-     "Science"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://exoplanetarchive.ipac.caltech.edu/",
-      "https://www.nature.com/articles/355145a0",
-      "https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PSCompPars",
-      "https://science.nasa.gov/mission/kepler/",
-      "https://www.nasa.gov/news-release/artificial-intelligence-nasa-data-used-to-discover-eighth-planet-circling-distant-star/",
-      "https://svs.gsfc.nasa.gov/14985/",
-      "https://archive.stsci.edu/kepler/kic10/search.php?action=Search&kic_kepler_id=5689121",
-      "https://archive.stsci.edu/missions-and-data/kepler/field",
-      "https://heasarc.gsfc.nasa.gov/docs/tess/what-is-tess.html",
-      "https://svs.gsfc.nasa.gov/12885/",
-      "https://science.nasa.gov/citizen-science/exoplanet-watch/how-to-contribute/",
-      "https://science.nasa.gov/exoplanets/citizen-science/",
-      "https://aavso.org/exoplanet-photometry/",
-      "https://science.unistellar.com/exoplanets/unite/",
-      "https://doi.org/10.26133/NEA13"
-     ]
-    }
-   }
-  },
-  {
-   "id": "7a6462e387eb267a",
-   "url": "https://openai.com/business/customer-stories/ifood",
-   "title": "How iFood scales coding agents across 15,000 repositories",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-24T00:00:00+00:00",
-   "summary_short": "iFood 用 REST API 调度远程编码智能体，在 1.5 万个代码仓库上规模化执行工程任务",
-   "summary_long": "iFood 维护着超过 15000 个代码仓库；每个仓库都需要定期执行合规校验、修复有漏洞的依赖、运行分析等任务。iFood 高级软件工程师 Victor Coelho 表示，其中单个任务并不难，难的是规模化。在此之前，各团队会各自搭建方案，但缺少统一的执行基础设施。为此 iFood 构建了 Remote Agents Platform，把工程任务变成 API 调用：用户通过 REST 接口提交提示词和环境要求，平台在隔离沙箱内的专用远程 runner 上执行任务，并把结果以合并请求的形式返回，进度可实时监控。工作流两端是确定性步骤，分别负责克隆仓库、导入智能体可用的技能、建立工作分支，以及发布合并请求和产出物；中间由运行在沙箱内的 GPT‑5.6 Luna 完成智能体执行。沙箱基于 Ubuntu，预置 Python、Java、Kotlin、C#、TypeScript、Rust、JavaScript、Go 等工具链，并可访问 Nexus、GitLab、Docker、Snyk、Kubernetes 和 AWS。平台已完成 25000 多次运行，平均每次推理成本 0.04 美元；在内部安全平台上，被修复的漏洞数量翻了一倍以上。iFood 从智能性、效率以及任务完成速度三者的平衡出发，选择了 GPT‑5.6 Luna；同时，由于规模化后会消耗数万级 token，单次成本已成为架构层面的考",
-   "key_points": [
-    "Remote Agents Platform 以 REST API 为入口，把工程任务交给隔离沙箱中的远程 runner 执行，结果以合并请求返回",
-    "工作流由确定性步骤（克隆仓库、导入技能、建分支、发布 MR）包裹智能体执行，中间在 Ubuntu 沙箱内运行 GPT‑5.6 Luna",
-    "平台已完成 25000+ 次运行，平均单次推理成本 0.04 美元，内部安全平台修复的漏洞数量翻倍以上"
-   ],
-   "topics": [
-    "coding-agent",
-    "harness",
+    "post-training",
+    "memory",
     "agent-loop"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 62.4,
-   "status": "review",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://openai.com/policies/privacy-policy/"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "3b1f8072ba2915b1",
-   "url": "https://simonwillison.net/2026/Nov/24/datasette-charts/",
-   "title": "datasette-charts 0.2a0",
-   "source": "Simon Willison",
-   "tier": "A",
-   "published_at": "2026-11-24T04:24:29+00:00",
-   "summary_short": "Datasette 图表插件 0.2a0 发布，新增与 Datasette Agent 集成，可在聊天中直接生成图表",
-   "summary_long": "这是 Datasette 图表插件 datasette-charts 的 0.2a0 版本发布。原文说明，该插件在前一天刚刚推出，本版本新增了与 Datasette Agent 的集成：用户可以在聊天中索要图表，插件会复用同一套底层的“图表建议与生成”工具来完成创建。原文附有一段在 agent.datasette.io 上录制的演示视频，可用 GitHub 账号登录试用。演示中，用户向 Datasette Agent 输入“Use #stats to show sqlite-utils downloads over time as a chart”，其中输入 #stats 会打开表格搜索框；图表在聊天中内联显示，点击“Open in the chart builder”后，图表会连同表格页面一起在面板中打开；随后用户通过表格页切换到“datasette”的图表，再问 agent“what does the chart show?”，agent 察觉到面板内容已被更改，转而描述新的 Datasette 图表。原文还提供了这段聊天的 Markdown 导出。",
-   "key_points": [
-    "0.2a0 版本为 Datasette 图表插件加入 Datasette Agent 集成，可在聊天中请求生成图表，复用同一套图表建议与生成工具",
-    "演示录于 agent.datasette.io，可登录 GitHub 试用；输入 #stats 打开表格搜索框，图表在聊天内联显示并可“在图表构建器中打开”",
-    "Agent 能感知面板中图表被切换，并据此回答“这张图展示什么”"
-   ],
-   "topics": [
-    "tool-use",
-    "coding-agent",
-    "product"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "产品与应用"
-   ],
-   "horizon": "short",
-   "score": 61.7,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "source_tags": [
-     "datasette-agent",
-     "datasette",
-     "visualization"
-    ],
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/datasette/datasette-charts/releases/tag/0.2a0",
-      "https://simonwillison.net/2026/Nov/23/datasette-charts/",
-      "https://agent.datasette.io/",
-      "https://static.simonwillison.net/static/cors-allow/2026/datasette-charts-agent-demo.mp4",
-      "https://gist.github.com/simonw/12646fcc72dddae3d4ac04b496c20af2",
-      "https://simonwillison.net/tags/datasette-agent",
-      "https://simonwillison.net/tags/datasette",
-      "https://simonwillison.net/tags/visualization"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "e213ef04a8703146",
-   "url": "https://variety.com/2026/music/news/tidal-bans-ai-generated-music-1236956924/",
-   "title": "Tidal bans AI-generated music",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-24T16:12:38+00:00",
-   "summary_short": "Tidal下月起下架纯AI生成曲目，成为首个全面禁止AI音乐的平台",
-   "summary_long": "音乐流媒体服务Tidal周二表示，将从下月起禁止其认定为完全由AI生成的曲目，12月9日起开始移除，并在年初前清理完毕。母公司Block的Tidal负责人Robert Andersen在X上发文称，过去90天分发到平台的曲目中43%被检测为AI生成，“这已经够了，需要更激烈的措施”；96%的AI生成歌曲播放量为零。此举将使平台曲库减少2900万首，每天拒收8万至8.5万首歌曲，他并呼吁同行跟进。近五个月前，Tidal已对AI歌曲取消变现、要求标注AI生成或AI辅助、并禁止涉及“欺诈行为”（如冒充知名艺人）的AI歌曲。原文称Tidal是首个全面禁止AI音乐的音乐流媒体平台。与此同时，Spotify和Apple Music仍在摸索应对方式：Apple Music称将开始标注AI生成或AI辅助曲目，Spotify启用“AI Persona”标签，并称今年已从推荐中移除5000万首垃圾、Spam曲目，从曲库中移除7500万首。",
-   "key_points": [
-    "Tidal自12月9日起移除纯AI生成曲目，年初前清空，原文称其为首个全面禁止AI音乐的音乐流媒体平台",
-    "Tidal负责人Robert Andersen称近90天分发曲目43%被检测为AI生成、96%的AI歌曲零播放，平台曲库将减少2900万首、每日拒收8万至8.5万首",
-    "Spotify与Apple Music走标记与清理路线：Apple Music将标注AI生成或AI辅助曲目，Spotify使用“AI Persona”标签并称今年从推荐移除5000万首、从曲库移除7500万首Spam曲目"
-   ],
-   "topics": [
-    "platform-policy",
-    "ai-generated-content",
-    "content-moderation"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 59.7,
-   "status": "review",
-   "extra": {
-    "hn_points": 320,
-    "hn_comments": 307,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://variety.com/author/corbin-bolies/",
-      "https://variety.com/2026/digital/news/jensen-huang-reinstated-as-nvidia-ceo-1236955837/",
-      "https://variety.com/2026/biz/news/caa-bryan-lourd-congress-no-fakes-act-ai-deepfakes-1236954989/",
-      "https://variety.com/2026/film/news/buchwald-signs-sam-kinison-estate-ai-avatar-1236954233/",
-      "https://www.facebook.com/dialog/share?title=Tidal%20Bans%20AI-Generated%20Music&sdk=joey&display=popup&ref=plugin&src=share_button&app_id=278816682243900&href=https://variety.com/2026/music/news/tidal-bans-ai-generated-music-tracks-1236956924/",
-      "https://twitter.com/intent/post?url=https://variety.com/2026/music/news/tidal-bans-ai-generated-music-tracks-1236956924/&text=Tidal%20Bans%20AI-Generated%20Music&via=variety",
-      "https://pinterest.com/pin/create/link/?url=https://variety.com/2026/music/news/tidal-bans-ai-generated-music-tracks-1236956924/&description=Tidal%20Bans%20AI-Generated%20Music",
-      "https://www.tumblr.com/widgets/share/tool/preview?shareSource=legacy&canonicalUrl&url=https://variety.com/2026/music/news/tidal-bans-ai-generated-music-tracks-1236956924/&posttype=link&title=Tidal%20Bans%20AI-Generated%20Music",
-      "https://www.reddit.com/submit?url=https://variety.com/2026/music/news/tidal-bans-ai-generated-music-tracks-1236956924/&title=Tidal%20Bans%20AI-Generated%20Music",
-      "https://www.linkedin.com/shareArticle?mini=1&url=https://variety.com/2026/music/news/tidal-bans-ai-generated-music-tracks-1236956924/&title=Tidal%20Bans%20AI-Generated%20Music&summary&source=variety",
-      "https://variety.com/2026/music/news/tidal-bans-ai-generated-music-tracks-1236956924/#respond",
-      "https://variety.com/t/tidal/",
-      "https://variety.com/t/ai-music/",
-      "https://variety.com/2026/music/news/tidal-label-ai-generated-music-ban-royalties-from-ai-songs-1236798543/",
-      "https://variety.com/2026/film/news/american-doctor-you-can-see-everything-cinema-eye-nominations-1236945779/",
-      "https://variety.com/2026/film/news/you-can-see-everything-biggest-opening-weekend-for-doc-uk-1236955490/",
-      "https://x.com/rsa/status/2125227948890563014?a=hfDRW9pSgtn2w6pi-j0&s=20",
-      "https://www.google.com/goto?url=CAESkAEBxCJF14TWd344urCwCaA9oDne3xwvVV8mGFg1-dfhHTSlR_MNKD65rLOV4gRMfgXwHfVKRPLc4X5pFwG9rzKa-znMMesSHXQCS97SGS37m3_xE1f7C5zbvfZhWxDk35hT7LEkaaPKylgnY-91FXlQyA5gUVjSgnXtBJ1L9E0EJSnCMFdGVDnBi-2nCtFT34M&gsessionid=OqdTfKr6paoYnSMzvCOwjSHSV57zaPfDo4m66Vpk4pw9u-sFndLCDw",
-      "https://www.google.com/goto?url=CAESpQEBxCJF10WRAGDrw38nFnJ7Ndo4K_baH7m5Z9PTswVjscvUqlBpYqpH30eFJ7U1PVA42g7NqlAAJt6A479n7709OPmP1P6B5kBnrZ0_x8srL6GVKTYnUQf5W3fT2C0PIkif-ygMcjHhdHAU-DQlUKDyPIsF4SAYYY-qaLRuf0jOdLDGXcowKKf2yJMorYwO4gpH1HUIPa199_X5r8X2klRzyhkyYEY&gsessionid=orrCdF6yw7GJ3HGVsFLaka9hekPGE3vsr9HsZRWMoHwsziFuwIdPbQ",
-      "https://variety.com/2026/music/news/spotify-removes-50-million-ai-slop-tracks-recommendations-1236917108/",
-      "https://variety.com/2026/artisans/news/ai-use-netflix-eyeline-studios-vfx-mohsen-mousavi-view-1236910043/"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "37ce29d74cbd726d",
-   "url": "https://blog.modelcontextprotocol.io/posts/mcp-turns-two/",
-   "title": "Two Years of MCP Builders",
-   "source": "MCP Official Blog",
-   "tier": "S",
-   "published_at": "2026-11-24T09:00:00+00:00",
-   "summary_short": "MCP两周年：SDK下载破50亿，2500余名贡献者，第二年成\"构建者之年\"",
-   "summary_long": "MCP（模型上下文协议）迎来两岁生日。原文回顾：项目始于2024年夏天，David Soria Parra向Justin Spahr-Summers提出做一个把AI应用连接到工具与数据的开放协议，两人随后数月完成构建；2024年11月25日，Anthropic将MCP开源。社区此后持续参与扩展，2025年7月项目正式确立治理机制，让任何人都能提出变更。到一周年时，MCP已完整支持远程服务器、行业标准授权能力和注册表参考实现；两周后MCP加入Linux基金会下的Agentic AI Foundation，获得与Kubernetes、PyTorch、Node.js相同的厂商中立治理。原文把第二年称为\"构建者之年\"：SDK累计下载突破50亿次，其中45亿次来自过去一年；GitHub上独立贡献者超过2500名。文中还列举了把智能体接入既有工具的案例：Ableton Live、Blender、DaVinci Resolve Studio、Cinema 4D的MCP服务器，以及Stack-chan桌面机器人。原文结尾处内容不完整。",
-   "key_points": [
-    "MCP始于2024年夏天David Soria Parra与Justin Spahr-Summers的构建，2024年11月25日由Anthropic开源，GitHub独立贡献者已超2500名",
-    "2025年7月确立正式治理机制，之后加入Linux基金会下的Agentic AI Foundation，采用厂商中立治理；一周年时已支持远程服务器、行业标准授权与注册表参考实现",
-    "第二年SDK累计下载破50亿（45亿来自过去一年），案例包括Ableton Live、Blender官方开源MCP服务器、DaVinci Resolve Studio、Cinema 4D及Stack-chan机器人"
-   ],
-   "topics": [
-    "mcp",
-    "tool-use",
-    "agent-loop"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发",
-    "行业动态"
-   ],
-   "horizon": "long",
-   "score": 57.8,
-   "status": "review",
-   "extra": {
-    "content_source": "rss",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.latent.space/p/mcp",
-      "https://www.anthropic.com/news/model-context-protocol",
-      "https://blog.modelcontextprotocol.io/posts/2025-07-31-governance-for-mcp/",
-      "https://blog.modelcontextprotocol.io/posts/2025-11-25-first-mcp-anniversary/",
-      "https://blog.modelcontextprotocol.io/posts/2025-12-09-mcp-joins-agentic-ai-foundation/",
-      "https://github.com/bschoepke/ableton-live-mcp",
-      "https://www.blender.org/lab/mcp-server/",
-      "https://projects.blender.org/lab/blender_mcp",
-      "https://www.cgchannel.com/2026/09/blackmagic-design-releases-resolve-21-1/",
-      "https://www.maxon.net/en/article/maxon-adds-support-for-cinema-4d-mcp-server",
-      "https://github.com/stack-chan/stack-chan",
-      "https://github.com/robotmcp/ros-mcp-server",
-      "https://github.com/yarufu/PC98Bridge",
-      "https://newscenter.lbl.gov/2026/10/29/new-virtual-assistant-streamlines-one-of-the-most-advanced-microscopes/",
-      "https://github.com/DavidSirota/rollin-mcp-server",
-      "https://github.com/zax0rz/birdnet-go-mcp",
-      "https://support.alltrails.com/hc/en-us/articles/47343827423764-AllTrails-integrations-with-AI-assistants",
-      "https://blog.modelcontextprotocol.io/posts/2026-01-26-mcp-apps/",
-      "https://linear.app/docs/mcp",
-      "https://github.com/upstash/context7",
-      "https://developer.chrome.com/blog/chrome-devtools-mcp",
-      "https://webkit.org/blog/18136/introducing-the-safari-mcp-server-for-web-developers/",
-      "https://blog.cloudflare.com/code-mode-mcp/",
-      "https://github.com/nasa/earthdata-mcp",
-      "https://www.wikidata.org/wiki/Wikidata:MCP",
-      "https://github.com/nso-india/esankhyiki-mcp",
-      "https://github.com/PrefectHQ/fastmcp",
-      "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
-      "https://modelcontextprotocol.io/seps/2575-stateless-mcp",
-      "https://github.com/MCP-UI-Org/mcp-ui",
-      "https://github.com/excalidraw/excalidraw-mcp",
-      "https://modelcontextprotocol.io/extensions/events/overview",
-      "https://modelcontextprotocol.io/extensions/skills/overview",
-      "https://blog.modelcontextprotocol.io/posts/exploring-file-uploads-and-downloads-in-mcp/",
-      "https://modelcontextprotocol.io/community/working-groups/file-uploads",
-      "https://github.com/modelcontextprotocol/experimental-ext-file-uploads/blob/main/specification/draft/file-uploads.md",
-      "https://blog.modelcontextprotocol.io/posts/enterprise-managed-auth/",
-      "https://modelcontextprotocol.io/extensions/auth/overview",
-      "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/1932",
-      "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/1933"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "ef8096d74f5dfd33",
-   "url": "https://michaelharley.net/posts/2026/11/01/llm-agents-work-for-their-parent-companies-not-for-you/",
-   "title": "LLM agents work for their parent companies, not for you",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-24T12:40:15+00:00",
-   "summary_short": "作者自建买歌 agent 被拒绕过验证，由此质疑模型到底为谁服务",
-   "summary_long": "作者用 Claude Code 做了一个技能：打开 Instagram 上的 reel，识别艺人与歌曲，再找该艺人的 Bandcamp 页面并给出链接，好让他付费买下音乐文件。后来 Bandcamp 在搜索 API 页面加了验证，这个本属非公开变通办法的功能失效，模型还明确表示不会帮他绕过验证。令他困惑的是，同一技能的另一分支可以从 YouTube 下载歌曲到本地，而这条路不给艺人或任何人一分钱。作者认为前沿模型的真正危险，不是不肯帮他\"黑\"进 Bandcamp，而是他花钱买的机器人只在 Anthropic、OpenAI 等公司允许的范围内为他工作；他自认买小艺人的音乐是最善意的行为，而公司想的是主导市场、赚走所有钱，会重演 Google 从\"不作恶\"走向商业化的老路。他还担心，迟早要怀疑模型给出的是它自己找到的真实答案，还是收了钱的产品植入式加权答案，并希望能按他自己认定的标准来权衡结果。",
-   "key_points": [
-    "作者用 Claude Code 搭建技能，从 Instagram reel 识别歌曲，并寻找 Bandcamp 页面以便付费购买音乐文件",
-    "Bandcamp 在搜索 API 页面加上验证后，模型明确拒绝帮他绕过；但同一技能仍可从 YouTube 下载不向艺人付钱的歌曲",
-    "作者的核心质疑是：模型只在 Anthropic、OpenAI 等公司允许的范围内为使用者工作，并担忧未来出现付费加权的答案"
-   ],
-   "topics": [
-    "product",
-    "alignment",
-    "agent-loop"
-   ],
-   "category": "产品与应用",
-   "categories": [
-    "产品与应用",
-    "行业动态"
-   ],
-   "horizon": "long",
-   "score": 57.2,
-   "status": "review",
-   "extra": {
-    "hn_points": 925,
-    "hn_comments": 391,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://robot.villas/users/hackernews/posts/23269836",
-      "https://bubbles.town/entry/44811579",
-      "https://news.ycombinator.com/item?id=50627340",
-      "https://social.michaelharley.net/@michael/01a1973a-b120-7790-8444-a8f801c3909c",
-      "https://bsky.app/profile/michaelharley.net/post/3mzauyosxvb22"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "a70cae4c16f0fdc6",
-   "url": "https://github.com/sybil-solutions/inference-optimisation-skill",
-   "title": "sybil-solutions/inference-optimisation-skill — Agent skill for hill-climbing local LLM serving speed (decode, speculative decoding, prefill, KV, startup, TTFT) on any hardware and quantization",
-   "source": "GitHub Trending (AI)",
-   "tier": "B",
-   "published_at": "2026-11-16T18:40:04+00:00",
-   "summary_short": "一个用于持续优化本地LLM服务速度的Agent技能",
-   "summary_long": "",
-   "key_points": [
-    "该技能以爬山方式优化本地LLM服务速度",
-    "覆盖decode、投机解码、prefill、KV、启动、TTFT等环节",
-    "适用于任意硬件与量化配置"
-   ],
-   "topics": [
-    "harness",
-    "open-source"
    ],
    "category": "Agent 与开发",
    "categories": [
@@ -444,12 +27,485 @@
     "开源项目"
    ],
    "horizon": "long",
-   "score": 54.8,
+   "score": 74.1,
    "status": "review",
    "extra": {
-    "stars": 2587,
+    "hn_points": 231,
+    "hn_comments": 72,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://souslabs.ai",
+      "https://discord.gg/6bYCjyjr5z",
+      "https://pypi.org/project/songe/",
+      "https://docs.astral.sh/uv/",
+      "https://pipx.pypa.io/",
+      "https://github.com/sous-labs/songe/issues/15",
+      "https://github.com/sous-labs/songe/issues"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "c7e5de5fee49fb0c",
+   "url": "https://latent.space/p/the_revolution_vs_the_renaissance_thariq_shihipar_openai/",
+   "title": "The Revolution vs The Renaissance — Thariq Shihipar, OpenAI",
+   "source": "Latent Space",
+   "tier": "B",
+   "published_at": "2026-11-25T22:28:01+00:00",
+   "summary_short": "Thariq Shihipar 谈 AI 时代软件既能批量生产、也能精雕单件",
+   "summary_long": "这期对谈围绕 Thariq Shihipar 在 AI Engineer CODE 的分享展开。原文提出的核心张力是：AI 能让软件的生产成本低到可以成千上万地做，同时仍留出时间把某一件东西打磨到“对”。他用两个例子说明这两种未来可以并存：在自制格斗游戏里，他直接修改 /human 文件夹中石头的大小，然后立刻试投掷；他还做了一个可切换模式的 Mac Dock，实际使用后却发现自己更在意的是察觉自己何时分心。对谈还涉及他在编程 agent 上改变了哪些看法、决策模型如何从设计师定义的动作中做选择，以及由谁决定哪些实验值得投入算力。节目录制结束后，他宣布加入 OpenAI。",
+   "key_points": [
+    "AI 既能把软件生产成本压到可批量产出，也能留出时间精雕单件",
+    "在 /human 文件夹里改石头大小后可立刻试投掷；Mac Dock 做出来用过之后，他更在意的是察觉自己分心",
+    "对谈内容包括：他在编程 agent 上改变的看法、由设计师定义动作选项的决策模型、谁决定实验算力分配；他录完后宣布加入 OpenAI"
+   ],
+   "topics": [
+    "coding-agent",
+    "agent-loop",
+    "product"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "产品与应用"
+   ],
+   "horizon": "long",
+   "score": 72.8,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://jira.dev",
+      "https://ai.engineer/code/2026/talks/thariq-shihipar",
+      "https://www.youtube.com/watch?v=xRJMiaUoD_8&t=923s",
+      "https://x.com/trq212/status/2115135857669881939",
+      "https://x.com/trq212/status/2123106368492298653",
+      "https://latent.space/p/thariq/",
+      "https://x.com/trq212/status/2125675533761671405"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "8ee50572f79b5048",
+   "url": "https://jayd.ml/2026/11/14/rockbox-on-yp3.html",
+   "title": "Porting Rockbox to an undocumented $9 AliExpress 'YP3' MP3 player with LLMs",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-24T06:22:36+00:00",
+   "summary_short": "作者借助LLM把Rockbox移植到9美元的杂牌MP3播放器，该播放器仅512KiB内存",
+   "summary_long": "Rockbox是支持多种MP3播放器和iPod的老牌自定义固件项目，但到2026年似乎已没有它支持的廉价MP3播放器。作者手边正好有一台9美元的AliExpress杂牌播放器YP3；它没有品牌，在“关于”菜单里自称yp3_2.0.43，从Alibaba批发每台不到7美元。作者购买了LLM订阅服务，尝试让LLM完成这次移植：该设备SoC是查不到资料的“Smartlink SL6801”/Jointbees，包含两个192MHz的Cortex-M4核心，带FPU，但从flash执行代码时没有缓存，容易死锁；内存为512KiB SRAM加约30KiB蓝牙数据包缓冲、2MB flash、128x160彩色LCD、5个按键，还带蓝牙。此前Rockbox最小的目标是2MiB内存。作者提到，ilyakurdyukov弄清了如何进入ROM DFU下载模式，并编写了读写flash的工具。约一周后，经过大幅精简的Rockbox能启动并播放音频；再调优修bug约一个月，作者称未发现硬件功能不可用，主要损失是播放音乐时无法并发运行插件。随后LLM又基于首次经验做出可复用移植工具包auto-rockbox，让Claude在4小时内把Rockbox跑在另一台MP3（TS47）上。",
+   "key_points": [
+    "YP3是无品牌廉价播放器，售价9美元左右，有USB-C、蓝牙和物理复位键；保留原厂bootloader时可进入DFU模式救砖",
+    "硬件限制极紧：仅512KiB SRAM（此前Rockbox最小目标是2MiB）、2MB flash，SoC无公开资料、无缓存、易死锁",
+    "作者称在这次移植中参与很少；首次移植约一周能启动，调优约一个月，之后LLM做出工具包，4小时完成另一台设备的移植"
+   ],
+   "topics": [
+    "coding-agent",
+    "harness",
+    "open-source"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 72.6,
+   "status": "review",
+   "extra": {
+    "hn_points": 228,
+    "hn_comments": 94,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.rockbox.org/",
+      "https://en.wikipedia.org/wiki/Sansa_e200_series",
+      "https://rockslop.jayd.ml",
+      "https://github.com/jaydens-tasty-slop/auto-rockbox",
+      "https://www.aliexpress.us/item/3256807764385286.html",
+      "https://www.tengsen.vip/pages/mp3-player-w1.html",
+      "https://github.com/ilyakurdyukov/smartlink_flash",
+      "https://rockslop.jayd.ml/players/yp3/",
+      "https://google.github.io/bumble/",
+      "https://rockslop.jayd.ml/features/",
+      "https://www.arduboy.com/",
+      "https://www.pokitto.com/",
+      "https://flipper.net/",
+      "https://rockslop.jayd.ml/players/"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "b45d58e25dc6779d",
+   "url": "https://github.blog/ai-and-ml/github-copilot/how-to-choose-the-next-safe-step-in-application-modernization/",
+   "title": "How to choose the next safe step in application modernization",
+   "source": "GitHub Blog (AI)",
+   "tier": "S",
+   "published_at": "2026-11-25T15:00:00+00:00",
+   "summary_short": "用证据先行法评估应用现代化，避免先选框架再改。",
+   "summary_long": "应用现代化常从技术问题开始：该用哪个框架替换旧框架？原文主张先确认哪些现有行为仍然有效，再收集可作为回归保护网、并能说明现代化必要性的证据。作者将证据先行法用于四个公开应用，从小型 Node.js 游戏到大型 Java ERP，每个应用处理方式不同，但收集证据、选择下一步实验、确定可能验证点的过程可重复。证据清单包括清单文件、锁文件、入口点、可部署组件、安装构建测试打包运行命令、运行时版本固定、外部契约和已终止支持的依赖，并用 documented、inferred、unverified 标注不确定性。随后按组件选择最小干扰处理：保留、升级、替换、包装或重写；选择更具破坏性的方案需要证据。原文还提出做限时可行性检查，并提到将流程编码为 GitHub Copilot agent skill，同时架构判断仍由系统负责人掌握。",
+   "key_points": [
+    "先建立证据清单，记录构建运行命令、运行时固定、外部契约和已终止支持依赖，并标注 documented、inferred、unverified。",
+    "按组件选择最小干扰处理：保留、升级、替换、包装、重写；选择更 disruptive 的方案需要证据，不能只因代码旧。",
+    "用限时可行性检查判断组件能否产生证据，并提到可将流程编码为 GitHub Copilot agent skill，架构判断仍由系统负责人掌握。"
+   ],
+   "topics": [
+    "coding-agent",
+    "harness",
+    "context-engineering"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "产品与应用"
+   ],
+   "horizon": "long",
+   "score": 70.5,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "AI & ML",
+     "GitHub Copilot",
+     "application modernization"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/agents/about-agent-skills",
+      "https://github.com/github/awesome-copilot/blob/1899b18da3fa5183652f86165917d553cba1850a/skills/doc-and-modernize/SKILL.md#L350-L373",
+      "https://github.com/samqbush/piggymetricsv2/tree/d1b37dbfff5e973bd09d08753f0b41585b7225d6",
+      "https://github.com/samqbush/piggymetricsv2/blob/d1b37dbfff5e973bd09d08753f0b41585b7225d6/ARCHITECTURE.md#L97-L129",
+      "https://github.com/samqbush/piggymetricsv2/blob/d1b37dbfff5e973bd09d08753f0b41585b7225d6/MODERNIZATION_PLAN.md#L29-L65",
+      "https://github.com/samqbush/piggymetricsv2/blob/d1b37dbfff5e973bd09d08753f0b41585b7225d6/README.md#modernization-at-a-glance",
+      "https://github.com/samqbush/browserquest-v2/blob/e535c16838f12f2d7d641f94f8cf4cd45b63dbd0/BEFORE_AFTER.md",
+      "https://github.com/samqbush/doomv2/blob/523f0446768136f1be0af81f73264093997c8170/README.TXT",
+      "https://github.com/samqbush/adempiere2/blob/f6813cc5488725ccff865deda16d840e468cb975/docs/modernization/modernization-effort-report.md",
+      "https://github.com/samqbush/adempiere2/blob/f6813cc5488725ccff865deda16d840e468cb975/docs/modernization/modernization-effort-report.md#executive-summary",
+      "https://github.com/github/awesome-copilot/tree/main/skills/doc-and-modernize",
+      "https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/copilot-cli/customize-copilot/add-skills#creating-and-adding-a-skill",
+      "https://github.com/github/awesome-copilot/blob/1899b18da3fa5183652f86165917d553cba1850a/skills/doc-and-modernize/SKILL.md#L330-L349",
+      "https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills#managing-skills-with-github-cli",
+      "https://github.blog/ai-and-ml/github-copilot/how-to-choose-the-next-safe-step-in-application-modernization/",
+      "https://github.blog"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "d0a3a7f662b58965",
+   "url": "https://huggingface.co/blog/ibm-research/an-indic-voice-agent-with-cuga",
+   "title": "An Indic Voice Agent with CUGA",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-25T10:22:09+00:00",
+   "summary_short": "IBM Research 用 CUGA 搭多语言语音农场助手，难点在跨语言检索",
+   "summary_long": "原文指出，多数有用的知识以英文书写和数字化，但需要它的人常用印地语、泰米尔语、泰卢固语、古吉拉特语、马拉地语等母语说话和思考，也更愿意说而不是打字。作者用 CUGA 作为 agent harness 构建了一个小型语音助手来填补这一差距。示例场景是农场助手：农民用母语口头提问（如如何分辨好种子和坏种子），agent 把语音转成文字，检索一份 154 页的英文农业手册，只用手册内容、以提问语言用 2 到 4 句语音作答，并朗读答案、展示来源页码；若被问到板球或编程，则礼貌地引回农业话题而不编造。CUGA 是 IBM Research 的开源 agent harness，负责模型接线、工具管理、状态与护栏；文中以嵌入式 SDK 用于小型 Web 应用，实现一键在 watsonx 与 OpenAI 间切换、用 agent.knowledge.search() 做 PDF 解析分块嵌入与本地检索、每个问题使用独立会话线程。其设计要点是 CUGA 为纯文本进出的“大脑”，语音是包在外面的两层薄壳。原文强调难点不在语音而在跨语言检索：默认英文嵌入模型会使印地语、泰米尔语问题检索到错误段落，而模型仍正确回答“手册未涵盖”，全程无报错无告警；改用多语言嵌入模型 intfloat/multilingual-e5-large 后解决，且一份英文文档即可服务所有语言。语音侧支持 Sarvam AI 云端",
+   "key_points": [
+    "场景为农场助手：母语口头提问，检索 154 页英文农业手册，用同种语言以 2 到 4 句作答并展示来源页，离题问题礼貌引回农业",
+    "CUGA 是 IBM Research 的开源 agent harness，文中作为嵌入式 SDK 使用，负责模型接线、工具管理、状态与护栏，实现一键切换 watsonx/OpenAI 及本地知识检索",
+    "架构上 CUGA 为文本进出的大脑，语音是两层薄壳：语音转文字→知识检索→CUGA 生成有依据的回答→文字转语音，因此可先用纯文本开发测试并替换语音供应商"
+   ],
+   "topics": [
+    "rag",
+    "harness"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 69.8,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://cuga.dev",
+      "https://huggingface.co/spaces/ibm-research/cuga-apps",
+      "https://www.ibmbharatcore.info/",
+      "https://github.com/cuga-project/cuga-agent",
+      "https://docs.cuga.dev",
+      "https://github.com/cuga-project/cuga-apps",
+      "https://huggingface.co/spaces/ibm-research/cuga-agent",
+      "https://huggingface.co/spaces/ibm-research/cuga-policy-playground",
+      "https://huggingface.co/blog/ibm-research/cuga-on-hugging-face",
+      "https://huggingface.co/blog/ibm-research/cuga-apps",
+      "https://huggingface.co/blog/ibm-research/cuga-harness"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "a58808d0bc1080c7",
+   "url": "https://greydanus.github.io/2026/11/12/pengpt/",
+   "title": "PenGPT: A Generative Transformer for Handwriting and Sketches",
+   "source": "Hacker News (AI 高分帖)",
+   "tier": "A",
+   "published_at": "2026-11-25T00:54:49+00:00",
+   "summary_short": "6M 参数小模型学会多人体笔迹并按文本作画，作者称八成靠数据",
+   "summary_long": "PenGPT 是一个小型 Transformer，能从文本生成手写笔迹与简笔画。原文称投入大致为 80% 数据、15% 速度、5% 架构，是作者第一个遵循“苦涩教训”的项目。它包含两个模型：6M 参数模型写印刷体与连笔字，并能根据从未见过的书写者的一到三个真实单词，接着用其笔迹写下去；54M 参数模型按文本提示作画。方法上，笔尖坐标吸附到网格，一个词变成八方向加落笔、抬笔的移动序列，再用 BPE 把常见动作段合并成 token（“world”从 156 次移动变成 47 个 token），手写与绘图共用同一分词器；手写以文本为条件，绘图以 SigLIP 2 向量为条件。数据方面，手写用扫描件构建，共 1,255 名书写者的 495,590 个词，经视觉语言模型筛选转写、InkSight 还原笔划并校验后，仅三分之一到一半保留；绘图为十个公开数据集的 477,670 幅草图。消融显示数据量与增强影响显著。作者称拆解后得到的答案与预期不同，原文未详述具体结论。",
+   "key_points": [
+    "两个模型：6M 参数负责手写（印刷体与连笔，可用未见书写者的一到三个词延续其笔迹），54M 参数按文本提示绘图。",
+    "分词方式：笔点吸附网格成八方向加落笔/抬笔共十种符号，BPE 合并动作段，“world”由 156 次移动压缩为 47 个 token，手写与绘图共用。",
+    "数据构建：手写来自扫描件，含 1,255 名书写者、495,590 个词；绘图为十个公开数据集的 477,670 幅草图，Quick, Draw! 只保留最好的 0.5%；数据集不公开，论文附录说明构建方法。"
+   ],
+   "topics": [
+    "tokenization",
+    "data-curation",
+    "multimodal"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型"
+   ],
+   "horizon": "long",
+   "score": 68.7,
+   "status": "review",
+   "extra": {
+    "hn_points": 392,
+    "hn_comments": 77,
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/greydanus/pengpt",
+      "https://github.com/greydanus/pengpt/releases",
+      "http://www.incompleteideas.net/IncIdeas/BitterLesson.html"
+     ]
+    },
+    "content_source": "direct",
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "4a5a9b50a2385544",
+   "url": "https://github.com/pierridotite/mobile-agent-testers",
+   "title": "pierridotite/mobile-agent-testers — 20 AI testers on 20 different phones, in parallel, on GitHub's free runners: Claude Code agents on iOS Simulators and Android emulators that find broken flows, translation, layout and accessibility bugs",
+   "source": "GitHub Trending (AI)",
+   "tier": "B",
+   "published_at": "2026-11-16T19:11:44+00:00",
+   "summary_short": "20个AI测试员在20台不同手机上并行，运行于GitHub免费runner",
+   "summary_long": "",
+   "key_points": [
+    "20个AI测试员覆盖20台不同手机，并行运行",
+    "运行在GitHub的免费runner上",
+    "使用Claude Code智能体，运行于iOS模拟器和Android模拟器"
+   ],
+   "topics": [
+    "multi-agent",
+    "harness",
+    "tool-use"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发",
+    "开源项目"
+   ],
+   "horizon": "long",
+   "score": 61.7,
+   "status": "review",
+   "extra": {
+    "stars": 2333,
     "language": "Python",
     "summary_mode": "brief"
+   }
+  },
+  {
+   "id": "04a9805dfa556873",
+   "url": "https://simonwillison.net/2026/Nov/25/scott-aaronson/",
+   "title": "Quoting Scott Aaronson",
+   "source": "Simon Willison",
+   "tier": "A",
+   "published_at": "2026-11-25T23:26:32+00:00",
+   "summary_short": "Aaronson 称我们将得到一整块数学真理新大陆，而非零散解答",
+   "summary_long": "在这段话中，Scott Aaronson 判断：如今已经很明显，我们将得到的会是针对某个复杂度问题的零散一次性解答之外的收获；一整块全新的数学真理大陆即将出现，而此前我们只能透过迷雾隐约瞥见它。他用两个历史时刻作类比：列文虎克第一次把显微镜对准池水，伽利略第一次把望远镜对准星空。他说，这两个场景或许能让人体会，我们如今对复杂度理论宇宙、乃至其之外整个数学真理宇宙的“分辨率”提升到了什么程度。原文未说明这一判断的依据、涉及的具体复杂度问题或技术条件，也未展开“分辨率”具体指什么。该段被标注的主题标签为数学、LLMs、AI、生成式 AI。",
+   "key_points": [
+    "Aaronson 称我们将得到的是一整块数学真理新大陆，而不是对某个复杂度问题的一次性解答",
+    "他以列文虎克首次用显微镜观察池水、伽利略首次用望远镜观测星空作类比",
+    "原文称我们对复杂度理论宇宙及更广数学真理宇宙的“分辨率”已大幅提升"
+   ],
+   "topics": [
+    "reasoning"
+   ],
+   "category": "行业动态",
+   "categories": [
+    "行业动态"
+   ],
+   "horizon": "long",
+   "score": 61.2,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "mathematics",
+     "llms",
+     "ai",
+     "generative-ai"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://scottaaronson.blog/?p=10379",
+      "https://simonwillison.net/tags/mathematics",
+      "https://simonwillison.net/tags/llms",
+      "https://simonwillison.net/tags/ai",
+      "https://simonwillison.net/tags/generative-ai"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "49ee48d5da3d504a",
+   "url": "https://github.blog/news-insights/company-news/art-of-play-in-the-age-of-ai/",
+   "title": "Art of play in the age of AI",
+   "source": "GitHub Blog (AI)",
+   "tier": "S",
+   "published_at": "2026-11-25T16:00:00+00:00",
+   "summary_short": "GitHub徽章升级为可编程设备，引出AI时代\"允许自己去玩\"的思考",
+   "summary_long": "原文从童年摆弄物件写起：那种玩锻炼了解决问题与语言能力，也铺垫了早期工程技能；作者认为如今开发领域又开始尝到这种滋味——更多实验、更多变化，因为一切是新的。GitHub Universe 的可破解大会徽章已办四年，最初只是显示姓名和职位的电子墨水屏，后来成为开发者关系副总裁 Martin Woodward 的心血，今年升级为带彩色屏、可充电电池、加速度传感器和触摸游戏控制键的设备，社区已为其做出多个应用与游戏。\n\n原文引 Octoverse 报告：截至九月，40% 的 pull request 由 agent 发起，三月为 17%。变化之快令人对多年积累的编码技能感到不安，但作者认为眼前工具也带来更多实验与创造空间。Martin 在播客中说\"给自己许可去玩，把它叫作学习\"，但要限时，知道何时停下、交付、分享。项目规模也在变，可为具体用例而建。他在闭幕演讲用 Copilot 采集徽章加速度数据、在浏览器训练简单机器学习模型并部署到徽章，测试能否区分走路、静止与小动作。原文强调 AI 需要人的监督，保留检查、调试、测试的反馈回路，并对维护者友善。",
+   "key_points": [
+    "GitHub Universe 可破解徽章四年演变：从电子墨水屏姓名牌到带彩屏、可充电电池、加速度传感器与触摸游戏控制键的设备，社区已用它做应用和游戏",
+    "原文引 Octoverse：截至九月 40% 的 pull request 由 agent 发起，三月时为 17%",
+    "Martin Woodward 建议\"给自己许可去玩，把它叫作学习\"，但要限时，知道何时停下、交付、分享"
+   ],
+   "topics": [
+    "coding-agent",
+    "harness"
+   ],
+   "category": "Agent 与开发",
+   "categories": [
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 55.6,
+   "status": "review",
+   "extra": {
+    "content_source": "rss",
+    "source_tags": [
+     "Company news",
+     "News & insights",
+     "GitHub Shop"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "http://github.com/martinwoodward",
+      "https://x.com/conniecodes/status/2115301862861861220?ref_src=twsrc%5Etfw",
+      "https://x.com/rishabincloud/status/2115203346818838973?ref_src=twsrc%5Etfw",
+      "https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/",
+      "https://github.blog/open-source/maintainers/maintainers-dont-need-more-ai-bug-reports-they-need-fixes/",
+      "https://badger.github.io/",
+      "https://thegithubshop.com/products/github-universe-2026-hackable-badge",
+      "https://the-github-podcast.simplecast.com/",
+      "https://github.blog/news-insights/company-news/art-of-play-in-the-age-of-ai/",
+      "https://github.blog"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "bad4651f291ec598",
+   "url": "https://www.qbitai.com/2026/11/512819.html",
+   "title": "刚刚，黎曼猜想证明代码暴砍了99.5%！只剩7.6万行",
+   "source": "量子位",
+   "tier": "B",
+   "published_at": "2026-11-26T00:40:37+00:00",
+   "summary_short": "1740万行黎曼猜想Lean证明被精简至7.6万行，普通机器可编译",
+   "summary_long": "Alpöge与Claude此前发布1740万行黎曼猜想及广义黎曼猜想Lean形式化证明，17.5万个文件中仅一个含注释，AWS高配机器需21小时编译。社区rh-trim删死代码最多仅减约8%，且版本未能编译。Anthropic研究员Luke Sernau与同事及Claude彻底重写，推出可读版约30万行代码（总计47.7万行、801文件）和紧凑版7.6万行纯代码（总计11.3万行、792文件）。新版在12核24GB普通机器上1至2小时可构建，未用sorry，仅依赖三个标准公理，并通过多个独立检查器交叉验证。全部Lean代码和文档由Claude编写，人类负责方向建议。作者强调仅通过机器验证，尚无数学家完整通读，也无配套论文；项目以Apache 2.0开源。",
+   "key_points": [
+    "原证明1740万行、17.5万个文件，仅一个文件含注释，AWS高配需21小时编译；社区自动清理最多减约8%且未能编译。",
+    "Anthropic研究员Luke Sernau与同事及Claude重写重构，发布可读版约30万行代码和紧凑版7.6万行纯代码，12核24GB普通机器1至2小时可构建。",
+    "新版未用sorry，仅依赖propext、Classical.choice、Quot.sound三个标准公理，并经Lean内核及Comparator、nanoda等交叉验证；但仅通过机器验证，无数学家完整通读和配套论文，全部代码文档由Claude编写。"
+   ],
+   "topics": [
+    "coding-agent",
+    "reasoning",
+    "open-source"
+   ],
+   "category": "产品与应用",
+   "categories": [
+    "产品与应用"
+   ],
+   "horizon": "short",
+   "score": 53.3,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "source_tags": [
+     "资讯"
+    ],
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://www.qbitai.com/author/jay",
+      "https://www.qbitai.com",
+      "https://www.qbitai.com/2026/11/512727.html",
+      "https://www.qbitai.com/2026/11/511570.html",
+      "https://www.qbitai.com/2026/11/510821.html",
+      "https://www.qbitai.com/2026/11/509440.html",
+      "https://service.weibo.com/share/share.php?url=https://www.qbitai.com/2026/11/512819.html&title=刚刚，黎曼猜想证明代码暴砍了99.5%！只剩7.6万行&appkey=4017757111&searchPic=true&ralateUid=6105753431",
+      "https://www.qbitai.com/2026/11/511727.html",
+      "https://www.qbitai.com/2026/11/511582.html",
+      "https://www.qbitai.com/2026/11/512195.html",
+      "https://www.qbitai.com/2026/11/511610.html",
+      "https://weibo.com/qbitai?is_all=1",
+      "https://www.zhihu.com/org/liang-zi-wei-48/activities",
+      "https://www.toutiao.com/c/user/53624121633/#mid=1556041376883713",
+      "https://beian.miit.gov.cn/"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
+  {
+   "id": "37b5c9ba93266751",
+   "url": "https://huggingface.co/blog/allenai/where-scientists-draw-the-line-on-ai-agents",
+   "title": "Where scientists draw the line on AI agents",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-25T18:52:55+00:00",
+   "summary_short": "访谈17位科学家：AI智能体可代劳研究，但科学家不能交出责任",
+   "summary_long": "原文讨论把研究任务交给AI智能体时，科学家的责任并不会随之转移。文章举例：用AI做文献综述，研究者需核查系统是否忽略相冲突的证据、是否作出被引论文并不支持的论断；把数据分析交给智能体，需了解它用了哪些方法、访问了哪些文件、结果能否复现；自动化实验流程需确认系统遵守温度上限、材料毒性等物理安全约束；处理人类参与者数据则需保护隐私、限制访问范围。作者所在团队访谈了17位自然科学、应用科学与社会科学研究者，了解他们希望智能体在哪些环节提供帮助、可能出什么问题、需要什么保障才敢托付自己的研究。该议题源于团队评估自研模型安全性的工作：现有科研AI安全研究多聚焦生物学、核物理等灾难性风险，还需评估智能体是否遵守科研行为规范。访谈得出三点发现：一是科学信任的五个维度——验证、隐私、客观性、问责与透明；二是科学家应参与决定智能体承担哪些任务、如何运行、如何被评估；三是受访者对AI带来的进展感到兴奋，同时也对人类科学家的角色存在根本性担忧，并提出应开展AI使用培训、尽快制定并执行准则。",
+   "key_points": [
+    "委托AI做研究不解除科学家的责任：需核查文献综述是否漏掉冲突证据、数据分析用了什么方法与文件、能否复现、实验流程是否守住温度与毒性等安全约束",
+    "访谈17位自然科学、应用与社会科学研究者，归纳出科学信任的五个维度：验证、隐私、客观性、问责、透明",
+    "科学家应参与决定智能体承担哪些任务、如何运行与评估；受访者在兴奋与对人类科学家角色的根本担忧之间分歧明显，并呼吁AI使用培训和及时制定执行准则"
+   ],
+   "topics": [
+    "alignment",
+    "privacy"
+   ],
+   "category": "安全",
+   "categories": [
+    "安全"
+   ],
+   "horizon": "long",
+   "score": 53.0,
+   "status": "review",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://allenai.org/papers/responsible-ai-survey",
+      "https://www.datocms-assets.com/64837/1795122303-responsible-featured-51.png"
+     ]
+    },
+    "summary_mode": "full"
    }
   }
  ]
