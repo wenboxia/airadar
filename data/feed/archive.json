@@ -1,6 +1,65 @@
 {
- "generated_at": "2026-11-27T02:12:14+00:00",
+ "generated_at": "2026-11-28T02:00:56+00:00",
  "items": [
+  {
+   "id": "2d7f8b4f8454af31",
+   "url": "https://huggingface.co/blog/video-trainium3",
+   "title": "Taking Trainium3 to the Track: Generating Videos with LTX-2.5",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-27T00:00:00+00:00",
+   "summary_short": "用 LTX-2.5 在 Trainium3 上半台机器生成 10 秒带声视频仅需 22–23 秒",
+   "summary_long": "作者团队借助与 AWS 的合作，获得一台 Trainium3（trn3.48xlarge，64 个 NeuronCores）为期一个月的使用权，大部分时间用于测试并跑通 Hugging Face 模型，最后五天尝试生成视频，选用 Lightricks 的 LTX-2.5，它可同时生成画面与声音。作者有两个目标：一是检验用 diffusers 在 Trainium3 上生成视频是否容易——不只做示例短片，而是按脚本做出接近真实用例（如电影草稿）的短片；二是性能，希望接近 CUDA 或 LTX 自家 API 的水平。由于找不到 CUDA 可比的真实数据（LTX 仅称四块 B200 GPU 上 10 秒 720p 片段需 6.8 秒，未说明测量方式），作者改与 LTX 在线 API（称 10 秒 1080p 片段 23.7 秒）对比。最终模型加载后，半台机器生成 2048×1024 的 10 秒带声片段需 22–23 秒，与 API 相当并快约一秒。输入形如 JSON 镜头列表，各镜头用 from/to 键衔接。",
+   "key_points": [
+    "模型加载后，半台 Trainium3 生成 2048×1024、10 秒带声音片段需 22–23 秒，与 LTX 在线 API 声称的 10 秒 1080p 用时 23.7 秒相当，并快约一秒",
+    "输入形式是 JSON 镜头列表，每个镜头含 name 与 prompt，可选 seed 以保留选中的版本；LTX-2.5 对长 prompt 表现更好，prompt 需描述风格、主体、运动、镜头、光线与声音",
+    "镜头用两个键衔接：from 让镜头从前一镜头的末帧开始（取最后 25 帧即 1 秒还可延续运动）；to 让镜头结束于后一镜头的首帧以引出下一镜。镜头也可裁剪或叠加字幕"
+   ],
+   "topics": [
+    "reasoning",
+    "open-source"
+   ],
+   "category": "模型",
+   "categories": [
+    "模型",
+    "Agent 与开发"
+   ],
+   "horizon": "long",
+   "score": 78.3,
+   "status": "published",
+   "extra": {
+    "content_source": "direct",
+    "outbound": {
+     "arxiv": [],
+     "links": [
+      "https://github.com/huggingface/blog/blob/main/video-trainium3.md",
+      "https://aws.amazon.com/ec2/instance-types/trn3/",
+      "https://huggingface.co/Lightricks/LTX-2.5-Diffusers",
+      "https://github.com/huggingface/diffusers",
+      "https://venturebeat.com/technology/ltx-2-5-can-generate-a-10-second-ai-video-from-an-image-in-just-6-8-seconds-on-nvidia-superchips-and-its-open-weights",
+      "https://github.com/dacorvo/video-generation",
+      "https://huggingface.co/buckets/dacorvo/video-generation/tree/entertainment",
+      "https://github.com/dacorvo/video-generation/blob/main/parallel.py#L50",
+      "https://github.com/dacorvo/video-generation/blob/main/parallel.py#L65",
+      "https://github.com/aws-neuron/torch-neuronx/issues/1049",
+      "https://github.com/dacorvo/video-generation/blob/main/parallel.py#L141",
+      "https://github.com/dacorvo/video-generation/blob/main/timesteps.py",
+      "https://github.com/aws-neuron/torch-neuronx/issues/1052",
+      "https://github.com/aws-neuron/torch-neuronx/issues/1050",
+      "https://github.com/dacorvo/video-generation/blob/main/parallel.py#L231-L235",
+      "https://github.com/dacorvo/video-generation/blob/main/generate.py#L330",
+      "https://github.com/huggingface/diffusers/pull/15420",
+      "https://github.com/huggingface/diffusers/pull/14725",
+      "https://github.com/aws-neuron/torch-neuronx/issues/1027",
+      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-GR00T-GR1",
+      "https://huggingface.co/buckets/dacorvo/video-generation/tree/robotics",
+      "https://www.boreas.utias.utoronto.ca/",
+      "https://huggingface.co/Lightricks/LTX-2.5-Pre-Trained"
+     ]
+    },
+    "summary_mode": "full"
+   }
+  },
   {
    "id": "82a13b62ffcbeb2a",
    "url": "https://micjm.com/blog/openai-is-in-cost-control-mode/",
@@ -2585,113 +2644,6 @@
    }
   },
   {
-   "id": "d096a8a420fb437e",
-   "url": "https://unemploymentlabs.com/checkpoint-forensics",
-   "title": "Chinese frontier AI models carry the fingerprint of export-controlled GPUs",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-12T21:56:11+00:00",
-   "summary_short": "取证分析发现，四个中国实验室的六个模型权重带有 Blackwell 硬件指纹",
-   "summary_long": "在美国限制 Blackwell 芯片对华出口的背景下，原文对公开发布的 AI 模型做取证分析，发现证据显示 DeepSeek、Moonshot AI、MiniMax 与蚂蚁集团已获得 NVIDIA Blackwell GPU，并用其制作模型。自 2026 年 4 月起，这四家发布的六个模型含有与 Blackwell 匹配的数值模式，而它们更早的模型匹配 Hopper 代际。此前美国官员与媒体报道已指称 DeepSeek 和 Moonshot AI 使用 Blackwell，但未公布技术证据；本文证据全部来自模型公开权重，而非泄密或内部人士。方法是恢复模型初始值的痕迹，再搜索能复现这些值的硬件配置与初始配置，并对 DeepSeek-V4-Flash 和 Kimi K3 在实体 Blackwell 芯片上确认匹配。作者指出，指纹识别的是权重如何生成，支持但不证明训练也在 Blackwell 上完成；特殊配置的 AMD 硬件是唯一已识别的替代方案，对 DeepSeek-V4-Flash 已排除，其余五个判定为极不可能。研究提供获取先进算力的技术证据，但未确定芯片所在地、获取方式或是否违反出口管制。",
-   "key_points": [
-    "硬件对应：DeepSeek-V4-Flash 与 MiniMax-M3 匹配 148 个 SM 的 B200/B300；DeepSeek-V4-Pro、Kimi K3、Kimi K3.1-Pro、Ling-3.1-flash 匹配 152 个 SM 的 GB200/GB300",
-    "时间线：DeepSeek 到 V3（2024 年 12 月）为 Hopper，V4（2026 年 4 月）起为 Blackwell；Moonshot AI 到 K2.5（2026 年 1 月）为 Hopper，K3（7 月）起为 Blackwell，Kimi K2.7-Code 介于两者之间；MiniMax 到 M2.7 为 Hopper，M3 起为 Blackwell；蚂蚁 Ling-3.0-flash 为 Hopper",
-    "方法与局限：指纹表明权重如何生成，支持但不证明 Blackwell 执行了训练；唯一已识别的替代方案是特殊配置的 AMD 硬件，对 DeepSeek-V4-Flash 已排除，其余五个认为极不可能；未确定芯片位置、获取方式或是否违反出口管制"
-   ],
-   "topics": [
-    "export-controls",
-    "compute",
-    "model-forensics"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 77.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 355,
-    "hn_comments": 149,
-    "outbound": {
-     "arxiv": [
-      "2412.19437",
-      "2505.09343",
-      "2507.20534"
-     ],
-     "links": [
-      "https://github.com/macrogrants/checkpoint-forensics",
-      "https://news.bgov.com/tech-and-telecom-law/deepseek-has-used-banned-nvidia-chips-the-information-says-2",
-      "https://whbl.com/2026/02/23/exclusive-chinas-deepseek-trained-ai-model-on-nvidias-best-chip-despite-us-ban-official-says/",
-      "https://news.bgov.com/artificial-intelligence/white-house-official-says-moonshot-accessed-banned-nvidia-chips",
-      "https://www.thestandard.com.hk/finance/article/326579/",
-      "https://github.com/deepseek-ai/DeepGEMM/pull/112",
-      "https://github.com/inclusionAI/cuLA/blob/main/BENCHMARK_GB300.md",
-      "https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-742/section-742.6",
-      "https://arxiv.org/abs/2412.19437",
-      "https://arxiv.org/abs/2507.20534",
-      "https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Ultra-Technical-Report.pdf",
-      "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
-      "https://microsoft.ai/news/frontier-pre-training-at-microsoft-ai/",
-      "https://arxiv.org/abs/2505.09343",
-      "https://github.com/pytorch/pytorch/blob/main/aten/src/ATen/native/cuda/DistributionTemplates.h",
-      "https://huggingface.co/deepseek-ai/DeepSeek-V3-Base",
-      "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash",
-      "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
-      "https://huggingface.co/moonshotai/Kimi-K3",
-      "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
-      "https://huggingface.co/MiniMaxAI/MiniMax-M3",
-      "https://huggingface.co/inclusionAI/Ling-3.1-flash"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "1dba3a3e5ab0c862",
-   "url": "https://developer.apple.com/foundation-models-framework/",
-   "title": "Foundation Models framework",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-12T21:13:26+00:00",
-   "summary_short": "苹果 Foundation Models 框架：用一套 Swift API 接入任意大模型",
-   "summary_long": "原文介绍 Foundation Models 框架：它是一套原生 Swift API，可把任意大语言模型集成进应用，包括直接调用 Apple Foundation Models 的端侧模型与 Private Cloud Compute。框架内置引导生成、工具调用、图像理解与 Dynamic Profiles。图像理解支持多模态提示，把图像与文本一并传入，并集成 Vision 框架的 OCR 与条码读取，全部在端侧完成。模型支持方面，除端侧模型外，还通过同一套 Swift API 扩展至 Claude、Gemini 等服务端模型；任何模型提供方都可创建遵循 Language Model 协议的 Swift 包。加入 App Store 小企业计划且首次下载少于 200 万的开发者，可零云 API 成本使用 Private Cloud Compute 上的模型。Dynamic Profiles 让会话中的模型、工具与指令可动态切换，转录在各 profile 间共享。另有 Evaluations 框架用于测试提示词。",
-   "key_points": [
-    "原生 Swift API，可直接访问 Apple Foundation Models 的端侧模型与 Private Cloud Compute，内置引导生成、工具调用、图像理解、Dynamic Profiles",
-    "图像理解支持多模态提示，并集成 Vision 框架的 OCR 与条码读取，全部在端侧运行",
-    "同一套 Swift API 可接入 Claude、Gemini 等服务端模型，任何提供方都能创建遵循 Language Model 协议的 Swift 包"
-   ],
-   "topics": [
-    "tool-use",
-    "context-engineering"
-   ],
-   "category": "Agent 与开发",
-   "categories": [
-    "Agent 与开发"
-   ],
-   "horizon": "short",
-   "score": 77.7,
-   "status": "published",
-   "extra": {
-    "hn_points": 264,
-    "hn_comments": 35,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/apple/coreai-models",
-      "https://github.com/ml-explore/mlx-swift-lm",
-      "https://github.com/anthropics/ClaudeForFoundationModels",
-      "https://github.com/firebase/firebase-ios-sdk",
-      "https://github.com/apple/foundation-models-utilities",
-      "https://github.com/apple/python-apple-fm-sdk"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "a88bddb17214a029",
    "url": "https://huggingface.co/blog/ibm-granite/llmon-an-llm-native-markup-language-now-in-granite",
    "title": "LLMON: An LLM-Native Markup Language, now in Granite 4.1 3B and 8B",
@@ -2752,72 +2704,6 @@
    }
   },
   {
-   "id": "a8d5fa7d24b3647f",
-   "url": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/",
-   "title": "Introducing Gemini 4 Hydrogen",
-   "source": "Google DeepMind Blog",
-   "tier": "S",
-   "published_at": "2026-11-12T18:00:50+00:00",
-   "summary_short": "谷歌推出 Gemini 4 Hydrogen，主打日常编码与智能体工作流的速度与效率",
-   "summary_long": "Google DeepMind 发布 Gemini 4 Hydrogen，定位是把前沿智能带给所有人，重点在速度与效率，服务日常编码和智能体（agentic）工作流。原文说明，其前沿模型 Gemini 4 Carbon 与 Gemini 4 Argon 擅长长周期的深度推理，而 Hydrogen 面向多样智能体工作流中的快速执行。Hydrogen 将在 Google AI Studio 全部层级、Gemini API、Gemini for business、Gemini 应用、Google Search，以及 Google Antigravity 中已付费的 Google AI Pro 与 Ultra 订阅用户中提供。性能上，Hydrogen 在默认 high 思考档位下于 Artificial Analysis Intelligence Index 上超过 Argon（51 对 50），最高 xhigh 档位可达 54。价格在 100 万 token 上下文窗口内统一：输入每百万 token 1.50 美元，输出每百万 token 7.50 美元。原文还介绍了 Google Antigravity 中的 Orchestrator，可在同一会话内动态切换 Carbon 与 Hydrogen 等模型；在 Terminal-Bench 4.0 上接近 Carbon 的任务成功率，平均少",
-   "key_points": [
-    "Hydrogen 定位为快速执行模型，与擅长深度推理的 Carbon、Argon 形成互补，可单独使用，也可作为多模型工作流中的执行引擎。",
-    "在 Artificial Analysis Intelligence Index 上，Hydrogen 默认 high 档位得 51，超过 Argon 的 50；xhigh 档位达 54；100 万 token 上下文内价格统一为输入 1.50 美元/百万 token、输出 7.50 美元/百万 token。",
-    "Google Antigravity 新增 Orchestrator，可在同一会话动态切换模型，在 Terminal-Bench 4.0 上接近 Carbon 的任务成功率，同时平均少用 24% 配额、快 19%。"
-   ],
-   "topics": [
-    "reasoning",
-    "product",
-    "coding-agent"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 78.0,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://twitter.com/intent/tweet?text=Introducing%20Gemini%204%20Hydrogen%20%40google&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
-      "https://www.facebook.com/sharer/sharer.php?caption=Introducing%20Gemini%204%20Hydrogen&u=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
-      "https://www.linkedin.com/shareArticle?mini=true&url=https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/&title=Introducing%20Gemini%204%20Hydrogen",
-      "https://blog.google/authors/koray-kavukcuoglu/",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
-      "https://aistudio.google.com/prompts/new_chat?model=gemini-4-hydrogen",
-      "https://cloud.google.com/gemini-enterprise",
-      "http://gemini.google.com/",
-      "https://blog.google/products-and-platforms/products/search/gemini-4-hydrogen-search-upgrade",
-      "https://antigravity.google/",
-      "https://artificialanalysis.ai/",
-      "https://antigravity.google/blog/gemini-4-hydrogen-in-google-antigravity",
-      "https://www.tbench.ai/news/terminal-bench-4-0",
-      "https://www.tbench.ai/",
-      "https://arena.ai/leaderboard/agent",
-      "https://www.vals.ai/benchmarks/tax_agent_bench",
-      "https://www.vals.ai/benchmarks/legal_research",
-      "https://artificialanalysis.ai/evaluations/automationbench-aa",
-      "https://blog.google/innovation-and-ai/models-and-research/gemini-models/multimodal-knowledge-agent-benchmark/",
-      "https://agents-last-exam.org/leaderboard",
-      "https://aistudio.google.com/apps/bundled/geminisland?showPreview=true&showAssistant=true&fullscreenApplet=true",
-      "https://aistudio.google.com/apps/bundled/material-flask-website?showPreview=true&showAssistant=true&fullscreenApplet=true",
-      "https://github.com/google-gemini/demolab",
-      "https://institute.deepmind.com/essays/the-case-for-reasoning-transparency/",
-      "https://storage.googleapis.com/deepmind-media/Model-Cards/Gemini-4-Hydrogen-Model-Card.pdf",
-      "https://aistudio.google.com/docs/whats-new-gemini-4-hydrogen",
-      "https://developer.android.com/studio",
-      "http://sheets.new/",
-      "https://policies.google.com/privacy"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "0667a519c65042ee",
    "url": "https://github.com/hyperionaidev/smolmaxxing/",
    "title": "I'm making LLMs work on small and old devices",
@@ -2865,48 +2751,6 @@
       "https://github.com/staturnzz/amethyst",
       "https://fonts.google.com/specimen/Archivo",
       "https://github.com/googlefonts/noto-emoji"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "f101ffad2bb3a113",
-   "url": "https://ipo.anthropic.com/us/",
-   "title": "Anthropic IPO",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-12T11:46:41+00:00",
-   "summary_short": "Anthropic路演材料：Q3'26收入170亿美元、同比增超12倍，净亏233亿美元",
-   "summary_long": "原文为Anthropic首次公开募股（IPO）路演材料。开篇称Anthropic是一家公益公司（public benefit corporation），致力于确保AI的益处并缓解其风险，并引用创始人信：AI是人类历史上最具影响的技术之一，若管理得当，可加速科学创新、大幅提高经济增长率、使重大疾病的疗法触手可及、解决世代未能解决的问题。路演分11个章节，包括机会与核心优势、产品与平台、前沿与安全研究、算力策略、企业战略、财务模型与结论，并穿插Bristol Myers Squibb、Accenture、AIG等环节（原文未展开）。Q3'26财务亮点（截至2026年9月30日）：收入170亿美元，同比增长超12倍；年化收入超10万美元的客户超11,900家，同比增长超12倍；自2025年一季度以来算力效率提升超4倍；调整后运营利润率15%，运营利润率-3%；净亏损233亿美元，主因估值上升带来的219亿美元非现金费用（可转换票据、衍生负债与SAFE公允价值变动）。客户案例含Legora、礼来、乐天、Salesforce与沃尔玛：礼来5万余名员工可使用Claude Enterprise，乐天70多个业务单元使用AI、新功能上市由24天缩短至5天，Salesforce开发者人均有效产出同比增长151%。",
-   "key_points": [
-    "Q3'26收入170亿美元、同比增长超12倍；年化收入超10万美元客户超11,900家、同比增超12倍；算力效率较2025年一季度提升超4倍",
-    "净亏损233亿美元，含219亿美元非现金费用，源于估值上升导致的可转换票据、衍生负债与SAFE公允价值变动；调整后运营利润率15%，运营利润率-3%",
-    "客户案例：礼来5万余名员工接入Claude Enterprise、推广以来扩大5倍；乐天70多个业务单元使用AI，新功能上市从24天降至5天；Salesforce开发者有效产出同比增151%、API迁移快18倍"
-   ],
-   "topics": [
-    "ipo",
-    "funding"
-   ],
-   "category": "行业动态",
-   "categories": [
-    "行业动态"
-   ],
-   "horizon": "short",
-   "score": 79.5,
-   "status": "published",
-   "extra": {
-    "hn_points": 799,
-    "hn_comments": 791,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://www.schwab.com/stocks/ipo-direct-listing",
-      "https://us.etrade.com/what-we-offer/investment-choices/new-issues/anthropic?cid=pa-anthropic_ipo-et",
-      "https://fidelity.com/ipo",
-      "https://robinhood.com/us/en/ipo-access/",
-      "https://www.sofi.com/invest/ipo-investing/"
      ]
     },
     "content_source": "direct",

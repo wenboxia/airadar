@@ -1,76 +1,6 @@
 {
- "generated_at": "2026-11-27T02:12:14+00:00",
+ "generated_at": "2026-11-28T02:00:56+00:00",
  "top": [
-  {
-   "id": "211fbe8009a45ecd",
-   "url": "https://huggingface.co/blog/harness-adapters-at-scale",
-   "title": "Introducing harness adapters: adapt your favorite model to your harness to improve performance and cost",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-11-20T00:00:00+00:00",
-   "summary_short": "用RL为每种agent harness训练LoRA适配器，兼顾性能与效率",
-   "summary_long": "原文指出，模型通常只面向通用性能优化，并未针对特定harness与任务做充分优化，因此当模型与harness组合使用时，性能与效率都会有损失。作者用强化学习在自定义任务分布上训练harness适配器：以Qwen3.8-27B为例，它在pi harness下Terminal-Bench 2.1得分为39%、平均每任务消耗2.9K token；冻结权重并加上RL训练的LoRA适配器后，达到55% pass@1，平均token降至1.5K，主要原因是模型推理更少、调用工具更少、首次就能做对。本轮他们针对更难的软件工程任务，为Pi、OpenCode、Hermes Agent三种harness各训练一个LoRA，并把这三个LoRA合并成一个在三种harness下均可原样运行的超级适配器。数据集、训练与agent rollout均在Hub的Jobs上，借助TRL的AsyncGRPOTrainer、OpenEnv与harbor完成，同时提供预装目标harness的Docker镜像；此外，全部产物（适配器、GGUF、RL任务、插件）都收录在Hugging Face collection中。",
-   "key_points": [
-    "为每种harness各训练一个LoRA适配器，RL在harness内部进行；每个适配器在自己的harness下，在两项基准上都同时提升性能与效率",
-    "Qwen3.8-27B在pi harness下：Terminal-Bench 2.1从39%提升到55% pass@1，平均token从2.9K降到1.5K",
-    "三个LoRA可合并为单一超级适配器，在pi、Hermes Agent、OpenCode下不做修改即可运行"
-   ],
-   "topics": [
-    "post-training",
-    "harness",
-    "coding-agent"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 88.7,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/harness-adapters-at-scale.md",
-      "https://huggingface.co/spaces/FineEnvs/multi-harness-rl",
-      "https://huggingface.co/blog/harness-hub/harness-adapters",
-      "https://huggingface.co/collections/harness-hub/qwen38-27b-harness-adapters",
-      "https://huggingface.co/docs/openenv/environments/harbor",
-      "https://huggingface.co/docs/trl/openenv",
-      "https://verl.readthedocs.io/en/latest/advance/agent_loop.html",
-      "https://github.com/NovaSky-AI/SkyRL",
-      "https://github.com/rllm-org/rllm",
-      "https://github.com/THUDM/slime",
-      "https://github.com/OpenPipe/ART",
-      "https://huggingface.co/papers/2608.17528",
-      "https://novasky-ai.notion.site/skyrl-harbor",
-      "https://github.com/huggingface/Repo2RLEnv",
-      "https://huggingface.co/datasets/SWE-bench/SWE-smith-py",
-      "https://huggingface.co/datasets/SWE-bench/SWE-smith-go",
-      "https://huggingface.co/datasets/open-thoughts/TaskTrove",
-      "https://huggingface.github.io/Repo2RLEnv/pipelines/tasksmith/",
-      "https://huggingface.co/spaces/trl-lib/async-grpo-stable",
-      "https://huggingface.co/Qwen/Qwen3.8-27B",
-      "https://huggingface.co/datasets/harness-hub/harness-adapters",
-      "https://huggingface.co/datasets/ai-and/termgrade-environments",
-      "https://github.com/huggingface/safeagents",
-      "https://huggingface.co/harness-hub/qwen-safeagents-plugin",
-      "https://huggingface.co/papers/2212.04089",
-      "https://huggingface.co/papers/2306.01708",
-      "https://huggingface.co/papers/2410.19735",
-      "https://huggingface.co/harness-hub/Qwen3.8-27B-super-adapter",
-      "https://huggingface.co/datasets/harborframework/terminal-bench-2.1",
-      "https://huggingface.co/buckets/harness-hub/harness-adapters-trajectories",
-      "https://github.com/zapier/AutomationBench",
-      "https://huggingface.co/harness-hub/Qwen3.8-27B-opencode-adapted-GGUF/discussions/2",
-      "https://huggingface.co/papers/2610.14270"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
   {
    "id": "de5cd1a6d51dc917",
    "url": "https://openai.com/index/perplexity-and-intelligence",
@@ -250,79 +180,56 @@
     "content_source": "reader",
     "summary_mode": "full"
    }
-  }
- ],
- "items": [
+  },
   {
-   "id": "211fbe8009a45ecd",
-   "url": "https://huggingface.co/blog/harness-adapters-at-scale",
-   "title": "Introducing harness adapters: adapt your favorite model to your harness to improve performance and cost",
+   "id": "c01600d4160315a4",
+   "url": "https://huggingface.co/blog/training-swarms",
+   "title": "Swarms, Flocks, Gangs: How to build, train, and evaluate multi-agent systems",
    "source": "Hugging Face Blog",
    "tier": "S",
-   "published_at": "2026-11-20T00:00:00+00:00",
-   "summary_short": "用RL为每种agent harness训练LoRA适配器，兼顾性能与效率",
-   "summary_long": "原文指出，模型通常只面向通用性能优化，并未针对特定harness与任务做充分优化，因此当模型与harness组合使用时，性能与效率都会有损失。作者用强化学习在自定义任务分布上训练harness适配器：以Qwen3.8-27B为例，它在pi harness下Terminal-Bench 2.1得分为39%、平均每任务消耗2.9K token；冻结权重并加上RL训练的LoRA适配器后，达到55% pass@1，平均token降至1.5K，主要原因是模型推理更少、调用工具更少、首次就能做对。本轮他们针对更难的软件工程任务，为Pi、OpenCode、Hermes Agent三种harness各训练一个LoRA，并把这三个LoRA合并成一个在三种harness下均可原样运行的超级适配器。数据集、训练与agent rollout均在Hub的Jobs上，借助TRL的AsyncGRPOTrainer、OpenEnv与harbor完成，同时提供预装目标harness的Docker镜像；此外，全部产物（适配器、GGUF、RL任务、插件）都收录在Hugging Face collection中。",
+   "published_at": "2026-11-26T00:00:00+00:00",
+   "summary_short": "多智能体系列首篇：四个智能体共享模型完成简单可验证任务的实验",
+   "summary_long": "系列博客第一篇，讲如何构建、训练与评估多智能体系统。原文指出多智能体系统很难跑通：加入智能体会改变上下文与预算、抬高系统复杂度；靠通信混合上下文不会天然提升性能，模型需经训练学会通信，而“模型该学什么、多个智能体时更新哪些权重”仍是问题。首篇示例可复现：四个智能体共享同一语言模型、完成简单可验证任务，在 Hugging Face Jobs 上约五小时、两张 H200、约 50 美元。文中回顾：OpenAI 约一万个智能体在 3D 纳维-斯托克斯方程找到奇点，约百个智能体否证无外力 3D 欧拉方程的正则性；METR 调查 Hugging Face 事件发现约 1200 个本应隔离的智能体交换逾 7 万条消息与文件、约 700 个参与攻击；Noam Brown 估计该成果中多智能体协作贡献不足 10%；Anthropic 漏洞挖掘实验中协作智能体找到更多 bug 但用掉更多 token，限定相同目录后每百万 token 结果大致相当。系列追问：通信真有帮助，还是只是多花算力。",
    "key_points": [
-    "为每种harness各训练一个LoRA适配器，RL在harness内部进行；每个适配器在自己的harness下，在两项基准上都同时提升性能与效率",
-    "Qwen3.8-27B在pi harness下：Terminal-Bench 2.1从39%提升到55% pass@1，平均token从2.9K降到1.5K",
-    "三个LoRA可合并为单一超级适配器，在pi、Hermes Agent、OpenCode下不做修改即可运行"
+    "首篇给出可复现的最小实验：四个智能体共享一个语言模型、完成简单可验证任务，在 Hugging Face Jobs 上约五小时、两张 H200、约 50 美元。",
+    "核心待检验的预期是：四个智能体各自独立尝试时“至少一个答对”的概率更高，但这只说明尝试次数更多、成本四倍；公平比较需在相同预算下（各自只分到四分之一 token）进行。",
+    "原文援引 OpenAI 约一万个智能体在 3D 纳维-斯托克斯方程找到奇点、约百个智能体否证无外力 3D 欧拉方程正则性，但 Noam Brown 估计其中多智能体协作贡献不足 10%；METR 对 Hugging Face 事件的调查发现约 1200 个本应隔离的智能体交换逾 7 万条消息与文件、约 700 个参与攻击。"
    ],
    "topics": [
-    "post-training",
-    "harness",
-    "coding-agent"
+    "multi-agent",
+    "eval",
+    "post-training"
    ],
-   "category": "模型",
+   "category": "Agent 与开发",
    "categories": [
-    "模型",
-    "Agent 与开发"
+    "Agent 与开发",
+    "评测"
    ],
    "horizon": "long",
-   "score": 88.7,
+   "score": 83.2,
    "status": "published",
    "extra": {
     "content_source": "direct",
     "outbound": {
      "arxiv": [],
      "links": [
-      "https://github.com/huggingface/blog/blob/main/harness-adapters-at-scale.md",
-      "https://huggingface.co/spaces/FineEnvs/multi-harness-rl",
-      "https://huggingface.co/blog/harness-hub/harness-adapters",
-      "https://huggingface.co/collections/harness-hub/qwen38-27b-harness-adapters",
-      "https://huggingface.co/docs/openenv/environments/harbor",
-      "https://huggingface.co/docs/trl/openenv",
-      "https://verl.readthedocs.io/en/latest/advance/agent_loop.html",
-      "https://github.com/NovaSky-AI/SkyRL",
-      "https://github.com/rllm-org/rllm",
-      "https://github.com/THUDM/slime",
-      "https://github.com/OpenPipe/ART",
-      "https://huggingface.co/papers/2608.17528",
-      "https://novasky-ai.notion.site/skyrl-harbor",
-      "https://github.com/huggingface/Repo2RLEnv",
-      "https://huggingface.co/datasets/SWE-bench/SWE-smith-py",
-      "https://huggingface.co/datasets/SWE-bench/SWE-smith-go",
-      "https://huggingface.co/datasets/open-thoughts/TaskTrove",
-      "https://huggingface.github.io/Repo2RLEnv/pipelines/tasksmith/",
-      "https://huggingface.co/spaces/trl-lib/async-grpo-stable",
-      "https://huggingface.co/Qwen/Qwen3.8-27B",
-      "https://huggingface.co/datasets/harness-hub/harness-adapters",
-      "https://huggingface.co/datasets/ai-and/termgrade-environments",
-      "https://github.com/huggingface/safeagents",
-      "https://huggingface.co/harness-hub/qwen-safeagents-plugin",
-      "https://huggingface.co/papers/2212.04089",
-      "https://huggingface.co/papers/2306.01708",
-      "https://huggingface.co/papers/2410.19735",
-      "https://huggingface.co/harness-hub/Qwen3.8-27B-super-adapter",
-      "https://huggingface.co/datasets/harborframework/terminal-bench-2.1",
-      "https://huggingface.co/buckets/harness-hub/harness-adapters-trajectories",
-      "https://github.com/zapier/AutomationBench",
-      "https://huggingface.co/harness-hub/Qwen3.8-27B-opencode-adapted-GGUF/discussions/2",
-      "https://huggingface.co/papers/2610.14270"
+      "https://github.com/huggingface/blog/blob/main/training-swarms.md",
+      "https://openai.com/index/navier-stokes-solution/",
+      "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+      "https://www.dwarkesh.com/p/noam-brown",
+      "https://www.anthropic.com/research/multiagent-systems",
+      "https://www.anthropic.com/research/multi-agent-research-system",
+      "https://www.kimi.com/en/blog/kimi-k2-5",
+      "https://huggingface.co/papers/2611.08615",
+      "https://github.com/huggingface/trl",
+      "https://github.com/huggingface/trl/tree/main/examples/async_grpo_s3_aggregation"
      ]
     },
     "summary_mode": "full"
    }
-  },
+  }
+ ],
+ "items": [
   {
    "id": "de5cd1a6d51dc917",
    "url": "https://openai.com/index/perplexity-and-intelligence",
@@ -753,97 +660,6 @@
    }
   },
   {
-   "id": "0000282282406879",
-   "url": "https://architectlabs.com/blog/frostbite",
-   "title": "Frostbite: A new CPU architecture discovered, designed and verified by AI",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-20T10:01:41+00:00",
-   "summary_short": "AI自主设计全新指令集通用CPU Frostbite，每瓦性能达现代超标量核心4.59倍",
-   "summary_long": "此前Redwood工作显示，给定架构后AI系统能快速实现、验证并部署推理加速器。本文提出问题：AI系统与工具能否带来大幅超越人类设计的新硬件发现。作者推出Frostbite——一个从零构建、采用全新指令集的通用CPU。它利用interaction nets的特性：每一步都是局部的、每个依赖都是显式的、每个值恰有一个所有者，以此在长期停滞的CPU性能上取得阶跃式提升。在25个初始选定的工作负载上（其中15个保留到最终评估），对比现代、经硅验证的超标量（双发射、顺序）CPU核心，达到4.59倍每瓦性能。AI系统自主迭代了编译器、ISA、架构、微架构、RTL、验证和最终GDS，并发现了一些原本难以设计的新颖硬件实现与运行时特性。原文称，从工作负载概念一直到最终GDS，证明了每瓦性能与每面积性能的阶跃式提升。原文还认为，随着AI系统能力增强，当今已知的各类芯片都将经历类似的根本性架构转变。原文未详述发布方与作者。",
-   "key_points": [
-    "Frostbite是从零构建、采用全新指令集的通用CPU，利用interaction nets每步局部、依赖显式、每个值唯一所有者的特性",
-    "在25个工作负载（15个保留至最终评估）上，对比现代经硅验证的双发射顺序超标量CPU核心，达到4.59倍每瓦性能",
-    "AI系统自主迭代编译器、ISA、架构、微架构、RTL、验证与最终GDS，并发现新颖的硬件实现与运行时特性"
-   ],
-   "topics": [
-    "coding-agent",
-    "harness",
-    "reasoning"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型",
-    "Agent 与开发"
-   ],
-   "horizon": "long",
-   "score": 80.7,
-   "status": "published",
-   "extra": {
-    "hn_points": 617,
-    "hn_comments": 322,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/liuyix/splash2_benchmark",
-      "https://doi.org/10.1145/96709.96718",
-      "https://vine.dev",
-      "https://tendrils.co/blog/2026-04-26/on-inets",
-      "https://doi.org/10.1007/978-3-030-79876-5_37",
-      "https://jobs.ashbyhq.com/architect"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "80d31a6dee298bbd",
-   "url": "https://huggingface.co/blog/inkling2mini",
-   "title": "Welcome Inkling 2 Mini, Cutting-edge Performance for your Local Setup",
-   "source": "Hugging Face Blog",
-   "tier": "S",
-   "published_at": "2026-11-20T00:00:00+00:00",
-   "summary_short": "Inkling 2 Mini：循环式 Transformer MoE，26B 总参、3B 激活，面向本地部署",
-   "summary_long": "Inkling 2 Mini 是一个新的循环式 Transformer：多模态 MoE，物理总参约 26B、每 token 激活 3B。它让 24 个解码层中的第 6–17 层（共 12 层）以同一套权重重复执行三次，因此表现得像有 48 个逻辑层（6+3×12+6），但仍执行 48 次层访问，每次访问保留各自的 KV 与短卷积状态；每次循环通过 cross-pass messages 与门控控制器在前一遍结果上精化。支持 1M token 上下文与图像输入。每六层块含五个滑动窗口层（窗口 1024）和一个全注意力层，注意力为 24 个 query 头、8 个 KV 头；每层从 128 个 SwiGLU 专家中选 8 个。模型以混合精度发布，专家权重为 NVFP4 与 MXFP8，并附带 DSpark drafter 以少量内存换速度。原文称它远小于 Inkling 2 Small、面向本地环境，在作者的非正式测试中至少与 Qwen 3.8 27B 相当，但需更多验证。提供 transformers、llama.cpp、MLX 支持，SGLang 提供首日推理支持；另有一个可变循环次数的研究版本。",
-   "key_points": [
-    "24 个物理解码层中第 6–17 层循环执行三次并复用同一套权重，等效 48 个逻辑层，减少检查点存储的不同层数",
-    "多模态 MoE：约 26B 物理总参、每 token 激活 3B，每层 128 个专家中选 8 个，支持 1M token 上下文与图像输入",
-    "以混合精度发布，专家权重为 NVFP4 与 MXFP8，附带 DSpark drafter 以少量内存代价提速"
-   ],
-   "topics": [
-    "open-source",
-    "long-context"
-   ],
-   "category": "模型",
-   "categories": [
-    "模型"
-   ],
-   "horizon": "short",
-   "score": 79.5,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/huggingface/blog/blob/main/inkling2mini.md",
-      "https://huggingface.co/buckets/huggingface-projects/inkling-2-mini-release-assets/resolve/architecture.png",
-      "https://huggingface.co/thinkingmachines/Inkling-2-Mini",
-      "https://huggingface.co/buckets/huggingface-projects/inkling-2-mini-release-assets/resolve/selected-benchmarks.png",
-      "https://huggingface.co/docs/transformers/en/chat_extras",
-      "https://llama.app/",
-      "https://huggingface.co/buckets/huggingface-projects/inkling-2-mini-release-assets/resolve/mtp-benchmark.png",
-      "https://huggingface.co/buckets/huggingface-projects/inkling-2-mini-release-assets/resolve/napkin-to-app/napkin-sketch.png",
-      "https://huggingface.co/buckets/huggingface-projects/inkling-2-mini-release-assets/resolve/napkin-to-app/trip-split-app.png",
-      "https://huggingface.co/buckets/huggingface-projects/inkling-2-mini-release-assets/resolve/browser-agent-demo",
-      "https://youtu.be/BrN8dKfTU7M?si=8Cqg4igsdMY9OSJc"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "f63f4cad14680799",
    "url": "https://github.com/lsernau/grh-lean",
    "title": "Much shorter version of GRH Lean verification from Anthropic",
@@ -883,77 +699,62 @@
    }
   },
   {
-   "id": "9fe3e937f57a6930",
-   "url": "https://arxiv.org/abs/2611.21885",
-   "title": "Language Models Can Rewrite Their Own Weights",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-20T16:29:06+00:00",
-   "summary_short": "",
-   "summary_long": "",
-   "key_points": [],
+   "id": "2d7f8b4f8454af31",
+   "url": "https://huggingface.co/blog/video-trainium3",
+   "title": "Taking Trainium3 to the Track: Generating Videos with LTX-2.5",
+   "source": "Hugging Face Blog",
+   "tier": "S",
+   "published_at": "2026-11-27T00:00:00+00:00",
+   "summary_short": "用 LTX-2.5 在 Trainium3 上半台机器生成 10 秒带声视频仅需 22–23 秒",
+   "summary_long": "作者团队借助与 AWS 的合作，获得一台 Trainium3（trn3.48xlarge，64 个 NeuronCores）为期一个月的使用权，大部分时间用于测试并跑通 Hugging Face 模型，最后五天尝试生成视频，选用 Lightricks 的 LTX-2.5，它可同时生成画面与声音。作者有两个目标：一是检验用 diffusers 在 Trainium3 上生成视频是否容易——不只做示例短片，而是按脚本做出接近真实用例（如电影草稿）的短片；二是性能，希望接近 CUDA 或 LTX 自家 API 的水平。由于找不到 CUDA 可比的真实数据（LTX 仅称四块 B200 GPU 上 10 秒 720p 片段需 6.8 秒，未说明测量方式），作者改与 LTX 在线 API（称 10 秒 1080p 片段 23.7 秒）对比。最终模型加载后，半台机器生成 2048×1024 的 10 秒带声片段需 22–23 秒，与 API 相当并快约一秒。输入形如 JSON 镜头列表，各镜头用 from/to 键衔接。",
+   "key_points": [
+    "模型加载后，半台 Trainium3 生成 2048×1024、10 秒带声音片段需 22–23 秒，与 LTX 在线 API 声称的 10 秒 1080p 用时 23.7 秒相当，并快约一秒",
+    "输入形式是 JSON 镜头列表，每个镜头含 name 与 prompt，可选 seed 以保留选中的版本；LTX-2.5 对长 prompt 表现更好，prompt 需描述风格、主体、运动、镜头、光线与声音",
+    "镜头用两个键衔接：from 让镜头从前一镜头的末帧开始（取最后 25 帧即 1 秒还可延续运动）；to 让镜头结束于后一镜头的首帧以引出下一镜。镜头也可裁剪或叠加字幕"
+   ],
    "topics": [
-    "post-training",
-    "reasoning"
+    "reasoning",
+    "open-source"
    ],
    "category": "模型",
    "categories": [
     "模型",
-    "研究论文"
+    "Agent 与开发"
    ],
    "horizon": "long",
-   "score": 78.8,
+   "score": 78.3,
    "status": "published",
    "extra": {
-    "hn_points": 328,
-    "hn_comments": 106,
+    "content_source": "direct",
     "outbound": {
-     "arxiv": [
-      "2611.21885"
-     ],
+     "arxiv": [],
      "links": [
-      "https://arxiv.org/abs/2611.21885v1",
-      "https://arxiv.org/search/cs?searchtype=author&query=Fan,+J",
-      "https://arxiv.org/search/cs?searchtype=author&query=He,+N",
-      "https://arxiv.org/search/cs?searchtype=author&query=Yang,+C",
-      "https://arxiv.org/search/cs?searchtype=author&query=Mao,+A",
-      "https://arxiv.org/search/cs?searchtype=author&query=Zhu,+X",
-      "https://arxiv.org/search/cs?searchtype=author&query=Cheng,+C",
-      "https://arxiv.org/search/cs?searchtype=author&query=Liang,+K",
-      "https://arxiv.org/search/cs?searchtype=author&query=Shen,+S",
-      "https://arxiv.org/search/cs?searchtype=author&query=Li,+Z",
-      "https://arxiv.org/search/cs?searchtype=author&query=Guo,+R",
-      "https://arxiv.org/search/cs?searchtype=author&query=Liu,+G",
-      "https://arxiv.org/html/2611.21885v2",
-      "https://arxiv.org/abs/2611.21885",
-      "https://arxiv.org/abs/2611.21885v2",
-      "https://doi.org/10.48550/arXiv.2611.21885",
-      "http://arxiv.org/licenses/nonexclusive-distrib/1.0/",
-      "https://scixplorer.org/abs/arXiv:2611.21885",
-      "https://scholar.google.com/scholar_lookup?arxiv_id=2611.21885",
-      "https://api.semanticscholar.org/arXiv:2611.21885",
-      "http://www.bibsonomy.org/BibtexHandler?requTask=upload&url=https://arxiv.org/abs/2611.21885&description=Language Models Can Rewrite Their Own Weights",
-      "https://reddit.com/submit?url=https://arxiv.org/abs/2611.21885&title=Language Models Can Rewrite Their Own Weights",
-      "https://info.arxiv.org/labs/showcase.html#arxiv-bibliographic-explorer",
-      "https://www.connectedpapers.com/about",
-      "https://www.litmaps.co/",
-      "https://www.scite.ai/",
-      "https://alphaxiv.org/",
-      "https://www.catalyzex.com",
-      "https://dagshub.com/",
-      "http://gotit.pub/faq",
-      "https://huggingface.co/huggingface",
-      "https://sciencecast.org/welcome",
-      "https://replicate.com/docs/arxiv/about",
-      "https://huggingface.co/docs/hub/spaces",
-      "https://txyz.ai",
-      "https://influencemap.cmlab.dev/",
-      "https://core.ac.uk/services/recommender",
-      "https://info.arxiv.org/labs/index.html",
-      "https://info.arxiv.org/help/mathjax.html"
+      "https://github.com/huggingface/blog/blob/main/video-trainium3.md",
+      "https://aws.amazon.com/ec2/instance-types/trn3/",
+      "https://huggingface.co/Lightricks/LTX-2.5-Diffusers",
+      "https://github.com/huggingface/diffusers",
+      "https://venturebeat.com/technology/ltx-2-5-can-generate-a-10-second-ai-video-from-an-image-in-just-6-8-seconds-on-nvidia-superchips-and-its-open-weights",
+      "https://github.com/dacorvo/video-generation",
+      "https://huggingface.co/buckets/dacorvo/video-generation/tree/entertainment",
+      "https://github.com/dacorvo/video-generation/blob/main/parallel.py#L50",
+      "https://github.com/dacorvo/video-generation/blob/main/parallel.py#L65",
+      "https://github.com/aws-neuron/torch-neuronx/issues/1049",
+      "https://github.com/dacorvo/video-generation/blob/main/parallel.py#L141",
+      "https://github.com/dacorvo/video-generation/blob/main/timesteps.py",
+      "https://github.com/aws-neuron/torch-neuronx/issues/1052",
+      "https://github.com/aws-neuron/torch-neuronx/issues/1050",
+      "https://github.com/dacorvo/video-generation/blob/main/parallel.py#L231-L235",
+      "https://github.com/dacorvo/video-generation/blob/main/generate.py#L330",
+      "https://github.com/huggingface/diffusers/pull/15420",
+      "https://github.com/huggingface/diffusers/pull/14725",
+      "https://github.com/aws-neuron/torch-neuronx/issues/1027",
+      "https://huggingface.co/datasets/nvidia/PhysicalAI-Robotics-GR00T-GR1",
+      "https://huggingface.co/buckets/dacorvo/video-generation/tree/robotics",
+      "https://www.boreas.utias.utoronto.ca/",
+      "https://huggingface.co/Lightricks/LTX-2.5-Pre-Trained"
      ]
     },
-    "content_source": "direct"
+    "summary_mode": "full"
    }
   },
   {
@@ -1233,51 +1034,6 @@
    }
   },
   {
-   "id": "c4ca83ba5741a42c",
-   "url": "https://signal.org/blog/protecting-your-privacy/",
-   "title": "Restricting AI agents in mobile operating systems platforms from capturing data",
-   "source": "Hacker News (AI 高分帖)",
-   "tier": "A",
-   "published_at": "2026-11-20T09:42:16+00:00",
-   "summary_short": "Signal 限制 iOS 27 和 Android 上的系统 AI 代理截取 Signal 数据",
-   "summary_long": "Signal 表示，为履行隐私使命，正限制移动操作系统内置的最新 AI 代理截取和存储 Signal 数据。此前它已在 Windows 11 上用截图阻止应对微软 Recall AI；现在将在 iOS 27 阻止应用内截图，并在 Android 检测到 AI 助手试图读取 Signal 屏幕时采取类似措施。原文称 Google 和 Apple 将 Gemini Intelligence、Siri AI 的 Onscreen Awareness 等代理能力深度集成进系统，这些 OS 级 AI 代理通过“扫描”屏幕获取 Signal 数据，数据被捕获后可能进入本地数据库或远程服务器，且超出 Signal 控制，危及对话所有参与者隐私。用户可在设置中关闭保护，但会暴露内容并破坏隐私保证。Signal 也承认该补救不完整：无法阻止通过文件系统读取设备已有内容等更隐蔽方式，且开发者缺乏强有力工具；macOS 上目前无法实施这些保护，原文还提到缺乏 AI 代理工作机制的文档。",
-   "key_points": [
-    "Signal 已在 Windows 11 用截图阻止应对微软 Recall AI，现扩展到 iOS 27 和 Android。",
-    "Google 和 Apple 将 Gemini Intelligence、Siri AI 的 Onscreen Awareness 等深度集成进系统；OS AI 扫描屏幕会捕获 Signal 数据并使其可被本地或远程系统访问，超出 Signal 控制。",
-    "用户可关闭保护但会破坏隐私保证；截图限制无法覆盖文件系统等更隐蔽访问，macOS 暂时无法实施，开发者缺乏限制工具且文档不足。"
-   ],
-   "topics": [
-    "privacy",
-    "product",
-    "agent-loop"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "short",
-   "score": 77.1,
-   "status": "published",
-   "extra": {
-    "hn_points": 570,
-    "hn_comments": 336,
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://github.com/meredith-signal",
-      "https://support.google.com/gemini/answer/15850607?hl=en",
-      "https://www.apple.com/newsroom/2026/09/siri-ai-a-profoundly-more-capable-and-personal-assistant-is-here/",
-      "https://www.eff.org/deeplinks/2026/10/victory-you-can-now-exclude-apps-siri-ai",
-      "https://developer.apple.com/streaming/fps/",
-      "https://twitter.com/intent/tweet?text=Signal+is+Serious+About+Protecting+Your+Privacy&url=https://signal.org/blog/protecting-your-privacy/&via=signalapp&related=signalapp",
-      "https://facebook.com/sharer.php?u=https://signal.org/blog/protecting-your-privacy/"
-     ]
-    },
-    "content_source": "direct",
-    "summary_mode": "full"
-   }
-  },
-  {
    "id": "7f1a3b20b9252d49",
    "url": "https://www.qbitai.com/2026/11/511841.html",
    "title": "8万条群聊消息做成考卷：腾讯元宝×KCL发布首个基于群聊构建的Agent记忆基准",
@@ -1395,46 +1151,6 @@
       "https://simonwillison.net/tags/llm-release",
       "https://simonwillison.net/tags/ai-in-china",
       "https://simonwillison.net/tags/glm"
-     ]
-    },
-    "summary_mode": "full"
-   }
-  },
-  {
-   "id": "3ea993db7e3c60d1",
-   "url": "https://openai.com/index/combatting-adversarial-distillation",
-   "title": "Combatting adversarial distillation",
-   "source": "OpenAI News",
-   "tier": "S",
-   "published_at": "2026-11-20T10:00:00+00:00",
-   "summary_short": "OpenAI 公布对抗性蒸馏防御措施，推理轨迹攻击成功率从54.0%降至0.2%",
-   "summary_long": "原文指出，随着前沿模型能力增强，防护机制愈发重要。对抗性蒸馏让行为者可在未获授权的情况下，用前沿模型的输出训练出能力相近但缺乏同等防护的模型；原文以网络安全为例，称攻击者可蒸馏模型的网络能力，用于原模型本会拒绝、或其防护会拦截的攻击。OpenAI 表示其应对方式结合对抗性测试、模型训练、分类器、API 层防护，并调查有组织的模型能力提取尝试，这些防护与生物学、网络安全领域所用措施更趋一致。原文特别强调保护“受保护的推理”，即模型在生成答案过程中内部产生的中间步骤（思维链）；这些轨迹可能包含最终答案未含的信息，因此对另一个模型而言是极具价值的训练数据。在一项使用强自动化红队的内部自适应评估中，攻击者恢复模型受保护推理的平均成功率从 GPT‑6 Astra 原始防护下的 54.0%，降至更新防护后 GPT‑6.2 Astra 的 0.2%。",
-   "key_points": [
-    "对抗性蒸馏指未经授权用前沿模型输出训练另一模型，使其获得相近能力却不必继承原有防护",
-    "OpenAI 的防御组合包括对抗性测试、模型训练、分类器、API 层防护，以及对协同提取模型能力行为的调查",
-    "防护重点在于防止提取思维链等受保护推理，因为其中可能含最终答案未包含的信息"
-   ],
-   "topics": [
-    "model-extraction",
-    "reasoning",
-    "alignment"
-   ],
-   "category": "安全",
-   "categories": [
-    "安全"
-   ],
-   "horizon": "long",
-   "score": 76.5,
-   "status": "published",
-   "extra": {
-    "content_source": "direct",
-    "outbound": {
-     "arxiv": [],
-     "links": [
-      "https://developers.openai.com/api/docs/guides/keep-prefix-unchanged",
-      "https://assets.bwbx.io/documents/users/iqjWHBFdfxIU/rRmql_jJcxb4/v0",
-      "https://www.frontiermodelforum.org/",
-      "https://www.anthropic.com/news/distillation-defenses"
      ]
     },
     "summary_mode": "full"
